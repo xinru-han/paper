@@ -1,0 +1,7 @@
+region_id,name,area_share,area_wan_mu,yield_kg_mu,land_opp_cost_cny_mu,other_cost_cny_mu,quality_theta,proc_radius_km,service_level,calib_flag
+R1,黑龙江北部高寒,0.24,3717,120,650,280,0.9,120,0.7,anchor_area|struct_cost
+R2,黑龙江中南部及吉林,0.24,3717,150,850,280,1.1,80,0.8,anchor_area|struct_cost
+R3,内蒙古东部,0.10,1549,125,550,270,0.9,150,0.6,anchor_area|struct_cost
+R4,黄淮海(豫皖鲁冀苏),0.22,3407,145,820,310,1.0,60,0.7,anchor_area|struct_cost
+R5,西南带状复合(川渝云贵),0.10,1549,110,400,260,0.8,100,0.5,anchor_area|struct_cost
+R6,其他产区,0.10,1549,115,500,270,0.8,120,0.5,anchor_area|struct_cost

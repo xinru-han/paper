@@ -1,0 +1,11 @@
+numpy
+scipy
+pandas
+matplotlib
+PyYAML
+SALib
+pytest
+tqdm
+tabulate
+xlrd
+flask

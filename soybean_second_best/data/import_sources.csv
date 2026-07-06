@@ -1,0 +1,5 @@
+source_id,name,share_2024,volume_2024_wt,landed_cost_cny_t,disrupt_prob_annual,disrupt_severity,calib_flag
+S1,巴西,0.7107,7464.73,3650,0.06,0.35,anchor_share|struct_risk
+S2,美国,0.2107,2213.42,3900,0.15,0.60,anchor_share|struct_risk
+S3,阿根廷,0.0391,410.19,3600,0.10,0.40,anchor_share|struct_risk
+S4,其他(乌拉圭/加/俄等),0.0395,414.96,3800,0.08,0.30,anchor_share|struct_risk

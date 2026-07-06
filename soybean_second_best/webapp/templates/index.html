@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大豆全产业链第二优均衡 · 政策仿真平台</title>
+<script src="/static/chart.umd.min.js"></script>
+<style>
+:root{--red:#8c1f28;--blue:#2b6a99;--bg:#f7f5f0;}
+*{box-sizing:border-box;}
+body{font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;margin:0;background:var(--bg);color:#222;}
+header{background:var(--red);color:#fff;padding:18px 28px;}
+header h1{margin:0;font-size:22px;}
+header p{margin:4px 0 0;opacity:.85;font-size:13px;}
+nav{background:#fff;border-bottom:1px solid #ddd;padding:0 28px;display:flex;gap:4px;flex-wrap:wrap;}
+nav button{border:0;background:none;padding:12px 16px;font-size:14px;cursor:pointer;border-bottom:3px solid transparent;}
+nav button.active{border-color:var(--red);color:var(--red);font-weight:600;}
+main{max-width:1180px;margin:0 auto;padding:20px;}
+.panel{display:none;}
+.panel.active{display:block;}
+.card{background:#fff;border-radius:10px;padding:18px 20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.grid{display:grid;grid-template-columns:340px 1fr;gap:16px;align-items:start;}
+label{display:block;font-size:13px;margin:10px 0 2px;color:#444;}
+input[type=range]{width:100%;}
+.val{font-weight:600;color:var(--red);}
+button.run{background:var(--red);color:#fff;border:0;border-radius:6px;padding:10px 22px;font-size:15px;cursor:pointer;margin-top:14px;}
+button.run:disabled{opacity:.5;}
+.kpis{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px;}
+.kpi{background:#fff;border-left:4px solid var(--blue);border-radius:6px;padding:10px 16px;min-width:150px;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.kpi .n{font-size:22px;font-weight:700;}
+.kpi .l{font-size:12px;color:#666;}
+.figs{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;}
+.figs img{width:100%;border:1px solid #eee;border-radius:8px;background:#fff;}
+canvas{max-height:420px;}
+.spin{display:none;color:var(--blue);font-size:13px;margin-left:12px;}
+small.note{color:#777;}
+table.kv{font-size:13px;border-collapse:collapse;}
+table.kv td{padding:3px 10px;border-bottom:1px solid #eee;}
+</style>
+</head>
+<body>
+<header>
+  <h1>中国大豆全产业链第二优均衡 · 政策仿真平台</h1>
+  <p>理论: 供给可靠性 / 质量可观察性 / 配置筛选 / 环节互补四重失灵下的第二优配置 —— 基于 2023 年全国投入产出表(211部门)与《成本收益汇编》校准</p>
+</header>
+<nav>
+  <button data-p="home" class="active">总览</button>
+  <button data-p="m1">M1 最优规模规划</button>
+  <button data-p="m2">M2 进口组合与风险</button>
+  <button data-p="m3">M3 网络冲击传导</button>
+  <button data-p="m5">M5 政策仿真(ABM)</button>
+  <button onclick="location='/report'">完整报告</button>
+</nav>
+<main>
+
+<div class="panel active" id="p-home">
+  <div class="kpis">
+    <div class="kpi"><div class="n">{{ derived.get('Y_star','—') }}</div><div class="l">社会最优国产规模 Y* (万吨)</div></div>
+    <div class="kpi"><div class="n">{{ derived.get('beta_security','—') }}</div><div class="l">揭示性安全权重 β</div></div>
+    <div class="kpi"><div class="n">{{ derived.get('Lambda_food','—') }}</div><div class="l">大豆食品口径 Domar 权重</div></div>
+    <div class="kpi"><div class="n">{{ '%.2f%%'|format(100*derived.get('dln_food_price_20pct_shock',0)) }}</div><div class="l">20%冲击的食品价格响应</div></div>
+  </div>
+  <div class="card"><b>使用说明</b>：上方标签页为四个交互仿真模块。M1 求解社会规划者的最优国产规模；M2 优化进口来源组合并做中断情景蒙特卡洛；M3 用 2023 年投入产出表计算冲击沿产业链的价格传导；M5 运行万户农户 ABM 评估补贴/价格/质量/储备政策。全部参数可拖动调节后点击「运行」。</div>
+  <div class="figs">
+    {% for f in figs %}<div><img src="/figure/{{f}}" alt="{{f}}"><small class="note">{{f}}</small></div>{% endfor %}
+  </div>
+</div>
+
+<div class="panel" id="p-m1">
+  <div class="grid">
+    <div class="card">
+      <b>规划参数</b>
+      <label>危机概率 π: <span class="val" id="v-pi">0.05</span></label>
+      <input type="range" id="pi" min="0.01" max="0.10" step="0.005" value="0.05">
+      <label>危机进口损失 κ: <span class="val" id="v-kappa">0.30</span></label>
+      <input type="range" id="kappa" min="0.10" max="0.50" step="0.02" value="0.30">
+      <label>动员系数 χ: <span class="val" id="v-chi">0.15</span></label>
+      <input type="range" id="chi" min="0.05" max="0.30" step="0.01" value="0.15">
+      <label>储备 X (万吨): <span class="val" id="v-reserve_X">1000</span></label>
+      <input type="range" id="reserve_X" min="500" max="2000" step="100" value="1000">
+      <label>安全权重 β (0=纯经济核算): <span class="val" id="v-beta">{{ derived.get('beta_security',1000) }}</span></label>
+      <input type="range" id="beta" min="0" max="3000" step="50" value="{{ derived.get('beta_security',1000) }}">
+      <label>质量溢价 V_Y (元/吨): <span class="val" id="v-vy">627</span></label>
+      <input type="range" id="vy" min="300" max="1200" step="25" value="627">
+      <label>风险强度 ρ (倍数): <span class="val" id="v-rho_scale">1.0</span></label>
+      <input type="range" id="rho_scale" min="0.2" max="3" step="0.1" value="1">
+      <label>进口价冲击 (元/吨): <span class="val" id="v-pbar_shift">0</span></label>
+      <input type="range" id="pbar_shift" min="-800" max="1500" step="50" value="0">
+      <label>需求冲击 ΔD (万吨): <span class="val" id="v-D_shift">0</span></label>
+      <input type="range" id="D_shift" min="-1500" max="1500" step="100" value="0">
+      <button class="run" onclick="runM1()">运行规划求解</button><span class="spin" id="s-m1">求解中…</span>
+    </div>
+    <div>
+      <div class="kpis" id="m1-kpis"></div>
+      <div class="card"><canvas id="m1-chart"></canvas></div>
+      <div class="card"><b>福利分项 (亿元/年)</b><div id="m1-parts"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="p-m2">
+  <div class="grid">
+    <div class="card">
+      <b>风险与组合参数</b>
+      <label>进口总量 M (万吨): <span class="val" id="v-M">9580</span></label>
+      <input type="range" id="M" min="7000" max="11500" step="100" value="9580">
+      <label>储备 X (万吨): <span class="val" id="v-m2X">1000</span></label>
+      <input type="range" id="m2X" min="0" max="3000" step="100" value="1000">
+      <label>中断概率倍数: <span class="val" id="v-prob_scale">1.0</span></label>
+      <input type="range" id="prob_scale" min="0.3" max="3" step="0.1" value="1">
+      <label>损失曲率 ℓ 倍数: <span class="val" id="v-ell_scale">1.0</span></label>
+      <input type="range" id="ell_scale" min="0.3" max="5" step="0.1" value="1">
+      <button class="run" onclick="runM2()">优化组合并模拟情景</button><span class="spin" id="s-m2">模拟中…</span>
+      <p><small class="note">情景: C1 对美摩擦重演(6个月近停摆) / C2 巴西减产物流(−20%×4月) / C3 双重冲击。月度 Markov 中断×2000 次抽样。</small></p>
+    </div>
+    <div>
+      <div class="kpis" id="m2-kpis"></div>
+      <div class="card"><canvas id="m2-shares"></canvas></div>
+      <div class="card"><canvas id="m2-scen"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="p-m3">
+  <div class="grid">
+    <div class="card">
+      <b>冲击设置</b>
+      <label>大豆供给冲击幅度 (%): <span class="val" id="v-shock">20</span></label>
+      <input type="range" id="shock" min="5" max="60" step="5" value="20">
+      <button class="run" onclick="runM3()">计算网络传导</button>
+      <p><small class="note">基于 2023 年全国投入产出表(211部门聚合为9部门, 大豆行以产值锚拆分)。价格对偶: dlnp = (I−A′)⁻¹·v。</small></p>
+    </div>
+    <div>
+      <div class="kpis" id="m3-kpis"></div>
+      <div class="card"><canvas id="m3-chart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="p-m5">
+  <div class="grid">
+    <div class="card">
+      <b>政策工具</b>
+      <label><input type="checkbox" id="targeted"> 定向补贴(按区域社会净收益, 预算540亿)</label>
+      <label>统一面积补贴 (元/亩): <span class="val" id="v-sub_area">350</span></label>
+      <input type="range" id="sub_area" min="0" max="800" step="25" value="350">
+      <label>价格保护价差 τ (元/吨): <span class="val" id="v-price_floor">0</span></label>
+      <input type="range" id="price_floor" min="0" max="1500" step="50" value="0">
+      <label>质量传导 ϑ: <span class="val" id="v-theta">0.35</span></label>
+      <input type="range" id="theta" min="0.10" max="0.90" step="0.01" value="0.35">
+      <label>储备 X (万吨): <span class="val" id="v-m5X">1000</span></label>
+      <input type="range" id="m5X" min="500" max="3000" step="100" value="1000">
+      <button class="run" onclick="runM5()">运行 ABM (2026–2032)</button><span class="spin" id="s-m5">仿真中…约10秒</span>
+      <p><small class="note">3 种子 × 800 农户。完整实验(200种子×万户×P0–P6)见报告 T4。</small></p>
+    </div>
+    <div>
+      <div class="kpis" id="m5-kpis"></div>
+      <div class="card"><canvas id="m5-chart"></canvas></div>
+      <div class="card"><canvas id="m5-income"></canvas></div>
+    </div>
+  </div>
+</div>
+
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

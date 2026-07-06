@@ -1,0 +1,109 @@
+meta:
+  base_year: 2025
+  horizon:
+  - 2026
+  - 2035
+  seed: 20260705
+  fx_usd_cny: 7.1
+demand:
+  D_total: 11500
+  crush_share: 0.8
+  food_share: 0.136
+  source: 农小蜂《2025年中国大豆市场情况及成本收益分析报告》; CASDE-No.107 (2025-05)
+supply_domestic:
+  Y_2024: 2065.24
+  Y_2025: 2090.5
+  area_2024: 15487.5
+  yield_2024: 133.35
+  yield_2025: 135.9
+  yield_target_high: 145.0
+  source: 国家统计局粮食产量公告 2024/2025
+costs_national:
+  total_cost_per_mu: 944.28
+  revenue_per_mu: 761.86
+  net_profit_per_mu: -182.42
+  cost_top6_share: 0.9225
+  source: 国家发改委《全国农产品成本收益资料汇编2024》(2024-08 发布)
+prices:
+  p_import_landed_2024: 3650
+  spread_dom_import_2024: 627
+  spread_dom_import_5yr: 1202
+  p_domestic_food_2026Q1: 4298
+  p_soymeal_2023peak: 5000
+  p_soymeal_2024mid: 3400
+  source: 新浪财经/卓创资讯 2026-02-05; 油讯 2025-02; 中储粮网拍卖数据
+subsidies_2025:
+  heilongjiang: 350.73
+  jilin_range:
+  - 410
+  - 550
+  liaoning_range:
+  - 410
+  - 460
+  source: 各省农业农村厅 2025 年公告，转引自卓创资讯 2026-02-05
+imports_2024:
+  M_total: 10503.3
+  shares:
+    brazil: 0.7107
+    usa: 0.2107
+    argentina: 0.0391
+    others: 0.0395
+  volumes:
+    brazil: 7464.73
+    usa: 2213.42
+    argentina: 410.19
+    others: 414.96
+  M_2023: 9941
+  M_forecast_2526: 9580
+  source: 海关总署; 农小蜂 2025; CASDE-No.107
+feed_system:
+  soymeal_share_feed:
+    2017: 0.179
+    2022: 0.145
+    2023: 0.13
+    2024_jan_oct: 0.129
+  big33_share: 0.108
+  meal_cut_2023: 730
+  industrial_feed_2024_jan_oct: 25500
+  crush_yield_meal: 0.785
+  crush_yield_oil: 0.185
+  sow_inventory_2024dec: 4078
+  source: 农业农村部饲用豆粕减量替代行动通报 2023/2024; 畜牧兽医局
+global_market:
+  world_production_2425: 42700
+  world_exports_2425: 18200
+  brazil_crop_2425: 16900
+  source: USDA WASDE，转引自许世卫访谈 2025-04 与北京市粮储局 2025-01
+structural_params:
+  ell0_scale: 1.0
+  phi_rigidity: 2.0
+  food_expenditure_E: 90000
+  crisis_prob_pi: 0.05
+  crisis_import_loss_kappa: 0.3
+  mobilization_chi: 0.15
+  reserve_X: 1000
+  eps_feed_CES: 0.9
+  eta_downstream: 0.5
+  theta_transmission: 0.35
+  delta_minus_m: 1.2
+  eta_chain: 0.5
+  eps_phi_curvature: 0.6
+  risk_aversion_gamma: 0.0002
+  logit_tau: 80.0
+  peer_effect_zeta2: 0.15
+  service_effect_zeta1: 60.0
+derived:
+  ell_qty: 3.969e-05
+  ell_value: 0.0002979497315012353
+  ell_grid:
+    low_phi_low_Lam: 1.389e-05
+    low_phi_high_Lam: 2.58e-05
+    high_phi_low_Lam: 5.557e-05
+    high_phi_high_Lam: 0.00010321
+  Lambda_soy: 0.00685
+  Lambda_food: 0.029164
+  dln_food_price_20pct_shock: 0.00137
+  note: 由 m3_network.py 自动写入; ell_qty 单位 亿元/万吨^2
+  cost_scale: 0.7978
+  beta_security: 885.94
+  Y_star: 2084.6
