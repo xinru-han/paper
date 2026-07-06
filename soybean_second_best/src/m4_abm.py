@@ -154,10 +154,13 @@ class ABM:
             + self.pc_rho * np.log(self.p_corn) + self.pc_sig * z_corn))
         self.spread += 0.4 * (self.spread_anchor - self.spread) + rng.normal(0, 350)
         self.spread = float(np.clip(self.spread, -200, 2600))
-        # 食用需求底部: 上年国产量低于食用需求规模 F0 时, 食用溢价内生上升
-        # prem = prem0·(Y/F0)^(−1/ε_f)（进口豆不可替代食用需求, §3 与用户确认）
-        if self.Y_prev < self.F0:
-            floor = self.spread_anchor * (self.Y_prev / self.F0) ** (-1.0 / self.eps_food)
+        # 食用需求底部: 平滑产量 Ȳ 低于食用需求规模 F0 时, 食用溢价内生上升
+        # prem = prem0·(Ȳ/F0)^(−1/ε_f)（进口豆不可替代食用需求）。用两年平滑
+        # 产量避免单年冲击引发蛛网震荡（存量/库存缓冲的简化）。
+        self.Y_bar = getattr(self, "Y_bar", self.Y_prev)
+        self.Y_bar = 0.5 * self.Y_prev + 0.5 * self.Y_bar
+        if self.Y_bar < self.F0:
+            floor = self.spread_anchor * (self.Y_bar / self.F0) ** (-1.0 / self.eps_food)
             self.spread = float(max(self.spread, min(floor, 4000.0)))
         p_dom = self.p_imp + self.spread
         if pol["price_floor_tau"] > 0:
@@ -175,10 +178,14 @@ class ABM:
         sub_c = self.sub_corn_base if sub_c is None else np.broadcast_to(
             np.asarray(sub_c, float), self.reg_idx.shape)
         # 4. 种植选择 (Logit): ΔV = 大豆净收益 − 玉米净收益(动态)
+        #    + 转换成本 κ_s（Nerlove 局部调整: 农机/种子/轮作衔接的换茬摩擦,
+        #    使年际面积响应符合观测的部分调整特征, 长期弹性不受影响）
         base, q_i, prem, f_i = self._dv_terms(self.p_hat, sub, theta)
         corn_net = self._corn_net(self.p_corn_hat, sub_c)
         peer_r = pd.Series(self.soy_prev).groupby(self.reg_idx).mean().to_numpy()
+        kappa_s = sp.get("switch_cost_kappa", 120.0)
         dV = (base - corn_net
+              + kappa_s * (2.0 * self.soy_prev.astype(float) - 1.0)
               + sp["peer_effect_zeta2"] * 200.0 * (peer_r[self.reg_idx] - 0.5))
         p_soy = 1.0 / (1.0 + np.exp(-np.clip(dV / self.tau, -60, 60)))
         soy = rng.random(len(dV)) < p_soy

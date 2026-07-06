@@ -9,14 +9,10 @@ demand:
   D_total: 11500
   crush_share: 0.8
   food_share: 0.136
-  # 食用需求底部（用户确认): 国产大豆主要满足食用(非转基因), 进口豆不能替代 →
-  # 零补贴均衡存在历史底部。NBS 1990-2023 最低: 2015 年 1179 万吨 / 9940 万亩
-  # (临储玉米鼎盛+大豆无保护价+进口低价的极端组合)。取下沿 1100 为硬约束。
   Y_min_food: 1100
-  F_food: 1500          # 基线溢价下食用/专用需求规模(万吨), 食用+种用+调剂
-  eps_food: 0.35        # 食用需求价格弹性(绝对值), 文献带 [0.2, 0.5]
-  source: 农小蜂《2025年中国大豆市场情况及成本收益分析报告》; CASDE-No.107 (2025-05);
-    NBS 历史产量序列(底部锚)
+  F_food: 1500
+  eps_food: 0.35
+  source: 农小蜂《2025年中国大豆市场情况及成本收益分析报告》; CASDE-No.107 (2025-05); NBS 历史产量序列(底部锚)
 supply_domestic:
   Y_2024: 2065.24
   Y_2025: 2090.5
@@ -41,17 +37,16 @@ prices:
   source: 新浪财经/卓创资讯 2026-02-05; 油讯 2025-02; 中储粮网拍卖数据
 subsidies_2025:
   heilongjiang: 350.73
-  heilongjiang_corn: 118.0    # 玉米生产者补贴(黑龙江 2024, 省农业农村厅)
-  corn_soy_diff_hlj: 248.0    # 大豆-玉米生产者补贴差 366-118(联动政策杠杆)
+  heilongjiang_corn: 118.0
+  corn_soy_diff_hlj: 248.0
   jilin_range:
   - 410
   - 550
   liaoning_range:
   - 410
   - 460
-  source: 各省农业农村厅 2025 年公告，转引自卓创资讯 2026-02-05;
-    玉米补贴为省级政策文件口径。农户选择取决于补贴差而非大豆补贴绝对水平
-    (实证: 黑龙江 2024 大豆-玉米每亩剩余差 -182 元 ≈ -补贴差 248 元 → 边际无差异)
+  source: '各省农业农村厅 2025 年公告，转引自卓创资讯 2026-02-05; 玉米补贴为省级政策文件口径。农户选择取决于补贴差而非大豆补贴绝对水平
+    (实证: 黑龙江 2024 大豆-玉米每亩剩余差 -182 元 ≈ -补贴差 248 元 → 边际无差异)'
 imports_2024:
   M_total: 10503.3
   shares:
@@ -101,6 +96,7 @@ structural_params:
   eps_phi_curvature: 0.6
   risk_aversion_gamma: 0.0002
   logit_tau: 80.0
+  switch_cost_kappa: 120.0   # 换茬转换成本(元/亩): Nerlove 局部调整, 农机/种子/轮作摩擦
   peer_effect_zeta2: 0.15
   service_effect_zeta1: 60.0
 derived:
@@ -115,6 +111,6 @@ derived:
   Lambda_food: 0.029164
   dln_food_price_20pct_shock: 0.00137
   note: 由 m3_network.py 自动写入; ell_qty 单位 亿元/万吨^2
-  cost_scale: 0.7978
-  beta_security: 885.94
-  Y_star: 2084.6
+  cost_scale: 0.7889
+  beta_security: 589.97
+  Y_star: 2075.0
