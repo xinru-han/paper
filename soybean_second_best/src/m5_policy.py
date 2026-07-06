@@ -90,6 +90,11 @@ def eval_policy(cfg, name, spec=None, n_seeds=20, n_agents=2000, horizon=(2026, 
     sc = _get_sc(cfg)
     vy = float(cfg["prices"]["spread_dom_import_2024"])
     X_pol = pol.get("reserve_X") or sp["reserve_X"]
+    # 基线质量尺度 q̄0 = ϑ0^{1/(δ−m)}·E[φ]·(θ_r 面积加权): 观测溢价 vy 对应
+    # 基线质量水平, 质量项按 q̄/q̄0 归一（q̄ 直接乘 vy 会把水平当乘子, 低估 60%）
+    R_ = mc.load_regions()
+    q0 = (sp["theta_transmission"] ** (1.0 / sp["delta_minus_m"]) * 1.011
+          * float(np.average(R_.quality_theta, weights=R_.area_wan_mu)))
     rows = []
     for s in range(n_seeds):
         df = ABM(cfg, n_agents=n_agents, seed=1000 + s, policy=pol).run(
@@ -103,9 +108,10 @@ def eval_policy(cfg, name, spec=None, n_seeds=20, n_agents=2000, horizon=(2026, 
                         for y, m in zip(df.Y, df.M_planned)])
         supply_cost = np.array([sc.cost_integral(y) for y in df.Y])  # 资源成本
         imp_cost = df.M_planned * df.p_imp * U
-        quality_v = df.q_bar * df.Y * vy * U                         # 质量/食用溢价价值
-        welfare = (-supply_cost - imp_cost - losses + B_t + quality_v
-                   - df.fiscal * 0.2)                                # 财政资金边际成本20%
+        quality_v = (df.q_bar / q0) * df.Y * vy * U                  # 食用溢价价值(归一)
+        # 福利不再扣 MCF: β 为含财政摩擦的揭示权重(政府在承担财政成本下选择了
+        # 现行规模), M5 再扣 20% 即双重计费; 财政作为独立列与效率指标报告
+        welfare = -supply_cost - imp_cost - losses + B_t + quality_v
         rows.append(dict(
             seed=s, Y=df.Y.mean(), M=df.M_planned.mean(),
             welfare=float(welfare.mean()), fiscal=float(df.fiscal.mean()),

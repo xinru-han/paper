@@ -26,4 +26,4 @@ python webapp/app.py       # 交互式仿真网站(:7070)
 
 结果汇总见 `results/REPORT.md`。
 
-最近更新: 2026-07-06
+最近更新: 2026-07-07
