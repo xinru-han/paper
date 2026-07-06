@@ -1,0 +1,9 @@
+Reading panel and casting wide...
+Warning message:
+In `[.data.table`(wide, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+Computing elasticities for SY-EASI ...
+There were 11 warnings (use warnings() to see them)
+Computing elasticities for SY-QUAIDS ...
+There were 11 warnings (use warnings() to see them)
+Done. Outputs in /root/data/Paper/央视数据/Paper1-EASI/repro_run/final_demand_model_R/outputs

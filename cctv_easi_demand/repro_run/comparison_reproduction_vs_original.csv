@@ -1,0 +1,19 @@
+repro_location,file,max_abs_diff,note,reproduced
+outputs/demand,constrained_model_coefficients_fast_r.csv,0.0017158938458869955,1 numeric cols,MATCH(<1e-2)
+final_demand_model_R/outputs,curvature_negativity_diagnostics.csv,1.530785586001393e-05,3 numeric cols,MATCH(<1e-2)
+outputs/demand,food_expenditure_elasticity_monthly_fast_r.csv,0.00016840234664972087,1 numeric cols,MATCH(<1e-2)
+final_demand_model_R/outputs,food_expenditure_elasticity_sy_easi.csv,0.00016840234664972087,1 numeric cols,MATCH(<1e-2)
+final_demand_model_R/outputs,food_expenditure_elasticity_sy_quaids.csv,0.000171701415010439,1 numeric cols,MATCH(<1e-2)
+outputs/demand,hicksian_elasticity_monthly_fast_r.csv,0.003179930693225974,10 numeric cols,MATCH(<1e-2)
+final_demand_model_R/outputs,hicksian_elasticity_sy_easi.csv,0.003179930693225974,10 numeric cols,MATCH(<1e-2)
+final_demand_model_R/outputs,hicksian_elasticity_sy_quaids.csv,0.003199817298412899,10 numeric cols,MATCH(<1e-2)
+outputs/demand,marshallian_elasticity_monthly_fast_r.csv,0.0031917275636469955,10 numeric cols,MATCH(<1e-2)
+final_demand_model_R/outputs,marshallian_elasticity_sy_easi.csv,0.0031917275636469955,10 numeric cols,MATCH(<1e-2)
+final_demand_model_R/outputs,marshallian_elasticity_sy_quaids.csv,0.0032118452741770054,10 numeric cols,MATCH(<1e-2)
+final_demand_model_R/outputs,own_price_sign_comparison.csv,0.0020495971835898796,2 numeric cols,MATCH(<1e-2)
+final_demand_model_R/outputs,own_price_sign_sy_easi.csv,0.0020495971835898796,1 numeric cols,MATCH(<1e-2)
+final_demand_model_R/outputs,own_price_sign_sy_quaids.csv,0.0019319095096499428,1 numeric cols,MATCH(<1e-2)
+outputs/validation,price_validation_metrics.csv,0.0,6 numeric cols,EXACT
+final_demand_model_R/outputs,sample_summary.csv,0.0,no numeric cols (labels only),EXACT
+outputs/demand,selection_cre_probit_fit_stats_r.csv,7.127397390005452e-06,5 numeric cols,MATCH(<1e-2)
+outputs/regularity,theory_constraint_checks_fast_r.csv,0.0,1 numeric cols,EXACT

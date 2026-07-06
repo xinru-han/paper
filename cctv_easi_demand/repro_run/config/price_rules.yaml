@@ -1,0 +1,9 @@
+positive_spend_required: yes
+positive_volume_required: yes
+raw_category_winsorization:
+  lower_quantile: 0.005
+  upper_quantile: 0.995
+min_obs_cell_month_raw_category: 80.0
+min_households_for_fold_exclusion: 30.0
+max_allowed_price_identity_gap_log: 0.02
+random_seed: 2.0260626e+07

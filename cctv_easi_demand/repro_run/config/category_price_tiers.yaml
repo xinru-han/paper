@@ -1,0 +1,105 @@
+其他肉类:
+  food_group10: G06_禽类及其他肉类
+  price_quality_tier: B
+  heterogeneity_tier: B
+  internal_uv_allowed_main: yes
+坚果:
+  food_group10: G10_坚果
+  price_quality_tier: C
+  heterogeneity_tier: C
+  internal_uv_allowed_main: no
+大米:
+  food_group10: G01_主食
+  price_quality_tier: A
+  heterogeneity_tier: A
+  internal_uv_allowed_main: yes
+奶酪:
+  food_group10: G09_乳制品
+  price_quality_tier: B
+  heterogeneity_tier: B
+  internal_uv_allowed_main: yes
+常温牛奶:
+  food_group10: G09_乳制品
+  price_quality_tier: B
+  heterogeneity_tier: B
+  internal_uv_allowed_main: yes
+常温酸奶:
+  food_group10: G09_乳制品
+  price_quality_tier: B
+  heterogeneity_tier: B
+  internal_uv_allowed_main: yes
+成人奶粉:
+  food_group10: G09_乳制品
+  price_quality_tier: B
+  heterogeneity_tier: B
+  internal_uv_allowed_main: yes
+挂面:
+  food_group10: G01_主食
+  price_quality_tier: B
+  heterogeneity_tier: B
+  internal_uv_allowed_main: yes
+新鲜牛奶:
+  food_group10: G09_乳制品
+  price_quality_tier: B
+  heterogeneity_tier: B
+  internal_uv_allowed_main: yes
+新鲜酸奶:
+  food_group10: G09_乳制品
+  price_quality_tier: B
+  heterogeneity_tier: B
+  internal_uv_allowed_main: yes
+方便面:
+  food_group10: G01_主食
+  price_quality_tier: B
+  heterogeneity_tier: B
+  internal_uv_allowed_main: yes
+水果:
+  food_group10: G04_水果
+  price_quality_tier: C
+  heterogeneity_tier: C
+  internal_uv_allowed_main: no
+海鲜类:
+  food_group10: G08_海鲜
+  price_quality_tier: C
+  heterogeneity_tier: C
+  internal_uv_allowed_main: no
+牛肉:
+  food_group10: G07_牛羊肉
+  price_quality_tier: C
+  heterogeneity_tier: A
+  internal_uv_allowed_main: no
+猪肉:
+  food_group10: G05_猪肉
+  price_quality_tier: C
+  heterogeneity_tier: A
+  internal_uv_allowed_main: no
+禽类:
+  food_group10: G06_禽类及其他肉类
+  price_quality_tier: C
+  heterogeneity_tier: B
+  internal_uv_allowed_main: no
+羊肉:
+  food_group10: G07_牛羊肉
+  price_quality_tier: C
+  heterogeneity_tier: A
+  internal_uv_allowed_main: no
+蔬菜:
+  food_group10: G03_蔬菜
+  price_quality_tier: C
+  heterogeneity_tier: C
+  internal_uv_allowed_main: no
+面粉:
+  food_group10: G01_主食
+  price_quality_tier: A
+  heterogeneity_tier: A
+  internal_uv_allowed_main: yes
+食用油:
+  food_group10: G02_食用油
+  price_quality_tier: B
+  heterogeneity_tier: B
+  internal_uv_allowed_main: yes
+黄油:
+  food_group10: G09_乳制品
+  price_quality_tier: B
+  heterogeneity_tier: B
+  internal_uv_allowed_main: yes

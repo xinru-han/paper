@@ -1,0 +1,6 @@
+﻿metric,value
+n_household_months,584835
+max_abs_predicted_share_sum_error,2.22044604925031e-16
+mean_abs_predicted_share_sum_error,7.71433533418699e-18
+min_predicted_share,6.05634458543059e-09
+max_predicted_share,0.962200927837267

@@ -1,0 +1,4 @@
+﻿model,restriction,status,max_abs_error
+constrained_sy_easi_fast,adding_up,by_construction_predicted_10th_share,2.22044604925031e-16
+constrained_sy_easi_fast,homogeneity_relative_prices,by_construction_relative_prices,0
+constrained_sy_easi_fast,slutsky_symmetry_price_coefficients,by_construction_symmetric_parameterization,0

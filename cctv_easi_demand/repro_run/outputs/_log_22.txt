@@ -1,0 +1,34 @@
+Reading panel and casting wide...
+|--------------------------------------------------|
+|==================================================|
+Warning message:
+In `[.data.table`(wide, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+Estimating fast constrained SY-EASI...
+Estimating fast constrained SY-QUAIDS...
+Computing elasticities...
+Warning message:
+In `[.data.table`(out, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+Warning messages:
+1: In `[.data.table`(out, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+2: In `[.data.table`(out, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+3: In `[.data.table`(out, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+4: In `[.data.table`(out, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+5: In `[.data.table`(out, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+6: In `[.data.table`(out, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+7: In `[.data.table`(out, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+8: In `[.data.table`(out, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+9: In `[.data.table`(out, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+10: In `[.data.table`(out, , ..lp_cols) :
+  Both 'lp_cols' and '..lp_cols' exist in calling scope. Please remove the '..lp_cols' variable in calling scope for clarity.
+Fast high-frequency R demand model complete.
