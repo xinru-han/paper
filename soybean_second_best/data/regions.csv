@@ -1,7 +1,7 @@
-region_id,name,area_share,area_wan_mu,yield_kg_mu,land_opp_cost_cny_mu,other_cost_cny_mu,quality_theta,proc_radius_km,service_level,calib_flag
-R1,黑龙江北部高寒,0.24,3717,120,650,280,0.9,120,0.7,anchor_area|struct_cost
-R2,黑龙江中南部及吉林,0.24,3717,150,850,280,1.1,80,0.8,anchor_area|struct_cost
-R3,内蒙古东部,0.10,1549,125,550,270,0.9,150,0.6,anchor_area|struct_cost
-R4,黄淮海(豫皖鲁冀苏),0.22,3407,145,820,310,1.0,60,0.7,anchor_area|struct_cost
-R5,西南带状复合(川渝云贵),0.10,1549,110,400,260,0.8,100,0.5,anchor_area|struct_cost
-R6,其他产区,0.10,1549,115,500,270,0.8,120,0.5,anchor_area|struct_cost
+region_id,name,area_share,area_wan_mu,yield_kg_mu,land_opp_cost_cny_mu,other_cost_cny_mu,soy_land_cost_cny_mu,corn_yield_kg_mu,corn_prod_cost_cny_mu,corn_surplus_cny_mu,sub_soy_cny_mu,sub_corn_cny_mu,quality_theta,proc_radius_km,service_level,calib_flag
+R1,黑龙江北部高寒,0.24,3717,152.7,518.9,431.5,633.1,517.5,661.3,518.9,366.0,118.0,0.9,120,0.7,anchor_costdata|struct_quality
+R2,黑龙江中南部及吉林,0.24,3717,152.1,517.5,447.9,617.2,526.2,690.5,517.5,366.0,118.0,1.1,80,0.8,anchor_costdata|struct_quality
+R3,内蒙古东部,0.1,1549,130.1,739.0,350.8,255.6,584.8,695.6,739.0,420.0,35.0,0.9,150,0.6,anchor_costdata|struct_quality
+R4,黄淮海(豫皖鲁冀苏),0.22,3407,155.8,444.6,574.2,310.9,504.8,809.7,444.6,150.0,0.0,1.0,60,0.7,anchor_costdata|struct_quality
+R5,西南带状复合(川渝云贵),0.1,1549,121.2,-106.9,589.6,111.8,364.5,1089.9,-106.9,150.0,0.0,0.8,100,0.5,anchor_costdata|struct_quality
+R6,其他产区,0.1,1549,139.4,250.2,801.7,174.3,521.9,1075.5,250.2,150.0,0.0,0.8,120,0.5,anchor_costdata|struct_quality

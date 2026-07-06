@@ -42,6 +42,11 @@ def _norm(s):
     return re.sub(r'[\s　]+', '', s)
 
 
+def _norm_prov(s):
+    """省名归一化：去行政后缀。"""
+    return re.sub(r'(省|市|壮族自治区|回族自治区|维吾尔自治区|自治区)$', '', _norm(s))
+
+
 def _read_any(path):
     """读 xls/xlsx，加密的用 Excel 默认密码解密。"""
     try:
@@ -133,7 +138,7 @@ def extract_ocr_db():
              & df['data_year'].between(2019, 2023)
              & df['variable_key'].isin(inv)].copy()
     sub['variable'] = sub['variable_key'].map(inv)
-    sub['province'] = sub['province_name'].map(_norm)
+    sub['province'] = sub['province_name'].map(_norm_prov)
     sub = sub.dropna(subset=['province'])
     return [dict(province=r.province, data_year=int(r.data_year), crop=r.product,
                  variable=r.variable, value=float(r.value))
@@ -142,7 +147,9 @@ def extract_ocr_db():
 
 def main():
     recs = extract_yearbooks() + extract_ocr_db()
-    long = pd.DataFrame(recs).drop_duplicates(
+    long = pd.DataFrame(recs)
+    long['province'] = long['province'].map(_norm_prov)
+    long = long.drop_duplicates(
         subset=['province', 'data_year', 'crop', 'variable'], keep='first')
     wide = long.pivot_table(index=['province', 'data_year', 'crop'],
                             columns='variable', values='value').reset_index()
