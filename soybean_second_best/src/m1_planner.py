@@ -22,12 +22,17 @@ U = mc.WT_CNY_TO_YI   # 万吨×元/吨 -> 亿元
 
 
 def calibrate_supply(cfg, regions=None):
-    """构造优序供给并校准 cost_scale 使 MC(2090) ≈ 观测激励 6879 元/吨。"""
+    """构造优序供给并校准 cost_scale 使 MC(Y_obs) ≈ 观测边际激励。
+
+    供给成本口径已含玉米机会成本（land_opp = 玉米剩余, build_regions.py）→
+    农户边际条件: p_dom + (s_soy − s_corn)/yield = MC。观测激励 = 拍卖价 +
+    补贴差当量（不再是大豆补贴全额——玉米同补部分不改变相对激励）。"""
     regions = regions if regions is not None else mc.validate_regions(mc.load_regions())
     Y_obs = cfg["supply_domestic"]["Y_2025"]
     p_auc = cfg["prices"]["p_domestic_food_2026Q1"]                  # 4298
-    sub_t = cfg["subsidies_2025"]["heilongjiang"] / (cfg["supply_domestic"]["yield_2025"] / 1000)
-    target = p_auc + sub_t                                            # ≈ 6879 元/吨
+    sub_diff = cfg["subsidies_2025"].get("corn_soy_diff_hlj", 248.0)
+    sub_t = sub_diff / (cfg["supply_domestic"]["yield_2025"] / 1000)  # ≈1825 元/吨
+    target = p_auc + sub_t                                            # ≈ 6123 元/吨
     lo, hi = 0.5, 3.0
     for _ in range(60):                                               # 二分校准
         mid = 0.5 * (lo + hi)
@@ -38,7 +43,7 @@ def calibrate_supply(cfg, regions=None):
         else:
             hi = mid
     sc = mc.merit_order_supply(regions, cost_scale=0.5 * (lo + hi))
-    ok = 6400 <= sc.MC(Y_obs) <= 7600 and abs(sc.MC(Y_obs) - target) / target < 0.10
+    ok = 5500 <= sc.MC(Y_obs) <= 6900 and abs(sc.MC(Y_obs) - target) / target < 0.10
     print(f"[M1校准] cost_scale={0.5*(lo+hi):.3f} MC({Y_obs:.0f})={sc.MC(Y_obs):.0f} "
           f"目标={target:.0f} 一致性检验: {'通过' if ok else '失败'}")
     return sc, float(0.5 * (lo + hi)), target
@@ -68,7 +73,8 @@ def build_problem(cfg, sc, rho_scale=1.0, pbar_shift=0.0, beta_scale=1.0,
                 pi=sp["crisis_prob_pi"] * beta_scale, kappa=sp["crisis_import_loss_kappa"],
                 chi=sp["mobilization_chi"], X=X, m_cap=m_cap, beta_sec=1.0,
                 eta=sp["eta_chain"], eps_phi=sp["eps_phi_curvature"], sc=sc,
-                omega_scale=omega_scale)
+                omega_scale=omega_scale,
+                Y_min=cfg["demand"].get("Y_min_food", 1100.0))
 
 
 def welfare_parts(x, P):
@@ -116,7 +122,9 @@ def solve(P, x0=None):
         x0 = np.array([2000.0, D * 0.55, D * 0.16, D * 0.03, D * 0.03, 900.0, 9500.0, 9500.0])
     cons = [{"type": "eq", "fun": lambda x: x[0] + x[1:5].sum() + x[5] - D}]
     cap = P["m_cap"]
-    bounds = [(500.0, P["sc"].total_capacity)] + \
+    # Y 下界 = 食用需求底部(进口不可替代的非转基因食用豆, 2015 实测底部 1179)
+    y_lo = float(P.get("Y_min", 1100.0))
+    bounds = [(y_lo, P["sc"].total_capacity)] + \
              [(0.0, float(cap[j])) for j in range(4)] + \
              [(0.0, 2500.0), (1000.0, 25000.0), (1000.0, 25000.0)]
     res = minimize(lambda x: -welfare_parts(x, P)[0], x0, method="SLSQP",

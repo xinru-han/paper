@@ -94,6 +94,12 @@ def build(years=(2022, 2023, 2024)):
             service_level=o.service_level,
             calib_flag='anchor_costdata|struct_quality'))
     regions = pd.DataFrame(rows)
+    # 产量锚: 《汇编》调查亩产(≈152)系统高于 NBS 普查口径(133.35), 调查样本地块偏好。
+    # 面积等比回缩使 Σ area×yield = Y_2024 = 2065.24 万吨, 保持 area_share 与
+    # 每亩成本/亩产的调查内部一致性（元/吨口径不受影响）。
+    Y_anchor = 2065.24
+    cap = float((regions.area_wan_mu * regions.yield_kg_mu).sum() / 1000.0)
+    regions['area_wan_mu'] = (regions.area_wan_mu * Y_anchor / cap).round(0)
     regions.to_csv(os.path.join(DATA, 'regions.csv'), index=False)
 
     # ---- 价格/收益随机过程（主产省面板 2006-2024）----
