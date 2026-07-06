@@ -42,3 +42,10 @@ ehthumbs.db
 # Logs
 *.log
 .paper_work/
+
+# COVID paper: exclude large raw data (synced from /root/data/Paper/covid)
+covid_wugong/_extract/
+covid_wugong/新冠对务工的影响_数据+code/
+covid_wugong/*.zip
+covid_wugong/*.dta
+covid_wugong/*.docx

@@ -12,6 +12,10 @@ paper/
 │   ├── Results/                           (完整结果)
 │   ├── Data/                              (输入数据)
 │   └── From_quantity_to_composition_2024update.docx (论文)
+├── covid_wugong/                          (新冠对务工的影响)
+│   ├── scripts/                           (Python 流水线)
+│   ├── repro/                               (R 复现与输出)
+│   └── repro_deliverables/                  (最终交付结果)
 └── ...                                     (其他论文项目)
 ```
 
@@ -28,6 +32,13 @@ paper/
   - 2050年饲料粮需求393.4 Mt
 
 详见 `province_food_consumption_maidads/README.md`
+
+### 2. COVID Impact on Migrant Work (新冠对务工的影响)
+- **文件夹**: `covid_wugong/`
+- **内容**: Python 数据流水线 + R 复现脚本 + 表格/图表结果
+- **自动同步**: `/root/data/Paper/covid` → git，每 5 分钟推送
+
+详见 `covid_wugong/README.md`
 
 ## 使用说明
 
