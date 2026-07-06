@@ -95,7 +95,10 @@ structural_params:
   eta_chain: 0.5
   eps_phi_curvature: 0.6
   risk_aversion_gamma: 0.0002
-  logit_tau: 80.0
+  # τ 用实测面积弹性校准: NBS 大豆面积年际变化 sd≈6%(2010-23), 2016-17 玉米临储
+  # 改革(收益差+118元/亩)面积响应+11% → τ=600 时模型 yoy sd=5.4% 匹配。
+  # (τ=80 的旧值在无玉米价格冲击的旧结构下校准, 隐含弹性偏大一个量级)
+  logit_tau: 600.0
   switch_cost_kappa: 120.0   # 换茬转换成本(元/亩): Nerlove 局部调整, 农机/种子/轮作摩擦
   peer_effect_zeta2: 0.15
   service_effect_zeta1: 60.0

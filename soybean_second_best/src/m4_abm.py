@@ -152,16 +152,18 @@ class ABM:
         self.p_corn = float(np.exp(
             (1 - self.pc_rho) * np.log(self.p_corn_anchor)
             + self.pc_rho * np.log(self.p_corn) + self.pc_sig * z_corn))
-        self.spread += 0.4 * (self.spread_anchor - self.spread) + rng.normal(0, 350)
-        self.spread = float(np.clip(self.spread, -200, 2600))
-        # 食用需求底部: 平滑产量 Ȳ 低于食用需求规模 F0 时, 食用溢价内生上升
-        # prem = prem0·(Ȳ/F0)^(−1/ε_f)（进口豆不可替代食用需求）。用两年平滑
-        # 产量避免单年冲击引发蛛网震荡（存量/库存缓冲的简化）。
+        # 国产豆食用反需求（双向内生, 过观测点 (Y_2024, prem0=627)）:
+        #   prem(Ȳ) = prem0·(Ȳ/Y_2024)^(−1/ε_f)
+        # Ȳ 为两年平滑产量（库存缓冲简化, 防蛛网震荡）。Ȳ 低 → 溢价升(食用刚需,
+        # 进口不可替代 → 历史底部); Ȳ 高 → 溢价降(食用饱和, 边际吨进压榨与
+        # 进口豆同价)。OU 噪声围绕需求隐含水平回归。
         self.Y_bar = getattr(self, "Y_bar", self.Y_prev)
         self.Y_bar = 0.5 * self.Y_prev + 0.5 * self.Y_bar
-        if self.Y_bar < self.F0:
-            floor = self.spread_anchor * (self.Y_bar / self.F0) ** (-1.0 / self.eps_food)
-            self.spread = float(max(self.spread, min(floor, 4000.0)))
+        Y0 = self.cfg["supply_domestic"]["Y_2024"]
+        demand_prem = self.spread_anchor * (max(self.Y_bar, 300.0) / Y0) ** (-1.0 / self.eps_food)
+        demand_prem = float(np.clip(demand_prem, -100.0, 4000.0))
+        self.spread += 0.4 * (demand_prem - self.spread) + rng.normal(0, 350)
+        self.spread = float(np.clip(self.spread, -200, 4000))
         p_dom = self.p_imp + self.spread
         if pol["price_floor_tau"] > 0:
             p_dom = max(p_dom, self.p_imp + pol["price_floor_tau"])
@@ -264,6 +266,13 @@ class ABM:
         return pd.DataFrame(self.records)
 
 
+def _run_regional_policy(cfg, sub_corn_vec, n_agents, seed):
+    """区域向量玉米补贴的政策运行（sub_corn 接受区域向量→agent 向量映射）。"""
+    abm = ABM(cfg, n_agents=n_agents, seed=seed, policy=dict(sub_area=0.0))
+    abm.policy["sub_corn"] = np.asarray(sub_corn_vec, float)[abm.reg_idx]
+    return abm.run(range(2026, 2033))
+
+
 def gini(x):
     x = np.sort(np.asarray(x, float))
     n = len(x)
@@ -316,15 +325,22 @@ def run_selfcheck(cfg=None, fast=True, save=True):
     us_crisis = df_c[df_c.year == 2027].share_us.iloc[0]
     drop = (us_pre - us_crisis) / max(us_pre, 1e-9)
     out["us_share_drop"] = float(drop); out["check_C"] = bool(drop >= 0.40 or us_pre < 0.05)
-    # D. 食用底部: 取消大豆补贴(玉米补贴保持)后长期均衡不归零, 落在历史底部带
-    #    [1050, 1500]（NBS 2015 实测 1179; 溢价内生回拉）
-    dfs0 = [ABM(cfg, n_agents=2000 if fast else 6000, seed=s,
-                policy=dict(sub_area=0.0)).run(range(2026, 2033))
+    # D. 食用底部（2015 情景复现）: 大豆零补贴 + 玉米临储式支持(玉米补贴+200
+    #    元/亩当量) → 长期均衡落在历史底部带 [1050, 1500]（NBS 2015 实测 1179;
+    #    食用溢价内生回拉, 不归零）。附记: 仅取消大豆补贴(无玉米托市)时均衡
+    #    ≈1700-1800, 说明 2015 谷底是双重极端组合, 今日取消补贴不会重演。
+    R = mc.load_regions()
+    corn_boost = (R.sub_corn_cny_mu.to_numpy() + 200.0)
+    dfs0 = [_run_regional_policy(cfg, corn_boost, 2000 if fast else 6000, s)
             for s in (52, 53, 54)]
     df0 = pd.concat(dfs0)
     y_bottom = float(df0[df0.year >= 2029].Y.mean())
-    out["bottom_Y_nosub"] = y_bottom
+    out["bottom_Y_2015like"] = y_bottom
     out["check_D"] = bool(1050 <= y_bottom <= 1500)
+    dfs1 = [ABM(cfg, n_agents=2000 if fast else 6000, seed=s,
+                policy=dict(sub_area=0.0)).run(range(2026, 2033))
+            for s in (52, 53, 54)]
+    out["bottom_Y_nosub_only"] = float(pd.concat(dfs1).query("year>=2029").Y.mean())
     if save:
         pd.DataFrame([out]).to_csv(ROOT / "results/tables/T_M4_selfcheck.csv", index=False)
         plt = mc.setup_cjk()
