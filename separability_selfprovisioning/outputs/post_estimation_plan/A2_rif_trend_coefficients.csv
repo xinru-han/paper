@@ -1,0 +1,5 @@
+"term","estimate","std_error_cluster","t_stat","p_value","analysis","outcome"
+"household_size_reconstructed_tau_c",0.342240274164528,0.0186667435058996,18.3342249308972,4.41260878446831e-75,"A2_RIF_trend","self_suff_rate"
+"child_share_tau_c",-1.43703206947334,0.158774095045124,-9.05079678813431,1.41928860367519e-19,"A2_RIF_trend","self_suff_rate"
+"elderly_share_tau_c",0.684577609217974,0.0763931931195312,8.96123831539318,3.21052338913513e-19,"A2_RIF_trend","self_suff_rate"
+"female_share_tau_c",2.2325692292827,0.0918795663119563,24.2988655573593,2.01520480422334e-130,"A2_RIF_trend","self_suff_rate"

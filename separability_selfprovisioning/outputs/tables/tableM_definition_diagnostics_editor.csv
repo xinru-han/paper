@@ -1,0 +1,7 @@
+"diagnostic","value","numeric_value","decision"
+"pooled_repeated_cross_section","min_years_per_nhCode=1; max_years_per_nhCode=1",1,"No household fixed effects are feasible with current nhCode; use pooled repeated cross-section language."
+"households_at_roster_cap_8","18 of 3565 households",0.00504908835904628,"Roster cap is visible but rare; disclose in data limitations."
+"total_sown_area_w99_max","max=317.965920000001; p99=316.261651200001",317.965920000001,"Winsorized total sown area is used as a sensitivity check; main setup still uses total_sown_area."
+"sex_coding_audit","household_head_gender_male inferred from earlier household relation cross-check, codebook confirmation still needed",NA,"Keep female_share interpretation conditional until HA2 coding is manually verified."
+"youzhi_definition","partially identified; item-code review required",NA,"Do not make strong substantive claims about oils before item-code review."
+"roulei_aggregation","meat plus aquatic plus processed products in current aggregate category",NA,"Use label meat/aquatic products and state aggregation limitation."

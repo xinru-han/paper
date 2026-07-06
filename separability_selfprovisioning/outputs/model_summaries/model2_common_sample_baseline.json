@@ -1,0 +1,16 @@
+{
+  "models": [
+    {"outcome":"production_participation","conceptual_outcome":"self_provisioning_participation","spec":"M0","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.34383818,"hhcomp_wald_chisq":6.2996006,"hhcomp_wald_df":4,"hhcomp_wald_p":0.17786329},
+    {"outcome":"production_participation","conceptual_outcome":"self_provisioning_participation","spec":"M1","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.35938653,"hhcomp_wald_chisq":7.6402403,"hhcomp_wald_df":4,"hhcomp_wald_p":0.10568193},
+    {"outcome":"production_participation","conceptual_outcome":"self_provisioning_participation","spec":"M2","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.38122668,"hhcomp_wald_chisq":15.196936,"hhcomp_wald_df":4,"hhcomp_wald_p":0.0043097129},
+    {"outcome":"production_participation","conceptual_outcome":"self_provisioning_participation","spec":"M3","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.38669714,"hhcomp_wald_chisq":16.732615,"hhcomp_wald_df":4,"hhcomp_wald_p":0.0021783477},
+    {"outcome":"log_selfprod_amount","conceptual_outcome":"log_selfprod_amount","spec":"M0","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.34825296,"hhcomp_wald_chisq":22.796092,"hhcomp_wald_df":4,"hhcomp_wald_p":0.00013907359},
+    {"outcome":"log_selfprod_amount","conceptual_outcome":"log_selfprod_amount","spec":"M1","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.35565211,"hhcomp_wald_chisq":5.4421387,"hhcomp_wald_df":4,"hhcomp_wald_p":0.24486255},
+    {"outcome":"log_selfprod_amount","conceptual_outcome":"log_selfprod_amount","spec":"M2","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.39573345,"hhcomp_wald_chisq":6.0430841,"hhcomp_wald_df":4,"hhcomp_wald_p":0.19595375},
+    {"outcome":"log_selfprod_amount","conceptual_outcome":"log_selfprod_amount","spec":"M3","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.4068055,"hhcomp_wald_chisq":6.5365533,"hhcomp_wald_df":4,"hhcomp_wald_p":0.16250175},
+    {"outcome":"ihs_selfprod_amount","conceptual_outcome":"ihs_selfprod_amount","spec":"M0","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.35783943,"hhcomp_wald_chisq":22.455322,"hhcomp_wald_df":4,"hhcomp_wald_p":0.00016264182},
+    {"outcome":"ihs_selfprod_amount","conceptual_outcome":"ihs_selfprod_amount","spec":"M1","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.36538344,"hhcomp_wald_chisq":5.4421774,"hhcomp_wald_df":4,"hhcomp_wald_p":0.24485908},
+    {"outcome":"ihs_selfprod_amount","conceptual_outcome":"ihs_selfprod_amount","spec":"M2","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.40527775,"hhcomp_wald_chisq":5.8933907,"hhcomp_wald_df":4,"hhcomp_wald_p":0.20725264},
+    {"outcome":"ihs_selfprod_amount","conceptual_outcome":"ihs_selfprod_amount","spec":"M3","common_m3_sample":"TRUE","n":27568,"n_clusters":350,"r_squared":0.416665,"hhcomp_wald_chisq":6.282264,"hhcomp_wald_df":4,"hhcomp_wald_p":0.179037}
+  ]
+}

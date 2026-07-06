@@ -1,0 +1,7 @@
+"analysis","outcome","block","n","n_clusters","r_squared","wald_chisq","wald_df","wald_p"
+"A1_Mundlak","production_participation","between_village_means",26926,350,0.391359248651893,10.88574120537,4,0.0278785858776343
+"A1_Mundlak","production_participation","within_household_deviation",26926,350,0.391359248651893,16.5320262000131,4,0.00238236902136091
+"A1_Mundlak","self_suff_rate","between_village_means",26249,350,0.269141151250655,16.5355889634863,4,0.0023785860833605
+"A1_Mundlak","self_suff_rate","within_household_deviation",26249,350,0.269141151250655,7.55538196799085,4,0.109291832519042
+"A1_Mundlak","ihs_selfprod_amount","between_village_means",26926,350,0.416015412356565,7.82826316871518,4,0.0980756133348161
+"A1_Mundlak","ihs_selfprod_amount","within_household_deviation",26926,350,0.416015412356565,9.12711780802531,4,0.0579994987989164

@@ -1,0 +1,5 @@
+"analysis","outcome","block","n","n_clusters","r_squared","wald_chisq","wald_df","wald_p"
+"A3_market_interactions","ihs_selfprod_amount","all_composition_market_interactions",26926,350,0.491067805935216,8.1161124503951,8,0.422210948019154
+"A3_market_interactions","ihs_selfprod_amount","elderly_market_interactions",26926,350,0.491067805935216,2.99501331783219,2,0.223687193892768
+"A3_market_interactions","self_suff_rate","all_composition_market_interactions",26249,350,0.328539648803314,5.88067446186462,8,0.660596173867642
+"A3_market_interactions","self_suff_rate","elderly_market_interactions",26249,350,0.328539648803314,1.19029548268922,2,0.551481083292033

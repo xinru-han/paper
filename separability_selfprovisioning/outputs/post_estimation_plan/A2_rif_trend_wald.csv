@@ -1,0 +1,3 @@
+"analysis","outcome","block","n","n_clusters","r_squared","wald_chisq","wald_df","wald_p"
+"A2_RIF_trend","self_suff_rate","elderly_share_by_tau",132890,350,0.227926911718013,80.3037921452707,1,0
+"A2_RIF_trend","self_suff_rate","all_composition_by_tau",132890,350,0.227926911718013,2756.4381092681,4,0

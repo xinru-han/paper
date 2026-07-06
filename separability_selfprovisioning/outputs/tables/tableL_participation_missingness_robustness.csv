@@ -1,0 +1,4 @@
+"diagnostic","value","implication"
+"selfprod_monthly_total_missing_in_current_long_file","0","The current long files no longer preserve item-level source missingness."
+"production_participation_missing_in_current_long_file","0","Participation is fully populated after prior cleaning."
+"na_to_zero_robustness_status","not_reconstructable_from_current_analysis_ready_or_cleaned_long_files","Report as a limitation and rerun only if raw item-level missing codes are restored."

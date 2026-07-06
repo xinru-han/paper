@@ -1,0 +1,7 @@
+{
+  "robustness_outputs": [
+    {"model":"alternative_composition_outcomes","rows":12},
+    {"model":"leave_one_province","rows":8},
+    {"model":"household_composition_permutation","rows":1}
+  ]
+}

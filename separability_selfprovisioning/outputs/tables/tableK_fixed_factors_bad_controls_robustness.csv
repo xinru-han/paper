@@ -1,0 +1,10 @@
+"label","outcome","n","n_clusters","r_squared","wald_chisq","wald_df","wald_p","fixed_common_sample_across_bad_control_specs"
+"full_M3_resources","production_participation",27568,350,0.386697140272122,16.7326151406376,4,0.00217834770929937,TRUE
+"fixed_factors_no_income_expense","production_participation",27568,350,0.385266105186079,18.3263719074724,4,0.00106539039105558,TRUE
+"fixed_factors_no_income_expense_land_w99","production_participation",27568,350,0.385266105186079,18.3263719074696,4,0.00106539039105702,TRUE
+"full_M3_resources","log_selfprod_amount",27568,350,0.406805496831276,6.53655327064042,4,0.162501753283594,TRUE
+"fixed_factors_no_income_expense","log_selfprod_amount",27568,350,0.406133409381391,6.01958349777448,4,0.197690531769249,TRUE
+"fixed_factors_no_income_expense_land_w99","log_selfprod_amount",27568,350,0.406133409381391,6.01958349777407,4,0.197690531769279,TRUE
+"full_M3_resources","ihs_selfprod_amount",27568,350,0.416665003240574,6.28226397889053,4,0.179036996242159,TRUE
+"fixed_factors_no_income_expense","ihs_selfprod_amount",27568,350,0.415937523130886,5.80402723926744,4,0.21426946217321,TRUE
+"fixed_factors_no_income_expense_land_w99","ihs_selfprod_amount",27568,350,0.415937523130887,5.80402723926625,4,0.214269462173304,TRUE

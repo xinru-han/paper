@@ -1,0 +1,2 @@
+"placebo_type","outcome","n_draws","true_wald_chisq","true_wald_df","true_wald_p","placebo_mean","placebo_p50","placebo_p90","placebo_p95","placebo_max","randomization_p_value","n","n_clusters"
+"household_composition_permutation","production_participation",99,16.7326151406376,4,0.00217834770929937,4.10453058914589,3.60890803490886,7.55711375806423,9.28377753052069,13.4302735294212,0.01,27568,350

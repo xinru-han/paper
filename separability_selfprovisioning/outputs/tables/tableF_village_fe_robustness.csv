@@ -1,0 +1,12 @@
+"label","outcome","n","n_clusters","r_squared","wald_chisq","wald_df","wald_p","absorbed_controls","common_sample","food_category","food_category_label"
+"village_FE_M3_like","production_participation",27568,350,0.450851496484471,6.40851186344486,4,0.170646928534793,"province_FE_market_GAEZ_text_absorbed_or_collinear_at_village_county_level","M3_complete_case",NA,NA
+"village_FE_M3_like","log_selfprod_amount",27568,350,0.479848328209046,16.0595302507835,4,0.00294031438763698,"province_FE_market_GAEZ_text_absorbed_or_collinear_at_village_county_level","M3_complete_case",NA,NA
+"village_FE_M3_like","ihs_selfprod_amount",27568,350,0.490119196912372,15.7715611054465,4,0.00334152414795119,"province_FE_market_GAEZ_text_absorbed_or_collinear_at_village_county_level","M3_complete_case",NA,NA
+"village_FE_category_zhushi","production_participation",3446,350,0.59845313590812,0.909792458437711,4,0.923151747411136,"category_specific_village_FE","M3_complete_case","zhushi","主食"
+"village_FE_category_doulei","production_participation",3446,350,0.402427704332247,7.39748040274963,4,0.116315870055843,"category_specific_village_FE","M3_complete_case","doulei","豆类"
+"village_FE_category_roulei","production_participation",3446,350,0.655906551271238,3.79966687225552,4,0.433796331796861,"category_specific_village_FE","M3_complete_case","roulei","肉类和水产品及加工品"
+"village_FE_category_danlei","production_participation",3446,350,0.636912469670338,12.3355003653544,4,0.0150232187296054,"category_specific_village_FE","M3_complete_case","danlei","蛋类"
+"village_FE_category_nailei","production_participation",3446,350,0.112729900297711,3.69464278648375,4,0.448905579980772,"category_specific_village_FE","M3_complete_case","nailei","奶类"
+"village_FE_category_youzhi","production_participation",3446,350,0.678915391287555,4.36828464153687,4,0.35845241726297,"category_specific_village_FE","M3_complete_case","youzhi","油脂"
+"village_FE_category_shucai","production_participation",3446,350,0.694044151312301,6.53096444416181,4,0.16284979883111,"category_specific_village_FE","M3_complete_case","shucai","蔬菜"
+"village_FE_category_shuiguo","production_participation",3446,350,0.556778545965838,2.72170853881117,4,0.605421277211201,"category_specific_village_FE","M3_complete_case","shuiguo","水果"

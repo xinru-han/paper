@@ -1,0 +1,17 @@
+"analysis","outcome","block","n","n_clusters","r_squared","wald_chisq","wald_df","wald_p"
+"A1b_component","production_participation","single_household_size_reconstructed",26926,350,0.389527423183843,5.20174633584701,1,0.0225642080903012
+"A1b_component","production_participation","single_child_share",26926,350,0.389527423183843,4.17773899612375,1,0.0409583082035511
+"A1b_component","production_participation","single_elderly_share",26926,350,0.389527423183843,9.17290021894635,1,0.00245625016229944
+"A1b_component","production_participation","single_female_share",26926,350,0.389527423183843,0.385819068401028,1,0.534505305090037
+"A1b_leave_one_out","production_participation","drop_household_size_reconstructed",26926,350,0.389527423183843,12.7907023874948,3,0.0051117953637434
+"A1b_leave_one_out","production_participation","drop_child_share",26926,350,0.389527423183843,13.6918937912197,3,0.00335599832786682
+"A1b_leave_one_out","production_participation","drop_elderly_share",26926,350,0.389527423183843,7.2987053213446,3,0.0629625175169165
+"A1b_leave_one_out","production_participation","drop_female_share",26926,350,0.389527423183843,14.4391870566913,3,0.00236439477242645
+"A1b_component","ihs_selfprod_amount","single_household_size_reconstructed",26926,350,0.490877022450983,16.4728574489491,1,4.93515596839966e-05
+"A1b_component","ihs_selfprod_amount","single_child_share",26926,350,0.490877022450983,1.03802839513171,1,0.308280458756209
+"A1b_component","ihs_selfprod_amount","single_elderly_share",26926,350,0.490877022450983,0.641318058240831,1,0.423233911861576
+"A1b_component","ihs_selfprod_amount","single_female_share",26926,350,0.490877022450983,0.158556335745236,1,0.690489155941203
+"A1b_leave_one_out","ihs_selfprod_amount","drop_household_size_reconstructed",26926,350,0.490877022450983,2.06072990821276,3,0.559898130586396
+"A1b_leave_one_out","ihs_selfprod_amount","drop_child_share",26926,350,0.490877022450983,17.8559661347513,3,0.000470981968521134
+"A1b_leave_one_out","ihs_selfprod_amount","drop_elderly_share",26926,350,0.490877022450983,17.4946627517448,3,0.000559054729238118
+"A1b_leave_one_out","ihs_selfprod_amount","drop_female_share",26926,350,0.490877022450983,18.140623178745,3,0.000411430523158174

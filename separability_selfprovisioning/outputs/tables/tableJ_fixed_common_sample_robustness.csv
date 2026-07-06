@@ -1,0 +1,13 @@
+"composition_spec","outcome","fixed_common_sample","tested_terms","n","n_clusters","r_squared","wald_chisq","wald_df","wald_p"
+"proportion","production_participation",TRUE,"household_size_reconstructed + child_share + elderly_share + female_share",23335,350,0.380268586999822,20.1512072004456,4,0.000466217271507641
+"proportion","log_selfprod_amount",TRUE,"household_size_reconstructed + child_share + elderly_share + female_share",23335,350,0.404028699934005,10.0088423244837,4,0.0402789973282121
+"proportion","ihs_selfprod_amount",TRUE,"household_size_reconstructed + child_share + elderly_share + female_share",23335,350,0.413556495586925,9.81627110469443,4,0.0436389471514316
+"proportion","self_suff_rate",TRUE,"household_size_reconstructed + child_share + elderly_share + female_share",23335,350,0.259045741935546,12.8422125024355,4,0.0120730677290095
+"dependency","production_participation",TRUE,"household_size_reconstructed + dependency_ratio + female_share",23335,350,0.380208940741966,20.4460329410092,3,0.000137186046904936
+"dependency","log_selfprod_amount",TRUE,"household_size_reconstructed + dependency_ratio + female_share",23335,350,0.403694035358725,5.24129535315612,3,0.154957326020811
+"dependency","ihs_selfprod_amount",TRUE,"household_size_reconstructed + dependency_ratio + female_share",23335,350,0.413218880957795,5.04244107360373,3,0.168715649282284
+"dependency","self_suff_rate",TRUE,"household_size_reconstructed + dependency_ratio + female_share",23335,350,0.258811620673048,9.0040132800725,3,0.0292375753482077
+"counts","production_participation",TRUE,"num_children + num_elderly + num_adult_male + num_adult_female",23335,350,0.380062294864885,15.5962728791242,4,0.00361162846961594
+"counts","log_selfprod_amount",TRUE,"num_children + num_elderly + num_adult_male + num_adult_female",23335,350,0.404060008393834,10.0957266711511,4,0.0388456843382028
+"counts","ihs_selfprod_amount",TRUE,"num_children + num_elderly + num_adult_male + num_adult_female",23335,350,0.413595691803084,10.1518060346622,4,0.0379467129443924
+"counts","self_suff_rate",TRUE,"num_children + num_elderly + num_adult_male + num_adult_female",23335,350,0.259042766458863,11.0307023712444,4,0.026221120360262

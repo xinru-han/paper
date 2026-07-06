@@ -1,0 +1,13 @@
+"composition_spec","outcome","conceptual_outcome","tested_terms","n","n_clusters","r_squared","wald_chisq","wald_df","wald_p"
+"proportion","production_participation","self_provisioning_participation","household_size_reconstructed + child_share + elderly_share + female_share",27568,350,0.386697140272122,16.7326151406376,4,0.00217834770929937
+"proportion","log_selfprod_amount","log_selfprod_amount","household_size_reconstructed + child_share + elderly_share + female_share",27568,350,0.406805496831276,6.53655327064042,4,0.162501753283594
+"proportion","ihs_selfprod_amount","ihs_selfprod_amount","household_size_reconstructed + child_share + elderly_share + female_share",27568,350,0.416665003240574,6.28226397889053,4,0.179036996242159
+"proportion","self_suff_rate","self_suff_rate","household_size_reconstructed + child_share + elderly_share + female_share",26867,350,0.261546090928335,11.0827015378623,4,0.0256501185589054
+"dependency","production_participation","self_provisioning_participation","household_size_reconstructed + dependency_ratio + female_share",23952,350,0.387851350610778,21.9229880163773,3,6.76827006002023e-05
+"dependency","log_selfprod_amount","log_selfprod_amount","household_size_reconstructed + dependency_ratio + female_share",23952,350,0.409793114543661,5.31177679361802,3,0.15034003561563
+"dependency","ihs_selfprod_amount","ihs_selfprod_amount","household_size_reconstructed + dependency_ratio + female_share",23952,350,0.419630186718856,5.14289022572175,3,0.161628091911765
+"dependency","self_suff_rate","self_suff_rate","household_size_reconstructed + dependency_ratio + female_share",23335,350,0.258811620673048,9.0040132800725,3,0.0292375753482077
+"counts","production_participation","self_provisioning_participation","num_children + num_elderly + num_adult_male + num_adult_female",27712,350,0.386878497217707,20.8977038945314,4,0.000331805206414515
+"counts","log_selfprod_amount","log_selfprod_amount","num_children + num_elderly + num_adult_male + num_adult_female",27712,350,0.406653066688671,9.327512325681,4,0.053414723090016
+"counts","ihs_selfprod_amount","ihs_selfprod_amount","num_children + num_elderly + num_adult_male + num_adult_female",27712,350,0.416519642249086,9.4264790074782,4,0.0512800596941159
+"counts","self_suff_rate","self_suff_rate","num_children + num_elderly + num_adult_male + num_adult_female",27007,350,0.261744324259207,15.2124397226165,4,0.00428028929332813

@@ -1,0 +1,14 @@
+{
+  "editor_revision_outputs": [
+    {"output":"tableE_add_one_block_diagnostics.csv","rows":30},
+    {"output":"tableF_village_fe_robustness.csv","rows":11},
+    {"output":"tableG_binary_response_robustness.csv","rows":18},
+    {"output":"tableH_category_multiple_testing.csv","rows":8},
+    {"output":"tableI_category_variation_and_nsi_reframed.csv","rows":8},
+    {"output":"tableJ_fixed_common_sample_robustness.csv","rows":12},
+    {"output":"tableK_fixed_factors_bad_controls_robustness.csv","rows":9},
+    {"output":"tableL_participation_missingness_robustness.csv","rows":3},
+    {"output":"tableM_definition_diagnostics_editor.csv","rows":6},
+    {"output":"tableN_price_unit_value_diagnostics.csv","rows":5}
+  ]
+}

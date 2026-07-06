@@ -1,0 +1,8 @@
+{
+  "price_robustness": [
+    {"price_spec":"no_price_control","model_compatibility_variable":"none","price_variable":"none","price_unit":"none","outcome":"production_participation","conceptual_outcome":"self_provisioning_participation","n":27568,"n_clusters":350,"r_squared":0.38603102,"hhcomp_wald_chisq":16.61422,"hhcomp_wald_df":4,"hhcomp_wald_p":0.0022965863,"price_observed_share":0.73567179},
+    {"price_spec":"hedonic_price_main","model_compatibility_variable":"price_hedonic_imputed_w99_yuan_per_jin","price_variable":"price_hedonic_imputed_w99_yuan_per_kg","price_unit":"yuan/kg","outcome":"production_participation","conceptual_outcome":"self_provisioning_participation","n":27568,"n_clusters":350,"r_squared":0.38669714,"hhcomp_wald_chisq":16.732615,"hhcomp_wald_df":4,"hhcomp_wald_p":0.0021783477,"price_observed_share":0.73567179},
+    {"price_spec":"observed_price_only","model_compatibility_variable":"price_preferred_household_recalc_w99_yuan_per_jin","price_variable":"price_preferred_household_recalc_w99_yuan_per_kg","price_unit":"yuan/kg","outcome":"production_participation","conceptual_outcome":"self_provisioning_participation","n":20281,"n_clusters":350,"r_squared":0.42349342,"hhcomp_wald_chisq":16.656478,"hhcomp_wald_df":4,"hhcomp_wald_p":0.0022536756,"price_observed_share":1},
+    {"price_spec":"county_category_median_price","model_compatibility_variable":"village_price_category_median","price_variable":"village_price_category_median_yuan_per_kg","price_unit":"yuan/kg","outcome":"production_participation","conceptual_outcome":"self_provisioning_participation","n":23496,"n_clusters":338,"r_squared":0.3977426,"hhcomp_wald_chisq":10.795057,"hhcomp_wald_df":4,"hhcomp_wald_p":0.028966463,"price_observed_share":0.74472251}
+  ]
+}

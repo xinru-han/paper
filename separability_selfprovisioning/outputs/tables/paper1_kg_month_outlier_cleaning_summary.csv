@@ -1,0 +1,11 @@
+"metric","value"
+"rows_before_outlier_exclusion",28520
+"rows_after_outlier_exclusion",28208
+"rows_dropped_for_quantity_outlier",312
+"households_before",3565
+"households_after",3565
+"food_categories",8
+"observed_price_cells_set_missing",0
+"hedonic_price_cells_replaced_by_category_median",0
+"village_price_cells_set_missing",188
+"spend_outlier_rows_flagged_not_dropped",107

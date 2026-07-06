@@ -1,0 +1,6 @@
+"diagnostic","value","interpretation"
+"observed_unit_value_share",0.729916394038531,"Observed variable is household purchase-side unit value, not pure exogenous price."
+"hedonic_imputed_share",0.270083605961469,"A sizeable share is imputed and should be disclosed."
+"county_hedonic_r_squared",0.443267689256615,"Hedonic imputation explains a moderate share of log unit-value variation."
+"county_hedonic_rmse_log",0.69812876821501,"RMSE implies noisy unit-value prediction."
+"observed_only_participation_p",0.00225367557266587,"Observed-only robustness remains statistically similar for participation, but on a selected purchasing subsample."

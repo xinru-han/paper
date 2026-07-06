@@ -1,0 +1,9 @@
+"food_category","food_category_label","outlier_cons_kg_month","outlier_selfprod_kg_month","outlier_purchase_qty_kg_month","outlier_quantity_any","outlier_observed_price_any","outlier_hedonic_price_any","outlier_village_price_any","outlier_spend_any","n_before","n_after"
+"zhushi","主食",18,18,18,38,0,0,30,18,3565,3527
+"nailei","奶类",16,0,11,27,0,0,29,9,3565,3538
+"shuiguo","水果",18,17,17,43,0,0,20,15,3565,3522
+"youzhi","油脂",18,18,13,37,0,0,19,12,3565,3528
+"roulei","肉类和水产品及加工品",18,16,17,41,0,0,30,13,3565,3524
+"shucai","蔬菜",18,18,16,43,0,0,20,15,3565,3522
+"danlei","蛋类",18,16,13,42,0,0,20,12,3565,3523
+"doulei","豆类",18,11,16,41,0,0,20,13,3565,3524

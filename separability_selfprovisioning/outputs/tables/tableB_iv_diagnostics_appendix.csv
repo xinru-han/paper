@@ -1,0 +1,6 @@
+"iv_spec","iv_variable","n_households_for_correlation","correlation_with_market_friction_survey","min_first_stage_F","median_first_stage_F","weak_iv_flag","appendix_only","interpretation"
+"terrain_town_2km","iv_terrain_barrier_town_gee_2km",3475,0.128671825459449,1.07433110263869,2.17803358500141,TRUE,TRUE,"weak_first_stage_appendix_only"
+"terrain_town_1km","iv_terrain_barrier_town_gee_1km",3475,0.133310083293457,0.922019500933068,2.12747342414574,TRUE,TRUE,"weak_first_stage_appendix_only"
+"terrain_town_5km","iv_terrain_barrier_town_gee_5km",3475,0.115333253354737,1.37705762739249,2.24731776931861,TRUE,TRUE,"weak_first_stage_appendix_only"
+"terrain_county_2km","iv_terrain_barrier_county_gee_2km",3475,0.133972334024346,1.87117687855055,2.2031399843042,TRUE,TRUE,"weak_first_stage_appendix_only"
+"early_ntl_9294","iv_early_ntl_peak_dist_9294",3475,0.111676507881207,0.667773147803441,1.2122691714671,TRUE,TRUE,"weak_first_stage_appendix_only"

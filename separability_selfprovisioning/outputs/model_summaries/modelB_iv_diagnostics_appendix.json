@@ -1,0 +1,9 @@
+{
+  "iv_diagnostics": [
+    {"iv_spec":"terrain_town_2km","iv_variable":"iv_terrain_barrier_town_gee_2km","n_households_for_correlation":3475,"correlation_with_market_friction_survey":0.12867183,"min_first_stage_F":1.0743311,"median_first_stage_F":2.1780336,"weak_iv_flag":"TRUE","appendix_only":"TRUE","interpretation":"weak_first_stage_appendix_only"},
+    {"iv_spec":"terrain_town_1km","iv_variable":"iv_terrain_barrier_town_gee_1km","n_households_for_correlation":3475,"correlation_with_market_friction_survey":0.13331008,"min_first_stage_F":0.9220195,"median_first_stage_F":2.1274734,"weak_iv_flag":"TRUE","appendix_only":"TRUE","interpretation":"weak_first_stage_appendix_only"},
+    {"iv_spec":"terrain_town_5km","iv_variable":"iv_terrain_barrier_town_gee_5km","n_households_for_correlation":3475,"correlation_with_market_friction_survey":0.11533325,"min_first_stage_F":1.3770576,"median_first_stage_F":2.2473178,"weak_iv_flag":"TRUE","appendix_only":"TRUE","interpretation":"weak_first_stage_appendix_only"},
+    {"iv_spec":"terrain_county_2km","iv_variable":"iv_terrain_barrier_county_gee_2km","n_households_for_correlation":3475,"correlation_with_market_friction_survey":0.13397233,"min_first_stage_F":1.8711769,"median_first_stage_F":2.20314,"weak_iv_flag":"TRUE","appendix_only":"TRUE","interpretation":"weak_first_stage_appendix_only"},
+    {"iv_spec":"early_ntl_9294","iv_variable":"iv_early_ntl_peak_dist_9294","n_households_for_correlation":3475,"correlation_with_market_friction_survey":0.11167651,"min_first_stage_F":0.66777315,"median_first_stage_F":1.2122692,"weak_iv_flag":"TRUE","appendix_only":"TRUE","interpretation":"weak_first_stage_appendix_only"}
+  ]
+}

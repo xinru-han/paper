@@ -1,0 +1,9 @@
+"dropped_province","outcome","conceptual_outcome","n","n_clusters","r_squared","wald_chisq","wald_df","wald_p"
+"云南省","production_participation","self_provisioning_participation",23944,305,0.393945047966068,14.0927118031518,4,0.00700496149727592
+"吉林省","production_participation","self_provisioning_participation",24424,310,0.375043488193661,20.2855534964347,4,0.000438572560493178
+"四川省","production_participation","self_provisioning_participation",24048,306,0.386580723516917,15.7296081142265,4,0.00340430245020029
+"山东省","production_participation","self_provisioning_participation",24112,305,0.388658615283225,14.7364664888486,4,0.00528020443051713
+"湖北省","production_participation","self_provisioning_participation",23976,305,0.385785085292305,13.6329775857932,4,0.00856343963827932
+"甘肃省","production_participation","self_provisioning_participation",24160,306,0.376474501961562,14.7647191169935,4,0.0052149273926837
+"福建省","production_participation","self_provisioning_participation",24336,308,0.405086869769334,10.8140022728366,4,0.0287358497246839
+"陕西省","production_participation","self_provisioning_participation",23976,305,0.399610258528921,16.9898979565675,4,0.00194170464726018

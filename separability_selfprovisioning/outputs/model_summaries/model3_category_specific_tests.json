@@ -1,0 +1,28 @@
+{
+  "models": [
+    {"food_category":"zhushi","food_category_label":"主食","outcome":"ihs_selfprod_amount","n":3409,"n_clusters":350,"r_squared":0.24921753,"hhcomp_wald_chisq":5.1655382,"hhcomp_wald_df":4,"hhcomp_wald_p":0.27073004,"nsi":1.0488417},
+    {"food_category":"doulei","food_category_label":"豆类","outcome":"ihs_selfprod_amount","n":3406,"n_clusters":350,"r_squared":0.02101333,"hhcomp_wald_chisq":4.8659964,"hhcomp_wald_df":4,"hhcomp_wald_p":0.3013255,"nsi":0.98802095},
+    {"food_category":"roulei","food_category_label":"肉类和水产品及加工品","outcome":"ihs_selfprod_amount","n":3405,"n_clusters":350,"r_squared":0.19880978,"hhcomp_wald_chisq":3.0918709,"hhcomp_wald_df":4,"hhcomp_wald_p":0.54257048,"nsi":0.62779191},
+    {"food_category":"danlei","food_category_label":"蛋类","outcome":"ihs_selfprod_amount","n":3406,"n_clusters":350,"r_squared":0.18504824,"hhcomp_wald_chisq":9.1178119,"hhcomp_wald_df":4,"hhcomp_wald_p":0.058221263,"nsi":1.851335},
+    {"food_category":"nailei","food_category_label":"奶类","outcome":"ihs_selfprod_amount","n":3419,"n_clusters":350,"r_squared":0.016586003,"hhcomp_wald_chisq":4.2009044,"hhcomp_wald_df":4,"hhcomp_wald_p":0.37949866,"nsi":0.8529767},
+    {"food_category":"youzhi","food_category_label":"油脂","outcome":"ihs_selfprod_amount","n":3410,"n_clusters":350,"r_squared":0.1523788,"hhcomp_wald_chisq":0.93940297,"hhcomp_wald_df":4,"hhcomp_wald_p":0.91884101,"nsi":0.19074198},
+    {"food_category":"shucai","food_category_label":"蔬菜","outcome":"ihs_selfprod_amount","n":3403,"n_clusters":350,"r_squared":0.3657066,"hhcomp_wald_chisq":6.3615659,"hhcomp_wald_df":4,"hhcomp_wald_p":0.17372453,"nsi":1.2916903},
+    {"food_category":"shuiguo","food_category_label":"水果","outcome":"ihs_selfprod_amount","n":3404,"n_clusters":350,"r_squared":0.17718883,"hhcomp_wald_chisq":5.6568544,"hhcomp_wald_df":4,"hhcomp_wald_p":0.22628203,"nsi":1.1486015},
+    {"food_category":"zhushi","food_category_label":"主食","outcome":"log_selfprod_amount","n":3409,"n_clusters":350,"r_squared":0.24428827,"hhcomp_wald_chisq":5.714885,"hhcomp_wald_df":4,"hhcomp_wald_p":0.22147665,"nsi":1.1440815},
+    {"food_category":"doulei","food_category_label":"豆类","outcome":"log_selfprod_amount","n":3406,"n_clusters":350,"r_squared":0.021113831,"hhcomp_wald_chisq":4.8696936,"hhcomp_wald_df":4,"hhcomp_wald_p":0.30093094,"nsi":0.97487987},
+    {"food_category":"roulei","food_category_label":"肉类和水产品及加工品","outcome":"log_selfprod_amount","n":3405,"n_clusters":350,"r_squared":0.19798693,"hhcomp_wald_chisq":3.1962499,"hhcomp_wald_df":4,"hhcomp_wald_p":0.52553687,"nsi":0.6398677},
+    {"food_category":"danlei","food_category_label":"蛋类","outcome":"log_selfprod_amount","n":3406,"n_clusters":350,"r_squared":0.18603811,"hhcomp_wald_chisq":9.2218666,"hhcomp_wald_df":4,"hhcomp_wald_p":0.055786898,"nsi":1.8461556},
+    {"food_category":"nailei","food_category_label":"奶类","outcome":"log_selfprod_amount","n":3419,"n_clusters":350,"r_squared":0.01665329,"hhcomp_wald_chisq":4.208849,"hhcomp_wald_df":4,"hhcomp_wald_p":0.37847845,"nsi":0.84258322},
+    {"food_category":"youzhi","food_category_label":"油脂","outcome":"log_selfprod_amount","n":3410,"n_clusters":350,"r_squared":0.15071989,"hhcomp_wald_chisq":1.1424609,"hhcomp_wald_df":4,"hhcomp_wald_p":0.88747812,"nsi":0.22871298},
+    {"food_category":"shucai","food_category_label":"蔬菜","outcome":"log_selfprod_amount","n":3403,"n_clusters":350,"r_squared":0.35910658,"hhcomp_wald_chisq":6.2908432,"hhcomp_wald_df":4,"hhcomp_wald_p":0.17845531,"nsi":1.2593844},
+    {"food_category":"shuiguo","food_category_label":"水果","outcome":"log_selfprod_amount","n":3404,"n_clusters":350,"r_squared":0.17589299,"hhcomp_wald_chisq":5.3165361,"hhcomp_wald_df":4,"hhcomp_wald_p":0.25633292,"nsi":1.0643347},
+    {"food_category":"zhushi","food_category_label":"主食","outcome":"production_participation","n":3409,"n_clusters":350,"r_squared":0.2341615,"hhcomp_wald_chisq":4.5098419,"hhcomp_wald_df":4,"hhcomp_wald_p":0.34138208,"nsi":0.42486994},
+    {"food_category":"doulei","food_category_label":"豆类","outcome":"production_participation","n":3406,"n_clusters":350,"r_squared":0.1151455,"hhcomp_wald_chisq":9.640098,"hhcomp_wald_df":4,"hhcomp_wald_p":0.046946796,"nsi":0.90818879},
+    {"food_category":"roulei","food_category_label":"肉类和水产品及加工品","outcome":"production_participation","n":3405,"n_clusters":350,"r_squared":0.32587707,"hhcomp_wald_chisq":5.8833251,"hhcomp_wald_df":4,"hhcomp_wald_p":0.20803271,"nsi":0.55426511},
+    {"food_category":"danlei","food_category_label":"蛋类","outcome":"production_participation","n":3406,"n_clusters":350,"r_squared":0.27931827,"hhcomp_wald_chisq":18.513327,"hhcomp_wald_df":4,"hhcomp_wald_p":0.00097923807,"nsi":1.7441312},
+    {"food_category":"nailei","food_category_label":"奶类","outcome":"production_participation","n":3419,"n_clusters":350,"r_squared":0.017969606,"hhcomp_wald_chisq":4.0148814,"hhcomp_wald_df":4,"hhcomp_wald_p":0.40399562,"nsi":0.37823996},
+    {"food_category":"youzhi","food_category_label":"油脂","outcome":"production_participation","n":3410,"n_clusters":350,"r_squared":0.19712259,"hhcomp_wald_chisq":16.247311,"hhcomp_wald_df":4,"hhcomp_wald_p":0.0027046444,"nsi":1.530651},
+    {"food_category":"shucai","food_category_label":"蔬菜","outcome":"production_participation","n":3403,"n_clusters":350,"r_squared":0.18855088,"hhcomp_wald_chisq":13.534591,"hhcomp_wald_df":4,"hhcomp_wald_p":0.0089386257,"nsi":1.275087},
+    {"food_category":"shuiguo","food_category_label":"水果","outcome":"production_participation","n":3404,"n_clusters":350,"r_squared":0.15249675,"hhcomp_wald_chisq":12.573753,"hhcomp_wald_df":4,"hhcomp_wald_p":0.013557686,"nsi":1.184567}
+  ]
+}

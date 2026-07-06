@@ -1,0 +1,5 @@
+"label","outcome","n","n_clusters","r_squared","wald_chisq","wald_df","wald_p","fixed_common_sample"
+"no_unit_value","production_participation",17498,338,0.432044298326449,11.4988371383617,4,0.0214944136916381,TRUE
+"hedonic_unit_value","production_participation",17498,338,0.433708155552517,11.9723669556031,4,0.0175579389747856,TRUE
+"observed_household_unit_value","production_participation",17498,338,0.433196964050931,12.0452411451202,4,0.0170179923130973,TRUE
+"village_median_unit_value","production_participation",17498,338,0.43205383753389,11.5205107131981,4,0.0212968800693492,TRUE

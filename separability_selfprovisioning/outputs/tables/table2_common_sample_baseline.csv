@@ -1,0 +1,13 @@
+"outcome","conceptual_outcome","spec","common_m3_sample","n","n_clusters","r_squared","hhcomp_wald_chisq","hhcomp_wald_df","hhcomp_wald_p"
+"production_participation","self_provisioning_participation","M0",TRUE,27568,350,0.343838183023016,6.2996005857031,4,0.177863285645125
+"production_participation","self_provisioning_participation","M1",TRUE,27568,350,0.35938652583825,7.64024034136534,4,0.105681934755792
+"production_participation","self_provisioning_participation","M2",TRUE,27568,350,0.381226679305863,15.1969360874964,4,0.00430971289487048
+"production_participation","self_provisioning_participation","M3",TRUE,27568,350,0.386697140272122,16.7326151406376,4,0.00217834770929937
+"log_selfprod_amount","log_selfprod_amount","M0",TRUE,27568,350,0.348252962556874,22.7960924185659,4,0.000139073593840466
+"log_selfprod_amount","log_selfprod_amount","M1",TRUE,27568,350,0.355652108594062,5.4421386758111,4,0.244862547985872
+"log_selfprod_amount","log_selfprod_amount","M2",TRUE,27568,350,0.395733454602577,6.0430841310414,4,0.195953745870852
+"log_selfprod_amount","log_selfprod_amount","M3",TRUE,27568,350,0.406805496831276,6.53655327064042,4,0.162501753283594
+"ihs_selfprod_amount","ihs_selfprod_amount","M0",TRUE,27568,350,0.357839426427673,22.4553216915131,4,0.000162641823311938
+"ihs_selfprod_amount","ihs_selfprod_amount","M1",TRUE,27568,350,0.365383435776913,5.4421774377357,4,0.244859077686951
+"ihs_selfprod_amount","ihs_selfprod_amount","M2",TRUE,27568,350,0.40527775263945,5.89339073919394,4,0.207252638067429
+"ihs_selfprod_amount","ihs_selfprod_amount","M3",TRUE,27568,350,0.416665003240574,6.28226397889053,4,0.179036996242159
