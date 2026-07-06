@@ -1,0 +1,13 @@
+﻿province,county_code_xid,county,prefecture_code,prefecture_city,queryable_in_original_xwalk
+河北省 Hebei,130131,平山县 Pingshan,1301,石家庄市 (Shijiazhuang),NEWLY CONFIRMED
+河北省 Hebei,130224,滦南县 Luannan,1302,唐山市 (Tangshan),NEWLY CONFIRMED
+河北省 Hebei,130430,邱县 Qiu,1304,邯郸市 (Handan),NEWLY CONFIRMED
+吉林省 Jilin,220421,东丰县 Dongfeng,2204,辽源市 (Liaoyuan),yes (original)
+吉林省 Jilin,220822,通榆县 Tongyu,2208,白城市 (Baicheng),yes (original)
+吉林省 Jilin,222403,敦化市 Dunhua,2224,延边朝鲜族自治州 (Yanbian Pref.),yes (original)
+福建省 Fujian,350426,尤溪县 Youxi,3504,三明市 (Sanming),yes (original)
+福建省 Fujian,350629,华安县 Hua'an,3506,漳州市 (Zhangzhou),yes (original)
+福建省 Fujian,350724,松溪县 Songxi,3507,南平市 (Nanping),yes (original)
+云南省 Yunnan,530425,易门县 Yimen,5304,玉溪市 (Yuxi),NEWLY CONFIRMED
+云南省 Yunnan,532527,泸西县 Luxi,5325,红河哈尼族彝族自治州 (Honghe Pref.),NEWLY CONFIRMED
+云南省 Yunnan,532627,广南县 Guangnan,5326,文山壮族苗族自治州 (Wenshan Pref.),NEWLY CONFIRMED

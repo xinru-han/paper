@@ -1,0 +1,6 @@
+Province-cases spec (reconstructed from CCTV):
+   Estimate  Std. Error    Pr(>|t|) 
+-0.17775606  0.06939293  0.01429395 
+N = 13787 
+
+Risk-level spec: NOT reproducible (highrisk_r/midrisk_r/highmidrisk absent from model dta AND raw 农户数据.dta).

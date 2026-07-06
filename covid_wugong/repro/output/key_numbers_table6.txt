@@ -1,0 +1,5 @@
+M2 Wage income asinh (self-built, CORRECTED per 08_income_build.py): b=-0.2646 se=0.0977 p=0.0099 N=11258 
+M2 Consumption (ln)                                              : b=-0.0224 se=0.0341 p=0.5150 N=14090 
+M2 Deposits asinh (2013-2020)                                    : b=-0.6226 se=0.2943 p=0.0412 N=8886 
+M2 Liquid savings asinh (2013-2020)                              : b=-0.1197 se=0.1652 p=0.4734 N=10154 
+Deposit missing rate (year<=2020 mechanism sample)               : 0.371 

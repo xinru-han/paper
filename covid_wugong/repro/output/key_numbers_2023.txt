@@ -1,0 +1,37 @@
+Baseline replication check (year<2023):
+    Estimate   Std. Error      t value     Pr(>|t|) 
+-0.118603298  0.042350742 -2.800501089  0.007820902 
+
+Dynamics (fixed, 2022->2023 populated):
+t   :    Estimate   Std. Error     Pr(>|t|) 
+-0.118603298  0.042350742  0.007820902 
+t+1 :   Estimate  Std. Error    Pr(>|t|) 
+-0.13041631  0.05238132  0.01703953 
+t+2 :  Estimate Std. Error   Pr(>|t|) 
+0.00404329 0.07290611 0.95604899 
+
+2023 direct persistence (2022 cum exposure -> 2023 outcome, province FE):
+  Estimate Std. Error   Pr(>|t|) 
+ 0.1277390  0.1828030  0.5006178 
+N = 1243 
+
+2023 direct persistence (2022 current-year covid -> 2023 outcome, province FE):
+  Estimate Std. Error   Pr(>|t|) 
+0.06815917 0.16317100 0.68498201 
+N = 1190 
+
+Event study coefficients (ref=2019):
+                           year          est         se         lo          hi
+year::2013:ln_exposure2022 2013  0.023251161 0.10732458 -0.1871050  0.23360734
+year::2014:ln_exposure2022 2014 -0.023129145 0.10837022 -0.2355348  0.18927648
+year::2015:ln_exposure2022 2015  0.017227434 0.09646332 -0.1718407  0.20629553
+year::2016:ln_exposure2022 2016  0.022500523 0.10509181 -0.1834794  0.22848047
+year::2017:ln_exposure2022 2017 -0.007003404 0.09032255 -0.1840356  0.17002880
+year::2018:ln_exposure2022 2018 -0.154899711 0.08649604 -0.3244319  0.01463252
+1                          2019  0.000000000 0.00000000  0.0000000  0.00000000
+year::2020:ln_exposure2022 2020 -0.304797748 0.12309690 -0.5460677 -0.06352783
+year::2021:ln_exposure2022 2021 -0.366162652 0.08571661 -0.5341672 -0.19815810
+year::2022:ln_exposure2022 2022 -0.012577119 0.05935119 -0.1289055  0.10375122
+year::2023:ln_exposure2022 2023 -0.060788671 0.08641252 -0.2301572  0.10857988
+
+Pre-trend (2013-2018) joint Wald test: F= 1.131524  df1= 6  df2= 40  p= 0.3619089 

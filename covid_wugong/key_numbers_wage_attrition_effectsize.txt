@@ -1,0 +1,19 @@
+=== (A) Wage subsample ===
+Full sample: b= -0.2646306  p= 0.009874283  N= 11258 
+2013-2020 subsample: b= -1.625928  p= 0.05040802  N= 9593 
+
+=== (B) Attrition ===
+               Estimate Std. Error    t value  Pr(>|t|)
+lncovid_mean 0.00149662 0.02411541 0.06206071 0.9516278
+attr(,"vcov_type")
+[1] "Clustered (xid)"
+                       Estimate  Std. Error    t value   Pr(>|t|)
+lncovid_mean_2020  -0.107009292 0.043850081 -2.4403442 0.03734354
+ln_a_workday2_2019  0.004203226 0.005227888  0.8040008 0.44211437
+attr(,"vcov_type")
+[1] "Clustered (xid)"
+2019->2020 attrition rate: 27.81597 %
+
+=== (C) Effect size (correct interpretation) ===
+b= -0.1186033  semi-elasticity approx= -11.86033 % per log-point; exact= -11.18399 %
+p25->p75 case count ( 7 -> 147 ): delta_ln= 2.917771  implied pct effect= -29.2528 %

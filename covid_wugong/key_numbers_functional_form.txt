@@ -1,0 +1,12 @@
+Zero share (all years): 84.17819 %
+Zero share (2020-2022): 28.86661 %
+Zero share (2021 only): 74.3806 %
+
+Baseline log(1+covid):    Estimate  Std. Error    Pr(>|t|) 
+-0.11860330  0.04235074  0.00782090 
+PPML levels:      Estimate    Std. Error      Pr(>|z|) 
+-7.763163e-02  1.970148e-02  8.134691e-05 
+asinh(covid):     Estimate   Std. Error     Pr(>|t|) 
+-0.115527557  0.040540598  0.006884455 
+1[covid>0] (own-year, weak):   Estimate Std. Error   Pr(>|t|) 
+-0.3826655  0.3863846  0.3279444 
