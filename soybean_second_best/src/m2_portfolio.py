@@ -6,7 +6,7 @@
 2. QP 数值解比对（内点一致 <1e-6）
 3. 蒙特卡洛: 月度 Markov 中断（进入概率 prob/12·联动 copula, 平均持续 4 个月,
    中断月供应×(1−sev)), 逐月短缺核算与储备释放, 年度损失 0.5·(ℓ/12)·Σ short²
-4. 有效前沿: 期望采购成本 vs CVaR₅%
+4. 有效前沿: 期望采购成本 vs CVaR 5%
 5. 情景 C1–C3 与 (Y, X) 工具网格（命题 6.4 边际替代率）
 """
 import numpy as np
@@ -195,14 +195,14 @@ def _figures(frontier, scen):
     for _, r in frontier[~m].iterrows():
         ax.scatter(r.cost, r.cvar, s=90, marker="*",
                    label=f"{r.tag} {r.s}")
-    ax.set_xlabel("期望采购成本 (亿元)"); ax.set_ylabel("CVaR₅% 短缺损失 (亿元)")
+    ax.set_xlabel("期望采购成本 (亿元)"); ax.set_ylabel("CVaR 5% 短缺损失 (亿元)")
     ax.set_title("进口来源组合: 成本–风险有效前沿 (M2)")
     ax.legend(fontsize=8)
     fig.tight_layout(); fig.savefig(ROOT / "results/figures/F3_frontier.png", dpi=300)
     plt.close(fig)
     fig, ax = plt.subplots(figsize=(7, 4.5))
     ax.bar(scen.scenario, scen.cvar5_yi, color="#8c1f28", alpha=0.85)
-    ax.set_ylabel("CVaR₅% 损失 (亿元)"); ax.set_title("中断情景的年度损失 (2024实际组合)")
+    ax.set_ylabel("CVaR 5% 损失 (亿元)"); ax.set_title("中断情景的年度损失 (2024实际组合)")
     fig.tight_layout(); fig.savefig(ROOT / "results/figures/F4_scenario_shortage.png", dpi=300)
     plt.close(fig)
 
