@@ -62,6 +62,16 @@ paper/
 
 详见 `cctv_easi_demand/README.md`
 
+### 5. Food Self-Provisioning & Separability (可分离性/家庭食物自给)
+- **文件夹**: `separability_selfprovisioning/`
+- **论文**: Farming for the Family Table: Household Composition and Food Self-Provisioning in Rural China
+- **内容**: R 复现流水线（Benjamin 式联合排除检验 + 两部模型 + 村内固定效应 + FDR + 后估计 A0–A5）
+- **数据**: 3,565 户 × 8 类食物 = 28,520 户-类观测（2023–2024 八省农户调查）
+- **关键结果**: 可分离性被拒绝——主参与检验 Wald=16.73 (p=0.002, N=27,568)；村内数量边际 Wald=16.06/15.77 (p=0.003)；失效集中于蛋、油、菜、果
+- **自动同步**: `/root/data/Paper/食物消费数据/Paper1-Seperability` → git，每 5 分钟推送
+
+详见 `separability_selfprovisioning/README.md`
+
 ## 使用说明
 
 ### 克隆仓库
