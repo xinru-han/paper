@@ -49,3 +49,11 @@ covid_wugong/新冠对务工的影响_数据+code/
 covid_wugong/*.zip
 covid_wugong/*.dta
 covid_wugong/*.docx
+
+# Feed import elasticity: exclude large raw data
+feed_import_elasticity/进口数据/
+feed_import_elasticity/主产区原粮购销价格监测旬报子任务2005-2025/
+feed_import_elasticity/全国邮政编码数据库/
+feed_import_elasticity/data/*-food.csv
+feed_import_elasticity/data/__pycache__/
+feed_import_elasticity/*.docx

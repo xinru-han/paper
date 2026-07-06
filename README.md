@@ -16,6 +16,10 @@ paper/
 │   ├── scripts/                           (Python 流水线)
 │   ├── repro/                               (R 复现与输出)
 │   └── repro_deliverables/                  (最终交付结果)
+├── feed_import_elasticity/                (饲料进口弹性 QU AIDS)
+│   ├── revision_2026/                       (审改复现代码与结果)
+│   ├── restricted_demand/                   (弹性矩阵结果)
+│   └── data/                                (*-feed.csv 输入)
 └── ...                                     (其他论文项目)
 ```
 
@@ -39,6 +43,13 @@ paper/
 - **自动同步**: `/root/data/Paper/covid` → git，每 5 分钟推送
 
 详见 `covid_wugong/README.md`
+
+### 3. Feed-Grain Import Elasticity (饲料进口弹性)
+- **文件夹**: `feed_import_elasticity/`
+- **内容**: QUAIDS 审改 Python 流水线 + bootstrap + 政策识别 + 弹性结果
+- **自动同步**: `/root/data/Paper/饲料进口弹性` → git，每 5 分钟推送
+
+详见 `feed_import_elasticity/README.md`
 
 ## 使用说明
 
