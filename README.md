@@ -72,6 +72,16 @@ paper/
 
 详见 `separability_selfprovisioning/README.md`
 
+### 6. Soybean Second-Best Equilibrium (大豆全产业链第二优均衡)
+- **文件夹**: `soybean_second_best/`
+- **论文**: 中国大豆全产业链第二优均衡理论（soybean_theory_paper_revised.tex）
+- **内容**: Python 定量模拟 M1–M7（校准规划模型/进口组合蒙特卡洛/生产网络放大/万户农户 ABM/政策矩阵 P0–P6/命题检验 T1–T6/Sobol 敏感性）+ 交互式仿真网站（Flask, 175.27.226.92:7070）
+- **数据**: 2023 年全国投入产出表（211 部门）、《全国农产品成本收益资料汇编 2024》、海关 2024 分国别进口、NBS 产量
+- **关键结果**: Y\*=2085 万吨复现观测（揭示性安全权重 β≈886）；6/6 理论命题通过；政策排序 P6(定向+韧性组合) ≻ P2 定向补贴 ≻ P1 统一补贴 ≻ 单项包 ≻ P0
+- **自动同步**: `/root/soybean_sim` → git，每 5 分钟推送
+
+详见 `soybean_second_best/README.md`
+
 ## 使用说明
 
 ### 克隆仓库
