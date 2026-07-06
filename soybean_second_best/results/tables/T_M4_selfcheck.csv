@@ -1,2 +1,2 @@
-baseline_Y,baseline_M,check_A,convergence_L1,check_B,us_share_drop,check_C,bottom_Y_nosub,check_D
-2931.384662227625,8568.615337772375,False,0.012053160086207952,True,-0.05814870339315011,True,1987.37625510654,False
+baseline_Y,baseline_M,check_A,convergence_L1,check_B,us_share_drop,check_C,bottom_Y_2015like,check_D,bottom_Y_nosub_only
+2112.351142536192,9387.648857463808,True,0.012053160086207952,True,0.9999999999524595,True,1338.0904541403836,True,1746.691593469556

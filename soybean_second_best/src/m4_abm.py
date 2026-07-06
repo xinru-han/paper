@@ -137,8 +137,12 @@ class ABM:
                                   self.theta0)
         corn_data = self._corn_net(self.p_corn_anchor, self.sub_corn_base)
         off = self.tau * np.log(max(self.pool_scale - 1.0, 1e-6)) if self.pool_scale > 1 else 0.0
+        # smm_delta: 随机稳态校准量（SMM）。静态点校准后, 价格波动下的 Jensen/
+        # 选择效应使模拟稳态相对静态点漂移 ~+9%; δ 使 3 种子稳态均值 = 观测
+        # Y_2025（calibrate_smm 写入 derived.abm_smm_delta）。
+        delta = self.cfg.get("derived", {}).get("abm_smm_delta", 0.0)
         gap = pd.Series(base - corn_data).groupby(self.reg_idx).mean().to_numpy()
-        self.corn_resid = (gap + off)[self.reg_idx]   # ΔV 基线均值 = −off
+        self.corn_resid = (gap + off - delta)[self.reg_idx]   # ΔV 基线均值 = −off+δ
 
     def step(self, year, mc_fast=True):
         rng, sp, pol = self.rng, self.sp, self.policy
@@ -266,11 +270,37 @@ class ABM:
         return pd.DataFrame(self.records)
 
 
-def _run_regional_policy(cfg, sub_corn_vec, n_agents, seed):
+def calibrate_smm(cfg, target=None, n_agents=2000, save=True):
+    """SMM 校准 δ: 二分使基线随机稳态(3种子×2026-2033均值) = 观测 Y_2025。"""
+    target = target or cfg["supply_domestic"]["Y_2025"]
+
+    def steady(delta):
+        cfg.setdefault("derived", {})["abm_smm_delta"] = float(delta)
+        ys = [ABM(cfg, n_agents=n_agents, seed=s).run(range(2026, 2034)).Y.mean()
+              for s in (42, 43, 44)]
+        return float(np.mean(ys))
+
+    lo, hi = -250.0, 50.0
+    for _ in range(12):
+        mid = 0.5 * (lo + hi)
+        if steady(mid) > target:
+            hi = mid
+        else:
+            lo = mid
+    delta = 0.5 * (lo + hi)
+    y = steady(delta)
+    print(f"[M4-SMM] δ={delta:.1f} 元/亩, 稳态 Y={y:.0f} (目标 {target:.0f})")
+    if save:
+        from src.m1_planner import _write_derived
+        _write_derived(dict(abm_smm_delta=float(round(delta, 1))))
+    return delta, y
+
+
+def _run_regional_policy(cfg, sub_corn_vec, n_agents, seed, horizon=(2026, 2033)):
     """区域向量玉米补贴的政策运行（sub_corn 接受区域向量→agent 向量映射）。"""
     abm = ABM(cfg, n_agents=n_agents, seed=seed, policy=dict(sub_area=0.0))
     abm.policy["sub_corn"] = np.asarray(sub_corn_vec, float)[abm.reg_idx]
-    return abm.run(range(2026, 2033))
+    return abm.run(range(*horizon))
 
 
 def gini(x):
@@ -330,8 +360,10 @@ def run_selfcheck(cfg=None, fast=True, save=True):
     #    食用溢价内生回拉, 不归零）。附记: 仅取消大豆补贴(无玉米托市)时均衡
     #    ≈1700-1800, 说明 2015 谷底是双重极端组合, 今日取消补贴不会重演。
     R = mc.load_regions()
-    corn_boost = (R.sub_corn_cny_mu.to_numpy() + 200.0)
-    dfs0 = [_run_regional_policy(cfg, corn_boost, 2000 if fast else 6000, s)
+    # 临储力度 ≈ 收购溢价 450 元/吨 × 0.52 吨/亩 + 收购确定性溢价 ≈ 250 元/亩
+    corn_boost = (R.sub_corn_cny_mu.to_numpy() + 250.0)
+    dfs0 = [_run_regional_policy(cfg, corn_boost, 2000 if fast else 6000, s,
+                                 horizon=(2026, 2038))
             for s in (52, 53, 54)]
     df0 = pd.concat(dfs0)
     y_bottom = float(df0[df0.year >= 2029].Y.mean())

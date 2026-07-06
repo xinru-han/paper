@@ -1,6 +1,6 @@
 param,dY,elasticity,sign,expected,match
-rho,46.8,0.2258,1,1,True
-pbar,107.6,0.5184,1,1,True
-beta,46.4,0.2237,1,1,True
-omega,-150.4,-0.725,-1,-1,True
-D,178.0,0.8576,1,1,True
+rho,65.1,0.2093,1,1,True
+pbar,107.6,0.3456,1,1,True
+beta,63.4,0.2036,1,1,True
+omega,-346.4,-1.1128,-1,-1,True
+D,348.7,1.1203,1,1,True
