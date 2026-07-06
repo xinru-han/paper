@@ -1,0 +1,37 @@
+{
+  "generated": "2026-06-11T23:05:38",
+  "started": "2026-06-11T23:01:25",
+  "variants": [
+    "baseline_real_national_nonfood",
+    "robust_real_derived_cpi_nonfood"
+  ],
+  "groups": {
+    "grain": [
+      "grain"
+    ],
+    "oil": [
+      "oil"
+    ],
+    "vegfruit": [
+      "vegetable",
+      "fruit"
+    ],
+    "pork": [
+      "pork"
+    ],
+    "nonpork_meatsea": [
+      "beef",
+      "mutton",
+      "poultry",
+      "aquatic"
+    ],
+    "dairyegg": [
+      "milk",
+      "egg"
+    ],
+    "nonfood": []
+  },
+  "bootstrap": false,
+  "maxiter_a": 620,
+  "maxiter_m": 850
+}

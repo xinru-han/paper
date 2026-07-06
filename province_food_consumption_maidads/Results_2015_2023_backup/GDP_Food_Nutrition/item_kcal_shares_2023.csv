@@ -1,0 +1,12 @@
+item,group,item_label_cn,group_kcal_share_2023
+grain,grain,主粮,1.0
+oil,oil,食用油,1.0
+vegetable,vegfruit,蔬菜,0.5715044829741485
+fruit,vegfruit,水果,0.42849551702585165
+pork,meatsea,猪肉,0.7594886091488202
+beef,meatsea,牛肉,0.026626450892129068
+mutton,meatsea,羊肉,0.023440476922264718
+poultry,meatsea,禽肉,0.11132795446680879
+aquatic,meatsea,水产品,0.07911650856997735
+egg,dairyegg,蛋类,0.7378382978879777
+milk,dairyegg,奶类,0.2621617021120224

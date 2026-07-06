@@ -1,0 +1,24 @@
+{
+  "bootstrap": {
+    "target_reps": 1000,
+    "completed_reps": 1000,
+    "successful_reps": 998,
+    "convergence_rate": 0.998
+  },
+  "lr": {
+    "test": "MAIDADS_vs_AIDADS",
+    "observed_lr": 441.3064825747406,
+    "bootstrap_reps": 500,
+    "completed_reps": 500,
+    "successful_reps": 462,
+    "convergence_rate": 0.924,
+    "cluster_bootstrap_tail_probability": 0.29653679653679654,
+    "lr_bootstrap_median": 298.55746874658325,
+    "lr_bootstrap_q95": 672.591980282818,
+    "lr_bootstrap_q99": 730.011474502899,
+    "chi2_p_value_status": "invalid_not_reported",
+    "note": "Cluster bootstrap with province-block resampling; chi-square p-value not used.",
+    "inference_scale": "formal"
+  },
+  "finished_at": "2026-06-09T17:03:31.118417"
+}

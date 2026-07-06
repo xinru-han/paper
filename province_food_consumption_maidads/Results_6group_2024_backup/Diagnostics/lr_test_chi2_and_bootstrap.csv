@@ -1,0 +1,2 @@
+test,lr_observed,df_naive,p_chi2_naive,p_bootstrap_cluster,n_bootstrap,successful_reps,convergence_rate,status,note
+MAIDADS_vs_AIDADS,441.3064825747406,7,,0.2965367965367965,500,462,0.924,formal,Cluster bootstrap with province-block resampling; chi-square p-value not used.

@@ -1,0 +1,5 @@
+variant,train_years,test_years,comparison,observed_mean_diff,ci_2_5,median,ci_97_5,p_share_diff_le_0,bootstrap_reps,note
+baseline_real_national_nonfood,2015-2020,2021-2023,AIDADS_MSE_minus_MAIDADS_MSE,0.0003686741123370312,9.235574824019679e-05,0.000358187795496427,0.0007205350420171902,0.004,1000,Positive observed_mean_diff means MAIDADS has lower food MSE than AIDADS.
+baseline_real_national_nonfood,2015-2022,2023,AIDADS_MSE_minus_MAIDADS_MSE,0.00016451100087942896,-0.0001018717779710701,0.00015286646892495684,0.0005303607110917536,0.138,1000,Positive observed_mean_diff means MAIDADS has lower food MSE than AIDADS.
+robust_real_derived_cpi_nonfood,2015-2020,2021-2023,AIDADS_MSE_minus_MAIDADS_MSE,0.00023550905710976647,-3.942677008170236e-05,0.00022340108577986392,0.000587078881398816,0.056,1000,Positive observed_mean_diff means MAIDADS has lower food MSE than AIDADS.
+robust_real_derived_cpi_nonfood,2015-2022,2023,AIDADS_MSE_minus_MAIDADS_MSE,0.00019630432675883934,-6.188544680920515e-05,0.00018638483512862635,0.0005438659014833994,0.107,1000,Positive observed_mean_diff means MAIDADS has lower food MSE than AIDADS.

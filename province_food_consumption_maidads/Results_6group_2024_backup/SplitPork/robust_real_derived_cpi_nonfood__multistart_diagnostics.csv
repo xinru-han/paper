@@ -1,0 +1,7 @@
+model,start_id,selected,success,nll,n_iter,grad_norm,max_abs_gradient,hessian_status,n_boundary_raw_params,boundary_raw_params,message
+AIDADS_sat,warm_start,True,True,-3851.374094861161,110,214.68860354240286,185.0064120265043,not_available_lbfgsb,0,,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_1,False,True,-3851.3740977186853,1,6965394786.305032,6965394786.305032,not_available_lbfgsb,1,log_omega,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_2,True,True,-3852.3422830440672,9,6967859470.5931835,6967859470.5931835,not_available_lbfgsb,0,,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_3,False,False,-3849.6370772794435,4,324.4774901032673,289.5456890972279,not_available_lbfgsb,0,,ABNORMAL: 
+MAIDADS_sat,start_4,False,True,-3847.85554229869,6,362.7268783712758,289.70666966042006,not_available_lbfgsb,1,raw_alpha[nonpork_meatsea],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_5,False,True,-3830.783640636958,8,6375481222.297652,6375481222.297648,not_available_lbfgsb,1,raw_alpha[nonpork_meatsea],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH

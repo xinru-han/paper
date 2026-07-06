@@ -1,0 +1,7 @@
+model,start_id,selected,success,nll,n_iter,grad_norm,max_abs_gradient,hessian_status,n_boundary_raw_params,boundary_raw_params,message
+AIDADS_sat,warm_start,True,True,-3848.170429863191,104,162.09914485008898,114.74808231175791,not_available_lbfgsb,1,raw_alpha[oil],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_1,False,True,-3933.9440920798565,153,4.069438641659574,2.115530163915993,not_available_lbfgsb,3,raw_alpha[grain];raw_alpha[oil];raw_alpha[nonfood],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_2,True,True,-4012.9649915430264,374,0.5393431125417325,0.38971847991483033,not_available_lbfgsb,2,raw_alpha[oil];raw_alpha[nonpork_meatsea],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_3,False,True,-4012.9618617790084,356,0.7569100088272779,0.6722530091693042,not_available_lbfgsb,2,raw_alpha[oil];raw_alpha[nonpork_meatsea],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_4,False,True,-4012.927319779896,251,0.3698808489366549,0.188128979160753,not_available_lbfgsb,1,raw_alpha[nonpork_meatsea],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_5,False,True,-4012.958617081018,416,2.3291057509048394,1.5645127868132815,not_available_lbfgsb,1,raw_alpha[nonpork_meatsea],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH

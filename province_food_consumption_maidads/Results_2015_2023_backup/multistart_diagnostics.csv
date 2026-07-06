@@ -1,0 +1,5 @@
+model,start_id,selected,success,nll,n_iter,grad_norm,max_abs_gradient,hessian_status,n_boundary_raw_params,boundary_raw_params,message
+AIDADS_sat,warm_start,True,True,-3008.2790473459913,127,0.21029947067687937,0.10127223565789463,not_available_lbfgsb,1,raw_alpha[vegfruit],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_1,False,True,-3228.730505841914,230,0.31108459501849905,0.17139427568789334,not_available_lbfgsb,1,log_delta[vegfruit],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_2,False,True,-3208.6269162178132,173,226.82804512211513,134.3738859557259,not_available_lbfgsb,0,,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_3,True,True,-3228.9322886333616,359,0.9869088422040239,0.6276422975079756,not_available_lbfgsb,0,,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH

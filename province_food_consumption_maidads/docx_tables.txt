@@ -1,0 +1,113 @@
+
+===== TABLE 0 (14x3) =====
+  r0: Variable | Value | Unit/interpretation
+  r1: Real per capita GDP budget m | 66,734.1 (30,063.9) | yuan/person/year, 2023 prices
+  r2: Per capita GDP, constant 2015 US$ | 9,159 (4,088); median 7,734 | World Bank WDI conversion
+  r3: Constant 2015 US$ range | 4,166-23,938 | in–min–max across province-years
+  r4: Real per capita consumption expenditure | 20,418.1 (7,130.4) | reported only for the sake of comparison
+  r5: Covered-food expenditure | 2,392.9 (398.0) | yuan/person/year, covered categories
+  r6: Other/non-covered residual | 64,341.2 (30,026.4) | m minus covered-food expenditure
+  r7: Staples | 0.4162 | daily 2,000-kcal units
+  r8: Oils and fats | 0.1280 | daily 2,000-kcal units
+  r9: Vegetables and fruits | 0.0513 | daily 2,000-kcal units
+  r10: Pork | 0.1037 | daily 2,000-kcal units
+  r11: Non-pork meat/aquatic | 0.0404 | daily 2,000-kcal units
+  r12: Dairy and eggs | 0.0296 | daily 2,000-kcal units
+  r13: Observations | 279 | 31 provinces x 9 years
+
+===== TABLE 1 (5x7) =====
+  r0: Residual-price specification | Model | NLL | AIC | BIC | Mean food relative RMSE | OOS RMSE: 2021-23/2023
+  r1: National non-food CPI | AIDADS | -3923 | -7816 | -7762 | 0.2913 | 0.03349/0.03294
+  r2: National non-food CPI | MAIDADS | -3999 | -7953 | -7869 | 0.2813 | 0.02977/0.03092
+  r3: Derived provincial non-food CPI | AIDADS | -3848 | -7666 | -7612 | 0.3006 | 0.03349/0.03253
+  r4: Derived provincial non-food CPI | MAIDADS | -4013 | -7980 | -7896 | 0.2805 | 0.03143/0.03075
+
+===== TABLE 2 (9x4) =====
+  r0: Group | alpha_i [95% CI] | delta_i [95% CI] | tau_i [95% CI]
+  r1: Staples | 0.0012 [0.0000, 0.0035] | 0.6512 [0.4333, 0.8788] | 0.1152 [0.0000, 0.3254]
+  r2: Oils and fats | 0.0002 [0.0000, 0.0033] | 0.1607 [0.0947, 0.2460] | 0.0919 [0.0038, 0.1434]
+  r3: Vegetables and fruits | 0.0035 [0.0012, 0.0066] | 0.0278 [0.0027, 0.0415] | 0.0524 [0.0354, 0.0821]
+  r4: Pork | 0.0077 [0.0040, 0.0135] | 0.0681 [0.0223, 0.0989] | 0.0005 [0.0004, 0.0356]
+  r5: Non-pork meat/aquatic | 0.0002 [0.0000, 0.0077] | 0.0000 [0.0000, 0.0000] | 0.0766 [0.0344, 0.1045]
+  r6: Dairy and eggs | 0.0019 [0.0009, 0.0035] | 0.0000 [0.0000, 0.0001] | 0.0245 [0.0062, 0.0429]
+  r7: Other/non-covered residual | 0.9847 [0.9736, 0.9927] | 0.0026 [0.0023, 0.0028] | 0.1356 [0.1221, 0.1504]
+  r8: omega; kappa | 0.8009 [0.4696, 3.245] | 6.274 [5.730, 6.995] | 
+
+===== TABLE 3 (8x5) =====
+  r0: Group | GDP elasticity | 95% bootstrap CI | p value | Budget share
+  r1: Staples | -0.239 | [-0.340, -0.065] | 0.004 | 0.0053
+  r2: Oils and fats | -0.109 | [-0.270, 0.119] | 0.284 | 0.0100
+  r3: Vegetables and fruits | 0.216 | [0.108, 0.349] | <0.002 | 0.0068
+  r4: Pork | 0.251 | [0.090, 0.398] | 0.006 | 0.0047
+  r5: Non-pork meat/aquatic | 0.384 | [0.252, 0.700] | <0.002 | 0.0065
+  r6: Dairy and eggs | 0.441 | [0.328, 0.567] | <0.002 | 0.0015
+  r7: Other/non-covered residual | 1.032 | [1.028, 1.036] | <0.002 | 0.9654
+
+===== TABLE 4 (7x5) =====
+  r0: Group | US$15,000 | US$20,000 | US$25,000 | US$30,000
+  r1: Staples | -0.255 (p=0.058) | -0.257 (p=0.088) | -0.255 (p=0.100) | -0.250 (p=0.114)
+  r2: Oils and fats | -0.109 (p=0.284) | -0.105 (p=0.286) | -0.101 (p=0.288) | -0.096 (p=0.288)
+  r3: Vegetables and fruits | 0.178 (p<0.002) | 0.153 (p<0.002) | 0.134 (p<0.002) | 0.120 (p<0.002)
+  r4: Pork | 0.191 (p<0.002) | 0.155 (p=0.002) | 0.128 (p=0.002) | 0.108 (p=0.002)
+  r5: Non-pork meat/aquatic | 0.306 (p<0.002) | 0.264 (p<0.002) | 0.234 (p<0.002) | 0.211 (p<0.002)
+  r6: Dairy and eggs | 0.329 (p<0.002) | 0.272 (p<0.002) | 0.232 (p<0.002) | 0.203 (p<0.002)
+
+===== TABLE 5 (7x5) =====
+  r0: Indicator | US$15,000 | US$20,000 | US$25,000 | US$30,000
+  r1: Covered energy | -0.051 (p=0.492) | -0.053 (p=0.500) | -0.054 (p=0.508) | -0.054 (p=0.488)
+  r2: Plant energy | -0.175 (p=0.082) | -0.173 (p=0.106) | -0.169 (p=0.128) | -0.165 (p=0.148)
+  r3: Animal energy | 0.238 (p<0.002) | 0.198 (p<0.002) | 0.169 (p<0.002) | 0.147 (p<0.002)
+  r4: Protein | 0.063 (p=0.064) | 0.053 (p=0.108) | 0.045 (p=0.140) | 0.039 (p=0.170)
+  r5: Fat | 0.065 (p=0.136) | 0.053 (p=0.188) | 0.043 (p=0.224) | 0.035 (p=0.282)
+  r6: Carbohydrate | -0.173 (p=0.092) | -0.172 (p=0.120) | -0.168 (p=0.138) | -0.164 (p=0.154)
+
+===== TABLE 6 (8x5) =====
+  r0: Group | kg/person/year 2030 | kg/person/year 2035 | kg/person/year 2050 | National total for 2050 in million tons
+  r1: Staples | 121.0 | 113.5 | 93.9 | 130.9
+  r2: Oils and fats | 9.9 | 9.7 | 9.0 | 12.5
+  r3: Vegetables and fruits | 172.5 | 180.1 | 198.9 | 277.4
+  r4: Pork | 28.8 | 30.2 | 33.2 | 46.3
+  r5: Non-pork meat/aquatic | 32.7 | 35.2 | 41.8 | 58.3
+  r6: Dairy and eggs | 28.5 | 30.9 | 36.7 | 51.2
+  r7: Covered total | 393.5 | 399.6 | 413.4 | 576.7
+
+===== TABLE 7 (7x3) =====
+  r0: Study and scope | Comparable estimates reported in the study | Interpretation relative to this paper
+  r1: This paper: provinces, 2015-2023, split-pork MAIDADS | Mean-GDP elasticities: staples -0.239 (p=0.004); oils -0.109 (p=0.284); vegetables and fruits 0.216 (p<0.002); pork 0.251 (p=0.006); non-pork meat/aquatic 0.384 (p<0.002); dairy and eggs 0.441 (p<0.002). | Benchmark estimates that measure calorie-standardized quantities under a GDP-budget MAIDADS system and separate pork from other animal/aquatic products.
+  r2: Zheng & Henneberry (2009): urban Jiangsu, GAIDS | Expenditure elasticities exceed 1 for meats, poultry, aquatic products, and dairy; grain and oils remain positive. | Earlier household estimates are more positive, thus reflecting an earlier transition stage and an expenditure rather than the calorie-quantity margin.
+  r3: Chen et al. (2016): meta-analysis in China | Income elasticities decline with income; meat and dairy remain important future growth margins. | Consistent with the findings presented in this paper, animal-source elasticities are positive but smaller than older estimates.
+  r4: Hovhannisyan et al. (2019, 2025): EASI/GEASI evidence | Food expenditure growth increasingly reflects quality and variety, not merely physical quantities. | This research can help reconcile small quantity elasticities with continued food-expenditure upgrading.
+  r5: Bai et al. (2020): Chinese meat demand | Meat away from home affects meat-demand estimates and projections in China. | This research can support cautious interpretation because the covered categories at the provincial level exclude food away from home.
+  r6: Burggraf et al. (2015): China and Russia | Meat and dairy demand remains more income-responsive in China than in richer comparison settings. | The positive pork and non-pork elasticities are consistent with a continuing animal-source transition.
+
+===== TABLE 8 (8x5) =====
+  r0: Group | Marshallian own-price elasticity [95% CI] | p value | Hicksian own-price elasticity [95% CI] | p value
+  r1: Staples | -0.104 [-0.248, 0.002] | 0.332 | -0.105 [-0.250, -0.000] | <0.002
+  r2: Oils and fats | -0.008 [-0.145, 0.002] | 0.654 | -0.009 [-0.146, -0.000] | <0.002
+  r3: Vegetables and fruits | -0.237 [-0.373, -0.099] | <0.002 | -0.236 [-0.371, -0.098] | <0.002
+  r4: Pork | -0.750 [-0.936, -0.576] | <0.002 | -0.749 [-0.934, -0.575] | <0.002
+  r5: Non-pork meat/aquatic | -0.017 [-0.545, -0.002] | <0.002 | -0.015 [-0.542, -0.000] | <0.002
+  r6: Dairy and eggs | -0.595 [-0.868, -0.323] | <0.002 | -0.594 [-0.867, -0.322] | <0.002
+  r7: Other/non-covered residual | -1.003 [-1.008, -0.999] | <0.002 | -0.007 [-0.011, -0.004] | <0.002
+
+===== TABLE 9 (9x6) =====
+  r0: Product | 2030 | 2035 | 2050 | 2050 CI (Lower) | 2050 CI (Upper)
+  r1: Pork | 155.5 | 156.8 | 153.1 | 132.8 | 253.3
+  r2: Eggs | 49.0 | 49.2 | 47.7 | 42.4 | 70.5
+  r3: Poultry | 48.0 | 48.5 | 47.7 | 41.4 | 78.8
+  r4: Beef | 40.4 | 40.7 | 39.7 | 35.0 | 65.3
+  r5: Mutton | 26.1 | 26.5 | 26.4 | 23.3 | 42.6
+  r6: Aquatic products | 25.0 | 25.1 | 24.2 | 21.1 | 40.3
+  r7: Milk | 11.3 | 11.4 | 11.0 | 9.8 | 16.2
+  r8: Total | 355.3 | 358.2 | 349.8 | 305.8 | 566.9
+
+===== TABLE 10 (9x7) =====
+  r0: Residual-price specification | Model | Training years | Test years | Mean food OOS RMSE | Mean relative RMSE | Mean MAE
+  r1: National non-food CPI | AIDADS | 2015-2020 | 2021-2023 | 0.03349 | 0.3077 | 0.02721
+  r2: National non-food CPI | AIDADS | 2015-2022 | 2023 | 0.03294 | 0.2961 | 0.02682
+  r3: National non-food CPI | MAIDADS | 2015-2020 | 2021-2023 | 0.02977 | 0.2758 | 0.02436
+  r4: National non-food CPI | MAIDADS | 2015-2022 | 2023 | 0.03092 | 0.2743 | 0.02526
+  r5: Derived provincial non-food CPI | AIDADS | 2015-2020 | 2021-2023 | 0.03349 | 0.3125 | 0.02724
+  r6: Derived provincial non-food CPI | AIDADS | 2015-2022 | 2023 | 0.03253 | 0.2846 | 0.02663
+  r7: Derived provincial non-food CPI | MAIDADS | 2015-2020 | 2021-2023 | 0.03143 | 0.3007 | 0.02595
+  r8: Derived provincial non-food CPI | MAIDADS | 2015-2022 | 2023 | 0.03075 | 0.2745 | 0.02494

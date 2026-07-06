@@ -1,0 +1,7 @@
+model,start_id,selected,success,nll,n_iter,grad_norm,max_abs_gradient,hessian_status,n_boundary_raw_params,boundary_raw_params,message
+AIDADS_sat,warm_start,True,True,-5009.784039165839,138,0.5438622598978003,0.31877789490877473,not_available_lbfgsb,2,raw_alpha[grain];raw_alpha[oil],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_1,False,True,-5009.784048578041,1,0.6991291642051838,0.3075001571243128,not_available_lbfgsb,3,raw_alpha[grain];raw_alpha[oil];log_omega,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_2,False,False,-5121.226639636217,493,2.4215489938336163,1.0847543373971344,not_available_lbfgsb,1,raw_alpha[oil],"STOP: TOTAL NO. OF F,G EVALUATIONS EXCEEDS LIMIT"
+MAIDADS_sat,start_3,True,True,-5094.537058233429,416,4.158080343524054,2.3560460261828893,not_available_lbfgsb,3,raw_alpha[oil];log_delta[aquatic];log_tau[pork],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_4,False,False,-5121.570792457243,497,1.2291279441325114,0.6889422331312243,not_available_lbfgsb,1,raw_alpha[oil],"STOP: TOTAL NO. OF F,G EVALUATIONS EXCEEDS LIMIT"
+MAIDADS_sat,start_5,False,True,-5089.163467928314,324,10.645064146155526,5.504534816993944,not_available_lbfgsb,3,raw_alpha[oil];log_delta[aquatic];log_tau[pork],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH

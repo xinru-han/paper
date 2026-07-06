@@ -1,0 +1,5 @@
+variant,model,nll,aic,bic
+baseline_real_national_nonfood,AIDADS_sat,-3008.28,-5992.56,-5948.98
+baseline_real_national_nonfood,MAIDADS_sat,-3228.93,-6419.86,-6350.87
+robust_real_derived_cpi_nonfood,AIDADS_sat,-3013.92,-6003.83,-5960.26
+robust_real_derived_cpi_nonfood,MAIDADS_sat,-3232.58,-6427.16,-6358.16
