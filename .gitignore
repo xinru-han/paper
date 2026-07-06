@@ -57,3 +57,8 @@ feed_import_elasticity/全国邮政编码数据库/
 feed_import_elasticity/data/*-food.csv
 feed_import_elasticity/data/__pycache__/
 feed_import_elasticity/*.docx
+
+# CCTV EASI demand: exclude large raw/derived data
+cctv_easi_demand/processed/
+cctv_easi_demand/repro_run/data_derived/
+cctv_easi_demand/repro_run/outputs/demand/selection_cre_probit_predictions_r.csv

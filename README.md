@@ -20,6 +20,10 @@ paper/
 │   ├── revision_2026/                       (审改复现代码与结果)
 │   ├── restricted_demand/                   (弹性矩阵结果)
 │   └── data/                                (*-feed.csv 输入)
+├── cctv_easi_demand/                      (央视高频食品需求 EASI)
+│   ├── final_demand_model_R/                (脚本 23 + 诊断输出)
+│   ├── repro_run/                           (R 流水线 20–22 + 结果)
+│   └── scripts/                             (Python 数据工程)
 └── ...                                     (其他论文项目)
 ```
 
@@ -50,6 +54,13 @@ paper/
 - **自动同步**: `/root/data/Paper/饲料进口弹性` → git，每 5 分钟推送
 
 详见 `feed_import_elasticity/README.md`
+
+### 4. CCTV High-Frequency Food Demand — EASI (Paper1-EASI)
+- **文件夹**: `cctv_easi_demand/`
+- **内容**: SY-EASI/QUAIDS 需求系统 R 流水线 + Python 数据工程 + 弹性诊断
+- **自动同步**: `/root/data/Paper/央视数据/Paper1-EASI` → git，每 5 分钟推送
+
+详见 `cctv_easi_demand/README.md`
 
 ## 使用说明
 
