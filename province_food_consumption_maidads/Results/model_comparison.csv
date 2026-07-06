@@ -1,0 +1,6 @@
+variant,model,nll,k_effective,aic,bic,success,lr_stat,p_value_chi2,chi2_p_value_status,cluster_bootstrap_tail_probability,lr_bootstrap_successful_reps,oos_food_rmse_mean
+baseline_real_national_nonfood,AIDADS_sat,-4247.479229601609,14,-8466.958459203219,-8414.64644703851,True,,,,,,0.03395104440228628
+baseline_real_national_nonfood,MAIDADS_sat,-4481.55447249925,22,-8919.1089449985,-8836.904354453956,True,,,,,,0.03197167362691862
+robust_real_derived_cpi_nonfood,AIDADS_sat,-4394.129744979019,14,-8760.259489958038,-8707.94747779333,True,,,,,,0.03381381724956976
+robust_real_derived_cpi_nonfood,MAIDADS_sat,-4409.887817192976,22,-8775.775634385953,-8693.57104384141,True,,,,,,0.03420999741942104
+baseline_real_national_nonfood,LR_MAIDADS_vs_AIDADS,,8,,,True,468.1504857952805,,invalid_not_reported_unidentified_nuisance_under_H0,0.18181818181818182,11.0,

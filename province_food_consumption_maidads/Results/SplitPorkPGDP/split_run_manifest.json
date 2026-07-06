@@ -1,0 +1,39 @@
+{
+  "generated": "2026-07-06T01:48:19",
+  "started": "2026-07-06T01:00:09",
+  "variants": [
+    "baseline_real_national_nonfood",
+    "robust_real_derived_cpi_nonfood"
+  ],
+  "groups": {
+    "grain": [
+      "grain"
+    ],
+    "oil": [
+      "oil"
+    ],
+    "vegfruit": [
+      "vegetable",
+      "fruit"
+    ],
+    "pork": [
+      "pork"
+    ],
+    "nonpork_meatsea": [
+      "beef",
+      "mutton",
+      "poultry",
+      "aquatic"
+    ],
+    "dairyegg": [
+      "milk",
+      "egg"
+    ],
+    "nonfood": []
+  },
+  "budget_variable": "real_pgdp_per_capita",
+  "budget_formula": "pgdp / monetary_deflator",
+  "bootstrap": false,
+  "maxiter_a": 620,
+  "maxiter_m": 850
+}

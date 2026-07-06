@@ -1,0 +1,25 @@
+group,US$,old_2015_2023,new_2015_2024,delta
+Staples,15000,-0.255,-0.416,-0.161
+Staples,20000,-0.257,-0.41,-0.153
+Staples,25000,-0.255,-0.404,-0.149
+Staples,30000,-0.25,-0.398,-0.148
+Oils and fats,15000,-0.109,-0.201,-0.092
+Oils and fats,20000,-0.105,-0.185,-0.08
+Oils and fats,25000,-0.101,-0.172,-0.071
+Oils and fats,30000,-0.096,-0.161,-0.065
+Vegetables and fruits,15000,0.178,0.249,0.071
+Vegetables and fruits,20000,0.153,0.186,0.033
+Vegetables and fruits,25000,0.134,0.15,0.016
+Vegetables and fruits,30000,0.12,0.126,0.006
+Pork,15000,0.191,0.112,-0.079
+Pork,20000,0.155,0.056,-0.099
+Pork,25000,0.128,0.025,-0.103
+Pork,30000,0.108,0.007,-0.101
+Non-pork meat/aquatic,15000,0.306,0.119,-0.187
+Non-pork meat/aquatic,20000,0.264,0.099,-0.165
+Non-pork meat/aquatic,25000,0.234,0.086,-0.148
+Non-pork meat/aquatic,30000,0.211,0.077,-0.134
+Dairy and eggs,15000,0.329,0.324,-0.005
+Dairy and eggs,20000,0.272,0.22,-0.052
+Dairy and eggs,25000,0.232,0.164,-0.068
+Dairy and eggs,30000,0.203,0.13,-0.073

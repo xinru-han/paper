@@ -1,0 +1,27 @@
+{
+  "models": [
+    {
+      "model": "AIDADS_sat",
+      "nll": -4394.129744979019,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+    },
+    {
+      "model": "MAIDADS_sat",
+      "nll": -4409.887817192976,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+    }
+  ],
+  "n_obs": 310,
+  "n_goods": 7,
+  "groups": [
+    "grain",
+    "oil",
+    "vegfruit",
+    "pork",
+    "meatother",
+    "dairyegg",
+    "nonfood"
+  ]
+}

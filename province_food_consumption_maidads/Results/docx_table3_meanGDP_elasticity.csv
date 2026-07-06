@@ -1,0 +1,8 @@
+group,point,ci_lo,ci_hi,p,budget_share
+Staples,-0.405,-0.515,-0.03,0.018,0.0168
+Oils and fats,-0.222,-0.309,0.15,0.369,0.0316
+Vegetables and fruits,0.39,0.228,0.5,0.0,0.0222
+Pork,0.317,0.205,0.859,0.0,0.0147
+Non-pork meat/aquatic,0.153,0.119,1.447,0.004,0.0212
+Dairy and eggs,0.568,0.451,0.88,0.0,0.0048
+Other/non-covered residual,1.119,1.071,1.127,0.0,0.8886

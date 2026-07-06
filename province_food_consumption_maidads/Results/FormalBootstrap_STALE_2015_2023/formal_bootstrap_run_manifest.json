@@ -1,0 +1,9 @@
+{
+  "bootstrap_target_reps": 4,
+  "lr_target_reps": 500,
+  "workers": 2,
+  "bootstrap_maxiter": 650,
+  "lr_maxiter_a": 320,
+  "lr_maxiter_m": 460,
+  "started_at": "2026-07-03T11:45:03.370882"
+}

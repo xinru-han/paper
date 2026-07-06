@@ -1,0 +1,2 @@
+test,observed_lr,bootstrap_reps,completed_reps,successful_reps,convergence_rate,cluster_bootstrap_tail_probability,lr_bootstrap_median,lr_bootstrap_q95,lr_bootstrap_q99,chi2_p_value_status,note,inference_scale
+MAIDADS_vs_AIDADS,466.5387603942254,500,500,493,0.986,0.2718052738336714,252.56637972135195,752.3660777567105,813.9026910181755,invalid_not_reported,Cluster bootstrap with province-block resampling; chi-square p-value not used.,formal

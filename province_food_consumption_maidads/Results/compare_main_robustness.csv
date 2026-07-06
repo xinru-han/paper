@@ -1,0 +1,9 @@
+metric,main,robustness
+nll (MAIDADS),-4481.6,-4477.1
+omega,0.705,0.365
+kappa,4.91,4.34
+Feed-grain 2030 (Mt),378.3,384.5
+Feed-grain 2035 (Mt),389.3,396.6
+Feed-grain 2050 (Mt),393.4,401.4
+Pork eta @US$15k,0.112,0.139
+Pork eta @US$30k,0.007,0.028

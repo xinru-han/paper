@@ -1,0 +1,11 @@
+model,start_id,selected,success,nll,n_iter,grad_norm,max_abs_gradient,hessian_status,n_boundary_raw_params,boundary_raw_params,message
+AIDADS_sat,warm_start,True,True,-11213.42632156462,290,40.24928572455734,25.96243562635502,not_available_lbfgsb,1,raw_alpha[grain],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_1,False,True,-11244.479634690057,75,55.3845512079382,21.67525976332354,not_available_lbfgsb,1,raw_alpha[grain],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_2,True,True,-11362.731461039668,31,256.88447885028313,180.08140723700214,not_available_lbfgsb,0,,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_3,False,True,-11232.700786347696,11,249.45792605223417,160.40758152656377,not_available_lbfgsb,1,raw_alpha[grain],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_4,False,False,1000000000000.0,20,3238.497155977178,3163.507809530847,not_available_lbfgsb,0,,ABNORMAL: 
+MAIDADS_sat,start_5,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,0,,CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
+MAIDADS_sat,start_6,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,1,raw_alpha[oil],CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
+MAIDADS_sat,start_7,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,1,raw_alpha[grain],CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
+MAIDADS_sat,start_8,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,0,,CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
+MAIDADS_sat,start_9,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,1,raw_alpha[grain],CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL

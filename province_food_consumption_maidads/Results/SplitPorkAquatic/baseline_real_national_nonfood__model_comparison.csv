@@ -1,0 +1,4 @@
+variant,model,nll,k_effective,aic,bic,success,message,mean_food_relative_rmse,lr_stat,chi2_p_value_status
+baseline_real_national_nonfood,AIDADS_sat,-5544.067370059538,17,-11054.134740119076,-10990.61301106193,True,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH,0.3392750316027584,,
+baseline_real_national_nonfood,MAIDADS_sat,-5689.350355824293,26,-11326.700711648586,-11229.549831914126,True,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH,0.3328126372352521,,
+baseline_real_national_nonfood,LR_MAIDADS_vs_AIDADS,,9,,,True,Naive chi-square p-value not reported; nuisance parameters unidentified under AIDADS.,,290.5659715295096,invalid_not_reported_unidentified_nuisance_under_H0

@@ -1,0 +1,55 @@
+{
+  "finished_at": "2026-07-06T04:28:44.111412",
+  "results_md": "/root/data/Paper/省级食物消费/ProvinceMAIDADS/Results/SplitPorkPGDP/SplitPorkPGDP_完整结果整合.md",
+  "code_md": "/root/data/Paper/省级食物消费/ProvinceMAIDADS/Results/SplitPorkPGDP/SplitPorkPGDP_完整代码整合.md",
+  "bootstrap": [
+    {
+      "variant": "baseline_real_national_nonfood",
+      "target_reps": 1000,
+      "completed_reps": 1000,
+      "successful_reps": 1000,
+      "convergence_rate": 1.0
+    },
+    {
+      "variant": "robust_real_derived_cpi_nonfood",
+      "target_reps": 1000,
+      "completed_reps": 1000,
+      "successful_reps": 999,
+      "convergence_rate": 0.999
+    }
+  ],
+  "lr": [
+    {
+      "variant": "baseline_real_national_nonfood",
+      "test": "MAIDADS_vs_AIDADS",
+      "observed_lr": 174.74082061694935,
+      "bootstrap_reps": 500,
+      "completed_reps": 500,
+      "successful_reps": 498,
+      "convergence_rate": 0.996,
+      "cluster_bootstrap_tail_probability": 0.5200803212851406,
+      "lr_bootstrap_median": 181.5060435597725,
+      "lr_bootstrap_q95": 434.29842062034317,
+      "lr_bootstrap_q99": 544.0294132071074,
+      "chi2_p_value_status": "invalid_not_reported",
+      "note": "Province-block cluster bootstrap; ordinary chi-square p-value not used.",
+      "inference_scale": "formal"
+    },
+    {
+      "variant": "robust_real_derived_cpi_nonfood",
+      "test": "MAIDADS_vs_AIDADS",
+      "observed_lr": 138.70643162899978,
+      "bootstrap_reps": 500,
+      "completed_reps": 500,
+      "successful_reps": 498,
+      "convergence_rate": 0.996,
+      "cluster_bootstrap_tail_probability": 0.7128514056224899,
+      "lr_bootstrap_median": 190.8429688885385,
+      "lr_bootstrap_q95": 425.7439475168735,
+      "lr_bootstrap_q99": 519.3509010152114,
+      "chi2_p_value_status": "invalid_not_reported",
+      "note": "Province-block cluster bootstrap; ordinary chi-square p-value not used.",
+      "inference_scale": "formal"
+    }
+  ]
+}

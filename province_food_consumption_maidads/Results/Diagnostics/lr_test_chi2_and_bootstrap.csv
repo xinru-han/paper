@@ -1,0 +1,2 @@
+test,lr_observed,df_naive,p_chi2_naive,p_bootstrap_cluster,n_bootstrap,successful_reps,convergence_rate,status,note
+MAIDADS_vs_AIDADS,468.1504857952805,7,,0.1818181818181818,12,11,0.9166666666666666,pilot_only,Cluster bootstrap pilot; chi-square reference not used.

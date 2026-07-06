@@ -1,0 +1,11 @@
+model,start_id,selected,success,nll,n_iter,grad_norm,max_abs_gradient,hessian_status,n_boundary_raw_params,boundary_raw_params,message
+AIDADS_sat,warm_start,True,True,-5551.644802173464,104,0.25455978557568354,0.17353159015290792,not_available_lbfgsb,2,raw_alpha[grain];raw_alpha[oil],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_1,False,True,-5551.644806233793,1,0.25729275645879485,0.10913936487604271,not_available_lbfgsb,3,raw_alpha[grain];raw_alpha[oil];log_omega,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_2,False,True,-5638.4037373359615,413,4.810907338354438,2.2354470410735447,not_available_lbfgsb,2,raw_alpha[oil];log_tau[pork],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_3,False,True,-5642.757171406067,284,33.45714637585902,14.66023597368385,not_available_lbfgsb,2,log_delta[aquatic];log_tau[pork],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_4,False,True,-5660.031359629497,528,0.9273877441958275,0.43028194124670915,not_available_lbfgsb,1,log_delta[aquatic],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_5,False,True,-5638.999490727391,401,0.4158888567480978,0.3416062101657183,not_available_lbfgsb,2,log_delta[aquatic];log_tau[pork],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_6,False,True,-5660.068909334663,470,0.61221450334711,0.3174136528478242,not_available_lbfgsb,1,raw_alpha[oil],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_7,False,True,-5637.093308239176,523,1.374669386350744,0.8233655585190122,not_available_lbfgsb,2,raw_alpha[oil];log_tau[pork],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_8,True,True,-5677.396469547817,676,2.553561597651674,2.1624145920697013,not_available_lbfgsb,3,raw_alpha[oil];raw_alpha[othermeat];log_delta[aquatic],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_9,False,True,-5636.030661376442,312,0.9863112608387583,0.5994479615816646,not_available_lbfgsb,0,,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH

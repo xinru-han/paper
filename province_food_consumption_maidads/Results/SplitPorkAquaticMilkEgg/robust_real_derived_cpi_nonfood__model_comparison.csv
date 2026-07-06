@@ -1,0 +1,4 @@
+variant,model,nll,k_effective,aic,bic,success,message,mean_food_relative_rmse,lr_stat,chi2_p_value_status
+robust_real_derived_cpi_nonfood,AIDADS_sat,-6929.953448632482,19,-13821.906897264964,-13750.912023612858,True,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH,0.39048897928316745,,
+robust_real_derived_cpi_nonfood,MAIDADS_sat,-7192.917941555297,29,-14327.835883110594,-14219.475286483697,True,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH,0.33989567621330063,,
+robust_real_derived_cpi_nonfood,LR_MAIDADS_vs_AIDADS,,10,,,True,Naive chi-square p-value not reported; nuisance parameters unidentified under AIDADS.,,525.9289858456305,invalid_not_reported_unidentified_nuisance_under_H0

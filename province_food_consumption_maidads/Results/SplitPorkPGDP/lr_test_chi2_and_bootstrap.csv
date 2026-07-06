@@ -1,0 +1,3 @@
+variant,test,observed_lr,bootstrap_reps,completed_reps,successful_reps,convergence_rate,cluster_bootstrap_tail_probability,lr_bootstrap_median,lr_bootstrap_q95,lr_bootstrap_q99,chi2_p_value_status,note,inference_scale
+baseline_real_national_nonfood,MAIDADS_vs_AIDADS,174.74082061694935,500,500,498,0.996,0.5200803212851406,181.5060435597725,434.29842062034317,544.0294132071074,invalid_not_reported,Province-block cluster bootstrap; ordinary chi-square p-value not used.,formal
+robust_real_derived_cpi_nonfood,MAIDADS_vs_AIDADS,138.70643162899978,500,500,498,0.996,0.7128514056224899,190.8429688885385,425.7439475168735,519.3509010152114,invalid_not_reported,Province-block cluster bootstrap; ordinary chi-square p-value not used.,formal

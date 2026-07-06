@@ -1,0 +1,12 @@
+model,start_id,selected,success,nll,n_iter,grad_norm,max_abs_gradient,hessian_status,n_boundary_raw_params,boundary_raw_params,message
+AIDADS_sat,warm_start,True,True,-4369.741998441638,256,0.2195135509949119,0.1275111572556808,not_available_lbfgsb,2,raw_alpha[grain];raw_alpha[oil],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_1,True,True,-4438.762525707834,197,0.4909231535090244,0.25111148868562827,not_available_lbfgsb,2,raw_alpha[oil];raw_alpha[meatother],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_2,False,True,-4369.742025505325,1,0.36992493792925335,0.17589627443904787,not_available_lbfgsb,3,raw_alpha[grain];raw_alpha[oil];log_omega,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_3,False,True,-4437.778407616226,157,0.33381042876020023,0.1880835054697136,not_available_lbfgsb,1,raw_alpha[oil],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_4,False,True,-4437.900682477287,210,0.43888298232549894,0.22109816334471652,not_available_lbfgsb,1,raw_alpha[meatother],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_5,False,True,-4437.873315236749,221,1.5038479114611514,0.9063114758248046,not_available_lbfgsb,1,raw_alpha[oil],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_6,False,True,-4433.97844174796,142,3.573321897699158,3.055447452214405,not_available_lbfgsb,4,raw_alpha[meatother];raw_alpha[nonfood];log_delta[meatother];log_tau[pork],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_7,False,True,-4434.048368963896,228,1.33609801148742,0.9388713811343743,not_available_lbfgsb,1,log_delta[meatother],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_8,False,True,-4379.942741386693,73,79.00194734120555,61.2845724712929,not_available_lbfgsb,0,,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_9,False,True,-4438.32898129835,271,0.238464916074612,0.15979822007267253,not_available_lbfgsb,0,,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_10,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,2,raw_alpha[grain];raw_alpha[oil],CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL

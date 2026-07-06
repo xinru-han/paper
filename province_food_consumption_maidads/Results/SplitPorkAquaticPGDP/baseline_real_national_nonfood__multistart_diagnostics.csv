@@ -1,0 +1,11 @@
+model,start_id,selected,success,nll,n_iter,grad_norm,max_abs_gradient,hessian_status,n_boundary_raw_params,boundary_raw_params,message
+AIDADS_sat,warm_start,True,True,-5541.617447322233,156,0.9119384653173156,0.63882908240777,not_available_lbfgsb,1,raw_alpha[grain],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_1,False,True,-5541.617460187704,1,0.3018527704283102,0.13014869261468093,not_available_lbfgsb,2,raw_alpha[grain];log_omega,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_2,False,True,-5629.111967272661,309,9.292669752909308,6.124446409489867,not_available_lbfgsb,1,log_delta[aquatic],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_3,False,True,-5629.729091271202,374,2.8102182897421013,1.8430000646427356,not_available_lbfgsb,1,log_delta[aquatic],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_4,False,True,-5627.2673415143645,305,2.959922552745135,1.32868081789509,not_available_lbfgsb,2,log_delta[aquatic];log_tau[pork],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_5,False,True,-5628.367810648296,271,16.44853784640154,13.088083512752313,not_available_lbfgsb,2,raw_alpha[oil];log_tau[pork],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_6,False,True,-5652.552111918948,500,0.6887808047884323,0.3226887221501663,not_available_lbfgsb,2,raw_alpha[oil];log_delta[aquatic],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_7,True,True,-5653.90723291286,390,0.36434491851034834,0.21373125621558364,not_available_lbfgsb,3,raw_alpha[oil];raw_alpha[othermeat];raw_alpha[nonfood],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_8,False,True,-5630.048339837056,419,2.5361103160075404,1.8254468270225443,not_available_lbfgsb,2,log_delta[aquatic];log_tau[pork],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_9,False,True,-5631.774554683111,712,0.743345719978237,0.4144567381167722,not_available_lbfgsb,2,log_delta[aquatic];log_tau[pork],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH

@@ -1,0 +1,2 @@
+test,observed_lr,bootstrap_reps,successful_reps,cluster_bootstrap_tail_probability,lr_bootstrap_median,lr_bootstrap_q95,chi2_p_value_status,note
+MAIDADS_vs_AIDADS,468.1504857952805,12,11,0.18181818181818182,225.5630841082675,545.7235691333344,invalid_not_reported,Cluster bootstrap pilot; chi-square reference not used.

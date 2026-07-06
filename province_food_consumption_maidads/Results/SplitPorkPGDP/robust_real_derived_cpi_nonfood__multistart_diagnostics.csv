@@ -1,0 +1,12 @@
+model,start_id,selected,success,nll,n_iter,grad_norm,max_abs_gradient,hessian_status,n_boundary_raw_params,boundary_raw_params,message
+AIDADS_sat,warm_start,True,True,-4369.653052331326,276,0.7777466274707937,0.6587470091840868,not_available_lbfgsb,2,raw_alpha[grain];raw_alpha[oil],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_1,True,True,-4439.006268145826,337,7.293717870652158,5.8152181767268,not_available_lbfgsb,2,raw_alpha[oil];raw_alpha[nonpork_meatsea],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_2,False,True,-4369.653056965945,1,0.8279858861288817,0.3629793336536919,not_available_lbfgsb,3,raw_alpha[grain];raw_alpha[oil];log_omega,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_3,False,True,-4437.870361992665,184,1.7607850459459324,0.7078597267624561,not_available_lbfgsb,1,raw_alpha[oil],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_4,False,True,-4437.892036754465,239,0.6637167134749273,0.5177753339918622,not_available_lbfgsb,1,raw_alpha[oil],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_5,False,True,-4434.037407748418,209,9.651909267613446,8.580445869452705,not_available_lbfgsb,2,log_delta[nonpork_meatsea];log_tau[grain],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_6,False,True,-4437.89582384136,240,0.44768527861164853,0.2220076568196268,not_available_lbfgsb,0,,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_7,False,True,-4434.0506262308745,170,0.9225290956846107,0.6095433494490532,not_available_lbfgsb,0,,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_8,False,True,-4434.10739784948,214,0.771475187515556,0.5257788873716766,not_available_lbfgsb,2,raw_alpha[nonpork_meatsea];log_delta[nonpork_meatsea],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_9,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,2,raw_alpha[grain];raw_alpha[oil],CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
+MAIDADS_sat,start_10,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,2,raw_alpha[grain];raw_alpha[oil],CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL

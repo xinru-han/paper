@@ -1,0 +1,10 @@
+model,start_id,selected,success,nll,n_iter,grad_norm,max_abs_gradient,hessian_status,n_boundary_raw_params,boundary_raw_params,message
+AIDADS_sat,warm_start,True,True,-4394.129744979019,241,190.49699149577404,120.31350779940561,not_available_lbfgsb,1,raw_alpha[grain],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_1,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,0,,CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
+MAIDADS_sat,start_2,False,True,-4398.743088078837,9,81.16220987235482,59.447120654331705,not_available_lbfgsb,2,raw_alpha[grain];log_omega,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_3,True,True,-4409.887817192976,7,322.88833942722266,165.84335670245466,not_available_lbfgsb,1,raw_alpha[grain],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_4,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,0,,CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
+MAIDADS_sat,start_5,False,True,-4350.007746222487,8,222.79977019241636,108.06570637407464,not_available_lbfgsb,0,,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
+MAIDADS_sat,start_6,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,1,raw_alpha[grain],CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
+MAIDADS_sat,start_7,False,True,1000000000000.0,0,0.0,0.0,not_available_lbfgsb,0,,CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
+MAIDADS_sat,start_8,False,True,-4359.100646672191,25,61.808877000791234,26.0349226427678,not_available_lbfgsb,1,raw_alpha[grain],CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH
