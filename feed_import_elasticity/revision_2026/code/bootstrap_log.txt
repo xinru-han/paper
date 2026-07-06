@@ -1,0 +1,13 @@
+  ... 25/300 replicates attempted, 25 succeeded
+  ... 50/300 replicates attempted, 50 succeeded
+  ... 75/300 replicates attempted, 75 succeeded
+  ... 100/300 replicates attempted, 100 succeeded
+  ... 125/300 replicates attempted, 125 succeeded
+  ... 150/300 replicates attempted, 150 succeeded
+  ... 175/300 replicates attempted, 175 succeeded
+  ... 200/300 replicates attempted, 200 succeeded
+  ... 225/300 replicates attempted, 225 succeeded
+  ... 250/300 replicates attempted, 250 succeeded
+  ... 275/300 replicates attempted, 275 succeeded
+  ... 300/300 replicates attempted, 300 succeeded
+Bootstrap complete: 300/300 replicates succeeded, 300 unique reps in output

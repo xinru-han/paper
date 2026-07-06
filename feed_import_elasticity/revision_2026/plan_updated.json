@@ -1,0 +1,72 @@
+{
+  "version": 3,
+  "created_at": "2026-07-05T12:56:41.100Z",
+  "task_summary": "重建饲料粮进口QUAIDS数据管道与模型，并按审改意见全面修改论文",
+  "agents": [],
+  "phases": [
+    {
+      "name": "Plan",
+      "delegations": [
+        {
+          "steps": [
+            {
+              "title": "重建省-季度-品类面板",
+              "description": "从 data/2017-feed.csv 至 2023-feed.csv 提取玉米(HS1005)、大麦(HS1003)、高粱(HS1007)、木薯干(HS071410)、燕麦(HS1004)五品类逐笔记录，按省份×季度聚合为进口金额、数量、单位价值、来源国数量、来源国集中度(HHI)、最大来源国份额。月度聚合为季度。31个有海关记录的省份×28季度(2017Q1-2023Q4)×5品类=4340个原始格（西藏无进口记录，不在31省之内）；剔除五品类总进口支出为0的省-季度后得到用于份额方程估计的正预算子样本，预期在30省附近（与审改意见引用的\"634个观测来自30省×28季度\"核对一致，若有偏差需在面板构建报告中说明并核实哪个省份、哪些季度被剔除）。同时改用 进口数据/2017.csv 至 2023.csv（完整全HS章节海关逐笔数据，非仅HS01-24食品）构造真正的\"非农产品进口\"Bartik工具：以基期(2017年)各省对HS25-97非农产品的暴露份额，交互全国留一法季度增长率，与论文原述的nonag_bartik设计一致（不再使用HS01-24食品替代口径）。从 主产区原粮购销价格监测旬报 提取玉米(等)国内价格，通过acc.xls的地区代码表映射到省份，构造省-季度域内价格控制变量；从 畜产品产量 提取省级肉类/蛋/奶产量作为饲料需求控制。产出 panel_long.parquet、panel_wide.parquet 存档为checkpoint，并在面板构建报告中列出31省原始格数、正预算子样本的省数与观测数，与论文/审改意见的634、30省数字做逐项核对。",
+              "output": "面板构建脚本(Python)+checkpoint"
+            },
+            {
+              "title": "质量调整价格构建(两种口径)",
+              "description": "对每个品类回归 log单位价值 ~ 来源国数量+HHI集中度+最大来源国份额+省固定效应+年季固定效应，构造调整价格；按审改意见问题2，主规格去掉ln数量(避免供需同时决定的内生性)，另存含ln数量的口径作为稳健性对照。零值格分别用(a)全国×品类×季度均价填补(completed)和(b)留一法国全国季度价(loo_quarter_winsor，缩尾处理极端值)两种方式填补，并保留到岸价代理(landed_proxy，不做质量调整的原始单位价值)作为第三口径，形成三种价格口径的敏感性带。产出 quality_adjusted_price_diagnostics.csv 和三套价格面板。",
+              "output": "quality_adjusted_price_diagnostics.csv, price_variants.parquet"
+            },
+            {
+              "title": "参与方程(SY)与Bartik第一阶段",
+              "description": "对每品类估计probit参与方程，仅用预定/严格滞后变量(滞后进口状态、历史参与率、国内价格滞后项、港口接入代理)，排除当期来源国变量避免机械泄漏，得到Φ̂、φ̂。构造Bartik工具：以2017年(基期)各省对HS25-97非农产品进口的暴露份额，交互全国留一法季度增长率（来自完整海关逐笔数据 进口数据/，与论文原述的非农Bartik设计一致）；对内生的省级五品类总进口支出(ln X)做第一阶段回归，报告偏F统计量，取残差v̂作为控制函数项。产出 selection_stage_params.csv, expenditure_first_stage_diagnostics.csv。",
+              "output": "selection_stage_params.csv, expenditure_first_stage_diagnostics.csv"
+            },
+            {
+              "title": "FIML AIDS/QUAIDS估计(含Γ矩阵与联合检验)",
+              "description": "用Python复现R代码中的FIML目标函数(加总性/齐次性/对称性通过参数化施加，SY两步法嵌入份额方程，v̂作为控制函数)，对三种价格口径分别估计AIDS与QUAIDS，Bewley LRB做模型选择。新增：(a)报告Γ矩阵点估计+SE+联合Wald/LR检验H0:所有γ_ij=0(嵌套Engel-only模型)；(b)curvature-imposed变体(Ryan-Wales局部曲率约束)作为对照。产出 demand_parameters.csv(含Γ矩阵SE)、gamma_joint_test.csv、bewley_model_selection.csv。",
+              "output": "demand_parameters.csv, gamma_joint_test.csv"
+            },
+            {
+              "title": "弹性、机械基准分解与口径命名",
+              "description": "计算支出/Marshallian/Hicksian/Morishima弹性(潜在intensive-margin口径，在观测均值份额处求导，Green-Alston惯例)，并新增observed-censored口径(∂w/∂lnp=Φ̂·∂g/∂lnp)作为对照表。核心新增：计算Γ=0机械基准 ε^H_ij=η_i·w̄_j−δ_ij，报告 ε^H_ij−机械基准 的估计值与CI，量化\"价格数据贡献了多少\"。绘制机械基准 vs 实际弹性对比图(热力图或对角散点图)。产出 elasticities_with_mechanical_benchmark.csv 及对比图。",
+              "output": "elasticities_with_mechanical_benchmark.csv + benchmark_comparison.png"
+            },
+            {
+              "title": "省级聚类block bootstrap全管道推断",
+              "description": "以省份为聚类单位做block bootstrap(重抽31个省份，含放回)，每次重抽后重做步骤2-5全流程(价格调整回归→probit→Bartik第一阶段→FIML)，重算弹性，重复500次(视计算时间调整)。汇总bootstrap SE与置信区间，和delta method SE并列对比；报告Hessian条件数与截断奇异值个数作为识别强度披露。产出 bootstrap_elasticity_ci.csv 及delta-vs-bootstrap对比表。",
+              "output": "bootstrap_elasticity_ci.csv"
+            },
+            {
+              "title": "政策事件价格识别",
+              "description": "构造政策窗口哑变量：2018Q3-Q4对美高粱反倾销调查窗口、2020Q2-2023Q3对澳大麦AD/CVD窗口、2018Q3起中美贸易战关税窗口。在FIML系统中做窗口内外的γ子样本估计或哑变量×相对价格交互项检验，评估价格系数在真实外生政策冲击期间是否'活过来'。产出 policy_window_gamma_test.csv 及来源国份额时间序列图(验证冲击存在)。",
+              "output": "policy_window_gamma_test.csv + source_share_timeseries.png"
+            },
+            {
+              "title": "改写论文正文与结论语言",
+              "description": "基于以上诊断改写docx：摘要/4.4/5/6节替换为如实表述(区分'商品正常+加总性的机械恒等式' vs '价格数据识别的替代弹性')，把Engel异质性提为第一贡献；3.7节明确弹性口径命名(conditional intensive-margin, evaluated at observed mean shares)并增补observed-censored对照；4.1节重新解读regularity通过的机械性质；新增Γ矩阵表、机械基准分解表、bootstrap vs delta SE对照表、政策识别子样本结果表；6中'预测9.8%下降'改为不高估因果语言的表述；表10注释明确为政策综合而非模型估计。",
+              "output": "论文修订稿(docx)正文与新增表格"
+            },
+            {
+              "title": "文献补充与参考文献表清理",
+              "description": "按审改意见第二部分逐段插入引言文献(Fukase & Martin 2016; Huang & Yang 2017; Fajgelbaum et al. 2020; Adjemian, Smith & He 2021; Carter & Steinbach 2020; Xu 2002; Abbott & Seddighi 1996; Kee, Nicita & Olarreaga 2008; Broda & Weinstein 2006; Winters 1984; Hayes, Wahl & Williams 1990; Anderson & van Wincoop 2004; Pollak 1969; Browning & Meghir 1991; Edgerton 1997; Carpentier & Guyomard 2001等)，方法节补引Bartik(1991)、Goldsmith-Pinkham et al.(2020)、Borusyak et al.(2022)、Blundell & Robin(1999)、Murphy & Topel(1985)。将Guardian/Reuters新闻条目移至脚注，学术条目替代补充。核对参考文献表与正文引用一致性，删除/补引问题7列出的悬空文献条目。",
+              "output": "更新后的参考文献表与正文引用"
+            },
+            {
+              "title": "汇总修订说明与交付物打包",
+              "description": "撰写一份修订应答备忘录(response-to-reviewer memo)，逐条对应审改意见的问题1-8，说明每条的处理方式与证据(引用新增表格/图)。将最终docx、所有新增CSV表格、图片、bootstrap与政策识别结果整理打包为可投稿版本的附件集。",
+              "output": "revision_memo.md + 全部支撑材料"
+            }
+          ]
+        }
+      ],
+      "id": "phase-0"
+    }
+  ],
+  "feasibility": {
+    "rationale": "原始海关逐笔数据、国内粮价监测数据、畜产品产量数据均可用于重建省-季度-品类面板：五品类逐笔记录聚合后得到31个有海关记录省份(西藏无进口记录)×28季度×5品类=4340个原始格；论文的估计样本是其中五品类总进口支出为正的子样本，审改意见引用该子样本为\"634个观测，来自30省×28季度\"——31省与30省的差异需在面板重建时逐项核实(某省份可能因所有季度均为零预算而在正预算子样本中消失)，不能简单等同为\"与论文一致\"，将在面板构建报告中明确列出并核对。另外，用户提供的\"进口数据/\"文件夹包含2017-2024年完整全HS章节海关逐笔记录(约460万行/年)，可据此构造论文原述的真正\"非农产品进口(HS25-97)\"Bartik工具，无需使用替代口径。全流程省级聚类bootstrap与政策事件识别（2018对美高粱反倾销、2020对澳大麦AD/CVD）在现有数据上可行，且已在原始数据中观测到清晰的来源国份额突变，可支持识别策略。",
+    "confidence": "medium"
+  }
+}

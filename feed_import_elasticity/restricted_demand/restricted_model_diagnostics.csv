@@ -1,0 +1,13 @@
+﻿model,price_measure,rmse,rank,condition_number,curvature_imposed,optimizer_success,optimizer_message,nobs_positive_budget
+restricted_aids,completed,0.30084283160094005,18.0,40.35655943547437,False,,,634
+restricted_aids_curvature,completed,0.30165999398491794,,,True,True,`ftol` termination condition is satisfied.,634
+restricted_quaids,completed,0.2996245615558653,22.0,305.5626592708116,False,,,634
+restricted_quaids_curvature,completed,0.30040158036173475,,,True,True,`ftol` termination condition is satisfied.,634
+restricted_aids,loo_quarter_winsor,0.30424585695954526,18.0,78.03448810057681,False,,,634
+restricted_aids_curvature,loo_quarter_winsor,0.3042893575042565,,,True,True,`ftol` termination condition is satisfied.,634
+restricted_quaids,loo_quarter_winsor,0.3028557816032488,22.0,585.4305913304754,False,,,634
+restricted_quaids_curvature,loo_quarter_winsor,0.30289578090252534,,,True,True,`ftol` termination condition is satisfied.,634
+restricted_aids,landed_proxy,0.29432345397652854,18.0,12.407364480987527,False,,,634
+restricted_aids_curvature,landed_proxy,0.2958540362279055,,,True,True,`ftol` termination condition is satisfied.,634
+restricted_quaids,landed_proxy,0.29261293775206876,22.0,99.7230006181248,False,,,634
+restricted_quaids_curvature,landed_proxy,0.2942044217938448,,,True,True,`ftol` termination condition is satisfied.,634

@@ -1,0 +1,15 @@
+{
+  "products": [
+    "corn",
+    "barley",
+    "sorghum",
+    "cassava",
+    "oats"
+  ],
+  "price_measures": [
+    "completed",
+    "loo_quarter_winsor",
+    "landed_proxy"
+  ],
+  "constraints": "adding-up, homogeneity, symmetry; curvature-imposed variants use K=-BMM'B' at the reference point"
+}

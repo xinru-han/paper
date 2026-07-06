@@ -1,0 +1,9 @@
+design,granularity,partial_F,note
+single_pooled_nonag_LOO_growth,pooled,0.51,discards sectoral variation entirely
+HS2_LOO_growth_summed,HS2,0.028,"quarter-over-quarter growth, saturated province x year_quarter FE"
+HS4_LOO_growth_summed,HS4,0.044,quarter-over-quarter growth
+HS4_national_growth_(non-LOO),HS4,0.055,"classic Bartik growth-rate version, still weak"
+HS4_national_growth_less_saturated_FE,HS4,1.12,province+year+quarter-of-year FE instead of province x year_quarter interaction
+HS4_YoY_growth,HS4,0.63,year-over-year instead of quarter-over-quarter growth
+HS4_predicted_trade_level,HS4,12.21,"base_share x national sector LEVEL (not growth rate), log-transformed -- selected class of design"
+HS2_predicted_trade_level,HS2,14.47,"SELECTED as primary instrument: simplest, strongest, robust to province+year_quarter saturated FE"
