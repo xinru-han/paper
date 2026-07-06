@@ -1,23 +1,25 @@
 """M4: 农户—加工—进口—政府多主体仿真（2026–2035, 年度步）。
 
-主体与规则（§7.1, 命题 15.1–15.2）:
-- 农户 N 个（默认 10000, 按 regions.csv 面积份额分配; 地块 lognormal σ=0.8, 潜在
+重要口径: N=10000 个 agent 为合成代表性农户（区域统计分布抽样, 非实测样本）;
+个体属性来自 NBS/《汇编》分区参数, 校准目标是加总行为复现观测。
+
+主体与规则（§7.1, 命题 15.1–15.2）— 玉米-大豆联动版:
+- 农户 N 个（按 regions.csv 面积份额分配; 地块 lognormal σ=0.8, 潜在
   轮作地池 = 现状大豆面积/基线种豆概率）。Logit 选择大豆 vs 玉米:
-    ΔV_i = [f_i·(p̃+s^Y+ϑ·prem·q_i)/1000 − c_r] − corn_net_r − γ/2·Var(π)·a_i
-           + ζ₁·Service_r + ζ₂·scale·Peer_r
-    P(豆) = 1/(1+exp(−ΔV/τ))
+    ΔV_i = [f_i·(p̃+ϑ·prem·q_i)/1000 + s_soy − c_r]
+           − [g_r·p̃c/1000 + s_corn − c_corn_r + ε_r] − γ/2·Var(π)·a_i
+           + ζ1·Service_r + ζ2·scale·Peer_r,   P(豆) = 1/(1+exp(−ΔV/τ))
+  玉米收益实测化: g_r=玉米亩产, c_corn_r=玉米生产成本(《汇编》2022-24 分省),
+  p̃c=玉米价格 AR(1)(ρ=0.71, σ=14%, 与大豆价同比相关 0.53, 黑龙江面板 2006-24);
+  ε_r 为区域参与残差(轮作约束/农艺偏好, 基线份额校准, 幅度记录于 corn_resid)。
+  政策杠杆 = 补贴差 s_soy − s_corn（玉米同补部分不改变相对激励）。
+- 食用需求底部: 国产豆食用需求 F(prem)=F0·(prem/prem0)^(−ε_f)。当 Y<F0, 食用
+  溢价内生上升 prem = prem0·(Y/F0)^(−1/ε_f) → 零补贴均衡 Y≈1150-1250
+  （复现 NBS 2015 实测底部 1179, 而非归零）。
 - 质量 q_i = ϑ^{1/(δ−m)}·φ_i（式 9.6), φ_i ~ lognormal(0, 0.15)
 - 进口商: M2 的带约束 QP 份额（当年价格+政策 Ω）
-- 价格: p_imp AR(1) log(μ=3650, σ=12%); 国产食用价差 OU(均值回归 5 年均值 1202,
-  σ=350, 起点 627); 玉米净收益 AR(1)
-- 政府: 政策工具向量 policy dict（M5 传入）
 - 时序: 价格→政策→预期(自适应0.6/0.4)→选择→单产(气候σ=8%)→质量结算→进口配置
   →短缺/储备→记录
-
-自检（§7.3, run_selfcheck）:
-  A. 无政策基线 2026–2028 产量 ∈ [1950,2250], 进口 ∈ [9000,10800]
-  B. τ→5 时聚合供给曲线与 M1 优序供给 L1 距离 <5%
-  C. 2018 型摩擦(C1)下美豆份额年内降幅 ≥40%
 """
 import numpy as np
 import pandas as pd
@@ -28,7 +30,11 @@ from src import m2_portfolio as m2
 ROOT = mc.ROOT
 U = mc.WT_CNY_TO_YI
 
-DEFAULT_POLICY = dict(sub_area=350.73, sub_targeted=None, price_floor_tau=0.0,
+# sub_area: 大豆补贴(元/亩)。None → regions.csv 基线(黑366/蒙420/其余150);
+# 标量 → 全国统一; sub_targeted → 分区向量。sub_corn 同理(基线黑118/蒙35/其余0)。
+# 农户的有效激励 = 补贴差 sub_soy − sub_corn（玉米-大豆联动的政策接口）。
+DEFAULT_POLICY = dict(sub_area=None, sub_corn=None, sub_targeted=None,
+                      price_floor_tau=0.0,
                       theta_transmission=None, reserve_X=None,
                       import_cost_shift=None, import_prob_scale=None,
                       quality_budget=0.0)
@@ -75,6 +81,11 @@ class ABM:
         self.cost_r = (A_r * (1 + 0.5 * r_g / (1 - r_g / 2)))[self.reg_idx]
         self.service_r = R.service_level.to_numpy()[self.reg_idx]
         self.theta_r = R.quality_theta.to_numpy()[self.reg_idx]
+        # 玉米侧实测参数（《汇编》2022-24 分省, build_regions.py）
+        self.corn_yield_r = R.corn_yield_kg_mu.to_numpy()[self.reg_idx]
+        self.corn_cost_r = R.corn_prod_cost_cny_mu.to_numpy()[self.reg_idx]
+        self.sub_soy_base = R.sub_soy_cny_mu.to_numpy()[self.reg_idx]
+        self.sub_corn_base = R.sub_corn_cny_mu.to_numpy()[self.reg_idx]
         # 价格状态。价差 OU 锚: 基线用 2024 现值 627（五年均值 1202 含 2020–22
         # 异常期, 仅作质量溢价尺度 spread_lr; 敏感性情景可改 spread_anchor）
         self.p_imp = cfg["prices"]["p_import_landed_2024"]
@@ -82,10 +93,20 @@ class ABM:
         self.spread_anchor = float(self.spread)
         self.spread_lr = cfg["prices"]["spread_dom_import_5yr"]
         self.p_hat = self.p_imp + self.spread
+        # 玉米价格 AR(1)（黑龙江面板 2006-2024: ρ=0.711, σ=0.140, 与大豆价
+        # 同比相关 0.53; 锚 = 2024 黑龙江出售价 1895 元/吨）
+        self.p_corn_anchor = 1895.0
+        self.p_corn = self.p_corn_anchor
+        self.pc_rho, self.pc_sig, self.pc_corr = 0.711, 0.14, 0.53
+        self.p_corn_hat = self.p_corn
+        # 食用需求底部: F(prem) = F0·(prem/prem0)^(−ε_f)。Y < F0 时溢价内生上升。
+        self.F0 = cfg["demand"].get("F_food", 1500.0)
+        self.eps_food = cfg["demand"].get("eps_food", 0.35)
+        self.Y_prev = cfg["supply_domestic"]["Y_2024"]
         self.records = []
-        # 玉米净收益(全成本口径, 元/亩): 在基线价格与基线补贴下校准
-        self.corn_net = None
-        self._corn_calibrate(350.73)
+        # 玉米机会收益 = 实测(g_r·p_corn/1000 − c_corn + s_corn) + 区域残差 ε_r
+        self.corn_resid = None
+        self._corn_calibrate()
 
     def _fi(self):
         norm = 1 + 0.8 * (1 - np.exp(-1.0))
@@ -102,38 +123,62 @@ class ABM:
                 + self.sp["service_effect_zeta1"] * self.service_r)
         return base, q_i, prem, f_i
 
-    def _corn_calibrate(self, sub=350.73):
-        """玉米机会净收益（分区域校准, anchor）: 使基线激励下各区 mean(ΔV_r)=0 →
-        P(豆|r)=1/pool_scale, 复现观测的区域面积份额。玉米净收益的区域差异大
-        （黑龙江玉米强、西南弱), 无分区公开口径 → 以基线份额反推, struct 参数。"""
-        base, *_ = self._dv_terms(self.p_imp + self.spread, sub, self.theta0)
-        by_r = pd.Series(base).groupby(self.reg_idx).mean().to_numpy()
+    def _corn_net(self, p_corn, sub_corn):
+        """玉米机会收益（元/亩, 实测口径 + 校准残差）。"""
+        return (self.corn_yield_r * p_corn / 1000.0 - self.corn_cost_r
+                + sub_corn + (self.corn_resid if self.corn_resid is not None else 0.0))
+
+    def _corn_calibrate(self):
+        """区域参与残差 ε_r（轮作约束/农艺偏好/未观测异质性）: 使基线补贴与基线
+        价格下各区 mean(ΔV_r) = −τ·ln(pool_scale−1) → P(豆|r)=1/pool_scale,
+        复现观测面积份额。玉米收益的水平与动态由实测数据给出（build_regions.py）,
+        残差只吸收 Logit 定标, 其幅度是模型-数据一致性的诊断量。"""
+        base, *_ = self._dv_terms(self.p_imp + self.spread, self.sub_soy_base,
+                                  self.theta0)
+        corn_data = self._corn_net(self.p_corn_anchor, self.sub_corn_base)
         off = self.tau * np.log(max(self.pool_scale - 1.0, 1e-6)) if self.pool_scale > 1 else 0.0
-        self.corn_net = by_r[self.reg_idx] + off
+        gap = pd.Series(base - corn_data).groupby(self.reg_idx).mean().to_numpy()
+        self.corn_resid = (gap + off)[self.reg_idx]   # ΔV 基线均值 = −off
 
     def step(self, year, mc_fast=True):
         rng, sp, pol = self.rng, self.sp, self.policy
-        # 1. 价格实现
+        # 1. 价格实现（大豆进口价与玉米价共同冲击, 同比相关 0.53）
+        z_soy, z_ind = rng.normal(0, 1, 2)
         self.p_imp = float(np.exp(np.log(3650) * 0.35 + np.log(self.p_imp) * 0.65
-                                  + rng.normal(0, 0.12)))
+                                  + 0.12 * z_soy))
         if pol.get("import_cost_shift"):
             self.p_imp += pol["import_cost_shift"]
+        z_corn = self.pc_corr * z_soy + np.sqrt(1 - self.pc_corr ** 2) * z_ind
+        self.p_corn = float(np.exp(
+            (1 - self.pc_rho) * np.log(self.p_corn_anchor)
+            + self.pc_rho * np.log(self.p_corn) + self.pc_sig * z_corn))
         self.spread += 0.4 * (self.spread_anchor - self.spread) + rng.normal(0, 350)
         self.spread = float(np.clip(self.spread, -200, 2600))
+        # 食用需求底部: 上年国产量低于食用需求规模 F0 时, 食用溢价内生上升
+        # prem = prem0·(Y/F0)^(−1/ε_f)（进口豆不可替代食用需求, §3 与用户确认）
+        if self.Y_prev < self.F0:
+            floor = self.spread_anchor * (self.Y_prev / self.F0) ** (-1.0 / self.eps_food)
+            self.spread = float(max(self.spread, min(floor, 4000.0)))
         p_dom = self.p_imp + self.spread
         if pol["price_floor_tau"] > 0:
             p_dom = max(p_dom, self.p_imp + pol["price_floor_tau"])
-        # 2-3. 政策与预期
+        # 2-3. 政策与预期（大豆/玉米补贴: None→基线区域向量, 标量→统一）
         self.p_hat = 0.6 * p_dom + 0.4 * self.p_hat
+        self.p_corn_hat = 0.6 * self.p_corn + 0.4 * self.p_corn_hat
         theta = pol["theta_transmission"] or self.theta0
         sub = pol["sub_area"]
+        sub = self.sub_soy_base if sub is None else np.broadcast_to(
+            np.asarray(sub, float), self.reg_idx.shape)
         if pol.get("sub_targeted") is not None:
             sub = pol["sub_targeted"][self.reg_idx]
-        # 4. 种植选择 (Logit)
-        base, q_i, prem, f_i = self._dv_terms(self.p_hat, sub if np.ndim(sub) else sub,
-                                              theta)
+        sub_c = pol["sub_corn"]
+        sub_c = self.sub_corn_base if sub_c is None else np.broadcast_to(
+            np.asarray(sub_c, float), self.reg_idx.shape)
+        # 4. 种植选择 (Logit): ΔV = 大豆净收益 − 玉米净收益(动态)
+        base, q_i, prem, f_i = self._dv_terms(self.p_hat, sub, theta)
+        corn_net = self._corn_net(self.p_corn_hat, sub_c)
         peer_r = pd.Series(self.soy_prev).groupby(self.reg_idx).mean().to_numpy()
-        dV = (base - self.corn_net
+        dV = (base - corn_net
               + sp["peer_effect_zeta2"] * 200.0 * (peer_r[self.reg_idx] - 0.5))
         p_soy = 1.0 / (1.0 + np.exp(-np.clip(dV / self.tau, -60, 60)))
         soy = rng.random(len(dV)) < p_soy
@@ -147,7 +192,7 @@ class ABM:
         hi_q_share = float(self.area_i[soy][q_i[soy] > 1.0].sum()
                            / max(self.area_i[soy].sum(), 1e-9))
         income_i = np.where(soy, (harv / 1000.0 * (p_dom + prem) + sub - self.cost_r),
-                            self.corn_net)                        # 元/亩
+                            self._corn_net(self.p_corn, sub_c))   # 元/亩
         # 7. 进口配置
         D = self.cfg["demand"]["D_total"]
         M_need = max(D - Y, 500.0)
@@ -183,18 +228,24 @@ class ABM:
         X = pol["reserve_X"] or sp["reserve_X"]
         short = max(D - Y - arrive - X, 0.0)
         # 8. 记录
-        fiscal = float((np.where(soy, np.broadcast_to(sub, soy.shape), 0.0)
-                        * self.area_i).sum())                     # 元/亩×万亩=万元→亿: /1e4? 万亩×元/亩=1e4亩×元/亩=1e4元=万元 →亿元: ×1e-4
-        fiscal = fiscal * 1e-4 + pol.get("quality_budget", 0.0)
+        # 财政: 大豆侧支出为政策预算口径; 玉米补贴支出单独记录（跨政策共同基线）
+        fiscal_soy = float((np.where(soy, np.broadcast_to(sub, soy.shape), 0.0)
+                            * self.area_i).sum()) * 1e-4          # 万亩×元/亩→亿元
+        fiscal_corn = float((np.where(~soy, np.broadcast_to(sub_c, soy.shape), 0.0)
+                             * self.area_i).sum()) * 1e-4
+        fiscal = fiscal_soy + pol.get("quality_budget", 0.0)
         self.soy_prev = soy
+        self.Y_prev = Y                                            # 食用底部反馈
         rec = dict(year=year, Y=Y, area=area_soy, M=arrive, M_planned=M_need,
                    short=short, p_dom=p_dom, p_imp=self.p_imp, spread=self.spread,
+                   p_corn=self.p_corn,
                    share_us=float(s[1]), share_brazil=float(s[0]),
                    hhi=float((s ** 2).sum()), q_bar=q_bar, hi_q_share=hi_q_share,
                    income_mean=float(np.mean(income_i)),
                    income_soy=float(np.mean(income_i[soy])) if soy.any() else 0.0,
                    gini=gini(np.maximum(income_i * self.area_i, 0.0)),
-                   fiscal=fiscal, soy_share=float(np.mean(soy)))
+                   fiscal=fiscal, fiscal_corn=fiscal_corn,
+                   soy_share=float(np.mean(soy)))
         self.records.append(rec)
         return rec
 
@@ -258,6 +309,15 @@ def run_selfcheck(cfg=None, fast=True, save=True):
     us_crisis = df_c[df_c.year == 2027].share_us.iloc[0]
     drop = (us_pre - us_crisis) / max(us_pre, 1e-9)
     out["us_share_drop"] = float(drop); out["check_C"] = bool(drop >= 0.40 or us_pre < 0.05)
+    # D. 食用底部: 取消大豆补贴(玉米补贴保持)后长期均衡不归零, 落在历史底部带
+    #    [1050, 1500]（NBS 2015 实测 1179; 溢价内生回拉）
+    dfs0 = [ABM(cfg, n_agents=2000 if fast else 6000, seed=s,
+                policy=dict(sub_area=0.0)).run(range(2026, 2033))
+            for s in (52, 53, 54)]
+    df0 = pd.concat(dfs0)
+    y_bottom = float(df0[df0.year >= 2029].Y.mean())
+    out["bottom_Y_nosub"] = y_bottom
+    out["check_D"] = bool(1050 <= y_bottom <= 1500)
     if save:
         pd.DataFrame([out]).to_csv(ROOT / "results/tables/T_M4_selfcheck.csv", index=False)
         plt = mc.setup_cjk()
