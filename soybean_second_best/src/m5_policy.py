@@ -179,7 +179,7 @@ def run(cfg=None, save=True, fast=False):
     results["P6"], raw["P6"] = best, best_raw
     print(f"[M5] P6 最优权重 (P2,P4,P5)={best_w}, W={best['welfare']:.0f}")
 
-    dwl_an, dwl_sim, slope = p3_dwl(cfg, results["P3"], results["P0"])
+    dwl_an, dwl_sim, slope = p3_dwl(cfg, results["P3"], results["P0"], results["P1"])
     tbl = pd.DataFrame(results.values())
     cols = ["policy", "welfare", "fiscal", "cvar_loss", "Y", "M", "selfsuff",
             "hhi", "income", "gini", "q_bar", "hi_q", "short", "p_dom"]
