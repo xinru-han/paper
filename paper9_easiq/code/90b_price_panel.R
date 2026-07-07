@@ -56,7 +56,8 @@ fwrite(lnPw, file.path(DIR_INT, "lnP_wide.csv.gz"))
 lkd <- fread(file.path(P8, "data/lookups/lockdown_windows.csv"), encoding = "UTF-8")
 lkdm <- rbindlist(lapply(seq_len(nrow(lkd)), function(i) {
   dd <- data.table(date = seq(as.IDate(lkd$start[i]), as.IDate(lkd$end[i]), by = "1 day"))
-  dd[, .(lock_days = .N), by = .(Province = lkd$province[i], ym = format(date, "%Y-%m"))]
+  dd[, Province := lkd$province[i]][, ym := format(date, "%Y-%m")]
+  dd[, .(lock_days = .N), by = .(Province, ym)]
 }))[, .(lock_days = sum(lock_days)), by = .(Province, ym)]
 cov <- fread(file.path(P1, "processed/covid_province_daily_2020_2022.csv"), encoding = "UTF-8")
 covm <- cov[, .(covid_m = sum(covid_daily_new)), by = .(Province = province, ym = substr(date, 1, 7))]
