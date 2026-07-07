@@ -21,3 +21,7 @@
 13:39:17 09: G09_乳制品 cum14(hot) = -0.1425 
 13:39:20 09: G10_坚果 cum14(hot) = -0.0518 
 13:39:20 09: done 
+13:45:03 05c: permutation x499 ... 
+13:56:53 02: normals built (370 cities) 
+13:56:56 02: exposure series 87312 rows, 24 provinces, 0 missing tavg 
+13:57:26 02: scenario inputs written 
