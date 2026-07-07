@@ -1,0 +1,227 @@
+[2026-02-12T10:50:51.843651] 步骤 1 开始：缺失值补全与模型选择
+============================================================
+
+============================================================
+步骤 1：缺失值补全与模型选择（MAE/RMSE/R²）
+============================================================
+日志同步写入: /usr/fafh/step1_imputation_log.txt
+============================================================
+缺失值补全模型选择：12 种模型评估 → 选最优 → 保存统一补缺失样本
+============================================================
+
+1. 加载数据...
+加载数据...
+  使用Copula方法进行收入分布匹配...
+   可用模型数: 12
+
+2. 按品类在观测数据上做交叉验证，评估各模型补缺失精度（每个 model×品类 会训练多折，库内 epoch 输出已静默）...
+   评估 lightgbm / q_daogu ... MAE=0.1473 RMSE=0.2244 R2=-0.0847
+   评估 lasso / q_daogu ... MAE=0.1383 RMSE=0.2131 R2=0.0226
+   评估 linear / q_daogu ... MAE=0.1384 RMSE=0.2131 R2=0.0223
+   评估 xgboost / q_daogu ... MAE=0.1497 RMSE=0.2269 R2=-0.1096
+   评估 catboost / q_daogu ... MAE=0.1372 RMSE=0.2078 R2=0.0704
+   评估 randomforest / q_daogu ... MAE=0.1394 RMSE=0.2131 R2=0.0222
+   评估 mlp / q_daogu ... MAE=0.1381 RMSE=0.2075 R2=0.0723
+   评估 tabnet / q_daogu ... MAE=0.1574 RMSE=0.2352 R2=-1478.2165
+   评估 tabm / q_daogu ... MAE=0.1348 RMSE=0.2067 R2=0.0798
+   评估 tabpfn / q_daogu ... MAE=0.1399 RMSE=0.2070 R2=0.0774
+   评估 resnet_tabular / q_daogu ... MAE=0.1391 RMSE=0.2333 R2=-0.1715
+   评估 fttransformer / q_daogu ... MAE=0.1221 RMSE=0.2261 R2=-0.1007
+   评估 lightgbm / q_xiaomai ... MAE=0.1891 RMSE=0.2821 R2=-0.0122
+   评估 lasso / q_xiaomai ... MAE=0.1839 RMSE=0.2750 R2=0.0378
+   评估 linear / q_xiaomai ... MAE=0.1839 RMSE=0.2750 R2=0.0379
+   评估 xgboost / q_xiaomai ... MAE=0.1922 RMSE=0.2841 R2=-0.0267
+   评估 catboost / q_xiaomai ... MAE=0.1821 RMSE=0.2719 R2=0.0596
+   评估 randomforest / q_xiaomai ... MAE=0.1854 RMSE=0.2783 R2=0.0145
+   评估 mlp / q_xiaomai ... MAE=0.1831 RMSE=0.2717 R2=0.0608
+   评估 tabnet / q_xiaomai ... MAE=0.2002 RMSE=0.3000 R2=-1349.7074
+   评估 tabm / q_xiaomai ... MAE=0.1856 RMSE=0.2703 R2=0.0707
+   评估 tabpfn / q_xiaomai ... MAE=0.1852 RMSE=0.2687 R2=0.0817
+   评估 resnet_tabular / q_xiaomai ... MAE=0.1735 RMSE=0.3044 R2=-0.1808
+   评估 fttransformer / q_xiaomai ... MAE=0.1742 RMSE=0.2934 R2=-0.0959
+   评估 lightgbm / q_doulei ... MAE=0.2005 RMSE=0.2902 R2=-0.0537
+   评估 lasso / q_doulei ... MAE=0.1967 RMSE=0.2769 R2=0.0413
+   评估 linear / q_doulei ... MAE=0.1966 RMSE=0.2769 R2=0.0415
+   评估 xgboost / q_doulei ... MAE=0.2027 RMSE=0.2937 R2=-0.0796
+   评估 catboost / q_doulei ... MAE=0.1967 RMSE=0.2804 R2=0.0167
+   评估 randomforest / q_doulei ... MAE=0.1989 RMSE=0.2896 R2=-0.0497
+   评估 mlp / q_doulei ... MAE=0.1933 RMSE=0.2771 R2=0.0395
+   评估 tabnet / q_doulei ... MAE=0.2126 RMSE=0.3011 R2=-1221.0657
+   评估 tabm / q_doulei ... MAE=0.1988 RMSE=0.2781 R2=0.0329
+   评估 tabpfn / q_doulei ... MAE=0.2006 RMSE=0.2780 R2=0.0331
+   评估 resnet_tabular / q_doulei ... MAE=0.1690 RMSE=0.2983 R2=-0.1118
+   评估 fttransformer / q_doulei ... MAE=0.2103 RMSE=0.2860 R2=-0.0240
+   评估 lightgbm / q_zaliang ... MAE=0.1644 RMSE=0.2681 R2=-0.0726
+   评估 lasso / q_zaliang ... MAE=0.1555 RMSE=0.2621 R2=-0.0246
+   评估 linear / q_zaliang ... MAE=0.1553 RMSE=0.2618 R2=-0.0219
+   评估 xgboost / q_zaliang ... MAE=0.1715 RMSE=0.2765 R2=-0.1401
+   评估 catboost / q_zaliang ... MAE=0.1547 RMSE=0.2581 R2=0.0069
+   评估 randomforest / q_zaliang ... MAE=0.1602 RMSE=0.2644 R2=-0.0421
+   评估 mlp / q_zaliang ... MAE=0.1531 RMSE=0.2563 R2=0.0207
+   评估 tabnet / q_zaliang ... MAE=0.1824 RMSE=0.2762 R2=-1235.5229
+   评估 tabm / q_zaliang ... MAE=0.1560 RMSE=0.2552 R2=0.0294
+   评估 tabpfn / q_zaliang ... MAE=0.1694 RMSE=0.2715 R2=-0.0995
+   评估 resnet_tabular / q_zaliang ... MAE=0.1506 RMSE=0.2778 R2=-0.1503
+   评估 fttransformer / q_zaliang ... MAE=0.1562 RMSE=0.2662 R2=-0.0572
+   评估 lightgbm / q_shucai ... MAE=0.1182 RMSE=0.1905 R2=-0.0191
+   评估 lasso / q_shucai ... MAE=0.1119 RMSE=0.1825 R2=0.0649
+   评估 linear / q_shucai ... MAE=0.1119 RMSE=0.1824 R2=0.0650
+   评估 xgboost / q_shucai ... MAE=0.1193 RMSE=0.1921 R2=-0.0364
+   评估 catboost / q_shucai ... MAE=0.1120 RMSE=0.1832 R2=0.0577
+   评估 randomforest / q_shucai ... MAE=0.1136 RMSE=0.1871 R2=0.0168
+   评估 mlp / q_shucai ... MAE=0.1107 RMSE=0.1826 R2=0.0629
+   评估 tabnet / q_shucai ... MAE=0.1344 RMSE=0.2016 R2=-1473.4483
+   评估 tabm / q_shucai ... MAE=0.1145 RMSE=0.1817 R2=0.0723
+   评估 tabpfn / q_shucai ... MAE=0.1126 RMSE=0.1858 R2=0.0301
+   评估 resnet_tabular / q_shucai ... MAE=0.1221 RMSE=0.2069 R2=-0.2064
+   评估 fttransformer / q_shucai ... MAE=0.0974 RMSE=0.2016 R2=-0.1409
+   评估 lightgbm / q_zhurou ... MAE=0.1811 RMSE=0.2663 R2=-0.0493
+   评估 lasso / q_zhurou ... MAE=0.1765 RMSE=0.2530 R2=0.0527
+   评估 linear / q_zhurou ... MAE=0.1765 RMSE=0.2530 R2=0.0528
+   评估 xgboost / q_zhurou ... MAE=0.1852 RMSE=0.2707 R2=-0.0849
+   评估 catboost / q_zhurou ... MAE=0.1757 RMSE=0.2555 R2=0.0341
+   评估 randomforest / q_zhurou ... MAE=0.1793 RMSE=0.2654 R2=-0.0420
+   评估 mlp / q_zhurou ... MAE=0.1784 RMSE=0.2532 R2=0.0513
+   评估 tabnet / q_zhurou ... MAE=0.1929 RMSE=0.2749 R2=-1321.6295
+   评估 tabm / q_zhurou ... MAE=0.1742 RMSE=0.2538 R2=0.0469
+   评估 tabpfn / q_zhurou ... MAE=0.1806 RMSE=0.2538 R2=0.0471
+   评估 resnet_tabular / q_zhurou ... MAE=0.1573 RMSE=0.2759 R2=-0.1268
+   评估 fttransformer / q_zhurou ... MAE=0.1719 RMSE=0.2630 R2=-0.0239
+   评估 lightgbm / q_niurou ... MAE=0.3288 RMSE=0.4297 R2=-0.0751
+   评估 lasso / q_niurou ... MAE=0.3238 RMSE=0.4092 R2=0.0254
+   评估 linear / q_niurou ... MAE=0.3239 RMSE=0.4092 R2=0.0254
+   评估 xgboost / q_niurou ... MAE=0.3271 RMSE=0.4356 R2=-0.1046
+   评估 catboost / q_niurou ... MAE=0.3231 RMSE=0.4147 R2=-0.0014
+   评估 randomforest / q_niurou ... MAE=0.3240 RMSE=0.4266 R2=-0.0599
+   评估 mlp / q_niurou ... MAE=0.3313 RMSE=0.4124 R2=0.0095
+   评估 tabnet / q_niurou ... MAE=0.3462 RMSE=0.4367 R2=-418.2041
+   评估 tabm / q_niurou ... MAE=0.3296 RMSE=0.4091 R2=0.0257
+   评估 tabpfn / q_niurou ... MAE=0.3291 RMSE=0.4102 R2=0.0204
+   评估 resnet_tabular / q_niurou ... MAE=0.2868 RMSE=0.4616 R2=-0.2407
+   评估 fttransformer / q_niurou ... MAE=0.3123 RMSE=0.4393 R2=-0.1238
+   评估 lightgbm / q_yangrou ... MAE=0.3567 RMSE=0.4587 R2=-0.0129
+   评估 lasso / q_yangrou ... MAE=0.3744 RMSE=0.4504 R2=0.0231
+   评估 linear / q_yangrou ... MAE=0.3733 RMSE=0.4475 R2=0.0361
+   评估 xgboost / q_yangrou ... MAE=0.3582 RMSE=0.4785 R2=-0.1027
+   评估 catboost / q_yangrou ... MAE=0.3630 RMSE=0.4467 R2=0.0378
+   评估 randomforest / q_yangrou ... MAE=0.3547 RMSE=0.4599 R2=-0.0170
+   评估 mlp / q_yangrou ... MAE=0.3733 RMSE=0.4568 R2=-0.0043
+   评估 tabnet / q_yangrou ... MAE=0.4255 RMSE=0.5048 R2=-114.8213
+   评估 tabm / q_yangrou ... MAE=0.3860 RMSE=0.4450 R2=0.0487
+   评估 tabpfn / q_yangrou ... MAE=0.3938 RMSE=0.4409 R2=0.0659
+   评估 resnet_tabular / q_yangrou ... MAE=0.3369 RMSE=0.4878 R2=-0.1435
+   评估 fttransformer / q_yangrou ... MAE=0.3205 RMSE=0.5547 R2=-0.4765
+   评估 lightgbm / q_qinlei ... MAE=0.2588 RMSE=0.3677 R2=-0.0403
+   评估 lasso / q_qinlei ... MAE=0.2565 RMSE=0.3556 R2=0.0280
+   评估 linear / q_qinlei ... MAE=0.2564 RMSE=0.3556 R2=0.0281
+   评估 xgboost / q_qinlei ... MAE=0.2625 RMSE=0.3752 R2=-0.0823
+   评估 catboost / q_qinlei ... MAE=0.2572 RMSE=0.3585 R2=0.0123
+   评估 randomforest / q_qinlei ... MAE=0.2584 RMSE=0.3679 R2=-0.0417
+   评估 mlp / q_qinlei ... MAE=0.2580 RMSE=0.3562 R2=0.0248
+   评估 tabnet / q_qinlei ... MAE=0.2654 RMSE=0.3778 R2=-602.3708
+   评估 tabm / q_qinlei ... MAE=0.2536 RMSE=0.3562 R2=0.0249
+   评估 tabpfn / q_qinlei ... MAE=0.2459 RMSE=0.3650 R2=-0.0234
+   评估 resnet_tabular / q_qinlei ... MAE=0.2229 RMSE=0.3816 R2=-0.1200
+   评估 fttransformer / q_qinlei ... MAE=0.2501 RMSE=0.3694 R2=-0.0482
+   评估 lightgbm / q_shuichanpin ... MAE=0.1969 RMSE=0.3097 R2=-0.0630
+   评估 lasso / q_shuichanpin ... MAE=0.1926 RMSE=0.2972 R2=0.0230
+   评估 linear / q_shuichanpin ... MAE=0.1926 RMSE=0.2972 R2=0.0227
+   评估 xgboost / q_shuichanpin ... MAE=0.2018 RMSE=0.3156 R2=-0.1051
+   评估 catboost / q_shuichanpin ... MAE=0.1909 RMSE=0.2983 R2=0.0147
+   评估 randomforest / q_shuichanpin ... MAE=0.1936 RMSE=0.3064 R2=-0.0404
+   评估 mlp / q_shuichanpin ... MAE=0.1935 RMSE=0.2967 R2=0.0259
+   评估 tabnet / q_shuichanpin ... MAE=0.1992 RMSE=0.3178 R2=-856.1834
+   评估 tabm / q_shuichanpin ... MAE=0.1825 RMSE=0.2975 R2=0.0203
+   评估 tabpfn / q_shuichanpin ... MAE=0.1954 RMSE=0.2967 R2=0.0265
+   评估 resnet_tabular / q_shuichanpin ... MAE=0.1695 RMSE=0.3163 R2=-0.1071
+   评估 fttransformer / q_shuichanpin ... MAE=0.1772 RMSE=0.3062 R2=-0.0371
+   评估 lightgbm / q_danlei ... MAE=0.1446 RMSE=0.2386 R2=-0.0450
+   评估 lasso / q_danlei ... MAE=0.1370 RMSE=0.2290 R2=0.0376
+   评估 linear / q_danlei ... MAE=0.1370 RMSE=0.2290 R2=0.0376
+   评估 xgboost / q_danlei ... MAE=0.1496 RMSE=0.2436 R2=-0.0889
+   评估 catboost / q_danlei ... MAE=0.1379 RMSE=0.2319 R2=0.0128
+   评估 randomforest / q_danlei ... MAE=0.1440 RMSE=0.2404 R2=-0.0609
+   评估 mlp / q_danlei ... MAE=0.1383 RMSE=0.2296 R2=0.0325
+   评估 tabnet / q_danlei ... MAE=0.1496 RMSE=0.2464 R2=-1233.6394
+   评估 tabm / q_danlei ... MAE=0.1403 RMSE=0.2293 R2=0.0358
+   评估 tabpfn / q_danlei ... MAE=0.1344 RMSE=0.2296 R2=0.0331
+   评估 resnet_tabular / q_danlei ... MAE=0.1303 RMSE=0.2444 R2=-0.0960
+   评估 fttransformer / q_danlei ... MAE=0.1415 RMSE=0.2352 R2=-0.0146
+   评估 lightgbm / q_nailei ... MAE=0.1628 RMSE=0.2865 R2=-0.1141
+   评估 lasso / q_nailei ... MAE=0.1458 RMSE=0.2656 R2=0.0425
+   评估 linear / q_nailei ... MAE=0.1455 RMSE=0.2652 R2=0.0457
+   评估 xgboost / q_nailei ... MAE=0.1667 RMSE=0.2936 R2=-0.1765
+   评估 catboost / q_nailei ... MAE=0.1508 RMSE=0.2715 R2=-0.0004
+   评估 randomforest / q_nailei ... MAE=0.1561 RMSE=0.2846 R2=-0.1022
+   评估 mlp / q_nailei ... MAE=0.1442 RMSE=0.2662 R2=0.0388
+   评估 tabnet / q_nailei ... MAE=0.1700 RMSE=0.2923 R2=-369.9508
+   评估 tabm / q_nailei ... MAE=0.1415 RMSE=0.2644 R2=0.0525
+   评估 tabpfn / q_nailei ... MAE=0.1529 RMSE=0.2650 R2=0.0478
+   评估 resnet_tabular / q_nailei ... MAE=0.1466 RMSE=0.2855 R2=-0.1073
+   评估 fttransformer / q_nailei ... MAE=0.0978 RMSE=0.2876 R2=-0.1214
+   评估 lightgbm / q_guaguo ... MAE=0.1063 RMSE=0.2084 R2=-0.1474
+   评估 lasso / q_guaguo ... MAE=0.0918 RMSE=0.1941 R2=0.0063
+   评估 linear / q_guaguo ... MAE=0.0918 RMSE=0.1941 R2=0.0063
+   评估 xgboost / q_guaguo ... MAE=0.1116 RMSE=0.2105 R2=-0.1691
+   评估 catboost / q_guaguo ... MAE=0.0959 RMSE=0.1978 R2=-0.0323
+   评估 randomforest / q_guaguo ... MAE=0.0987 RMSE=0.2000 R2=-0.0553
+   评估 mlp / q_guaguo ... MAE=0.0911 RMSE=0.1953 R2=-0.0054
+   评估 tabnet / q_guaguo ... MAE=0.1027 RMSE=0.2072 R2=-1006.2908
+   评估 tabm / q_guaguo ... MAE=0.0929 RMSE=0.1946 R2=0.0006
+   评估 tabpfn / q_guaguo ... MAE=0.0980 RMSE=0.1950 R2=-0.0034
+   评估 resnet_tabular / q_guaguo ... MAE=0.1100 RMSE=0.2153 R2=-0.2272
+   评估 fttransformer / q_guaguo ... MAE=0.0585 RMSE=0.2027 R2=-0.0832
+   评估 lightgbm / q_youliao ... MAE=0.0273 RMSE=0.0730 R2=-53229355.5963
+   评估 lasso / q_youliao ... MAE=0.1301 RMSE=0.3184 R2=-800244973558.4784
+   评估 linear / q_youliao ... MAE=0.1099 RMSE=0.2568 R2=-602763176980.2714
+   评估 xgboost / q_youliao ... MAE=0.0973 RMSE=0.2147 R2=-158982872562.5601
+   评估 catboost / q_youliao ... MAE=0.0937 RMSE=0.1916 R2=-157276679774.9463
+   评估 randomforest / q_youliao ... MAE=0.0399 RMSE=0.1040 R2=-16825610753.3216
+   评估 mlp / q_youliao ... MAE=0.0293 RMSE=0.0822 R2=-4445041191.0712
+   评估 tabnet / q_youliao ... MAE=0.4098 RMSE=0.6251 R2=-20600000000004.9453
+   评估 tabm / q_youliao ... MAE=0.0330 RMSE=0.0857 R2=-2596569924.8206
+   评估 tabpfn / q_youliao ... MAE=0.0324 RMSE=0.0819 R2=-1329966767.9507
+   评估 resnet_tabular / q_youliao ... MAE=0.1116 RMSE=0.1689 R2=-150994234421.0384
+   评估 fttransformer / q_youliao ... MAE=0.0561 RMSE=0.0947 R2=-9928192661.7145
+   评估 lightgbm / q_tang ... MAE=0.3117 RMSE=0.4522 R2=-0.3493
+   评估 lasso / q_tang ... MAE=0.3608 RMSE=0.5045 R2=-0.6485
+   评估 linear / q_tang ... MAE=0.3560 RMSE=0.4985 R2=-0.6269
+   评估 xgboost / q_tang ... MAE=0.3462 RMSE=0.5003 R2=-0.6617
+   评估 catboost / q_tang ... MAE=0.3122 RMSE=0.4414 R2=-0.2544
+   评估 randomforest / q_tang ... MAE=0.3095 RMSE=0.4433 R2=-0.2778
+   评估 mlp / q_tang ... MAE=0.2718 RMSE=0.4054 R2=-0.0546
+   评估 tabnet / q_tang ... MAE=0.6200 RMSE=0.7855 R2=-129.4063
+   评估 tabm / q_tang ... MAE=0.2739 RMSE=0.4058 R2=-0.0545
+   评估 tabpfn / q_tang ... MAE=0.2702 RMSE=0.4116 R2=-0.0860
+   评估 resnet_tabular / q_tang ... MAE=0.2627 RMSE=0.4235 R2=-0.1506
+   评估 fttransformer / q_tang ... MAE=0.2097 RMSE=0.4412 R2=-0.2439
+
+3. 按模型汇总（各品类 MAE 平均），选 MAE 最小的模型...
+         model      MAE     RMSE            R2  rank  is_best
+ fttransformer 0.170391 0.297806 -6.618795e+08     1     True
+resnet_tabular 0.179267 0.305433 -1.006628e+10     2    False
+           mlp 0.185837 0.276629 -2.963361e+08     3    False
+          tabm 0.186474 0.275554 -1.731047e+08     4    False
+        tabpfn 0.189361 0.277376 -8.866445e+07     5    False
+  randomforest 0.190389 0.288738 -1.121707e+09     6    False
+      catboost 0.192196 0.287283 -1.048511e+10     7    False
+      lightgbm 0.192965 0.289732 -3.548624e+06     8    False
+        linear 0.196592 0.294359 -4.018421e+10     9    False
+         lasso 0.198363 0.299104 -5.334966e+10    10    False
+       xgboost 0.202769 0.307438 -1.059886e+10    11    False
+        tabnet 0.251240 0.358833 -1.373333e+12    12    False
+
+   选中模型: fttransformer
+   已保存评估明细: /usr/fafh/data/imputation_evaluation_detail.csv
+   已保存汇总与选中结果: /usr/fafh/data/imputation_selection_results.csv
+
+4. 用选中模型对所有品类做补缺失，生成统一样本...
+   已保存: /usr/fafh/data/imputed_ratios_best.csv
+   已保存: /usr/fafh/data/best_imputation_model.txt
+
+后续各模型预测户内消费系数时，主流程将自动使用该补缺失样本（稳健性仍为不补缺失）。
+
+步骤 1 完成。
+已生成: /usr/fafh/data/imputed_ratios_best.csv
+
+[2026-02-12T14:51:19.297756] 步骤 1 结束

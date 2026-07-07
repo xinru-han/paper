@@ -1,0 +1,65 @@
+% Discussion section -- PhD4 (Results and Discussion specialist)
+% All quantitative claims traceable to CSVs in /usr/fafh.
+% Sources: results_national_*.csv, model_comparison_national.csv, predictions_*.csv, grain_structure_predictions_*.csv.
+
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Main Out-of-Home Consumption Levels and Coefficients}
+
+Our estimates imply that food away from home raises total consumption above at-home levels for all major food categories, with coefficients (ratio of total to at-home consumption) consistently above one. The magnitudes depend on the model and the food category. Using the TabPFN national results (\texttt{results\_national\_tabpfn.csv}) as a central reference, Table~\ref{tab:tabpfn_2024_national} reports the national out-of-home consumption coefficients for all 15 food categories in 2024. The corresponding at-home and total (at-home plus out-of-home) consumption levels (in kg per capita) are given in the same file (e.g., columns \texttt{户内消费量\_*}, \texttt{户内外消费量\_*}); for example, rice at-home consumption in 2024 is 54.24~kg per capita and total (at-home plus out-of-home) is 66.57~kg per capita. LightGBM (\texttt{results\_national\_lightgbm.csv}) yields somewhat lower coefficients for grains and meat in later years (e.g., 2024 rice 1.110, pork 1.168), while the best imputation model FT-Transformer (\texttt{results\_national\_fttransformer.csv}) gives values between LightGBM and TabPFN (e.g., 2024 rice 1.242, pork 1.228). The pattern is consistent: out-of-home consumption adds non-negligibly to total demand, with the largest relative contributions for poultry, pork, coarse grains, and legumes, and smaller relative contributions for staples such as cooking oil and sugar.
+
+\begin{table}[htbp]
+\centering
+\caption{National out-of-home consumption coefficients, TabPFN, 2024. Source: \texttt{results\_national\_tabpfn.csv}, row Year=2024.}
+\label{tab:tabpfn_2024_national}
+\begin{tabular}{llc}
+\toprule
+Category (pinyin) & English & Coefficient \\
+\midrule
+daogu & Rice & 1.233 \\
+xiaomai & Wheat & 1.149 \\
+doulei & Legumes & 1.257 \\
+zaliang & Coarse grains & 1.417 \\
+shucai & Vegetables & 1.187 \\
+zhurou & Pork & 1.376 \\
+niurou & Beef & 1.369 \\
+yangrou & Mutton & 1.077 \\
+qinlei & Poultry & 1.753 \\
+shuichanpin & Aquatic products & 1.458 \\
+danlei & Eggs & 1.298 \\
+nailei & Dairy & 1.160 \\
+guaguo & Fruits & 1.123 \\
+youliao & Cooking oil & 1.016 \\
+tang & Sugar & 1.173 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Comparison with FAO, OECD, IFPRI and Related Literature}
+
+International organizations and the literature on China's food consumption rarely report out-of-home consumption coefficients in the same form as ours (ratio of total to at-home consumption by food category). Definitions, coverage, and years differ, so direct numerical comparison is limited; we highlight conceptual links and where our estimates can inform or complement existing work.
+
+\textbf{How to use the coefficients with external totals.} When an external source reports total consumption (or food-use) aggregates without an at-home/out-of-home split, our coefficient provides an accounting identity to recover implied components under aligned definitions. For a given product and year, if an external statistic provides a total per-capita quantity \(Q^{\text{total}}\), then implied at-home consumption is \(Q^{\text{home}} = Q^{\text{total}}/\text{coef}\), and the implied out-of-home share is \(1 - 1/\text{coef}\). This comparison should be undertaken only when product definitions and boundaries are aligned (e.g., edible-weight consumption versus supply-use aggregates), and we therefore emphasize conceptual complementarity rather than direct numeric equality across sources.
+
+\textbf{FAO.} FAO Food Balance Sheets (FBS) and statistics focus on total food availability or supply (e.g., food supply quantity, dietary energy supply) at the national level and do not separate at-home and out-of-home consumption. FAO data are therefore not directly comparable to our coefficients, which are defined as total-to-at-home ratios. Our estimates can nevertheless help interpret total demand: if a share of consumption is eaten away from home and our coefficients are above one, then demand for primary products (e.g., grain for direct consumption and for feed and processing) is higher than what at-home consumption alone would imply. FAO FBS figures on per capita food use in China can be combined with our coefficients to back out implied at-home vs.\ out-of-home shares, subject to alignment of product definitions and years.
+
+\textbf{Boundary alignment and remaining mismatches.} Even when using the accounting identity above, careful boundary alignment is required. Key sources of mismatch include: (i) supply--use aggregates versus edible-weight consumption quantities; (ii) inclusion of feed, processing, losses, and stock changes in supply-use accounts; (iii) treatment of institutional catering and business-provided meals; and (iv) differences in product aggregation (e.g., cereals versus rice). We therefore interpret comparisons to FAO/OECD/IFPRI primarily as conceptual cross-checks and as a demonstration of how our coefficients can be used to construct consistent at-home versus total splits when definitions are aligned.
+
+\textbf{OECD.} The OECD tracks food consumption and agricultural outlooks; some OECD work discusses eating out and convenience foods in China but typically at an aggregate or value share level rather than physical quantities by food category. Our category-level coefficients (e.g., for rice, wheat, meat, vegetables) offer a quantity-based complement: they show by how much total consumption of each category exceeds at-home consumption, which can support OECD-style demand and trade scenario analysis when definitions and time coverage are aligned.
+
+\textbf{IFPRI.} IFPRI has published on dietary change, food security, and consumption patterns in China, including shifts toward more animal products and processed foods. Again, few IFPRI reports provide out-of-home consumption coefficients in our exact form. Our results are consistent with a narrative of rising food away from home: coefficients above one across categories and the relative size of coefficients for meat and poultry align with the importance of dining out in urban and increasingly rural diets. Discrepancies with any IFPRI (or other) estimates would be expected where definitions differ (e.g., coverage of institutional catering, definition of “at home”) or where years and data sources differ.
+
+\textbf{Other literature.} Studies on China's food away from home often use household survey data and focus on expenditure shares or frequency of eating out rather than physical consumption coefficients by commodity. Our machine-learning-based coefficients, derived from survey and auxiliary data and applied to national (and provincial) totals, are a different object: they yield total-to-at-home ratios by food category and year. As such, they are best compared to studies that estimate similar ratios or that decompose total consumption into at-home and out-of-home components. Where such studies exist, we would expect broad agreement in direction (out-of-home adding to total demand) and possible differences in level due to sample, period, and method. Our robustness checks (main vs. no-imputation specifications) suggest that our central conclusions are not driven by the choice of imputation.
+
+\subsection{Implications for China's Food Security}
+
+Our estimates have direct implications for the assessment of China's grain and food demand and hence for food security and self-sufficiency.
+
+\textbf{Total grain demand.} Because the out-of-home consumption coefficients for grains (rice, wheat, legumes, coarse grains) are above one, total grain consumption for direct human use is higher than at-home consumption alone. The exact increment depends on the model: for 2024, the rice coefficient ranges from about 1.11 (LightGBM) to 1.23 (TabPFN) to 1.24 (FT-Transformer) in \texttt{model\_comparison\_national.csv}. Applying these coefficients to at-home consumption implies that a non-negligible share of grain demand is attributable to eating away from home. Any projection or policy analysis that ignores this component will understate total grain demand for human consumption.
+
+\textbf{Demand structure.} The coefficients for meat (pork, beef, poultry), aquatic products, eggs, and vegetables are also above one and often larger than for some staples. This implies that out-of-home consumption is relatively important for protein-rich and higher-value foods. Demand for feed grains and for processing (e.g., flour for catering) is therefore linked to both at-home and out-of-home consumption; our coefficients help quantify the extra demand coming from the latter. Discrepancies between our estimates and FAO/OECD/IFPRI or national statistics may arise from different boundaries (e.g., what counts as “food” or “grain”) and from the fact that we estimate coefficients from survey-based and predicted ratios rather than from aggregate supply-use identities.
+
+\textbf{Self-sufficiency and trade.} To the extent that total demand is higher than what at-home data alone suggest, self-sufficiency rates computed from at-home consumption will be overstated if the denominator ignores the out-of-home component. Our results do not directly yield a revised self-sufficiency rate, because that would require full supply-use balance and consistent treatment of stocks and trade; however, they indicate that any such balance should use total (at-home plus out-of-home) consumption, scaled by our coefficients, for a more accurate demand side. Our provincial-level outputs (\texttt{results\_province\_*.csv}) allow similar reasoning at the regional level for region-specific food security and trade analysis.
+
+In sum, the paper's CSV-based estimates show that food away from home raises total consumption for all key food categories, with the largest relative effects for poultry, pork, legumes, and coarse grains. These findings are robust to the exclusion of imputation and are consistent with a growing role of dining out in Chinese diets. They support the use of total (at-home plus out-of-home) consumption in grain and food demand assessments and in discussions of China's food security and self-sufficiency.

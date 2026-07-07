@@ -1,0 +1,14 @@
+Dear Co-Editors-in-Chief of Food Policy,
+
+Please consider our manuscript, "Correcting China's food-demand statistics for food away from home: Adjustment factors and implications for food security and nutrition assessment," for publication in Food Policy as an original research article.
+
+Most physical-quantity data used to monitor China's food demand measure only food consumed at home, even though eating away from home is now routine. Our paper does two things. First, it delivers an operational measurement resource: province-year, commodity-specific adjustment factors (with bootstrap uncertainty) that convert food-at-home quantities into total consumption for twelve food categories through 2024, estimated with a bounded predictive framework that is benchmarked across econometric, tree-ensemble, and deep tabular models and validated against official dining-out expenditure and spatial and temporal extrapolation diagnostics. Second, and centrally, it quantifies what this measurement error means for the assessments policymakers actually make: per-capita intake measured against the Dietary Guidelines for Chinese Residents, the reconciliation of household statistics with supply-side food accounts (the "missing meat" problem), and self-sufficiency ratios together with the feed-grain demand they imply.
+
+We believe the paper is a strong fit for Food Policy. It speaks directly to the food-consumption measurement agenda the journal has led (Zezza et al., 2017; Smith et al., 2014; Farfan et al., 2017; Fiedler and Yadav, 2017), and it makes the measurement question consequential for international food-policy debates: nutrition monitoring in the world's largest food consumer, the statistical basis of China's self-sufficiency assessments, and the demand baselines used in global feed and import projections.
+
+This manuscript is not under consideration elsewhere, has not been published previously in any form, and all authors have approved the submission. An earlier version was submitted to another journal, whose editor encouraged the topic while advising that the paper quantify the implications of the measurement error for nutrition and food security; the present version incorporates a full section doing exactly that. We have no competing interests to declare.
+
+Thank you for your consideration.
+
+Sincerely,
+[Corresponding author name, affiliation, and contact details]

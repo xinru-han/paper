@@ -1,0 +1,1 @@
+Final polish applied to the five section files only (paper_second_revision.tex not found): standardized "vs.\ " and "versus" → "vs.\ " in Results/Discussion, US spelling ("analyse" → "analyze", "tokeniser" → "tokenizer"), consistent "e.g.,", fixed double space in Research Design, and light typo/style pass without changing technical content or numbers.

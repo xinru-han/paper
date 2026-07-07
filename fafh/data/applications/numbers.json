@@ -1,0 +1,238 @@
+{
+  "_meta": {
+    "year": 2024,
+    "pop_bn": 1.406,
+    "B": 2000,
+    "af_source": "FT-Transformer CI Mean (Table 5)",
+    "framing": "severity-understatement (meat)"
+  },
+  "year": 2024,
+  "t9": {
+    "Cereals": {
+      "fah": 339.7,
+      "adj": 426.3,
+      "understate": 25.5,
+      "assess_fah": "above",
+      "assess_adj": "above"
+    },
+    "Vegetables": {
+      "fah": 297.8,
+      "adj": 358.5,
+      "understate": 20.4,
+      "assess_fah": "below",
+      "assess_adj": "within"
+    },
+    "Fruits": {
+      "fah": 168.7,
+      "adj": 188.4,
+      "understate": 11.7,
+      "assess_fah": "below",
+      "assess_adj": "below"
+    },
+    "Livestock meat": {
+      "fah": 122.2,
+      "adj": 161.1,
+      "understate": 31.8,
+      "assess_fah": "above",
+      "assess_adj": "above"
+    },
+    "Aquatic products": {
+      "fah": 41.9,
+      "adj": 53.0,
+      "understate": 26.7,
+      "assess_fah": "within",
+      "assess_adj": "within"
+    },
+    "Eggs": {
+      "fah": 38.7,
+      "adj": 43.5,
+      "understate": 12.6,
+      "assess_fah": "below",
+      "assess_adj": "within"
+    },
+    "Dairy": {
+      "fah": 34.4,
+      "adj": 37.8,
+      "understate": 9.9,
+      "assess_fah": "below",
+      "assess_adj": "below"
+    }
+  },
+  "t9_nutrient": {
+    "energy_fah": 1717,
+    "energy_adj": 2144,
+    "energy_pct": 24.9,
+    "protein_fah": 69.0,
+    "protein_adj": 86.7,
+    "protein_pct": 25.6,
+    "anshare_fah": 40.4,
+    "anshare_adj": 40.8
+  },
+  "meat": {
+    "fah": 122.2,
+    "adj": 161.1,
+    "over_fah": 63,
+    "over_adj": 115,
+    "ci_lo": 151.6,
+    "ci_hi": 179.5
+  },
+  "aquatic": {
+    "fah": 41.9,
+    "adj": 53.0
+  },
+  "dairy": {
+    "fah": 34.4,
+    "adj": 37.8,
+    "pct_lower": 12.6
+  },
+  "t10": {
+    "Pork": {
+      "sup": 39.2,
+      "fah": 28.1,
+      "gap": 11.1,
+      "adj": 35.8,
+      "closed": 69,
+      "ci_lo": 43,
+      "ci_hi": 120
+    },
+    "Beef": {
+      "sup": 7.0,
+      "fah": 3.9,
+      "gap": 3.1,
+      "adj": 5.3,
+      "closed": 46,
+      "ci_lo": 30,
+      "ci_hi": 72
+    },
+    "Poultry": {
+      "sup": 18.2,
+      "fah": 12.6,
+      "gap": 5.6,
+      "adj": 17.7,
+      "closed": 91,
+      "ci_lo": 55,
+      "ci_hi": 154
+    },
+    "Aquatic products": {
+      "sup": 37.0,
+      "fah": 15.3,
+      "gap": 21.7,
+      "adj": 19.3,
+      "closed": 19,
+      "ci_lo": 11,
+      "ci_hi": 39
+    },
+    "Eggs": {
+      "sup": 23.7,
+      "fah": 14.1,
+      "gap": 9.5,
+      "adj": 15.9,
+      "closed": 19,
+      "ci_lo": 14,
+      "ci_hi": 27
+    }
+  },
+  "closure_weighted": 72,
+  "closure_weighted_ci": [
+    54,
+    106
+  ],
+  "t11": {
+    "Pork": {
+      "prod": 57.1,
+      "dem_un": 47.3,
+      "dem_adj": 58.1,
+      "s_un": 120.7,
+      "s_adj": 98.3,
+      "dpp": -22.4
+    },
+    "Beef": {
+      "prod": 7.8,
+      "dem_un": 8.7,
+      "dem_adj": 10.6,
+      "s_un": 89.9,
+      "s_adj": 73.2,
+      "dpp": -16.7
+    },
+    "Poultry": {
+      "prod": 26.6,
+      "dem_un": 19.8,
+      "dem_adj": 27.0,
+      "s_un": 134.3,
+      "s_adj": 98.5,
+      "dpp": -35.7
+    },
+    "Aquatic products": {
+      "prod": 73.6,
+      "dem_un": 68.4,
+      "dem_adj": 74.1,
+      "s_un": 107.6,
+      "s_adj": 99.3,
+      "dpp": -8.3
+    },
+    "Eggs": {
+      "prod": 35.9,
+      "dem_un": 33.3,
+      "dem_adj": 35.8,
+      "s_un": 107.8,
+      "s_adj": 100.3,
+      "dpp": -7.6
+    },
+    "Dairy": {
+      "prod": 40.8,
+      "dem_un": 41.6,
+      "dem_adj": 43.4,
+      "s_un": 98.0,
+      "s_adj": 94.0,
+      "dpp": -3.9
+    }
+  },
+  "ssr_crossers": [
+    "Pork",
+    "Poultry",
+    "Aquatic products"
+  ],
+  "feed": {
+    "mt": 61.6,
+    "mt_lo": 55.7,
+    "mt_hi": 67.4,
+    "pct_corn": 21,
+    "pct_imports": 275
+  },
+  "prov": {
+    "max_drop": 84.4,
+    "max_prov": "Xinjiang",
+    "crossers_n": 3
+  },
+  "sens": {
+    "ft": {
+      "meat_over": 115,
+      "dairy_pct": 13,
+      "pork_closed": 69,
+      "pork_dpp": -22.4,
+      "poultry_dpp": -35.7,
+      "feed_mt": 61.6
+    },
+    "lgb": {
+      "meat_over": 101,
+      "dairy_pct": 12,
+      "pork_closed": 56,
+      "pork_dpp": -17.4,
+      "poultry_dpp": -18.2,
+      "feed_mt": 47.0
+    },
+    "rf": {
+      "meat_over": 113,
+      "dairy_pct": 12,
+      "pork_closed": 68,
+      "pork_dpp": -21.9,
+      "poultry_dpp": -15.3,
+      "feed_mt": 79.5
+    }
+  },
+  "sens_wording": "hold",
+  "understate_meat": 32,
+  "understate_aquatic": 27,
+  "ssr_pp_min": 3.9,
+  "ssr_pp_max": 35.7
+}

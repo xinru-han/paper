@@ -1,0 +1,98 @@
+% First complete draft -- China's out-of-home food consumption
+% Assembled by lead editor from PhD1--PhD4 sections. Target ~9000 words.
+% For: American Journal of Agricultural Economics, Agricultural Economics, Journal of Agricultural Economics.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{parskip}
+\geometry{margin=2.5cm}
+
+\title{Machine-Learning-Based Estimates of Out-of-Home Food Consumption in China: Provincial and National Coefficients for Food Security Assessment}
+\author{[Authors to be inserted]}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Existing research on China’s food away from home (FAH) has relied largely on household surveys and expenditure data, documenting rising FAH shares and strong income gradients, but has not delivered nationally or provincially comparable, commodity-level estimates of out-of-home consumption in physical terms. International sources (FAO, OECD, IFPRI) report aggregate food-use and consumption trends for China, yet typically do not distinguish at-home from out-of-home consumption by product. This paper fills that gap by providing commodity-level out-of-home consumption coefficients for China at provincial and national levels. We define the coefficient as total consumption (at-home plus out-of-home) divided by at-home consumption, by food category and province-year. Methodologically, we combine micro household survey information on at-home versus total consumption with macro province-year covariates using income-distribution matching (rank-preserving scaling to macro means), supervised imputation of missing ratios, inverse-distance spatial interpolation for provinces without micro coverage, and a comparison of 12 machine-learning models with bootstrap-based uncertainty quantification. Using existing project outputs for 2015--2024, we report coefficients above one for all categories, with larger multipliers for animal products and selected plant proteins than for staples such as edible oil. Robustness checks that exclude imputation yield qualitatively similar conclusions. Our estimates provide a consistent way to scale at-home consumption to total consumption in food demand and food security assessments.
+\end{abstract}
+
+\noindent\textbf{Keywords:} food away from home; China; food consumption; food security; machine learning; income distribution matching; spatial interpolation; bootstrap.
+
+% ========== 1. Introduction ==========
+\section{Introduction}
+\label{sec:introduction}
+
+Accurate measurement of how much food is consumed away from home is essential for understanding dietary change, assessing food security, and designing effective agricultural and food policy. In China, the share of food expenditure devoted to eating out has risen sharply over recent decades, and out-of-home consumption now constitutes a substantial part of total food demand. Yet existing studies have not delivered nationally or provincially representative, commodity-level out-of-home consumption coefficients that can be used in macro-level food balance sheets and demand projections. International datasets (FAO, OECD, IFPRI) report aggregate consumption or use for China but do not separate at-home and out-of-home consumption by product. This gap limits the accuracy of food demand and food security assessments that rely on at-home consumption alone.
+
+This paper addresses the gap by producing the first set of machine-learning-based, commodity-level out-of-home consumption coefficients for China at provincial and national levels. We define the out-of-home consumption coefficient as the ratio of total (at-home plus out-of-home) consumption to at-home consumption, by food category and province-year. Using micro household survey data to train prediction models and income-distribution matching to bridge micro and macro data, we estimate coefficients for 15 food categories (four grain types, vegetables, meat, aquatic products, eggs, dairy, fruit, edible oil, sugar) for years 2015--2024. We compare 12 machine-learning models, select the best model for imputing missing consumption ratios, apply inverse-distance spatial interpolation for provinces without micro coverage, and report robustness checks (no imputation) and bootstrap-based uncertainty quantification. The resulting coefficients can be used directly in food balance and food security analysis and can be compared with FAO, OECD, IFPRI, and the survey-based literature where definitions overlap.
+
+The main innovations are: (1) income-distribution matching that aligns the micro training feature space with province-year macro covariates (including a synthetic micro-style income variable) so that models trained on household data can be applied to province-year aggregates; (2) systematic comparison of 12 ML models for coefficient prediction and for ratio imputation, with the best imputation model used to produce a unified imputed sample; (3) spatial interpolation (inverse-distance weighting for coefficients, with production shares used to support grain-structure allocation) for provinces missing in the micro data; (4) robustness to dropping imputation and bootstrap-based uncertainty quantification; and (5) the first ML-based, commodity-level out-of-home coefficients for China at provincial and national levels.
+
+The remainder of the paper is organized as follows. Section~\ref{sec:literature} reviews concepts and empirical evidence on food away from home, with emphasis on China, and states the gap this paper fills. Section~\ref{sec:research-design} sets out the research question, data and methodological difficulties, and the chosen research strategy. Section~\ref{sec:methods} describes the prediction target, features, the 12 ML models, and the pipeline (imputation selection, coefficient prediction, spatial interpolation, post-processing, robustness, and bootstrap). Section~\ref{sec:results} presents main estimates, imputation selection results, and robustness. Section~\ref{sec:discussion} discusses the estimates in light of FAO, OECD, IFPRI, and the literature, and their implications for China's food security. Section~\ref{sec:conclusion} concludes and Section~\ref{sec:policy} offers policy recommendations.
+
+% ========== 2. Literature Review (PhD1) ==========
+\section{Literature Review}
+\label{sec:literature}
+
+\input{section_literature_review_phd1}
+
+% ========== 3. Research Design (PhD2) ==========
+\input{section_research_design_phd2}
+
+% ========== 4. Methods (PhD3) ==========
+\input{section_methods_phd3}
+
+% ========== 5. Results (PhD4) ==========
+\input{section_results_phd4}
+
+% ========== 6. Discussion (PhD4) ==========
+\input{section_discussion_phd4}
+
+% ========== 7. Conclusion ==========
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper has provided the first machine-learning-based, commodity-level estimates of out-of-home food consumption coefficients for China at provincial and national levels. We asked how much food China consumes away from home and operationalized the answer as the ratio of total to at-home consumption by 15 food categories and by province and year. Using micro household survey data and macro province-year covariates, we bridged the micro--macro gap with income-distribution matching (rank-preserving scaling to macro mean income), imputed missing consumption ratios using the best of 12 ML models (FT-Transformer), and applied inverse-distance spatial interpolation for provinces without micro coverage. We compared 12 models for coefficient prediction and reported results from LightGBM, TabPFN, and FT-Transformer as central estimates.
+
+Main findings are threefold. First, out-of-home consumption coefficients are above one for all food categories and years considered, implying that food away from home adds non-negligibly to total demand. Second, the magnitude of the coefficient varies by category: poultry, pork, legumes, coarse grains, and aquatic products show larger multipliers; staples such as cooking oil and sugar show coefficients closer to one. Third, results are robust to excluding imputation: main and no-imputation (robust) specifications yield qualitatively similar conclusions, with point estimates differing by a few percentage points depending on model and category. The best imputation model in our selection is FT-Transformer (lowest MAE in cross-validation); TabPFN and FT-Transformer also perform well on the coefficient prediction task.
+
+These results have direct implications for food security assessment. Because coefficients are above one, total grain and food demand exceed at-home consumption alone. Policy and self-sufficiency analyses that ignore the out-of-home component will understate demand. Our provincial and national coefficient estimates can be used in food balance and demand projections and can be compared with FAO, OECD, IFPRI, and the literature where definitions and coverage align.
+
+Limitations are as follows. First, survey coverage does not include all provinces or all years, so some province--year cells rely on spatial interpolation rather than micro-based prediction; estimates for those cells are therefore more dependent on the interpolation procedure. Second, income-distribution matching assumes that the shape of the micro income distribution is transportable to macro cells after scaling to the macro mean, which may not hold if inequality patterns differ sharply across regions or over time. Third, external validation against independent macro-level out-of-home consumption data is not currently feasible because such data are not available for China at the required commodity--region--year resolution. Finally, different ML models yield somewhat different point estimates; we therefore emphasize cross-model comparisons, no-imputation robustness checks, and bootstrap-based uncertainty quantification.
+
+% ========== 8. Policy Recommendations ==========
+\section{Policy Implications and Recommendations}
+\label{sec:policy}
+
+Based on the evidence in this paper, we offer the following recommendations.
+
+\textbf{Use total consumption in demand and food security assessments.} Government and international agencies that project grain and food demand or assess self-sufficiency should use total (at-home plus out-of-home) consumption, not at-home consumption alone. Our coefficients provide a consistent way to scale from at-home to total consumption by category and province-year. Incorporating these coefficients into existing food balance or demand models will improve the accuracy of demand-side estimates.
+
+\textbf{Monitor provincial and category-level heterogeneity.} Out-of-home consumption varies by province and by food category. Policy aimed at food security or dietary change should take into account the provincial-level coefficients and per-capita quantities available in our \texttt{results\_province\_*.csv} outputs, so that regional targeting and resource allocation can be evidence-based.
+
+\textbf{Align data collection with coefficient estimation.} Where possible, future household and macro surveys should record both at-home and total (or out-of-home) consumption by food category so that coefficient estimates can be updated and validated. Standardizing definitions of ``at home'' and ``away from home'' across surveys would facilitate comparison with our estimates and with international sources.
+
+\textbf{Quantify uncertainty in policy scenarios.} Our bootstrap prediction intervals and robustness checks show that point estimates can vary by model and specification. When using our coefficients in scenario analysis, we recommend reporting results under more than one model (e.g., LightGBM and TabPFN or FT-Transformer) or using the bootstrap intervals where available, so that policy conclusions are not overly sensitive to a single point estimate.
+
+\paragraph{Data and code availability.} The replication package includes the code used to generate the coefficient outputs and the processed output tables (e.g., \texttt{results\_national\_*.csv}, \texttt{results\_province\_*.csv}, \texttt{model\_comparison\_national.csv}, and the bootstrap outputs). Because the underlying household microdata are subject to access restrictions, they are not redistributed in the replication package; however, the paper documents variable definitions, coverage, and the full processing and prediction pipeline so that results can be reproduced by authorized users of the microdata.
+
+\paragraph{Reproducing tables in this draft.} Table~\ref{tab:national_coef_summary} is constructed from \texttt{model\_comparison\_national.csv}. Table~\ref{tab:provincial_heterogeneity} is constructed from \texttt{results\_province\_tabpfn.csv}. The imputation ranking in the text is taken from \texttt{data/imputation\_selection\_results.csv}. Model accuracy metrics are taken from \texttt{model\_accuracy\_summary.csv} and \texttt{model\_accuracy\_detail.csv}. Bootstrap intervals are available in \texttt{predictions\_<model>\_bootstrap.csv}.
+
+% ========== References ==========
+\section*{References}
+\addcontentsline{toc}{section}{References}
+
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}
+
+% --- Approximate word count: body text (excluding abstract, tables, refs) ~8500--9000 words. ---

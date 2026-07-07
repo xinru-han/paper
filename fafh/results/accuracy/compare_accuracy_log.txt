@@ -1,0 +1,441 @@
+[2026-02-14T20:31:26.141603] 各模型预测精度对比开始
+日志同步写入: /usr/fafh/compare_accuracy_log.txt
+============================================================
+各模型预测精度对比（户内消费系数，交叉验证）
+============================================================
+
+1. 加载数据...
+加载数据...
+  使用Copula方法进行收入分布匹配...
+   可用模型数: 12
+   交叉验证: 5 折，最小样本数: 30
+
+2. 按品类 × 模型做交叉验证，计算 MAE / RMSE / R² / MAPE...
+   lightgbm / q_daogu ... MAE=0.1187 RMSE=0.1745 R2=0.0437 MAPE=32.93%
+   lasso / q_daogu ... MAE=0.1229 RMSE=0.1730 R2=0.0602 MAPE=34.30%
+   linear / q_daogu ... MAE=0.1199 RMSE=0.1723 R2=0.0685 MAPE=33.86%
+   xgboost / q_daogu ... MAE=0.1200 RMSE=0.1781 R2=0.0041 MAPE=32.71%
+   catboost / q_daogu ... MAE=0.1185 RMSE=0.1723 R2=0.0684 MAPE=33.44%
+   randomforest / q_daogu ... MAE=0.1191 RMSE=0.1766 R2=0.0205 MAPE=32.70%
+   mlp / q_daogu ... MAE=0.1201 RMSE=0.1737 R2=0.0524 MAPE=33.73%
+   tabnet / q_daogu ... MAE=0.1232 RMSE=0.1774 R2=0.0112 MAPE=33.53%
+   tabm / q_daogu ... MAE=0.1224 RMSE=0.1750 R2=0.0385 MAPE=33.89%
+   tabpfn / q_daogu ...     [TabPFN] 训练样本数: 4864, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4865, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4865, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4865, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4865, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.1101 RMSE=0.1724 R2=0.0674 MAPE=33.25%
+   resnet_tabular / q_daogu ... MAE=0.1191 RMSE=0.1741 R2=0.0486 MAPE=33.78%
+   fttransformer / q_daogu ... MAE=0.1176 RMSE=0.1716 R2=0.0753 MAPE=33.67%
+   lightgbm / q_xiaomai ... MAE=0.1380 RMSE=0.2007 R2=0.0355 MAPE=83.56%
+   lasso / q_xiaomai ... MAE=0.1437 RMSE=0.2012 R2=0.0311 MAPE=87.92%
+   linear / q_xiaomai ... MAE=0.1396 RMSE=0.1989 R2=0.0537 MAPE=83.03%
+   xgboost / q_xiaomai ... MAE=0.1394 RMSE=0.2054 R2=-0.0102 MAPE=84.62%
+   catboost / q_xiaomai ... MAE=0.1372 RMSE=0.1974 R2=0.0672 MAPE=82.83%
+   randomforest / q_xiaomai ... MAE=0.1385 RMSE=0.2028 R2=0.0152 MAPE=84.36%
+   mlp / q_xiaomai ... MAE=0.1356 RMSE=0.2000 R2=0.0433 MAPE=84.20%
+   tabnet / q_xiaomai ... MAE=0.1377 RMSE=0.2016 R2=0.0276 MAPE=84.25%
+   tabm / q_xiaomai ... MAE=0.1302 RMSE=0.1985 R2=0.0576 MAPE=83.83%
+   tabpfn / q_xiaomai ...     [TabPFN] 训练样本数: 4476, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4477, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4477, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4477, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4477, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.1266 RMSE=0.1989 R2=0.0531 MAPE=85.58%
+   resnet_tabular / q_xiaomai ... MAE=0.1404 RMSE=0.1999 R2=0.0437 MAPE=83.22%
+   fttransformer / q_xiaomai ... MAE=0.1379 RMSE=0.1978 R2=0.0633 MAPE=82.79%
+   lightgbm / q_doulei ... MAE=0.1306 RMSE=0.1986 R2=0.0052 MAPE=34.15%
+   lasso / q_doulei ... MAE=0.1362 RMSE=0.1976 R2=0.0156 MAPE=35.28%
+   linear / q_doulei ... MAE=0.1310 RMSE=0.1951 R2=0.0400 MAPE=34.34%
+   xgboost / q_doulei ... MAE=0.1312 RMSE=0.2019 R2=-0.0286 MAPE=34.16%
+   catboost / q_doulei ... MAE=0.1298 RMSE=0.1950 R2=0.0411 MAPE=34.00%
+   randomforest / q_doulei ... MAE=0.1306 RMSE=0.2004 R2=-0.0128 MAPE=34.17%
+   mlp / q_doulei ... MAE=0.1320 RMSE=0.1964 R2=0.0280 MAPE=34.26%
+   tabnet / q_doulei ... MAE=0.1342 RMSE=0.1965 R2=0.0263 MAPE=34.33%
+   tabm / q_doulei ... MAE=0.1293 RMSE=0.1951 R2=0.0407 MAPE=34.13%
+   tabpfn / q_doulei ...     [TabPFN] 训练样本数: 4077, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4077, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4078, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4078, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4078, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.1319 RMSE=0.1956 R2=0.0354 MAPE=34.17%
+   resnet_tabular / q_doulei ... MAE=0.1310 RMSE=0.1964 R2=0.0271 MAPE=34.10%
+   fttransformer / q_doulei ... MAE=0.1294 RMSE=0.1952 R2=0.0394 MAPE=34.05%
+   lightgbm / q_zaliang ... MAE=0.1172 RMSE=0.1936 R2=-0.0179 MAPE=48.37%
+   lasso / q_zaliang ... MAE=0.1188 RMSE=0.1905 R2=0.0144 MAPE=49.09%
+   linear / q_zaliang ... MAE=0.1172 RMSE=0.1897 R2=0.0227 MAPE=48.39%
+   xgboost / q_zaliang ... MAE=0.1180 RMSE=0.1979 R2=-0.0636 MAPE=48.07%
+   catboost / q_zaliang ... MAE=0.1166 RMSE=0.1907 R2=0.0128 MAPE=48.38%
+   randomforest / q_zaliang ... MAE=0.1180 RMSE=0.1971 R2=-0.0546 MAPE=48.58%
+   mlp / q_zaliang ... MAE=0.1191 RMSE=0.1919 R2=-0.0001 MAPE=48.46%
+   tabnet / q_zaliang ... MAE=0.1103 RMSE=0.1920 R2=-0.0005 MAPE=48.06%
+   tabm / q_zaliang ... MAE=0.1099 RMSE=0.1910 R2=0.0099 MAPE=48.03%
+   tabpfn / q_zaliang ...     [TabPFN] 训练样本数: 4180, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4181, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4181, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4181, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4181, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.1059 RMSE=0.1912 R2=0.0070 MAPE=48.33%
+   resnet_tabular / q_zaliang ... MAE=0.1164 RMSE=0.1924 R2=-0.0051 MAPE=48.36%
+   fttransformer / q_zaliang ... MAE=0.1158 RMSE=0.1898 R2=0.0223 MAPE=48.25%
+   lightgbm / q_shucai ... MAE=0.1046 RMSE=0.1593 R2=0.0428 MAPE=21.06%
+   lasso / q_shucai ... MAE=0.1082 RMSE=0.1584 R2=0.0540 MAPE=21.86%
+   linear / q_shucai ... MAE=0.1057 RMSE=0.1577 R2=0.0625 MAPE=21.37%
+   xgboost / q_shucai ... MAE=0.1053 RMSE=0.1618 R2=0.0133 MAPE=21.03%
+   catboost / q_shucai ... MAE=0.1041 RMSE=0.1571 R2=0.0694 MAPE=21.00%
+   randomforest / q_shucai ... MAE=0.1054 RMSE=0.1619 R2=0.0114 MAPE=21.15%
+   mlp / q_shucai ... MAE=0.1053 RMSE=0.1588 R2=0.0496 MAPE=21.13%
+   tabnet / q_shucai ... MAE=0.1022 RMSE=0.1597 R2=0.0391 MAPE=21.27%
+   tabm / q_shucai ... MAE=0.1054 RMSE=0.1576 R2=0.0640 MAPE=21.18%
+   tabpfn / q_shucai ...     [TabPFN] 训练样本数: 5110, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 5110, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 5110, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 5111, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 5111, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.0940 RMSE=0.1583 R2=0.0558 MAPE=20.53%
+   resnet_tabular / q_shucai ... MAE=0.1090 RMSE=0.1591 R2=0.0458 MAPE=21.43%
+   fttransformer / q_shucai ... MAE=0.1063 RMSE=0.1577 R2=0.0624 MAPE=21.19%
+   lightgbm / q_zhurou ... MAE=0.1291 RMSE=0.1885 R2=0.0207 MAPE=27.12%
+   lasso / q_zhurou ... MAE=0.1339 RMSE=0.1886 R2=0.0195 MAPE=28.21%
+   linear / q_zhurou ... MAE=0.1309 RMSE=0.1874 R2=0.0323 MAPE=27.66%
+   xgboost / q_zhurou ... MAE=0.1293 RMSE=0.1901 R2=0.0040 MAPE=26.75%
+   catboost / q_zhurou ... MAE=0.1290 RMSE=0.1862 R2=0.0451 MAPE=27.25%
+   randomforest / q_zhurou ... MAE=0.1294 RMSE=0.1906 R2=-0.0008 MAPE=26.94%
+   mlp / q_zhurou ... MAE=0.1311 RMSE=0.1881 R2=0.0246 MAPE=27.53%
+   tabnet / q_zhurou ... MAE=0.1328 RMSE=0.1882 R2=0.0242 MAPE=27.78%
+   tabm / q_zhurou ... MAE=0.1223 RMSE=0.1868 R2=0.0385 MAPE=27.04%
+   tabpfn / q_zhurou ...     [TabPFN] 训练样本数: 4534, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4534, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4534, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4535, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4535, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.1203 RMSE=0.1872 R2=0.0349 MAPE=26.93%
+   resnet_tabular / q_zhurou ... MAE=0.1313 RMSE=0.1893 R2=0.0119 MAPE=27.56%
+   fttransformer / q_zhurou ... MAE=0.1305 RMSE=0.1865 R2=0.0413 MAPE=27.47%
+   lightgbm / q_niurou ... MAE=0.0987 RMSE=0.1654 R2=-0.0391 MAPE=17.42%
+   lasso / q_niurou ... MAE=0.1027 RMSE=0.1626 R2=-0.0019 MAPE=18.28%
+   linear / q_niurou ... MAE=0.1003 RMSE=0.1625 R2=-0.0009 MAPE=17.88%
+   xgboost / q_niurou ... MAE=0.0990 RMSE=0.1741 R2=-0.1518 MAPE=17.40%
+   catboost / q_niurou ... MAE=0.0980 RMSE=0.1629 R2=-0.0056 MAPE=17.49%
+   randomforest / q_niurou ... MAE=0.1004 RMSE=0.1720 R2=-0.1292 MAPE=17.60%
+   mlp / q_niurou ... MAE=0.1009 RMSE=0.1649 R2=-0.0286 MAPE=17.79%
+   tabnet / q_niurou ... MAE=0.0917 RMSE=0.1667 R2=-0.0505 MAPE=17.26%
+   tabm / q_niurou ... MAE=0.0991 RMSE=0.1609 R2=0.0193 MAPE=17.66%
+   tabpfn / q_niurou ...     [TabPFN] 训练样本数: 1177, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1177, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1178, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1178, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1178, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.0815 RMSE=0.1619 R2=0.0083 MAPE=16.33%
+   resnet_tabular / q_niurou ... MAE=0.1105 RMSE=0.1703 R2=-0.0980 MAPE=18.77%
+   fttransformer / q_niurou ... MAE=0.0989 RMSE=0.1623 R2=0.0031 MAPE=17.60%
+   lightgbm / q_yangrou ... MAE=0.0620 RMSE=0.1405 R2=-0.2173 MAPE=14.63%
+   lasso / q_yangrou ... MAE=0.0619 RMSE=0.1335 R2=-0.0479 MAPE=15.00%
+   linear / q_yangrou ... MAE=0.0634 RMSE=0.1351 R2=-0.0884 MAPE=14.95%
+   xgboost / q_yangrou ... MAE=0.0667 RMSE=0.1850 R2=-1.2624 MAPE=15.02%
+   catboost / q_yangrou ... MAE=0.0601 RMSE=0.1455 R2=-0.3077 MAPE=14.61%
+   randomforest / q_yangrou ... MAE=0.0583 RMSE=0.1571 R2=-0.5752 MAPE=14.47%
+   mlp / q_yangrou ... MAE=0.3875 RMSE=0.4339 R2=-14.2930 MAPE=44.93%
+   tabnet / q_yangrou ... MAE=0.0872 RMSE=0.1570 R2=-0.6437 MAPE=17.24%
+   tabm / q_yangrou ... MAE=0.0631 RMSE=0.1349 R2=-0.0804 MAPE=15.09%
+   tabpfn / q_yangrou ...     [TabPFN] 训练样本数: 266, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 266, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 266, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 267, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 267, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.0551 RMSE=0.1378 R2=-0.1246 MAPE=14.46%
+   resnet_tabular / q_yangrou ... MAE=0.0846 RMSE=0.1533 R2=-0.4327 MAPE=16.88%
+   fttransformer / q_yangrou ... MAE=0.0592 RMSE=0.1336 R2=-0.0431 MAPE=14.87%
+   lightgbm / q_qinlei ... MAE=0.0924 RMSE=0.1582 R2=-0.0408 MAPE=16.36%
+   lasso / q_qinlei ... MAE=0.0948 RMSE=0.1542 R2=0.0118 MAPE=16.81%
+   linear / q_qinlei ... MAE=0.0927 RMSE=0.1538 R2=0.0168 MAPE=16.46%
+   xgboost / q_qinlei ... MAE=0.0918 RMSE=0.1626 R2=-0.0987 MAPE=16.27%
+   catboost / q_qinlei ... MAE=0.0923 RMSE=0.1550 R2=0.0005 MAPE=16.41%
+   randomforest / q_qinlei ... MAE=0.0914 RMSE=0.1604 R2=-0.0693 MAPE=16.29%
+   mlp / q_qinlei ... MAE=0.0937 RMSE=0.1556 R2=-0.0073 MAPE=16.55%
+   tabnet / q_qinlei ... MAE=0.1021 RMSE=0.1570 R2=-0.0250 MAPE=17.17%
+   tabm / q_qinlei ... MAE=0.0841 RMSE=0.1543 R2=0.0100 MAPE=15.78%
+   tabpfn / q_qinlei ...     [TabPFN] 训练样本数: 1882, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1882, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1882, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1883, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1883, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.0840 RMSE=0.1546 R2=0.0069 MAPE=15.80%
+   resnet_tabular / q_qinlei ... MAE=0.0979 RMSE=0.1595 R2=-0.0587 MAPE=16.97%
+   fttransformer / q_qinlei ... MAE=0.0917 RMSE=0.1541 R2=0.0123 MAPE=16.36%
+   lightgbm / q_shuichanpin ... MAE=0.0958 RMSE=0.1638 R2=-0.0087 MAPE=26.44%
+   lasso / q_shuichanpin ... MAE=0.1001 RMSE=0.1616 R2=0.0184 MAPE=27.07%
+   linear / q_shuichanpin ... MAE=0.0972 RMSE=0.1606 R2=0.0308 MAPE=26.66%
+   xgboost / q_shuichanpin ... MAE=0.0973 RMSE=0.1700 R2=-0.0871 MAPE=26.67%
+   catboost / q_shuichanpin ... MAE=0.0959 RMSE=0.1610 R2=0.0261 MAPE=26.50%
+   randomforest / q_shuichanpin ... MAE=0.0955 RMSE=0.1666 R2=-0.0433 MAPE=26.43%
+   mlp / q_shuichanpin ... MAE=0.0983 RMSE=0.1618 R2=0.0163 MAPE=26.60%
+   tabnet / q_shuichanpin ... MAE=0.1041 RMSE=0.1640 R2=-0.0118 MAPE=26.99%
+   tabm / q_shuichanpin ... MAE=0.0939 RMSE=0.1619 R2=0.0153 MAPE=26.28%
+   tabpfn / q_shuichanpin ...     [TabPFN] 训练样本数: 2814, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 2814, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 2814, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 2815, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 2815, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.0826 RMSE=0.1614 R2=0.0215 MAPE=25.56%
+   resnet_tabular / q_shuichanpin ... MAE=0.1017 RMSE=0.1636 R2=-0.0049 MAPE=26.88%
+   fttransformer / q_shuichanpin ... MAE=0.0965 RMSE=0.1608 R2=0.0286 MAPE=26.42%
+   lightgbm / q_danlei ... MAE=0.0906 RMSE=0.1545 R2=-0.0059 MAPE=16.21%
+   lasso / q_danlei ... MAE=0.0935 RMSE=0.1524 R2=0.0219 MAPE=16.71%
+   linear / q_danlei ... MAE=0.0906 RMSE=0.1509 R2=0.0409 MAPE=16.22%
+   xgboost / q_danlei ... MAE=0.0917 RMSE=0.1584 R2=-0.0581 MAPE=16.34%
+   catboost / q_danlei ... MAE=0.0901 RMSE=0.1514 R2=0.0346 MAPE=16.14%
+   randomforest / q_danlei ... MAE=0.0907 RMSE=0.1567 R2=-0.0345 MAPE=16.24%
+   mlp / q_danlei ... MAE=0.0937 RMSE=0.1522 R2=0.0243 MAPE=16.42%
+   tabnet / q_danlei ... MAE=0.0879 RMSE=0.1521 R2=0.0249 MAPE=15.95%
+   tabm / q_danlei ... MAE=0.0839 RMSE=0.1515 R2=0.0326 MAPE=15.69%
+   tabpfn / q_danlei ...     [TabPFN] 训练样本数: 4270, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4270, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4270, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4271, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 4271, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.0857 RMSE=0.1511 R2=0.0385 MAPE=15.79%
+   resnet_tabular / q_danlei ... MAE=0.0914 RMSE=0.1537 R2=0.0040 MAPE=16.24%
+   fttransformer / q_danlei ... MAE=0.0896 RMSE=0.1509 R2=0.0401 MAPE=16.07%
+   lightgbm / q_nailei ... MAE=0.0496 RMSE=0.1142 R2=-0.0556 MAPE=11.88%
+   lasso / q_nailei ... MAE=0.0506 RMSE=0.1111 R2=0.0099 MAPE=12.05%
+   linear / q_nailei ... MAE=0.0505 RMSE=0.1121 R2=-0.0112 MAPE=11.92%
+   xgboost / q_nailei ... MAE=0.0493 RMSE=0.1232 R2=-0.2374 MAPE=11.78%
+   catboost / q_nailei ... MAE=0.0493 RMSE=0.1138 R2=-0.0463 MAPE=11.82%
+   randomforest / q_nailei ... MAE=0.0487 RMSE=0.1198 R2=-0.1714 MAPE=11.77%
+   mlp / q_nailei ... MAE=0.0517 RMSE=0.1157 R2=-0.0755 MAPE=12.02%
+   tabnet / q_nailei ... MAE=0.0516 RMSE=0.1160 R2=-0.0935 MAPE=12.08%
+   tabm / q_nailei ... MAE=0.0455 RMSE=0.1111 R2=0.0086 MAPE=11.52%
+   tabpfn / q_nailei ...     [TabPFN] 训练样本数: 1183, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1183, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1183, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1183, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 1184, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.0552 RMSE=0.1150 R2=-0.0645 MAPE=12.49%
+   resnet_tabular / q_nailei ... MAE=0.0639 RMSE=0.1192 R2=-0.1498 MAPE=12.96%
+   fttransformer / q_nailei ... MAE=0.0482 RMSE=0.1125 R2=-0.0243 MAPE=11.76%
+   lightgbm / q_guaguo ... MAE=0.0550 RMSE=0.1183 R2=-0.0414 MAPE=11.02%
+   lasso / q_guaguo ... MAE=0.0555 RMSE=0.1158 R2=0.0028 MAPE=11.10%
+   linear / q_guaguo ... MAE=0.0553 RMSE=0.1159 R2=0.0014 MAPE=11.06%
+   xgboost / q_guaguo ... MAE=0.0557 RMSE=0.1217 R2=-0.1038 MAPE=11.03%
+   catboost / q_guaguo ... MAE=0.0550 RMSE=0.1165 R2=-0.0095 MAPE=11.03%
+   randomforest / q_guaguo ... MAE=0.0553 RMSE=0.1211 R2=-0.0937 MAPE=11.02%
+   mlp / q_guaguo ... MAE=0.0567 RMSE=0.1178 R2=-0.0333 MAPE=11.20%
+   tabnet / q_guaguo ... MAE=0.0655 RMSE=0.1186 R2=-0.0472 MAPE=11.99%
+   tabm / q_guaguo ... MAE=0.0607 RMSE=0.1166 R2=-0.0114 MAPE=11.52%
+   tabpfn / q_guaguo ...     [TabPFN] 训练样本数: 3450, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 3450, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 3450, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 3451, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 3451, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.0484 RMSE=0.1173 R2=-0.0233 MAPE=10.41%
+   resnet_tabular / q_guaguo ... MAE=0.0580 RMSE=0.1185 R2=-0.0452 MAPE=11.31%
+   fttransformer / q_guaguo ... MAE=0.0552 RMSE=0.1155 R2=0.0071 MAPE=11.03%
+   lightgbm / q_youliao ... MAE=0.0000 RMSE=0.0000 R2=1.0000 MAPE=0.00%
+   lasso / q_youliao ... MAE=0.0000 RMSE=0.0000 R2=1.0000 MAPE=0.00%
+   linear / q_youliao ... MAE=0.0000 RMSE=0.0000 R2=1.0000 MAPE=0.00%
+   xgboost / q_youliao ... MAE=0.0000 RMSE=0.0000 R2=1.0000 MAPE=0.00%
+   catboost / q_youliao ... 跳过(数据不足)
+   randomforest / q_youliao ... MAE=0.0000 RMSE=0.0000 R2=1.0000 MAPE=0.00%
+   mlp / q_youliao ... MAE=0.9009 RMSE=0.9077 R2=-6282031068211.3203 MAPE=90.09%
+   tabnet / q_youliao ... MAE=0.4964 RMSE=0.6968 R2=-3799992400002.7998 MAPE=49.64%
+   tabm / q_youliao ... MAE=0.0028 RMSE=0.0048 R2=-360052295.8206 MAPE=0.28%
+   tabpfn / q_youliao ...     [TabPFN] 训练样本数: 30, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 30, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 30, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 31, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 31, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.0000 RMSE=0.0000 R2=1.0000 MAPE=0.00%
+   resnet_tabular / q_youliao ... MAE=0.1149 RMSE=0.1618 R2=-238901452725.7548 MAPE=11.49%
+   fttransformer / q_youliao ... MAE=0.0023 RMSE=0.0023 R2=-40918149.1823 MAPE=0.23%
+   lightgbm / q_tang ... MAE=0.0260 RMSE=0.0784 R2=-35577905522.5420 MAPE=4.56%
+   lasso / q_tang ... MAE=0.0210 RMSE=0.0628 R2=-5938866131.9546 MAPE=4.03%
+   linear / q_tang ... MAE=0.0247 RMSE=0.0741 R2=-23895401249.4094 MAPE=4.42%
+   xgboost / q_tang ... MAE=0.0256 RMSE=0.1294 R2=-257326947257.1661 MAPE=4.52%
+   catboost / q_tang ... MAE=0.0195 RMSE=0.0845 R2=-46430418239.7631 MAPE=3.91%
+   randomforest / q_tang ... MAE=0.0272 RMSE=0.0980 R2=-97900008988.9485 MAPE=4.67%
+   mlp / q_tang ... MAE=0.9082 RMSE=0.9215 R2=-13636973709839.2676 MAPE=91.67%
+   tabnet / q_tang ... MAE=0.7176 RMSE=0.8389 R2=-10917643296333.6133 MAPE=72.44%
+   tabm / q_tang ... MAE=0.0257 RMSE=0.0716 R2=-19470921127.1210 MAPE=4.48%
+   tabpfn / q_tang ...     [TabPFN] 训练样本数: 102, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 102, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 102, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 103, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+    [TabPFN] 训练样本数: 103, 特征数: 25
+    [TabPFN] 开始训练...
+    [TabPFN] 训练完成
+MAE=0.0146 RMSE=0.0604 R2=-6324554616.8299 MAPE=3.42%
+   resnet_tabular / q_tang ... MAE=0.1104 RMSE=0.1575 R2=-168940741049.0292 MAPE=12.96%
+   fttransformer / q_tang ... MAE=0.0185 RMSE=0.0577 R2=-1696507539.0226 MAPE=3.78%
+
+3. 按模型汇总（各品类指标平均）...
+
+         model      MAE     RMSE            R2      MAPE  rank_MAE  rank_RMSE  rank_R2
+        tabpfn 0.079738 0.144206 -4.216370e+08 24.204459         1          2        3
+          tabm 0.085211 0.144773 -1.322065e+09 24.426685         2          5        4
+ fttransformer 0.086507 0.143228 -1.158284e+08 24.369238         3          1        1
+      lightgbm 0.087228 0.147241 -2.371860e+09 24.379246         4          6        6
+  randomforest 0.087237 0.152071 -6.526667e+09 24.428191         5          7        8
+        linear 0.087921 0.144407 -1.593027e+09 24.548460         6          4        5
+       xgboost 0.088036 0.157308 -1.715513e+10 24.424719         7          9        9
+         lasso 0.089600 0.144235 -3.959244e+08 25.180881         8          3        2
+      catboost 0.092529 0.156382 -3.316458e+09 26.057980         9          8        7
+resnet_tabular 0.105359 0.164575 -2.718948e+10 26.194584        10         10       10
+        tabnet 0.169634 0.245499 -9.811757e+11 32.664719        11         11       11
+           mlp 0.228980 0.282663 -1.327934e+12 38.438693        12         12       12
+
+   说明: rank_MAE/rank_RMSE 越小越好，rank_R2 越大越好。
+
+   已保存明细: /usr/fafh/model_accuracy_detail.csv
+   已保存汇总: /usr/fafh/model_accuracy_summary.csv
+
+[2026-02-15T02:41:35.140886] 各模型预测精度对比结束

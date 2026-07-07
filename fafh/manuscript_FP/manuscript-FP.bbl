@@ -1,0 +1,521 @@
+\begin{thebibliography}{62}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Aguiar and Hurst(2005)}]{AguilarHurst2005}
+\bibinfo{author}{Aguiar, M.}, \bibinfo{author}{Hurst, E.},
+  \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{Consumption versus expenditure}.
+\newblock \bibinfo{journal}{Journal of Political Economy}
+  \bibinfo{volume}{113}, \bibinfo{pages}{919--948}.
+%Type = Article
+\bibitem[{Angulo et~al.(2007)Angulo, Gil and Mur}]{Angulo2007}
+\bibinfo{author}{Angulo, A.M.}, \bibinfo{author}{Gil, J.M.},
+  \bibinfo{author}{Mur, J.}, \bibinfo{year}{2007}.
+\newblock \bibinfo{title}{Spanish demand for food away from home: Analysis of
+  panel data}.
+\newblock \bibinfo{journal}{Journal of Agricultural Economics}
+  \bibinfo{volume}{58}, \bibinfo{pages}{289--307}.
+%Type = Article
+\bibitem[{Athey and Imbens(2019)}]{AtheyImbens2019}
+\bibinfo{author}{Athey, S.}, \bibinfo{author}{Imbens, G.W.},
+  \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Machine learning methods that economists should know
+  about}.
+\newblock \bibinfo{journal}{Annual Review of Economics} \bibinfo{volume}{11},
+  \bibinfo{pages}{685--725}.
+%Type = Article
+\bibitem[{Bai et~al.(2020)Bai, Seale and Wahl}]{BaiSealeWahl2020}
+\bibinfo{author}{Bai, J.}, \bibinfo{author}{Seale, James~L., J.},
+  \bibinfo{author}{Wahl, T.I.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Meat demand in {China}: To include or not to include
+  meat away from home?}
+\newblock \bibinfo{journal}{Australian Journal of Agricultural and Resource
+  Economics} \bibinfo{volume}{64}, \bibinfo{pages}{150--170}.
+%Type = Article
+\bibitem[{Bai et~al.(2010)Bai, Wahl, Lohmar and Huang}]{Bai2010}
+\bibinfo{author}{Bai, J.}, \bibinfo{author}{Wahl, T.I.},
+  \bibinfo{author}{Lohmar, B.T.}, \bibinfo{author}{Huang, J.},
+  \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Food away from home in {Beijing}: Effects of wealth,
+  time and ``free'' meals}.
+\newblock \bibinfo{journal}{China Economic Review} \bibinfo{volume}{21},
+  \bibinfo{pages}{432--441}.
+%Type = Article
+\bibitem[{Bai et~al.(2012)Bai, Zhang, Qiao and Wahl}]{Bai2012}
+\bibinfo{author}{Bai, J.}, \bibinfo{author}{Zhang, C.}, \bibinfo{author}{Qiao,
+  F.}, \bibinfo{author}{Wahl, T.}, \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{Disaggregating household expenditures on food away
+  from home in {Beijing} by type of food facility and type of meal}.
+\newblock \bibinfo{journal}{China Agricultural Economic Review}
+  \bibinfo{volume}{4}, \bibinfo{pages}{18--35}.
+%Type = Article
+\bibitem[{Bai et~al.(2016)Bai, Zhang, Wahl and Seale}]{Bai2016DiningOut}
+\bibinfo{author}{Bai, J.}, \bibinfo{author}{Zhang, C.}, \bibinfo{author}{Wahl,
+  T.}, \bibinfo{author}{Seale, James, J.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Dining out, the missing food consumption in {China}}.
+\newblock \bibinfo{journal}{Applied Economics Letters} \bibinfo{volume}{23},
+  \bibinfo{pages}{1084--1087}.
+%Type = Article
+\bibitem[{Becker(1965)}]{Becker1965}
+\bibinfo{author}{Becker, G.S.}, \bibinfo{year}{1965}.
+\newblock \bibinfo{title}{A theory of the allocation of time}.
+\newblock \bibinfo{journal}{The Economic Journal} \bibinfo{volume}{75},
+  \bibinfo{pages}{493--517}.
+%Type = Article
+\bibitem[{Breiman(2001)}]{Breiman2001}
+\bibinfo{author}{Breiman, L.}, \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{Random forests}.
+\newblock \bibinfo{journal}{Machine Learning} \bibinfo{volume}{45},
+  \bibinfo{pages}{5--32}.
+%Type = Article
+\bibitem[{Brignoli et~al.(2024)Brignoli, Varacca, Gardebroek and
+  Sckokai}]{Brignoli2024}
+\bibinfo{author}{Brignoli, P.L.}, \bibinfo{author}{Varacca, A.},
+  \bibinfo{author}{Gardebroek, C.}, \bibinfo{author}{Sckokai, P.},
+  \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Machine learning to predict grains futures prices}.
+\newblock \bibinfo{journal}{Agricultural Economics} \bibinfo{volume}{55},
+  \bibinfo{pages}{479--497}.
+%Type = Article
+\bibitem[{Byrne et~al.(1996)Byrne, Capps and Saha}]{Byrne1996}
+\bibinfo{author}{Byrne, P.J.}, \bibinfo{author}{Capps, O.},
+  \bibinfo{author}{Saha, A.}, \bibinfo{year}{1996}.
+\newblock \bibinfo{title}{Analysis of food-away-from-home expenditure patterns
+  for {U.S.} households, 1982--89}.
+\newblock \bibinfo{journal}{American Journal of Agricultural Economics}
+  \bibinfo{volume}{78}, \bibinfo{pages}{614--627}.
+%Type = Inproceedings
+\bibitem[{Chen and Guestrin(2016)}]{ChenGuestrin2016}
+\bibinfo{author}{Chen, T.}, \bibinfo{author}{Guestrin, C.},
+  \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{{XGBoost}: {A} scalable tree boosting system}, in:
+  \bibinfo{booktitle}{Proceedings of the 22nd {ACM SIGKDD} International
+  Conference on Knowledge Discovery and Data Mining}, pp.
+  \bibinfo{pages}{785--794}.
+%Type = Misc
+\bibitem[{{China Health and Nutrition Survey}(n.d.)}]{CHNS_Design}
+\bibinfo{author}{{China Health and Nutrition Survey}}, \bibinfo{year}{n.d.}
+\newblock \bibinfo{title}{Design and methods}.
+\newblock \bibinfo{howpublished}{Carolina Population Center, University of
+  North Carolina at Chapel Hill}.
+\newblock \bibinfo{note}{Survey documentation}.
+%Type = Book
+\bibitem[{{Chinese Nutrition Society}(2022)}]{CNS2022}
+\bibinfo{author}{{Chinese Nutrition Society}}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Dietary Guidelines for {Chinese} Residents (2022)}.
+\newblock \bibinfo{publisher}{People's Medical Publishing House},
+  \bibinfo{address}{Beijing}.
+%Type = Book
+\bibitem[{Deaton and Zaidi(2002)}]{DeatonZaidi2002}
+\bibinfo{author}{Deaton, A.}, \bibinfo{author}{Zaidi, S.},
+  \bibinfo{year}{2002}.
+\newblock \bibinfo{title}{Guidelines for Constructing Consumption Aggregates
+  for Welfare Analysis}.
+\newblock Number \bibinfo{number}{135} in \bibinfo{series}{Living Standards
+  Measurement Study Working Paper}, \bibinfo{publisher}{World Bank},
+  \bibinfo{address}{Washington, DC}.
+%Type = Book
+\bibitem[{Efron and Tibshirani(1993)}]{Efron1993}
+\bibinfo{author}{Efron, B.}, \bibinfo{author}{Tibshirani, R.J.},
+  \bibinfo{year}{1993}.
+\newblock \bibinfo{title}{An Introduction to the Bootstrap}.
+\newblock \bibinfo{publisher}{Chapman \& Hall/CRC}, \bibinfo{address}{New
+  York}.
+%Type = Book
+\bibitem[{{FAO}(2001)}]{FAO2001FBS}
+\bibinfo{author}{{FAO}}, \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{Food Balance Sheets: A Handbook}.
+\newblock \bibinfo{publisher}{Food and Agriculture Organization of the United
+  Nations}, \bibinfo{address}{Rome}.
+%Type = Article
+\bibitem[{Farf{\'a}n et~al.(2017)Farf{\'a}n, Genoni and Vakis}]{Farfan2017}
+\bibinfo{author}{Farf{\'a}n, G.}, \bibinfo{author}{Genoni, M.E.},
+  \bibinfo{author}{Vakis, R.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{You are what (and where) you eat: Capturing food away
+  from home in welfare measures}.
+\newblock \bibinfo{journal}{Food Policy} \bibinfo{volume}{72},
+  \bibinfo{pages}{146--156}.
+%Type = Article
+\bibitem[{Ferrari and Cribari-Neto(2004)}]{FerrariCribari2004}
+\bibinfo{author}{Ferrari, S.L.P.}, \bibinfo{author}{Cribari-Neto, F.},
+  \bibinfo{year}{2004}.
+\newblock \bibinfo{title}{Beta regression for modelling rates and proportions}.
+\newblock \bibinfo{journal}{Journal of Applied Statistics}
+  \bibinfo{volume}{31}, \bibinfo{pages}{799--815}.
+%Type = Article
+\bibitem[{Fiedler and Yadav(2017)}]{FiedlerYadav2017}
+\bibinfo{author}{Fiedler, J.L.}, \bibinfo{author}{Yadav, S.},
+  \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{How can we better capture food away from home?
+  {L}essons from {India}'s linking person-level meal data to household
+  consumption and expenditure surveys}.
+\newblock \bibinfo{journal}{Food Policy} \bibinfo{volume}{72},
+  \bibinfo{pages}{81--93}.
+%Type = Article
+\bibitem[{Fukase and Martin(2016)}]{FukaseMartin2016}
+\bibinfo{author}{Fukase, E.}, \bibinfo{author}{Martin, W.},
+  \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Who will feed {China} in the 21st century? {Income}
+  growth and food demand and supply in {China}}.
+\newblock \bibinfo{journal}{Journal of Agricultural Economics}
+  \bibinfo{volume}{67}, \bibinfo{pages}{3--23}.
+%Type = Article
+\bibitem[{Gao and Zheng(2020)}]{GaoZheng2020}
+\bibinfo{author}{Gao, Y.}, \bibinfo{author}{Zheng, Z.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Is nutritional status associated with income growth?
+  {E}vidence from {Chinese} adults}.
+\newblock \bibinfo{journal}{China Agricultural Economic Review}
+  \bibinfo{volume}{12}, \bibinfo{pages}{507--525}.
+%Type = Book
+\bibitem[{Goodfellow et~al.(2016)Goodfellow, Bengio and
+  Courville}]{GoodfellowEtAl2016}
+\bibinfo{author}{Goodfellow, I.}, \bibinfo{author}{Bengio, Y.},
+  \bibinfo{author}{Courville, A.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Deep Learning}.
+\newblock \bibinfo{publisher}{MIT Press}, \bibinfo{address}{Cambridge, MA}.
+%Type = Inproceedings
+\bibitem[{Gorishniy et~al.(2021)Gorishniy, Rubachev, Khrulkov and
+  Babenko}]{GorishniyEtAl2021}
+\bibinfo{author}{Gorishniy, Y.}, \bibinfo{author}{Rubachev, I.},
+  \bibinfo{author}{Khrulkov, V.}, \bibinfo{author}{Babenko, A.},
+  \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Revisiting deep learning models for tabular data},
+  in: \bibinfo{booktitle}{Advances in Neural Information Processing Systems},
+  pp. \bibinfo{pages}{18932--18943}.
+%Type = Article
+\bibitem[{Gould and Villarreal(2006)}]{Gould2006}
+\bibinfo{author}{Gould, B.W.}, \bibinfo{author}{Villarreal, H.J.},
+  \bibinfo{year}{2006}.
+\newblock \bibinfo{title}{An assessment of the current structure of food demand
+  in urban {China}}.
+\newblock \bibinfo{journal}{Agricultural Economics} \bibinfo{volume}{34},
+  \bibinfo{pages}{1--16}.
+%Type = Inproceedings
+\bibitem[{Grinsztajn et~al.(2022)Grinsztajn, Oyallon and
+  Varoquaux}]{GrinsztajnEtAl2022}
+\bibinfo{author}{Grinsztajn, L.}, \bibinfo{author}{Oyallon, E.},
+  \bibinfo{author}{Varoquaux, G.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Why do tree-based models still outperform deep
+  learning on typical tabular data?}, in: \bibinfo{booktitle}{Advances in
+  Neural Information Processing Systems}, pp. \bibinfo{pages}{507--520}.
+%Type = Article
+\bibitem[{Headey et~al.(2018)Headey, Hirvonen and Hoddinott}]{HeadeyEtAl2018}
+\bibinfo{author}{Headey, D.}, \bibinfo{author}{Hirvonen, K.},
+  \bibinfo{author}{Hoddinott, J.}, \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{Animal sourced foods and child stunting}.
+\newblock \bibinfo{journal}{American Journal of Agricultural Economics}
+  \bibinfo{volume}{100}, \bibinfo{pages}{1302--1319}.
+%Type = Article
+\bibitem[{Hoerl and Kennard(1970)}]{Hoerl1970Ridge}
+\bibinfo{author}{Hoerl, A.E.}, \bibinfo{author}{Kennard, R.W.},
+  \bibinfo{year}{1970}.
+\newblock \bibinfo{title}{Ridge regression: Biased estimation for nonorthogonal
+  problems}.
+\newblock \bibinfo{journal}{Technometrics} \bibinfo{volume}{12},
+  \bibinfo{pages}{55--67}.
+%Type = Article
+\bibitem[{Huang and Yang(2017)}]{HuangYang2017}
+\bibinfo{author}{Huang, J.}, \bibinfo{author}{Yang, G.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Understanding recent challenges and new food policy
+  in {China}}.
+\newblock \bibinfo{journal}{Global Food Security} \bibinfo{volume}{12},
+  \bibinfo{pages}{119--126}.
+%Type = Article
+\bibitem[{Kamran et~al.(2026)Kamran, Babazadeh, Gharibi, El-Said, Afsharfar and
+  Al~Saqri}]{Kamran2026}
+\bibinfo{author}{Kamran, M.A.}, \bibinfo{author}{Babazadeh, R.},
+  \bibinfo{author}{Gharibi, A.}, \bibinfo{author}{El-Said, O.},
+  \bibinfo{author}{Afsharfar, S.}, \bibinfo{author}{Al~Saqri, J.},
+  \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Food waste behaviour prediction and policy
+  recommender system: {D}ata-driven machine learning approaches}.
+\newblock \bibinfo{journal}{Food Policy} \bibinfo{volume}{138},
+  \bibinfo{pages}{103032}.
+%Type = Inproceedings
+\bibitem[{Ke et~al.(2017)Ke, Meng, Finley, Wang, Chen, Ma, Ye and
+  Liu}]{KeEtAl2017}
+\bibinfo{author}{Ke, G.}, \bibinfo{author}{Meng, Q.}, \bibinfo{author}{Finley,
+  T.}, \bibinfo{author}{Wang, T.}, \bibinfo{author}{Chen, W.},
+  \bibinfo{author}{Ma, W.}, \bibinfo{author}{Ye, Q.}, \bibinfo{author}{Liu,
+  T.Y.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{{LightGBM}: {A} highly efficient gradient boosting
+  decision tree}, in: \bibinfo{booktitle}{Advances in Neural Information
+  Processing Systems}.
+%Type = Article
+\bibitem[{Liu et~al.(2015)Liu, Wahl, Seale and Bai}]{Liu2015}
+\bibinfo{author}{Liu, H.}, \bibinfo{author}{Wahl, T.I.},
+  \bibinfo{author}{Seale, J.L.}, \bibinfo{author}{Bai, J.},
+  \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{Household composition, income, and
+  food-away-from-home expenditure in urban {China}}.
+\newblock \bibinfo{journal}{Food Policy} \bibinfo{volume}{51},
+  \bibinfo{pages}{97--103}.
+%Type = Article
+\bibitem[{Ma et~al.(2006)Ma, Huang, Fuller and Rozelle}]{Ma2006}
+\bibinfo{author}{Ma, H.}, \bibinfo{author}{Huang, J.}, \bibinfo{author}{Fuller,
+  F.}, \bibinfo{author}{Rozelle, S.}, \bibinfo{year}{2006}.
+\newblock \bibinfo{title}{Getting rich and eating out: Consumption of food away
+  from home in urban {China}}.
+\newblock \bibinfo{journal}{Canadian Journal of Agricultural Economics}
+  \bibinfo{volume}{54}, \bibinfo{pages}{101--119}.
+%Type = Article
+\bibitem[{Ma et~al.(2004)Ma, Huang and Rozelle}]{MaHuangRozelle2004}
+\bibinfo{author}{Ma, H.}, \bibinfo{author}{Huang, J.},
+  \bibinfo{author}{Rozelle, S.}, \bibinfo{year}{2004}.
+\newblock \bibinfo{title}{Reassessing {China}'s livestock statistics: An
+  analysis of discrepancies and the creation of new data series}.
+\newblock \bibinfo{journal}{Economic Development and Cultural Change}
+  \bibinfo{volume}{52}, \bibinfo{pages}{445--473}.
+%Type = Article
+\bibitem[{MacLachlan et~al.(2025)MacLachlan, Adjemian, Etienne, Sweitzer, Volpe
+  and Zeng}]{MacLachlan2025}
+\bibinfo{author}{MacLachlan, M.J.}, \bibinfo{author}{Adjemian, M.K.},
+  \bibinfo{author}{Etienne, X.}, \bibinfo{author}{Sweitzer, M.},
+  \bibinfo{author}{Volpe, R.J.}, \bibinfo{author}{Zeng, W.},
+  \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Adaptive food price forecasting improves public
+  information in times of rapid economic change}.
+\newblock \bibinfo{journal}{Nature Communications} \bibinfo{volume}{16},
+  \bibinfo{pages}{6282}.
+%Type = Techreport
+\bibitem[{Mancino and Newman(2007)}]{Mancino2007}
+\bibinfo{author}{Mancino, L.}, \bibinfo{author}{Newman, C.},
+  \bibinfo{year}{2007}.
+\newblock \bibinfo{title}{Who Has Time to Cook? {H}ow Family Resources
+  Influence Food Preparation}.
+\newblock \bibinfo{type}{Technical Report} \bibinfo{number}{ERR-40}. U.S.
+  Department of Agriculture, Economic Research Service.
+%Type = Article
+\bibitem[{Min et~al.(2021)Min, Wang and Yu}]{Min2021}
+\bibinfo{author}{Min, S.}, \bibinfo{author}{Wang, X.}, \bibinfo{author}{Yu,
+  X.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Does dietary knowledge affect household food waste in
+  the developing economy of {China}?}
+\newblock \bibinfo{journal}{Food Policy} \bibinfo{volume}{98},
+  \bibinfo{pages}{101896}.
+%Type = Article
+\bibitem[{Mullainathan and Spiess(2017)}]{MullainathanSpiess2017}
+\bibinfo{author}{Mullainathan, S.}, \bibinfo{author}{Spiess, J.},
+  \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Machine learning: An applied econometric approach}.
+\newblock \bibinfo{journal}{Journal of Economic Perspectives}
+  \bibinfo{volume}{31}, \bibinfo{pages}{87--106}.
+%Type = Misc
+\bibitem[{{National Bureau of Statistics of China}(Various years)}]{NBS_China}
+\bibinfo{author}{{National Bureau of Statistics of China}},
+  \bibinfo{year}{Various years}.
+\newblock \bibinfo{title}{{China Statistical Yearbook} and provincial
+  statistical yearbooks}.
+\newblock \bibinfo{note}{Official statistical publications, Beijing}.
+%Type = Book
+\bibitem[{{National Institute for Nutrition and Health, Chinese Center for
+  Disease Control and Prevention}(2019)}]{CFCT2019}
+\bibinfo{author}{{National Institute for Nutrition and Health, Chinese Center
+  for Disease Control and Prevention}}, \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{China Food Composition Tables, Standard Edition}.
+\newblock \bibinfo{publisher}{Peking University Medical Press},
+  \bibinfo{address}{Beijing}.
+\newblock \bibinfo{note}{Vols. 1--2}.
+%Type = Article
+\bibitem[{Papke and Wooldridge(1996)}]{PapkeWooldridge1996}
+\bibinfo{author}{Papke, L.E.}, \bibinfo{author}{Wooldridge, J.M.},
+  \bibinfo{year}{1996}.
+\newblock \bibinfo{title}{Econometric methods for fractional response variables
+  with an application to 401(k) plan participation rates}.
+\newblock \bibinfo{journal}{Journal of Applied Econometrics}
+  \bibinfo{volume}{11}, \bibinfo{pages}{619--632}.
+%Type = Article
+\bibitem[{Papke and Wooldridge(2008)}]{PapkeWooldridge2008}
+\bibinfo{author}{Papke, L.E.}, \bibinfo{author}{Wooldridge, J.M.},
+  \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{Panel data methods for fractional response variables
+  with an application to test pass rates}.
+\newblock \bibinfo{journal}{Journal of Econometrics} \bibinfo{volume}{145},
+  \bibinfo{pages}{121--133}.
+%Type = Article
+\bibitem[{Popkin et~al.(2010)Popkin, Du, Zhai and Zhang}]{Popkin2010CHNS}
+\bibinfo{author}{Popkin, B.M.}, \bibinfo{author}{Du, S.},
+  \bibinfo{author}{Zhai, F.}, \bibinfo{author}{Zhang, B.},
+  \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Cohort profile: {T}he {China Health and Nutrition
+  Survey}---monitoring and understanding socio-economic and health change in
+  {China}, 1989--2011}.
+\newblock \bibinfo{journal}{International Journal of Epidemiology}
+  \bibinfo{volume}{39}, \bibinfo{pages}{1435--1440}.
+%Type = Inproceedings
+\bibitem[{Prokhorenkova et~al.(2018)Prokhorenkova, Gusev, Vorobev, Dorogush and
+  Gulin}]{ProkhorenkovaEtAl2018}
+\bibinfo{author}{Prokhorenkova, L.}, \bibinfo{author}{Gusev, G.},
+  \bibinfo{author}{Vorobev, A.}, \bibinfo{author}{Dorogush, A.V.},
+  \bibinfo{author}{Gulin, A.}, \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{{CatBoost}: {U}nbiased boosting with categorical
+  features}, in: \bibinfo{booktitle}{Advances in Neural Information Processing
+  Systems}.
+%Type = Article
+\bibitem[{Reitzig et~al.(2023)Reitzig, Bromley and Kherallah}]{ReitzigEtAl2023}
+\bibinfo{author}{Reitzig, F.}, \bibinfo{author}{Bromley, D.W.},
+  \bibinfo{author}{Kherallah, M.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Measuring food consumption and food security: A
+  comparative assessment of survey methods}.
+\newblock \bibinfo{journal}{Food Policy} \bibinfo{volume}{118},
+  \bibinfo{pages}{102470}.
+%Type = Article
+\bibitem[{Ren et~al.(2019)Ren, Li and Wang}]{RenEtAl2019}
+\bibinfo{author}{Ren, Y.}, \bibinfo{author}{Li, H.}, \bibinfo{author}{Wang,
+  X.}, \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Family income and nutrition-related health: Evidence
+  from food consumption in {China}}.
+\newblock \bibinfo{journal}{Social Science \& Medicine} \bibinfo{volume}{232},
+  \bibinfo{pages}{58--76}.
+%Type = Article
+\bibitem[{Rubachev et~al.(2024)Rubachev, Kartashev, Gorishniy and
+  Babenko}]{RubachevEtAl2024}
+\bibinfo{author}{Rubachev, I.}, \bibinfo{author}{Kartashev, N.},
+  \bibinfo{author}{Gorishniy, Y.}, \bibinfo{author}{Babenko, A.},
+  \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{{TabM}: {A}dvancing tabular deep learning with
+  parameter-efficient ensembling}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2410.24210} .
+%Type = Techreport
+\bibitem[{Saksena et~al.(2018)Saksena, Okrent, Anekwe, Cho, Dicken, Effland,
+  Elitzak, Guthrie, Hamrick, Hyman, Jo, Lin, Mancino, McLaughlin, Rahkovsky,
+  Ralston, Smith, Stewart, Todd and Tuttle}]{Saksena2018}
+\bibinfo{author}{Saksena, M.J.}, \bibinfo{author}{Okrent, A.M.},
+  \bibinfo{author}{Anekwe, T.D.}, \bibinfo{author}{Cho, C.},
+  \bibinfo{author}{Dicken, C.}, \bibinfo{author}{Effland, A.},
+  \bibinfo{author}{Elitzak, H.}, \bibinfo{author}{Guthrie, J.},
+  \bibinfo{author}{Hamrick, K.S.}, \bibinfo{author}{Hyman, J.},
+  \bibinfo{author}{Jo, Y.}, \bibinfo{author}{Lin, B.H.},
+  \bibinfo{author}{Mancino, L.}, \bibinfo{author}{McLaughlin, P.W.},
+  \bibinfo{author}{Rahkovsky, I.}, \bibinfo{author}{Ralston, K.},
+  \bibinfo{author}{Smith, T.A.}, \bibinfo{author}{Stewart, H.},
+  \bibinfo{author}{Todd, J.E.}, \bibinfo{author}{Tuttle, C.},
+  \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{America's Eating Habits: Food Away from Home}.
+\newblock \bibinfo{type}{Technical Report} \bibinfo{number}{EIB-196}. U.S.
+  Department of Agriculture, Economic Research Service.
+%Type = Inproceedings
+\bibitem[{Shepard(1968)}]{Shepard1968}
+\bibinfo{author}{Shepard, D.}, \bibinfo{year}{1968}.
+\newblock \bibinfo{title}{A two-dimensional interpolation function for
+  irregularly-spaced data}, in: \bibinfo{booktitle}{Proceedings of the 1968
+  {ACM} National Conference}, pp. \bibinfo{pages}{517--524}.
+%Type = Article
+\bibitem[{Shwartz-Ziv and Armon(2022)}]{ShwartzZivArmon2022}
+\bibinfo{author}{Shwartz-Ziv, R.}, \bibinfo{author}{Armon, A.},
+  \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Tabular data: {D}eep learning is not all you need}.
+\newblock \bibinfo{journal}{Information Fusion} \bibinfo{volume}{81},
+  \bibinfo{pages}{84--90}.
+%Type = Book
+\bibitem[{Smith et~al.(2014)Smith, Dupriez and
+  Troubat}]{SmithDupriezTroubat2014}
+\bibinfo{author}{Smith, L.C.}, \bibinfo{author}{Dupriez, O.},
+  \bibinfo{author}{Troubat, N.}, \bibinfo{year}{2014}.
+\newblock \bibinfo{title}{Assessment of the Reliability and Relevance of the
+  Food Data Collected in National Household Consumption and Expenditure
+  Surveys}.
+\newblock \bibinfo{publisher}{International Household Survey Network and
+  {FAO}}, \bibinfo{address}{Rome}.
+%Type = Article
+\bibitem[{Storm et~al.(2020)Storm, Baylis and Heckelei}]{Storm2020}
+\bibinfo{author}{Storm, H.}, \bibinfo{author}{Baylis, K.},
+  \bibinfo{author}{Heckelei, T.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Machine learning in agricultural and applied
+  economics}.
+\newblock \bibinfo{journal}{European Review of Agricultural Economics}
+  \bibinfo{volume}{47}, \bibinfo{pages}{849--892}.
+%Type = Article
+\bibitem[{Tibshirani(1996)}]{Tibshirani1996}
+\bibinfo{author}{Tibshirani, R.}, \bibinfo{year}{1996}.
+\newblock \bibinfo{title}{Regression shrinkage and selection via the lasso}.
+\newblock \bibinfo{journal}{Journal of the Royal Statistical Society: Series B}
+  \bibinfo{volume}{58}, \bibinfo{pages}{267--288}.
+%Type = Article
+\bibitem[{Wang and Yu(2025)}]{Wang2025}
+\bibinfo{author}{Wang, F.}, \bibinfo{author}{Yu, X.}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Climate and household food waste in {China}}.
+\newblock \bibinfo{journal}{Food Policy} \bibinfo{volume}{135},
+  \bibinfo{pages}{102933}.
+%Type = Article
+\bibitem[{Xiao et~al.(2015)Xiao, Chen, Wang, Oxley and Ma}]{Xiao2015}
+\bibinfo{author}{Xiao, H.}, \bibinfo{author}{Chen, Q.}, \bibinfo{author}{Wang,
+  J.}, \bibinfo{author}{Oxley, L.}, \bibinfo{author}{Ma, H.},
+  \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{The puzzle of the missing meat: Food away from home
+  and {China}'s meat statistics}.
+\newblock \bibinfo{journal}{Journal of Integrative Agriculture}
+  \bibinfo{volume}{14}, \bibinfo{pages}{1033--1044}.
+%Type = Article
+\bibitem[{Xu et~al.(2020)Xu, Zhang, Liu, Zhong, Bai and
+  Cheng}]{Xu2020FAFHwaste}
+\bibinfo{author}{Xu, Z.}, \bibinfo{author}{Zhang, Z.}, \bibinfo{author}{Liu,
+  H.}, \bibinfo{author}{Zhong, F.}, \bibinfo{author}{Bai, J.},
+  \bibinfo{author}{Cheng, S.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Food-away-from-home plate waste in {China}:
+  Preference for variety and quantity}.
+\newblock \bibinfo{journal}{Food Policy} \bibinfo{volume}{97},
+  \bibinfo{pages}{101918}.
+%Type = Article
+\bibitem[{Yan et~al.(2026)Yan, Manfredo and Mishra}]{Yan2026}
+\bibinfo{author}{Yan, H.}, \bibinfo{author}{Manfredo, M.},
+  \bibinfo{author}{Mishra, A.K.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Forecasting for food price inflation using machine
+  learning methodology: {E}xpansion on {FRED-MD}}.
+\newblock \bibinfo{journal}{Food Policy} \bibinfo{volume}{140},
+  \bibinfo{pages}{103077}.
+%Type = Article
+\bibitem[{Yu and Abler(2014)}]{YuAbler2014}
+\bibinfo{author}{Yu, X.}, \bibinfo{author}{Abler, D.}, \bibinfo{year}{2014}.
+\newblock \bibinfo{title}{Where have all the pigs gone? {I}nconsistencies in
+  pork statistics in {China}}.
+\newblock \bibinfo{journal}{China Economic Review} \bibinfo{volume}{30},
+  \bibinfo{pages}{469--484}.
+%Type = Article
+\bibitem[{Yu and Abler(2016)}]{YuAbler2016}
+\bibinfo{author}{Yu, X.}, \bibinfo{author}{Abler, D.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Matching food with mouths: {A} statistical
+  explanation to the abnormal decline of per capita food consumption in rural
+  {China}}.
+\newblock \bibinfo{journal}{Food Policy} \bibinfo{volume}{63},
+  \bibinfo{pages}{36--43}.
+%Type = Article
+\bibitem[{Zezza et~al.(2017)Zezza, Carletto, Fiedler, Gennari and
+  Jolliffe}]{Zezza2017}
+\bibinfo{author}{Zezza, A.}, \bibinfo{author}{Carletto, C.},
+  \bibinfo{author}{Fiedler, J.L.}, \bibinfo{author}{Gennari, P.},
+  \bibinfo{author}{Jolliffe, D.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Food counts. {M}easuring food consumption and
+  expenditures in household consumption and expenditure surveys ({HCES}):
+  Introduction to the special issue}.
+\newblock \bibinfo{journal}{Food Policy} \bibinfo{volume}{72},
+  \bibinfo{pages}{1--6}.
+%Type = Article
+\bibitem[{Zheng et~al.(2019)Zheng, Henneberry, Zhao and Gao}]{Zheng2019}
+\bibinfo{author}{Zheng, Z.}, \bibinfo{author}{Henneberry, S.R.},
+  \bibinfo{author}{Zhao, Y.}, \bibinfo{author}{Gao, Y.}, \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Predicting the changes in the structure of food
+  demand in {China}}.
+\newblock \bibinfo{journal}{Agribusiness} \bibinfo{volume}{35},
+  \bibinfo{pages}{301--328}.
+%Type = Article
+\bibitem[{Zhou et~al.(2020)Zhou, Yu, Abler and Chen}]{ZhouEtAl2020}
+\bibinfo{author}{Zhou, D.}, \bibinfo{author}{Yu, X.}, \bibinfo{author}{Abler,
+  D.}, \bibinfo{author}{Chen, D.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Projecting meat and cereals demand for {China} based
+  on a meta-analysis of income elasticities}.
+\newblock \bibinfo{journal}{China Economic Review} \bibinfo{volume}{59},
+  \bibinfo{pages}{101135}.
+
+\end{thebibliography}

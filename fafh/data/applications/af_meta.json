@@ -1,0 +1,6 @@
+{
+  "POP_2024": 1406280000.0,
+  "B": 2000,
+  "source": "journal_submission/result/results_national_fttransformer_ci.csv",
+  "note": "AF = CI Mean (matches printed Table 5). Draws = shifted-lognormal calibrated to published Lower/Upper (per-replicate matrix discarded by run_bootstrap.py)."
+}

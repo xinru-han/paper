@@ -1,0 +1,100 @@
+% Research design section (博士生2)
+% Paper: How much does China consume food out-of-home?
+% Target: Top agricultural economics SSCI journals
+
+\section{Research Design}
+\label{sec:research-design}
+
+\subsection{Research Question}
+\label{subsec:research-question}
+
+The central research question of this paper is: \textbf{How much does China consume food out-of-home?} We operationalize this at two levels and by food category. First, at the \textbf{national} level, we aim to estimate aggregate out-of-home food consumption and its evolution over time. Second, at the \textbf{provincial} level, we aim to estimate out-of-home consumption by province and year, so as to capture spatial heterogeneity and support region-specific policy analysis. In both cases, estimates are produced by \textbf{food category}: four grain types (rice, wheat, beans, coarse grains), vegetables, meat (pork, beef, mutton, poultry), and other categories (aquatic products, eggs, dairy, fruit, edible oil, sugar)---15 categories in total. The key outcome is the \emph{out-of-home consumption coefficient} (ratio of total to at-home consumption), from which provincial and national at-home and out-of-home consumption quantities are derived for policy and food security assessment.
+
+\subsection{Data}
+\label{subsec:data}
+
+The analysis uses two main data layers. \textbf{Micro data} come from a household food consumption survey underlying \texttt{data.csv}. The micro data record at-home and total (at-home plus out-of-home) consumption by food category, household income, and standard covariates. In the current replication package, the micro table contains 47{,}426 household--wave observations from 6{,}825 households, covering 11 provinces over the survey years 2004--2011 (variables \texttt{hhid}, \texttt{T1}, \texttt{wave}). Because the underlying microdata are access-restricted, we do not redistribute them; nonetheless, we document variable definitions and coverage in this paper and provide all downstream processed outputs. \textbf{Macro data} are province--year aggregates (e.g., \texttt{data2012.csv}), constructed from official provincial and national statistics; they provide average income and socio-economic covariates (e.g., urbanization rate, aging rate, Engel coefficient, food price index) by province and year but do not contain consumption variables. \textbf{Production data} (e.g., \texttt{data\_production1/2/3.csv}) are merged by province and year from the relevant statistical sources. \textbf{Per-capita at-home consumption} by province and category (e.g., \texttt{data\_q.csv}) and \textbf{population} (file name as in the replication package) for provincial and national weighting are obtained from the same or complementary statistical sources. Our target reporting period (2015--2024) is covered by the macro tables and output CSVs; prediction for those years is therefore an extrapolation from micro-based relationships combined with macro covariates and the bridging steps described below.
+
+\subsection{Data Difficulties}
+\label{subsec:data-difficulties}
+
+\subsubsection{Micro versus macro data structure}
+\label{subsec:micro-macro}
+
+We face a fundamental \textbf{data-level mismatch}. \textbf{Micro data} (household survey, e.g., \texttt{data.csv}) are at the individual or household level. They contain \emph{at-home} and \emph{total} (at-home plus out-of-home) consumption by category, so that the at-home consumption ratio (at-home / total) and thus the out-of-home coefficient (total / at-home) can be computed for each observation. They also include \textbf{individual income} (\texttt{indinc}) and covariates such as province (\texttt{T1}), year (\texttt{wave}), and socio-economic variables. In contrast, \textbf{macro data} (province--year aggregates, e.g., \texttt{data2012.csv}) provide \textbf{average income} (\texttt{income}) and macro covariates (e.g., urbanization rate, aging rate, Engel coefficient, food price index, and other regional variables), but \textbf{no consumption variables} and \textbf{no individual income}. Out-of-home consumption is not directly observed at the macro level; it must be inferred by bridging micro and macro data.
+
+\subsubsection{Income variable mismatch}
+\label{subsec:income-mismatch}
+
+Models trained on micro data use \textbf{individual income} (\texttt{indinc}) as a predictor of the at-home consumption ratio. At prediction time we only have \textbf{province--year average income} (\texttt{income}) for the macro table. The macro table has no income \emph{distribution} and no \texttt{indinc}. Applying the trained model directly to macro data would therefore require an \texttt{indinc} column that does not exist. Simply substituting \texttt{income} for \texttt{indinc} would ignore within-province income inequality and the non-linear relationship between income and consumption structure, and would be inconsistent with the training feature set. Thus, a method is needed to \textbf{match the income distribution} from the micro data to the macro prediction context and to \textbf{generate synthetic individual income values} for macro observations so that the same feature space is used in training and prediction.
+
+\subsubsection{Missing provinces and years}
+\label{subsec:missing-provinces}
+
+Micro survey data do not cover all provinces or all years uniformly. For some province--year cells there are \textbf{no micro observations}; for others, consumption or ratios may be \textbf{missing} for certain categories (e.g., zero or unreported consumption). Macro prediction is required for all provinces and for years from 2015 onward. Therefore, (i) \textbf{missing at-home/total consumption or ratios} in the micro data must be handled (e.g., by imputation or by restricting to complete cases for robustness checks), and (ii) \textbf{provinces with no or insufficient micro data} require a way to obtain out-of-home (or at-home) coefficients---typically via \textbf{spatial interpolation} from provinces where predictions are available, possibly combined with auxiliary information such as provincial production shares.
+
+\subsubsection{Other data limitations}
+\label{subsec:other-data}
+
+Additional constraints include: the need to align \textbf{production data} (e.g., \texttt{data\_production1/2/3.csv}) and \textbf{per-capita at-home consumption} (e.g., \texttt{data\_q.csv}) with province and year for use as features or in post-processing; the use of \textbf{population} (e.g., \texttt{procince\_pop.csv}) only at the national level for weighting; and standard data-quality issues (zero or negative consumption, ratio bounds, outliers). The research design must explicitly account for these so that estimates remain consistent and interpretable.
+
+\subsection{Methodological Difficulties}
+\label{subsec:methodological-difficulties}
+
+\subsubsection{Why standard approaches are insufficient}
+\label{subsec:why-standard-insufficient}
+
+A \textbf{direct macro regression} of out-of-home consumption on province--year covariates is not feasible: macro data do not contain any measure of out-of-home (or total) consumption, so there is no outcome to regress. A \textbf{micro-only} analysis can describe ratios and coefficients for the sample but cannot produce province--year or national estimates for out-of-home consumption without a formal way to \textbf{scale from micro to macro} and to fill missing provinces and years. Simple \textbf{mean substitution} of \texttt{income} for \texttt{indinc} in prediction ignores the role of income distribution and is not consistent with the training specification. Ignoring missing provinces would leave gaps in the coverage required for policy; ignoring missing ratios would discard information and may bias estimates if missingness is not random. Thus, the methodology must address: (i) \textbf{distribution matching} so that macro prediction uses a synthetic income variable aligned with the micro distribution; (ii) \textbf{imputation or explicit handling of missing ratios} in the training data; (iii) \textbf{spatial interpolation} for provinces without micro-based predictions; (iv) \textbf{multi-category and grain-structure prediction} (four grain types plus other categories); and (v) \textbf{quantification of uncertainty} (e.g., bootstrap) rather than point estimates alone.
+
+\subsubsection{Need for distribution matching, spatial interpolation, and ML prediction}
+\label{subsec:need-for-methods}
+
+\textbf{Distribution matching} is necessary because the model is trained on \texttt{indinc} and must be applied to macro rows that only have \texttt{income}. We therefore generate a synthetic micro-style income variable for macro rows using a rank-preserving quantile-scaling procedure (Section~\ref{sec:copula}): the shape of the micro income distribution is preserved while the mean is scaled to the macro \texttt{income}. \textbf{Spatial interpolation} (inverse-distance weighting, IDW) is needed to assign coefficients to provinces that lack micro data, using predictions from nearby provinces and, for grain structure, auxiliary production information. \textbf{Machine learning (ML) prediction} is adopted because the relationship between covariates (income, macro variables, production, province, year) and the at-home consumption ratio is likely nonlinear and may vary by category; a suite of ML models allows comparison and selection (including for imputation) and robustness checks. Together, these choices are dictated by the data: without distribution matching we cannot apply the micro-trained model to macro; without interpolation we cannot cover all provinces; without ML we may underfit complex, category-specific relationships.
+
+\subsection{Research Strategy}
+\label{subsec:research-strategy}
+
+The strategy implemented in this project is structured in five main steps, aligned with the project documentation.
+
+\subsubsection{Data preparation and income-distribution matching}
+\label{subsec:copula}
+
+Micro data (\texttt{data.csv}) and macro data (\texttt{data2012.csv}) are loaded; production and other auxiliary datasets are merged by province (\texttt{T1}) and year (\texttt{wave}). For macro prediction (from 2015 onward), we apply \textbf{income-distribution matching} once in the data preparation phase. The implementation (\texttt{match\_income\_copula} in \texttt{data\_preparation\_advanced.py}) uses a rank-preserving quantile-scaling procedure: it preserves the shape of the micro income distribution while scaling its mean to the macro \texttt{income}, generating \textbf{synthetic \texttt{indinc}} values for the macro table. Thus, the same feature set (including \texttt{indinc}) is available for both training (micro) and prediction (macro). This step is category-independent and is best interpreted as distribution (quantile) matching rather than a fully parametric Copula model.
+
+\subsubsection{Imputation for missing ratios and model selection}
+\label{subsec:imputation}
+
+Where at-home or total consumption (and hence the at-home ratio) is missing in the micro data, we first evaluate \textbf{multiple ML models} (e.g., 12 models in the imputation selection step) for their imputation accuracy via cross-validation (e.g., MAE, RMSE, R²). The \textbf{best-performing model} is used to produce a single imputed ratio dataset (\texttt{data/imputed\_ratios\_best.csv}), which is then used consistently in the main prediction pipeline. This avoids ad hoc choice of imputation and allows a \textbf{robustness check} by comparing results with and without imputation (main pipeline with imputation vs. robust pipeline without imputation).
+
+\subsubsection{Model training and prediction by category}
+\label{subsec:training-prediction}
+
+Models are \textbf{trained on micro data}: features include \texttt{indinc} (and other constructed features such as macro and production variables aligned to the micro level), and the target is the \textbf{at-home consumption ratio} (at-home / total) for each of the 15 categories. The \textbf{out-of-home coefficient} is then defined as the reciprocal of the predicted ratio. For \textbf{grain structure}, the four grain types (rice, wheat, beans, coarse grains) are modeled separately (e.g., shares derived from micro data), and missing provinces are handled by spatial interpolation combined with production shares. For \textbf{out-of-home coefficients}, the same 12 ML models (LightGBM, XGBoost, CatBoost, Random Forest, Lasso, Ridge, MLP, TabNet, TabM, TabPFN, ResNet, FT-Transformer) are run; where a province has no micro-based prediction, \textbf{spatial interpolation} (inverse-distance weighting, IDW) is applied using predicted coefficients from other provinces and optionally production weights.
+
+\subsubsection{Post-processing and aggregation}
+\label{subsec:postprocess}
+
+Using predicted out-of-home coefficients, grain structure, per-capita at-home consumption (\texttt{data\_q.csv}), and population (\texttt{procince\_pop.csv}), \textbf{provincial} per-capita at-home and total (at-home plus out-of-home) consumption are computed by category; for grains, provincial at-home consumption is allocated by grain-type shares before applying the coefficient. \textbf{National} aggregates are obtained by population-weighted averages (e.g., national out-of-home coefficient and per-capita consumption). Outputs include \texttt{results\_province\_<model>.csv} and \texttt{results\_national\_<model>.csv}, and a \texttt{model\_comparison\_national.csv} for cross-model comparison.
+
+\subsubsection{Robustness and uncertainty}
+\label{subsec:robustness}
+
+\textbf{Robustness} is assessed by running the same models \textbf{without imputation} (only observations with non-missing ratios), producing \texttt{predictions\_<model>\_robust.csv} and corresponding provincial/national results, and comparing them to the main (imputation) pipeline. \textbf{Uncertainty} is quantified via \textbf{Bootstrap}: multiple runs with different random seeds yield a distribution of predictions, from which means and percentile intervals (e.g., 2.5\%--97.5\%) are computed (\texttt{predictions\_<model>\_bootstrap.csv}).
+
+\subsection{Justification of the Approach}
+\label{subsec:justification}
+
+Given the existing data, this strategy is \textbf{scientifically justified} and \textbf{not easily replaceable} for the following reasons.
+
+\begin{itemize}
+  \item \textbf{No alternative to bridging micro and macro.} Macro data do not contain out-of-home (or total) consumption; the only source of consumption structure is the micro survey. Therefore, any province--year or national estimate must use the micro data to learn the relationship between covariates and the at-home ratio, then apply it to macro cells. The chosen pipeline does exactly that: train on micro, predict on macro after aligning the feature space.
+
+  \item \textbf{Income-distribution matching is required by the feature set.} The model is trained with \texttt{indinc}; macro rows have only \texttt{income}. Without generating a consistent \texttt{indinc} for macro (via distribution matching), prediction is either undefined or relies on an incorrect substitution. The rank-preserving scaling procedure preserves distributional information from the micro data and scales to the macro mean, making the application of the micro-trained model to macro data coherent.
+
+  \item \textbf{Imputation and spatial interpolation are necessitated by coverage.} Missing ratios in the micro data and missing provinces in the prediction target cannot be ignored if the goal is full provincial and national coverage. Imputation (with a selected model and a no-imputation robustness check) and spatial interpolation (with production information where relevant) are therefore not optional but part of a minimal feasible design.
+
+  \item \textbf{Multiple ML models and checks support transparency.} Using 12 ML models allows comparison of performance and stability across categories; robustness (with/without imputation) and Bootstrap intervals make the dependence on imputation and the uncertainty of estimates explicit. This is appropriate for policy-oriented work targeting top agricultural economics journals.
+
+\end{itemize}
+
+In sum, the research design is determined by \textbf{data availability} and the \textbf{research question}: the combination of micro-based training, income-distribution matching, imputation, spatial interpolation, multi-model prediction, and robustness and uncertainty checks is the scientifically appropriate and effectively unique way to estimate China's out-of-home food consumption at national and provincial levels by category with the existing project data and documentation.
