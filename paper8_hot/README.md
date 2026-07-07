@@ -24,7 +24,9 @@
 | 02_weather_build.R | 80a | 1981–2010 常态、省×层级×日暴露、情景频数表 | lookups + interim |
 | 03_lookups.R | 80b | 封控窗口、品类→组×易腐性、营养系数/kg | `data/lookups/` |
 | 04_build_panel.R | 80b | 家庭×日网格（1747 万行）、交易聚合、单元×日×组 | `data/interim/` |
-| 05_main_bins.R | 81 | 主回归：出行/日支出/分组条件结果；**三重推断**（聚类 SE + WCB + 置换） | t1, t2 |
+| 05a_grid_regs.R | 81 | 户×日网格：出行 LPM + 日支出（内存精简版；户级 PPML 因内存放弃） | t1a |
+| 05b_group_regs.R | 81 | trip 日分组：buy LPM + 条件支出 PPML ×10 组 | t1b |
+| 05c_unit_inference.R | 81 | 单元级 ln 人均支出 + **三重推断**（聚类 SE + WCB×399 + 置换×499） | t2a, t2 |
 | 06_channel.R | 82 | 价格方程（旬窗温度）+ **价格/需求渠道分解**（弹性 NSD 修复） | t3, t4 |
 | 07_margins.R | 83 | **出行边际 vs 构成边际** + 老年/收入/层级异质性 | t5, t6 |
 | 08_adaptation.R | 84 | 常态交互（横截面适应）+ 年内驯化曲线 | t7 |
@@ -35,6 +37,10 @@
 | 13_figures.R | — | 图 1–5 | `outputs/figs/` |
 
 调试：`P8_DEBUG=TRUE Rscript code/04_build_panel.R` 抽 5% 家庭。R 库位于 `/root/Rlib_p8`（fixest 0.14.2，R 4.1.2）。
+
+一键驱动：`nohup bash code/run_pipeline.sh &`（本机与另一项目 bootstrap 共享内存，
+驱动器对 05a/07 等重内存步骤设 8GB 空闲门槛并自动重试；日志 `logs/pipeline.log`）。
+结果汇总见 `outputs/RESULTS.md`。
 
 ## 识别设计（摘要）
 

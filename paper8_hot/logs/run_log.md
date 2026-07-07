@@ -45,3 +45,43 @@
 16:05:23 07: margin decomposition written 
 16:08:56 07: heterogeneity elderly done 
 16:12:56 07: margin decomposition written 
+16:16:05 07: heterogeneity elderly done 
+16:17:50 07: heterogeneity inc_ter done 
+16:21:57 07: margin decomposition written 
+16:24:25 07: heterogeneity elderly done 
+16:26:37 07: heterogeneity inc_ter done 
+16:30:17 07: margin decomposition written 
+16:32:58 07: heterogeneity elderly done 
+16:35:08 07: heterogeneity inc_ter done 
+16:38:49 07: margin decomposition written 
+16:40:44 07: heterogeneity elderly done 
+16:42:16 07: heterogeneity inc_ter done 
+16:48:24 07: margin decomposition written 
+16:50:10 07: heterogeneity elderly done 
+16:51:38 07: heterogeneity inc_ter done 
+16:55:59 07: margin decomposition written 
+16:57:41 07: heterogeneity elderly done 
+16:59:08 07: heterogeneity inc_ter done 
+17:03:21 07: margin decomposition written 
+17:05:14 07: heterogeneity elderly done 
+17:06:48 07: heterogeneity inc_ter done 
+17:09:00 07: heterogeneity CityTier done 
+17:09:00 07: done 
+17:09:08 10: price match rate 0.997 
+17:09:58 10: unit-level nutrient responses done 
+17:10:11 10: RIF tau=0.25 done 
+17:10:18 10: RIF tau=0.5 done 
+17:10:24 10: RIF tau=0.75 done 
+17:10:24 10: done 
+17:10:25 11: projections done; national mean prot change (+3C, none): -0.309% per yr 
+17:12:26 11: projections done; national mean prot change (+3C, none): -0.309% per yr 
+17:14:27 11: projections done; national mean prot change (+3C, none): -0.309% per yr 
+17:16:29 12: robustness done 
+19:36:46 06: no observed price for G10_坚果; price channel set to 0 
+19:36:47 06: price equation done 
+19:36:48 06: elasticities repaired; own-price range -4.14 to -0.24 
+19:36:48 06: channel decomposition written 
+19:37:03 11: projections done; national mean prot change (+3C, none): -0.309% per yr 
+19:37:03 11: carbon feedback per hot day (g CO2e pc): 12.7 
+19:37:03 11: done 
+19:37:09 13: figures written 

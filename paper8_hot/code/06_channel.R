@@ -29,7 +29,10 @@ prq <- fread(file.path(P1, "processed/external_food_prices_category_province_mon
 fwrite(prq, file.path(DIR_INT, "price_cat_province_date.csv.gz"))
 
 gam <- list()
-for (g in G10) {
+g_obs <- intersect(G10, unique(prg$food_group10))  # G10_坚果 has no observed
+for (g in setdiff(G10, g_obs))                     # monitor price -> gamma = 0
+  logmsg("06: no observed price for ", g, "; price channel set to 0")
+for (g in g_obs) {
   mg <- feols(lnp ~ tbin10 | province^ym, data = prg[food_group10 == g],
               cluster = ~province, notes = FALSE)
   ct <- as.data.table(coeftable(mg), keep.rownames = "term")
