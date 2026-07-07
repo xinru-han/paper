@@ -34,6 +34,7 @@ tl_param_names <- function(K, fe_levels_share, fe_levels_cost) {
 # 返回 list(X, y, J, n_obs, pnames, eqnames)：堆叠系统 y = X theta
 tl_build_system <- function(dat, K, use_cost_eq = TRUE, share_time = "linear",
                             year_dummies = NULL) {
+  dat <- as.data.frame(dat)   # 防御：data.table 的 [ 语义不同
   n_obs <- nrow(dat)
   prov <- droplevels(factor(dat$prov))
   fe_lv <- levels(prov)[-1]                 # 第一个省为基准
