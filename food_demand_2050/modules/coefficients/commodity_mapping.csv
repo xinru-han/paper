@@ -1,31 +1,33 @@
 casm_code,casm_cn,casm_world_code,fao_item_faostat,poore_nemecek_category,mekonnen_hoekstra_category,notes
-RICE,稻谷,RIC,Rice (paddy) / Rice (milled),Rice,Rice,FAOSTAT EI item 'Rice'; Mekonnen&Hoekstra rice paddy
+RICE,稻谷,RIC,Rice (paddy) / Rice; milled,Rice,Rice,FAOSTAT Emissions-intensity item 'Rice'; M&H uses paddy rice; convert paddy->milled with ~0.67 milling ratio if needed
 WHEA,小麦,WHE,Wheat,Wheat & Rye (Bread),Wheat,
 MAIZ,玉米,CRN,Maize (corn),Maize (Meal),Maize,CASM-World CRN=corn
-POTA,马铃薯,,Potatoes,Potatoes,Potatoes,No CASM-World equivalent
-SOYS,大豆,SBS,Soya beans,Soybeans,Soybean,
-SOYO,大豆油,SBO,Soybean oil,Soybean Oil,Soybean (derived oil),Oil crop derived product
-SOYM,大豆粕,SBM,Soybean cake/meal,Soybean (meal),Soybean (derived meal),Oil crop derived product
-RAPS,油菜籽,RSD,Rape or colza seed,,Rapeseed,
-RAPO,菜籽油,RSO,Rapeseed oil,,Rapeseed (derived oil),
-RAPM,菜籽粕,RSM,Rapeseed cake/meal,,Rapeseed (derived meal),
-GRDS,花生,GNT,Groundnuts,Groundnuts,Groundnuts,
-GRDO,花生油,GNO,Groundnut oil,,Groundnut (derived oil),
-GRDM,花生粕,GNM,Groundnut cake/meal,,Groundnut (derived meal),
-COTT,棉花,COT,Seed cotton / Cotton lint,,Cotton (seed cotton),Non-food; water/N only
-SUGA,食糖,SUG,Sugar (raw centrifugal),Cane Sugar / Beet Sugar,,Aggregate refined sugar
-SUGC,甘蔗,,Sugar cane,Cane Sugar,Sugar cane,
-SUGB,甜菜,,Sugar beet,Beet Sugar,Sugar beet,
-FRTO,水果,,Fruit (aggregate),Other Fruit / Apples / Berries,Apple (or Fruit aggregate),Aggregate; use fruit average
-VEGT,蔬菜,,Vegetables (aggregate),Other Vegetables / Tomatoes,Vegetables (Tomato/Cabbage/Cucumber avg),Aggregate; use vegetable average
+POTA,马铃薯,,Potatoes,Potatoes,Potatoes,No direct CASM-World equivalent (falls in OCG/other)
+SOYS,大豆,SBS,Soya beans,Soybean (whole),Soybean,
+SOYO,大豆油,SBO,Soybean oil,Soybean Oil,Soybean; derived oil,Oil-crop derived product; allocate by value/mass
+SOYM,大豆粕,SBM,"Cake, soya beans",Soybean; derived meal,Soybean; derived meal,Oil-crop derived product
+RAPS,油菜籽,RBS,Rape or colza seed,Rapeseed / canola,Rapeseed,P&N reports rapeseed oil; seed via allocation
+RAPO,菜籽油,RBO,"Oil, rapeseed",Rapeseed oil,Rapeseed; derived oil,
+RAPM,菜籽粕,RBM,"Cake, rapeseed",Rapeseed; derived meal,Rapeseed; derived meal,
+GRDS,花生,NBS,Groundnuts; with shell,Groundnuts,Groundnuts,CASM-World N-prefix = nut/groundnut oilseed group
+GRDO,花生油,NBO,"Oil, groundnut",Groundnut oil,Groundnut; derived oil,
+GRDM,花生粕,NBM,"Cake, groundnuts",Groundnut; derived meal,Groundnut; derived meal,
+COTT,棉花,CTN,Seed cotton / Cotton lint,Not in P&N food set,Cotton (seed cotton),Non-food fibre; water/N footprints only; no food GHG in P&N
+SUGA,食糖,SUG,Sugar; raw centrifugal,Cane Sugar / Beet Sugar,Refined sugar (from cane/beet),Aggregate refined sugar
+SUGC,甘蔗,SCA,Sugar cane,Cane Sugar,Sugar cane,
+SUGB,甜菜,SBE,Sugar beet,Beet Sugar,Sugar beet,
+FRTO,水果,,Fruit; aggregate (Apples/Citrus/etc.),Apples / Berries / Other Fruit (avg),Apple (or fruit aggregate),Aggregate; use fruit average across P&N fruit rows
+VEGT,蔬菜,,Vegetables; aggregate,Other Vegetables / Tomatoes / Brassicas (avg),Vegetables (Tomato/Cabbage/Cucumber avg),Aggregate; use vegetable average
 PIGM,猪肉,PRK,Meat of pig / Pig meat,Pig Meat,Pig meat,
-CATM,牛肉,BFV,Meat of cattle / Bovine meat,Bovine Meat (beef herd),Beef cattle meat,BFV=beef+veal in CASM-World
-SHGM,羊肉,SGT,Meat of sheep and goat,Lamb & Mutton,Sheep/goat meat,
-CHKM,鸡肉,PLM,Meat of chickens / Poultry,Poultry Meat,Chicken meat,PLM=poultry meat in CASM-World
+CATM,牛肉,BFV,Meat of cattle / Bovine meat,Bovine Meat (beef herd),Beef cattle meat,CASM-World BFV=beef+veal
+SHGM,羊肉,SGT,Meat of sheep and goat,Lamb & Mutton,Sheep/goat meat,SGT if present in CASM-World set else folds to other-livestock
+CHKM,鸡肉,PLM,Meat of chickens / Poultry,Poultry Meat,Chicken meat,CASM-World PLM=poultry meat
 EGGS,鸡蛋,EGG,Hen eggs / Eggs,Eggs,Eggs,
-MILK,奶,MLK,Raw milk of cattle,Milk,Milk (bovine),
-FISH,水产品,FSH,Aquatic products (aquaculture),Farmed Fish / Crustaceans (farmed),NOT in Mekonnen&Hoekstra,FAOSTAT EI has no fish; use Poore&Nemecek farmed fish
-OTGR,其他粮食,OCR,Other cereals / Other grains,Other cereals,Barley/Sorghum/Millet,Aggregate other grains
-SORG,高粱,SRG,Sorghum,Maize (proxy),Sorghum,
-BARL,大麦,BAR,Barley,Wheat & Rye (proxy),Barley,
-VOIL,植物油,VGO,Vegetable oils (aggregate),Oils aggregate,Oil crops aggregate,CASM aggregate oil
+MILK,奶,MLK,Raw milk of cattle,Milk (bovine),Milk (bovine),
+FISH,水产品,FSH,Aquatic products (aquaculture),Farmed Fish / Crustaceans (farmed),NOT in Mekonnen&Hoekstra,FAOSTAT Emissions-intensity has no aquaculture; use Poore&Nemecek farmed fish/prawns
+OTGR,其他粮食,OCG,Other cereals / Other coarse grains,Other cereals (avg),Barley/Sorghum/Millet (avg),Aggregate other coarse grains
+SORG,高粱,,Sorghum,Maize as proxy,Sorghum,No dedicated CASM-World code; folds into OCG
+BARL,大麦,,Barley,Wheat & Rye as proxy,Barley,No dedicated CASM-World code; folds into OCG
+VOIL,植物油,,Vegetable oils; aggregate,Oils aggregate,Oil crops aggregate,CASM aggregate vegetable oil
+,,BUT,"Butter, cow milk",Butter (dairy),Butter,CASM-World-only dairy product; no separate CASM-China code
+,,CHE,Cheese (from whole cow milk),Cheese,Cheese,CASM-World-only dairy product; no separate CASM-China code
