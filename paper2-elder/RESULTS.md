@@ -1,5 +1,5 @@
 # Paper 2 (elder diet) — Results summary
-Auto-generated: 2026-07-07 14:32:12
+Auto-generated: 2026-07-07 15:02:48
 
 All tables in `outputs/tables/`, figures in `outputs/figures/`, reports in `outputs/reports/`.
 
@@ -54,6 +54,11 @@ All tables in `outputs/tables/`, figures in `outputs/figures/`, reports in `outp
 - Moderation solo/elder-only x policy intensity: 0.071 (p=0.335) — imprecise — descriptive context only
 - Validity: 100 keyword sentences exported for manual audit (target >=85% true elder-feeding policy content).
 - Red line respected: county-level context variable only.
+
+## Appendix: causal-forest heterogeneity
+- ATT (forest): 0.536 (se 0.135)
+- Calibration: mean prediction t=3.93, differential t=-1.46 (differential>2 => real heterogeneity)
+- Framing: conditional-association heterogeneity; feeds S2 targeting and leakage heterogeneity.
 
 ## Decision-node ledger
 | node | status | consequence |
