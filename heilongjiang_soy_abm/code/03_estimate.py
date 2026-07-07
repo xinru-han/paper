@@ -192,15 +192,28 @@ if len(cc) > 80 and cc["plant_soy"].nunique() > 1:
         R["r_complete"] = cfit(drop_novar(f1c, cc), cc, sm.families.Binomial())
     except Exception as e:
         print("complete-case失败:", e)
-# Firth 罚似然
+# Firth 罚似然（手写IRLS，Jeffreys先验）
+def firth_logit(X, y, maxit=200, tol=1e-9):
+    b = np.zeros(X.shape[1])
+    Iinv = None
+    for _ in range(maxit):
+        eta = np.clip(X @ b, -30, 30)
+        mu = 1 / (1 + np.exp(-eta))
+        W = mu * (1 - mu)
+        XW = X * W[:, None]
+        Iinv = np.linalg.pinv(X.T @ XW)
+        h = np.einsum("ij,jk,ik->i", XW, Iinv, X)
+        U = X.T @ (y - mu + h * (0.5 - mu))
+        db = Iinv @ U
+        b = b + db
+        if np.max(np.abs(db)) < tol:
+            break
+    return b, np.sqrt(np.diag(Iinv))
+
 try:
-    from firthlogist import FirthLogisticRegression
     yF, XF = patsy.dmatrices(f1, estL, return_type="dataframe")
-    XFm = XF.drop(columns="Intercept")
-    fl = FirthLogisticRegression(fit_intercept=True, max_iter=200)
-    fl.fit(XFm.values, yF.values.ravel())
-    firth = pd.DataFrame({"var": list(XFm.columns), "coef": fl.coef_,
-                          "ci_lo": fl.ci_[:, 0], "ci_hi": fl.ci_[:, 1]})
+    bF, seF = firth_logit(XF.values, yF.values.ravel())
+    firth = pd.DataFrame({"var": list(XF.columns), "coef": bF, "se": seF})
     firth.to_csv(f"{OUT}/tables/reg_firth.csv", index=False)
     FIRTH_B = float(firth.loc[firth["var"] == "dpi100_base", "coef"].iloc[0])
 except Exception as e:
