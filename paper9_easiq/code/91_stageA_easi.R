@@ -30,7 +30,8 @@ pan[is.na(fsize), fsize := median(pan$fsize, na.rm = TRUE)]
 
 ## ---- control function for ln x
 cf <- feols(ln_x ~ ln_inc + inv_inc + fsize | prov_tier^ym, data = pan)
-pan[, vhat := resid(cf)]
+pan[as.integer(obs(cf)), vhat := resid(cf)]
+pan[is.na(vhat), vhat := 0]
 fs_F <- tryCatch(fitstat(cf, "wald")$wald$stat, error = function(e) NA)
 logmsg("91: control-function first stage Wald = ", round(fs_F, 1),
        " (ln_inc t = ", round(tstat(cf)["ln_inc"], 1), ")")
