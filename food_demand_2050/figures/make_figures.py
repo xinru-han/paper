@@ -295,7 +295,8 @@ def fig3():
     h = 0.26
     for k, g in enumerate(["PTS", "MTS", "HDS"]):
         pct = (prf.loc[order, g] / prf.loc[order, "BS"] - 1) * 100
-        ax.barh(ypos + (1 - k) * h, pct.values, h * 0.9, color=CS[g], label=LONG[g])
+        ax.barh(ypos + (1 - k) * h, pct.values, h * 0.9, color=CS[g],
+                label=f"{g} ({dict(PTS='A1', MTS='C1', HDS='B1')[g]})")
     ax.axvline(0, color="0.2", lw=0.7)
     ax.set_yticks(ypos)
     ax.set_yticklabels([WC_EN[c] for c in order])
@@ -347,15 +348,19 @@ def fig3():
     x = np.arange(len(comms))
     w = 0.2
     for k, g in enumerate(["BS", "PTS", "MTS", "HDS"]):
-        v = (ni[(g, "IMP")] - ni[(g, "EXP")]).reindex(comms)
+        imp = ni[(g, "IMP")] if (g, "IMP") in ni else 0.0
+        exp = ni[(g, "EXP")] if (g, "EXP") in ni else 0.0
+        v = (pd.Series(imp, index=ni.index).fillna(0)
+             - pd.Series(exp, index=ni.index).fillna(0)).reindex(comms)
         ax.bar(x + (k - 1.5) * w, v.values, w * 0.9, color=CS[g], label=LONG[g])
     ax.axhline(0, color="0.2", lw=0.7)
     ax.set_xticks(x)
-    ax.set_xticklabels([WC_EN[c] for c in comms])
-    ax.set_ylabel("China net imports, 2050 (Mt)")
+    ax.set_xticklabels([WC_EN[c].replace("Whole milk powder", "Whole milk\npowder")
+                        for c in comms])
+    ax.set_ylabel("China net imports, 2050 (Mt)\n(negative = net exports)")
     ax.legend(frameon=False, ncol=2, loc="upper right", fontsize=6)
-    ax.annotate("China exits world pork-import market\n(net-export pressure under HDS)",
-                xy=(5.3, -25), fontsize=6, color="0.3")
+    ax.annotate("China exits the world pork-import market\n(net-export pressure under HDS)",
+                xy=(4.7, -50), fontsize=6, color="0.3")
     panel_label(ax, "c", dx=-0.055)
 
     fig.suptitle("Global transmission of China's dietary transition (CASM–World, 2050)",
@@ -367,8 +372,9 @@ def fig3():
 # Fig 4 — global net environmental effect + MTS dividend curve
 # =====================================================================
 def fig4():
-    fig = plt.figure(figsize=(7.2, 3.1))
-    gs = fig.add_gridspec(1, 5, width_ratios=[1, 1, 1, 1, 2.3], wspace=0.75)
+    fig = plt.figure(figsize=(7.5, 3.4))
+    gs = fig.add_gridspec(1, 5, width_ratios=[1, 1, 1, 1, 2.3], wspace=0.75,
+                          left=0.07, right=0.99, top=0.80, bottom=0.20)
 
     inds = [("co2_faostat", "Carbon", "Mt CO2e"),
             ("water_blue", "Blue water", "km$^3$"),
@@ -391,7 +397,7 @@ def fig4():
         ax.set_title(f"{lab}\n({unit})", fontsize=7)
         if j == 0:
             ax.set_ylabel("Change vs BS, 2050")
-            panel_label(ax, "a", dx=-0.45)
+            panel_label(ax, "a", dx=-0.62, dy=1.14)
     fig.legend(handles=[Patch(color="0.35", label="within China"),
                         Patch(color="0.35", alpha=0.45, label="outside China")],
                frameon=False, loc="lower center", ncol=2,
@@ -421,13 +427,13 @@ def fig4():
     ax.set_xlabel("Transition depth, PTS → HDS (%)")
     ax.set_ylabel("Share of HDS dividend realised (%)")
     ax.set_ylim(0, 102)
-    ax.legend(frameon=False, fontsize=5.6, loc="lower right", handlelength=1.4)
+    ax.legend(frameon=False, fontsize=5.4, loc="upper left", handlelength=1.2,
+              borderaxespad=0.1, labelspacing=0.35)
     ax.set_title("Half the transition, ~60–70% of the dividend", fontsize=7.5)
-    panel_label(ax, "b", dx=-0.18)
+    panel_label(ax, "b", dx=-0.14, dy=1.14)
 
     fig.suptitle("Global net environmental effect of China's dietary transition, 2050",
-                 x=0.02, ha="left", fontsize=9)
-    fig.tight_layout(rect=(0, 0.03, 1, 0.94))
+                 x=0.02, y=0.985, ha="left", fontsize=9)
     save(fig, "fig4_global_net_effect")
 
 

@@ -12,7 +12,11 @@ tr <- fread(file.path(RAW, "Data_merged.csv"),
             select = c("ID","Province","Family_Type","Family_Size","Family_Income","Date","Category","Spend"),
             encoding = "UTF-8", showProgress = FALSE)
 if (DEBUG) tr <- tr[ID %% 20L == 0L]
-tr[, date := fifelse(grepl("/", Date), as.IDate(Date, format = "%Y/%m/%d"), as.IDate(Date))]
+# two source formats: "2021/02/04" and timestamps "2021-07-03 01:55:20";
+# as.IDate locks the format of the first element, so parse each mask separately
+tr[, date := as.IDate(NA)]
+tr[grepl("/", Date), date := as.IDate(Date, format = "%Y/%m/%d")]
+tr[is.na(date), date := as.IDate(substr(Date, 1, 10), format = "%Y-%m-%d")]
 tr[, Date := NULL]
 stopifnot(tr[is.na(date), .N] == 0)
 tr <- tr[date >= as.IDate("2020-01-01") & date <= as.IDate("2022-12-31")]
