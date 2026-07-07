@@ -280,6 +280,99 @@ def parse_page(vol, page, crop, year, kind, expect_id):
     return out
 
 
+# ------------------------------------------------------------------ MD补录
+# 2005/2006卷 (数据年2004/2005) 的续表内容在 mineru md 中以"同一<table>内第二个
+# 表头行(项目|单位|省...)"形式存在, database构建时只用了首个表头 → 从md直接补。
+MD_DIR = os.path.join(DATA_ROOT, "mineru_ocr_output")
+MD_TABLES = [
+    # (md卷, crop, 数据年, kind, 标题正则)
+    ("2005", "soybean", 2004, 1, r"^2-9-1\s*2004年各地区大豆成本收益情况"),
+    ("2005", "soybean", 2004, 2, r"^2-9-2\s*2004年各地区大豆费用和用工情况"),
+    ("2005", "soybean", 2004, 3, r"^2-9-3\s*2004年各地区大豆化肥投入情况"),
+    ("2005", "peanut", 2004, 1, r"^2-10-1\s*2004年各地区花生成本收益情况"),
+    ("2005", "peanut", 2004, 2, r"^2-10-2\s*2004年各地区花生费用和用工情况"),
+    ("2005", "peanut", 2004, 3, r"^2-10-3\s*2004年各地区花生化肥投入情况"),
+    ("2006", "soybean", 2005, 1, r"^2-9-1\s*2005年各地区大豆成本收益情况"),
+    ("2006", "soybean", 2005, 2, r"^2-9-2\s*2005年各地区大豆费用和用工情况"),
+    ("2006", "soybean", 2005, 3, r"^2-9-3\s*2005年各地区大豆化肥投入情况"),
+    ("2006", "rice_early_indica", 2005, 1, r"^2-1-1\s*2005年各地区早籼稻成本收益情况"),
+    ("2006", "rice_early_indica", 2005, 2, r"^2-1-2\s*2005年各地区早籼稻费用和用工情况"),
+    ("2006", "rice_early_indica", 2005, 3, r"^2-1-3\s*2005年各地区早籼稻化肥投入情况"),
+    ("2006", "rice_late_indica", 2005, 1, r"^2-3-1\s*2005年各地区晚籼稻成本收益情况"),
+    ("2006", "rice_late_indica", 2005, 2, r"^2-3-2\s*2005年各地区晚籼稻费用和用工情况"),
+    ("2006", "rice_late_indica", 2005, 3, r"^2-3-3\s*2005年各地区晚籼稻化肥投入情况"),
+    ("2006", "rice_japonica", 2005, 2, r"^2-4-2\s*2005年各地区粳稻费用和用工情况"),
+    ("2006", "rice_japonica", 2005, 3, r"^2-4-3\s*2005年各地区粳稻化肥投入情况"),
+]
+HEADING_RE = re.compile(r"^\d-\d+-\d|^#")
+
+
+def parse_md_table(vol, crop, year, kind, title_re):
+    lines = open(os.path.join(MD_DIR, f"{vol}.md")).read().split("\n")
+    start = None
+    pat = re.compile(title_re)
+    for i, l in enumerate(lines):
+        if pat.match(l.strip()) and "……" not in l:
+            start = i
+            break
+    assert start is not None, f"md heading not found: {vol} {title_re}"
+    tables = []
+    for l in lines[start + 1:]:
+        s = l.strip()
+        if HEADING_RE.match(s):
+            break
+        if s.startswith("<table>"):
+            tables.append(s)
+    out = []
+    for html in tables:
+        provs, block = [], "per_mu"
+        for tr in re.findall(r"<tr>(.*?)</tr>", html):
+            cells = [norm_text(re.sub(r"<[^>]+>", "", c))
+                     for c in re.findall(r"<td[^>]*>(.*?)</td>", tr)]
+            if not cells or is_watermark("".join(cells)):
+                continue
+            if cells[0] == "项目":  # (内嵌)表头行 → 新省份块
+                provs = [(j, norm_province(c)) for j, c in enumerate(cells[2:], 2)
+                         if c and norm_province(c) in PROV_SET]
+                block = "per_mu"
+                continue
+            lab_raw = cells[0]
+            if not lab_raw:
+                continue
+            if kind == 1:
+                if lab_raw.startswith("每50公斤"):
+                    block = "per50"
+                    continue
+                if re.fullmatch(r"附[:：]?", lab_raw):
+                    block = "appendix"
+                    continue
+            lab = norm_label(lab_raw)
+            var = None
+            if kind == 1:
+                if block == "per_mu" and lab in K1_PER_MU:
+                    var = lab
+                elif block == "per50" and lab == "平均出售价格":
+                    var = lab
+                elif block == "appendix" and lab == "每亩用工数量":
+                    var = lab
+            elif kind == 2 and lab in K2_VARS:
+                var = lab
+            elif kind == 3 and lab == "每亩化肥折纯用量":
+                var = lab
+            if var is None:
+                continue
+            for j, prov in provs:
+                if j >= len(cells):
+                    continue
+                try:
+                    v = float(cells[j])
+                except ValueError:
+                    continue
+                out.append((crop, prov, year, var, v,
+                            f"md_patch:{vol}.md", kind, -1))
+    return out
+
+
 # ------------------------------------------------------------------ 人工转录
 # 2024卷 (数据年2023) 无文本层 → 从PDF页图像目视抄录 (Read工具)。
 # 格式: (crop, year, kind, page): {province: {variable: value}}
