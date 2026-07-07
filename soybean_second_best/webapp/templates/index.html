@@ -60,7 +60,7 @@ table.kv td{padding:3px 10px;border-bottom:1px solid #eee;}
     <div class="kpi"><div class="n">{{ derived.get('Lambda_food','—') }}</div><div class="l">大豆食品口径 Domar 权重</div></div>
     <div class="kpi"><div class="n">{{ '%.2f%%'|format(100*derived.get('dln_food_price_20pct_shock',0)) }}</div><div class="l">20%冲击的食品价格响应</div></div>
   </div>
-  <div class="card"><b>使用说明</b>：上方标签页为四个交互仿真模块。M1 求解社会规划者的最优国产规模；M2 优化进口来源组合并做中断情景蒙特卡洛；M3 用 2023 年投入产出表计算冲击沿产业链的价格传导；M5 运行万户农户 ABM 评估补贴/价格/质量/储备政策。全部参数可拖动调节后点击「运行」。</div>
+  <div class="card"><b>使用说明</b>：上方标签页为四个交互仿真模块。M1 求解社会规划者的最优国产规模；M2 优化进口来源组合并做中断情景蒙特卡洛；M3 用 2023 年投入产出表计算冲击沿产业链的价格传导；M5 运行合成代表性农户 ABM（区域参数来自分省成本收益面板 2006–2024, 非入户调查样本）评估补贴差/目标价格/质量/储备政策。全部参数可拖动调节后点击「运行」。</div>
   <div class="figs">
     {% for f in figs %}<div><img src="/figure/{{f}}" alt="{{f}}"><small class="note">{{f}}</small></div>{% endfor %}
   </div>
@@ -144,14 +144,14 @@ table.kv td{padding:3px 10px;border-bottom:1px solid #eee;}
       <label><input type="checkbox" id="targeted"> 定向补贴(按区域社会净收益, 预算540亿)</label>
       <label>统一面积补贴 (元/亩): <span class="val" id="v-sub_area">350</span></label>
       <input type="range" id="sub_area" min="0" max="800" step="25" value="350">
-      <label>价格保护价差 τ (元/吨): <span class="val" id="v-price_floor">0</span></label>
+      <label>目标价格差价补贴 τ (元/吨): <span class="val" id="v-price_floor">0</span></label>
       <input type="range" id="price_floor" min="0" max="1500" step="50" value="0">
       <label>质量传导 ϑ: <span class="val" id="v-theta">0.35</span></label>
       <input type="range" id="theta" min="0.10" max="0.90" step="0.01" value="0.35">
       <label>储备 X (万吨): <span class="val" id="v-m5X">1000</span></label>
       <input type="range" id="m5X" min="500" max="3000" step="100" value="1000">
       <button class="run" onclick="runM5()">运行 ABM (2026–2032)</button><span class="spin" id="s-m5">仿真中…约10秒</span>
-      <p><small class="note">3 种子 × 800 农户。完整实验(200种子×万户×P0–P6)见报告 T4。</small></p>
+      <p><small class="note">3 种子 × 800 农户。完整实验(200种子×1万合成农户×P0–P6)见报告 T4。</small></p>
     </div>
     <div>
       <div class="kpis" id="m5-kpis"></div>
