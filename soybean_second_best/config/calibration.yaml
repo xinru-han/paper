@@ -114,3 +114,4 @@ derived:
   cost_scale: 0.7889
   beta_security: 589.97
   Y_star: 2075.0
+  abm_smm_delta: -88.7

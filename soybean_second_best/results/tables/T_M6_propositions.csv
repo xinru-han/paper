@@ -1,7 +1,7 @@
 test,dY_low_w,dY_high_w,passed,q_low,q_high,elasticity,target,phi_med_in,phi_med_out,auc,boundary_err,leontief_flat,dCVaRdY_lowX,dCVaRdY_highX,welfare_per_fiscal_P1,welfare_per_fiscal_P2,dwl_sim,dwl_analytic
 T1,450.4,361.8,True,,,,,,,,,,,,,,,
-T2,,,True,0.275,0.707,0.837,0.833,,,,,,,,,,,
-T3,,,True,,,,,1.158,0.972,0.896,,,,,,,,
+T2,,,True,0.2771,0.7118,0.836,0.833,,,,,,,,,,,
+T3,,,True,,,,,1.165,0.966,0.886,,,,,,,,
 T4,,,True,,,,,,,,0.0,True,,,,,,
-T5,,,True,,,,,,,,,,-0.00901,-0.00012,,,,
-T6,,,True,,,,,,,,,,,,0.0365,0.0394,4.04,4.22
+T5,,,True,,,,,,,,,,-0.00858,-0.00011,,,,
+T6,,,False,,,,,,,,,,,,0.0458,0.043,4.02,4.13

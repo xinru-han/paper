@@ -94,12 +94,13 @@ def run(cfg=None, save=True):
         cfg_path = ROOT / "config/calibration.yaml"
         with open(cfg_path, encoding="utf-8") as f:
             full = yaml.safe_load(f)
-        full["derived"] = {
+        # 合并而非整体替换: 整体赋值曾抹掉其他模块写入的键(abm_smm_delta 等)
+        full.setdefault("derived", {}).update({
             "ell_qty": float(round(ell_qty, 8)), "ell_value": float(ell_value),
             "ell_grid": grid, "Lambda_soy": float(round(Lam_s, 6)),
             "Lambda_food": float(round(Lam_f, 6)),
             "dln_food_price_20pct_shock": float(round(dlnPC, 6)),
-            "note": "由 m3_network.py 自动写入; ell_qty 单位 亿元/万吨^2"}
+            "note": "由 m3_network.py 自动写入; ell_qty 单位 亿元/万吨^2"})
         # 先序列化成功再落盘（原子替换），避免写坏配置
         text = yaml.safe_dump(full, allow_unicode=True, sort_keys=False)
         tmp = cfg_path.with_suffix(".yaml.tmp")
