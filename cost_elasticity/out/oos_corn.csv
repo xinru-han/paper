@@ -1,0 +1,4 @@
+crop,model,rmse,n_test
+corn,translog,0.0388369047048429,60
+corn,cobb_douglas,0.0743571920258563,60
+corn,random_walk,0.0322468047744005,60

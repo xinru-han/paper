@@ -1,0 +1,2 @@
+crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,monotonicity_rate
+rice_japonica,plain,278,17,19,TRUE,5.59458729343376e-13,0.809352517985612,1

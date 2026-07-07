@@ -1,0 +1,4 @@
+crop,model,rmse,n_test
+rice_japonica,translog,0.0375065785037845,36
+rice_japonica,cobb_douglas,0.0650259515453676,36
+rice_japonica,random_walk,0.0262419612125046,36

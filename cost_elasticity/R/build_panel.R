@@ -13,6 +13,13 @@ CROPS <- c("corn", "wheat", "soybean",
 YEARS <- 2004:2024
 
 yb <- fread("data/yearbook_long.csv", encoding = "UTF-8")
+if (file.exists("out/base_conflicts.csv")) {
+  # 底库OCR污染修正：以PDF直读值覆盖（见 docs/patch_ocr_gaps_notes.md §4）
+  bc <- fread("out/base_conflicts.csv", encoding = "UTF-8")
+  key <- c("crop", "year", "province", "variable")
+  yb[bc, on = key, value := i.value_pdf]
+  cat(sprintf("[panel] base OCR conflicts corrected from PDF: %d\n", nrow(bc)))
+}
 if (file.exists("data/yearbook_patch_ocr_gaps.csv")) {
   patch <- fread("data/yearbook_patch_ocr_gaps.csv", encoding = "UTF-8")
   # 补录行只在原表没有该 (crop,year,province,variable) 时并入

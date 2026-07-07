@@ -1,0 +1,5 @@
+crop,test,LR,df,p
+rice_late_indica,homotheticity,16.4838030917854,4,0.00243415918397325
+rice_late_indica,hicks_neutral,78.2449402466773,4,4.099347825649e-16
+rice_late_indica,no_tech_change,168.507955596531,7,5.17946902952452e-33
+rice_late_indica,cobb_douglas,341.161620769122,10,2.9884647860733e-67

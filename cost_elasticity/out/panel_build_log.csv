@@ -2,37 +2,34 @@ crop,step,detail
 corn,fill_w_mach,national_median n=8
 corn,fill_p_pest,national_median n=9
 corn,fill_p_film,national_median n=9
-corn,w_other_weight,pesticide_weight=0.769
-corn,drop_obs,"14 obs: 贵州2004,吉林2005,安徽2005,山东2005,江苏2005,辽宁2005,黑龙江2005,安徽2019,山东2019,广西2019,江苏2019,河南2019"
+corn,w_other_weight,pesticide_weight=0.784
+corn,drop_obs,"7 obs: 贵州2004,吉林2005,安徽2005,山东2005,江苏2005,辽宁2005,黑龙江2005"
 wheat,fill_w_mach,national_median n=12
 wheat,fill_p_pest,national_median n=14
 wheat,fill_p_film,national_median n=14
 wheat,w_other_weight,pesticide_weight=0.950
-wheat,drop_obs,"34 obs: 贵州2004,青海2004,上海2005,宁夏2005,安徽2005,山东2005,新疆2005,江苏2005,河南2005,甘肃2005,陕西2005,青海2005"
+wheat,drop_obs,"29 obs: 贵州2004,青海2004,上海2005,宁夏2005,安徽2005,山东2005,新疆2005,江苏2005,河南2005,甘肃2005,陕西2005,青海2005"
 wheat,drop_unitvalue_outlier,"甘肃2023(wf=0.18,wl=97.0,ws=8.3)"
 soybean,fill_p_pest,national_median n=1
 soybean,fill_p_film,national_median n=1
 soybean,w_other_weight,pesticide_weight=0.950
-soybean,drop_obs,"8 obs: 重庆2007,重庆2008,重庆2009,重庆2011,重庆2012,重庆2013,重庆2015,重庆2016"
-rice_early_indica,fill_p_pest,national_median n=7
-rice_early_indica,fill_p_film,national_median n=7
-rice_early_indica,w_other_weight,pesticide_weight=0.886
-rice_early_indica,drop_obs,"5 obs: 广东2022,广西2022,海南2022,湖北2022,湖南2022"
-rice_mid_indica,w_other_weight,pesticide_weight=0.823
-rice_mid_indica,drop_obs,"11 obs: 江苏2004,江西2004,贵州2004,陕西2008,云南2023,四川2023,广西2023,湖南2023,贵州2023,重庆2023,陕西2023"
-rice_late_indica,fill_p_pest,national_median n=7
-rice_late_indica,fill_p_film,national_median n=7
+soybean,drop_obs,"10 obs: 重庆2004,重庆2005,重庆2007,重庆2008,重庆2009,重庆2011,重庆2012,重庆2013,重庆2015,重庆2016"
+rice_early_indica,fill_p_pest,national_median n=8
+rice_early_indica,fill_p_film,national_median n=8
+rice_early_indica,w_other_weight,pesticide_weight=0.913
+rice_mid_indica,w_other_weight,pesticide_weight=0.851
+rice_mid_indica,drop_obs,"4 obs: 江苏2004,江西2004,贵州2004,陕西2008"
+rice_late_indica,fill_p_pest,national_median n=8
+rice_late_indica,fill_p_film,national_median n=8
 rice_late_indica,w_other_weight,pesticide_weight=0.950
-rice_late_indica,drop_obs,"5 obs: 广东2022,广西2022,海南2022,湖北2022,湖南2022"
 rice_japonica,fill_w_mach,national_median n=8
 rice_japonica,fill_p_pest,national_median n=9
 rice_japonica,fill_p_film,national_median n=9
-rice_japonica,w_other_weight,pesticide_weight=0.855
-rice_japonica,drop_obs,"6 obs: 上海2005,吉林2005,安徽2005,江苏2005,浙江2005,黑龙江2005"
+rice_japonica,w_other_weight,pesticide_weight=0.873
 peanut,fill_p_pest,national_median n=3
 peanut,fill_p_film,national_median n=3
-peanut,w_other_weight,pesticide_weight=0.822
-peanut,drop_obs,"27 obs: 四川2005,福建2005,重庆2005,四川2006,广西2006,四川2007,重庆2007,重庆2008,四川2009,重庆2009,四川2010,重庆2010"
+peanut,w_other_weight,pesticide_weight=0.853
+peanut,drop_obs,"22 obs: 贵州2004,重庆2004,四川2005,福建2005,重庆2005,四川2006,广西2006,四川2007,重庆2007,重庆2008,四川2009,重庆2009"
 rapeseed,fill_w_mach,national_median n=4
 rapeseed,fill_p_pest,national_median n=6
 rapeseed,fill_p_film,national_median n=6
@@ -43,5 +40,5 @@ cotton,fill_w_mach,national_median n=7
 cotton,fill_p_pest,national_median n=7
 cotton,fill_p_film,national_median n=7
 cotton,w_other_weight,pesticide_weight=0.720
-cotton,drop_obs,"223 obs: 浙江2004,安徽2005,山东2005,新疆2005,江苏2005,江西2005,河北2005,河南2005,浙江2005,湖北2005,湖南2005,甘肃2005"
+cotton,drop_obs,"221 obs: 浙江2004,安徽2005,山东2005,新疆2005,江苏2005,江西2005,河北2005,河南2005,浙江2005,湖北2005,湖南2005,甘肃2005"
 cotton,drop_unitvalue_outlier,"安徽2009(wf=5.42,wl=24.8,ws=4501.0);江西2017(wf=5.63,wl=83.1,ws=882.8);湖北2019(wf=5.80,wl=86.4,ws=5725.0)"
