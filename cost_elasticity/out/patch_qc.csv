@@ -1,1 +1,16 @@
 crop,province,year,check,value,detail
+peanut,广东,2004,msf_sum,0.0502,分项和234.22 vs 246.59 (n=15)
+peanut,广西,2004,msf_sum,0.0501,分项和212.06 vs 223.25 (n=13)
+peanut,湖北,2004,msf_sum,0.1008,分项和190.46 vs 211.81 (n=12)
+peanut,重庆,2004,msf_sum,0.1298,分项和134.95 vs 155.08 (n=10)
+peanut,陕西,2004,msf_sum,0.0479,分项和281.26 vs 295.41 (n=13)
+soybean,云南,2004,msf_sum,0.0547,分项和119.97 vs 126.91 (n=15)
+soybean,安徽,2004,msf_sum,0.1524,分项和75.87 vs 89.51 (n=16)
+soybean,山东,2004,msf_sum,0.165,分项和87.05 vs 104.25 (n=14)
+soybean,山东,2005,msf_sum,0.032,分项和89.58 vs 92.54 (n=14)
+soybean,河南,2004,msf_sum,0.2529,分项和49.59 vs 66.38 (n=11)
+soybean,重庆,2004,msf_sum,0.2472,分项和65.43 vs 86.92 (n=10)
+soybean,陕西,2004,msf_sum,0.093,分项和87.42 vs 96.38 (n=13)
+peanut,海南,2004,growth_产值合计,0.604,2004=613.64 vs 2005=382.65
+soybean,湖北,2023,growth_产值合计,1.01,2023=1073.77 vs 2024=534.28
+peanut,湖北,2004,growth_产值合计,1.127,2004=874.63 vs 2005=411.16
