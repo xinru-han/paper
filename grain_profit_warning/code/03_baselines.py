@@ -52,27 +52,27 @@ def run_year(t, tri, tei):
     # ---- RF (对齐0429: n=100) ----
     Xtr_i = pd.DataFrame(imp.fit_transform(Xtr), columns=feats, index=tr.index)
     Xte_i = pd.DataFrame(imp.transform(Xte), columns=feats, index=te.index)
-    rf_r = RandomForestRegressor(n_estimators=300, random_state=42, n_jobs=8).fit(Xtr_i, ytr_r)
+    rf_r = RandomForestRegressor(n_estimators=300, random_state=42, n_jobs=4).fit(Xtr_i, ytr_r)
     res["RF"] = ("reg", rf_r.predict(Xte_i))
-    rf_c = RandomForestClassifier(n_estimators=300, random_state=42, n_jobs=8).fit(Xtr_i, ytr_c)
+    rf_c = RandomForestClassifier(n_estimators=300, random_state=42, n_jobs=4).fit(Xtr_i, ytr_c)
     res["RF"] = ("both", rf_r.predict(Xte_i), rf_c.predict_proba(Xte_i)[:, 1])
 
     # ---- XGBoost (原生缺失处理) ----
     xr = xgb.XGBRegressor(n_estimators=600, learning_rate=0.03, max_depth=4,
                           subsample=0.8, colsample_bytree=0.8, reg_lambda=1.0,
-                          random_state=42, n_jobs=8).fit(Xtr, ytr_r)
+                          random_state=42, n_jobs=4).fit(Xtr, ytr_r)
     xc = xgb.XGBClassifier(n_estimators=600, learning_rate=0.03, max_depth=4,
                            subsample=0.8, colsample_bytree=0.8, reg_lambda=1.0,
-                           random_state=42, n_jobs=8, eval_metric="logloss").fit(Xtr, ytr_c)
+                           random_state=42, n_jobs=4, eval_metric="logloss").fit(Xtr, ytr_c)
     res["XGB"] = ("both", xr.predict(Xte), xc.predict_proba(Xte)[:, 1])
 
     # ---- LightGBM ----
     lr = lgb.LGBMRegressor(n_estimators=800, learning_rate=0.03, num_leaves=15,
                            subsample=0.8, colsample_bytree=0.8, random_state=42,
-                           n_jobs=8, verbose=-1).fit(Xtr, ytr_r)
+                           n_jobs=4, verbose=-1).fit(Xtr, ytr_r)
     lc = lgb.LGBMClassifier(n_estimators=800, learning_rate=0.03, num_leaves=15,
                             subsample=0.8, colsample_bytree=0.8, random_state=42,
-                            n_jobs=8, verbose=-1).fit(Xtr, ytr_c)
+                            n_jobs=4, verbose=-1).fit(Xtr, ytr_c)
     res["LGBM"] = ("both", lr.predict(Xte), lc.predict_proba(Xte)[:, 1])
 
     for name, v in res.items():

@@ -4,7 +4,7 @@
 #       out/tests_{crop}.csv, out/bias_{crop}.csv, out/concavity_{crop}.csv, out/scale_tfp_{crop}.csv
 suppressMessages(library(data.table))
 setwd("/root/paper/cost_elasticity")
-source("R/itsur.R")
+source("R/itsur.R"); source("R/itsur_concave.R")
 
 FACTORS <- c("labor", "mach", "fert", "seed", "other")   # other = numeraire
 K <- 4; N <- 5
