@@ -1,0 +1,4 @@
+crop,model,rmse,n_test
+rapeseed,translog,0.0424672046934307,40
+rapeseed,cobb_douglas,0.0755363876176496,40
+rapeseed,random_walk,0.0391375091423734,40
