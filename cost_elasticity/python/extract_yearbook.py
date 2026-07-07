@@ -33,18 +33,19 @@ OUT_GAPS = os.path.join(PROJ, "out/coverage_gaps.md")
 OUT_QC = os.path.join(PROJ, "out/qc_violations.csv")
 
 # ---------------------------------------------------------------- crops
-# crop_en -> (中文名, section, table_no 2008-2025卷, table_no 2007卷)
+# crop_en -> (中文名, section)。表号不硬编码: 2007/2008卷大豆在2-9、花生2-10、油菜籽2-11,
+# 2009卷起为2-7/2-8/2-9 — 统一按 -1 表标题扫描解析 (resolve_table)。
 CROPS = {
-    "rice_early_indica": ("早籼稻", 2, 1, 1),
-    "rice_mid_indica":   ("中籼稻", 2, 2, 2),
-    "rice_late_indica":  ("晚籼稻", 2, 3, 3),
-    "rice_japonica":     ("粳稻",   2, 4, 4),
-    "wheat":             ("小麦",   2, 5, 5),
-    "corn":              ("玉米",   2, 6, 6),
-    "soybean":           ("大豆",   2, 7, 9),   # 2007卷大豆在2-9
-    "peanut":            ("花生",   2, 8, 10),  # 2007卷花生在2-10
-    "rapeseed":          ("油菜籽", 2, 9, 11),  # 2007卷油菜籽在2-11
-    "cotton":            ("棉花",   3, 1, 1),
+    "rice_early_indica": ("早籼稻", 2),
+    "rice_mid_indica":   ("中籼稻", 2),
+    "rice_late_indica":  ("晚籼稻", 2),
+    "rice_japonica":     ("粳稻",   2),
+    "wheat":             ("小麦",   2),
+    "corn":              ("玉米",   2),
+    "soybean":           ("大豆",   2),
+    "peanut":            ("花生",   2),
+    "rapeseed":          ("油菜籽", 2),
+    "cotton":            ("棉花",   3),
 }
 OCR_PRODUCT_MAP = {
     "玉米": "corn", "小麦": "wheat", "大豆": "soybean",
@@ -170,7 +171,8 @@ def find_files(vol, section, table, kind):
     """按卷年命名规律返回 (含续表的) 文件列表。"""
     root = os.path.join(DATA_ROOT, str(vol))
     if vol in (2007, 2008):
-        pats = [f"{section}-{table:02d}-{kind}*.xls"]
+        # 2007卷第3章不补零 (3-1-1.xls); 第2章补零 (2-06-1.xls)
+        pats = [f"{section}-{table:02d}-{kind}*.xls", f"{section}-{table}-{kind}.xls"]
     elif vol == 2009:
         pats = [f"{section}{table:02d}0{kind}*.xls"]
     elif vol in (2010, 2011, 2012, 2013, 2014):
@@ -258,12 +260,51 @@ def parse_sheet(df, kind):
     return out
 
 
+_TITLE_CACHE = {}
+
+
+def table_title(vol, section, table):
+    """(vol, section, table) 的 -1 主表标题 (规范化); 无文件返回 ''。"""
+    key = (vol, section, table)
+    if key not in _TITLE_CACHE:
+        title = ""
+        for f in find_files(vol, section, table, 1):
+            t = norm_text(read_xls(f).iloc[0, 0])
+            if "各地区" in t:  # 跳过续表 (标题无品种名)
+                title = t
+                break
+        _TITLE_CACHE[key] = title
+    return _TITLE_CACHE[key]
+
+
+def resolve_table(vol, crop):
+    """按 -1 表标题扫描该卷中品种的表号 (防各卷表号漂移, 如2007/08卷大豆在2-9)。"""
+    cn, section = CROPS[crop]
+    candidates = range(1, 4) if section == 3 else range(1, 13)
+    for t in candidates:
+        title = table_title(vol, section, t)
+        if cn in title and "成本收益" in title:
+            return t
+    return None
+
+
+def check_title(df, section, table, kind, cn, src):
+    """防御: 表号前缀必须匹配; 主表标题必须含品种名。"""
+    title = norm_text(df.iloc[0, 0])
+    assert title.startswith(f"{section}-{table}-{kind}"), f"table id mismatch: {title} @ {src}"
+    if "各地区" in title:
+        assert cn in title, f"crop mismatch: expect {cn}, got '{title}' @ {src}"
+
+
 def extract_xls():
     recs, nat = [], []
     for vol in XLS_VOLS:
         year = vol - 1
-        for crop, (cn, section, tbl, tbl07) in CROPS.items():
-            t = tbl07 if vol == 2007 else tbl
+        for crop, (cn, section) in CROPS.items():
+            t = resolve_table(vol, crop)
+            if t is None:
+                print(f"[warn] no table: vol={vol} {crop}", file=sys.stderr)
+                continue
             for kind in (1, 2, 3):
                 files = find_files(vol, section, t, kind)
                 if not files:
@@ -272,6 +313,7 @@ def extract_xls():
                 for f in files:
                     df = read_xls(f)
                     src = f"xls:{vol}/{os.path.basename(f)}"
+                    check_title(df, section, t, kind, cn, src)
                     for var, colname, val in parse_sheet(df, kind):
                         if colname == "平均":
                             nat.append((crop, "全国平均", year, var, val, src, kind))
@@ -457,6 +499,15 @@ def main():
             n = int(row.n_provinces.iloc[0]) if len(row) else 0
             provs = row.provinces.iloc[0] if len(row) else ""
             f.write(f"- **{crop} {yr}**: 实际 {n} 省（{provs}）。审计预期: {desc}\n")
+        # 有其他科目但整年缺"总成本"的 crop-year (如 棉花2023 OCR成本收益表未入库)
+        have_any = long_df.groupby(["crop", "year"]).size().index
+        have_tc = set(map(tuple, cov[["crop", "year"]].values))
+        missing_tc = [k for k in have_any if k not in have_tc]
+        if missing_tc:
+            f.write("\n## 新发现缺口: 有费用/化肥科目但整年缺`总成本`(-1表未入库)\n\n")
+            for crop, yr in missing_tc:
+                nv = long_df[(long_df.crop == crop) & (long_df.year == yr)].variable.nunique()
+                f.write(f"- {crop} {yr}: 无总成本, 其他科目 {nv} 个\n")
         f.write("\n## 其他低覆盖 (crop-year 省数 < 同crop中位数的60%)\n\n")
         for crop, g in cov.groupby("crop"):
             med = g.n_provinces.median()

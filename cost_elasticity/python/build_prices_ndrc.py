@@ -168,6 +168,7 @@ def read_D(main_dir):
     for c in ("county_raw", "品种", "规格", "单位", "point", "date"):
         df[c] = df[c].map(norm_txt)
     df["price"] = pd.to_numeric(df["price"], errors="coerce")
+    df = df[df["date"].str.fullmatch(r"\d{8}")]  # 去掉行数统计等脚注行
     df["prov"] = np.nan
     return df[["date", "prov", "county_raw", "point", "品种", "规格", "单位", "price"]], "D"
 
