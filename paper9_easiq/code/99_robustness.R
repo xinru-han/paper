@@ -58,10 +58,10 @@ for (RR in c(2L, 4L)) {
     py <- paste0("I(y^", 1:RR, ")", collapse = " + ")
     m <- feols(as.formula(paste0("r_prem ~ ", py, " + ", ZB, " | ID + prov_tier^ym")),
                data = qd[Category == cc], cluster = ~Province, notes = FALSE)
-    kap <- coef(m)[paste0("I(y^", 1:RR, ")")]
+    kv <- get_kap(m)
     data.table(category = cc, spec = paste0("R8_poly", RR),
-               theta = theta_at(kap, sa$ybar, R = RR),
-               se = theta_se(vcov(m)[paste0("I(y^", 1:RR, ")"), paste0("I(y^", 1:RR, ")")], sa$ybar, R = RR),
+               theta = theta_at(kv$kap, sa$ybar, R = RR),
+               se = theta_se(kv$V, sa$ybar, R = RR),
                n = nobs(m))
   }))
 }

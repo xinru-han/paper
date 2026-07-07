@@ -7,9 +7,9 @@ suppressPackageStartupMessages(library(ggplot2))
 
 qd <- readRDS(file.path(DIR_INT, "quality_panel.rds"))
 spA <- readRDS(file.path(DIR_INT, "stageA_panel.rds"))
-qd <- merge(qd, unique(spA[, .(ID, ym, ln_inc)]), by = c("ID","ym"))
-qd[, dec := cut(ln_inc, quantile(ln_inc, 0:5 / 5, na.rm = TRUE),
-                labels = paste0("Q", 1:5), include.lowest = TRUE)]
+# income has 5 discrete bands -> use them directly as the 5 groups
+qd[, dec := factor(paste0("Q", frank(ln_inc, ties.method = "dense")))]
+qd[is.na(ln_inc), dec := NA]
 pb <- fread(file.path(DIR_INT, "base_price_prov_month.csv.gz"), encoding = "UTF-8")
 
 ## decile x month x category paid price (median uv) and base price (national mean)

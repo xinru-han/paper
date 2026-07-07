@@ -28,10 +28,9 @@ qd[is.na(fsize), fsize := median(qd$fsize, na.rm = TRUE)]
 eta_dir <- rbindlist(lapply(PK13, function(cc) {
   m <- feols(as.formula(paste0("lnQ ~ ", POLY_Y(), " + ", ZB, " | ID + prov_tier^ym")),
              data = qd[Category == cc], cluster = ~ID + Province, notes = FALSE)
-  kap <- coef(m)[paste0("I(y^", 1:R_POLY, ")")]
-  V <- vcov(m)[paste0("I(y^", 1:R_POLY, ")"), paste0("I(y^", 1:R_POLY, ")")]
-  data.table(category = cc, eta_dir = theta_at(kap, sa$ybar),
-             eta_se = theta_se(V, sa$ybar), n = nobs(m))
+  kv <- get_kap(m)
+  data.table(category = cc, eta_dir = theta_at(kv$kap, sa$ybar),
+             eta_se = theta_se(kv$V, sa$ybar), n = nobs(m))
 }))
 
 ## ---- T4 two-margin table
@@ -100,7 +99,7 @@ qd[, inc_ter := cut(ln_inc2, quantile(ln_inc2, c(0, 1/3, 2/3, 1), na.rm = TRUE),
 het <- rbindlist(lapply(list(c("inc_ter","T1"), c("inc_ter","T2"), c("inc_ter","T3"),
                              c("elderly","1"), c("elderly","0")), function(sp) {
   dg <- qd[get(sp[1]) == sp[2]]
-  m <- feols(as.formula(paste0("r_prem ~ y + ", ZB, " | ID + prov_tier^ym")),
+  m <- feols(as.formula(paste0("r_prem ~ y + ", ZB, " | ID^Category + prov_tier^ym")),
              data = dg, cluster = ~ID, notes = FALSE)
   data.table(split = paste0(sp[1], "=", sp[2]), theta_lin = coef(m)["y"], se = se(m)["y"], n = nobs(m))
 }))

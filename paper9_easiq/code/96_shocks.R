@@ -22,17 +22,21 @@ ev <- ev[, .SD[1], by = ID]                       # first persistent jump per hh
 logmsg("96: persistent jumps — up ", ev[dir > 0, .N], ", down ", ev[dir < 0, .N])
 mnum <- function(s) as.integer(substr(s, 1, 4)) * 12L + as.integer(substr(s, 6, 7))
 qd[, mn := mnum(ym)]
-evq <- merge(qd, ev, by = "ID")
+## identification needs non-jumper controls: with jumpers only, rel is a
+## linear combination of household FE and calendar FE (one event per hh)
+evq <- merge(qd, ev, by = "ID", all.x = TRUE)
 evq[, rel := mn - mnum(ym_ev)]
-evq <- evq[rel %between% c(-6, 6)]
+evq[, relf := fifelse(is.na(rel) | abs(rel) > 6, "out", as.character(rel))]
+evq[, relf := factor(relf, levels = c("out", as.character(-6:6)))]
 es <- list()
 for (dd in c(1, -1)) for (out in c("r_dm","lnQ_dm")) {
-  m <- feols(as.formula(paste0(out, " ~ i(rel, ref = -1) + ", ZB, " | ID^Category + prov_tier^ym")),
-             data = evq[dir == dd], cluster = ~ID, notes = FALSE)
-  es[[paste(dd, out)]] <- grab(m, outcome = out, dir = fifelse(dd > 0, "up", "down"))[grepl("rel", term)]
+  m <- feols(as.formula(paste0(out, " ~ i(relf, ref = '-1') + ", ZB, " | ID^Category + prov_tier^ym")),
+             data = evq[is.na(dir) | dir == dd], cluster = ~ID, notes = FALSE)
+  es[[paste(dd, out)]] <- grab(m, outcome = out, dir = fifelse(dd > 0, "up", "down"))[grepl("relf", term)]
 }
 est <- rbindlist(es)
 fwrite(est, file.path(DIR_TAB, "t8a_pecking_order_es.csv"))
+est <- est[!grepl("::out", term)]
 est[, rel := as.integer(gsub(".*::(-?\\d+).*", "\\1", term))]
 ggsave(file.path(DIR_FIG, "fig6_pecking_order.png"), width = 9, height = 6, dpi = 150,
   plot = ggplot(est, aes(rel, est, color = outcome)) +

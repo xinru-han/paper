@@ -50,14 +50,13 @@ for (cc in PK13) {
   m <- feols(as.formula(paste0("r_prem ~ ", POLY_Y(), " + ", ZB, " + lam_sel | ID + prov_tier^ym")),
              data = dg, cluster = ~ID + Province, weights = ~ipw, notes = FALSE)
   fe_res[[cc]] <- grab(m, category = cc, model = "FE_theta")
-  kap <- coef(m)[paste0("I(y^", 1:R_POLY, ")")]
-  V <- vcov(m)[paste0("I(y^", 1:R_POLY, ")"), paste0("I(y^", 1:R_POLY, ")")]
+  kv <- get_kap(m)
   th_tab[[cc]] <- data.table(
     category = cc,
     eval_at = c("mean", paste0("p", c(10, 25, 50, 75, 90))),
     y0 = c(ybar, yq),
-    theta = sapply(c(ybar, yq), function(y0) theta_at(kap, y0)),
-    se = sapply(c(ybar, yq), function(y0) theta_se(V, y0)),
+    theta = sapply(c(ybar, yq), function(y0) theta_at(kv$kap, y0)),
+    se = sapply(c(ybar, yq), function(y0) theta_se(kv$V, y0)),
     n = nobs(m))
   logmsg("92: FE theta ", cc, " = ", round(th_tab[[cc]][1, theta], 4))
 }

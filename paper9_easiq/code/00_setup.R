@@ -30,8 +30,10 @@ COMP <- "G_fresh_composite"
 G14 <- c(PK13, COMP)
 ## categories with genuinely observed monitor prices (rest are proxy fills that
 ## just copy 常温牛奶's series -> unusable as own price; their market base price
-## is the province x month median unit value instead, see 90b)
-OBS7 <- c("大米","面粉","食用油","方便面","常温牛奶","新鲜牛奶","成人奶粉")
+## is the province x month median unit value instead, see 90b).
+## 新鲜牛奶's "observed" series is byte-identical to 常温牛奶's (verified) ->
+## treated as non-observed.
+OBS7 <- c("大米","面粉","食用油","方便面","常温牛奶","成人奶粉")
 DAIRY5 <- c("常温牛奶","新鲜牛奶","常温酸奶","新鲜酸奶","奶酪")
 
 R_POLY <- as.integer(Sys.getenv("P9_RPOLY", "3"))   # Engel polynomial order (R8 varies it)
@@ -72,3 +74,8 @@ theta_se <- function(V, y0, R = R_POLY) {
   sqrt(as.numeric(t(g) %*% V %*% g))
 }
 POLY_Y <- function(R = R_POLY) paste0("I(y^", seq_len(R), ")", collapse = " + ")
+## robust extraction of the y-polynomial coefs (fixest may report I(I(y^r)))
+get_kap <- function(m) {
+  bn <- sort(grep("y\\^", names(coef(m)), value = TRUE))
+  list(kap = unname(coef(m)[bn]), V = vcov(m)[bn, bn, drop = FALSE])
+}

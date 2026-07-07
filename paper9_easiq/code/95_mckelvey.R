@@ -21,7 +21,8 @@ ZB <- "fsize + elderly + lock_days + ln_covid + cny_share + hot_days"
 qd[is.na(fsize), fsize := median(qd$fsize, na.rm = TRUE)]
 
 ## (a) Deaton-style: ln uv (NOT premium) with cluster FE only; theta = dlnuv/dy
-specs <- list(fine = "ID + prov_tier^ym", quarter = "ID + Province^qtr", province = "ID + Province")
+specs <- list(fine = "ID + prov_tier^ym", quarter = "ID + Province^qtr", province = "ID + Province",
+              xsec_fine = "prov_tier^ym", xsec_province = "Province")  # Deaton's actual cross-sectional setting
 dt7 <- rbindlist(lapply(names(specs), function(sn) rbindlist(lapply(PK13, function(cc) {
   m <- feols(as.formula(paste0("ln_uv ~ y + ", ZB, " | ", specs[[sn]])),
              data = qd[Category == cc], cluster = ~Province, notes = FALSE)

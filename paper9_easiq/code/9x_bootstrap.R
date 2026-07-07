@@ -10,8 +10,8 @@ source("/root/data/Paper/央视数据/paper9-easiq/code/00_setup.R")
 B <- as.integer(Sys.getenv("P9_BOOT_B", "200"))
 qd <- readRDS(file.path(DIR_INT, "quality_panel.rds"))
 spA <- readRDS(file.path(DIR_INT, "stageA_panel.rds"))
-qd <- merge(qd, spA[, c("ID","ym","ln_x","vhat", paste0("w_", 1:14), paste0("lnp_", 1:14)),
-                    with = FALSE], by = c("ID","ym"))
+qd <- merge(qd, spA[, c("ID","ym", paste0("w_", 1:14), paste0("lnp_", 1:14)),
+                    with = FALSE], by = c("ID","ym"))   # qd already has ln_x
 qd[is.na(fsize), fsize := median(qd$fsize, na.rm = TRUE)]
 ZB <- "fsize + elderly + lock_days + ln_covid + cny_share + hot_days"
 ids <- unique(qd$ID)
