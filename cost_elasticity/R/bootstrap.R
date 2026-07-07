@@ -1,5 +1,5 @@
 # bootstrap.R — 省份 block bootstrap（整省重抽，plan §3.3）
-# 用法: Rscript R/bootstrap.R <crop> <B> <method: plain|c1>
+# 用法: Rscript R/bootstrap.R <crop> <B> <method: plain|cc>
 # 产出: out/bootstrap_draws_{crop}[_c1].csv（每draw的弹性/偏向统计量）、draw级诊断
 suppressMessages(library(data.table))
 setwd("/root/paper/cost_elasticity")
@@ -9,6 +9,7 @@ args <- commandArgs(trailingOnly = TRUE)
 cr <- ifelse(length(args) >= 1, args[1], "corn")
 B <- ifelse(length(args) >= 2, as.integer(args[2]), 200)
 method <- ifelse(length(args) >= 3, args[3], "plain")
+stopifnot(method %in% c("plain", "cc"))   # 传错值（如"c1"）会静默跑plain并覆盖文件
 set.seed(20260703)
 
 pan <- fread(sprintf("data/panel_%s.csv", cr))

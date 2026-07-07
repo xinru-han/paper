@@ -69,6 +69,10 @@ fit_crop <- function(cr, write_out = TRUE, method = "plain", kappa = 1e6) {
   Shat <- tl_fitted_shares(fit, sys, K)
   mono_ok <- rowSums(Shat > 0) == N
   conc_ok <- vapply(seq_len(nrow(Shat)), function(i) tl_concavity(rec$Gamma, Shat[i, ]), logical(1))
+  # 观测份额处的凹性（cc的惩罚施加点；与拟合份额处的满足率并报，F-5.1）
+  Sobs_all <- as.matrix(as.data.frame(d)[, sprintf("S_%d", 1:K)])
+  Sobs_all <- cbind(Sobs_all, 1 - rowSums(Sobs_all))
+  conc_obs <- vapply(seq_len(nrow(Sobs_all)), function(i) tl_concavity(rec$Gamma, Sobs_all[i, ]), logical(1))
 
   # 弹性：分时期在时期均值拟合份额处评估 + 全样本
   eval_points <- c(list(all = seq_len(nrow(d))),
@@ -136,7 +140,8 @@ fit_crop <- function(cr, write_out = TRUE, method = "plain", kappa = 1e6) {
     fwrite(scale_dt, sprintf("out/scale_tfp_%s.csv", suf))
     fwrite(data.table(crop = cr, method = method, n_obs = nrow(d), n_prov = uniqueN(d$prov),
                       iter = fit$iter, converged = fit$converged, inv_err = inv_err,
-                      concavity_rate = mean(conc_ok), monotonicity_rate = mean(mono_ok)),
+                      concavity_rate = mean(conc_ok), concavity_rate_obsS = mean(conc_obs),
+                      monotonicity_rate = mean(mono_ok)),
            sprintf("out/concavity_%s.csv", suf))
   }
   res

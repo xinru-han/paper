@@ -12,7 +12,7 @@ SEGS <- list(`2004-2024` = c(2004, 2024), `2004-2013` = c(2004, 2013),
 
 decomp_crop <- function(cr) {
   pan <- fread(sprintf("data/panel_%s.csv", cr))
-  r <- fit_crop(cr, write_out = FALSE)
+  r <- fit_crop(cr, write_out = FALSE, method = "cc")   # 与基线规格一致（F-7）
   th <- r$fit$theta
   d <- r$d
   rows <- list()
@@ -61,8 +61,8 @@ oos_crop <- function(cr) {
   te <- te[province %in% unique(tr$province)]
   d_tr <- prep_data(tr)
   sys_tr <- tl_build_system(d_tr, 4)
-  fit_tl <- tl_itsur(sys_tr)
-  fit_cd <- tl_itsur(sys_tr, drop_params = "^gamma_[1-4]_[1-4]$")
+  fit_tl <- tl_itsur(sys_tr); stopifnot(fit_tl$converged)
+  fit_cd <- tl_itsur(sys_tr, drop_params = "^gamma_[1-4]_[1-4]$"); stopifnot(fit_cd$converged)
   centers <- attr(d_tr, "centers")
   # 用训练期中心化参数构造测试期回归元
   d_te <- as.data.table(te)
