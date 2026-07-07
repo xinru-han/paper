@@ -80,7 +80,11 @@ if (!is.null(t12)) {
             fnum(tg$dHDDS), fnum(tg$passthrough_component), fnum(tg$total_elder_effect)),
     sprintf("- **Leakage rate: %s%%** of the provisioning gain does not appear in the elder's own 48h intake (95%% block-bootstrap CI %s-%s%%).",
             fnum(100*tg$leakage_rate, 0), fnum(100*tg$leak_lo, 0), fnum(100*tg$leak_hi, 0)),
-    "- Heterogeneity in `table13_leakage_heterogeneity.csv` (elder-cook vs not; income halves).", "")
+    {h <- rd("table13_leakage_heterogeneity.csv");
+     if (!is.null(h) && nrow(h)) sprintf("- Heterogeneity (policy lever): leakage is **%s%%** when the elder is the household cook vs **%s%%** when not; %s%% (low income) vs %s%% (high income). Keeping elders in the provisioning role is a low-cost intervention point.",
+        fnum(100*h[group=="elder_cook", leakage_rate],0), fnum(100*h[group=="elder_notcook", leakage_rate],0),
+        fnum(100*h[group=="low_income", leakage_rate],0), fnum(100*h[group=="high_income", leakage_rate],0))
+     else "- Heterogeneity in `table13_leakage_heterogeneity.csv`."}, "")
 }
 
 # ---- mechanisms ----
