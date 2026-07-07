@@ -44,56 +44,85 @@ def cluster_ols(formula, data):
     return smf.ols(formula, data=data).fit(cov_type="cluster",
                                            cov_kwds={"groups": data["village"]})
 
-def wild_p(formula, data, param, B=4999):
-    """Rademacher wild cluster bootstrap-t（施加原假设 β=0）。"""
+def _crv1_t(yv, Xv, cl_codes, n_cl, j):
+    """快速 OLS + CRV1 聚类 t 值（numpy级）。"""
+    XtX_inv = np.linalg.pinv(Xv.T @ Xv)
+    beta = XtX_inv @ (Xv.T @ yv)
+    u = yv - Xv @ beta
+    Xu = Xv * u[:, None]
+    S = np.zeros((Xv.shape[1], Xv.shape[1]))
+    for g in range(n_cl):
+        m = cl_codes == g
+        sg = Xu[m].sum(axis=0)
+        S += np.outer(sg, sg)
+    n, k = Xv.shape
+    adj = (n_cl / (n_cl - 1)) * ((n - 1) / (n - k))
+    V = adj * XtX_inv @ S @ XtX_inv
+    return beta[j], beta[j] / np.sqrt(V[j, j])
+
+def wild_p(formula, data, param, B=999):
+    """Rademacher wild cluster bootstrap-t（施加原假设 β=0，矩阵级）。"""
     import patsy
     y, X = patsy.dmatrices(formula, data, return_type="dataframe")
     yv, Xv = y.values.ravel(), X.values
+    j = list(X.columns).index(param)
+    cl = pd.factorize(data["village"])[0]
+    n_cl = cl.max() + 1
+    _, t_obs = _crv1_t(yv, Xv, cl, n_cl, j)
+    Xr = np.delete(Xv, j, axis=1)
+    br = np.linalg.pinv(Xr.T @ Xr) @ (Xr.T @ yv)
+    yhat0 = Xr @ br
+    u0 = yv - yhat0
+    ts = np.empty(B)
+    for b in range(B):
+        w = rng.choice([-1.0, 1.0], size=n_cl)[cl]
+        _, ts[b] = _crv1_t(yhat0 + u0 * w, Xv, cl, n_cl, j)
+    return float((np.abs(ts) >= abs(t_obs)).mean())
+
+def perm_p(formula, data, param, suit_col, B=499):
+    """置换推断（矩阵级）：重排 Suit 后仅重算含 S 的交互列。"""
+    import patsy
+    y, X = patsy.dmatrices(formula, data, return_type="dataframe")
+    yv, Xv = y.values.ravel(), X.values.copy()
     cols = list(X.columns)
     j = cols.index(param)
-    cl = data["village"].values
-    full = sm.OLS(yv, Xv).fit(cov_type="cluster", cov_kwds={"groups": cl})
-    t_obs = full.tvalues[j]
-    Xr = np.delete(Xv, j, axis=1)
-    r0 = sm.OLS(yv, Xr).fit()
-    yhat0, u0 = r0.fittedvalues, r0.resid
-    clus = np.unique(cl)
-    tstats = np.empty(B)
-    for b in range(B):
-        w = rng.choice([-1.0, 1.0], size=len(clus))
-        wmap = dict(zip(clus, w))
-        ystar = yhat0 + u0 * np.vectorize(wmap.get)(cl)
-        rb = sm.OLS(ystar, Xv).fit(cov_type="cluster", cov_kwds={"groups": cl})
-        tstats[b] = rb.tvalues[j]
-    return float((np.abs(tstats) >= abs(t_obs)).mean())
-
-def perm_p(formula, data, param, suit_col, B=999):
-    """置换推断：村内(户级Suit)或县内(村级Suit)重排 Suit。"""
-    import patsy
-    obs = cluster_ols(formula, data).params[param]
-    lvl = "village" if data.groupby("village")[suit_col].nunique().max() > 1 else "county_name"
-    base = data[[suit_col, lvl]].copy()
-    stats = []
-    for b in range(B):
-        d2 = data.copy()
-        if lvl == "village":
-            d2[suit_col] = d2.groupby("village")[suit_col].transform(
-                lambda s: s.sample(frac=1, random_state=int(rng.integers(1e9))).values)
+    cl = pd.factorize(data["village"])[0]
+    n_cl = cl.max() + 1
+    b_obs, _ = _crv1_t(yv, Xv, cl, n_cl, j)
+    # 含 S 的列及其年份指示
+    s_cols = [i for i, c in enumerate(cols) if c.startswith("S:") or c == "S"]
+    yr_ind = {}
+    yrs = data["year"].values
+    for i in s_cols:
+        c = cols[i]
+        if "[" in c:
+            tau = int(c.split("[")[-1].rstrip("]").replace("T.", ""))
+            yr_ind[i] = (yrs == tau).astype(float)
         else:
-            # 村级变量：县内置换村的取值
-            vmap = data.groupby("village")[suit_col].first().reset_index()
-            vmap = vmap.merge(data.groupby("village")["county_name"].first().reset_index(), on="village")
-            vmap["perm"] = vmap.groupby("county_name")[suit_col].transform(
-                lambda s: s.sample(frac=1, random_state=int(rng.integers(1e9))).values)
-            d2 = d2.drop(columns=[suit_col]).merge(vmap[["village", "perm"]], on="village")\
-                   .rename(columns={"perm": suit_col})
-        # 重建交互列由公式自动完成
-        try:
-            stats.append(cluster_ols(formula, d2).params[param])
-        except Exception:
-            continue
-    stats = np.array(stats)
-    return float((np.abs(stats) >= abs(obs)).mean())
+            yr_ind[i] = np.ones(len(yrs))
+    S0 = data["S"].values
+    vill = data["village"].values
+    vs = data.groupby("village")["S"].first()
+    v_level = data.groupby("village")["S"].nunique().max() == 1
+    v_cty = data.groupby("village")["county_name"].first()
+    stats = np.empty(B)
+    for b in range(B):
+        if v_level:
+            perm = vs.copy()
+            for cty in v_cty.unique():
+                idx = v_cty[v_cty == cty].index
+                perm.loc[idx] = rng.permutation(vs.loc[idx].values)
+            Sp = perm.reindex(vill).values
+        else:
+            Sp = S0.copy()
+            for v in np.unique(vill):
+                m = vill == v
+                Sp[m] = rng.permutation(Sp[m])
+        Xb = Xv.copy()
+        for i in s_cols:
+            Xb[:, i] = Sp * yr_ind[i]
+        stats[b], _ = _crv1_t(yv, Xb, cl, n_cl, j)
+    return float((np.abs(stats) >= abs(b_obs)).mean())
 
 results, fig_rows = [], []
 for suit, lab in [("suit_vill_z", "村2021大豆份额"), ("suit_hhy_z", "户基期相对单产"),

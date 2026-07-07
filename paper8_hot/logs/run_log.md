@@ -25,3 +25,4 @@
 13:56:53 02: normals built (370 cities) 
 13:56:56 02: exposure series 87312 rows, 24 provinces, 0 missing tavg 
 13:57:26 02: scenario inputs written 
+14:08:03 05b: 2899390 trip days 

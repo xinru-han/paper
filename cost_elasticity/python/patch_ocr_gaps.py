@@ -639,14 +639,15 @@ def main():
     dropped = len(df) - sum(mask)
     df = df[mask].copy()
     df["unit"] = df["variable"].map(UNIT_MAP)
-    out = df[["crop", "province", "year", "variable", "unit", "value", "source"]]
+    qc_patch = df[["crop", "province", "year", "variable", "unit", "value", "source"]]
+    out = qc_patch[qc_patch.variable != "税金"]  # 税金仅供2004/05年QC恒等式
     out = out.sort_values(["crop", "year", "province", "variable"])
     out.to_csv(OUT_PATCH, index=False)
     print(f"\n补录 {len(out)} 行 → {OUT_PATCH} (与库重复剔除 {dropped} 行)")
     cov = out[out.variable == "总成本"].groupby(["crop", "year"])["province"].nunique()
     print("新增(总成本)省数:\n", cov.to_string())
 
-    qc = run_qc(base, out)
+    qc = run_qc(base, qc_patch)
     qc.to_csv(OUT_QC, index=False)
     npk = out[["crop", "province", "year"]].drop_duplicates().shape[0]
     print(f"\nQC: 补录 crop×省×年 组合 {npk} 个, 违规/标记 {len(qc)} 条 → {OUT_QC}")
