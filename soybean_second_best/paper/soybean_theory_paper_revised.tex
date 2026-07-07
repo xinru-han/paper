@@ -1,0 +1,815 @@
+% !TEX program = xelatex
+% 编译顺序：xelatex -> biber -> xelatex -> xelatex
+\documentclass[UTF8,zihao=-4,fontset=fandol]{ctexart}
+
+\usepackage[a4paper,margin=2.55cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,threeparttable,tabularx,array,multirow}
+\usepackage{graphicx,float,caption,subcaption}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=apa,sortcites=true,uniquename=false,giveninits=true]{biblatex}
+\DeclareLanguageMapping{english}{english-apa}
+\addbibresource{soybean_theory_paper.bib}
+\addbibresource{soybean_theory_supplement.bib}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\linespread{1.35}
+\allowdisplaybreaks
+\numberwithin{equation}{section}
+
+\newtheorem{proposition}{命题}
+\newtheorem{lemma}[proposition]{引理}
+\newtheorem{corollary}[proposition]{推论}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{定义}
+\theoremstyle{remark}
+\newtheorem{remark}[proposition]{注释}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\argmax}{\operatorname*{arg\,max}}
+\newcommand{\argmin}{\operatorname*{arg\,min}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ind}{\mathbbm{1}}
+
+\title{资源禀赋约束下中国大豆全产业链发展的第二优均衡\\
+\large 比较劣势、质量升级与供应链韧性的统一理论}
+\author{\quad}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+大豆兼具食用油、饲料蛋白和食品加工原料属性，是连接种植业、压榨业、饲料业、畜牧业和居民食物消费的关键中间品。与土地资源较为丰裕的主要出口国相比，中国在同质化大宗大豆生产上面临较高的土地机会成本、经营分散成本和边际扩张成本，因而存在显著的静态比较劣势。由此产生一个基础性问题：在国产大豆成本高于进口大豆到岸成本的条件下，中国为何仍需要发展国产大豆产业，以及产业政策应如何避免演变为低效率保护？本文构建一个资源禀赋约束下的多区域大豆全产业链理论模型，将比较优势、供应链韧性、质量升级、异质性主体、纵向协调和生产网络理论统一于同一分析框架。模型表明：第一，国产大豆的最优规模由进口价格、进口中断风险、国内基础产能的安全收益、质量差异化收益和产业链配套能力共同决定，完全进口与完全替代通常均非社会最优；第二，进口来源多元化、国内基础产能和战略储备之间存在组合互补关系，政策目标应从单纯降低进口比重转向降低供给组合的风险调整成本；第三，高蛋白、非转基因、豆制品专用和可追溯等质量属性只有在检测、分级、专用收储、订单和品牌机制共同作用下，才能转化为对生产端有效的质量溢价；第四，具有较高土地生产率、组织化程度和加工衔接能力的地区和经营主体应成为国产大豆扩能与提质的主要承载者，普惠式面积补贴一般不是成本最小化政策；第五，当加工、仓储、检测和消费承接成为短板时，单独扩种或单独扩加工均可能无效。进一步地，本文证明了完全依赖进口、全面国产替代、平均化面积补贴、只补生产端以及长期价格保护在一般条件下均可被更精准的政策组合严格支配。本文进一步以分省成本收益面板（2006--2024）、2023年投入产出表与合成代表性农户模型对理论进行校准与仿真：模型以0.7\%以内的偏差复现观测产量与区域面积份额，六项理论命题全部通过结构检验；政策矩阵仿真表明，定向补贴与质量链条政策包严格支配统一面积补贴与目标价格保护，且即便完全取消大豆补贴，食用需求的内生溢价也将国产产量托底于约1600万吨——2015年的历史低点是负补贴差与玉米临时收储叠加的产物，而非“无补贴即归零”的证据。本文据此提出“适度国产基础产能—高质量专用供给—关键节点补链—进口多元化—替代蛋白—精准公共支持”的第二优发展路径。
+\end{abstract}
+
+\noindent\textbf{关键词：}大豆；比较优势；供应链韧性；质量升级；全产业链；第二优政策\\
+\textbf{JEL分类号：}F12；F14；L14；Q17；Q18
+
+\section{引言}
+
+大豆是中国供需缺口最大、对外依存度最高的大宗农产品。2024年国内大豆产量约2065万吨，进口量达10503万吨，全年消费总量超过1.1亿吨，自给率不足两成；进口来源高度集中，巴西、美国两国合计占进口总量的九成以上，其中仅巴西一国即约占七成。与此同时，大豆居于食物系统的中枢位置：其一端经压榨转化为食用植物油，另一端以豆粕形式进入饲料配方，支撑生猪、家禽和反刍动物养殖，进而影响肉蛋奶供给与价格稳定。正因如此，大豆始终处于粮食安全议程的核心。近年来，随着大豆振兴计划、大豆玉米带状复合种植、生产者补贴和政策性收储等政策组合的实施，国产大豆产量连续多年稳定在2000万吨以上；但产销衔接不畅、政策性库存压力累积、国产大豆与进口大豆价差持续存在、种植环节净收益偏低乃至为负等矛盾也随之显现 \parencite{CAASSoy2026}。规模扩张的成绩与效率损失的代价同时出现，说明问题的关键不在于"要不要发展国产大豆"，而在于按照何种经济逻辑发展。
+
+这构成一个典型的资源禀赋约束下的两难。一方面，大豆是土地密集型作物，中国大豆单产尚不足世界主产国的六成；按现有单产测算，全面替代逾亿吨的进口需要新增七亿亩以上的大豆播种面积，超过全国耕地总量的三分之一，在耕地保护红线和口粮优先的刚性约束下不具备可行性。跨国比较研究也表明，农业比较优势深植于土地、气候与生产率的空间分布，是缓慢演化的结构性变量，难以在短期内经由政策意志改变 \parencite{CostinotDonaldsonSmith2016}。另一方面，完全依赖进口意味着将一个覆盖油脂、饲料和畜牧业的庞大产业体系的供给安全，托付给高度集中的境外来源。生产网络理论表明，关键中间品部门的局部冲击会沿投入产出联系放大为系统性波动 \parencite{AcemogluEtAl2012}，且投入品越专用、短期替代弹性越低，冲击向下游的传导越强 \parencite{BarrotSauvagnat2016}。市场价格反映的是私人边际成本与私人收益，并不自动计价这类系统性风险，因此"进口到岸价低于国产成本"这一事实本身，并不能回答国产大豆应当保持多大规模。真正需要回答的是：在静态成本处于劣势的条件下，国产大豆应承担何种经济功能？其社会最优规模由哪些参数决定？应由哪些地区和主体承载？政府应使用何种工具予以支持，又如何防止支持异化为对低效率生产的长期保护？
+
+围绕这些问题，政策实践长期在"提高自给率"与"控制效率损失"之间往复权衡。支持扩张的一方强调断供风险与战略安全；持保留态度的一方则指出，价格支持和普惠式补贴会推高下游饲料与养殖成本、加重财政负担，而且高成本产业一旦获得保护，往往形成维持保护的组织化政治激励 \parencite{GrossmanHelpman1994}。供应链经济学的最新进展提示，这一争论的框架本身可能有误：在存在供应中断风险时，最优政策既非单纯"回流"（扩大本土生产），也非单纯离岸采购，而是在采购成本、来源间风险相关性与中断损失之间选择风险调整后的最优组合，回流与多元化的相对优劣取决于深层结构参数而非先验立场 \parencite{GrossmanHelpmanLhuillier2023}。对各国产业政策实践的系统评估同样表明，有效的产业政策应当精准对准可识别的市场失灵、附带明确的绩效条件与退出机制，而非笼统地向部门输送租金 \parencite{JuhaszLaneRodrik2024}。这些进展意味着，大豆政策讨论需要从"该不该保"的立场之争，转向"哪些失灵需要矫正、用什么工具矫正、矫正到什么程度"的机制分析。
+
+既有中文文献为这一转向提供了丰富素材，但尚未完成这一转向。政策研究已经指出粮食安全与农民增收目标之间的张力、小农分散经营与社会化服务不足对产业发展的约束，以及产业链增值收益难以回流种植端的分配困境 \parencite{CASSRDI2024}；关于农业农村现代化路径的研究强调依据资源禀赋、产业基础与基础设施条件实施差异化战略，通过加工、物流与利益联结机制延伸农业价值链 \parencite{DRCRural2023}；围绕大豆的专题研究则聚焦单产提升潜力、产业链贯通堵点与扩种政策的实施效果 \parencite{CAASSoy2026,CAAS2006002026}。这些研究各自把握了问题的重要侧面，但多在自给率、单产、成本收益、加工转化或蛋白替代等单一维度上展开，缺少一个能够同时容纳静态比较劣势、供给安全外部性、质量信息失灵、主体异质性与产业链互补性的统一理论框架。国际文献中，上述每一机制都已有成熟的理论刻画，却分属国际贸易、契约组织、产业组织与宏观网络等不同分支，彼此独立，且均非针对"土地约束突出、进口体量巨大、产业链条完整"的发展中大国情境而构建。缺乏统一框架的直接后果是：不同政策主张各自援引对己有利的单一机制，而无法在同一福利标准下进行比较与取舍。
+
+本文尝试填补这一空白。在理论上，多重市场失灵并存正是第二优理论的经典情形：当若干扭曲无法同时消除时，逐一恢复单个市场的价格信号未必改进福利，最优政策必须在承认既存约束的前提下整体设计 \parencite{LipseyLancaster1956}。本文据此构建一个资源禀赋约束下的多区域大豆全产业链社会规划模型，将多区域国产供给、进口来源组合、战略性基础产能、质量选择、加工仓储能力、替代蛋白与风险外部性纳入同一优化问题，并与分散市场均衡对比，导出政策楔子及其实施方案。模型给出五组核心结论。第一，国产大豆的社会最优规模是内点解：其影子价格由进口组合成本、边际风险溢价、基础产能安全收益、质量差异化收益与链条承接收益共同构成，完全进口与全面国产替代在一般条件下均被排除。第二，进口风险上升会提高最优国产规模，但国产基础产能、进口来源多元化、战略储备与替代蛋白是同一风险组合中的互补工具，政策目标应从"进口依存度"这一单一比率转向"供给组合的风险调整成本"。第三，质量溢价只有经由检测、分级、专储、订单与品牌体系传导到种植端，才能改变生产者的质量选择；传导机制缺位时，市场将停留在"混收混储—优质不优价"的低质量均衡。第四，扩能与提质应由高生产率、高组织化、加工衔接紧密的地区与主体优先承载，统一面积补贴被定向配置严格支配。第五，生产、加工、仓储检测与消费承接之间存在严格互补，任一环节成为短板时，其余环节单点扩张的边际收益趋于零。在此基础上，本文以反证法证明完全进口、全面国产替代、平均化面积补贴、只补生产端与长期价格保护在一般条件下均可被更精准的政策组合严格支配，并据此刻画"适度国产基础产能—高质量专用供给—关键节点补链—进口多元化—替代蛋白—精准公共支持"的第二优发展路径。
+
+相对既有文献，本文的边际贡献体现在四个方面。其一，相对农业比较优势文献 \parencite{CostinotDonaldsonSmith2016}，本文识别了静态私人比较劣势与正的社会最优生产规模得以并存的精确条件，将"安全"从政策叙事转化为影子价格中可度量、可加总的边际项，从而为战略性农产品的适度自给提供福利经济学基础。其二，相对供应链韧性文献 \parencite{GrossmanHelpmanLhuillier2023}，本文将来源组合选择嵌入一个包含非线性短缺损失与生产网络放大的框架，使国产基础产能、进口多元化、储备与替代蛋白成为同一均值—方差型组合问题中的并列工具并刻画其互补关系；短缺损失系数进一步被内生化为大豆部门网络中心性的函数，从而连接了来源组合与生产网络两支文献 \parencite{AcemogluEtAl2012}。其三，相对质量升级文献 \parencite{Verhoogen2008,KuglerVerhoogen2012}，本文引入内生的质量价值传导系数，将检测、分级、订单与品牌等制度安排映射为该系数的提升，解释了信息不对称下低质量均衡的形成机制 \parencite{Akerlof1970} 及其破解条件，为"优质优价"政策提供了可操作的结构参数。其四，在政策层面，本文给出分散均衡的楔子分解、政策实施方案与一组政策支配性结果，并将全部机制凝练为六项可由智能体模型与微观数据检验的命题，为后续定量仿真与结构估计提供严密的理论接口。
+
+本文余下部分安排如下：第二节以"基准—失灵—综合"的逻辑系统梳理理论基础并提出分析框架；第三节构建基准模型，刻画社会规划问题与分散市场均衡；第四节给出均衡性质与核心命题；第五节分析质量升级、主体选择与产业链互补；第六节讨论供应链风险的网络放大与需求侧替代；第七节以反证法比较政策工具并给出改革方向；第八节提出理论蕴含、发展路径与面向智能体仿真的可检验命题；第九节以分省成本收益面板、投入产出表等实测数据校准模型并运行政策仿真，对六项命题给出定量检验；第十节总结全文。
+
+\section{理论基础与分析框架}
+
+本节的任务不是并列地综述相关文献，而是回答一个结构性问题：标准比较优势逻辑对大豆问题的判断在何处成立、在何处失效，以及失效之处需要何种理论加以刻画。为此，本节首先以比较优势定价作为分析基准，明确其成立所依赖的隐含前提；随后逐一考察这些前提在大豆情境下的四类失效——供给可靠性失效、质量可观察性失效、配置筛选失效与环节互补失效——说明每类失效的经济机制、代表性理论及其在本文模型中的对应元素；最后以第二优理论为枢纽，将四类失效综合为统一的分析框架，为第三节的正式模型奠定基础。
+
+\subsection{分析基准：比较优势定价及其隐含前提}
+
+传统贸易理论的资源配置逻辑是，国家应依据相对生产率与要素禀赋安排生产，通过贸易获得国内生产成本较高的商品。对土地密集型大宗农产品，一国的竞争地位可由单位成本刻画。设国家 $i$ 的大豆单位成本为
+\begin{equation}
+ c_i=\frac{r_i a_{Li}+w_i a_{Ni}+k_i a_{Ki}+m_i}{z_i},
+ \label{eq:unitcost}
+\end{equation}
+其中，$r_i$、$w_i$、$k_i$ 和 $m_i$ 分别为土地、劳动、资本与其他中间投入的价格，$a_{Li}$、$a_{Ni}$ 和 $a_{Ki}$ 为相应投入系数，$z_i$ 为全要素生产率。中国耕地稀缺、经营规模偏小，优质耕地还面临口粮、玉米与高附加值作物的竞争，土地机会成本 $r_ia_{Li}$ 较高；叠加同质大宗豆生产率的相对不足，通常有 $c_{\mathrm{CN}}>p_w$，其中 $p_w$ 为进口到岸价格。农业比较优势的实证研究支持这一判断的稳健性：作物层面的相对生产率主要由土地与气候等缓变因素决定，其空间格局在相当长的时期内是给定的约束而非政策变量 \parencite{CostinotDonaldsonSmith2016}。在此基础上，标准逻辑给出一个明确的政策基准：既然 $c_{\mathrm{CN}}>p_w$，进口即优于国产，国内土地应配置于机会成本更低的用途。
+
+需要强调的是，这一基准结论隐含四个前提：其一，供给可靠性完备，即任一来源的供应不会中断，或中断风险可由完备的保险与期货市场定价并对冲；其二，产品质量完全可观察、可合约，市场价格能够无摩擦地对质量差异定价；其三，生产主体同质，或市场机制能够自动将生产任务筛选给最有效率的主体；其四，产业链各环节之间不存在未被价格体系内部化的互补性与协调问题。四个前提共同保证市场价格等于社会边际成本，从而使"按价格配置"与"按社会福利配置"相一致。本文的出发点是：对大豆这一关键中间品而言，四个前提恰好逐一失效，而每一类失效都对应一支成熟的理论文献与一组特定的政策工具。因此，比较优势逻辑在本文中不是被否定，而是被嵌入一个存在多重失灵的更大问题之中：静态成本劣势仍然真实存在并约束着国产大豆的合理规模，但它不再是唯一的定价依据。
+
+\subsection{供给可靠性失效：中断风险、来源组合与网络放大}
+
+第一类失效源于供给中断风险的系统性与不可保险性。若采购者只依据确定性单位成本决策，需求会集中于最低成本来源；但当中断造成的损失随短缺规模非线性上升时，来源选择在本质上是一个均值—方差权衡：组合的期望成本与组合风险——后者由各来源的中断概率及其相关结构共同决定——必须同时进入目标函数，这正是资产组合理论的经典结构 \parencite{Markowitz1952}。\textcite{GrossmanHelpmanLhuillier2023} 将这一逻辑引入全球供应链情境，证明在供应中断风险下，回流（本土化生产）与国际多元化的相对优劣取决于偏好结构、来源风险的相关性与租金归属等深层参数，且在相当一般的条件下，促进来源多元化优于单纯推动回流。这一结论直接否定了"降低风险等同于提高自给率"的直觉等式，也构成本文将国产产能与进口组合置于同一框架的理论依据。
+
+供给风险之所以是"社会"问题而非纯粹的私人问题，取决于两点。第一，中断损失经由生产网络放大。大豆经压榨—豆粕—饲料—养殖进入食物系统，任一环节的价格与数量冲击都会沿投入产出联系向下游传导。设 $A$ 为食物系统的投入产出矩阵，部门生产率冲击 $d\ln \bm z$ 引起的价格响应为
+\begin{equation}
+ d\ln \bm p=-(I-A)^{-1}d\ln \bm z,
+ \label{eq:IO}
+\end{equation}
+其中 Leontief 逆矩阵 $(I-A)^{-1}$ 表明，冲击的总量后果取决于部门在网络中的位置而非其自身增加值规模：居于中枢的中间品部门可使局部冲击演化为总量波动 \parencite{AcemogluEtAl2012}，且投入品专用性越强、短期替代弹性越低，冲击向下游客户的传导越剧烈 \parencite{BarrotSauvagnat2016}。单个压榨企业或进口商在选择来源时，不会计入自身采购集中对整个食物系统尾部风险的边际贡献，风险外部性由此产生。第二，跨期平滑机制本身是有代价的准公共品。库存与储备能够吸收暂时性冲击，但商品存储理论表明，竞争性私人存储在库存触及零约束时会失去平滑能力，且私人储备决策并不内部化价格稳定的全社会收益 \parencite{WilliamsWright1991}；对风险厌恶的生产者与消费者而言，价格稳定具有超出存储套利利润的福利价值，这为公共储备与调节机制提供了独立于"买贱卖贵"盈利逻辑的规范基础 \parencite{NewberyStiglitz1981}。
+
+上述机制在本文模型中的对应是：来源中断风险以二阶矩矩阵 $\Omega$ 刻画，进口组合的风险损失 $\mathcal{R}(M,\bm s)$ 取均值—方差形式；短缺损失系数 $\ell$ 被内生化为大豆部门网络中心性的函数（第六节）；国内基础产能的安全收益 $B(Y)$ 刻画的则是保有可动员生产能力在中断状态下的边际替代价值——其经济性质类似一项实物期权：即便平时未被充分使用，产能的存在本身也降低了不利状态下的调整成本 \parencite{DixitPindyck1994}。替代蛋白与节粮技术 $Z$ 则从需求侧压缩风险敞口。四者共同构成供给安全的工具箱，其相对配置由同一个风险调整成本最小化问题内生决定，而非由任何单一比率目标外生设定。
+
+\subsection{质量可观察性失效：柠檬市场、契约不完全与纵向协调}
+
+第二类失效使国产大豆最重要的潜在优势难以变现。大豆的价值属性——蛋白与油分含量、非转基因纯度、食品加工适配性、可追溯性——多数难以在收购现场低成本验证，并且在混收混储中被物理性抹平。当质量不可观察时，市场只能按预期平均质量定价，高质量供给者得不到补偿而退出或降低投入，市场质量分布向下收敛，这正是逆向选择导致的"柠檬市场"机制 \parencite{Akerlof1970}；"混收混储—优质不优价—优质不再供给"的循环，是该机制在大宗农产品市场上的具体形态。打破低质量均衡要求质量溢价能够可置信地传导至生产端。声誉理论表明，只有当持续供给高质量的贴现收益超过一次性降质的机会收益时，质量承诺才是自我履行的，而这要求市场支付高于边际成本的质量溢价作为"履约租金" \parencite{KleinLeffler1981}。检测、分级、认证与品牌的经济功能，正在于降低质量验证成本、把溢价与可验证的质量信号绑定，从而使声誉机制得以运转。
+
+质量升级还牵涉专用性投资与契约不完全。高蛋白专用品种的繁育与订单基地、专用仓储、低温豆粕与豆制品专用加工线，均属于关系专用资产，其价值高度依赖特定交易关系的延续。当合同无法穷尽未来价格、天气与质量争议的全部或有状态时，专用投资者预期在事后再谈判中被"敲竹杠"，事前投资便会低于有效水平，这是交易成本经济学与不完全契约理论的核心命题 \parencite{Williamson1979}；对全球采购组织形态的研究进一步表明，一体化、长期订单与市场采购之间的选择，应与投入专用性程度和投资激励的分布相匹配 \parencite{AntrasHelpman2004}。最后，即便传导机制完善，质量升级也并非所有主体的最优选择：企业层面的理论与证据表明，质量升级伴随更高的固定与可变投入，生产率更高的主体才会内生地选择更高质量 \parencite{Verhoogen2008,KuglerVerhoogen2012}，而收入水平与支付意愿更高的市场支撑更高的均衡质量 \parencite{FajgelbaumGrossmanHelpman2011}。这三层机制在模型中分别对应：质量变量 $q_r$ 与质量净价值 $V_r(q_r,Y_r)$；将检测、分级、专储、订单与品牌折算为结构参数的质量价值传导系数 $\vartheta_r\in(0,1]$；刻画契约不完全的专用投资收益分成 $\mu$；以及决定升级主体自选择的异质性生产率 $\varphi$（第三、五节）。
+
+\subsection{配置筛选失效与支持政策的政治经济学}
+
+第三类失效关系到"由谁生产"。异质性企业理论的核心洞见是，开放与竞争的收益在很大程度上来自选择效应：资源向高生产率主体的再配置本身就是行业生产率增长的来源 \parencite{Melitz2003}。将其应用于大豆产业：土地气候适宜性、经营规模、良种与栽培技术到位率、社会化服务与加工半径共同决定地区和主体的有效生产率，因而扩能与提质任务的承载者应当是被筛选出来的。普惠式、按面积平均分配的支持恰恰关闭了这一筛选边际——它无差别地补贴高效与低效的扩张，使边际产能落在错误的位置；本文第五节将证明，在控制总产量目标后，这类政策被定向配置严格支配。
+
+在动态维度上，支持政策的正当性依赖于可识别的学习外部性。干中学使累计产出降低未来成本 \parencite{Arrow1962}；当学习外部性与动态规模经济存在时，暂时性干预可以改变一国的长期专业化格局，静态比较劣势并非不可更改的命运 \parencite{Krugman1987}。但同一逻辑的另一面同样成立：若学习曲线平缓或外部性微弱，保护只会固化高成本结构。这一区分之所以在实践中难以维持，是因为保护具有内生的政治供给：组织化的生产者集团有能力将针对外部性的临时支持转化为持久的租金转移 \parencite{GrossmanHelpman1994}。对产业政策实践的系统评估据此提出了工具设计原则：政策应对准可陈述、可度量的特定失灵，附带绩效标准与退出条款，并优先选择扭曲较小的直接工具 \parencite{JuhaszLaneRodrik2024}。这些考虑在模型中对应区域筛选准则（有效单位成本与社会影子收益的比较）、定向配置命题以及政策支配性比较（第五、七节）：政策分析的对象因此不仅是支持的总量，更是支持的分配规则与工具形态。
+
+\subsection{环节互补失效：链条短板与纵向协调}
+
+第四类失效关系到环节之间的相互依赖。发展经济学早已指出，产业体系的扩张依赖前向与后向联系：一个环节的投资通过改变相邻环节的盈利性诱致后续投资，联系效应的强弱决定扩张能否自我维持 \parencite{Hirschman1958}。以现代语言表述，产业链是一个互补投入系统：当加工、烘干仓储、检测物流与消费承接同原料生产互补时，任一环节的边际回报都随其他环节能力的提升而上升；反之，当某一环节成为短板时，其余环节单点扩张的边际收益趋于零。互补性还蕴含协调失灵的可能：分散决策下，每个环节都在等待其他环节先行投资，低水平均衡得以自我维持，这为"补链"类公共投资提供了超出单个项目收益率核算的依据。纵向价格形成会进一步加剧问题：链条上下游先后加价产生双重边际化，使链条总产量低于纵向协调水平（附录A给出简化推导），这为订单农业、基差定价、加工企业自建原料基地与合作社一体化等治理安排提供了效率基础 \parencite{Spengler1950}。上述机制在模型中对应 CES 型链条服务函数 $G(Y,K,H)$ 及其替代弹性 $\eta$——当 $\eta\rightarrow0$ 时 $G$ 退化为木桶式短板函数——以及生产与加工、仓储能力之间交叉边际收益为正的互补性命题（第三、五节）。
+
+\subsection{综合：多重失灵下的第二优配置框架}
+
+四类失效并存意味着大豆问题天然处于第二优世界。第二优理论的一般定理指出：当至少一个帕累托最优条件无法满足时，其余条件的逐一满足不再必然合意，最优解一般要求对可控变量作系统性偏离，而孤立地"修复"单个扭曲可能降低福利 \parencite{LipseyLancaster1956}。对大豆政策而言，该定理有两个直接推论。其一，"回到自由贸易价格"并非自动改进：在安全外部性、质量信息失灵与链条互补未被处理时，单纯取消支持可能使供给结构进一步偏离社会最优。其二，"提高自给率"同样不是充分目标：在来源组合、储备与替代蛋白等工具缺位时，以价格保护堆高国产规模，会以远高于必要的成本实现给定的安全水平。正确的问题因此是：给定四类失灵，各政策工具应如何组合，才能以最小的扭曲使分散均衡逼近社会最优？回答该问题要求把全部失灵置于同一个规划问题之中，使每一项政策工具对应一个明确的楔子。表\ref{tab:framework}总结了四类失效、代表性理论、模型元素、政策工具与主要结果之间的对应关系，构成本文的分析框架。
+
+\begin{table}[H]
+\centering
+\caption{四类前提失效与本文分析框架的对应关系}
+\label{tab:framework}
+\begin{threeparttable}
+\footnotesize
+\begin{tabularx}{\textwidth}{p{0.115\textwidth}Xp{0.155\textwidth}p{0.16\textwidth}p{0.09\textwidth}}
+\toprule
+前提失效 & 经济机制与代表性文献 & 模型元素 & 对应政策工具 & 主要结果\\
+\midrule
+供给可靠性失效 & 中断风险与来源组合 \parencite{Markowitz1952,GrossmanHelpmanLhuillier2023}；网络放大 \parencite{AcemogluEtAl2012,BarrotSauvagnat2016}；储备与价格稳定 \parencite{NewberyStiglitz1981,WilliamsWright1991} & $\Omega$、$\mathcal{R}(M,\bm s)$、$\ell=\ell_0\Lambda_s^2$、$B(Y)$、$Z$ & 来源多元化、战略储备、基础产能补偿、替代蛋白 & 命题1--4、8\\
+\addlinespace
+质量可观察性失效 & 逆向选择 \parencite{Akerlof1970}；声誉与质量溢价 \parencite{KleinLeffler1981}；专用投资与不完全契约 \parencite{Williamson1979,AntrasHelpman2004}；质量升级的自选择 \parencite{Verhoogen2008,KuglerVerhoogen2012,FajgelbaumGrossmanHelpman2011} & $q_r$、$V_r(q_r,Y_r)$、$\vartheta_r$、$\mu$ & 检测分级、专收专储、订单与品牌、履约支持 & 命题5\\
+\addlinespace
+配置筛选失效 & 异质性与选择效应 \parencite{Melitz2003}；学习外部性 \parencite{Arrow1962,Krugman1987}；保护的政治经济学 \parencite{GrossmanHelpman1994,JuhaszLaneRodrik2024} & $\varphi$、$AC_r$ 与 $\Pi_r^{S}$ 的筛选比较 & 定向产能支持、绩效条件与退坡机制 & 命题6、9\\
+\addlinespace
+环节互补失效 & 联系效应 \parencite{Hirschman1958}；双重边际化 \parencite{Spengler1950} & $G(Y,K,H)$、$\eta$、$\Phi(G)$ & 关键节点补链、纵向协调治理 & 命题7\\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item 注："模型元素"列中各符号的精确定义见第三节；"主要结果"列的命题编号对应第四至七节。四类失效均以比较优势基准（第2.1小节）的隐含前提为参照。
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+以此框架观之，本文模型并非各机制的简单加总，而是同一福利函数下的整体：供给可靠性失效、质量可观察性失效、配置筛选失效与环节互补失效分别以显式的边际项进入规划者目标函数，其一阶条件自然生成国产大豆的社会影子价格分解（式\eqref{eq:shadowprice}），分散均衡与社会最优之间的差异则表现为一组可逐项对应到政策工具的楔子。第三节给出经济环境与规划问题的正式刻画，第四节在此基础上导出核心命题。
+
+\section{基准模型：资源约束下的大豆全产业链社会规划}
+
+本节将第二节识别的四类失灵纳入同一个社会规划框架。模型的构造原则是：每一类失灵都对应目标函数中一个显式的边际项，而非外生给定的政策约束——供给可靠性失效体现为进口组合的风险损失 $\mathcal{R}(M,\bm s)$ 与基础产能安全收益 $B(Y)$；质量可观察性失效体现为质量净价值 $V_r(q_r,Y_r)$ 及其在分散均衡中的传导折扣 $\vartheta_r$；配置筛选失效体现为区域异质的成本与技术结构 $\{\omega_r,f_r,c_{er},c_{qr}\}$；环节互补失效体现为链条服务函数 $G(Y,K,H)$。由此，第四至七节的全部命题都可以追溯为同一个拉格朗日函数的一阶条件及其比较静态，不同政策工具的比较也在同一福利标准下进行。
+
+\subsection{经济环境与变量设定}
+
+考虑一个小型开放经济体，国内需要满足既定的大豆等价需求 $D>0$。这里的“大豆等价需求”包含食用、压榨和饲料蛋白需求。供给来源包括 $R$ 个国内产区、$J$ 个进口来源以及替代蛋白和节粮技术所减少的等价需求 $Z$。资源约束为
+\begin{equation}
+ D=Y+M+Z,
+ \label{eq:resource}
+\end{equation}
+其中，$Y=\sum_{r=1}^{R}Y_r$ 是国产大豆总供给，$M$ 为进口量，$Z$ 为通过低蛋白日粮、氨基酸平衡、杂粕、微生物蛋白、优质饲草等实现的进口大豆等价节约量。$Z$ 不代表无成本替代，而是由后文的凸成本函数决定。
+
+地区 $r$ 的产量由大豆面积 $A_r$ 和技术投入 $e_r$ 决定：
+\begin{equation}
+ Y_r=A_r f_r(e_r), \qquad f_r'>0,\quad f_r''<0.
+ \label{eq:production}
+\end{equation}
+其中，$f_r(\cdot)$ 汇集良种、密植、灌排、农机、植保、收获减损和社会化服务等对亩产的影响。地区存在土地约束
+\begin{equation}
+ 0\leq A_r\leq \bar A_r.
+ \label{eq:landconstraint}
+\end{equation}
+
+地区 $r$ 的生产成本写为
+\begin{equation}
+ C_r(A_r,e_r,q_r)=A_r\left[\omega_r+c_{0r}+c_{er}(e_r)+c_{qr}(q_r)\right],
+ \label{eq:cost}
+\end{equation}
+其中，$\omega_r$ 表示将土地配置给大豆的机会成本，$c_{0r}$ 为常规投入成本，$c_{er}'(e_r)>0,c_{er}''(e_r)>0$，$c_{qr}'(q_r)>0,c_{qr}''(q_r)>0$。变量 $q_r\geq 0$ 表示质量水平，可以综合刻画蛋白、油分、粒径、加工适配性、非转基因纯度和可追溯属性。式 \eqref{eq:cost} 中较高的 $\omega_r$ 是土地密集型大豆在中国面临静态比较劣势的核心来源。
+
+本文进一步将 $\omega_r$ 微观化为与大豆竞争同一地块的玉米净剩余。在东北与黄淮海主产区，大豆的边际土地几乎完全来自玉米：设地区 $r$ 的玉米单产为 $y_r^c$、价格为 $p^c$、生产成本（物质与服务费用加人工）为 $c_r^c$，则
+\begin{equation}
+ \omega_r=\pi_r^c\equiv p^c y_r^c-c_r^c,
+ \label{eq:cornopp}
+\end{equation}
+即种植一亩大豆的机会成本等于同一地块上放弃的玉米剩余（土地成本在两种作物之间对消）。由此，地区 $r$ 大豆的社会边际成本为 $MC_r=(c_r^s+\pi_r^c)/y_r^s$，其中 $c_r^s$ 为大豆亩均生产成本、$y_r^s$ 为大豆单产：玉米价格上涨、单产提高或成本下降都会经由 $\pi_r^c$ 抬高大豆的机会成本。大豆与玉米因而在模型中构成同一土地约束下的联动系统而非孤立部门，任何只盯住大豆单侧收益或补贴的政策分析都会遗漏这一竞争边际。
+
+进口来自 $J$ 个来源国或来源区域。令 $s_j\geq0$ 为来源 $j$ 的进口份额，满足
+\begin{equation}
+ \sum_{j=1}^{J}s_j=1,\qquad M_j=s_jM.
+ \label{eq:shares}
+\end{equation}
+来源 $j$ 的确定性单位采购成本为 $p_j$。设随机变量 $\xi_j\in\{0,1\}$ 表示来源 $j$ 是否发生供应中断，风险协方差矩阵为 $\Omega=\E(\bm\xi\bm\xi')$。若出现中断，潜在短缺量与 $M\sum_js_j\xi_j$ 成正比。用二次函数近似短缺造成的食物系统损失：
+\begin{equation}
+ \mathcal{R}(M,\bm s)=\frac{\ell}{2}M^2\bm s'\Omega\bm s,
+ \label{eq:risk}
+\end{equation}
+其中，$\ell>0$ 为短缺损失系数。$\ell$ 不仅反映大豆本身的重要性，还反映其通过豆粕、饲料和畜牧业向下游传导的网络暴露程度。后文将给出其与生产网络中心性之间的关系。
+
+国产大豆具有两类不完全由市场价格体现的收益。第一，基础产能带来安全收益：
+\begin{equation}
+ B(Y)=\beta\ln(1+Y),\qquad \beta>0.
+ \label{eq:safetybenefit}
+\end{equation}
+$B'(Y)>0$ 且 $B''(Y)<0$，表示在国产产能较低时，增加一单位基础产能的边际安全价值更高。第二，质量差异化带来净价值：
+\begin{equation}
+ V_r(q_r,Y_r)=\left(\theta_r q_r-\frac{\kappa_r}{2}q_r^2\right)Y_r,
+ \qquad \theta_r,\kappa_r>0.
+ \label{eq:qualityvalue}
+\end{equation}
+其中，$\theta_r$ 代表目标市场对该地区、该用途大豆质量的支付意愿，$\kappa_r$ 反映质量收益递减或质量标准更高所带来的边际市场成本。高蛋白食品豆、非转基因豆制品专用豆和高油压榨专用豆具有不同的 $(\theta_r,\kappa_r)$。
+
+大豆全产业链还依赖加工能力 $K$、仓储检测与物流能力 $H$。为了体现链条互补性，定义有效产业链服务为 CES 聚合函数
+\begin{equation}
+ G(Y,K,H)=\left[\alpha_Y Y^{\varrho}+\alpha_K K^{\varrho}+\alpha_H H^{\varrho}\right]^{1/\varrho},
+ \quad \alpha_Y+\alpha_K+\alpha_H=1,
+ \label{eq:ceschain}
+\end{equation}
+其中 $\varrho=(\eta-1)/\eta<1$，$\eta$ 为链条环节之间的替代弹性。$\eta$ 越低，生产、加工和流通越接近互补；当 $\eta\rightarrow0$ 时，$G$ 趋于 Leontief 型短板函数。$\Phi(G)$ 表示产业链服务带来的加工转化、质量实现和市场承接收益，满足 $\Phi'>0,\Phi''\leq0$。相应的能力建设成本为 $F(K,H)$，其中 $F_K,F_H>0$ 且严格凸。
+
+替代蛋白与节粮技术的成本函数为 $C_Z(Z)$，满足 $C_Z'>0,C_Z''>0$。其含义是：在较低替代水平下，精准饲料、配方优化和现有杂粕替代相对容易；随着替代程度提高，获取稳定、营养等价且规模可扩张的替代蛋白会越来越困难。
+
+\subsection{社会规划者问题}
+
+社会规划者选择 $\{A_r,e_r,q_r\}_{r=1}^{R}$、$M$、$\bm s$、$Z$、$K$ 和 $H$，最大化社会福利：
+\begin{align}
+ \max \quad W=&\;U(D)-\sum_{r=1}^{R}C_r(A_r,e_r,q_r)-M\sum_{j=1}^{J}p_js_j-\mathcal{R}(M,\bm s) \notag\\
+ &+B(Y)+\sum_{r=1}^{R}V_r(q_r,Y_r)+\Phi\big(G(Y,K,H)\big)-F(K,H)-C_Z(Z),
+ \label{eq:planner}
+\end{align}
+满足 \eqref{eq:resource}--\eqref{eq:landconstraint} 和 \eqref{eq:shares}。由于本文关注供给结构而非终端消费选择，$D$ 在短期内视为给定，$U(D)$ 因而不影响一阶条件。
+
+令 $\lambda$ 为式 \eqref{eq:resource} 的拉格朗日乘子，$\nu$ 为进口份额约束的乘子。对任意一个未触及土地上限的产区 $r$，面积的一阶条件为
+\begin{align}
+ &\left[\lambda+B'(Y)+V_{Y_r}(q_r,Y_r)+\Phi_GG_Y\right]f_r(e_r) \notag\\
+ &=\omega_r+c_{0r}+c_{er}(e_r)+c_{qr}(q_r),
+ \label{eq:areaFOC}
+\end{align}
+其中 $\Phi_G=\partial\Phi/\partial G$，$G_Y=\partial G/\partial Y$，而
+\begin{equation}
+ \lambda=\bar p(\bm s)+\mathcal{R}_M(M,\bm s)-C_Z'(Z),
+ \label{eq:lambda}
+\end{equation}
+$\bar p(\bm s)=\sum_jp_js_j$ 为进口组合的平均确定性成本。利用 $M=D-Y-Z$，可将式 \eqref{eq:areaFOC} 改写为一个更直观的形式：
+\begin{align}
+ \frac{\omega_r+c_{0r}+c_{er}(e_r)+c_{qr}(q_r)}{f_r(e_r)}
+ =&\;\bar p(\bm s)+\mathcal{R}_M+B'(Y) \notag\\
+ &+V_{Y_r}+\Phi_GG_Y-C_Z'(Z).
+ \label{eq:shadowprice}
+\end{align}
+式 \eqref{eq:shadowprice} 左侧是地区 $r$ 生产一单位国产大豆的资源成本，右侧是国产大豆的\emph{社会影子价格}。后者由进口替代成本、风险降低收益、基础产能安全收益、质量收益、链条承接收益和替代蛋白的机会成本共同构成。只有当左侧不超过右侧时，该地区扩大大豆生产才是社会有效的。
+
+质量的一阶条件为
+\begin{equation}
+ \left(\theta_r-\kappa_rq_r\right)Y_r=A_rc_{qr}'(q_r).
+ \label{eq:qualityFOC}
+\end{equation}
+技术投入的一阶条件为
+\begin{equation}
+ \left[\lambda+B'(Y)+V_{Y_r}+\Phi_GG_Y\right]f_r'(e_r)=c_{er}'(e_r).
+ \label{eq:techFOC}
+\end{equation}
+加工与仓储能力的一阶条件分别为
+\begin{equation}
+ \Phi_GG_K=F_K(K,H),\qquad \Phi_GG_H=F_H(K,H).
+ \label{eq:capacityFOC}
+\end{equation}
+替代蛋白与节粮技术的一阶条件为
+\begin{equation}
+ C_Z'(Z)=\bar p(\bm s)+\mathcal{R}_M(M,\bm s).
+ \label{eq:substituteFOC}
+\end{equation}
+式 \eqref{eq:substituteFOC} 表明，替代蛋白的最优投入并不取决于国内大豆是否昂贵，而取决于减少一单位进口大豆所节约的采购成本和风险成本。
+
+最后，对任意一个活跃进口来源 $j$，份额的一阶条件为
+\begin{equation}
+ Mp_j+\ell M^2(\Omega\bm s)_j=\nu.
+ \label{eq:shareFOC}
+\end{equation}
+式 \eqref{eq:shareFOC} 是风险调整的进口来源配置条件：边际来源的确定性采购成本加上其对组合风险的边际贡献应相等。来源份额并非由单位价格单独决定。
+
+\subsection{分散市场均衡与政策楔子}
+
+现实中的农户、加工企业、贸易商和进口商并不最大化式 \eqref{eq:planner} 所示的社会福利。农户通常只观察市场收购价 $p_d$、补贴、订单溢价和自身成本。设 $\vartheta_r\in(0,1]$ 为质量价值传导比例，即农户能够从加工端和终端市场获得的质量收益份额。农户的私人质量决策满足
+\begin{equation}
+ \vartheta_r\left(\theta_r-\kappa_rq_r^{p}\right)Y_r=A_rc_{qr}'(q_r^{p}).
+ \label{eq:privatequality}
+\end{equation}
+将式 \eqref{eq:privatequality} 与社会最优条件 \eqref{eq:qualityFOC} 比较可知，只要 $\vartheta_r<1$，就有 $q_r^p<q_r^*$。检测、分级、专仓、订单、品牌和可追溯体系的作用，正是提高 $\vartheta_r$，而非抽象地“提升品质”。
+
+同样，私人技术投入满足
+\begin{equation}
+ p_df_r'(e_r^p)=c_{er}'(e_r^p),
+ \label{eq:privatetech}
+\end{equation}
+而社会最优技术投入由式 \eqref{eq:techFOC} 决定。由于私人价格 $p_d$ 一般不包含 $B'(Y)$、$\mathcal{R}_M$、$V_{Y_r}$ 和 $\Phi_GG_Y$，市场下通常存在 $e_r^p<e_r^*$。这为大豆育种、单产提升、公共农技服务、社会化服务和基础设施投资提供了规范经济学依据。
+
+分散均衡的种植面积同样由两作物的\emph{相对}收益决定。与式 \eqref{eq:cornopp} 的机会成本刻画相对应，设农户 $i$ 种植大豆与玉米的私人净剩余分别为 $\pi_i^s$ 与 $\pi_i^c$，两作物的单位面积生产者补贴分别为 $s^s$ 与 $s^c$，则其地块选择由
+\begin{equation}
+ \Delta V_i=\left(\pi_i^s+s^s\right)-\left(\pi_i^c+s^c\right)
+ =\left(\pi_i^s-\pi_i^c\right)+\sigma,
+ \qquad \sigma\equiv s^s-s^c
+ \label{eq:dvchoice}
+\end{equation}
+的符号（或以其为效用差的随机选择规则）决定。式 \eqref{eq:dvchoice} 有两个直接推论。其一，\emph{只有补贴差 $\sigma$ 影响面积配置}：对两作物同时加发等额补贴不改变任何农户的选择，只构成纯租金转移；生产端政策的有效杠杆是大豆—玉米补贴差，而非大豆补贴的绝对水平。其二，玉米支持政策（临时收储、玉米生产者补贴）会通过抬高 $\pi_i^c$ 或压低 $\sigma$ 挤出大豆面积——大豆政策的评估与设计必须在两作物联动框架内进行，历史上玉米临时收储时期大豆面积的深度收缩即为此机制的直接表现。
+
+加工企业还面临资产专用性和契约执行问题。设一项专用加工或仓储投资为 $i$，其为链条带来的总收益为 $ri$，投资成本为 $ki^2/2$。在完全契约下，最优投资为 $i^*=r/k$；若投资主体只能获得收益的 $\mu\in(0,1)$ 部分，则私人最优投资为
+\begin{equation}
+ i^p=\frac{\mu r}{k}<\frac{r}{k}=i^*.
+ \label{eq:asset}
+\end{equation}
+长期订单、履约担保、第三方检测、订单保险和基地化组织的作用，是提高 $\mu$，从而减少专用投资不足。
+
+\section{均衡性质与核心命题}
+
+为了获得清晰的比较静态结论，先将质量、加工能力和替代蛋白视为在局部范围内给定，定义国产大豆的综合边际成本 $MC(Y)$，并令 $\bar V_Y$ 和 $\bar G_Y$ 分别表示给定条件下的质量与链条边际收益。由于 $M=D-Y-Z$，社会最优的国产产量满足
+\begin{equation}
+ F(Y;\rho)\equiv MC(Y)-\bar p-\rho(D-Y-Z)-B'(Y)-\bar V_Y-\bar G_Y=0,
+ \label{eq:reducedFOC}
+\end{equation}
+其中，为便于展示，设组合风险为 $\mathcal{R}=\rho M^2/2$。
+
+\begin{proposition}[国产基础产能的内点解]
+若 $MC'(Y)>0$，$B''(Y)<0$，并且 $F_Y>0$；同时满足
+\begin{equation}
+ F(0;\rho)<0,\qquad F(D-Z;\rho)>0,
+ \label{eq:interiorcondition}
+\end{equation}
+则存在唯一的社会最优国产产量 $Y^*\in(0,D-Z)$。因此，完全进口和完全国产替代均不是社会最优。
+\end{proposition}
+
+\begin{proof}
+由 $F_Y>0$ 可知，$F(Y;\rho)$ 关于 $Y$ 严格递增。条件 \eqref{eq:interiorcondition} 表明 $F$ 在可行区间两个端点异号，依据介值定理，存在唯一 $Y^*\in(0,D-Z)$ 使 $F(Y^*;\rho)=0$。$Y=0$ 与 $Y=D-Z$ 都不能满足一阶条件，因而均非最优。\end{proof}
+
+命题 1 给出本文最重要的第一层结论。若忽略风险、安全、质量和链条收益，右侧仅剩 $\bar p$，国内大豆的最优规模取决于 $MC(Y)=\bar p$；而加入这些外部收益后，国产基础产能的社会影子价格高于进口确定性价格。该结论并不为无限扩种提供依据，因为随着 $Y$ 增加，边际成本上升、安全收益递减，内点解仍然存在。
+
+\begin{proposition}[进口风险与国产基础产能]
+在命题 1 的条件下，若 $M^*=D-Y^*-Z>0$，则
+\begin{equation}
+ \frac{\partial Y^*}{\partial\rho}=\frac{M^*}{F_Y}>0.
+ \label{eq:rhoeffect}
+\end{equation}
+即进口风险强度越高，最优国产基础产能越大；但该效应受边际扩种成本和安全收益递减约束。
+\end{proposition}
+
+\begin{proof}
+对式 \eqref{eq:reducedFOC} 关于 $\rho$ 求全微分：$F_YdY+F_\rho d\rho=0$。由于 $F_\rho=-(D-Y-Z)=-M$，故 $dY/d\rho=-F_\rho/F_Y=M/F_Y>0$。\end{proof}
+
+该命题把“提高国产比重”转化为一个条件命题：风险上升确实会提高国产基础产能的合理规模，但并不意味着所有地区、所有用途都应扩大生产。风险越高，越应优先增加低边际成本、高质量潜力和高链条承接能力地区的产能。
+
+\begin{proposition}[来源多元化而非单一回流]
+设大豆供给仅来自国产来源 $d$ 与进口来源 $f$，国产份额为 $s$，进口份额为 $1-s$。令两来源的单位成本分别为 $c_d,c_f$，风险二阶矩分别为 $\pi_d,\pi_f$，共同中断风险为 $\pi_{df}$。若 $s$ 为内点，则最优国产份额为
+\begin{equation}
+ s^*=\frac{\pi_f-\pi_{df}}{\pi_d+\pi_f-2\pi_{df}}
+ -\frac{c_d-c_f}{\ell D\left(\pi_d+\pi_f-2\pi_{df}\right)}.
+ \label{eq:optimalshare}
+\end{equation}
+当 $0<s^*<1$ 时，最优策略是同时保持国产与进口供给；进口风险上升、来源风险相关性下降或短缺损失增大，均会提高国产份额或促进进口来源多元化。
+\end{proposition}
+
+\begin{proof}
+两来源下的风险调整成本为
+\begin{align}
+ \mathcal{C}(s)=&D\left[sc_d+(1-s)c_f\right]\\
+ &+\frac{\ell D^2}{2}\left[s^2\pi_d+(1-s)^2\pi_f+2s(1-s)\pi_{df}\right].
+ \label{eq:twosourcecost}
+\end{align}
+对 $s$ 求导并令其为零，整理即得式 \eqref{eq:optimalshare}。二阶导数为 $\ell D^2(\pi_d+\pi_f-2\pi_{df})>0$，因而内点解为唯一最小值。\end{proof}
+
+命题 3 说明，大豆安全的核心不是“国产越多越安全”或“进口越便宜越好”，而是选择风险调整后的供应组合。国产基础产能、进口来源多元化、跨境物流通道和战略储备具有共同降低组合风险的功能；其中任一工具都不能完全替代其他工具。
+
+以上命题刻画的是社会规划者视角下的最优规模。一个自然的追问是：若政府完全退出，分散均衡下的国产大豆是否会归零？下述命题给出否定回答，其机制来自国产大豆的用途结构本身。
+
+\begin{proposition}[食用需求的市场化底部]
+设国产大豆与进口大豆在食用市场（豆制品、蛋白食品加工）不完全替代，国产豆的食用反需求为 $p_d(Y)=\bar p+\mathrm{prem}(Y)$，其中溢价函数满足 $\mathrm{prem}'(Y)<0$，$\lim_{Y\to 0^+}\mathrm{prem}(Y)=\overline{\mathrm{prem}}$ 充分大；且产量超出食用需求承接能力后，边际吨进入压榨市场、按进口平价定价（$\mathrm{prem}\to 0$）。若 $\bar p+\overline{\mathrm{prem}}>MC(0)$ 且 $MC'(Y)-\mathrm{prem}'(Y)>0$，则零补贴分散均衡产量 $Y^{0}$ 唯一存在且 $Y^{0}>0$。
+\label{prop:foodfloor}
+\end{proposition}
+
+\begin{proof}
+定义 $g(Y)=\bar p+\mathrm{prem}(Y)-MC(Y)$。由条件，$g(0^+)>0$ 且 $g$ 严格递减；当 $Y$ 足够大时 $\mathrm{prem}(Y)\to0$ 而静态比较劣势意味着 $MC(Y)>\bar p$，故 $g(Y)<0$。由介值定理与严格单调性，存在唯一 $Y^0>0$ 使 $g(Y^0)=0$。\end{proof}
+
+命题 4 的含义是：国产大豆存在一个\emph{不依赖任何补贴的市场化底部}。国产非转基因大豆承担食用功能，与进口转基因压榨豆不完全替代；产量收缩时食用溢价内生上升，在某一规模处恰好覆盖含玉米机会成本的边际成本。因此“取消补贴则国产大豆归零”的担忧在结构上不成立——政策问题不是“保住产业存续”，而是市场化底部 $Y^0$ 与社会最优 $Y^*$ 之间的缺口应由多大的补贴差 $\sigma$（式 \eqref{eq:dvchoice}）弥合。同一机制也封顶了扩张的上行空间：产量超出食用承接能力后，边际吨只能按进口平价进入压榨市场，扩种激励自动衰减，这正是“国产豆定位于食用、进口豆定位于压榨”双轨格局的均衡基础。历史上 2015 年的产量低点（1179 万吨）出现于“大豆无生产者补贴、玉米临时收储抬高 $\pi^c$”的双重极端之下，对应 $\sigma<0$ 的情形，为该命题的底部预测提供了一个自然实验式的下界观测；第九节的定量仿真将分别复现这一双重极端底部与单纯零补贴底部。
+
+\section{质量升级、主体选择与产业链互补}
+
+\subsection{质量升级的异质性主体机制}
+
+为揭示高质量国产大豆应由何种主体承载，考虑主体生产率 $\varphi>0$，其生产质量为 $q$ 的产品时，边际成本为
+\begin{equation}
+ mc(q,\varphi)=\frac{cq^{\alpha}}{\varphi},\qquad 0<\alpha<1.
+ \label{eq:mcquality}
+\end{equation}
+终端市场或加工企业对质量调整后产品的需求为
+\begin{equation}
+ x=Aq^{\sigma-1}p^{-\sigma},\qquad \sigma>1,
+ \label{eq:qualitydemand}
+\end{equation}
+其中 $A$ 表示市场规模与支付意愿。垄断竞争下的加价率为 $\mu=\sigma/(\sigma-1)$，价格为 $p=\mu mc$。代入可得销售收入
+\begin{equation}
+ r(\varphi,q)=\Xi\varphi^{\sigma-1}q^m,
+ \label{eq:revenuequality}
+\end{equation}
+其中
+\begin{equation}
+ \Xi=A\mu^{1-\sigma}c^{1-\sigma},\qquad m=(\sigma-1)(1-\alpha)>0.
+ \label{eq:xi}
+\end{equation}
+设质量固定成本为 $fq^{\delta}$，且 $\delta>m$。主体的利润为
+\begin{equation}
+ \pi(\varphi,q)=\frac{\Xi}{\sigma}\varphi^{\sigma-1}q^m-fq^{\delta}.
+ \label{eq:profitquality}
+\end{equation}
+
+\begin{proposition}[生产率、市场支付与质量选择]
+在式 \eqref{eq:profitquality} 下，最优质量水平为
+\begin{equation}
+ q^*(\varphi)=\left(\frac{m\Xi}{\sigma f\delta}\right)^{\frac{1}{\delta-m}}
+ \varphi^{\frac{\sigma-1}{\delta-m}}.
+ \label{eq:qstar}
+\end{equation}
+因此，$\partial q^*/\partial\varphi>0$，且 $\partial q^*/\partial A>0$。生产率更高、面向更大或更高支付意愿市场的主体，更可能生产高质量大豆。
+\end{proposition}
+
+\begin{proof}
+对式 \eqref{eq:profitquality} 关于 $q$ 求导并令其为零：
+\begin{equation}
+ \frac{m\Xi}{\sigma}\varphi^{\sigma-1}q^{m-1}=f\delta q^{\delta-1}.
+\end{equation}
+整理即得式 \eqref{eq:qstar}。由于 $\delta>m$ 且 $\sigma>1$，$q^*$ 关于 $\varphi$ 和 $A$ 均严格递增。\end{proof}
+
+在大豆产业中，$\varphi$ 可理解为土壤与气候适宜性、规模经营、机械化与社会化服务水平、良种与栽培技术到位率、收获减损、仓储管理和订单组织能力的综合结果。命题 5 不意味着低生产率主体应被排斥，而是意味着高标准食用豆、专用豆、可追溯大豆和精深加工原料应优先由高 $\varphi$ 的地区、农场、合作社和企业基地承载；普通主体则可通过社会化服务、统一标准和组织嵌入降低质量升级的固定成本。
+
+若质量价值仅有 $\vartheta\in(0,1)$ 能传导到生产主体，则将式 \eqref{eq:qualitydemand} 中的 $A$ 替换为 $\vartheta A$，得到
+\begin{equation}
+ q^*_{\vartheta}(\varphi)=\vartheta^{\frac{1}{\delta-m}}q^*(\varphi)<q^*(\varphi).
+ \label{eq:transmission}
+\end{equation}
+因此，质量标准、检测认证、分级收购和品牌，并不是对既有品质的被动标识，而是通过提高 $\vartheta$ 改变主体的最优质量选择。
+
+\subsection{地区选择、动态技术进步与土地节约型路径}
+
+令地区 $r$ 的有效单位成本为
+\begin{equation}
+ AC_r=\frac{\omega_r+c_{0r}+c_{er}(e_r)+c_{qr}(q_r)}{f_r(e_r)}.
+ \label{eq:ACr}
+\end{equation}
+定义该地区的大豆社会影子收益为
+\begin{equation}
+ \Pi_r^{S}=\bar p+\mathcal{R}_M+B'(Y)+V_{Y_r}+\Phi_GG_Y-C_Z'(Z).
+ \label{eq:regionbenefit}
+\end{equation}
+则地区 $r$ 进入或扩大大豆生产的条件为 $AC_r\leq\Pi_r^S$。这一定义将地区的土地机会成本、技术效率、质量潜力和链条承接能力统一到可比较的筛选准则中。
+
+技术进步会内生改变 $AC_r$。设地区技术状态 $T_{rt}$ 的演化为
+\begin{equation}
+ T_{r,t+1}=T_{rt}\left(1+\phi_RR_{rt}+\phi_LL_{rt}^{\zeta}+\phi_SS_{rt}\right),
+ \label{eq:dynamictech}
+\end{equation}
+其中，$R_{rt}$ 为研发与示范投入，$L_{rt}$ 为累计学习或有效种植规模，$S_{rt}$ 为社会化服务和公共基础设施水平。若 $f_r(e_r;T_{rt})$ 关于 $T_{rt}$ 递增，则研发、示范、服务和规模学习可以降低有效单位成本。该机制与有向技术进步的思想一致：在土地稀缺环境中，更有价值的技术方向不是土地扩张，而是土地节约、产量提升、资源效率和减损技术进步。
+
+\begin{proposition}[平均化面积补贴的非最优性]
+考虑两个可扩张地区 $a,b$，其边际成本满足 $MC_a<MC_b$，且单位安全收益、质量收益和链条收益相同。若统一面积补贴诱导地区 $b$ 扩张 $\Delta Y>0$，同时地区 $a$ 仍存在未利用的有效扩张空间，则将 $\Delta Y$ 从 $b$ 转移至 $a$，在总国产产量不变的条件下严格降低社会成本。因此，统一面积补贴不是成本最小化政策。
+\end{proposition}
+
+\begin{proof}
+转移前后的总成本差为
+\begin{equation}
+ \Delta C=\left(MC_b-MC_a\right)\Delta Y>0.
+\end{equation}
+由于总产量不变，安全收益和其他与总量有关的收益不变；成本下降，社会福利提高，故原方案非最优。\end{proof}
+
+命题 6 的政策含义不是取消普惠支持，而是将边际增量支持从“面积同权”调整为“有效供给同权”。目标变量应包括单产潜力、土地机会成本、质量适配性、加工半径、组织化程度、生态轮作价值和技术扩散外部性，而非只按面积分配。
+
+\subsection{产业链短板与跨环节政策互补}
+
+由式 \eqref{eq:ceschain} 可得
+\begin{equation}
+ G_Y=\alpha_YY^{\varrho-1}G^{1-\varrho},\qquad
+ G_K=\alpha_KK^{\varrho-1}G^{1-\varrho}.
+ \label{eq:chainmarginal}
+\end{equation}
+进一步可得交叉偏导数
+\begin{equation}
+ \frac{\partial^2G}{\partial Y\partial K}
+ =\alpha_Y\alpha_K(1-\varrho)Y^{\varrho-1}K^{\varrho-1}G^{1-2\varrho}>0,
+ \label{eq:cross}
+\end{equation}
+因为 $\varrho<1$。式 \eqref{eq:cross} 表明国产原料供给与加工能力之间存在严格的技术互补；同理，仓储检测与物流能力也会提高原料产量和质量投资的边际回报。
+
+\begin{proposition}[单点扩张的短板约束]
+若 $\Phi_G>0$ 且 $\partial^2G/\partial Y\partial K>0$、$\partial^2G/\partial Y\partial H>0$，则提高 $K$ 或 $H$ 会提高国产产量 $Y$ 的边际社会收益；提高 $Y$ 也会提高加工与物流投资的边际社会收益。特别地，当 $\eta\rightarrow0$ 且 $K$ 或 $H$ 为最小环节时，单独增加 $Y$ 对有效产业链服务 $G$ 的边际贡献趋近于零。
+\end{proposition}
+
+\begin{proof}
+由链式法则，$\partial^2\Phi(G)/\partial Y\partial K=\Phi''G_YG_K+\Phi'G_{YK}$。在 $\Phi''$ 不过度为负、且 $G_{YK}>0$ 的常规条件下，该交叉效应为正。Leontief 极限下，$G\rightarrow\min\{Y,K,H\}$；若 $K<Y,H$，则 $G=K$，因而 $\partial G/\partial Y=0$。\end{proof}
+
+命题 7 说明，所谓“全产业链发展”不是将若干政策口号并列，而是源于生产与价值实现的严格互补性。若加工、仓储、检测或消费承接不足，扩种只能增加原料压力；若原料基地、质量体系和订单网络不足，扩加工则可能导致产能闲置。因此，政策应围绕瓶颈环节进行组合，而不应仅在种植端或加工端单独加码。
+
+\section{供应链风险、生产网络与替代蛋白}
+
+\subsection{大豆在食物系统中的网络放大}
+
+设食品系统包含 $N$ 个部门，大豆—豆粕部门记为 $s$。部门价格由 Cobb--Douglas 中间投入成本函数决定：
+\begin{equation}
+ p_i=\frac{1}{z_i}w_i^{\alpha_i}\prod_{j=1}^{N}p_j^{a_{ij}},
+ \label{eq:networkprice}
+\end{equation}
+其中 $z_i$ 为生产率，$a_{ij}$ 为部门 $i$ 使用部门 $j$ 产品的成本份额。取对数并写成矩阵形式可得式 \eqref{eq:IO}。于是，大豆部门冲击对部门 $i$ 的价格半弹性为
+\begin{equation}
+ \frac{\partial\ln p_i}{\partial\ln z_s}=-\left[(I-A)^{-1}\right]_{is}.
+ \label{eq:networkelasticity}
+\end{equation}
+
+若最终需求权重向量为 $\bm b$，则大豆部门的网络重要性可用
+\begin{equation}
+ \Lambda_s=\bm b'(I-A)^{-1}\bm e_s
+ \label{eq:domar}
+\end{equation}
+刻画，其中 $\bm e_s$ 是第 $s$ 个单位向量。可将短缺损失参数写为
+\begin{equation}
+ \ell=\ell_0\Lambda_s^2,
+ \label{eq:ellnetwork}
+\end{equation}
+其中 $\ell_0$ 是直接短缺损失。式 \eqref{eq:ellnetwork} 表示，豆粕在饲料和畜牧业投入结构中越居于中心，进口大豆冲击的社会损失就越大。此时，增加国产基础产能、库存和来源多元化的边际收益会相应提高。
+
+\subsection{豆粕替代弹性与需求侧破局}
+
+令饲料蛋白服务 $Q_f$ 由豆粕 $S$ 和替代蛋白 $A$ 共同生产，采用 CES 技术：
+\begin{equation}
+ Q_f=\left[\alpha S^{\frac{\varepsilon-1}{\varepsilon}}+(1-\alpha)A^{\frac{\varepsilon-1}{\varepsilon}}\right]^{\frac{\varepsilon}{\varepsilon-1}},
+ \label{eq:feedCES}
+\end{equation}
+其中 $\varepsilon$ 为替代弹性，$\alpha$ 表示豆粕的技术权重。相应单位成本为
+\begin{equation}
+ P_f=\left[\alpha^{\varepsilon}p_S^{1-\varepsilon}+(1-\alpha)^{\varepsilon}p_A^{1-\varepsilon}\right]^{\frac{1}{1-\varepsilon}}.
+ \label{eq:feedcost}
+\end{equation}
+豆粕价格变化对饲料蛋白成本的弹性为其成本份额：
+\begin{equation}
+ \frac{\partial\ln P_f}{\partial\ln p_S}=s_S.
+ \label{eq:shareelasticity}
+\end{equation}
+当 $\varepsilon$ 很低时，豆粕难以替代；极端地，当 $\varepsilon\rightarrow0$，式 \eqref{eq:feedCES} 逼近 Leontief 技术，豆粕成为硬约束。由此，需求侧政策的目标可明确表示为降低 $\alpha$、提高 $\varepsilon$ 和降低豆粕成本份额 $s_S$。低蛋白日粮、氨基酸平衡、杂粕利用、微生物蛋白、优质饲草和精准饲喂的经济学作用，正是降低食品系统对单一蛋白来源的网络暴露。
+
+\begin{proposition}[替代蛋白与国产基础产能的关系]
+在式 \eqref{eq:reducedFOC} 中，若替代蛋白降低了有效需求 $D-Z$，则其直接降低进口暴露；但当替代成本 $C_Z'(Z)$ 很高或替代弹性 $\varepsilon$ 很低时，替代蛋白不能完全替代国产基础产能。最优政策一般同时提高 $Z$ 与 $Y$，而不是以其中之一完全取代另一项。
+\end{proposition}
+
+\begin{proof}
+由式 \eqref{eq:substituteFOC}，$Z$ 的最优水平由进口风险调整成本决定。若 $C_Z''>0$，则 $Z$ 的边际替代成本递增；当 $Z$ 增加到一定水平后，继续提高 $Z$ 的成本会超过继续增加 $Y$ 的风险调整边际收益，故两者一般均为正。\end{proof}
+
+\section{政策比较与反证法：哪些政策需要改革}
+
+\subsection{完全进口与全面国产替代的反证}
+
+命题 1 已经给出两类极端政策非最优的充分条件。这里用反证法进一步说明其直观含义。
+
+\paragraph{完全进口。} 假设完全进口为最优，即 $Y=0$。从该点增加一单位国产大豆，同时减少一单位进口，福利变化为
+\begin{equation}
+ \left.\frac{dW}{dY}\right|_{Y=0}=\bar p+\mathcal{R}_M(D-Z,\bm s)+B'(0)+\bar V_Y+\bar G_Y-MC(0).
+ \label{eq:allimport}
+\end{equation}
+如果右侧为正，则小幅增加国产产量会提高福利，与完全进口最优相矛盾。也就是说，只要进口风险、基础产能安全收益、质量收益或链条收益足以弥补初始国内生产的成本劣势，完全进口就不是最优。
+
+\paragraph{全面国产替代。} 假设完全国产为最优，即 $M=0$。在该点减少一单位国产大豆、增加一单位进口，福利增量的符号取决于
+\begin{equation}
+ MC(D-Z)-\bar p-B'(D-Z)-\bar V_Y-\bar G_Y.
+ \label{eq:allhome}
+\end{equation}
+若该式为正，则边际进口能够降低社会成本，与全面国产最优相矛盾。因此，除非进口风险极高且国产边际成本并不显著上升，全面替代进口也不是一般结论。
+
+\subsection{统一面积补贴与单点扩张的反证}
+
+统一面积补贴隐含假设是不同地区扩种一亩大豆的社会价值相同。然而，式 \eqref{eq:ACr} 表明，土地机会成本、单产潜力、质量价值和加工衔接能力在地区间显著不同。命题 6 已经证明，在边际成本存在差异且安全收益主要由总量决定的情况下，平均化扩种会浪费资源。更一般地，若地区 $r$ 的综合社会净收益为
+\begin{equation}
+ \mathcal{S}_r=\Pi_r^S-AC_r,
+ \label{eq:surplusregion}
+\end{equation}
+则边际支持应优先配置给 $\mathcal{S}_r$ 较高的地区，而非平均分配。
+
+只补生产端同样可以被反证。若 $K<H<Y$ 或任一非生产环节构成短板，则 $G$ 接近由最小环节决定。以 $K<Y,H$ 为例，Leontief 极限下 $G=K$，故 $\partial G/\partial Y=0$。继续补贴生产端既不能增加有效产业链服务，也可能加剧原料集中上市、价格下行和财政压力。相反，适度改善加工、烘干、分级、物流、订单和消费承接，会提高 $G_Y$，从而提升生产端技术和质量投资的回报。
+
+\subsection{长期价格保护与精准补偿的比较}
+
+考虑小国情形，世界价格为 $p_w$，国内供给 $S(p)$ 递增，国内需求 $D(p)$ 递减。价格保护使国内价格升至 $p_w+\tau$，而生产端获得的价格激励为 $\tau$。若改用单位生产补贴 $s=\tau$，并保持消费者与加工企业支付价格为 $p_w$，则在无财政扭曲的基准下，生产端供给激励相同，但消费者和下游饲料企业不再承担价格上升。
+
+价格保护带来的传统无谓损失近似为
+\begin{equation}
+ DWL(\tau)\approx\frac{1}{2}\tau^2\left[S'(p_w)-D'(p_w)\right]>0.
+ \label{eq:dwl}
+\end{equation}
+对于大豆，价格上升还会通过豆粕和饲料成本进一步传导，故实际扭曲可能大于式 \eqref{eq:dwl} 的静态估计。若政策目标是提高安全产能，则最优生产补偿应与边际外部收益挂钩：
+\begin{equation}
+ s_r^*=B'(Y)+\mathcal{R}_M+(1-\vartheta_r)V_{Y_r}+\Phi_GG_Y,
+ \label{eq:optimalSubsidy}
+\end{equation}
+并结合研发、保险、储备、质量标准和公共基础设施。式 \eqref{eq:optimalSubsidy} 表明，补贴不应是永久性地弥补全部成本差，而应针对安全、质量传导、链条互补等市场失灵设定。
+
+\begin{proposition}[长期价格保护的可支配性]
+在小国、无财政筹资扭曲、可实施生产补贴与公共投资的条件下，若政策目标为维持给定国产供给与农户收益，长期价格保护可被“风险调整的生产补偿+收入保险+公共能力投资”严格支配；只有在财政筹资、监测或合同执行存在额外约束时，价格工具才可能具有次优作用。
+\end{proposition}
+
+\begin{proof}
+令价格保护与生产补贴提供相同生产者价格 $p_w+\tau$，则供给相同。价格保护下消费者价格上升至 $p_w+\tau$，生产补贴下消费者价格保持为 $p_w$。因此后者在保持供给的同时避免了需求收缩与下游成本上升。若补贴额进一步按式 \eqref{eq:optimalSubsidy} 定向，且公共投资提高 $\vartheta_r$、$G_Y$ 或降低风险，则可以以更低总扭曲实现相同或更高的安全收益。\end{proof}
+
+这一结论并不否认粮食安全政策的必要性，而是要求区分“补偿公共价值”与“保护既得收益”。政治经济学理论提醒，任何高成本产业都可能形成维护保护政策的组织化激励 \parencite{GrossmanHelpman1994}。大豆政策的规范基础应是安全外部性、动态学习、质量信息和网络韧性，而非对一般低效率生产的无限期兜底。
+
+\section{理论蕴含、发展路径与智能体仿真的可检验命题}
+
+\subsection{从成本竞争转向第二优全产业链均衡}
+
+模型将中国大豆的合理发展方向概括为一个第二优均衡：
+\begin{equation}
+\begin{aligned}
+ \text{适度国产基础产能}
+ &+\text{高质量专用供给}
+ +\text{关键节点能力}\\
+ &+\text{进口来源多元化}
+ +\text{替代蛋白与节粮技术}
+ +\text{精准公共支持}.
+\end{aligned}
+\label{eq:strategy}
+\end{equation}
+
+其中，“适度国产基础产能”由命题 1--4 决定，不以完全替代进口为目标；“高质量专用供给”由式 \eqref{eq:qstar} 和 \eqref{eq:transmission} 决定，强调将质量优势转化为可支付、可传导的市场价值；“关键节点能力”由式 \eqref{eq:cross} 决定，强调加工、烘干、仓储、检测、物流和订单体系与生产端的共同投资；“进口来源多元化”由式 \eqref{eq:shareFOC} 决定，强调降低组合风险而非单纯压低采购价格；“替代蛋白与节粮技术”由式 \eqref{eq:feedCES} 决定，强调降低食品系统对豆粕的刚性依赖；“精准公共支持”则由式 \eqref{eq:optimalSubsidy} 决定，强调以外部性为依据配置政策资源。
+
+\subsection{六项可检验命题}
+
+本文理论可以导出以下可由后续数据与智能体模型检验的命题。
+
+\begin{enumerate}[label=\textbf{H\arabic*.},leftmargin=3em]
+ \item \textbf{风险—产能命题。} 在国际价格波动、进口来源集中度或供应中断概率提高时，国产大豆基础产能的社会最优规模上升，但上升幅度在高土地机会成本地区较小。
+ \item \textbf{质量传导命题。} 质量检测、分级收储、订单收购和可追溯体系会提高生产端获得的质量收益份额 $\vartheta$，从而提高高蛋白、高油和专用品种的采用率与质量投入。
+ \item \textbf{主体选择命题。} 高单产、规模化、技术到位率高、社会化服务完善且加工半径较短的地区或经营主体，更可能进入高质量专用大豆和稳定订单市场。
+ \item \textbf{链条互补命题。} 产区加工、仓储烘干、检测分级和物流能力对大豆扩种的边际收益具有正向调节作用；没有这些配套的扩种政策对农户收益和链条价值的提升较弱。
+ \item \textbf{组合韧性命题。} 国产基础产能、进口来源多元化和替代蛋白之间具有互补性。单独提高某一工具的边际收益，会随其他工具的完善而变化。
+ \item \textbf{政策效率命题。} 按面积平均分配的生产支持，在控制总产量目标后，其成本效率低于按单产潜力、质量适配、风险暴露和加工衔接能力定向配置的政策组合。
+\end{enumerate}
+
+\subsection{向智能体模型的映射}
+
+理论模型与第九节的定量仿真形成严密衔接。表 \ref{tab:abm} 给出理论变量与智能体模块的对应关系。
+
+\begin{table}[H]
+\centering
+\caption{理论模型向大豆产业链智能体模型的映射}
+\label{tab:abm}
+\begin{threeparttable}
+\begin{tabularx}{\textwidth}{p{0.20\textwidth}p{0.25\textwidth}X}
+\toprule
+理论对象 & 核心状态变量或决策 & 智能体模型中的可校准模块\\
+\midrule
+农户/农场 & $A_i,e_i,q_i$；风险厌恶；作物选择 & 基于预期利润、价格方差、技术成本和邻近示范的离散选择或动态规划\\
+合作社与服务主体 & 服务覆盖、技术到位率、交易成本 & 托管服务、统一供种、机械作业、烘干检测和订单履约对农户决策的影响\\
+加工企业 & $K_j$；质量加价；订单与投资 & 原料采购、质量定价、加工能力扩张、产品结构与利润最大化\\
+贸易商与进口商 & $M_j,s_j$；库存；来源分散 & 世界价格过程、来源中断的 Markov 冲击、运输成本与组合风险最小化\\
+政府 & 补贴、保险、储备、标准、基建投资 & 比较普惠补贴、定向补贴、质量体系、加工扶持、进口多元化和替代蛋白政策组合\\
+饲料与消费端 & $\alpha,\varepsilon,Z$ & 豆粕配方、替代蛋白、低蛋白日粮和消费结构变化对进口需求的反馈\\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item 注：智能体模型的目的不是替代理论证明，而是利用异质性主体、空间关系、价格冲击与制度规则的交互，校准理论中的比较静态并评估不同政策组合的福利、风险和财政成本。
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+在仿真中，可将农户 $i$ 的作物选择写为
+\begin{equation}
+ EU_{ict}=\E(\pi_{ict})-\frac{\gamma_i}{2}\Var(\pi_{ict})+\zeta_1\mathrm{Service}_{it}+\zeta_2\mathrm{Peer}_{it},
+ \label{eq:abmfarmer}
+\end{equation}
+并使用 Logit 或随机效用规则决定大豆种植面积。加工企业按照原料质量、加工能力和产品价格决定质量加价与订单范围；进口商依据式 \eqref{eq:shareFOC} 的逻辑在成本与中断风险之间配置来源份额；政府以社会福利、风险调整成本、农户收入、财政成本和 CVaR 短缺损失为目标评价政策。这样，仿真便不再停留于“情景描述”，而是对理论的结构性命题进行检验——第九节报告校准与检验结果。
+
+\section{定量校准与政策仿真}
+
+本节以中国实测数据校准前文模型并检验六项命题。仿真系统由七个模块构成：M1 求解并校准第三节的社会规划问题；M2 求解式 \eqref{eq:shareFOC} 的进口组合并作中断情景蒙特卡洛；M3 以 2023 年投入产出表实测式 \eqref{eq:domar}--\eqref{eq:ellnetwork} 的网络参数；M4--M5 将第 8.3 小节的映射实现为合成代表性农户模型并运行政策矩阵；M6 对命题逐条作结构检验；M7 作全局敏感性分析。需要说明的是，仿真中的农户是按区域实测参数生成的\emph{合成代表性主体}——其微观基础是分省成本收益面板与区域面积份额，而非入户调查样本；个体异质性（生产率 $\varphi_i$、地块规模）为参数化设定。\footnote{全部代码、数据处理脚本与结果表随文发布（仿真仓库 \texttt{soybean\_second\_best}），支持一键复现（\texttt{python run\_all.py}）。本节报告快速设置（每政策 8 个种子 $\times$ 1500 农户）的结果；完整设置（200 种子 $\times$ 10000 农户）的排序结论一致。}
+
+\subsection{数据、校准与玉米—大豆联动的实证验证}
+
+校准使用四组数据。其一，《全国农产品成本收益资料汇编》历年分省面板（2006--2024 年、24 个省份、大豆与玉米两作物），经统一口径整理后用于构建六个产区（黑龙江北部高寒、黑龙江中南部及吉林、内蒙古东部、黄淮海、西南带状复合、其他产区）2022--2024 年均值的成本收益参数；其二，《2023 年全国投入产出表》（211 产品部门）用于实测大豆部门的网络中心性；其三，国家统计局产量与面积序列用于锚定总量、历史底部与面积年际波动；其四，省级生产者补贴政策文件用于设定基线补贴差。
+
+供给侧按式 \eqref{eq:cornopp} 构造：各区大豆边际成本 $MC_r=(c_r^s+\pi_r^c)/y_r^s$，其中玉米剩余 $\pi_r^c$ 直接取自同省玉米成本收益数据。所得边际成本阶梯为：西南带状复合 3983 元/吨 $<$ 黑龙江北部 6224 $<$ 黑龙江中南部 6347 $<$ 黄淮海 6539 $<$ 其他产区 7546 $<$ 内蒙古东部 8377 元/吨。供给曲线整体校准至一个可观测的边际条件：2025 年产量 2090 万吨处的边际激励 $=$ 食用豆拍卖价 4298 元/吨 $+$ 补贴差的吨当量 $248/0.1359\approx1825$ 元/吨，合计 6123 元/吨，校准仅需成本尺度因子 0.789。安全权重按揭示偏好法反推：以现行政策体制选择的产量规模为最优的隐含 $\beta=590$。
+
+玉米—大豆联动的校准通过三组独立观测得到交叉验证。第一，黑龙江 2024 年大豆与玉米的每亩净剩余之差为 $-182$ 元，而生产者补贴差为 $366-118=+248$ 元：二者近似相抵（$\Delta V\approx 66$ 元/亩），与该省处于内点均衡、边际农户近似无差异的事实一致——这正是式 \eqref{eq:dvchoice} 的直接检验。第二，跨区补贴强度与玉米机会成本同向：玉米剩余最高的内蒙古东部（739 元/亩）恰好对应最高的大豆生产者补贴（420 元/亩），而玉米剩余为负的西南地区（$-107$ 元/亩）无需生产者补贴、仅有带状复合种植支持——补贴差的空间结构内生于机会成本的空间结构。第三，动态参数由黑龙江面板估计：玉米价格对数 AR(1) 持续性 $0.711$、波动 $0.14$，大豆—玉米价格同比相关 $0.53$，两作物收益因而受共同冲击驱动。
+
+需求侧实现命题 4 的双向内生食用溢价：$\mathrm{prem}(\bar Y)=627\times(\bar Y/2065)^{-1/\varepsilon_f}$（过 2024 年观测点，食用需求弹性 $\varepsilon_f=0.5$），历史底部参数 $Y_{\min}=1100$ 万吨取自国家统计局产量序列的历史低位。农户选择的 Logit 尺度参数校准至观测的面积年际波动（模拟 5.4\%，观测约 6\%），换茬摩擦 120 元/亩对应 Nerlove 局部调整，另以模拟矩方法校正随机稳态相对静态校准点的漂移。表 \ref{tab:calib} 汇总主要参数。
+
+\begin{table}[H]
+\centering
+\caption{主要校准参数、取值与来源}
+\label{tab:calib}
+\begin{threeparttable}
+\footnotesize
+\begin{tabularx}{\textwidth}{p{0.30\textwidth}p{0.17\textwidth}X}
+\toprule
+参数 & 取值 & 校准方式与来源\\
+\midrule
+六区成本收益 $(c_r^s,\pi_r^c,y_r^s)$ & 见正文阶梯 & 《汇编》分省面板 2022--24 均值，面积加权\\
+基线补贴差 $\sigma$（黑龙江） & $366-118=248$ 元/亩 & 省级政策文件（2024--25）\\
+边际激励锚 $MC(2090)$ & 6123 元/吨 & 拍卖价 4298 $+$ $\sigma$ 吨当量 1825\\
+安全权重 $\beta$ & 590 & 揭示偏好：现行规模为最优的隐含权重\\
+食用溢价 $\mathrm{prem}_0$；弹性 $\varepsilon_f$ & 627 元/吨；0.5 & 2024 观测价差；文献区间上端\\
+历史底部 $Y_{\min}$ & 1100 万吨 & NBS 产量序列历史低位（2015: 1179）\\
+玉米价格过程 $(\rho,\sigma_c,\mathrm{corr})$ & $0.711,0.14,0.53$ & 黑龙江面板 2006--2024 估计\\
+Logit 尺度；换茬摩擦 & 600；120 元/亩 & 匹配 NBS 面积年际波动；Nerlove 调整\\
+网络损失系数 $\ell=\ell_0\Lambda_s^2$ & $\Lambda_{\text{食}}=0.029$ & 2023 年 211 部门投入产出表实测\\
+中断风险矩阵 $\Omega$ & 情景参数 & 非估计值（标注为结构设定）\\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item 注：吨当量换算使用 2025 年单产 135.9 公斤/亩。参数按“实测锚定”与“结构设定”分类标注，完整清单见仿真仓库 \texttt{data/} 目录。
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\subsection{基线复现与命题检验}
+
+校准后的模型在两个层面复现观测。规划模型解得社会最优规模 $Y^*=2075$ 万吨，与 2025 年观测产量 2090.5 万吨偏差 $-0.7\%$；比较静态符号全部与命题 1--2 一致（$\partial Y^*/\partial\rho>0$、$\partial Y^*/\partial\bar p>0$、$\partial Y^*/\partial\beta>0$、$\partial Y^*/\partial\omega<0$）。农户模型在基线政策下的随机稳态产量为 2091 万吨，并复现观测的区域面积份额（$L^1$ 偏差 1.2\%）。
+
+六项命题（H1--H6）的结构检验全部通过。H1（风险—产能）：进口风险倍增使 $Y^*$ 增加 450 万吨，而在高成本曲率下仅增加 362 万吨，交叉效应符号与命题 2 一致。H2（质量传导）：$\vartheta$ 由 0.22 提高到 0.68 时质量弹性为 0.837，与理论值 $1/(\delta-m)=0.833$ 相差 0.5\%（式 \eqref{eq:transmission}）。H3（主体选择）：进入专用市场农户的生产率中位数显著更高，$\varphi$ 对进入的判别力 AUC $=0.90$（命题 5）。H4（链条互补）：交叉偏导变号边界与理论直线 $\varepsilon_\Phi=1/\eta$ 的误差小于 $10^{-4}$，Leontief 极限下扩种边际收益归零（命题 7）。H5（工具替代）：储备增加使扩种的边际 CVaR 降幅由 $-0.0090$ 收缩至 $-0.0001$（命题 8 的组合互补结构）。H6（政策效率）：定向补贴的单位财政福利增量高于统一补贴（0.0394 对 0.0365），且目标价格政策的模拟无谓损失 4.0 亿元与解析式 $\tau^2|S'|/2$ 的预测 4.2 亿元相差 4\%（命题 9）——其中供给斜率 $|S'|$ 由统一补贴实验独立估计，两种不同政策工具给出相互一致的供给响应，构成跨工具的过度识别检验。
+
+\subsection{政策矩阵与工具排序}
+
+政策实验在统一预算约束（约 540 亿元/年）下比较七种方案，均以 2026--2035 年为窗口：P0 取消大豆生产者补贴（玉米补贴不变，即 $\sigma\approx0$）；P1 统一面积补贴 350 元/亩；P2 按区域社会净收益梯度的定向补贴；P3 目标价格差价补贴（生产者楔子 $\tau=627$ 元/吨，对应 2014--2016 年目标价格政策机制）；P4 质量链条包（检测分储提升 $\vartheta$ 至 0.68，加加工仓储与定向补贴）；P5 韧性包（储备翻倍、进口多元化加定向补贴）；P6 为 P2/P4/P5 的权重组合最优。表 \ref{tab:polmatrix} 报告主要结果。
+
+\begin{table}[H]
+\centering
+\caption{政策矩阵仿真结果（福利变化相对 P0，亿元/年）}
+\label{tab:polmatrix}
+\begin{threeparttable}
+\footnotesize
+\begin{tabularx}{\textwidth}{lXrrrrr}
+\toprule
+方案 & 内容 & $\Delta W$ & 财政 & 产量 & CVaR$_{5\%}$ & 质量 $\bar q$\\
+\midrule
+P0 & 无大豆补贴（$\sigma\approx0$） & 0 & 0 & 1576 & 45.8 & 0.41\\
+P1 & 统一面积补贴 350 元/亩 & $+18$ & 498 & 2128 & 45.8 & 0.40\\
+P2 & 定向补贴（梯度配置） & $+19$ & 489 & 2123 & 45.8 & 0.41\\
+P3 & 目标价格 $\tau=627$ 元/吨 & $+10$ & 107 & 1705 & 45.8 & 0.41\\
+P4 & 质量链条包 & $+106$ & 520 & 1854 & 45.8 & 0.71\\
+P5 & 韧性包（储备$+$多元化） & $-298$ & 510 & 1812 & 5.4 & 0.41\\
+P6 & 组合最优（权重集中于 P4） & $+106$ & 520 & 1854 & 45.8 & 0.71\\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item 注：产量为窗口均值（万吨/年）；CVaR$_{5\%}$ 为最坏 5\% 年份的短缺损失（亿元）。P5 的福利下降是以确定性成本购买尾部保险的显性保费；P6 粗网格下最优权重退化为质量链条包。预登记的五项排序假设（P2$\succ$P1、P4 质量维度最优、P5 CVaR 最优、P3 被 P2 支配、P6$\succeq$单项包）全部兑现。
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+政策矩阵给出四个与理论一致的定量结论。第一，定向补贴以更少财政（489 对 498 亿元）实现与统一补贴几乎相同的产量与略高的福利，且该排序在拉丁超立方抽样的参数扰动下 100\% 稳健——命题 6 的定向支配性在数量上成立，但幅度温和，因为现行六区补贴结构已部分内生于机会成本梯度（第 9.1 小节第二组事实）。第二，目标价格工具以最少财政换取最小的产量增量，其无谓损失与命题 9 的解析式吻合；在同等产量目标下被定向补贴支配。第三，质量链条包的福利增量（$+106$ 亿元/年）比任何单纯数量型工具高一个量级：提高 $\vartheta$ 同时改善质量选择（式 \eqref{eq:transmission}）与食用溢价实现，作用于价值维度而非数量维度——“提质”的边际回报显著高于“扩面”。第四，韧性包单独评估时平均福利为负、但使尾部损失下降 88\%：它与质量包不是相互替代，而是分别对冲不同维度的失灵（命题 3、8），组合权重应由社会的尾部风险厌恶程度决定，而非在平均福利口径下简单比较。
+
+\subsection{底部反事实：命题 4 的定量对应}
+
+两组反事实检验食用底部机制。其一，单纯取消大豆生产者补贴而保持玉米补贴不变（P0，$\sigma\approx0$），产量收敛于约 1600--1750 万吨区间（视评估窗口与口径），远高于零，也显著高于 2015 年低点：食用溢价在产量收缩时内生上升至约 1000 元/吨以上，恰好覆盖边际产区含玉米机会成本的边际成本。其二，复现 2015 年式的双重极端（大豆零补贴且玉米临储使 $\pi^c$ 抬高约 250 元/亩，即 $\sigma<0$），稳态产量降至约 1340 万吨——与 2015 年实际低点（1179 万吨，按今日单产折算约 1320 万吨）高度接近。
+
+两组数字的差值本身即是一个政策发现：2015 年的深度收缩是负补贴差与玉米临储的叠加产物，而非“无补贴即归零”的证据；在玉米临储已经退出的今日，即便完全取消大豆生产者补贴，市场化底部也在 1600 万吨上下。因此，约 500 亿元/年的补贴差支出实际购买的是市场化底部与社会最优之间约 400--500 万吨的缺口及其安全与质量收益——政策辩论的正确对象是这一边际量的成本收益，而不是产业的存续本身。
+
+\section{结论}
+
+本文针对一个长期存在但尚未被充分理论化的问题展开分析：在土地资源禀赋不利、国内成本较高的条件下，中国为何仍需要发展国产大豆产业，以及应如何避免将安全目标异化为低效率保护。本文的回答是，国产大豆发展的经济学基础不在于否定比较优势，而在于区分\emph{静态私人比较劣势}与\emph{社会风险调整后的比较优势}。
+
+在同质化大宗原料环节，中国不宜以全面替代进口为目标；但大豆作为油脂、饲料蛋白和食物系统的关键中间品，其进口依赖存在供应中断风险、生产网络放大效应和基础产能安全外部性。由此，完全进口与完全国产替代通常都不是最优。合理的国产大豆规模取决于进口成本、来源风险、国内产能安全收益、质量差异化收益、链条配套能力和替代蛋白成本的共同作用。
+
+模型还表明，国产大豆的破局不应主要依赖在普通压榨豆市场与土地资源丰富国家进行同质化成本竞争，而应转向土地节约型技术进步、分用途质量升级、主体与区域选择、加工仓储物流补链、进口来源多元化和需求侧蛋白替代。高蛋白、非转基因、豆制品专用、可追溯和生态属性只有在标准、检测、分仓、订单和品牌共同作用下，才会形成对种植端有效的质量溢价。生产、加工和物流存在严格互补，任何一环成为短板，单点扩张都可能失效。
+
+定量校准赋予上述机制以数量内容。以分省成本收益面板构造的含玉米机会成本的供给曲线，使模型以不到1\%的偏差复现观测产量；六项理论命题在合成代表性农户仿真中全部通过结构检验；黑龙江"剩余差$-182$元/亩对补贴差$+248$元/亩"的边际无差异、补贴强度与玉米机会成本的空间同构，为玉米—大豆联动提供了三重实证交叉验证。政策矩阵表明：面积配置的有效杠杆是大豆—玉米补贴差而非大豆补贴的绝对水平；定向补贴以更少财政支配统一补贴；质量链条包的福利回报比数量型工具高一个量级；韧性包以显性保费购买尾部保险。食用需求的内生溢价则保证：即便补贴差归零，国产大豆也存在约1600万吨的市场化底部——现行约500亿元/年的支出购买的是底部与社会最优之间400--500万吨的边际缺口，这才是政策评估的正确对象。
+
+由此，政策改革的方向应当清晰：从平均化面积支持转向有效供给导向的差异化支持；从单一生产补贴转向生产、质量、加工、物流和消费承接的组合政策；从长期价格保护转向风险调整的生产补偿、收入保险、储备调节、公共研发和基础设施投资；从单纯压低进口成本转向构建国产基础产能、进口来源多元化与替代蛋白并举的韧性体系。本文建立的"理论—校准—仿真"一体化框架，亦可为后续引入微观入户数据的结构估计与更细粒度的政策优化提供基础。
+
+\appendix
+\section{双重边际与纵向协调的简化说明}
+
+为说明产业链纵向协调的效率含义，设终端需求为 $P(Q)=a-bQ$，种植端单位成本为 $c_f$，加工端单位成本为 $c_p$。若种植与加工一体化，链条利润为
+\begin{equation}
+ \Pi^I=(a-bQ)Q-(c_f+c_p)Q,
+\end{equation}
+其最优产量为
+\begin{equation}
+ Q^I=\frac{a-c_f-c_p}{2b}.
+\end{equation}
+若上游先设批发价 $w$，下游随后选择加工量，则下游最优产量为
+\begin{equation}
+ Q(w)=\frac{a-w-c_p}{2b}.
+\end{equation}
+上游最大化 $(w-c_f)Q(w)$，得到均衡产量
+\begin{equation}
+ Q^D=\frac{a-c_f-c_p}{4b}=\frac{1}{2}Q^I.
+\end{equation}
+该结果并不意味着所有主体都应纵向一体化，而是说明当市场势力、质量难验证或资产专用性较强时，订单、合作社、基差定价、加工企业原料基地和长期契约可通过减少双重加价和交易摩擦提升链条效率。该思想可追溯至纵向整合的经典分析 \parencite{Spengler1950}。
+
+\section{符号说明}
+\begin{table}[H]
+\centering
+\caption{主要符号及经济含义}
+\begin{tabularx}{\textwidth}{p{0.18\textwidth}X p{0.18\textwidth}X}
+\toprule
+符号 & 含义 & 符号 & 含义\\
+\midrule
+$Y,Y_r$ & 国产大豆总产量及地区产量 & $M,M_j$ & 大豆进口总量及来源 $j$ 的进口量\\
+$Z$ & 替代蛋白和节粮技术减少的大豆等价需求 & $A_r$ & 地区 $r$ 的大豆种植面积\\
+$e_r,q_r$ & 技术投入与质量水平 & $\omega_r$ & 土地机会成本\\
+$\bm s$ & 进口来源份额向量 & $\Omega$ & 来源中断风险二阶矩阵\\
+$\ell$ & 供应短缺的食物系统损失系数 & $\beta$ & 国产基础产能安全收益参数\\
+$K,H$ & 加工能力与仓储检测物流能力 & $\vartheta_r$ & 质量收益传导到生产端的比例\\
+$\varphi$ & 主体综合生产率 & $\varepsilon$ & 豆粕与替代蛋白的替代弹性\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\printbibliography[title={参考文献}]
+
+\end{document}
