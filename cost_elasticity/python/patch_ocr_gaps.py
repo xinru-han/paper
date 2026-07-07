@@ -355,7 +355,8 @@ def parse_md_table(vol, crop, year, kind, title_re):
                     var = lab
                 elif block == "appendix" and lab == "每亩用工数量":
                     var = lab
-            elif kind == 2 and lab in K2_VARS:
+            elif kind == 2 and (lab in K2_VARS or lab == "税金"):
+                # 税金: 2004/2005老表制度性科目, 仅用于QC恒等式, 不入产出CSV
                 var = lab
             elif kind == 3 and lab == "每亩化肥折纯用量":
                 var = lab
@@ -582,7 +583,7 @@ def run_qc(base, patch):
                 viol.append((crop, prov, yr, "total_cost", round(rel, 4),
                              f"生产{pc}+土地{lc} vs 总{tc}"))
         msf = row.get("物质与服务费用")
-        comps = [row.get(c) for c in MSF_COMPONENTS]
+        comps = [row.get(c) for c in MSF_COMPONENTS + ["税金"]]
         have = [c for c in comps if pd.notna(c)]
         if pd.notna(msf) and len(have) >= 10:
             rel = abs(sum(have) - msf) / msf
