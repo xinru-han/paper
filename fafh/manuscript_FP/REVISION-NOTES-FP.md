@@ -54,3 +54,16 @@ TODO-analysis-FP.md    补充研究计划（Claude Code 用）
 REVISION-NOTES-FP.md   本文件
 fig*.png               原图 5 张 + 附录图 5 张（未改动；fig6 待生成）
 ```
+
+## 六、2026-07-07 终审后修订（占位符回填完成之后）
+
+必修项已全部处理：
+1. highlights 第4条事实错误（"reverses the dietary-guideline assessment"与正文"not flip"矛盾）→ 改为 "Counting FAFH nearly doubles measured meat-intake excess over the guideline ceiling"（84字符）。
+2. 正文 §7.2 补充 72% 弥合率的加权定义（猪牛禽按 gap 加权），并说明 CI 上界>100% 的含义。
+3. 修复第850行 includegraphics 的 artifact 损坏引用；\PH 宏改为恒等。
+4. 新增稳健性句：零售折算系数 ±10% 下加权弥合率 54–106%（numbers.json `retail_factor_sensitivity`，sources.md §H）。
+5. §7 开头加外推不确定性前置声明；蔬菜/蛋类边际重分类加谨慎句；表9外部验证措辞降温（Spearman n=9 不显著如实交代）。
+6. 表12/13/14、附录A.7/A.8 超宽全部消除（footnotesize+表头精简）；表13/14 注加 "computed from unrounded values"。
+7. tectonic 编译通过，0 undefined citation/reference。
+
+**投稿前唯一待办**：cover-letter-FP.txt 末尾通讯作者信息占位符需作者本人填写；Editorial Manager 内补 CRediT/利益声明/建议审稿人。

@@ -1143,11 +1143,11 @@ TabNet         & 0.209 & 0.315 & 11 \\
 \begin{threeparttable}
 \caption{Coefficients used in the food-security and nutrition applications (Section~\ref{sec:applications})}
 \label{tab:coefficients}
-\small
+\footnotesize
 \setlength{\tabcolsep}{0pt}
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l cccccc @{}}
 \toprule
-Commodity & \shortstack{Guideline\\group} & \shortstack{Edible\\portion} & \shortstack{Retail-weight\\factor} & \shortstack{Energy\\(kcal/100 g)} & \shortstack{Protein\\(g/100 g)} & \shortstack{Feed conversion\\(kg feed/kg product)} \\
+Commodity & \shortstack{Guideline\\group} & \shortstack{Edible\\portion} & \shortstack{Retail\\factor} & \shortstack{Energy\\(kcal/100 g)} & \shortstack{Protein\\(g/100 g)} & \shortstack{FCR (kg feed\\per kg product)} \\
 \midrule
 Rice             & Cereals          & 1.00 & --- & 346 & 7.9 & --- \\
 Wheat            & Cereals          & 1.00 & --- & 344 & 12.4 & --- \\
@@ -1165,7 +1165,7 @@ Dairy            & Dairy            & 1.00 & 1.00 & 54  & 3.0  & 0.3--0.5 \\
 \end{tabular*}
 \begin{tablenotes}[flushleft]
 \scriptsize
-\item Notes: Edible-portion, energy, and protein coefficients are consumption-weighted representative values from the China Food Composition Tables \citep{CFCT2019}; the mapping from CHNS items to representative foods is documented in the replication files. The retail-weight factor converts carcass-weight production to a basis comparable with the household survey for the reconciliation in Table~\ref{tab:reconciliation}. Because the NBS household quantities for meat are recorded as bone-in cuts close to carcass weight, rather than the trimmed boneless retail cut assumed by the nominal FAO food-balance factors \citep{FAO2001FBS}, we apply factors that net out only retail trim and loss (pork 0.95, beef 0.92, poultry 0.95) rather than the lower nominal factors. The lower nominal factors would shrink the supply--survey gap and inflate the closure shares (above 100 percent for pork), so the survey-comparable factors are the conservative choice; the sensitivity analysis in Appendix Table~\ref{tab:app_sensitivity} varies the adjustment-factor model and does not re-run the reconciliation under alternative retail-weight factors. Feed-conversion ratios are standard published values for Chinese production systems; sources are listed in the replication files.
+\item Notes: Edible-portion, energy, and protein coefficients are consumption-weighted representative values from the China Food Composition Tables \citep{CFCT2019}; the mapping from CHNS items to representative foods is documented in the replication files. The retail-weight factor converts carcass-weight production to a basis comparable with the household survey for the reconciliation in Table~\ref{tab:reconciliation}. Because the NBS household quantities for meat are recorded as bone-in cuts close to carcass weight, rather than the trimmed boneless retail cut assumed by the nominal FAO food-balance factors \citep{FAO2001FBS}, we apply factors that net out only retail trim and loss (pork 0.95, beef 0.92, poultry 0.95) rather than the lower nominal factors. The lower nominal factors would shrink the supply--survey gap and inflate the closure shares (above 100 percent for pork), so the survey-comparable factors are the conservative choice; the sensitivity analysis in Appendix Table~\ref{tab:app_sensitivity} varies the adjustment-factor model, and the caveats in Section~\ref{sec:applications} report the gap-weighted meat closure share under $\pm$10 percent variation in the retail-weight factors. Feed-conversion ratios are standard published values for Chinese production systems; sources are listed in the replication files.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -1175,7 +1175,7 @@ Dairy            & Dairy            & 1.00 & 1.00 & 54  & 3.0  & 0.3--0.5 \\
 \begin{threeparttable}
 \caption{Sensitivity of the headline application indicators to the choice of prediction model}
 \label{tab:app_sensitivity}
-\small
+\footnotesize
 \setlength{\tabcolsep}{0pt}
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l ccc @{}}
 \toprule

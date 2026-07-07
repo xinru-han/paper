@@ -234,5 +234,11 @@
   "understate_meat": 32,
   "understate_aquatic": 27,
   "ssr_pp_min": 3.9,
-  "ssr_pp_max": 35.7
+  "ssr_pp_max": 35.7,
+  "retail_factor_sensitivity": {
+    "desc": "gap-weighted meat (pork+beef+poultry) closure share under +/-10% retail-weight factors",
+    "base_pct": 71.7,
+    "conv_plus10_pct": 54.1,
+    "conv_minus10_pct": 106.3
+  }
 }
