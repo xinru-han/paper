@@ -93,6 +93,7 @@ PAGES = [
 PROV_FIX = {
     "四JII": "四川", "四JIl": "四川", "四Jll": "四川", "四JI!": "四川",
     ";可南": "河南", ";可北": "河北", "?可南": "河南", "?可北": "河北",
+    "；可南": "河南", "；可北": "河北", "彳可南": "河南", "彳可北": "河北",
     "淅江": "浙江", "womenc": "", "?每南": "海南", ";每南": "海南",
 }
 
@@ -122,7 +123,7 @@ def page_words(vol, page):
     return words
 
 
-def group_rows(words, tol=2.5):
+def group_rows(words, tol=5.0):  # 2021卷行名与数值y偏移~4pt
     rows = []
     for w in sorted(words):
         if rows and abs(w[0] - rows[-1][0][0]) <= tol:
@@ -132,16 +133,42 @@ def group_rows(words, tol=2.5):
     return [sorted(r, key=lambda w: w[1]) for r in rows]
 
 
+NUM2_RE = re.compile(r"-?\d+\.\d{2}")
+
+
 def join_cells(ws, gap=6.0):
-    """按x间隙聚词成cell; 返回 [(x_center, text)]。"""
-    cells = []
+    """按x间隙聚词成cell; 相邻列数字过宽粘连时按 两位小数 定式再切分。
+    返回 [(x_center, text)]。"""
+    groups = []
     for y, x0, x1, t in ws:
-        if cells and x0 - cells[-1][1] <= gap:
-            cells[-1][1] = max(cells[-1][1], x1)
-            cells[-1][2] += t
+        if groups and x0 - groups[-1][-1][1] <= gap:
+            groups[-1].append((x0, x1, t))
         else:
-            cells.append([x0, x1, t])
-    return [((c[0] + c[1]) / 2, c[2]) for c in cells]
+            groups.append([(x0, x1, t)])
+    cells = []
+    for g in groups:
+        text = "".join(t for _, _, t in g).replace(" ", "")
+        # 字符级x坐标 (词内均匀内插)
+        chx = []
+        for x0, x1, t in g:
+            tt = t.replace(" ", "")
+            n = len(tt)
+            for i in range(n):
+                chx.append(x0 + (x1 - x0) * (i + 0.5) / max(n, 1))
+        if NUM_RE.match(text) or not re.search(r"\d", text):
+            cells.append(((g[0][0] + g[-1][1]) / 2, text))
+            continue
+        # 粘连: 若整串恰为若干个 -?d+.dd 之连接, 则逐段拆分
+        frags = NUM2_RE.findall(text)
+        if "".join(frags) == text and len(frags) > 1:
+            pos = 0
+            for f in frags:
+                xs = chx[pos:pos + len(f)]
+                cells.append((float(np.mean(xs)), f))
+                pos += len(f)
+        else:
+            cells.append(((g[0][0] + g[-1][1]) / 2, text))
+    return cells
 
 
 def parse_page(vol, page, crop, year, kind, expect_id):

@@ -1,0 +1,229 @@
+scenario,group,indicator,unit,value_2050,guide_low,guide_high,deviation,pct_of_upper_bound
+BS,BS,Red meat (pork+beef+mutton),g/d,142.8,14,28,114.8,510.01
+BS,BS,Meat total (incl. poultry),g/d,184.99,40,75,109.99,246.65
+BS,BS,Cereals (whole-grain proxy),g/d,321.78,200,300,21.78,107.26
+BS,BS,Vegetables,g/d,414.83,300,500,0.0,82.97
+BS,BS,Fruits,g/d,342.86,200,350,0.0,97.96
+BS,BS,Dairy,g/d,129.65,300,500,-170.35,25.93
+BS,BS,Aquatic products,g/d,46.45,40,75,0.0,61.93
+BS,BS,Eggs,g/d,45.21,40,50,0.0,90.43
+BS,BS,Added sugar,g/d,12.82,0,50,0.0,25.64
+BS,BS,Fat energy share (WHO <30%),%E,39.67,20,30,9.67,132.22
+BS,BS,Carbohydrate energy share,%E,45.51,50,65,-4.49,70.02
+BS,BS,Dietary energy,kcal/d,3035.84,2000,2600,435.84,116.76
+A1,PTS,Red meat (pork+beef+mutton),g/d,156.81,14,28,128.81,560.05
+A1,PTS,Meat total (incl. poultry),g/d,202.42,40,75,127.42,269.89
+A1,PTS,Cereals (whole-grain proxy),g/d,304.69,200,300,4.69,101.56
+A1,PTS,Vegetables,g/d,420.26,300,500,0.0,84.05
+A1,PTS,Fruits,g/d,361.14,200,350,11.14,103.18
+A1,PTS,Dairy,g/d,157.45,300,500,-142.55,31.49
+A1,PTS,Aquatic products,g/d,50.21,40,75,0.0,66.95
+A1,PTS,Eggs,g/d,48.88,40,50,0.0,97.75
+A1,PTS,Added sugar,g/d,12.82,0,50,0.0,25.64
+A1,PTS,Fat energy share (WHO <30%),%E,41.67,20,30,11.67,138.89
+A1,PTS,Carbohydrate energy share,%E,43.41,50,65,-6.59,66.79
+A1,PTS,Dietary energy,kcal/d,3091.1,2000,2600,491.1,118.89
+A2,PTS,Red meat (pork+beef+mutton),g/d,155.3,14,28,127.3,554.64
+A2,PTS,Meat total (incl. poultry),g/d,200.92,40,75,125.92,267.89
+A2,PTS,Cereals (whole-grain proxy),g/d,297.72,200,300,0.0,99.24
+A2,PTS,Vegetables,g/d,419.8,300,500,0.0,83.96
+A2,PTS,Fruits,g/d,365.18,200,350,15.18,104.34
+A2,PTS,Dairy,g/d,154.59,300,500,-145.41,30.92
+A2,PTS,Aquatic products,g/d,51.05,40,75,0.0,68.06
+A2,PTS,Eggs,g/d,48.87,40,50,0.0,97.74
+A2,PTS,Added sugar,g/d,12.83,0,50,0.0,25.66
+A2,PTS,Fat energy share (WHO <30%),%E,41.67,20,30,11.67,138.89
+A2,PTS,Carbohydrate energy share,%E,43.34,50,65,-6.66,66.68
+A2,PTS,Dietary energy,kcal/d,3042.81,2000,2600,442.81,117.03
+A3,PTS,Red meat (pork+beef+mutton),g/d,158.43,14,28,130.43,565.82
+A3,PTS,Meat total (incl. poultry),g/d,204.01,40,75,129.01,272.02
+A3,PTS,Cereals (whole-grain proxy),g/d,312.14,200,300,12.14,104.05
+A3,PTS,Vegetables,g/d,420.75,300,500,0.0,84.15
+A3,PTS,Fruits,g/d,356.83,200,350,6.83,101.95
+A3,PTS,Dairy,g/d,160.5,300,500,-139.5,32.1
+A3,PTS,Aquatic products,g/d,49.32,40,75,0.0,65.76
+A3,PTS,Eggs,g/d,48.88,40,50,0.0,97.76
+A3,PTS,Added sugar,g/d,12.81,0,50,0.0,25.61
+A3,PTS,Fat energy share (WHO <30%),%E,41.67,20,30,11.67,138.9
+A3,PTS,Carbohydrate energy share,%E,43.48,50,65,-6.52,66.9
+A3,PTS,Dietary energy,kcal/d,3142.69,2000,2600,542.69,120.87
+A4,PTS,Red meat (pork+beef+mutton),g/d,156.81,14,28,128.81,560.05
+A4,PTS,Meat total (incl. poultry),g/d,202.42,40,75,127.42,269.89
+A4,PTS,Cereals (whole-grain proxy),g/d,304.69,200,300,4.69,101.56
+A4,PTS,Vegetables,g/d,420.26,300,500,0.0,84.05
+A4,PTS,Fruits,g/d,361.14,200,350,11.14,103.18
+A4,PTS,Dairy,g/d,157.45,300,500,-142.55,31.49
+A4,PTS,Aquatic products,g/d,50.21,40,75,0.0,66.95
+A4,PTS,Eggs,g/d,48.88,40,50,0.0,97.75
+A4,PTS,Added sugar,g/d,12.82,0,50,0.0,25.64
+A4,PTS,Fat energy share (WHO <30%),%E,41.67,20,30,11.67,138.89
+A4,PTS,Carbohydrate energy share,%E,43.41,50,65,-6.59,66.79
+A4,PTS,Dietary energy,kcal/d,3091.1,2000,2600,491.1,118.89
+A5,PTS,Red meat (pork+beef+mutton),g/d,156.81,14,28,128.81,560.05
+A5,PTS,Meat total (incl. poultry),g/d,202.42,40,75,127.42,269.89
+A5,PTS,Cereals (whole-grain proxy),g/d,304.69,200,300,4.69,101.56
+A5,PTS,Vegetables,g/d,420.26,300,500,0.0,84.05
+A5,PTS,Fruits,g/d,361.14,200,350,11.14,103.18
+A5,PTS,Dairy,g/d,157.45,300,500,-142.55,31.49
+A5,PTS,Aquatic products,g/d,50.21,40,75,0.0,66.95
+A5,PTS,Eggs,g/d,48.88,40,50,0.0,97.75
+A5,PTS,Added sugar,g/d,12.82,0,50,0.0,25.64
+A5,PTS,Fat energy share (WHO <30%),%E,41.67,20,30,11.67,138.89
+A5,PTS,Carbohydrate energy share,%E,43.41,50,65,-6.59,66.79
+A5,PTS,Dietary energy,kcal/d,3091.1,2000,2600,491.1,118.89
+A6,PTS,Red meat (pork+beef+mutton),g/d,156.39,14,28,128.39,558.53
+A6,PTS,Meat total (incl. poultry),g/d,201.16,40,75,126.16,268.22
+A6,PTS,Cereals (whole-grain proxy),g/d,300.21,200,300,0.21,100.07
+A6,PTS,Vegetables,g/d,408.89,300,500,0.0,81.78
+A6,PTS,Fruits,g/d,349.46,200,350,0.0,99.85
+A6,PTS,Dairy,g/d,154.46,300,500,-145.54,30.89
+A6,PTS,Aquatic products,g/d,49.52,40,75,0.0,66.03
+A6,PTS,Eggs,g/d,47.95,40,50,0.0,95.9
+A6,PTS,Added sugar,g/d,12.56,0,50,0.0,25.12
+A6,PTS,Fat energy share (WHO <30%),%E,41.75,20,30,11.75,139.17
+A6,PTS,Carbohydrate energy share,%E,43.31,50,65,-6.69,66.62
+A6,PTS,Dietary energy,kcal/d,3047.17,2000,2600,447.17,117.2
+B1,HDS,Red meat (pork+beef+mutton),g/d,40.35,14,28,12.35,144.11
+B1,HDS,Meat total (incl. poultry),g/d,99.37,40,75,24.37,132.49
+B1,HDS,Cereals (whole-grain proxy),g/d,226.84,200,300,0.0,75.61
+B1,HDS,Vegetables,g/d,448.43,300,500,0.0,89.69
+B1,HDS,Fruits,g/d,307.32,200,350,0.0,87.81
+B1,HDS,Dairy,g/d,279.6,300,500,-20.4,55.92
+B1,HDS,Aquatic products,g/d,97.68,40,75,22.68,130.24
+B1,HDS,Eggs,g/d,30.52,40,50,-9.48,61.04
+B1,HDS,Added sugar,g/d,12.82,0,50,0.0,25.64
+B1,HDS,Fat energy share (WHO <30%),%E,32.97,20,30,2.97,109.91
+B1,HDS,Carbohydrate energy share,%E,48.09,50,65,-1.91,73.98
+B1,HDS,Dietary energy,kcal/d,2257.7,2000,2600,0.0,86.83
+B2,HDS,Red meat (pork+beef+mutton),g/d,39.96,14,28,11.96,142.71
+B2,HDS,Meat total (incl. poultry),g/d,99.0,40,75,24.0,132.01
+B2,HDS,Cereals (whole-grain proxy),g/d,221.62,200,300,0.0,73.87
+B2,HDS,Vegetables,g/d,447.94,300,500,0.0,89.59
+B2,HDS,Fruits,g/d,310.76,200,350,0.0,88.79
+B2,HDS,Dairy,g/d,274.52,300,500,-25.48,54.9
+B2,HDS,Aquatic products,g/d,99.3,40,75,24.3,132.4
+B2,HDS,Eggs,g/d,30.52,40,50,-9.48,61.04
+B2,HDS,Added sugar,g/d,12.83,0,50,0.0,25.66
+B2,HDS,Fat energy share (WHO <30%),%E,32.96,20,30,2.96,109.88
+B2,HDS,Carbohydrate energy share,%E,47.98,50,65,-2.02,73.82
+B2,HDS,Dietary energy,kcal/d,2226.12,2000,2600,0.0,85.62
+B3,HDS,Red meat (pork+beef+mutton),g/d,40.77,14,28,12.77,145.6
+B3,HDS,Meat total (incl. poultry),g/d,99.76,40,75,24.76,133.02
+B3,HDS,Cereals (whole-grain proxy),g/d,232.43,200,300,0.0,77.48
+B3,HDS,Vegetables,g/d,448.95,300,500,0.0,89.79
+B3,HDS,Fruits,g/d,303.65,200,350,0.0,86.76
+B3,HDS,Dairy,g/d,285.02,300,500,-14.98,57.0
+B3,HDS,Aquatic products,g/d,95.95,40,75,20.95,127.93
+B3,HDS,Eggs,g/d,30.53,40,50,-9.47,61.05
+B3,HDS,Added sugar,g/d,12.81,0,50,0.0,25.61
+B3,HDS,Fat energy share (WHO <30%),%E,32.98,20,30,2.98,109.94
+B3,HDS,Carbohydrate energy share,%E,48.2,50,65,-1.8,74.16
+B3,HDS,Dietary energy,kcal/d,2291.44,2000,2600,0.0,88.13
+B4,HDS,Red meat (pork+beef+mutton),g/d,40.35,14,28,12.35,144.11
+B4,HDS,Meat total (incl. poultry),g/d,99.37,40,75,24.37,132.49
+B4,HDS,Cereals (whole-grain proxy),g/d,226.84,200,300,0.0,75.61
+B4,HDS,Vegetables,g/d,448.43,300,500,0.0,89.69
+B4,HDS,Fruits,g/d,307.32,200,350,0.0,87.81
+B4,HDS,Dairy,g/d,279.6,300,500,-20.4,55.92
+B4,HDS,Aquatic products,g/d,97.68,40,75,22.68,130.24
+B4,HDS,Eggs,g/d,30.52,40,50,-9.48,61.04
+B4,HDS,Added sugar,g/d,12.82,0,50,0.0,25.64
+B4,HDS,Fat energy share (WHO <30%),%E,32.97,20,30,2.97,109.91
+B4,HDS,Carbohydrate energy share,%E,48.09,50,65,-1.91,73.98
+B4,HDS,Dietary energy,kcal/d,2257.7,2000,2600,0.0,86.83
+B5,HDS,Red meat (pork+beef+mutton),g/d,40.35,14,28,12.35,144.11
+B5,HDS,Meat total (incl. poultry),g/d,99.37,40,75,24.37,132.49
+B5,HDS,Cereals (whole-grain proxy),g/d,226.84,200,300,0.0,75.61
+B5,HDS,Vegetables,g/d,448.43,300,500,0.0,89.69
+B5,HDS,Fruits,g/d,307.32,200,350,0.0,87.81
+B5,HDS,Dairy,g/d,279.6,300,500,-20.4,55.92
+B5,HDS,Aquatic products,g/d,97.68,40,75,22.68,130.24
+B5,HDS,Eggs,g/d,30.52,40,50,-9.48,61.04
+B5,HDS,Added sugar,g/d,12.82,0,50,0.0,25.64
+B5,HDS,Fat energy share (WHO <30%),%E,32.97,20,30,2.97,109.91
+B5,HDS,Carbohydrate energy share,%E,48.09,50,65,-1.91,73.98
+B5,HDS,Dietary energy,kcal/d,2257.7,2000,2600,0.0,86.83
+B6,HDS,Red meat (pork+beef+mutton),g/d,40.27,14,28,12.27,143.82
+B6,HDS,Meat total (incl. poultry),g/d,98.5,40,75,23.5,131.34
+B6,HDS,Cereals (whole-grain proxy),g/d,224.39,200,300,0.0,74.8
+B6,HDS,Vegetables,g/d,439.47,300,500,0.0,87.89
+B6,HDS,Fruits,g/d,299.98,200,350,0.0,85.71
+B6,HDS,Dairy,g/d,275.67,300,500,-24.33,55.13
+B6,HDS,Aquatic products,g/d,96.68,40,75,21.68,128.91
+B6,HDS,Eggs,g/d,30.1,40,50,-9.9,60.19
+B6,HDS,Added sugar,g/d,12.63,0,50,0.0,25.26
+B6,HDS,Fat energy share (WHO <30%),%E,32.99,20,30,2.99,109.97
+B6,HDS,Carbohydrate energy share,%E,48.05,50,65,-1.95,73.92
+B6,HDS,Dietary energy,kcal/d,2231.3,2000,2600,0.0,85.82
+C1,MTS,Red meat (pork+beef+mutton),g/d,80.25,14,28,52.25,286.62
+C1,MTS,Meat total (incl. poultry),g/d,132.15,40,75,57.15,176.2
+C1,MTS,Cereals (whole-grain proxy),g/d,262.66,200,300,0.0,87.55
+C1,MTS,Vegetables,g/d,434.12,300,500,0.0,86.82
+C1,MTS,Fruits,g/d,333.19,200,350,0.0,95.2
+C1,MTS,Dairy,g/d,210.15,300,500,-89.85,42.03
+C1,MTS,Aquatic products,g/d,70.18,40,75,0.0,93.58
+C1,MTS,Eggs,g/d,38.66,40,50,-1.34,77.33
+C1,MTS,Added sugar,g/d,12.82,0,50,0.0,25.64
+C1,MTS,Fat energy share (WHO <30%),%E,36.66,20,30,6.66,122.2
+C1,MTS,Carbohydrate energy share,%E,46.68,50,65,-3.32,71.82
+C1,MTS,Dietary energy,kcal/d,2571.5,2000,2600,0.0,98.9
+C2,MTS,Red meat (pork+beef+mutton),g/d,79.48,14,28,51.48,283.84
+C2,MTS,Meat total (incl. poultry),g/d,131.39,40,75,56.39,175.19
+C2,MTS,Cereals (whole-grain proxy),g/d,256.63,200,300,0.0,85.54
+C2,MTS,Vegetables,g/d,433.65,300,500,0.0,86.73
+C2,MTS,Fruits,g/d,336.91,200,350,0.0,96.26
+C2,MTS,Dairy,g/d,206.33,300,500,-93.67,41.27
+C2,MTS,Aquatic products,g/d,71.35,40,75,0.0,95.13
+C2,MTS,Eggs,g/d,38.66,40,50,-1.34,77.32
+C2,MTS,Added sugar,g/d,12.83,0,50,0.0,25.66
+C2,MTS,Fat energy share (WHO <30%),%E,36.65,20,30,6.65,122.17
+C2,MTS,Carbohydrate energy share,%E,46.6,50,65,-3.4,71.69
+C2,MTS,Dietary energy,kcal/d,2532.94,2000,2600,0.0,97.42
+C3,MTS,Red meat (pork+beef+mutton),g/d,81.08,14,28,53.08,289.58
+C3,MTS,Meat total (incl. poultry),g/d,132.95,40,75,57.95,177.27
+C3,MTS,Cereals (whole-grain proxy),g/d,269.1,200,300,0.0,89.7
+C3,MTS,Vegetables,g/d,434.63,300,500,0.0,86.93
+C3,MTS,Fruits,g/d,329.21,200,350,0.0,94.06
+C3,MTS,Dairy,g/d,214.22,300,500,-85.78,42.84
+C3,MTS,Aquatic products,g/d,68.94,40,75,0.0,91.92
+C3,MTS,Eggs,g/d,38.67,40,50,-1.33,77.34
+C3,MTS,Added sugar,g/d,12.81,0,50,0.0,25.61
+C3,MTS,Fat energy share (WHO <30%),%E,36.67,20,30,6.67,122.23
+C3,MTS,Carbohydrate energy share,%E,46.77,50,65,-3.23,71.95
+C3,MTS,Dietary energy,kcal/d,2612.7,2000,2600,12.7,100.49
+C4,MTS,Red meat (pork+beef+mutton),g/d,80.25,14,28,52.25,286.62
+C4,MTS,Meat total (incl. poultry),g/d,132.15,40,75,57.15,176.2
+C4,MTS,Cereals (whole-grain proxy),g/d,262.66,200,300,0.0,87.55
+C4,MTS,Vegetables,g/d,434.12,300,500,0.0,86.82
+C4,MTS,Fruits,g/d,333.19,200,350,0.0,95.2
+C4,MTS,Dairy,g/d,210.15,300,500,-89.85,42.03
+C4,MTS,Aquatic products,g/d,70.18,40,75,0.0,93.58
+C4,MTS,Eggs,g/d,38.66,40,50,-1.34,77.33
+C4,MTS,Added sugar,g/d,12.82,0,50,0.0,25.64
+C4,MTS,Fat energy share (WHO <30%),%E,36.66,20,30,6.66,122.2
+C4,MTS,Carbohydrate energy share,%E,46.68,50,65,-3.32,71.82
+C4,MTS,Dietary energy,kcal/d,2571.5,2000,2600,0.0,98.9
+C5,MTS,Red meat (pork+beef+mutton),g/d,80.25,14,28,52.25,286.62
+C5,MTS,Meat total (incl. poultry),g/d,132.15,40,75,57.15,176.2
+C5,MTS,Cereals (whole-grain proxy),g/d,262.66,200,300,0.0,87.55
+C5,MTS,Vegetables,g/d,434.12,300,500,0.0,86.82
+C5,MTS,Fruits,g/d,333.19,200,350,0.0,95.2
+C5,MTS,Dairy,g/d,210.15,300,500,-89.85,42.03
+C5,MTS,Aquatic products,g/d,70.18,40,75,0.0,93.58
+C5,MTS,Eggs,g/d,38.66,40,50,-1.34,77.33
+C5,MTS,Added sugar,g/d,12.82,0,50,0.0,25.64
+C5,MTS,Fat energy share (WHO <30%),%E,36.66,20,30,6.66,122.2
+C5,MTS,Carbohydrate energy share,%E,46.68,50,65,-3.32,71.82
+C5,MTS,Dietary energy,kcal/d,2571.5,2000,2600,0.0,98.9
+C6,MTS,Red meat (pork+beef+mutton),g/d,80.09,14,28,52.09,286.05
+C6,MTS,Meat total (incl. poultry),g/d,131.3,40,75,56.3,175.06
+C6,MTS,Cereals (whole-grain proxy),g/d,259.81,200,300,0.0,86.6
+C6,MTS,Vegetables,g/d,425.45,300,500,0.0,85.09
+C6,MTS,Fruits,g/d,325.23,200,350,0.0,92.92
+C6,MTS,Dairy,g/d,207.2,300,500,-92.8,41.44
+C6,MTS,Aquatic products,g/d,69.47,40,75,0.0,92.62
+C6,MTS,Eggs,g/d,38.12,40,50,-1.88,76.25
+C6,MTS,Added sugar,g/d,12.63,0,50,0.0,25.26
+C6,MTS,Fat energy share (WHO <30%),%E,36.7,20,30,6.7,122.32
+C6,MTS,Carbohydrate energy share,%E,46.62,50,65,-3.38,71.73
+C6,MTS,Dietary energy,kcal/d,2542.68,2000,2600,0.0,97.8

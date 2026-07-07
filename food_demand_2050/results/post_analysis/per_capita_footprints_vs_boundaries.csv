@@ -1,0 +1,77 @@
+scenario,group,indicator,unit,per_capita_2050,boundary_share,ratio_to_boundary
+A1,PTS,Blue water,m3/cap/yr,271.493,257.732,1.053
+A2,PTS,Blue water,m3/cap/yr,270.378,257.732,1.049
+A3,PTS,Blue water,m3/cap/yr,274.344,257.732,1.064
+A4,PTS,Blue water,m3/cap/yr,261.11,257.732,1.013
+A5,PTS,Blue water,m3/cap/yr,285.848,257.732,1.109
+A6,PTS,Blue water,m3/cap/yr,278.625,257.732,1.081
+B1,HDS,Blue water,m3/cap/yr,272.529,257.732,1.057
+B2,HDS,Blue water,m3/cap/yr,272.212,257.732,1.056
+B3,HDS,Blue water,m3/cap/yr,274.988,257.732,1.067
+B4,HDS,Blue water,m3/cap/yr,257.825,257.732,1.0
+B5,HDS,Blue water,m3/cap/yr,289.353,257.732,1.123
+B6,HDS,Blue water,m3/cap/yr,279.146,257.732,1.083
+BS,BS,Blue water,m3/cap/yr,269.579,257.732,1.046
+C1,MTS,Blue water,m3/cap/yr,267.426,257.732,1.038
+C2,MTS,Blue water,m3/cap/yr,267.189,257.732,1.037
+C3,MTS,Blue water,m3/cap/yr,269.839,257.732,1.047
+C4,MTS,Blue water,m3/cap/yr,252.897,257.732,0.981
+C5,MTS,Blue water,m3/cap/yr,284.223,257.732,1.103
+C6,MTS,Blue water,m3/cap/yr,274.132,257.732,1.064
+A1,PTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,543.065,515.464,1.054
+A2,PTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,539.322,515.464,1.046
+A3,PTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,548.205,515.464,1.064
+A4,PTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,535.66,515.464,1.039
+A5,PTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,555.62,515.464,1.078
+A6,PTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,544.124,515.464,1.056
+B1,HDS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,514.68,515.464,0.998
+B2,HDS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,512.77,515.464,0.995
+B3,HDS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,520.288,515.464,1.009
+B4,HDS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,489.591,515.464,0.95
+B5,HDS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,543.307,515.464,1.054
+B6,HDS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,525.249,515.464,1.019
+BS,BS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,519.942,515.464,1.009
+C1,MTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,487.969,515.464,0.947
+C2,MTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,486.458,515.464,0.944
+C3,MTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,493.015,515.464,0.956
+C4,MTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,463.234,515.464,0.899
+C5,MTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,516.544,515.464,1.002
+C6,MTS,"GHG (farm-gate, cons.)",kg CO2e/cap/yr,498.863,515.464,0.968
+A1,PTS,"Land (cradle, incl. pasture)",ha/cap,1.013,0.134,7.556
+A2,PTS,"Land (cradle, incl. pasture)",ha/cap,1.009,0.134,7.532
+A3,PTS,"Land (cradle, incl. pasture)",ha/cap,1.019,0.134,7.6
+A4,PTS,"Land (cradle, incl. pasture)",ha/cap,0.998,0.134,7.449
+A5,PTS,"Land (cradle, incl. pasture)",ha/cap,1.031,0.134,7.694
+A6,PTS,"Land (cradle, incl. pasture)",ha/cap,1.013,0.134,7.556
+B1,HDS,"Land (cradle, incl. pasture)",ha/cap,0.921,0.134,6.871
+B2,HDS,"Land (cradle, incl. pasture)",ha/cap,0.919,0.134,6.86
+B3,HDS,"Land (cradle, incl. pasture)",ha/cap,0.928,0.134,6.927
+B4,HDS,"Land (cradle, incl. pasture)",ha/cap,0.876,0.134,6.535
+B5,HDS,"Land (cradle, incl. pasture)",ha/cap,0.971,0.134,7.248
+B6,HDS,"Land (cradle, incl. pasture)",ha/cap,0.94,0.134,7.01
+BS,BS,"Land (cradle, incl. pasture)",ha/cap,0.962,0.134,7.175
+C1,MTS,"Land (cradle, incl. pasture)",ha/cap,0.879,0.134,6.556
+C2,MTS,"Land (cradle, incl. pasture)",ha/cap,0.877,0.134,6.544
+C3,MTS,"Land (cradle, incl. pasture)",ha/cap,0.886,0.134,6.609
+C4,MTS,"Land (cradle, incl. pasture)",ha/cap,0.834,0.134,6.223
+C5,MTS,"Land (cradle, incl. pasture)",ha/cap,0.929,0.134,6.935
+C6,MTS,"Land (cradle, incl. pasture)",ha/cap,0.898,0.134,6.698
+A1,PTS,Reactive N,kg N/cap/yr,37.323,9.278,4.023
+A2,PTS,Reactive N,kg N/cap/yr,37.228,9.278,4.012
+A3,PTS,Reactive N,kg N/cap/yr,37.652,9.278,4.058
+A4,PTS,Reactive N,kg N/cap/yr,35.84,9.278,3.863
+A5,PTS,Reactive N,kg N/cap/yr,39.222,9.278,4.227
+A6,PTS,Reactive N,kg N/cap/yr,38.263,9.278,4.124
+B1,HDS,Reactive N,kg N/cap/yr,37.865,9.278,4.081
+B2,HDS,Reactive N,kg N/cap/yr,37.85,9.278,4.079
+B3,HDS,Reactive N,kg N/cap/yr,38.159,9.278,4.113
+B4,HDS,Reactive N,kg N/cap/yr,35.9,9.278,3.869
+B5,HDS,Reactive N,kg N/cap/yr,40.094,9.278,4.321
+B6,HDS,Reactive N,kg N/cap/yr,38.732,9.278,4.174
+BS,BS,Reactive N,kg N/cap/yr,36.845,9.278,3.971
+C1,MTS,Reactive N,kg N/cap/yr,36.821,9.278,3.968
+C2,MTS,Reactive N,kg N/cap/yr,36.797,9.278,3.966
+C3,MTS,Reactive N,kg N/cap/yr,37.113,9.278,4.0
+C4,MTS,Reactive N,kg N/cap/yr,34.892,9.278,3.761
+C5,MTS,Reactive N,kg N/cap/yr,39.051,9.278,4.209
+C6,MTS,Reactive N,kg N/cap/yr,37.696,9.278,4.063
