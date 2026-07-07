@@ -3,5 +3,5 @@ Highlights
 • Food-at-home data understate China's total food demand in all twelve categories
 • Province-year FAFH adjustment factors are estimated through 2024 with uncertainty
 • 2024 corrections range from 10% for dairy to 41% for poultry
-• Counting FAFH reverses the dietary-guideline assessment for livestock meat
+• Counting FAFH nearly doubles measured meat-intake excess over the guideline ceiling
 • Adjusted demand lowers measured self-sufficiency for animal-source foods
