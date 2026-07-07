@@ -22,7 +22,11 @@ c1_gamma_from_a <- function(a, Sbar, K) {
 
 # 把 γ 块从设计矩阵移到 offset：需要各方程中 γ_nm 对应的regressor
 # 复用 tl_build_system 的 X：γ 列乘固定值即 offset。
-tl_itsur_c1 <- function(sys, K, Sbar, tol = 1e-9, maxit_sigma = 30) {
+# S_obs: n×N 观测份额矩阵（可选）。给定时目标加曲率惩罚
+#   penalty = kappa * sum_i max(eigmax(Gamma + S_iS_i' - diag(S_i)), 0)^2
+# （Terrell 1996 "在每个样本点施加凹性" 的惩罚化实现；kappa 足够大时≈约束估计）
+tl_itsur_c1 <- function(sys, K, Sbar, tol = 1e-9, maxit_sigma = 30,
+                        S_obs = NULL, kappa = 0) {
   N <- K + 1
   J <- sys$J; n <- sys$n_obs
   pn <- sys$pnames
@@ -53,7 +57,17 @@ tl_itsur_c1 <- function(sys, K, Sbar, tol = 1e-9, maxit_sigma = 30) {
     res <- matrix(yst - Xl %*% bl, n, J)
     ssr <- 0
     for (j in 1:J) for (l in 1:J) ssr <- ssr + W[j, l] * sum(res[, j] * res[, l])
-    list(ssr = ssr, beta_lin = bl, resid = res, A = A)
+    pen <- 0
+    if (!is.null(S_obs) && kappa > 0) {
+      for (i in seq_len(nrow(S_obs))) {
+        Si <- S_obs[i, ]
+        ev <- max(eigen(Gam + tcrossprod(Si) - diag(Si), symmetric = TRUE,
+                        only.values = TRUE)$values)
+        if (ev > 0) pen <- pen + ev^2
+      }
+      pen <- kappa * pen
+    }
+    list(ssr = ssr + pen, beta_lin = bl, resid = res, A = A)
   }
 
   # 初值：无约束拟合的 G 投影到最近半负定
