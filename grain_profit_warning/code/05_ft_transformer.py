@@ -38,7 +38,7 @@ def prep(tr, te):
 def make_model(d_out):
     return FTTransformer(
         n_cont_features=len(num_feats) * 2, cat_cardinalities=CAT_CARD,
-        d_out=d_out, n_blocks=2, d_block=96, attention_n_heads=8,
+        d_out=d_out, n_blocks=1, d_block=64, attention_n_heads=8,
         attention_dropout=0.2, ffn_d_hidden_multiplier=2.0,
         ffn_dropout=0.1, residual_dropout=0.0).to(device)
 
@@ -53,12 +53,12 @@ def fit_predict(Xtr, Ctr, ytr, Xte, Cte, task):
     model = make_model(1)
     opt = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4)
     Xtr_t = torch.tensor(Xtr); Ctr_t = torch.tensor(Ctr)
-    n = len(Xtr_t); bs = 128
+    n = len(Xtr_t); bs = 256
     # 训练窗内部再留出最后一年做早停
     model.train()
     best, best_state, patience = np.inf, None, 0
     idx = np.arange(n); val = idx[-max(64, n // 8):]; trn = idx[:-len(val)]
-    for epoch in range(200):
+    for epoch in range(120):
         perm = np.random.permutation(trn)
         for i in range(0, len(perm), bs):
             b = perm[i:i + bs]
@@ -74,7 +74,7 @@ def fit_predict(Xtr, Ctr, ytr, Xte, Cte, task):
             best, best_state, patience = vl, {k: v.clone() for k, v in model.state_dict().items()}, 0
         else:
             patience += 1
-            if patience >= 15:
+            if patience >= 10:
                 break
     model.load_state_dict(best_state)
     model.eval()
