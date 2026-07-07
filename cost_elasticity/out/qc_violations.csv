@@ -1,0 +1,316 @@
+crop,province,year,check,detail
+corn,云南,2004,msf_sum,sum=192.73 vs 物质与服务费用=202.43 (n=15)
+corn,内蒙古,2004,msf_sum,sum=196.85 vs 物质与服务费用=207.69 (n=17)
+corn,内蒙古,2005,msf_sum,sum=246.39 vs 物质与服务费用=222.28 (n=17)
+corn,内蒙古,2005,labor_sum,138.16+17.26 vs 人工成本=138.81
+corn,内蒙古,2019,msf_sum,sum=468.76 vs 物质与服务费用=425.84 (n=14)
+corn,内蒙古,2019,labor_sum,323.49+15.95 vs 人工成本=325.11
+corn,北京,2005,msf_sum,sum=188.41 vs 物质与服务费用=179.77 (n=16)
+corn,北京,2005,labor_sum,95.47+35.08 vs 人工成本=119.65
+corn,吉林,2019,msf_sum,sum=535.68 vs 物质与服务费用=404.72 (n=12)
+corn,吉林,2019,labor_sum,656.75+43.81 vs 人工成本=667.01
+corn,四川,2004,msf_sum,sum=149.45 vs 物质与服务费用=162.47 (n=16)
+corn,天津,2005,msf_sum,sum=194.66 vs 物质与服务费用=165.73 (n=18)
+corn,天津,2005,labor_sum,75.28+12.73 vs 人工成本=77.63
+corn,宁夏,2004,msf_sum,sum=165.07 vs 物质与服务费用=172.86 (n=15)
+corn,安徽,2004,msf_sum,sum=132.64 vs 物质与服务费用=144.83 (n=14)
+corn,山东,2004,msf_sum,sum=151.02 vs 物质与服务费用=167.93 (n=17)
+corn,山西,2004,msf_sum,sum=153.38 vs 物质与服务费用=168.20 (n=13)
+corn,山西,2005,msf_sum,sum=189.33 vs 物质与服务费用=176.63 (n=16)
+corn,山西,2019,msf_sum,sum=468.63 vs 物质与服务费用=453.93 (n=14)
+corn,新疆,2004,msf_sum,sum=238.08 vs 物质与服务费用=248.30 (n=18)
+corn,江苏,2004,msf_sum,sum=153.61 vs 物质与服务费用=170.18 (n=17)
+corn,河北,2004,msf_sum,sum=148.78 vs 物质与服务费用=163.96 (n=15)
+corn,河北,2005,msf_sum,sum=195.00 vs 物质与服务费用=175.44 (n=14)
+corn,河北,2019,msf_sum,sum=407.53 vs 物质与服务费用=372.56 (n=14)
+corn,河南,2004,msf_sum,sum=108.15 vs 物质与服务费用=123.26 (n=12)
+corn,湖北,2004,msf_sum,sum=171.56 vs 物质与服务费用=187.65 (n=15)
+corn,甘肃,2004,msf_sum,sum=282.76 vs 物质与服务费用=306.52 (n=16)
+corn,贵州,2004,msf_sum,sum=208.28 vs 物质与服务费用=225.08 (n=15)
+corn,辽宁,2004,msf_sum,sum=176.53 vs 物质与服务费用=188.20 (n=17)
+corn,辽宁,2019,msf_sum,sum=413.01 vs 物质与服务费用=365.10 (n=14)
+corn,辽宁,2019,labor_sum,476.82+63.43 vs 人工成本=487.54
+corn,重庆,2004,msf_sum,sum=139.20 vs 物质与服务费用=161.69 (n=13)
+corn,陕西,2004,msf_sum,sum=184.09 vs 物质与服务费用=194.26 (n=15)
+corn,黑龙江,2019,msf_sum,sum=406.97 vs 物质与服务费用=329.40 (n=15)
+corn,黑龙江,2019,labor_sum,803.85+33.27 vs 人工成本=815.31
+cotton,安徽,2004,msf_sum,sum=240.14 vs 物质与服务费用=252.57 (n=16)
+cotton,山东,2004,msf_sum,sum=267.61 vs 物质与服务费用=299.94 (n=17)
+cotton,山东,2005,msf_sum,sum=291.84 vs 物质与服务费用=299.78 (n=17)
+cotton,新疆,2004,msf_sum,sum=410.74 vs 物质与服务费用=423.07 (n=18)
+cotton,江苏,2004,msf_sum,sum=225.87 vs 物质与服务费用=250.81 (n=17)
+cotton,江西,2004,msf_sum,sum=404.39 vs 物质与服务费用=428.05 (n=15)
+cotton,河北,2004,msf_sum,sum=267.81 vs 物质与服务费用=290.99 (n=13)
+cotton,河北,2005,msf_sum,sum=302.81 vs 物质与服务费用=314.48 (n=13)
+cotton,河南,2004,msf_sum,sum=163.58 vs 物质与服务费用=181.78 (n=12)
+cotton,湖北,2004,msf_sum,sum=262.25 vs 物质与服务费用=285.19 (n=15)
+cotton,湖南,2004,msf_sum,sum=250.29 vs 物质与服务费用=275.34 (n=17)
+cotton,甘肃,2004,msf_sum,sum=449.59 vs 物质与服务费用=490.28 (n=16)
+cotton,辽宁,2004,msf_sum,sum=229.81 vs 物质与服务费用=246.30 (n=15)
+peanut,吉林,2019,msf_sum,sum=530.30 vs 物质与服务费用=503.64 (n=12)
+peanut,安徽,2004,msf_sum,sum=175.25 vs 物质与服务费用=170.29 (n=15)
+peanut,安徽,2004,total_cost,411.54+39.32 vs 总成本=432.26
+peanut,安徽,2019,msf_sum,sum=586.67 vs 物质与服务费用=515.94 (n=13)
+peanut,安徽,2019,total_cost,1373.04+304.00 vs 总成本=1561.95
+peanut,安徽,2020,msf_sum,sum=537.67 vs 物质与服务费用=515.18 (n=12)
+peanut,江苏,2004,msf_sum,sum=234.91 vs 物质与服务费用=242.62 (n=15)
+peanut,江苏,2004,labor_sum,202.35+23.42 vs 人工成本=202.35
+peanut,江西,2019,labor_sum,934.03+189.51 vs 人工成本=934.03
+peanut,河北,2004,msf_sum,sum=290.88 vs 物质与服务费用=249.08 (n=16)
+peanut,河北,2005,msf_sum,sum=241.87 vs 物质与服务费用=248.93 (n=15)
+peanut,河北,2019,total_cost,1296.24+355.06 vs 总成本=1522.09
+peanut,河南,2004,labor_sum,178.37+10.76 vs 人工成本=178.37
+peanut,福建,2020,msf_sum,sum=719.81 vs 物质与服务费用=554.83 (n=12)
+peanut,辽宁,2004,msf_sum,sum=286.87 vs 物质与服务费用=232.46 (n=16)
+peanut,辽宁,2019,total_cost,1505.87+275.71 vs 总成本=1667.17
+peanut,辽宁,2020,msf_sum,sum=551.96 vs 物质与服务费用=496.18 (n=13)
+rapeseed,云南,2004,msf_sum,sum=132.17 vs 物质与服务费用=138.96 (n=13)
+rapeseed,云南,2005,msf_sum,sum=152.63 vs 物质与服务费用=158.01 (n=13)
+rapeseed,内蒙古,2004,msf_sum,sum=42.03 vs 物质与服务费用=46.50 (n=12)
+rapeseed,四川,2004,msf_sum,sum=105.24 vs 物质与服务费用=117.74 (n=14)
+rapeseed,四川,2023,msf_sum,sum=267.44 vs 物质与服务费用=294.07 (n=12)
+rapeseed,安徽,2004,msf_sum,sum=115.34 vs 物质与服务费用=129.69 (n=15)
+rapeseed,江苏,2004,msf_sum,sum=117.44 vs 物质与服务费用=129.63 (n=16)
+rapeseed,江西,2004,msf_sum,sum=75.49 vs 物质与服务费用=87.32 (n=14)
+rapeseed,湖北,2004,msf_sum,sum=103.65 vs 物质与服务费用=122.18 (n=15)
+rapeseed,湖南,2004,msf_sum,sum=55.23 vs 物质与服务费用=70.35 (n=12)
+rapeseed,甘肃,2004,msf_sum,sum=141.81 vs 物质与服务费用=159.85 (n=15)
+rapeseed,贵州,2004,msf_sum,sum=128.93 vs 物质与服务费用=147.82 (n=14)
+rapeseed,陕西,2004,msf_sum,sum=105.88 vs 物质与服务费用=128.14 (n=12)
+rapeseed,青海,2004,msf_sum,sum=121.42 vs 物质与服务费用=131.71 (n=14)
+rice_early_indica,安徽,2004,msf_sum,sum=177.67 vs 物质与服务费用=199.48 (n=14)
+rice_early_indica,安徽,2005,msf_sum,sum=272.87 vs 物质与服务费用=239.81 (n=16)
+rice_early_indica,安徽,2019,msf_sum,sum=604.50 vs 物质与服务费用=575.18 (n=15)
+rice_early_indica,安徽,2019,labor_sum,498.41+45.43 vs 人工成本=531.86
+rice_early_indica,安徽,2020,msf_sum,sum=646.68 vs 物质与服务费用=596.37 (n=14)
+rice_early_indica,安徽,2022,msf_sum,sum=720.62 vs 物质与服务费用=686.49 (n=13)
+rice_early_indica,安徽,2022,labor_sum,503.47+51.90 vs 人工成本=529.31
+rice_early_indica,广东,2004,msf_sum,sum=213.76 vs 物质与服务费用=226.93 (n=16)
+rice_early_indica,广西,2004,msf_sum,sum=223.10 vs 物质与服务费用=242.67 (n=17)
+rice_early_indica,江西,2004,msf_sum,sum=177.59 vs 物质与服务费用=195.08 (n=17)
+rice_early_indica,江西,2005,msf_sum,sum=215.54 vs 物质与服务费用=208.68 (n=17)
+rice_early_indica,江西,2019,msf_sum,sum=564.67 vs 物质与服务费用=521.16 (n=14)
+rice_early_indica,江西,2019,labor_sum,467.66+29.52 vs 人工成本=484.45
+rice_early_indica,江西,2019,total_cost,1005.61+150.18 vs 总成本=1125.12
+rice_early_indica,江西,2020,msf_sum,sum=598.89 vs 物质与服务费用=555.33 (n=14)
+rice_early_indica,江西,2020,total_cost,1001.28+153.51 vs 总成本=1123.61
+rice_early_indica,江西,2022,msf_sum,sum=671.65 vs 物质与服务费用=620.74 (n=15)
+rice_early_indica,江西,2022,labor_sum,501.66+39.21 vs 人工成本=509.88
+rice_early_indica,浙江,2005,msf_sum,sum=267.55 vs 物质与服务费用=220.27 (n=17)
+rice_early_indica,浙江,2005,total_cost,400.83+90.31 vs 总成本=432.57
+rice_early_indica,浙江,2019,msf_sum,sum=606.90 vs 物质与服务费用=576.76 (n=17)
+rice_early_indica,浙江,2019,labor_sum,283.33+84.71 vs 人工成本=342.66
+rice_early_indica,浙江,2020,msf_sum,sum=628.66 vs 物质与服务费用=600.27 (n=17)
+rice_early_indica,浙江,2020,labor_sum,283.13+104.64 vs 人工成本=347.00
+rice_early_indica,浙江,2022,msf_sum,sum=769.25 vs 物质与服务费用=733.87 (n=17)
+rice_early_indica,浙江,2022,labor_sum,267.32+104.44 vs 人工成本=353.37
+rice_early_indica,海南,2004,msf_sum,sum=134.30 vs 物质与服务费用=146.83 (n=12)
+rice_early_indica,湖北,2004,msf_sum,sum=159.73 vs 物质与服务费用=177.65 (n=14)
+rice_early_indica,湖南,2004,msf_sum,sum=181.79 vs 物质与服务费用=202.04 (n=16)
+rice_early_indica,福建,2005,msf_sum,sum=282.01 vs 物质与服务费用=257.52 (n=17)
+rice_early_indica,福建,2019,msf_sum,sum=613.79 vs 物质与服务费用=590.30 (n=15)
+rice_early_indica,福建,2020,msf_sum,sum=673.75 vs 物质与服务费用=602.83 (n=14)
+rice_early_indica,福建,2022,msf_sum,sum=773.38 vs 物质与服务费用=700.29 (n=15)
+rice_japonica,云南,2004,msf_sum,sum=244.24 vs 物质与服务费用=264.15 (n=14)
+rice_japonica,内蒙古,2004,msf_sum,sum=253.58 vs 物质与服务费用=267.43 (n=15)
+rice_japonica,内蒙古,2005,msf_sum,sum=400.38 vs 物质与服务费用=324.87 (n=17)
+rice_japonica,内蒙古,2020,msf_sum,sum=870.48 vs 物质与服务费用=731.47 (n=14)
+rice_japonica,吉林,2020,msf_sum,sum=655.14 vs 物质与服务费用=570.49 (n=14)
+rice_japonica,吉林,2020,total_cost,1707.09+435.57 vs 总成本=1929.80
+rice_japonica,天津,2005,msf_sum,sum=324.08 vs 物质与服务费用=281.88 (n=18)
+rice_japonica,天津,2005,labor_sum,178.55+65.25 vs 人工成本=225.87
+rice_japonica,宁夏,2004,msf_sum,sum=300.58 vs 物质与服务费用=326.75 (n=14)
+rice_japonica,安徽,2004,msf_sum,sum=226.36 vs 物质与服务费用=242.67 (n=15)
+rice_japonica,山东,2004,msf_sum,sum=299.07 vs 物质与服务费用=316.76 (n=14)
+rice_japonica,山西,2005,msf_sum,sum=408.58 vs 物质与服务费用=379.30 (n=17)
+rice_japonica,江苏,2004,msf_sum,sum=326.49 vs 物质与服务费用=343.02 (n=17)
+rice_japonica,江苏,2020,msf_sum,sum=831.50 vs 物质与服务费用=692.78 (n=17)
+rice_japonica,江苏,2020,labor_sum,339.15+162.20 vs 人工成本=375.10
+rice_japonica,河北,2004,msf_sum,sum=304.59 vs 物质与服务费用=321.26 (n=13)
+rice_japonica,河北,2005,msf_sum,sum=426.29 vs 物质与服务费用=328.16 (n=14)
+rice_japonica,河北,2020,msf_sum,sum=741.84 vs 物质与服务费用=657.44 (n=13)
+rice_japonica,河南,2004,msf_sum,sum=217.37 vs 物质与服务费用=233.69 (n=13)
+rice_japonica,湖北,2004,msf_sum,sum=162.03 vs 物质与服务费用=167.26 (n=13)
+rice_japonica,辽宁,2004,msf_sum,sum=290.11 vs 物质与服务费用=312.01 (n=17)
+rice_japonica,辽宁,2005,msf_sum,sum=382.97 vs 物质与服务费用=334.61 (n=18)
+rice_japonica,辽宁,2005,labor_sum,165.24+55.00 vs 人工成本=174.95
+rice_japonica,辽宁,2020,msf_sum,sum=752.38 vs 物质与服务费用=654.89 (n=14)
+rice_japonica,黑龙江,2020,msf_sum,sum=714.35 vs 物质与服务费用=619.34 (n=13)
+rice_japonica,黑龙江,2020,labor_sum,453.61+210.35 vs 人工成本=503.94
+rice_japonica,黑龙江,2020,total_cost,1123.28+520.62 vs 总成本=1499.12
+rice_late_indica,安徽,2004,msf_sum,sum=205.16 vs 物质与服务费用=221.21 (n=17)
+rice_late_indica,安徽,2005,msf_sum,sum=263.47 vs 物质与服务费用=233.11 (n=16)
+rice_late_indica,安徽,2005,labor_sum,144.89+14.97 vs 人工成本=153.51
+rice_late_indica,安徽,2019,msf_sum,sum=644.68 vs 物质与服务费用=586.71 (n=15)
+rice_late_indica,安徽,2019,labor_sum,514.74+87.45 vs 人工成本=544.92
+rice_late_indica,安徽,2020,msf_sum,sum=651.76 vs 物质与服务费用=613.62 (n=14)
+rice_late_indica,安徽,2020,labor_sum,508.73+77.84 vs 人工成本=536.67
+rice_late_indica,广东,2004,msf_sum,sum=217.16 vs 物质与服务费用=226.63 (n=15)
+rice_late_indica,广西,2004,msf_sum,sum=240.70 vs 物质与服务费用=260.17 (n=16)
+rice_late_indica,江西,2004,msf_sum,sum=190.23 vs 物质与服务费用=208.10 (n=16)
+rice_late_indica,江西,2005,msf_sum,sum=242.13 vs 物质与服务费用=226.03 (n=16)
+rice_late_indica,江西,2019,msf_sum,sum=581.97 vs 物质与服务费用=555.75 (n=13)
+rice_late_indica,江西,2019,labor_sum,464.12+54.68 vs 人工成本=472.22
+rice_late_indica,江西,2020,msf_sum,sum=625.38 vs 物质与服务费用=567.83 (n=13)
+rice_late_indica,江西,2020,labor_sum,469.95+54.95 vs 人工成本=475.71
+rice_late_indica,浙江,2005,msf_sum,sum=279.28 vs 物质与服务费用=259.81 (n=16)
+rice_late_indica,浙江,2005,labor_sum,145.81+31.28 vs 人工成本=159.83
+rice_late_indica,浙江,2005,total_cost,393.50+70.61 vs 总成本=450.75
+rice_late_indica,浙江,2019,msf_sum,sum=726.37 vs 物质与服务费用=698.58 (n=16)
+rice_late_indica,浙江,2020,msf_sum,sum=751.38 vs 物质与服务费用=725.06 (n=16)
+rice_late_indica,湖北,2004,msf_sum,sum=203.53 vs 物质与服务费用=224.39 (n=15)
+rice_late_indica,湖南,2004,msf_sum,sum=189.91 vs 物质与服务费用=207.63 (n=17)
+rice_late_indica,福建,2005,msf_sum,sum=273.88 vs 物质与服务费用=267.06 (n=17)
+rice_late_indica,福建,2005,labor_sum,210.68+16.27 vs 人工成本=221.48
+rice_late_indica,福建,2019,msf_sum,sum=617.89 vs 物质与服务费用=568.58 (n=16)
+rice_late_indica,福建,2020,msf_sum,sum=632.96 vs 物质与服务费用=584.85 (n=14)
+rice_mid_indica,四川,2004,msf_sum,sum=146.45 vs 物质与服务费用=159.30 (n=18)
+rice_mid_indica,安徽,2004,msf_sum,sum=201.81 vs 物质与服务费用=216.32 (n=16)
+rice_mid_indica,安徽,2004,labor_sum,178.10+13.66 vs 人工成本=178.10
+rice_mid_indica,安徽,2019,msf_sum,sum=545.33 vs 物质与服务费用=498.32 (n=16)
+rice_mid_indica,安徽,2019,labor_sum,643.62+96.04 vs 人工成本=655.44
+rice_mid_indica,安徽,2019,total_cost,1070.96+221.73 vs 总成本=1231.43
+rice_mid_indica,安徽,2020,msf_sum,sum=541.52 vs 物质与服务费用=503.64 (n=14)
+rice_mid_indica,安徽,2020,labor_sum,651.55+97.59 vs 人工成本=668.93
+rice_mid_indica,安徽,2020,total_cost,1083.29+219.05 vs 总成本=1245.94
+rice_mid_indica,安徽,2022,msf_sum,sum=664.12 vs 物质与服务费用=628.90 (n=14)
+rice_mid_indica,安徽,2022,labor_sum,669.48+83.54 vs 人工成本=674.02
+rice_mid_indica,安徽,2022,total_cost,1146.03+227.70 vs 总成本=1312.18
+rice_mid_indica,安徽,2023,msf_sum,sum=658.21 vs 物质与服务费用=626.67 (n=14)
+rice_mid_indica,安徽,2023,labor_sum,683.69+106.55 vs 人工成本=690.85
+rice_mid_indica,江苏,2004,msf_sum,sum=255.22 vs 物质与服务费用=269.64 (n=16)
+rice_mid_indica,江苏,2019,msf_sum,sum=675.10 vs 物质与服务费用=580.55 (n=14)
+rice_mid_indica,江苏,2019,labor_sum,531.84+136.81 vs 人工成本=612.78
+rice_mid_indica,江苏,2019,total_cost,1193.33+336.98 vs 总成本=1404.04
+rice_mid_indica,江苏,2020,msf_sum,sum=657.55 vs 物质与服务费用=559.01 (n=13)
+rice_mid_indica,江苏,2020,labor_sum,582.79+141.24 vs 人工成本=629.19
+rice_mid_indica,江苏,2020,total_cost,1188.20+335.28 vs 总成本=1416.94
+rice_mid_indica,江苏,2022,msf_sum,sum=766.50 vs 物质与服务费用=653.48 (n=12)
+rice_mid_indica,江苏,2022,labor_sum,534.63+111.57 vs 人工成本=602.16
+rice_mid_indica,江苏,2022,total_cost,1255.64+322.27 vs 总成本=1476.10
+rice_mid_indica,江苏,2023,msf_sum,sum=759.62 vs 物质与服务费用=642.09 (n=13)
+rice_mid_indica,江苏,2023,labor_sum,547.19+115.38 vs 人工成本=597.43
+rice_mid_indica,江西,2019,msf_sum,sum=636.78 vs 物质与服务费用=585.80 (n=14)
+rice_mid_indica,江西,2020,msf_sum,sum=610.43 vs 物质与服务费用=569.27 (n=14)
+rice_mid_indica,江西,2022,msf_sum,sum=727.41 vs 物质与服务费用=675.57 (n=15)
+rice_mid_indica,江西,2023,msf_sum,sum=698.36 vs 物质与服务费用=629.37 (n=15)
+rice_mid_indica,河南,2019,msf_sum,sum=547.26 vs 物质与服务费用=478.50 (n=14)
+rice_mid_indica,河南,2020,msf_sum,sum=562.75 vs 物质与服务费用=489.39 (n=14)
+rice_mid_indica,河南,2022,msf_sum,sum=675.69 vs 物质与服务费用=571.84 (n=14)
+rice_mid_indica,河南,2023,msf_sum,sum=637.41 vs 物质与服务费用=527.25 (n=13)
+rice_mid_indica,浙江,2004,labor_sum,178.10+6.01 vs 人工成本=178.10
+rice_mid_indica,湖北,2004,msf_sum,sum=198.92 vs 物质与服务费用=222.07 (n=15)
+rice_mid_indica,湖北,2019,labor_sum,1052.54+104.91 vs 人工成本=1086.82
+rice_mid_indica,湖北,2019,total_cost,1485.49+148.94 vs 总成本=1572.98
+rice_mid_indica,湖北,2020,labor_sum,1080.29+100.15 vs 人工成本=1109.28
+rice_mid_indica,湖北,2020,total_cost,1509.05+142.86 vs 总成本=1598.00
+rice_mid_indica,湖北,2022,labor_sum,1116.73+123.22 vs 人工成本=1148.84
+rice_mid_indica,湖北,2022,total_cost,1584.32+180.45 vs 总成本=1675.77
+rice_mid_indica,湖北,2023,labor_sum,1096.89+131.09 vs 人工成本=1120.25
+rice_mid_indica,湖南,2004,msf_sum,sum=190.95 vs 物质与服务费用=216.25 (n=14)
+rice_mid_indica,福建,2004,msf_sum,sum=175.70 vs 物质与服务费用=216.32 (n=15)
+rice_mid_indica,福建,2019,msf_sum,sum=544.36 vs 物质与服务费用=485.40 (n=15)
+rice_mid_indica,福建,2019,labor_sum,736.56+72.20 vs 人工成本=765.07
+rice_mid_indica,福建,2019,total_cost,1161.51+237.94 vs 总成本=1279.83
+rice_mid_indica,福建,2020,msf_sum,sum=567.17 vs 物质与服务费用=513.18 (n=15)
+rice_mid_indica,福建,2020,labor_sum,763.76+77.53 vs 人工成本=791.12
+rice_mid_indica,福建,2020,total_cost,1187.25+232.19 vs 总成本=1306.55
+rice_mid_indica,福建,2022,msf_sum,sum=644.60 vs 物质与服务费用=583.08 (n=17)
+rice_mid_indica,福建,2022,labor_sum,754.20+80.73 vs 人工成本=793.26
+rice_mid_indica,福建,2022,total_cost,1270.61+237.87 vs 总成本=1408.84
+rice_mid_indica,福建,2023,msf_sum,sum=650.19 vs 物质与服务费用=586.63 (n=17)
+rice_mid_indica,福建,2023,labor_sum,758.73+119.56 vs 人工成本=803.73
+rice_mid_indica,贵州,2004,msf_sum,sum=282.18 vs 物质与服务费用=304.03 (n=15)
+rice_mid_indica,重庆,2004,msf_sum,sum=159.76 vs 物质与服务费用=190.50 (n=14)
+rice_mid_indica,陕西,2004,msf_sum,sum=155.74 vs 物质与服务费用=183.77 (n=14)
+soybean,内蒙古,2004,msf_sum,sum=193.65 vs 物质与服务费用=154.07 (n=14)
+soybean,内蒙古,2004,labor_sum,141.11+6.36 vs 人工成本=141.11
+soybean,内蒙古,2004,total_cost,295.18+49.03 vs 总成本=326.29
+soybean,内蒙古,2005,msf_sum,sum=137.01 vs 物质与服务费用=133.80 (n=14)
+soybean,内蒙古,2019,labor_sum,246.01+17.50 vs 人工成本=256.00
+soybean,吉林,2004,msf_sum,sum=167.05 vs 物质与服务费用=126.91 (n=17)
+soybean,吉林,2004,labor_sum,184.27+42.27 vs 人工成本=187.85
+soybean,吉林,2004,total_cost,314.76+109.47 vs 总成本=355.73
+soybean,吉林,2005,msf_sum,sum=170.98 vs 物质与服务费用=128.56 (n=16)
+soybean,吉林,2005,labor_sum,305.85+23.87 vs 人工成本=307.59
+soybean,吉林,2005,total_cost,414.46+126.98 vs 总成本=464.97
+soybean,吉林,2019,labor_sum,431.90+77.49 vs 人工成本=438.18
+soybean,吉林,2020,labor_sum,457.20+137.11 vs 人工成本=457.20
+soybean,吉林,2022,labor_sum,507.09+85.98 vs 人工成本=507.09
+soybean,吉林,2022,total_cost,585.10+393.52 vs 总成本=948.19
+soybean,吉林,2023,msf_sum,sum=314.94 vs 物质与服务费用=306.07 (n=12)
+soybean,吉林,2023,labor_sum,497.26+103.71 vs 人工成本=499.72
+soybean,山西,2004,msf_sum,sum=114.78 vs 物质与服务费用=117.75 (n=12)
+soybean,山西,2004,total_cost,271.19+37.86 vs 总成本=301.25
+soybean,山西,2005,msf_sum,sum=132.52 vs 物质与服务费用=123.27 (n=14)
+soybean,山西,2019,msf_sum,sum=314.44 vs 物质与服务费用=258.38 (n=12)
+soybean,山西,2019,labor_sum,466.11+25.78 vs 人工成本=466.11
+soybean,山西,2020,msf_sum,sum=308.05 vs 物质与服务费用=270.47 (n=13)
+soybean,山西,2022,msf_sum,sum=363.32 vs 物质与服务费用=318.94 (n=12)
+soybean,山西,2023,total_cost,936.81+224.53 vs 总成本=1088.44
+soybean,河北,2004,msf_sum,sum=111.43 vs 物质与服务费用=116.50 (n=15)
+soybean,河北,2005,msf_sum,sum=130.37 vs 物质与服务费用=127.55 (n=15)
+soybean,河北,2005,labor_sum,85.83+1.93 vs 人工成本=85.90
+soybean,河北,2019,msf_sum,sum=258.19 vs 物质与服务费用=219.27 (n=13)
+soybean,河北,2019,total_cost,634.59+236.15 vs 总成本=833.45
+soybean,河北,2020,msf_sum,sum=317.78 vs 物质与服务费用=276.91 (n=13)
+soybean,河北,2020,total_cost,659.87+263.35 vs 总成本=869.08
+soybean,河北,2022,msf_sum,sum=324.87 vs 物质与服务费用=275.76 (n=13)
+soybean,河北,2022,total_cost,674.21+293.77 vs 总成本=886.11
+soybean,河北,2023,msf_sum,sum=361.72 vs 物质与服务费用=311.55 (n=13)
+soybean,河北,2023,total_cost,686.65+320.43 vs 总成本=966.69
+soybean,辽宁,2004,msf_sum,sum=132.44 vs 物质与服务费用=145.28 (n=15)
+soybean,辽宁,2004,labor_sum,176.87+11.13 vs 人工成本=178.07
+soybean,辽宁,2004,total_cost,264.99+98.91 vs 总成本=346.70
+soybean,辽宁,2005,msf_sum,sum=131.46 vs 物质与服务费用=126.44 (n=15)
+soybean,辽宁,2005,labor_sum,198.44+16.10 vs 人工成本=198.60
+soybean,辽宁,2005,total_cost,261.60+113.48 vs 总成本=338.95
+soybean,辽宁,2019,msf_sum,sum=286.82 vs 物质与服务费用=257.72 (n=12)
+soybean,辽宁,2019,labor_sum,211.29+10.50 vs 人工成本=211.29
+soybean,辽宁,2020,msf_sum,sum=310.12 vs 物质与服务费用=278.36 (n=12)
+soybean,辽宁,2022,msf_sum,sum=397.74 vs 物质与服务费用=332.29 (n=12)
+soybean,辽宁,2023,msf_sum,sum=414.17 vs 物质与服务费用=342.58 (n=12)
+soybean,黑龙江,2004,msf_sum,sum=148.36 vs 物质与服务费用=124.01 (n=17)
+soybean,黑龙江,2004,labor_sum,103.57+10.60 vs 人工成本=109.75
+soybean,黑龙江,2004,total_cost,206.13+78.44 vs 总成本=247.99
+soybean,黑龙江,2005,msf_sum,sum=147.94 vs 物质与服务费用=128.16 (n=17)
+soybean,黑龙江,2005,total_cost,193.73+92.15 vs 总成本=270.79
+soybean,黑龙江,2019,msf_sum,sum=223.66 vs 物质与服务费用=198.67 (n=12)
+soybean,黑龙江,2019,labor_sum,487.53+51.90 vs 人工成本=487.53
+soybean,黑龙江,2019,total_cost,679.29+351.82 vs 总成本=760.09
+soybean,黑龙江,2020,msf_sum,sum=250.59 vs 物质与服务费用=224.23 (n=12)
+soybean,黑龙江,2020,labor_sum,512.41+64.72 vs 人工成本=512.41
+soybean,黑龙江,2020,total_cost,702.52+365.82 vs 总成本=784.61
+soybean,黑龙江,2022,msf_sum,sum=279.96 vs 物质与服务费用=258.69 (n=13)
+soybean,黑龙江,2022,labor_sum,573.52+37.88 vs 人工成本=573.52
+soybean,黑龙江,2022,total_cost,790.78+574.75 vs 总成本=1007.60
+soybean,黑龙江,2023,msf_sum,sum=269.66 vs 物质与服务费用=255.53 (n=12)
+soybean,黑龙江,2023,labor_sum,585.67+39.26 vs 人工成本=585.67
+soybean,黑龙江,2023,total_cost,803.84+646.55 vs 总成本=1081.52
+wheat,云南,2004,msf_sum,sum=115.87 vs 物质与服务费用=125.08 (n=15)
+wheat,云南,2005,msf_sum,sum=280.00 vs 物质与服务费用=258.53 (n=17)
+wheat,内蒙古,2004,msf_sum,sum=279.79 vs 物质与服务费用=299.92 (n=14)
+wheat,四川,2004,msf_sum,sum=110.28 vs 物质与服务费用=122.64 (n=18)
+wheat,四川,2005,msf_sum,sum=188.38 vs 物质与服务费用=165.10 (n=14)
+wheat,宁夏,2004,msf_sum,sum=225.46 vs 物质与服务费用=238.19 (n=15)
+wheat,安徽,2004,msf_sum,sum=176.60 vs 物质与服务费用=192.15 (n=17)
+wheat,山东,2004,msf_sum,sum=224.29 vs 物质与服务费用=241.71 (n=16)
+wheat,山西,2004,msf_sum,sum=167.70 vs 物质与服务费用=185.77 (n=12)
+wheat,山西,2021,msf_sum,sum=582.30 vs 物质与服务费用=554.74 (n=12)
+wheat,新疆,2004,msf_sum,sum=234.44 vs 物质与服务费用=245.22 (n=17)
+wheat,新疆,2023,msf_sum,sum=580.03 vs 物质与服务费用=683.26 (n=12)
+wheat,江苏,2004,msf_sum,sum=191.58 vs 物质与服务费用=205.29 (n=18)
+wheat,河北,2004,msf_sum,sum=239.58 vs 物质与服务费用=256.02 (n=14)
+wheat,河北,2005,msf_sum,sum=267.92 vs 物质与服务费用=273.64 (n=16)
+wheat,河北,2021,msf_sum,sum=573.22 vs 物质与服务费用=534.22 (n=13)
+wheat,河北,2021,labor_sum,421.54+17.29 vs 人工成本=421.54
+wheat,湖北,2004,msf_sum,sum=141.58 vs 物质与服务费用=161.49 (n=16)
+wheat,湖北,2005,msf_sum,sum=246.18 vs 物质与服务费用=231.26 (n=15)
+wheat,甘肃,2004,msf_sum,sum=218.98 vs 物质与服务费用=236.54 (n=16)
+wheat,贵州,2004,msf_sum,sum=125.36 vs 物质与服务费用=140.45 (n=13)
+wheat,贵州,2005,msf_sum,sum=300.99 vs 物质与服务费用=276.30 (n=15)
+wheat,重庆,2004,msf_sum,sum=78.86 vs 物质与服务费用=99.61 (n=12)
+wheat,陕西,2004,msf_sum,sum=220.05 vs 物质与服务费用=240.00 (n=16)
+wheat,青海,2004,msf_sum,sum=157.97 vs 物质与服务费用=168.82 (n=14)
+wheat,黑龙江,2021,msf_sum,sum=403.67 vs 物质与服务费用=365.82 (n=12)
+wheat,黑龙江,2021,labor_sum,224.51+81.18 vs 人工成本=254.19
