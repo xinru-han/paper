@@ -105,3 +105,18 @@
 22:35:04 9x: bootstrap draw 40/200 
 22:35:38 9x: bootstrap draw 50/200 
 22:35:59 9x: bootstrap draw 60/200 
+22:36:39 9x: bootstrap draw 70/200 
+22:37:07 9x: bootstrap draw 80/200 
+22:37:57 9x: bootstrap draw 90/200 
+22:38:19 9x: bootstrap draw 100/200 
+22:38:46 9x: bootstrap draw 110/200 
+22:39:17 9x: bootstrap draw 120/200 
+22:39:38 9x: bootstrap draw 130/200 
+22:40:20 9x: bootstrap draw 140/200 
+22:40:43 9x: bootstrap draw 150/200 
+22:41:16 9x: bootstrap draw 160/200 
+22:41:53 9x: bootstrap draw 170/200 
+22:42:16 9x: bootstrap draw 180/200 
+22:43:00 9x: bootstrap draw 190/200 
+22:43:20 9x: bootstrap draw 200/200 
+22:43:20 9x: done 
