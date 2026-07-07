@@ -21,10 +21,10 @@ reg_rows, clf_rows, all_preds = [], [], []
 for t, tri, tei in rolling_splits(df):
     tr, te = df.loc[tri], df.loc[tei]
     Xtr, Xte = tr[feats].values, te[feats].values
-    reg = TabPFNRegressor(device="cpu", random_state=42)
+    reg = TabPFNRegressor(device="cpu", random_state=42, ignore_pretraining_limits=True)
     reg.fit(Xtr, tr["net_profit"].values)
     pr = reg.predict(Xte)
-    clf = TabPFNClassifier(device="cpu", random_state=42)
+    clf = TabPFNClassifier(device="cpu", random_state=42, ignore_pretraining_limits=True)
     clf.fit(Xtr, tr["loss"].values)
     pc = clf.predict_proba(Xte)[:, 1]
     reg_rows.append({"model": "TabPFN", "year": t, "n": len(te),
