@@ -37,9 +37,9 @@ vres <- rbindlist(lapply(c("T1","T2","T3"), function(tt) {
   dg <- merge(qd[Category %in% DAIRY5 & inc_ter == tt],
               pb[Category %in% DAIRY5, .(Province, ym, Category, lnp_own = log(p_base))],
               by = c("Province","ym","Category"))
-  mr <- feols(as.formula(paste0("r_prem ~ lnp_own + y + vhat + ", ZB, " | ID^Category + mo + Province")),
+  mr <- feols(as.formula(paste0("r_prem ~ lnp_own + y + ", ZB, " | ID^Category + mo + Province")),
               data = dg, cluster = ~Province, notes = FALSE)
-  mq <- feols(as.formula(paste0("lnQ ~ lnp_own + y + vhat + ", ZB, " | ID^Category + mo + Province")),
+  mq <- feols(as.formula(paste0("lnQ ~ lnp_own + y + ", ZB, " | ID^Category + mo + Province")),
               data = dg, cluster = ~Province, notes = FALSE)
   base <- dg[, .(Q_mo = sum(Q), X_mo = sum(X), n_hhm = uniqueN(paste(ID, ym)))]
   data.table(tercile = tt, psi_own = coef(mr)["lnp_own"], eps_q = coef(mq)["lnp_own"],

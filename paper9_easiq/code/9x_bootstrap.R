@@ -25,7 +25,7 @@ for (b in 1:B) {
   wbar_b <- sapply(1:14, function(k) mean(db[[paste0("w_", k)]]))
   db[, y := ln_x - as.vector(as.matrix(db[, paste0("lnp_", 1:14), with = FALSE]) %*% wbar_b)]
   draws[[b]] <- rbindlist(lapply(PK13, function(cc) {
-    m <- tryCatch(feols(as.formula(paste0("r_prem ~ y + ", ZB, " + vhat | bid + prov_tier^ym")),
+    m <- tryCatch(feols(as.formula(paste0("r_prem ~ y + ", ZB, " | bid + prov_tier^ym")),
                         data = db[Category == cc], notes = FALSE, se = "standard"),
                   error = function(e) NULL)
     if (is.null(m)) NULL else data.table(b = b, category = cc, theta = coef(m)["y"])

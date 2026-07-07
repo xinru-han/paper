@@ -9,3 +9,7 @@
 21:33:41 90b: quality panel 1440692 hh-month-cat rows; r_prem sd = 1.187 
 21:34:24 90c: ladder + dairy panel (382832 hh-months) done 
 21:34:38 90d: LLI multiplier within=NA between=NA 
+21:37:00 90b: base price fill shares: monitor=6048, prov_median_fill=22, uv_median=5162 
+21:37:40 90b: main panel 584835 hh-months, 27653 households 
+21:38:10 90b: quality panel 1440692 hh-month-cat rows; r_prem sd = 1.187 
+21:38:22 90d: LLI multiplier within=0.002 between=0.036 

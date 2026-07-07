@@ -16,7 +16,7 @@ theta_lin <- function(dt, dep = "r_prem", fe = "ID + prov_tier^ym", spec) {
   rbindlist(lapply(PK13, function(cc) {
     dg <- dt[Category == cc]
     if (nrow(dg) < 500) return(NULL)
-    m <- tryCatch(feols(as.formula(paste0(dep, " ~ y + ", ZB, " + vhat | ", fe)),
+    m <- tryCatch(feols(as.formula(paste0(dep, " ~ y + ", ZB, " | ", fe)),
                         data = dg, cluster = ~Province, notes = FALSE), error = function(e) NULL)
     if (is.null(m)) return(NULL)
     data.table(category = cc, spec = spec, theta = coef(m)["y"], se = se(m)["y"], n = nobs(m))
@@ -56,7 +56,7 @@ sa <- readRDS(file.path(DIR_INT, "stageA.rds"))
 for (RR in c(2L, 4L)) {
   res[[paste0("R8_", RR)]] <- rbindlist(lapply(PK13, function(cc) {
     py <- paste0("I(y^", 1:RR, ")", collapse = " + ")
-    m <- feols(as.formula(paste0("r_prem ~ ", py, " + ", ZB, " + vhat | ID + prov_tier^ym")),
+    m <- feols(as.formula(paste0("r_prem ~ ", py, " + ", ZB, " | ID + prov_tier^ym")),
                data = qd[Category == cc], cluster = ~Province, notes = FALSE)
     kap <- coef(m)[paste0("I(y^", 1:RR, ")")]
     data.table(category = cc, spec = paste0("R8_poly", RR),

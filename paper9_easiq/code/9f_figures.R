@@ -30,7 +30,7 @@ qd[, inc_ter := cut(ln_inc, quantile(ln_inc, c(0, 1/3, 2/3, 1), na.rm = TRUE),
 ZB <- "fsize + elderly + lock_days + ln_covid + cny_share + hot_days"
 gr <- rbindlist(lapply(c("T1","T2","T3"), function(tt) rbindlist(lapply(
   c(quality = "r_prem", quantity = "lnQ"), function(dep) {
-    m <- feols(as.formula(paste0(dep, " ~ y + ", ZB, " + vhat | ID + prov_tier^ym")),
+    m <- feols(as.formula(paste0(dep, " ~ y + ", ZB, " | ID + prov_tier^ym")),
                data = qd[inc_ter == tt], cluster = ~ID, notes = FALSE)
     data.table(tercile = tt, margin = fifelse(dep == "r_prem", "quality (theta)", "quantity (eta)"),
                est = coef(m)["y"], se = se(m)["y"])

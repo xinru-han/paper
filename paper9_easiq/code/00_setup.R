@@ -42,11 +42,11 @@ logmsg <- function(...) {
   cat(msg, "\n", file = file.path(DIR_LOG, "run_log.md"), append = TRUE)
 }
 
-income_mid <- function(x) {  # band -> midpoint (yuan/month), both '>12000' spellings
-  fcase(grepl("^2000", x), 1000, grepl("2000-4000", x), 3000,
-        grepl("4000-6000", x), 5000, grepl("6000-8000", x), 7000,
-        grepl("8000-10000", x), 9000, grepl("10000-12000", x), 11000,
-        grepl(">\\s*12000", x) | grepl("12000\\s*RMB", x) & grepl(">", x), 14000,
+income_mid <- function(x) {  # band -> midpoint (yuan/month); actual bands are
+  # <5000 / 5001-7000 / 7001-9000 / 9001-12000 / >12000 (two spellings)
+  fcase(grepl("<\\s*5000", x), 2500, grepl("5001-7000", x), 6000,
+        grepl("7001-9000", x), 8000, grepl("9001-12000", x), 10500,
+        grepl(">\\s*12000", x), 14000,
         default = NA_real_)
 }
 famsize_mid <- function(x) {

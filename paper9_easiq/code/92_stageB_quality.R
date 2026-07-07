@@ -1,5 +1,5 @@
 # Paper 9 script 92: Stage B — 13 quality-premium equations.
-#  FE version (theta): r ~ poly(y,R) + z + lambda_sel + vhat | ID + prov_tier^ym
+#  FE version (theta): r ~ poly(y,R) + z + lambda_sel | ID + prov_tier^ym
 #  Price version (Psi, Marshallian): r ~ ln_x + 14 lnP + z + ... | ID + prov_tier + mo
 #  Homogeneity test per category: sum_k psi_gk + theta_g = 0 (T2 of the theory)
 #  Metering-layer IPW for 大米/面粉/坚果 (Volume coverage 63-74%).
@@ -47,7 +47,7 @@ yq <- readRDS(file.path(DIR_INT, "stageA.rds"))$y_pctl
 ybar <- readRDS(file.path(DIR_INT, "stageA.rds"))$ybar
 for (cc in PK13) {
   dg <- qd[Category == cc]
-  m <- feols(as.formula(paste0("r_prem ~ ", POLY_Y(), " + ", ZB, " + lam_sel + vhat | ID + prov_tier^ym")),
+  m <- feols(as.formula(paste0("r_prem ~ ", POLY_Y(), " + ", ZB, " + lam_sel | ID + prov_tier^ym")),
              data = dg, cluster = ~ID + Province, weights = ~ipw, notes = FALSE)
   fe_res[[cc]] <- grab(m, category = cc, model = "FE_theta")
   kap <- coef(m)[paste0("I(y^", 1:R_POLY, ")")]
@@ -72,7 +72,7 @@ for (cc in PK13) {
   dg <- qd[Category == cc]
   dg <- merge(dg, spA[, c("ID","ym", LNP), with = FALSE], by = c("ID","ym"))
   m <- feols(as.formula(paste0("r_prem ~ ln_x + ", paste(LNP, collapse = "+"), " + ",
-                               ZB, " + lam_sel + vhat | ID + prov_tier + mo")),
+                               ZB, " + lam_sel | ID + prov_tier + mo")),
              data = dg, cluster = ~ID + Province, weights = ~ipw, notes = FALSE)
   ps_res[[cc]] <- grab(m, category = cc, model = "price_psiM")
   ## homogeneity: sum(psi) + theta = 0, theta here = d r/d ln x = coef ln_x

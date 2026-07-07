@@ -46,7 +46,7 @@ ggsave(file.path(DIR_FIG, "fig6_pecking_order.png"), width = 9, height = 6, dpi 
 ## ---- (2)-(5) shock coefficient pairs (pooled PK13, demeaned outcomes)
 shock_pair <- function(dt, rhs_shock, label, fe = "ID^Category + prov_tier + mo") {
   rbindlist(lapply(c("r_dm","lnQ_dm"), function(out) {
-    m <- feols(as.formula(paste0(out, " ~ ", rhs_shock, " + y + vhat + ", ZB_noshock, " | ", fe)),
+    m <- feols(as.formula(paste0(out, " ~ ", rhs_shock, " + y + ", ZB_noshock, " | ", fe)),
                data = dt, cluster = ~Province, notes = FALSE)
     grab(m, outcome = out, shock = label)[!term %in% c("y","vhat","fsize","elderly","ln_covid")]
   }))

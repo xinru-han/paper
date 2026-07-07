@@ -23,7 +23,7 @@ qd[is.na(fsize), fsize := median(qd$fsize, na.rm = TRUE)]
 ## (a) Deaton-style: ln uv (NOT premium) with cluster FE only; theta = dlnuv/dy
 specs <- list(fine = "ID + prov_tier^ym", quarter = "ID + Province^qtr", province = "ID + Province")
 dt7 <- rbindlist(lapply(names(specs), function(sn) rbindlist(lapply(PK13, function(cc) {
-  m <- feols(as.formula(paste0("ln_uv ~ y + ", ZB, " + vhat | ", specs[[sn]])),
+  m <- feols(as.formula(paste0("ln_uv ~ y + ", ZB, " | ", specs[[sn]])),
              data = qd[Category == cc], cluster = ~Province, notes = FALSE)
   data.table(category = cc, cluster_def = sn, theta_naive = coef(m)["y"], se = se(m)["y"])
 }))))
@@ -50,8 +50,8 @@ logmsg("95: mean |bias| fine/quarter/province = ",
 ce <- rbindlist(lapply(PK13, function(cc) {
   dg <- merge(qd[Category == cc], pb[Category == cc, .(Province, ym, lnp = log(p_base))],
               by = c("Province","ym"))
-  m1 <- feols(lnQ ~ ln_uv + y + vhat | ID + mo + Province, data = dg, cluster = ~Province, notes = FALSE)
-  m2 <- feols(lnQ ~ lnp  + y + vhat | ID + mo + Province, data = dg, cluster = ~Province, notes = FALSE)
+  m1 <- feols(lnQ ~ ln_uv + y | ID + mo + Province, data = dg, cluster = ~Province, notes = FALSE)
+  m2 <- feols(lnQ ~ lnp  + y | ID + mo + Province, data = dg, cluster = ~Province, notes = FALSE)
   data.table(category = cc, eps_uv_naive = coef(m1)["ln_uv"], eps_pobs = coef(m2)["lnp"])
 }))
 fwrite(ce, file.path(DIR_TAB, "t7b_price_elasticity_uv_vs_obs.csv"))

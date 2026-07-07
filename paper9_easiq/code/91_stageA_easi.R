@@ -9,8 +9,11 @@
 #    unrestricted A is also saved.
 #  - Shonkwiler-Yen two step: probit per good -> Phi, phi; RHS terms enter
 #    multiplied by Phi_g, phi_g added as regressor.
-#  - ln x endogeneity: control function (first stage on income-band midpoint
-#    LLI terms), residual vhat included in every equation.
+#  - ln x endogeneity: the planned control function was DROPPED — the income
+#    bands are nearly unrelated to recorded food spend (90d: within s2=0.002),
+#    so vhat is uninformative and near-collinear with y. OLS + household FE is
+#    the main spec (the md's pre-registered fallback). vhat still computed and
+#    saved for the record.
 #  - y iterated: y0 = Stone index with sample-mean weights, updated with
 #    predicted shares until max|dy| < 1e-6 (or 10 iterations).
 source("/root/data/Paper/央视数据/paper9-easiq/code/00_setup.R")
@@ -66,7 +69,7 @@ for (it in 1:10) {
       paste0("Py", 1:R_POLY, collapse = "+"), "+",
       paste0("Pp", 1:Keq, collapse = "+"), "+",
       paste0("Pz_", ZVARS, collapse = "+"),
-      "+ phi_", g, " + vhat | prov_tier + mo"))
+      "+ phi_", g, " | prov_tier + mo"))
     fits[[g]] <- feols(f, data = pan, cluster = ~Province, notes = FALSE, lean = FALSE)
     W_hat[, g] <- pmin(pmax(predict(fits[[g]], newdata = pan), 0), 1)
   }
