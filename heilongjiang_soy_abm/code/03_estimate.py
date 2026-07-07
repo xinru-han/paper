@@ -239,17 +239,25 @@ try:
         if not len(sub):
             continue
         rows.append(pd.DataFrame({
-            "dD": sub[("plant_soy", t)] - sub[("plant_soy", t - 1)],
-            "dD_lag": sub[("plant_soy", t - 1)] - sub[("plant_soy", t - 2)],
-            "D_l2": sub[("plant_soy", t - 2)],
-            "ddpi": sub[("dpi100_base", t)] - sub[("dpi100_base", t - 1)],
+            "hh": sub.index,
+            "dD": (sub[("plant_soy", t)] - sub[("plant_soy", t - 1)]).values,
+            "dD_lag": (sub[("plant_soy", t - 1)] - sub[("plant_soy", t - 2)]).values,
+            "D_l2": sub[("plant_soy", t - 2)].values,
+            "ddpi": (sub[("dpi100_base", t)] - sub[("dpi100_base", t - 1)]).values,
             "yr": t}))
-    ah = pd.concat(rows)
+    ah = pd.concat(rows, ignore_index=True)
     from linearmodels.iv import IV2SLS
     ah["const"] = 1.0
-    iv = IV2SLS(ah["dD"], ah[["const", "ddpi"]], ah[["dD_lag"]], ah[["D_l2"]]).fit()
+    # 同一户在2023/2024两行相关 → 按户聚类（与全文聚类协议一致）
+    iv = IV2SLS(ah["dD"], ah[["const", "ddpi"]], ah[["dD_lag"]], ah[["D_l2"]])\
+        .fit(cov_type="clustered", clusters=ah["hh"])
+    try:  # 弱工具第一阶段 F（D_{t-2} 对内生 dD_lag 的偏 F）
+        fsF = float(iv.first_stage.diagnostics.loc["dD_lag", "f.stat"])
+    except Exception:
+        fsF = np.nan
     AH = {"gamma_fd2sls": float(iv.params["dD_lag"]), "se": float(iv.std_errors["dD_lag"]),
-          "beta_dpi": float(iv.params["ddpi"]), "n": int(iv.nobs)}
+          "beta_dpi": float(iv.params["ddpi"]), "n": int(iv.nobs),
+          "first_stage_F": fsF, "n_clusters": int(ah["hh"].nunique())}
 except Exception as e:
     print("AH-IV失败:", e)
     AH = {}

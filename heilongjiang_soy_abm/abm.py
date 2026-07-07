@@ -169,9 +169,11 @@ def abm_decide(state, exp, scenario, t, params, peer):
     prob[state["structural_zero"]] = 0.0  # 双城区结构性零参与
     plant_soy = (rng.random(prob.shape) < prob).astype(float)
 
-    # 非条件份额方程 E[s|x]（含零）→ 条件份额 = E[s]/P(D=1)，上限0.98
+    # 非条件份额 E[s|x]（含零）→ 条件份额 ≈ E[s]/P(D=1)。分母用 max(prob, mu_u)
+    # 而非 max(prob,1e-3)：后者在低参与户使比值爆大再被截到0.98（低参与户被赋予
+    # 近纯大豆份额，系统性上偏）；前者从构造上保证 s_cond∈(0,1] 且 ≥ mu_u。
     mu_u = _sigmoid(_linpred(state, "S", dpi100, peer))
-    s_cond = np.clip(mu_u / np.maximum(prob, 1e-3), mu_u, 0.98)
+    s_cond = np.clip(mu_u / np.maximum(prob, mu_u), 0.02, 0.98)
     eps = rng.normal(0, state["sigma_s"], size=mu_u.shape)
     s = np.where(plant_soy > 0, np.clip(s_cond + eps, 0.02, 0.98), 0.0)
     return plant_soy, s, prob, dpi
@@ -242,8 +244,10 @@ def run_scenario(agent_df, params, scenario, n_mc=500, seed=20260705, peer_on=Tr
     per_county = {c: {"year": [], "soy_share": [], "particip": []}
                   for c in np.unique(state["county"])}
     nz = ~state["structural_zero"]
+    agent_prob_last = None      # 末年户级预测参与概率（MC均值），供回测算命中率/Brier
     for t, yr in enumerate(years):
         out = abm_step(state, scenario, t, params, peer_on=peer_on)
+        agent_prob_last = out["prob"].mean(axis=1)
         B = state["B"][:, None]
         share_rep = out["area_soy"].sum(0) / B.sum()
         part_rep = out["plant_soy"][nz].mean(0)  # 参与率口径：非结构零县
@@ -263,4 +267,5 @@ def run_scenario(agent_df, params, scenario, n_mc=500, seed=20260705, peer_on=Tr
             per_county[c]["year"].append(yr)
             per_county[c]["soy_share"].append(float((out["area_soy"][m].sum(0) / B[m].sum()).mean()))
             per_county[c]["particip"].append(float(out["plant_soy"][m].mean()))
-    return dict(agg=rec, per_county=per_county, final_state=state)
+    return dict(agg=rec, per_county=per_county, final_state=state,
+                agent_prob_last=agent_prob_last)

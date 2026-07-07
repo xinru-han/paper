@@ -77,7 +77,8 @@ def wild_p(formula, data, param, B=999):
     for b in range(B):
         w = rng.choice([-1.0, 1.0], size=n_cl)[cl]
         _, ts[b] = _crv1_t(yhat0 + u0 * w, Xv, cl, n_cl, j)
-    return float((np.abs(ts) >= abs(t_obs)).mean())
+    # (1+#)/(1+B)：含观测统计量本身，避免 p=0 且轻微反保守
+    return float((1 + (np.abs(ts) >= abs(t_obs)).sum()) / (1 + B))
 
 def perm_p(formula, data, param, suit_col, B=499):
     """置换推断（矩阵级）：重排 Suit 后仅重算含 S 的交互列。"""
@@ -114,15 +115,22 @@ def perm_p(formula, data, param, suit_col, B=499):
                 perm.loc[idx] = rng.permutation(vs.loc[idx].values)
             Sp = perm.reindex(vill).values
         else:
-            Sp = S0.copy()
-            for v in np.unique(vill):
-                m = vill == v
-                Sp[m] = rng.permutation(Sp[m])
+            # 户级 Suit：在村内按【户】打乱后广播到该户各年，保持同户跨年 S 恒定
+            # （原实现按行打乱会让同一户不同年拿到不同 S，破坏面板结构）。
+            hh_arr = data["hh_id"].values
+            hh_S = data.groupby("hh_id")["S"].first()
+            hh_vill = data.groupby("hh_id")["village"].first()
+            new_hh_S = hh_S.copy()
+            for v in np.unique(hh_vill.values):
+                hhs = hh_vill.index[hh_vill.values == v]
+                new_hh_S.loc[hhs] = rng.permutation(hh_S.loc[hhs].values)
+            Sp = new_hh_S.reindex(hh_arr).values
         Xb = Xv.copy()
         for i in s_cols:
             Xb[:, i] = Sp * yr_ind[i]
         stats[b], _ = _crv1_t(yv, Xb, cl, n_cl, j)
-    return float((np.abs(stats) >= abs(b_obs)).mean())
+    # (1+#)/(1+B)：含观测统计量本身
+    return float((1 + (np.abs(stats) >= abs(b_obs)).sum()) / (1 + B))
 
 results, fig_rows = [], []
 for suit, lab in [("suit_vill_z", "村2021大豆份额"), ("suit_hhy_z", "户基期相对单产"),
@@ -203,17 +211,21 @@ ret_tab.round(3).to_csv(f"{OUT}/tables/attrition_rates.csv")
 print(ret_tab.round(3).to_string())
 print("2023队列按是否种豆的留存率:\n", ret23.round(3).to_string())
 
-# IPW：logit 留存概率 → 下一年观测的权重 1/p̂
+# IPW：logit 逐期留存概率 → 【累积】存活概率倒数（三期磨损至39.4%，单期权重欠校正）
 ml = smf.glm(fa, data=att, family=sm.families.Binomial()).fit()
 att["p_ret"] = ml.predict(att).clip(0.1, 0.99)
-w = att[["hh_id", "year", "p_ret"]].copy()
-w["year"] += 1  # 权重作用于 t+1 年的观测
-p = p.merge(w, on=["hh_id", "year"], how="left")
-p["ipw"] = 1.0 / p["p_ret"]
+surv = att[["hh_id", "year", "p_ret"]].sort_values(["hh_id", "year"]).copy()
+# 户内按年升序累乘：year=t 处 cum_p = ∏_{s≤t} p_ret(s) = P(存活至 t+1)
+surv["cum_p"] = surv.groupby("hh_id")["p_ret"].cumprod()
+surv["year_tgt"] = surv["year"] + 1  # 累积权重作用于 t+1 年观测
+p = p.merge(surv[["hh_id", "year_tgt", "cum_p"]].rename(columns={"year_tgt": "year"}),
+            on=["hh_id", "year"], how="left")
+p["ipw"] = 1.0 / p["cum_p"]
 p.loc[p["year"] == 2021, "ipw"] = 1.0  # 首年无磨损模型
-p["ipw"] = p["ipw"].fillna(1.0).clip(upper=p["ipw"].quantile(0.99))
+p["ipw"] = p["ipw"].fillna(1.0)
+p["ipw"] = p["ipw"].clip(upper=p["ipw"].quantile(0.99))
 p.to_csv(f"{OUT}/panel_analysis.csv", index=False)
-print(f"\nIPW 权重: mean={p['ipw'].mean():.3f}, p95={p['ipw'].quantile(.95):.3f}")
+print(f"\nIPW 累积权重: mean={p['ipw'].mean():.3f}, p95={p['ipw'].quantile(.95):.3f}")
 
 # ---------------- 轮作补贴核查（P1-2） ----------------
 rot = p[p["sub_rot_rep"] > 0]

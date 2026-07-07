@@ -62,13 +62,27 @@ STATIC = ["head_age10", "head_edu", "head_male", "head_health", "labor_n", "offf
           "v_coop_n", "logB"]
 for c in STATIC:
     last[c] = last[c].fillna(panel[c].median())
-# Wooldridge装置的 agent 常量：首期状态与户内均值
+# Wooldridge装置的 agent 常量：首期状态与户内均值。
+# 动态覆盖 participation_wooldridge 系数向量中【全部】 *_bar 项（含新增的
+# head_age10/edu/health/labor_n 均值），否则 _linpred 会静默丢弃这些均值项。
 first = panel.groupby("hh_id").first()
-hh_bars = panel.groupby("hh_id")[["dpi100_base", "peer_lag", "logB"]].mean()
-last["D_init"] = last["hh_id"].map(first["plant_soy"]).astype(float)
-last["bar_dpi100_base"] = last["hh_id"].map(hh_bars["dpi100_base"])
-last["bar_peer_lag0"] = last["hh_id"].map(hh_bars["peer_lag"]).fillna(0)
-last["bar_logB"] = last["hh_id"].map(hh_bars["logB"])
+W_BARS = [v[:-4] for v in RAWP["participation_wooldridge"]["vcov_vars"] if v.endswith("_bar")]
+def _bar_src(v):
+    return "peer_lag" if v == "peer_lag0" else v  # peer_lag0 的源列为 peer_lag
+hh_bar_mean = {v: panel.groupby("hh_id")[_bar_src(v)].mean()
+               for v in W_BARS if _bar_src(v) in panel.columns}
+def add_bars(df):
+    df["D_init"] = df["hh_id"].map(first["plant_soy"]).astype(float)
+    for v in W_BARS:
+        col = "bar_" + v
+        if v in hh_bar_mean:
+            df[col] = df["hh_id"].map(hh_bar_mean[v])
+            fill = df[col].median() if df[col].notna().any() else 0.0
+            df[col] = df[col].fillna(fill)
+        else:
+            df[col] = 0.0
+    return df
+last = add_bars(last)
 
 cs = pd.read_csv(f"{OUT}/panel_crop_long.csv")
 cs = cs[cs["crop"].isin(["corn", "soy"])].dropna(subset=["yield"])
@@ -91,8 +105,8 @@ def prep_agents(df):
     df["plant_soy_init"] = df["plant_soy"].astype(float)
     df["structural_zero"] = (df["county_name"] == "双城区").astype(int)
     cols = (["hh_id", "county_name", "village", "B", "ey_corn", "ey_soy", "s_init",
-             "plant_soy_init", "structural_zero", "D_init",
-             "bar_dpi100_base", "bar_peer_lag0", "bar_logB"] + STATIC)
+             "plant_soy_init", "structural_zero", "D_init"]
+            + ["bar_" + v for v in W_BARS] + STATIC)
     return df[cols].reset_index(drop=True)
 
 agents = prep_agents(last)
@@ -128,10 +142,7 @@ both = h23 & h24
 p23 = panel[(panel["year"] == 2023) & panel["hh_id"].isin(both)].copy()
 for c in STATIC:
     p23[c] = p23[c].fillna(panel[c].median())
-p23["D_init"] = p23["hh_id"].map(first["plant_soy"]).astype(float)
-p23["bar_dpi100_base"] = p23["hh_id"].map(hh_bars["dpi100_base"])
-p23["bar_peer_lag0"] = p23["hh_id"].map(hh_bars["peer_lag"]).fillna(0)
-p23["bar_logB"] = p23["hh_id"].map(hh_bars["logB"])
+p23 = add_bars(p23)
 ag23 = prep_agents(p23)
 sc24 = make_scenario([2024], P_CORN0, P_SOY0, SUB_CORN0, SUB_SOY0, 0.0)
 rv = run_scenario(ag23, P_MAIN, sc24, seed=7, calib_offset=CAL_MAIN, **SIM_KW)
@@ -152,6 +163,25 @@ for cty in ["桦南县", "甘南县", "双城区"]:
 val = pd.DataFrame(val_rows).round(3)
 print(val.to_string(index=False))
 val.to_csv(f"{OUT}/scenarios/validation_2024.csv", index=False)
+
+# 户级预测精度（P6-4补：命中率/Brier/AUC，同人群82户）
+pr = np.asarray(rv["agent_prob_last"], float)
+obs_y = ag23["hh_id"].map(obs24.set_index("hh_id")["plant_soy"]).to_numpy(float)
+m = ~np.isnan(obs_y)
+pr_m, obs_m = pr[m], obs_y[m]
+brier = float(np.mean((pr_m - obs_m) ** 2))
+hit = float(np.mean((pr_m > 0.5) == (obs_m > 0.5)))
+base_rate = float(obs_m.mean())
+# AUC（Mann-Whitney）
+pos, neg = pr_m[obs_m > 0.5], pr_m[obs_m <= 0.5]
+if len(pos) and len(neg):
+    auc = float((pos[:, None] > neg[None, :]).mean() + 0.5 * (pos[:, None] == neg[None, :]).mean())
+else:
+    auc = np.nan
+vm = pd.DataFrame([{"n": int(m.sum()), "base_rate": base_rate, "hit_rate": hit,
+                    "brier": brier, "brier_naive": base_rate * (1 - base_rate), "auc": auc}]).round(4)
+vm.to_csv(f"{OUT}/scenarios/validation_hhlevel.csv", index=False)
+print("户级回测:", vm.to_string(index=False))
 
 # ---------- 情景 2025–2030（主线 + Wooldridge平行） ----------
 YEARS = list(range(2025, 2031))

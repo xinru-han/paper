@@ -152,7 +152,7 @@ for _, r in panel.iterrows():
         rec["dpi_sub_lag"] = (s_s_l - s_c_l) * DEFL.get(tm1, np.nan) if tm1 in DEFL else np.nan
         # 村级补贴差（村报玉米标准，P1辅助识别）
         vs = r.get("v_sub_corn", np.nan)
-        rec["dpi_sub_vill"] = (s_s - vs) * d if pd.notna(vs) else np.nan
+        rec["dpi_sub_vill"] = (s_s - vs) * d_sub if pd.notna(vs) else np.nan
     rows.append(rec)
 
 dp = pd.DataFrame(rows, index=panel.index)
