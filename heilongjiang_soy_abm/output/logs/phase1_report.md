@@ -21,3 +21,29 @@ county_name  year     N  particip  share_w
 
 
 - 连续观测≥3年的户数：169；4年及以上：67
+
+
+## 户级留存率（t→t+1）
+year
+2021    0.944
+2022    0.563
+2023    0.394
+
+
+## 新控制变量覆盖率
+head_health       0.916
+head_party        0.983
+head_train_agr    0.867
+rentin_area       0.421
+rentout_area      0.027
+rentin_d          1.000
+ln_asset          0.606
+internet          0.926
+offfarm_days      0.351
+wage_share        0.874
+offfarm_n         1.000
+insurance         0.692
+head_male         0.998
+v_plain           0.999
+v_coop_n          0.488
+v_sub_corn        0.566

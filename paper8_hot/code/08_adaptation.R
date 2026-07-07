@@ -24,6 +24,7 @@ utot[, lockdown := 0L]
 for (i in seq_len(nrow(lkd)))
   utot[Province == lkd$province[i] & (lkd$city[i] == "上海" | tier_a == 1L) &
          date %between% c(lkd$start[i], lkd$end[i]), lockdown := 1L]
+utot <- utot[spend_pc > 0]
 utot[, `:=`(unit = paste0(Province, "_", tier_a), ym = format(date, "%Y-%m"),
             dow = wday(date), yr = year(date), ln_spend_pc = log(spend_pc),
             hot = as.integer(tbin == "gt30"))]
@@ -57,8 +58,9 @@ utot[, hot_phase := fcase(hot == 0L, "none",
                           hot_rank <= 15, "hot_6_15",
                           default = "hot_16p")]
 utot[, hot_phase := factor(hot_phase, levels = c("none","hot_1_5","hot_6_15","hot_16p"))]
-m_b <- feols(as.formula(paste0("ln_spend_pc ~ hot_phase + i(tbin, ref='ref18_24', keep='le0|b0_6|b6_12|b24_30') + ",
-                               ctrl, " | unit^ym + dow")),
+utot[, tbin_nohot := factor(fifelse(tbin == "gt30", TBIN_REF, as.character(tbin)),
+                            levels = c(TBIN_REF, setdiff(TBIN_LABELS, c("gt30", TBIN_REF))))]
+m_b <- feols(as.formula(paste0("ln_spend_pc ~ hot_phase + tbin_nohot + ", ctrl, " | unit^ym + dow")),
              data = utot, cluster = ~Province, weights = ~n_active, notes = FALSE)
 
 grab <- function(m, tag) {

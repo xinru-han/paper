@@ -52,24 +52,23 @@ w_bar <- {
   setkey(sh, food_group10); sh[J(G10), s]
 }
 if (file.exists(el_file)) {
-  el <- fread(el_file, encoding = "UTF-8")
-  # expected long format: elasticity of group i wrt price of group j
-  nm <- names(el)
-  ic <- intersect(c("food_group10","group","i","row_group"), nm)[1]
-  jc <- intersect(c("price_group","wrt","j","col_group"), nm)[1]
-  vc <- intersect(c("elasticity","value","est","marshallian"), nm)[1]
-  if (!any(is.na(c(ic, jc, vc)))) {
-    elm <- dcast(el[, .(i = get(ic), j = get(jc), v = as.numeric(get(vc)))],
-                 i ~ j, value.var = "v", fun.aggregate = mean)
-    if (all(G10 %in% elm$i)) {
-      E <- as.matrix(elm[match(G10, elm$i), G10, with = FALSE]); rownames(E) <- G10
-    }
+  el <- fread(el_file, encoding = "UTF-8")   # wide: demand_group x 10 price cols
+  if (all(G10 %in% el$demand_group) && all(G10 %in% names(el))) {
+    E <- as.matrix(el[match(G10, demand_group), G10, with = FALSE])
+    rownames(E) <- G10
   }
 }
+eta <- rep(1, 10)
+eta_file <- file.path(P1, "repro_run/outputs/demand/food_expenditure_elasticity_monthly_fast_r.csv")
+if (file.exists(eta_file)) {
+  ee <- fread(eta_file, encoding = "UTF-8")
+  gcol <- intersect(c("demand_group","food_group10","group"), names(ee))[1]
+  vcol <- setdiff(names(ee), gcol)[1]
+  if (!is.na(gcol) && all(G10 %in% ee[[gcol]]))
+    eta <- as.numeric(ee[[vcol]][match(G10, ee[[gcol]])])
+}
 if (!is.null(E) && all(is.finite(E))) {
-  # Slutsky (share-weighted): S_ij = w_i (E_ij + w_j * eta_i); homothetic
-  # approximation eta_i = 1 when income elasticities are not in the file.
-  eta <- rep(1, 10)
+  # Slutsky (share-weighted): S_ij = w_i (E_ij + w_j * eta_i)
   S <- diag(w_bar) %*% (E + outer(eta, w_bar))
   Ssym <- (S + t(S)) / 2
   ev <- eigen(Ssym)

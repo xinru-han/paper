@@ -64,13 +64,16 @@ def extract_repeat(df, prefix, fields, max_i=30):
 
 
 def head_row(df, yr):
-    """户主特征：关系=='户主'的成员，否则成员1。"""
+    """户主特征：关系=='户主'的成员，否则成员1。含健康/党员/培训。"""
     cols = list(df.columns)
     rel_cols = [c for c in cols if re.match(r"家庭成员\d+-与户主的关系$", c)]
     n_mem = len(rel_cols)
     age = pd.Series(np.nan, index=df.index)
     edu = pd.Series(np.nan, index=df.index)
     male = pd.Series(np.nan, index=df.index)
+    health = pd.Series(np.nan, index=df.index)
+    party = pd.Series(np.nan, index=df.index)
+    train_agr = pd.Series(np.nan, index=df.index)
     filled = pd.Series(False, index=df.index)
     for i in range(1, n_mem + 1):
         rel = df.get(f"家庭成员{i}-与户主的关系")
@@ -96,8 +99,27 @@ def head_row(df, yr):
         age[take] = a[take]
         edu[take] = pd.to_numeric(e, errors="coerce")[take]
         male[take] = m[take] if g is not None else np.nan
+        h = df.get(f"家庭成员{i}-健康状况")
+        if h is not None:
+            hv = h.astype(str)
+            hh_ = np.where(hv.str.contains("健康|良好|好", na=False), 1.0,
+                  np.where(hv.str.contains("一般|差|残|病|丧失", na=False), 0.0, np.nan))
+            health[take] = pd.Series(hh_, index=df.index)[take]
+        pc = df.get(f"家庭成员{i}-是否中共党员")
+        if pc is not None:
+            pv = pc.astype(str)
+            pp = np.where(pv.str.contains("是|1", na=False), 1.0,
+                 np.where(pv.str.contains("否|0", na=False), 0.0, np.nan))
+            party[take] = pd.Series(pp, index=df.index)[take]
+        tc = [c for c in cols if c.startswith(f"家庭成员{i}-") and "是否受过农业培训" in c]
+        if tc:
+            tv = df[tc[0]].astype(str)
+            tt = np.where(tv.str.contains("是|1", na=False), 1.0,
+                 np.where(tv.str.contains("否|0", na=False), 0.0, np.nan))
+            train_agr[take] = pd.Series(tt, index=df.index)[take]
         filled |= take
-    return pd.DataFrame({"head_age": age, "head_edu": edu, "head_male": male})
+    return pd.DataFrame({"head_age": age, "head_edu": edu, "head_male": male,
+                         "head_health": health, "head_party": party, "head_train_agr": train_agr})
 
 
 def offfarm_count(df):
@@ -116,6 +138,82 @@ def offfarm_count(df):
             return df[c].astype(str).str.contains("个月|半年|全年", na=False).astype(int)
         return sum(pos(c) for c in alt)
     return pd.Series(np.nan, index=df.index)
+
+
+def hh_extras(df, yr):
+    """审阅P3补提取：土地流转/固定资产/互联网/务工天数/收入结构。"""
+    cols = list(df.columns)
+    out = pd.DataFrame(index=df.index)
+
+    def col1(key, exclude=()):
+        cc = [c for c in cols if key in c and not any(e in c for e in exclude)]
+        return numc(df[cc[0]]) if cc else pd.Series(np.nan, index=df.index)
+
+    # 土地流转
+    out["rentin_area"] = col1("转入耕地的面积")
+    out["rentin_price"] = col1("转入耕地的支出")
+    out["rentout_area"] = col1("转出耕地的面积")
+    out["rentin_d"] = (out["rentin_area"].fillna(0) > 0).astype(float)
+    # 生产性固定资产市值（2021-2023"能值多少钱"；2024无市值列→缺失）
+    val_cols = [c for c in cols if re.search(r"固定资产\d+-若.*能值多少钱", c)]
+    if val_cols:
+        out["asset_value"] = df[val_cols].apply(numc).sum(axis=1, min_count=1)
+    else:
+        out["asset_value"] = np.nan
+    out["ln_asset"] = np.log1p(out["asset_value"])
+    # 互联网获取农业信息（2021-2023）；2024用上网速度代理
+    inet = [c for c in cols if "是否利用互联网获取农业" in c]
+    if inet:
+        raw = df[inet].astype(str)
+        yes = raw.apply(lambda s: s.str.contains("是|1", na=False)).any(axis=1)
+        no = raw.apply(lambda s: s.str.contains("否|0", na=False)).all(axis=1)
+        out["internet"] = np.where(yes, 1.0, np.where(no, 0.0, np.nan))
+    else:
+        sp = [c for c in cols if "上网速度" in c]
+        if sp:
+            v = df[sp[0]].astype(str)
+            out["internet"] = np.where(v.str.contains("不上网|没有|无法", na=False), 0.0,
+                              np.where(v.str.contains("快|流畅|一般|慢|卡", na=False), 1.0, np.nan))
+        else:
+            out["internet"] = np.nan
+    # 务工天数合计（成员表；2024为文本时间段→缺失）
+    day_cols = [c for c in cols if re.match(r"家庭成员\d+-.*务工天数", c)]
+    out["offfarm_days"] = df[day_cols].apply(numc).sum(axis=1, min_count=1) if day_cols else np.nan
+    # 工资性收入占比
+    wage = col1("工资性收入(元)", exclude=("乡村干部", "本地", "外出", "其他", "其中"))
+    oper = col1("家庭经营收入")
+    tot = wage.fillna(0) + oper.fillna(0)
+    out["wage_share"] = np.where(tot > 0, wage.fillna(0) / tot, np.nan)
+    return out
+
+
+def read_village(yr):
+    """村问卷：地形/合作社/流转租金/村报补贴标准。"""
+    dv = pd.read_excel(f"{RAW}/村问卷{yr}.xlsx")
+    dv.columns = [str(c).strip() for c in dv.columns]
+    cols = list(dv.columns)
+    out = pd.DataFrame({"village": pd.to_numeric(dv["行政村代码"], errors="coerce"), "year": yr})
+
+    def col1(key, exclude=()):
+        cc = [c for c in cols if key in c and not any(e in c for e in exclude)]
+        return numc(dv[cc[0]]) if cc else pd.Series(np.nan, index=dv.index)
+
+    ter = [c for c in cols if c == "本村地形"]
+    if ter:
+        out["v_plain"] = dv[ter[0]].astype(str).str.contains("平原", na=False).astype(float)
+    else:
+        out["v_plain"] = np.nan
+    coop = col1("农民专业合作社", exclude=("加入", "示范", "最早", "方式", "服务", "承担"))
+    out["v_coop_n"] = coop.mask(coop > 200)
+    out["v_land_rent"] = col1("土地流转的租金平均")
+    # 村报玉米补贴标准（2021-2023为当年口径；2024问卷问"上一年"=2023，不用）
+    if yr <= 2023:
+        sc = col1("玉米农民直接补贴的标准")
+        out["v_sub_corn"] = sc.mask((sc > 300) | (sc < 0))  # 清除总额误报与哨兵
+    else:
+        out["v_sub_corn"] = np.nan
+    out = out.dropna(subset=["village"]).drop_duplicates("village")
+    return out
 
 
 def build_year(yr):
@@ -186,7 +284,7 @@ def build_year(yr):
 
     # ---- 户特征 ----
     hh = ids.copy()
-    hh = pd.concat([hh, head_row(df, yr)], axis=1)
+    hh = pd.concat([hh, head_row(df, yr), hh_extras(df, yr)], axis=1)
     lab = [c for c in cols if "劳动力（16-59周岁）人数" in c]
     hh["labor_n"] = numc(df[lab[0]]) if lab else np.nan
     hh["offfarm_n"] = offfarm_count(df)
@@ -287,6 +385,17 @@ def main():
     panel["logB"] = np.log(panel["B"])
     panel["head_age10"] = panel["head_age"] / 10.0
 
+    # ---- 村问卷变量 ----
+    vill = pd.concat([read_village(y) for y in [2021, 2022, 2023, 2024]], ignore_index=True)
+    panel = panel.merge(vill, on=["village", "year"], how="left")
+
+    # ---- 磨损标记 ----
+    obs_set = set(zip(panel["hh_id"], panel["year"]))
+    panel["retained_next"] = [float((h, y + 1) in obs_set) if y < 2024 else np.nan
+                              for h, y in zip(panel["hh_id"], panel["year"])]
+    dur = panel.groupby("hh_id")["year"].transform("nunique")
+    panel["balanced3"] = (dur >= 3).astype(int)
+
     crop.to_csv(f"{OUT}/panel_crop_long.csv", index=False)
     panel.to_csv(f"{OUT}/panel_hh.csv", index=False)
 
@@ -300,6 +409,21 @@ def main():
     rep.append(g.to_string(index=False))
     dur = panel.groupby("hh_id")["year"].nunique()
     rep.append(f"\n\n- 连续观测≥3年的户数：{(dur>=3).sum()}；4年及以上：{(dur>=4).sum()}\n")
+    # 留存率与新控制变量覆盖率
+    ret = panel[panel["year"] < 2024].groupby("year")["retained_next"].mean()
+    rep.append("\n## 户级留存率（t→t+1）\n" + ret.round(3).to_string())
+    NEWV = ["head_health", "head_party", "head_train_agr", "rentin_area", "rentout_area",
+            "rentin_d", "ln_asset", "internet", "offfarm_days", "wage_share",
+            "offfarm_n", "insurance", "head_male", "v_plain", "v_coop_n", "v_sub_corn"]
+    cov = panel[NEWV].notna().mean().round(3)
+    rep.append("\n\n## 新控制变量覆盖率\n" + cov.to_string())
+    # 变量描述统计表（P17）
+    desc_vars = ["plant_soy", "s", "B", "head_age", "head_edu", "head_male", "head_health",
+                 "head_party", "head_train_agr", "labor_n", "offfarm_n", "offfarm_days",
+                 "wage_share", "rentin_area", "rentout_area", "ln_asset", "internet",
+                 "insurance", "v_plain", "v_coop_n"]
+    panel[desc_vars].describe().T[["count", "mean", "std", "50%", "min", "max"]].round(3)\
+        .to_csv(f"{OUT}/tables/descriptive_stats.csv")
     with open(f"{OUT}/logs/phase1_report.md", "w") as f:
         f.write("\n".join(str(x) for x in rep))
     print(g.to_string(index=False))

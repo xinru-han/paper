@@ -1,0 +1,18 @@
+﻿,说明
+crop/province/year/region,面板维度; region=六大产区
+net_profit,目标: 净利润(元/亩)=产值合计-总成本
+loss,目标: 亏损=1(net_profit<0)
+cash_income,现金口径收益(加回家庭用工折价+自营地折租)
+L1_*/L2_*,滞后1/2期的汇编指标(元/亩等)
+trend3_*,滞后1期减滞后3期(3年趋势)
+L1_cost_yoy/L1_price_yoy,滞后成本/售价同比
+in_*,"当年投入品价格(发改委采价,省均): 尿素/复合肥/磷肥类/农膜/农药/机耕/机收"
+in_*_yoy,投入品价格同比
+gp_year_mean,当年原粮收购价全年均值(元/50kg)[事后版特征]
+gp_grow_mean/gp_pre_mean,生长季(4-9月)/播前(1-4月)收购价均值[预警版可用]
+gp_cv/gp_yoy/gp_pre_yoy,收购价年内变异系数/年度同比/播前同比
+temp_grow/prec_grow,生长季(4-9月)平均气温/降水
+*_ano_grow,生长季距平均值(基准1973-2002)
+*_ano_absmax,生长季距平绝对值最大(极端性)
+policy_corn_reform,2016玉米临储改革后=1
+policy_min_price,最低收购价作物(稻麦)=1

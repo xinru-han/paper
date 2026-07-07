@@ -26,7 +26,7 @@ setDTthreads(2)  # EASI bootstrap of another project shares this machine
 TBIN_BREAKS <- c(-Inf, 0, 6, 12, 18, 24, 30, Inf)
 TBIN_LABELS <- c("le0", "b0_6", "b6_12", "b12_18", "ref18_24", "b24_30", "gt30")
 TBIN_REF <- "ref18_24"
-tbin_cut <- function(x) factor(TBIN_LABELS[findInterval(x, TBIN_BREAKS[-1]) + 1L], levels = TBIN_LABELS)
+tbin_cut <- function(x) factor(TBIN_LABELS[findInterval(x, TBIN_BREAKS[-1], left.open = TRUE) + 1L], levels = TBIN_LABELS)
 
 # precipitation bins (mm/day)
 PBIN_BREAKS <- c(-Inf, 0, 10, 25, 50, Inf)
@@ -68,6 +68,14 @@ wcb_pvalue <- function(fit, coef_name, dt, cl_var, B = 399, seed = 1, wvar = NUL
     coef(fb)[coef_name] - b0
   }, numeric(1))
   mean(abs(draws) >= abs(b0))
+}
+
+# combine t1a (grid) + t1b (group) into t1_main_coefs.csv when both exist
+combine_t1 <- function(dir_tab) {
+  fa <- file.path(dir_tab, "t1a_grid_coefs.csv")
+  fb <- file.path(dir_tab, "t1b_group_coefs.csv")
+  parts <- lapply(Filter(file.exists, c(fa, fb)), fread)
+  if (length(parts)) fwrite(rbindlist(parts, fill = TRUE), file.path(dir_tab, "t1_main_coefs.csv"))
 }
 
 # permutation p-value machinery: permute year labels of the temperature series
