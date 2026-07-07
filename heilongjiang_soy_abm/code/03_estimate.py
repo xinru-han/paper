@@ -76,8 +76,10 @@ def cfit(formula, data, family=None, weights=None):
         if weights is not None:
             m = smf.wls(formula, data=data, weights=weights)
     else:
+        # IPW 概率权重走 var_weights（而非 freq_weights）：后者把权重当频数、
+        # 使 nobs=权重和，污染 CRV1 的 (N-1)/(N-k) 有限样本因子。
         m = smf.glm(formula, data=data, family=family,
-                    freq_weights=weights if weights is not None else None)
+                    var_weights=weights if weights is not None else None)
     return m.fit(cov_type="cluster", cov_kwds={"groups": data["village"]})
 
 def ame_ci(m, data, var):
@@ -132,13 +134,17 @@ R["m2_roll"] = cfit(f1.replace("dpi100_base", "dpi100_roll"), estL, sm.families.
 # ---------- (3) Wooldridge(2005) 正确实现 ----------
 first = p.sort_values("year").groupby("hh_id").first()
 estL["D_init"] = estL["hh_id"].map(first["plant_soy"]).astype(float)
-for v in ["dpi100_base", "peer_lag0", "logB"]:
-    if v == "logB":
-        estL["logB"] = est.loc[estL.index, "logB"] if "logB" in est else estL["logB"]
+# Wooldridge(2005) 正确装置：D_i0 + 全部时变协变量的户内均值 X̄_i。
+# 除 dpi/peer/logB 外，A人力块中确有户内变异的控制（年龄/教育/健康/劳动力）
+# 也须进 Mundlak 均值，否则 CRE 未真正控制其与个体效应的相关（一致性前提）。
+bar_core = ["dpi100_base", "peer_lag0", "logB"]
+bar_tv = [v for v in ["head_age10", "head_edu", "head_health", "labor_n"]
+          if v in estL and estL.groupby("hh_id")[v].transform("std").fillna(0).gt(1e-9).any()]
+for v in bar_core + bar_tv:
     estL[v + "_bar"] = estL.groupby("hh_id")[v].transform("mean")
-estL["logB_bar"] = estL.groupby("hh_id")["logB"].transform("mean")
+bar_str = " + ".join([v + "_bar" for v in bar_core + bar_tv])
 f3 = (f"plant_soy ~ dpi100_base + plant_soy_lag + peer_lag0 + peer_miss + D_init"
-      f" + dpi100_base_bar + peer_lag0_bar + logB_bar + logB + {XA} + {FE}")
+      f" + {bar_str} + logB + {XA} + {FE}")
 R["m3_wooldridge"] = cfit(f3, estL, sm.families.Binomial())
 # 随机效应 σ_a：BayesMixedGLM（同一设计 + 户随机截距）
 try:
@@ -326,7 +332,10 @@ params = {
         "coef": {k: float(v) for k, v in R["s_uncond"].params.items()},
         "vcov_vars": list(R["s_uncond"].params.index),
         "vcov": R["s_uncond"].cov_params().values.tolist(),
-        "resid_sd": float((sh_all["s"] - R["s_uncond"].predict(sh_all)).std()),
+        # ABM 把 eps 加在"条件份额 s_cond"上（仅对种植户），故噪声须取种植子样本
+        # 上条件份额模型的残差SD；用非条件全样本（含大量零份额户）的残差SD会系统性夸大。
+        "resid_sd": float((sh_c["s"] - R["s_cond"].predict(sh_c)).std()),
+        "resid_sd_uncond": float((sh_all["s"] - R["s_uncond"].predict(sh_all)).std()),
     },
     "inference": {"wild_bootstrap_p": WILD_P, "firth_beta": FIRTH_B, "anderson_hsiao": AH,
                   "n_villages": int(estL["village"].nunique()),

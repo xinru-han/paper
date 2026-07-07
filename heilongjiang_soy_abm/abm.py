@@ -128,23 +128,25 @@ def _linpred(state, eq, dpi100, peer):
         b = betas[j][None, :]  # (1, n_mc)
         if name == "Intercept":
             xb += b
-        elif name.startswith("dpi100") or name == "dpi_mkt100_base":
-            xb += b * dpi100
+        # 后缀判断必须先于前缀判断：否则 dpi100_base_bar / peer_lag0_bar 会被
+        # startswith("dpi100")/"peer_lag0" 误路由到时变项通道（Wooldridge装置失效）。
+        elif name.endswith("_miss") or name == "peer_miss":
+            continue  # 仿真中无缺失
+        elif name.endswith("_bar"):
+            base = name[:-4]
+            arr = state["bars"].get(base)
+            if arr is not None:
+                xb += b * arr[:, None]
+        elif name == "D_init":
+            xb += b * state["D_init"][:, None]
         elif name == "plant_soy_lag":
             xb += b * state["plant_soy_prev"]
         elif name == "s_lag0":
             xb += b * state["s_prev"]
         elif name == "peer_lag0":
             xb += b * peer
-        elif name.endswith("_miss") or name == "peer_miss":
-            continue  # 仿真中无缺失
-        elif name == "D_init":
-            xb += b * state["D_init"][:, None]
-        elif name.endswith("_bar"):
-            base = name[:-4]
-            arr = state["bars"].get(base)
-            if arr is not None:
-                xb += b * arr[:, None]
+        elif name.startswith("dpi100") or name == "dpi_mkt100_base":
+            xb += b * dpi100
         elif name.startswith("C(county)[T."):
             lev = name.split("[T.")[1].rstrip("]")
             xb += b * (county == lev)[:, None]

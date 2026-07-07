@@ -113,9 +113,12 @@ def suit_hh_yield(hh, cty):
 # (c) 县序数（大豆适宜度：双城0 桦南1 甘南2）
 CTY_ORD = {"双城区": 0, "桦南县": 1, "甘南县": 2}
 
-# ---------- 5. 豆粮价格比（省级，t-1信息集） ----------
+# ---------- 5. 豆粮价格比（县×年，提供年内横截面变异；省级作回退） ----------
 prov_p = cs.groupby(["year", "crop"])["price"].median().unstack()
-price_ratio = (prov_p["soy"] / prov_p["corn"]).rename("pr_ratio")  # 按实现年份索引
+prov_ratio = (prov_p["soy"] / prov_p["corn"]).rename("pr_ratio")  # 省级回退
+# 县×年价格比：用 ptab（县×年中位数，含省级回退）→ 赛马列不再与年份FE完全共线
+cty_p = ptab.pivot_table(index=["county_name", "year"], columns="crop", values="price")
+cty_ratio = (cty_p["soy"] / cty_p["corn"])  # MultiIndex (county_name, year)
 
 # ---------- 6. 组装 ----------
 def get(tab, val, cty, yr, cr):
@@ -128,21 +131,24 @@ for _, r in panel.iterrows():
     tm1 = yr - 1
     rec = {"suit_vill": v21.get(vill, np.nan), "suit_hhy": suit_hh_yield(hh, cty),
            "suit_cty": CTY_ORD.get(cty, np.nan),
-           "pr_ratio_lag": price_ratio.get(tm1, np.nan)}
+           "pr_ratio_lag": cty_ratio.get((cty, tm1), prov_ratio.get(tm1, np.nan))}
     if tm1 in years:
         p_c, p_s = get(ptab, "price", cty, tm1, "corn"), get(ptab, "price", cty, tm1, "soy")
         c_c, c_s = get(ctab, "cost_mu", cty, tm1, "corn"), get(ctab, "cost_mu", cty, tm1, "soy")
         s_c, s_s = SUB_OFFICIAL[yr]
         s_c_l, s_s_l = SUB_OFFICIAL.get(tm1, (np.nan, np.nan))
-        d = DEFL[yr]
+        # CPI 平减 vintage 对齐：市场项由 t-1 名义价/成本构成 → 用 DEFL[tm1]；
+        # 补贴项为当年名义 → 用 DEFL[yr]。混用会造成 Δπ 内量纲不自洽（约2%）。
+        d_mkt = DEFL[tm1]
+        d_sub = DEFL[yr]
         for ver, ey_f in [("roll", lambda cr_: ey_roll(hh, cty, cr_, yr)),
                           ("base", lambda cr_: ey_base(hh, cty, cr_)),
                           ("loo", lambda cr_: ey_loo(hh, cty, cr_, yr))]:
             y_c, y_s = ey_f("corn"), ey_f("soy")
             mkt = (p_s * y_s - c_s) - (p_c * y_c - c_c)
-            rec[f"dpi_mkt_{ver}"] = mkt * d
-            rec[f"dpi_{ver}"] = (mkt + (s_s - s_c)) * d
-        rec["dpi_sub"] = (s_s - s_c) * d
+            rec[f"dpi_mkt_{ver}"] = mkt * d_mkt
+            rec[f"dpi_{ver}"] = mkt * d_mkt + (s_s - s_c) * d_sub
+        rec["dpi_sub"] = (s_s - s_c) * d_sub
         rec["dpi_sub_lag"] = (s_s_l - s_c_l) * DEFL.get(tm1, np.nan) if tm1 in DEFL else np.nan
         # 村级补贴差（村报玉米标准，P1辅助识别）
         vs = r.get("v_sub_corn", np.nan)
