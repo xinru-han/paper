@@ -169,10 +169,12 @@ class ABM:
         self.spread += 0.4 * (demand_prem - self.spread) + rng.normal(0, 350)
         self.spread = float(np.clip(self.spread, -200, 4000))
         p_dom = self.p_imp + self.spread
-        if pol["price_floor_tau"] > 0:
-            p_dom = max(p_dom, self.p_imp + pol["price_floor_tau"])
+        # 目标价格差价补贴(2014-16大豆目标价格政策机制): 生产者获得 p_dom+τ 的
+        # 楔子, 市场价不变, 财政支付 τ·Y。命题12.4 的 DWL=τ²|D′|/2 即此楔子的
+        # Harberger 三角（价格下限式实现几乎不绑定, 无法产生该楔子）。
+        w_sup = float(pol["price_floor_tau"])
         # 2-3. 政策与预期（大豆/玉米补贴: None→基线区域向量, 标量→统一）
-        self.p_hat = 0.6 * p_dom + 0.4 * self.p_hat
+        self.p_hat = 0.6 * (p_dom + w_sup) + 0.4 * self.p_hat
         self.p_corn_hat = 0.6 * self.p_corn + 0.4 * self.p_corn_hat
         theta = pol["theta_transmission"] or self.theta0
         sub = pol["sub_area"]
@@ -204,7 +206,8 @@ class ABM:
         q_bar = float(np.average(q_i[soy], weights=self.area_i[soy])) if soy.any() else 0
         hi_q_share = float(self.area_i[soy][q_i[soy] > 1.0].sum()
                            / max(self.area_i[soy].sum(), 1e-9))
-        income_i = np.where(soy, (harv / 1000.0 * (p_dom + prem) + sub - self.cost_r),
+        income_i = np.where(soy, (harv / 1000.0 * (p_dom + w_sup + prem)
+                                  + sub - self.cost_r),
                             self._corn_net(self.p_corn, sub_c))   # 元/亩
         # 7. 进口配置
         D = self.cfg["demand"]["D_total"]
@@ -246,6 +249,7 @@ class ABM:
                             * self.area_i).sum()) * 1e-4          # 万亩×元/亩→亿元
         fiscal_corn = float((np.where(~soy, np.broadcast_to(sub_c, soy.shape), 0.0)
                              * self.area_i).sum()) * 1e-4
+        fiscal_soy += w_sup * Y * 1e-4                            # 差价补贴支出(亿元)
         fiscal = fiscal_soy + pol.get("quality_budget", 0.0)
         self.soy_prev = soy
         self.Y_prev = Y                                            # 食用底部反馈

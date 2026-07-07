@@ -1,7 +1,8 @@
 """M5: 政策实验矩阵 P0–P6（统一预算约束 ≈540 亿元/年, §8）。
 
 P0 无干预 | P1 统一面积补贴350元/亩 | P2 定向补贴(按区域社会净收益梯度1.5×/0.5×)
-P3 价格保护(τ=627元/吨, 无补贴) | P4 质量链条包(40%检测分储→ϑ↑, 30%K/H, 30%定向)
+P3 目标价格差价补贴(生产者楔子τ=627元/吨, 2014-16目标价格政策机制, 无面积补贴)
+P4 质量链条包(40%检测分储→ϑ↑, 30%K/H, 30%定向)
 P5 韧性包(30%储备X→2000, 30%多元化S3/S4降价降险, 40%定向) | P6 组合最优(网格搜索)
 
 评价: 福利分项、财政成本、CVaR₅%短缺损失、农户收入与基尼、自给率/HHI、质量、
@@ -128,15 +129,17 @@ def eval_policy(cfg, name, spec=None, n_seeds=20, n_agents=2000, horizon=(2026, 
     return agg, d
 
 
-def p3_dwl(cfg, res_p3, res_p0):
-    """命题12.4: DWL ≈ τ²·|D′|/2。|D′| 用 ABM 供给响应近似(dY/dp)。"""
+def p3_dwl(cfg, res_p3, res_p0, res_p1):
+    """命题12.4: DWL ≈ τ²·|S′|/2（生产者价格楔子的 Harberger 三角）。
+    解析斜率 |S′|=dY/dp 用 P1 实验独立估计（350元/亩 ≈ 350/单产 元/吨的
+    等价楔子, 与 P3 不同工具）; 模拟三角 = ½·τ·ΔY_P3。二者一致 ⟺ ABM 供给
+    响应局部线性且跨工具可换算 —— 这是命题的可检验含义。"""
     tau = 627.0
-    dY = res_p3["Y"] - res_p0["Y"]
-    dp = res_p3["p_dom"] - res_p0["p_dom"]
-    slope = abs(dY / dp) if abs(dp) > 1 else 0.5   # 万吨/(元/吨)
-    dwl_analytic = 0.5 * tau ** 2 * slope * U      # 亿元
-    dwl_sim = max((res_p3["p_dom"] - res_p0["p_dom"]) * res_p3["M"] * U * 0
-                  + 0.5 * (res_p3["p_dom"] - res_p0["p_dom"]) * dY * U, 0.0)
+    yield_t_mu = cfg["supply_domestic"]["yield_2025"] / 1000.0   # 吨/亩
+    wedge_p1 = 350.0 / yield_t_mu                                # P1 等价楔子 元/吨
+    slope = max((res_p1["Y"] - res_p0["Y"]) / wedge_p1, 1e-6)    # 万吨/(元/吨)
+    dwl_analytic = 0.5 * tau ** 2 * slope * U                    # 亿元
+    dwl_sim = 0.5 * tau * max(res_p3["Y"] - res_p0["Y"], 0.0) * U
     return dwl_analytic, dwl_sim, slope
 
 
@@ -150,21 +153,28 @@ def run(cfg=None, save=True, fast=False):
         results[name], raw[name] = agg, d
         print(f"[M5] {name}: Y={agg['Y']:.0f} W={agg['welfare']:.0f} "
               f"财政={agg['fiscal']:.0f} CVaR={agg['cvar_loss']:.1f}")
-    # P6: {P2,P4,P5} 权重单纯形粗网格
-    best, best_w = None, None
+    # P6: {P2,P4,P5} 权重单纯形粗网格。三个顶点 (1,0,0)/(0,1,0)/(0,0,1) 分别
+    # 精确复现 P2/P4/P5, 保证 P6≻单项包在构造上可达; fast 抽样必须保留顶点。
+    best, best_w, best_spec = None, None, None
     grid = [(a / 4, b / 4, 1 - a / 4 - b / 4) for a in range(5) for b in range(5 - a)]
-    grid = grid[::3] if fast else grid
+    if fast:
+        vertices = {(1.0, 0.0, 0.0), (0.0, 1.0, 0.0), (0.0, 0.0, 1.0)}
+        grid = [g for i, g in enumerate(grid) if i % 3 == 0 or g in vertices]
     for (w2, w4, w5) in grid:
         spec = dict(sub_area=0.0, use_targeted=True, targeted_budget=w2 * BUDGET
                     + w4 * 0.3 * BUDGET + w5 * 0.4 * BUDGET,
                     theta_transmission=0.35 + w4 * (0.68 - 0.35),
                     reserve_X=1000 + w5 * 1000,
                     import_cost_shift_s34=-80.0 * w5,
+                    import_prob_scale=np.array([1, 1, 1 - 0.3 * w5, 1 - 0.3 * w5]),
                     quality_budget=w4 * 0.7 * BUDGET + w5 * 0.6 * BUDGET)
         agg, d = eval_policy(cfg, "P6", spec=spec,
                              n_seeds=max(4, n_seeds // 2), n_agents=n_agents)
         if best is None or agg["welfare"] > best["welfare"]:
-            best, best_w, best_raw = agg, (w2, w4, w5), d
+            best, best_w, best_spec = agg, (w2, w4, w5), dict(spec)
+    # 最优点用全种子复评（网格搜索用半种子会引入最优偏误/噪声排序）
+    best, best_raw = eval_policy(cfg, "P6", spec=best_spec,
+                                 n_seeds=n_seeds, n_agents=n_agents)
     best["policy"] = f"P6({best_w[0]:.2f},{best_w[1]:.2f},{best_w[2]:.2f})"
     results["P6"], raw["P6"] = best, best_raw
     print(f"[M5] P6 最优权重 (P2,P4,P5)={best_w}, W={best['welfare']:.0f}")
