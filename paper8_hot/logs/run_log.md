@@ -42,3 +42,5 @@
 15:57:09 05a: frame ready 17354264 rows, 12 cols 
 15:58:10 05a: trip done 
 15:59:10 05a: done 
+16:05:23 07: margin decomposition written 
+16:08:56 07: heterogeneity elderly done 
