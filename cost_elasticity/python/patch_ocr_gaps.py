@@ -87,6 +87,53 @@ PAGES = [
     ("2020", 159, "peanut", 2019, 1, "2-8-1"),
     ("2020", 161, "peanut", 2019, 2, "2-8-2"),
     ("2020", 163, "peanut", 2019, 3, "2-8-3"),
+    ("2021", 160, "peanut", 2020, 2, "2-8-2"),
+    ("2021", 162, "peanut", 2020, 3, "2-8-3"),
+]
+
+# 主表页 (已在库中, 用于"库内污染"核对: mineru把同一<table>内嵌续表块按主表头
+# 省份误配, 且 extract_ocr 同键取max → 主表省份的库值可能被续表省份值覆盖)。
+MAIN_PAGES = [
+    ("2020", 110, "rice_early_indica", 2019, 1, "2-1-1"),
+    ("2020", 112, "rice_early_indica", 2019, 2, "2-1-2"),
+    ("2020", 114, "rice_early_indica", 2019, 3, "2-1-3"),
+    ("2020", 116, "rice_mid_indica", 2019, 1, "2-2-1"),
+    ("2020", 118, "rice_mid_indica", 2019, 2, "2-2-2"),
+    ("2020", 120, "rice_mid_indica", 2019, 3, "2-2-3"),
+    ("2020", 122, "rice_late_indica", 2019, 1, "2-3-1"),
+    ("2020", 124, "rice_late_indica", 2019, 2, "2-3-2"),
+    ("2020", 126, "rice_late_indica", 2019, 3, "2-3-3"),
+    ("2020", 146, "corn", 2019, 2, "2-6-2"),
+    ("2020", 152, "soybean", 2019, 1, "2-7-1"),
+    ("2020", 154, "soybean", 2019, 2, "2-7-2"),
+    ("2020", 156, "soybean", 2019, 3, "2-7-3"),
+    ("2020", 158, "peanut", 2019, 1, "2-8-1"),
+    ("2020", 160, "peanut", 2019, 2, "2-8-2"),
+    ("2020", 162, "peanut", 2019, 3, "2-8-3"),
+    ("2021", 109, "rice_early_indica", 2020, 1, "2-1-1"),
+    ("2021", 111, "rice_early_indica", 2020, 2, "2-1-2"),
+    ("2021", 113, "rice_early_indica", 2020, 3, "2-1-3"),
+    ("2021", 115, "rice_mid_indica", 2020, 1, "2-2-1"),
+    ("2021", 117, "rice_mid_indica", 2020, 2, "2-2-2"),
+    ("2021", 119, "rice_mid_indica", 2020, 3, "2-2-3"),
+    ("2021", 121, "rice_late_indica", 2020, 1, "2-3-1"),
+    ("2021", 123, "rice_late_indica", 2020, 2, "2-3-2"),
+    ("2021", 125, "rice_late_indica", 2020, 3, "2-3-3"),
+    ("2021", 127, "rice_japonica", 2020, 1, "2-4-1"),
+    ("2021", 131, "rice_japonica", 2020, 3, "2-4-3"),
+    ("2021", 151, "soybean", 2020, 1, "2-7-1"),
+    ("2021", 153, "soybean", 2020, 2, "2-7-2"),
+    ("2021", 155, "soybean", 2020, 3, "2-7-3"),
+    ("2021", 159, "peanut", 2020, 2, "2-8-2"),
+    ("2021", 161, "peanut", 2020, 3, "2-8-3"),
+    ("2022", 142, "wheat", 2021, 2, "2-5-2"),
+    ("2023", 114, "rice_early_indica", 2022, 2, "2-1-2"),
+    ("2023", 118, "rice_mid_indica", 2022, 1, "2-2-1"),
+    ("2023", 122, "rice_mid_indica", 2022, 3, "2-2-3"),
+    ("2023", 128, "rice_late_indica", 2022, 3, "2-3-3"),
+    ("2023", 154, "soybean", 2022, 1, "2-7-1"),
+    ("2023", 156, "soybean", 2022, 2, "2-7-2"),
+    ("2023", 158, "soybean", 2022, 3, "2-7-3"),
 ]
 
 # OCR文本层省名误识修正 (2022/2023卷)
@@ -610,6 +657,37 @@ def run_qc(base, patch):
                                        "check", "value", "detail"])
 
 
+OUT_CONFLICT = os.path.join(PROJ, "out/base_conflicts.csv")
+
+
+def audit_base_conflicts(base):
+    """用PDF文本层重读主表页 + md主块, 对照库值 → 库内污染清单。"""
+    ref = []
+    for vol, page, crop, year, kind, tid in MAIN_PAGES:
+        ref += parse_page(vol, page, crop, year, kind, tid)
+    for vol, crop, year, kind, tre in MD_TABLES:
+        ref += parse_md_table(vol, crop, year, kind, tre)
+    rdf = pd.DataFrame(ref, columns=["crop", "province", "year", "variable",
+                                     "value", "source", "_kind", "_page"])
+    rdf.sort_values(["crop", "province", "year", "variable", "_kind"],
+                    inplace=True, kind="mergesort")
+    rdf = rdf.drop_duplicates(["crop", "province", "year", "variable"], keep="first")
+    m = base.merge(rdf, on=["crop", "province", "year", "variable"],
+                   suffixes=("_base", "_pdf"))
+    rel = (m["value_base"] - m["value_pdf"]).abs() / m["value_pdf"].abs().clip(lower=0.01)
+    conf = m[rel > 0.005][["crop", "province", "year", "variable",
+                           "value_base", "value_pdf", "source_pdf"]]
+    conf = conf.rename(columns={"source_pdf": "ref_source"})
+    conf.to_csv(OUT_CONFLICT, index=False)
+    n_check = len(m)
+    print(f"\n库内污染核对: 复核 {n_check} 库值, 不一致 {len(conf)} 条 "
+          f"({len(conf)/max(n_check,1):.1%}) → {OUT_CONFLICT}")
+    if len(conf):
+        s = conf.groupby(["crop", "year"]).size()
+        print("按 crop×year 分布:\n", s.to_string())
+    return conf
+
+
 def main():
     recs = []
     for vol, page, crop, year, kind, tid in PAGES:
@@ -646,6 +724,8 @@ def main():
     print(f"\n补录 {len(out)} 行 → {OUT_PATCH} (与库重复剔除 {dropped} 行)")
     cov = out[out.variable == "总成本"].groupby(["crop", "year"])["province"].nunique()
     print("新增(总成本)省数:\n", cov.to_string())
+
+    audit_base_conflicts(base)
 
     qc = run_qc(base, qc_patch)
     qc.to_csv(OUT_QC, index=False)
