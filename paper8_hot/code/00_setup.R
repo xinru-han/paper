@@ -48,24 +48,25 @@ logmsg <- function(...) {
 # y* = yhat + e * w_g. Only used on aggregated (exposure-unit x date) panels
 # where a refit costs < 0.1s; B = 399 by default. dt must contain the fit's
 # variables; cl_var names the cluster column.
-wcb_pvalue <- function(fit, coef_name, dt, yvar, cl_var, B = 399, seed = 1) {
+wcb_pvalue <- function(fit, coef_name, dt, cl_var, B = 399, seed = 1, wvar = NULL) {
   set.seed(seed)
-  ok <- obs(fit)
-  d <- dt[ok]
+  d <- dt[obs(fit)]
   d$..yhat <- fitted(fit)
   d$..e <- resid(fit)
   cl <- as.integer(as.factor(d[[cl_var]]))
   G <- max(cl)
   b0 <- coef(fit)[coef_name]
-  fml <- formula(fit)
+  # rebuild "..ystar ~ rhs | fe" from the fitted model
+  fml_txt <- paste0("..ystar ~ ", as.character(formula(fit, type = "linear"))[3])
+  fe_part <- tryCatch(deparse(formula(fit, type = "fixef")[[2]]), error = function(e) NULL)
+  if (!is.null(fe_part)) fml_txt <- paste0(fml_txt, " | ", paste(fe_part, collapse = ""))
+  wts <- if (!is.null(wvar)) d[[wvar]] else NULL
   draws <- vapply(seq_len(B), function(b) {
     w <- sample(c(-1, 1), G, replace = TRUE)
     d$..ystar <- d$..yhat + d$..e * w[cl]
-    f2 <- update(fml, ..ystar ~ .)
-    fb <- feols(f2, data = d, warn = FALSE, notes = FALSE)
+    fb <- feols(as.formula(fml_txt), data = d, weights = wts, warn = FALSE, notes = FALSE)
     coef(fb)[coef_name] - b0
   }, numeric(1))
-  # symmetric percentile-t-free p-value on coefficient distribution around b0
   mean(abs(draws) >= abs(b0))
 }
 

@@ -427,8 +427,10 @@ def fig4():
     ax.set_xlabel("Transition depth, PTS → HDS (%)")
     ax.set_ylabel("Share of HDS dividend realised (%)")
     ax.set_ylim(0, 102)
-    ax.legend(frameon=False, fontsize=5.4, loc="lower right", handlelength=1.2,
-              borderaxespad=0.2, labelspacing=0.35)
+    leg = ax.legend(fontsize=5.4, loc="lower right", handlelength=1.2,
+                    borderaxespad=0.2, labelspacing=0.35, frameon=True,
+                    framealpha=1.0, edgecolor="none", facecolor="white")
+    leg.set_zorder(6)
     ax.set_title("Half the transition, ~60–70% of the dividend", fontsize=7.5)
     panel_label(ax, "b", dx=-0.14, dy=1.14)
 
@@ -514,7 +516,8 @@ def ed2():
     for i, (k, _) in enumerate(sources):
         ax.text(i, bs_lvl[k] * 1.02, f"{bs_lvl[k]:,.0f}", ha="center", fontsize=6.5)
     ax.set_xticks(range(3))
-    ax.set_xticklabels([l for _, l in sources], fontsize=6)
+    ax.set_xticklabels(["China\ninventory EF", "FAOSTAT\nfarm-gate",
+                        "Poore & Nemecek\nLCA"], fontsize=6)
     ax.set_ylabel("BS 2050 emissions (Mt CO$_2$e)")
     ax.set_yscale("log")
     ax.set_title("Boundary matters ~12× in level", fontsize=7.5)
