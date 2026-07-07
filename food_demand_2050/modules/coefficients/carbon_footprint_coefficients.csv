@@ -1,0 +1,55 @@
+casm_code,casm_world_code,commodity,region,value_kgCO2e_per_kg,statistic,system_boundary,source,doi_or_domain,year,notes
+RICE,RIC,Rice,CHN,0.902,mean,farm-gate (cradle-to-farm-gate; enteric+manure+rice CH4+energy),FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities (bulks-faostat.fao.org),2023,China mainland; per kg paddy-equivalent farm-gate
+RICE,RIC,Rice,WLD,0.9396,mean,farm-gate,FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,World average
+RICE,RIC,Rice,WLD,4.416,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID food-emissions-supply-chain),10.1126/science.aaq0216,2018,Global LCA mean across ~38700 farms; includes LUC+processing+transport+retail
+WHEA,WHE,Wheat & Rye,WLD,1.539,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,No China-specific value found
+WHEA,WHE,Wheat (cereals excl. rice),CHN,0.170,mean,farm-gate,FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,Aggregate 'cereals excluding rice'; not wheat-specific
+WHEA,WHE,Wheat (cereals excl. rice),WLD,0.1745,mean,farm-gate,FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,Aggregate cereals excl. rice
+MAIZ,CRN,Maize (corn),WLD,1.656,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,FAOSTAT has no maize-specific EI (folded into cereals excl. rice 0.1745 WLD / 0.170 CHN)
+POTA,,Potatoes,WLD,0.465,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+SOYS,SBS,Soybean (as tofu proxy),WLD,2.887,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,No whole-soybean row in P&N; tofu used as proxy; soybean oil = 6.515
+SOYO,SBO,Soybean oil,WLD,6.515,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+SOYM,SBM,Soybean meal,WLD,,,,,,,No dedicated P&N value; allocate from soybean crushing (co-product with SOYO)
+RAPS,RBS,Rapeseed,WLD,,,,,,,P&N reports rapeseed oil only; no seed value
+RAPO,RBO,Rapeseed oil (canola),WLD,3.765,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+RAPM,RBM,Rapeseed meal,WLD,,,,,,,No dedicated value; allocate from crushing
+GRDS,NBS,Groundnuts (peanuts),WLD,2.869,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+GRDO,NBO,Groundnut oil,WLD,,,,,,,No dedicated P&N value
+GRDM,NBM,Groundnut meal,WLD,,,,,,,No dedicated P&N value
+COTT,CTN,Seed cotton,WLD,,,,,,,Non-food fibre; not in P&N food GHG set
+SUGA,SUG,Sugar (cane),WLD,3.177,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Cane sugar
+SUGA,SUG,Sugar (beet),WLD,1.879,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Beet sugar
+SUGC,SCA,Sugar cane,WLD,3.177,mean,cradle-to-retail LCA (as refined cane sugar),Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Value is per kg cane sugar; raw cane much lower
+SUGB,SBE,Sugar beet,WLD,1.879,mean,cradle-to-retail LCA (as refined beet sugar),Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Value is per kg beet sugar
+FRTO,,Fruit (apples),WLD,0.477,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,"Fruit rows: apples 0.477, bananas 0.927, citrus 0.382, berries&grapes 1.618, other fruit 1.050"
+FRTO,,Fruit (aggregate avg),WLD,0.891,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Simple avg of apples/banana/citrus/berries/other = (0.477+0.927+0.382+1.618+1.050)/5
+VEGT,,Vegetables (tomatoes),WLD,1.900,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,"Veg rows: tomatoes 1.900, brassicas 0.527, onions&leeks 0.596, root veg 0.427, other veg 0.567"
+VEGT,,Vegetables (aggregate avg),WLD,0.803,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Simple avg of 5 veg rows = (1.900+0.527+0.596+0.427+0.567)/5
+PIGM,PRK,Pig meat (pork),CHN,0.9643,mean,farm-gate (carcass w/bone),FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,Farm-gate on-farm only; excludes processing
+PIGM,PRK,Pig meat (pork),WLD,1.5982,mean,farm-gate (carcass w/bone),FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+PIGM,PRK,Pig meat (pork),WLD,11.906,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Includes feed+processing+retail; far higher than farm-gate
+CATM,BFV,Cattle meat (beef),CHN,15.1879,mean,farm-gate (carcass w/bone),FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+CATM,BFV,Cattle meat (beef),WLD,30.4289,mean,farm-gate (carcass w/bone),FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+CATM,BFV,Beef (beef herd),WLD,98.922,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Dedicated beef herd; dairy-herd beef = 33.338
+CATM,BFV,Beef (dairy herd),WLD,33.338,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Beef from dairy animals
+SHGM,SGT,Sheep meat,CHN,11.7313,mean,farm-gate (carcass w/bone),FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+SHGM,SGT,Sheep meat,WLD,22.2061,mean,farm-gate (carcass w/bone),FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+SHGM,SGT,Goat meat,CHN,11.977,mean,farm-gate (carcass w/bone),FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+SHGM,SGT,Goat meat,WLD,28.7107,mean,farm-gate (carcass w/bone),FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+SHGM,SGT,Lamb & Mutton,WLD,39.194,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Sheep/goat combined
+CHKM,PLM,Chicken meat,CHN,0.4429,mean,farm-gate (carcass w/bone),FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+CHKM,PLM,Chicken meat,WLD,0.5404,mean,farm-gate (carcass w/bone),FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+CHKM,PLM,Poultry meat,WLD,9.222,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+EGGS,EGG,Hen eggs,CHN,0.5493,mean,farm-gate,FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+EGGS,EGG,Hen eggs,WLD,0.5441,mean,farm-gate,FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+EGGS,EGG,Eggs,WLD,4.079,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+MILK,MLK,Cow milk (raw),CHN,0.9865,mean,farm-gate,FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+MILK,MLK,Cow milk (raw),WLD,0.9470,mean,farm-gate,FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,
+MILK,MLK,Milk,WLD,2.994,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+FISH,FSH,Fish (farmed),WLD,12.573,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Aquaculture; FAOSTAT EI has no aquaculture. Farmed shrimp = 26.554
+BARL,,Barley,WLD,1.042,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+SORG,,Sorghum,,,,,,,,NOT in Poore & Nemecek dataset; no FAOSTAT-specific EI; GAP
+OTGR,OCG,Other coarse grains (cereals excl. rice),CHN,0.170,mean,farm-gate,FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,Aggregate proxy
+OTGR,OCG,Other coarse grains (cereals excl. rice),WLD,0.1745,mean,farm-gate,FAOSTAT Emissions intensities domain,FAOSTAT Environment_Emissions_intensities,2023,Aggregate proxy
+,BUT,Butter,WLD,,,,,,,No dedicated P&N GHG value retrieved; cheese=23.932 available as dairy proxy
+,CHE,Cheese,WLD,23.932,mean,cradle-to-retail LCA,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,CASM-World dairy product

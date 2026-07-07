@@ -1,0 +1,57 @@
+category,casm_code,commodity_or_animal,region,value,unit,statistic,source,doi,year,notes
+A_crop_Nfert,WHEA,Wheat,CHN,212.1,kg N/ha,as-reported,Ludemann et al. 2022 Scientific Data (FUBC #9),10.1038/s41597-022-01592-z,~2018,Fertilizer Use By Crop report #9; Dryad 10.5061/dryad.2rbnzs7qh
+A_crop_Nfert,RICE,Rice,CHN,177.6,kg N/ha,as-reported,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,
+A_crop_Nfert,MAIZ,Maize,CHN,189.6,kg N/ha,as-reported,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,
+A_crop_Nfert,SOYS,Soybean,CHN,48.5,kg N/ha,as-reported,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,
+A_crop_Nfert,RAPS,Rapeseed,CHN,126.9,kg N/ha,as-reported,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,
+A_crop_Nfert,COTT,Cotton (seed cotton),CHN,294.2,kg N/ha,as-reported,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,
+A_crop_Nfert,SUGC,Sugar cane,CHN,432.8,kg N/ha,as-reported,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,
+A_crop_Nfert,SUGB,Sugar beet,CHN,334.6,kg N/ha,as-reported,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,
+A_crop_Nfert,VEGT,Vegetables,CHN,281.6,kg N/ha,as-reported,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,
+A_crop_Nfert,FRTO,Fruit (fruit+citrus+treenuts),CHN,321.0,kg N/ha,as-reported,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,
+A_crop_Nfert,POTA,Roots/tubers (incl. potato),CHN,147.4,kg N/ha,as-reported,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,Aggregate; no pure-potato China row
+A_crop_Nfert,WHEA,Wheat,WLD,102.1,kg N/ha,area-weighted mean (derived),Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,Derived by agent from FUBC country data (189.9 Mha); not a verbatim published cell
+A_crop_Nfert,RICE,Rice,WLD,118.4,kg N/ha,area-weighted mean (derived),Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,Derived (143.7 Mha)
+A_crop_Nfert,MAIZ,Maize,WLD,125.3,kg N/ha,area-weighted mean (derived),Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,Derived (161.9 Mha)
+A_crop_Nfert,SOYS,Soybean,WLD,14.5,kg N/ha,area-weighted mean (derived),Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,Derived (118.6 Mha)
+A_crop_Nfert,RAPS,Rapeseed,WLD,109.2,kg N/ha,area-weighted mean (derived),Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,Derived (30.0 Mha)
+A_crop_Nfert,COTT,Cotton (seed cotton),WLD,142.4,kg N/ha,area-weighted mean (derived),Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,Derived (29.5 Mha)
+A_crop_Nfert,SUGC,Sugar cane,WLD,129.9,kg N/ha,area-weighted mean (derived),Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,Derived (24.7 Mha)
+A_crop_Nfert,SUGB,Sugar beet,WLD,134.1,kg N/ha,area-weighted mean (derived),Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,Derived (5.0 Mha)
+A_crop_Nfert,VEGT,Vegetables,WLD,189.5,kg N/ha,area-weighted mean (derived),Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,Derived (44.9 Mha)
+A_crop_Nfert,FRTO,Fruit (fruit+citrus+treenuts),WLD,110.6,kg N/ha,area-weighted mean (derived),Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,Derived (41.3 Mha)
+A_crop_Nfert,POTA,Potato,WLD,124.5,kg N/ha,as-reported (FUBC9 unaggregated),Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,30 countries; 2.2 Mha
+A_crop_Nfert,GRDS,Groundnut,CHN,,kg N/ha,,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,GAP: folded into 'other oil crops'; no N reported for China
+A_crop_Nfert,GRDS,Groundnut,WLD,,kg N/ha,,Ludemann et al. 2022 Scientific Data,10.1038/s41597-022-01592-z,~2018,GAP: only 2 countries reported (~7.8); too thin to be credible
+A_crop_context,,All cropland (N input),WLD,100.9,kg N/ha,mean 2010s,Adalibieke et al. 2023 Scientific Data,10.1038/s41597-023-02526-z,2010s,Context: cropland-scale N input (not per-crop application)
+A_crop_context,,All cropland (N surplus),CHN,140,kg N/ha,~2020,Einarsson/Ludemann et al. 2024 ESSD,10.5194/essd-16-525-2024,2020,Context: N surplus not application intensity
+A_crop_context,,All cropland (N surplus),WLD,50-55,kg N/ha,~2020,Einarsson/Ludemann et al. 2024 ESSD,10.5194/essd-16-525-2024,2020,Context: N surplus range
+B_lvs_Nex,MILK,Dairy cattle,Asia,0.44,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,Table 10.19 (Updated) p.10.83-84
+B_lvs_Nex,MILK,Dairy cattle,N.America,0.59,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,
+B_lvs_Nex,MILK,Dairy cattle,W.Europe,0.54,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,
+B_lvs_Nex,CATM,Other cattle,Asia,0.38,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,Non-dairy (beef) cattle
+B_lvs_Nex,CATM,Other cattle,N.America,0.40,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,
+B_lvs_Nex,CATM,Other cattle,W.Europe,0.42,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,
+B_lvs_Nex,PIGM,Swine (total),Asia,0.61,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,Finishing 0.70; breeding 0.37
+B_lvs_Nex,PIGM,Swine (total),N.America,0.39,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,
+B_lvs_Nex,PIGM,Swine (total),W.Europe,0.65,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,
+B_lvs_Nex,CHKM,Chicken (total),Asia,1.10,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,Broilers 1.35
+B_lvs_Nex,EGGS,Hens >=1yr (layers),Asia,1.00,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,Pullets 0.83
+B_lvs_Nex,CHKM,Chicken (total),N.America,1.45,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,
+B_lvs_Nex,SHGM,Sheep,rest-of-world (incl. Asia),0.32,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,No separate Asia column; developed regions 0.35-0.43
+B_lvs_Nex,SHGM,Goats,rest-of-world (incl. Asia),0.34,kg N/(1000 kg animal)/day,default,IPCC 2019 Refinement Vol4 Ch10 Table 10.19,IPCC 2019 Refinement,2019,Developed regions 0.42-0.46
+C_VNF,CHKM,Poultry,US/industrial,3.4,kg N lost/kg N consumed,VNF,Leach et al. 2012 Environmental Development Table 2,10.1016/j.envdev.2011.12.005,2012,Virtual Nitrogen Factor
+C_VNF,PIGM,Pork (pigmeat),US/industrial,4.7,kg N lost/kg N consumed,VNF,Leach et al. 2012 Environmental Development Table 2,10.1016/j.envdev.2011.12.005,2012,
+C_VNF,CATM,Beef,US/industrial,8.5,kg N lost/kg N consumed,VNF,Leach et al. 2012 Environmental Development Table 2,10.1016/j.envdev.2011.12.005,2012,
+C_VNF,FISH,Fish & seafood,US/industrial,3.0,kg N lost/kg N consumed,VNF,Leach et al. 2012 Environmental Development Table 2,10.1016/j.envdev.2011.12.005,2012,
+C_VNF,MILK,Milk (dairy),US/industrial,5.7,kg N lost/kg N consumed,VNF,Leach et al. 2012 Environmental Development Table 2,10.1016/j.envdev.2011.12.005,2012,
+C_VNF,VEGT,Vegetables,US/industrial,10.6,kg N lost/kg N consumed,VNF,Leach et al. 2012 Environmental Development Table 2,10.1016/j.envdev.2011.12.005,2012,
+C_VNF,POTA,Starchy roots,US/industrial,1.5,kg N lost/kg N consumed,VNF,Leach et al. 2012 Environmental Development Table 2,10.1016/j.envdev.2011.12.005,2012,
+C_VNF,SOYS,Legumes/pulses,US/industrial,0.7,kg N lost/kg N consumed,VNF,Leach et al. 2012 Environmental Development Table 2,10.1016/j.envdev.2011.12.005,2012,
+C_VNF,WHEA,Grains (cereals),US/industrial,1.4,kg N lost/kg N consumed,VNF,Leach et al. 2012 Environmental Development Table 2,10.1016/j.envdev.2011.12.005,2012,Applies to RICE/WHEA/MAIZ/OTGR
+C_VNF,EGGS,Eggs,US/industrial,,kg N lost/kg N consumed,VNF,Leach et al. 2012 Environmental Development Table 2,10.1016/j.envdev.2011.12.005,2012,GAP: no independently derived egg VNF in Table 2
+C_lvs_supply,CATM,Beef (feed N),Global,5,kg N feed/kg N product,mean,Uwizeye et al. 2020 Nature Food,10.1038/s43016-020-0113-y,2020,Also 1 kg NH3-N lost/kg N product
+C_lvs_supply,CHKM,Chicken meat (feed N),Global,2,kg N feed/kg N product,mean,Uwizeye et al. 2020 Nature Food,10.1038/s43016-020-0113-y,2020,Also 0.2 kg NH3-N/kg N product
+C_lvs_supply,MILK,Milk (feed N),Global,4,kg N feed/kg N product,mean,Uwizeye et al. 2020 Nature Food,10.1038/s43016-020-0113-y,2020,Also 0.6 kg NH3-N/kg N product
+C_lvs_supply,PIGM,Pork (feed N),Global,3,kg N feed/kg N product,mean,Uwizeye et al. 2020 Nature Food,10.1038/s43016-020-0113-y,2020,Also 0.6 kg NH3-N/kg N product
+C_lvs_supply,EGGS,Eggs (feed N),Global,3.5,kg N feed/kg N product,mean,Uwizeye et al. 2020 Nature Food,10.1038/s43016-020-0113-y,2020,Also 0.6 kg NH3-N/kg N product

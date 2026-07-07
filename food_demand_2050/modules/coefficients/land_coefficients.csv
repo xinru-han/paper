@@ -1,0 +1,30 @@
+casm_code,casm_world_code,commodity,region,land_m2yr_per_kg,land_m2yr_per_100g_protein,land_m2yr_per_1000kcal,statistic,source,doi,year,notes
+RICE,RIC,Rice,WLD,2.80,3.943662,0.759631,mean,Poore & Nemecek 2018 Science (via OWID land-use-per-kg-poore),10.1126/science.aaq0216,2018,Reference year ~2010; global mean across producers
+WHEA,WHE,Wheat & Rye,WLD,3.85,3.155738,1.439075,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+MAIZ,CRN,Maize (corn),WLD,2.94,3.094737,0.650083,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+POTA,,Potatoes,WLD,0.88,5.176471,1.202186,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+SOYS,SBS,Soybean (as tofu),WLD,3.52,2.2,1.298893,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Tofu proxy; soy milk 0.66 m2/kg
+SOYO,SBO,Soybean oil,WLD,,,,,,,,GAP: oils not in OWID per-kg land dataset
+RAPS,RBS,Rapeseed,WLD,,,,,,,,GAP: rapeseed seed not in per-kg dataset
+RAPO,RBO,Rapeseed oil,WLD,,,1.202489,mean,Poore & Nemecek 2018 Science (via OWID land-use-kcal-poore),10.1126/science.aaq0216,2018,Only per-1000-kcal value available; per-kg not in OWID grapher
+GRDS,NBS,Groundnuts (peanuts),WLD,9.11,3.479756,1.570690,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+SUGC,SCA,Cane Sugar,WLD,2.04,,0.581197,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+SUGB,SBE,Beet Sugar,WLD,1.83,,0.521368,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+SUGA,SUG,Sugar (cane avg proxy),WLD,2.04,,0.581197,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Use cane 2.04 / beet 1.83
+FRTO,,Fruit (apples),WLD,0.63,21,1.3125,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,"Fruit rows: apples 0.63, bananas 1.93, berries&grapes 2.41, citrus 0.86, other fruit 0.89"
+FRTO,,Fruit (aggregate avg),WLD,1.144,,,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Simple avg of apples/banana/berries/citrus/other = (0.63+1.93+2.41+0.86+0.89)/5
+VEGT,,Vegetables (tomatoes),WLD,0.80,7.272727,4.210526,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,"Veg rows: tomatoes 0.80, root veg 0.33, brassicas 0.55, onions&leeks 0.39, other veg 0.38"
+VEGT,,Vegetables (aggregate avg),WLD,0.49,,,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Simple avg of 5 veg rows = (0.80+0.33+0.55+0.39+0.38)/5
+PIGM,PRK,Pig Meat,WLD,17.36,10.72930,7.263598,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+CATM,BFV,Beef (beef herd),WLD,326.21,163.5958,119.4908,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Dairy-herd beef = 43.24 m2/kg
+CATM,BFV,Beef (dairy herd),WLD,43.24,21.90476,15.83883,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+SHGM,SGT,Lamb & Mutton,WLD,369.81,184.8126,116.6593,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Sheep/goat combined
+CHKM,PLM,Poultry Meat,WLD,12.22,7.055427,6.605405,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+EGGS,EGG,Eggs,WLD,6.27,5.650685,4.354167,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+MILK,MLK,Milk,WLD,8.95,27.12121,14.91667,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+FISH,FSH,Fish (farmed),WLD,8.41,3.687788,4.698324,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Farmed prawns = 2.97 m2/kg
+BARL,,Barley,WLD,1.11,,0.222,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,
+SORG,,Sorghum,WLD,,,,,,,,GAP: not in Poore & Nemecek dataset
+OTGR,OCG,Other cereals (barley proxy),WLD,1.11,,0.222,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,Barley used as other-grain proxy
+,BUT,Butter,WLD,,,,,,,,GAP: butter not in OWID per-kg land grapher
+,CHE,Cheese,WLD,87.79,39.75996,22.68476,mean,Poore & Nemecek 2018 Science (via OWID),10.1126/science.aaq0216,2018,

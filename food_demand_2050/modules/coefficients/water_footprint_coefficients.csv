@@ -1,0 +1,40 @@
+casm_code,casm_world_code,commodity,region,green_m3_per_t,blue_m3_per_t,grey_m3_per_t,total_m3_per_t,source,doi_or_report,year_period,notes
+RICE,RIC,Rice (paddy),WLD,1146,341,187,1673,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,Value of Water Research Report 47 Vol.1 Table 3
+WHEA,WHE,Wheat,WLD,1277,342,207,1827,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,
+MAIZ,CRN,Maize (corn),WLD,947,81,194,1222,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,
+POTA,,Potatoes,WLD,191,33,63,287,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,
+SOYS,SBS,Soybeans,WLD,2037,70,37,2145,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,
+RAPS,RBS,Rapeseed,WLD,1703,231,336,2271,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,
+GRDS,NBS,Groundnuts (in shell),WLD,2469,150,163,2782,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,
+COTT,CTN,Seed cotton,WLD,2282,1306,440,4029,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,
+SUGC,SCA,Sugar cane,WLD,139,57,13,210,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,
+SUGB,SBE,Sugar beet,WLD,82,26,25,132,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,
+FRTO,,Fruit (apples proxy),WLD,561,133,127,822,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,Apples; fruit-category aggregate = 727/147/93/967
+FRTO,,Fruits (category aggregate),WLD,727,147,93,967,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,Report 47 Table 2 fruit category
+VEGT,,Vegetables (tomatoes proxy),WLD,108,63,43,214,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,Tomatoes; veg-category aggregate = 194/43/85/322
+VEGT,,Vegetables (category aggregate),WLD,194,43,85,322,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,Report 47 Table 2 vegetable category
+BARL,,Barley,WLD,1213,79,131,1423,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,
+SORG,,Sorghum,WLD,2857,103,87,3048,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,
+OTGR,OCG,Cereals (category aggregate),WLD,1232,228,184,1644,Mekonnen & Hoekstra 2011 HESS,10.5194/hess-15-1577-2011,1996-2005,Report 47 Table 2 cereals category
+PIGM,PRK,Pig meat (pork),WLD,4907,459,622,5988,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,Value of Water Research Report 48 Vol.1 Table 4
+PIGM,PRK,Pig meat (pork),CHN,5050,405,648,6103,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,Report 48 Vol.1 Table 4 China column
+CATM,BFV,Beef / bovine meat,WLD,14414,550,451,15415,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+CATM,BFV,Beef / bovine meat,CHN,12795,495,398,13688,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,Report 48 Vol.1 China column
+SHGM,SGT,Sheep meat,WLD,9813,522,76,10412,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+SHGM,SGT,Sheep meat,CHN,5347,452,14,5813,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+SHGM,SGT,Goat meat,WLD,5185,330,6,5521,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+SHGM,SGT,Goat meat,CHN,2958,312,0,3270,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+CHKM,PLM,Chicken meat,WLD,3545,313,467,4325,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+CHKM,PLM,Chicken meat,CHN,2836,281,854,3971,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+EGGS,EGG,Eggs,WLD,2592,244,429,3265,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+EGGS,EGG,Eggs,CHN,2211,217,666,3094,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+MILK,MLK,Milk (bovine),WLD,863,86,72,1021,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,Paper benchmark rounds to 1020
+MILK,MLK,Milk (bovine),CHN,927,145,210,1282,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+,BUT,Butter,WLD,4695,465,393,5553,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+,BUT,Butter,CHN,5044,789,1141,6974,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+,CHE,Cheese,WLD,4264,439,357,5060,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+,CHE,Cheese,CHN,4581,732,1036,6349,Mekonnen & Hoekstra 2012 Ecosystems,10.1007/s10021-011-9517-8,1996-2005,
+FISH,FSH,Fish (aquaculture),,,,,,NOT in Mekonnen & Hoekstra,,,GAP: M&H water footprint set excludes aquaculture
+SOYO,SBO,Soybean oil,,,,,,derive from SOYS via crushing allocation,10.5194/hess-15-1577-2011,1996-2005,M&H report derived-product WF; allocate from soybean 2145
+RAPO,RBO,Rapeseed oil,,,,,,derive from RAPS via crushing allocation,10.5194/hess-15-1577-2011,1996-2005,Allocate from rapeseed 2271
+GRDO,NBO,Groundnut oil,,,,,,derive from GRDS via crushing allocation,10.5194/hess-15-1577-2011,1996-2005,Allocate from groundnut 2782
