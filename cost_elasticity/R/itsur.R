@@ -103,11 +103,16 @@ tl_build_system <- function(dat, K, use_cost_eq = TRUE, share_time = "linear",
 }
 
 # ---- ITSUR ----------------------------------------------------------------
-tl_itsur <- function(sys, tol = 1e-10, maxit = 500) {
+tl_itsur <- function(sys, tol = 1e-10, maxit = 500, drop_params = NULL) {
+  # drop_params: 参数名向量（支持正则），被约束为0 —— 用于LR检验的受限规格
   J <- sys$J; n <- sys$n_obs; P <- length(sys$pnames)
   Xall <- do.call(rbind, sys$X)          # (J*n) x P，方程按块堆叠
   yall <- unlist(sys$y)
   keep <- which(colSums(abs(Xall)) > 0)  # 该规格未用到的参数列剔除
+  if (!is.null(drop_params)) {
+    dropped <- unique(unlist(lapply(drop_params, function(p) grep(p, sys$pnames))))
+    keep <- setdiff(keep, dropped)
+  }
   Xk <- Xall[, keep, drop = FALSE]
   # 初值：OLS
   theta <- qr.coef(qr(Xk), yall); theta[is.na(theta)] <- 0
