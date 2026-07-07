@@ -29,8 +29,9 @@ def prep(tr, te):
         x = d[num_feats]
         miss = x.isna().astype(np.float32)
         x = x.fillna(med)
-        mu, sd = tr[num_feats].fillna(med).mean(), tr[num_feats].fillna(med).std().replace(0, 1)
-        x = (x - mu) / sd
+        mu = tr[num_feats].fillna(med).mean()
+        sd = tr[num_feats].fillna(med).std().replace(0, 1)
+        x = ((x - mu) / sd).fillna(0.0)  # 全缺失列中位数仍为NaN → 置0(有缺失指示通道)
         return np.hstack([x.values.astype(np.float32), miss.values]), \
                d[cat_codes].values.astype(np.int64)
     return tx(tr), tx(te)
@@ -76,7 +77,8 @@ def fit_predict(Xtr, Ctr, ytr, Xte, Cte, task):
             patience += 1
             if patience >= 10:
                 break
-    model.load_state_dict(best_state)
+    if best_state is not None:
+        model.load_state_dict(best_state)
     model.eval()
     with torch.no_grad():
         out = model(torch.tensor(Xte), torch.tensor(Cte)).squeeze(-1)

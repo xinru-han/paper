@@ -1,0 +1,14 @@
+complexity,loss,equation
+1,36067.727,172.81947
+3,12311.426,L1_net_profit * 0.9242621
+5,11522.107,L1_net_profit / (L1_cost_yoy + 0.9458332)
+7,11282.004,L1_net_profit / ((L1_cost_yoy + 0.4770116) / 0.55132496)
+9,11129.156,(L1_net_profit + 34.292057) + (L1_sale_price * (L1_cost_yoy / -0.342662))
+11,10823.365,(L1_net_profit + (56.912144 - ((L1_cost_yoy * L1_sale_price) * 3.1509192))) * 0.89948714
+13,10382.395,((L1_net_profit - (((L1_cost_yoy * L1_sale_price) / 1.741292) / L1_s_land)) / 1.1480817) + 61.663292
+15,10249.271,(65.809326 - ((L1_cost_yoy / 1.936195) * (L1_sale_price / L1_s_land))) + (L1_net_profit / (L1_s_land + 0.9881694))
+17,10184.1045,(L1_net_profit / (0.99411464 + L1_s_land)) + (((140.0277 - (L1_sale_price / (L1_s_land / 0.6295217))) * L1_cost_yoy) - -60.182613)
+19,10057.389,(((138.4882 - ((L1_cost_yoy * L1_sale_price) / L1_s_land)) / (2.4886045 - (rp_pre_yoy * 11.182396))) + L1_net_profit) / (L1_s_land + 1.0152651)
+20,10011.578,(L1_net_profit / (L1_s_land + 1.0155671)) + ((137.02792 - ((L1_cost_yoy * L1_sale_price) / L1_s_land)) / (2.9039376 - neg(rp_pre_yoy * -13.177455)))
+21,10006.293,((134.2145 - ((L1_sale_price / L1_s_land) * L1_cost_yoy)) / (2.8562202 - (rp_pre_yoy * 12.986821))) + ((L1_net_profit / (L1_s_land + 1.0105519)) - 1.8401837)
+22,10001.52,(((138.1922 - ((L1_cost_yoy * L1_sale_price) / L1_s_land)) / (2.9136002 - (neg(rp_pre_yoy) * -13.240013))) + (L1_net_profit / (L1_s_land + 1.0154945))) - temp_ano_grow
