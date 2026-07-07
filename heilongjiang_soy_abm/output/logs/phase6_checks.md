@@ -24,8 +24,8 @@ county  year  official_corn  official_soy  derived_corn  derived_soy  n_corn  n_
 
 ## 预期口径敏感性
          spec   n   beta     se      p  gamma
-    sub_t(基准) 300 0.2593 0.1532 0.0904  1.758
-sub_t-1(滞后口径) 300 0.2593 0.1532 0.0904  1.758
+    sub_t(基准) 300 0.2554 0.1505 0.0898 1.7585
+sub_t-1(滞后口径) 300 0.2554 0.1505 0.0898 1.7585
 
 ## 轮作补贴
                    n  med_amt  soy_part  new_soy
