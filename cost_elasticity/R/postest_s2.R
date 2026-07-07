@@ -11,7 +11,11 @@ s2_crop <- function(cr) {
   pan <- fread(sprintf("data/panel_%s.csv", cr))
   d <- prep_data(pan)
   yrs <- sort(unique(d$year))
-  sys <- tl_build_system(d, 4, share_time = "gindex", year_dummies = as.character(yrs))
+  # F-3修复：gindex下成本方程与份额方程不再互为Shephard导数，只估份额方程系统
+  # （general-index 文献常见做法）
+  sys <- tl_build_system(d, 4, use_cost_eq = FALSE, share_time = "gindex",
+                         year_dummies = as.character(yrs))
+  stopifnot(!any(diff(yrs) != 1))   # 年份断档会使第二阶段位置shift错位
   fit <- tl_itsur(sys, tol = 1e-9)
   stopifnot(fit$converged)
   # delta_n_tau：非numeraire 4要素直接读，other 由 sum_n delta=0 恢复
@@ -69,8 +73,9 @@ stage2 <- function(paths, panels) {
     f_plac <- lm(sb ~ factor(crop) + L1 + L2 + L3 + F1 + F2, dd2)
     cs <- function(f, nm) if (nm %in% names(coef(f))) coef(summary(f))[nm, ] else rep(NA, 4)
     sumpsi <- sum(coef(f_main)[c("L1", "L2", "L3")])
-    # 简单HC推断 + 累计响应Wald（Driscoll–Kraay留待品种数扩充后）
-    V <- sandwich::vcovHC(f_main, type = "HC1")
+    # F-2修复：5品种共享同一劳动力市场，价格冲击跨品种相关——按年聚类
+    # （有效独立信息≈年份数；HC1会严重高估显著性）
+    V <- sandwich::vcovCL(f_main, cluster = dd$year, type = "HC1")
     l <- names(coef(f_main)) %in% c("L1", "L2", "L3")
     se_sum <- sqrt(sum(V[l, l]))
     out[[n]] <- data.table(factor = n, n_obs = nrow(dd),

@@ -95,6 +95,9 @@ tl_build_system <- function(dat, K, use_cost_eq = TRUE, share_time = "linear",
     Xc[, idx("lambda_yt")] <- tt * lny
     if (!is.null(FEmat)) for (j in seq_along(fe_lv))
       Xc[, idx(sprintf("feC_%s", fe_lv[j]))] <- FEmat[, j]
+    # 可积性：份额方程含省截距fe_np，则由Shephard引理成本方程须含 sum_n fe_np*lnw_n
+    if (!is.null(FEmat)) for (n in 1:K) for (j in seq_along(fe_lv))
+      Xc[, idx(sprintf("fe%d_%s", n, fe_lv[j]))] <- FEmat[, j] * lnw[, n]
     blocks_X[[length(blocks_X) + 1]] <- Xc
     blocks_y[[length(blocks_y) + 1]] <- dat$lnC
     eqnames <- c(eqnames, "cost")
