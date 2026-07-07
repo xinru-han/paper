@@ -112,6 +112,7 @@ def norm_text(s):
     if s is None or (isinstance(s, float) and np.isnan(s)):
         return ""
     s = WS_RE.sub("", str(s))
+    s = s.replace("灿", "籼")  # 2008卷标题错别字: 早灿稻/晚灿稻
     return s.replace("（", "(").replace("）", ")").replace("：", ":").replace("，", ",")
 
 
@@ -346,6 +347,22 @@ def extract_ocr():
     d = d[d["province"].isin(PROV_SET)]
     d["var_norm"] = d["variable"].map(norm_label)
     d = d[d["var_norm"].isin(TARGET_VARS)]
+    # 科目↔表标题一致性: 防OCR跨表串页 (如2024卷棉花成本收益内容混入油菜籽化肥投入表页)
+    shared = {"物质与服务费用", "人工成本", "家庭用工折价", "雇工费用"}
+    k1_only = (K1_PER_MU | {"平均出售价格", "每亩用工数量"}) - shared
+
+    def title_ok(row):
+        t = str(row["source_table_title"])
+        v = row["var_norm"]
+        if v in shared:
+            return ("成本收益" in t) or ("费用和用工" in t)
+        if v in k1_only:
+            return "成本收益" in t
+        if v == "每亩化肥折纯用量":
+            return "化肥投入" in t
+        return "费用和用工" in t  # 其余均为-2表科目
+
+    d = d[d.apply(title_ok, axis=1)]
     d["value"] = pd.to_numeric(d["value"], errors="coerce")
     d = d.dropna(subset=["value"])
     d = d[~d["raw_item"].astype(str).map(is_watermark)]
