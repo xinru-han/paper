@@ -1,5 +1,5 @@
 # Paper 2 (elder diet) — Results summary
-Auto-generated: 2026-07-07 15:02:48
+Auto-generated: 2026-07-07 19:56:49
 
 All tables in `outputs/tables/`, figures in `outputs/figures/`, reports in `outputs/reports/`.
 
@@ -12,7 +12,7 @@ All tables in `outputs/tables/`, figures in `outputs/figures/`, reports in `outp
 - Three-generation vs with-non-elder-adults: 0.533*** under year_FE; 0.529*** under prov_year_FE; 0.519*** under county_year_FE; 0.516*** under county_year_FE_env; 0.518*** under village_year_FE.
 - Elder-only and elder-alone households provision 0.4-0.5 fewer groups (Table 2).
 - Estimator agreement (three-gen ATT on HDDS): OLS_countyFE 0.532; IPW_ATT 0.581; EntropyBal_ATT 0.586; NN_match_caliper 0.567; AIPW_ATT 0.592.
-- Permutation p-value (1000 within-village reshuffles): 0.000
+- Permutation p-value (1000 within-village reshuffles): 0.001
 - Oster beta* (delta=1, Rmax=1.3 R2): 0.579 (OLS long: 0.566); delta for beta=0: -44.08
 - Estimator range: 0.532 to 0.592
 - Matched sample: 254 pairs of 262 treated
@@ -25,7 +25,8 @@ All tables in `outputs/tables/`, figures in `outputs/figures/`, reports in `outp
 - Food variety score: -0.442***; DBI-16 variety: -0.093***.
 - Three-generation interaction (theta): FGDS-10 0.178 (p=0.187, imprecise); significant narrowing only on DBI variety (0.117***, RW p=0.000). **Neither D3 nor D4 cleanly** — reported honestly.
 - Presence/absence outcomes (any animal-source, any dairy/egg/bean — unit-robust) show **no elder gap**: the deficit is in variety breadth, not in being served protein foods at all.
-- Meal-frequency channel: within the same household elders record **0.32 fewer meals*** (48h; 31.9% of elders <3 meals vs 22.9% of non-elder adults); restricting to members with >=3 recorded meals removes the FGDS gap. The elder deficit thus operates substantially through **skipped/omitted eating occasions** (real meal-skipping and/or proxy under-reporting; R6 discussion).
+- Meal-frequency channel (table10d): within the same household elders record **-0.301*** fewer recorded meals** (se 0.078; 48h; 31.9% of elders <3 recorded meals vs 22.9% of non-elder adults); restricting to members with >=3 recorded meals removes the FGDS gap. The gap thus operates through **fewer recorded eating occasions** — which may be genuine meal-skipping and/or proxy under-recording of elders' meals; the data carry no respondent field to separate the two, so we do not claim behavioural skipping (measurement caveat, R6).
+- Power on the imprecise interaction (table10e): theta 95% CI [-0.086, 0.442], 80%-power MDE ~0.377 FGDS groups; the sample cannot rule out a moderate theta, so 'neither D3 nor D4' means **underpowered to distinguish**, not a precise zero.
 
 ## B2: pass-through of household provisioning to elder intake
 - phi1 by arrangement: cohabit_nonelder 0.425***; elder_only_multi 0.473***; threegen 0.320***; elder_alone 0.696***; elder_child 0.409***; other 0.406***.
