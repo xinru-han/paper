@@ -1,0 +1,20 @@
+﻿code,group,diet_pathway,population,urbanization,ageing_adjusted,description
+BS,BS,BS,medium,medium,no,基准情景：固定2023年收入弹性外推，中人口中城镇化
+A1,PTS,PTS,medium,medium,no,弹性法：收入弹性随人均GDP动态插值(Gouel&Guimbard规律)；中人口+中城镇化
+A2,PTS,PTS,high,medium,no,弹性法：收入弹性随人均GDP动态插值(Gouel&Guimbard规律)；高人口(UN WPP高方案)
+A3,PTS,PTS,low,medium,no,弹性法：收入弹性随人均GDP动态插值(Gouel&Guimbard规律)；低人口(UN WPP低方案)
+A4,PTS,PTS,medium,high,no,弹性法：收入弹性随人均GDP动态插值(Gouel&Guimbard规律)；高城镇化
+A5,PTS,PTS,medium,low,no,弹性法：收入弹性随人均GDP动态插值(Gouel&Guimbard规律)；低城镇化
+A6,PTS,PTS,adult_equivalent,medium,yes,弹性法：收入弹性随人均GDP动态插值(Gouel&Guimbard规律)；老龄化：成人当量人口+老龄化弹性调整(-0.0314)
+B1,HDS,HDS,medium,medium,no,膳食指南法：2050年人均消费收敛到六套膳食标准综合基准；中人口+中城镇化
+B2,HDS,HDS,high,medium,no,膳食指南法：2050年人均消费收敛到六套膳食标准综合基准；高人口(UN WPP高方案)
+B3,HDS,HDS,low,medium,no,膳食指南法：2050年人均消费收敛到六套膳食标准综合基准；低人口(UN WPP低方案)
+B4,HDS,HDS,medium,high,no,膳食指南法：2050年人均消费收敛到六套膳食标准综合基准；高城镇化
+B5,HDS,HDS,medium,low,no,膳食指南法：2050年人均消费收敛到六套膳食标准综合基准；低城镇化
+B6,HDS,HDS,adult_equivalent,medium,yes,膳食指南法：2050年人均消费收敛到六套膳食标准综合基准；老龄化：成人当量人口+老龄化弹性调整(-0.0314)
+C1,MTS,MTS,medium,medium,no,中间路径：逐年增长率取PTS与HDS对应增长率的算术平均；中人口+中城镇化
+C2,MTS,MTS,high,medium,no,中间路径：逐年增长率取PTS与HDS对应增长率的算术平均；高人口(UN WPP高方案)
+C3,MTS,MTS,low,medium,no,中间路径：逐年增长率取PTS与HDS对应增长率的算术平均；低人口(UN WPP低方案)
+C4,MTS,MTS,medium,high,no,中间路径：逐年增长率取PTS与HDS对应增长率的算术平均；高城镇化
+C5,MTS,MTS,medium,low,no,中间路径：逐年增长率取PTS与HDS对应增长率的算术平均；低城镇化
+C6,MTS,MTS,adult_equivalent,medium,yes,中间路径：逐年增长率取PTS与HDS对应增长率的算术平均；老龄化：成人当量人口+老龄化弹性调整(-0.0314)

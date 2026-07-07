@@ -1,0 +1,5 @@
+Scenario,Code,Population growth,Urbanisation,Ageing considered,Dietary transition assumption
+Baseline scenario,BS,Medium,Medium,No,Food preferences remain unchanged and income elasticities are fixed
+Preference-driven transition scenario,PTS (A1–A6),Medium / High / Low,Medium / High / Low,A6 only,Food preferences evolve with income growth through dynamic income elasticities
+Healthy diet scenario,HDS (B1–B6),Medium / High / Low,Medium / High / Low,B6 only,Per capita food demand gradually converges to the target healthy diet by 2050
+Moderate transition scenario,MTS (C1–C6),Medium / High / Low,Medium / High / Low,C6 only,Annual growth in per capita food demand is the arithmetic mean of the corresponding A and B scenarios

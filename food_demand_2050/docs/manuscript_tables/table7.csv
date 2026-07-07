@@ -1,0 +1,20 @@
+Scenario group,Scenario code,Dietary transition assumption,Population growth assumption,Urbanisation assumption,Ageing adjustment,Notes
+Baseline scenario,BS,Food preferences remain unchanged; income elasticities are fixed,Medium population growth,Medium urbanisation,No,Benchmark scenario
+Preference-driven transition scenario,PTS (A1),Food preferences evolve endogenously with income growth,Medium population growth,Medium urbanisation,No,Dynamic income elasticities
+Preference-driven transition scenario,PTS (A2),Same as A1,Medium population growth,High urbanisation,No,Urbanisation sensitivity case
+Preference-driven transition scenario,PTS (A3),Same as A1,Medium population growth,Low urbanisation,No,Urbanisation sensitivity case
+Preference-driven transition scenario,PTS (A4),Same as A1,High population growth,Medium urbanisation,No,Population sensitivity case
+Preference-driven transition scenario,PTS (A5),Same as A1,Low population growth,Medium urbanisation,No,Population sensitivity case
+Preference-driven transition scenario,PTS (A6),Same as A1,Medium population growth,Medium urbanisation,Yes,Population converted into “standard persons”
+Healthy diet scenario,HDS (B1),Gradual transition toward the target healthy diet by 2050,Medium population growth,Medium urbanisation,No,Benchmark healthy diet case
+Healthy diet scenario,HDS (B2),Same as B1,Medium population growth,High urbanisation,No,Urbanisation sensitivity case
+Healthy diet scenario,HDS (B3),Same as B1,Medium population growth,Low urbanisation,No,Urbanisation sensitivity case
+Healthy diet scenario,HDS (B4),Same as B1,High population growth,Medium urbanisation,No,Population sensitivity case
+Healthy diet scenario,HDS (B5),Same as B1,Low population growth,Medium urbanisation,No,Population sensitivity case
+Healthy diet scenario,HDS (B6),Same as B1,Medium population growth,Medium urbanisation,Yes,Population converted into “standard persons”
+Moderate transition scenario,MTS (C1),Annual per capita demand growth equals the arithmetic mean of the corresponding A and B scenarios,Medium population growth,Medium urbanisation,No,Benchmark moderate transition case
+Moderate transition scenario,MTS (C2),Same as C1,Medium population growth,High urbanisation,No,Urbanisation sensitivity case
+Moderate transition scenario,MTS (C3),Same as C1,Medium population growth,Low urbanisation,No,Urbanisation sensitivity case
+Moderate transition scenario,MTS (C4),Same as C1,High population growth,Medium urbanisation,No,Population sensitivity case
+Moderate transition scenario,MTS (C5),Same as C1,Low population growth,Medium urbanisation,No,Population sensitivity case
+Moderate transition scenario,MTS (C6),Same as C1,Medium population growth,Medium urbanisation,Yes,Population converted into “standard persons”
