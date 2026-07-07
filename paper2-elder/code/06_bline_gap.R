@@ -1,0 +1,135 @@
+# =============================================================================
+# 06_bline_gap.R — B1: within-household elder vs non-elder adult gap and its
+# interaction with three-generation living (household(×year) fixed effects).
+#   y_ih = alpha_h + delta*Elder_i + theta*(Elder_i x ThreeGen_h) + x_i'gamma + e
+# Outcomes: fgds10 (main), fvs_unique_foods, dbi16_variety_subscore,
+#           any animal-source food (unit-robust binary), any dairy/egg/bean,
+#           quality-protein gram share (flagged secondary; audit FAIL -> no AR)
+# Inference: village-clustered SEs + Romano-Wolf stepdown (village bootstrap)
+# Robustness (R6): drop low home-eating members, drop <3 recorded meals,
+#           add age control, elder-cook interaction
+# Outputs: T10 (B1 main), T10b (R6), fig7 coefficient plot
+# Decision nodes: D3 (theta ~ 0, full pass-through), D4 (theta < 0)
+# =============================================================================
+source("/root/data/Paper/食物消费数据/paper2-elder/code/00_setup.R")
+suppressPackageStartupMessages({ library(fixest); library(ggplot2) })
+
+bl <- fread(file.path(DIR_DERIV, "bline_sample.csv"), colClasses = list(character = c("nhCode","pid","xzc12")))
+bl[, threegen := as.integer(living_arrangement == "threegen")]
+bl[, elder := as.integer(elderly == 1)]
+for (v in c("fgds10","fvs_unique_foods","dbi16_variety_subscore","qual_protein_share"))
+  bl[, (v) := num(get(v))]
+# unit-robust binaries from MDD-W group grams (presence only)
+bl[, any_animal := as.integer(num(mddwg_flesh_g_48h) > 0 | num(mddwg_eggs_g_48h) > 0 | num(mddwg_dairy_g_48h) > 0)]
+bl[, any_deb := as.integer(num(mddwg_dairy_g_48h) > 0 | num(mddwg_eggs_g_48h) > 0 | num(mddwg_beans_peas_g_48h) > 0)]
+bl[, any_fv := as.integer(num(mddwg_va_dark_green_g_48h) > 0 | num(mddwg_va_other_fv_g_48h) > 0 |
+                          num(mddwg_other_veg_g_48h) > 0 | num(mddwg_other_fruit_g_48h) > 0)]
+bl[is.na(main_cook), main_cook := 0]
+bl[, home_days := num(home_eating_days)]
+
+OUTS <- c(fgds10 = "FGDS-10 diversity", fvs_unique_foods = "Food variety score",
+          dbi16_variety_subscore = "DBI-16 variety", any_animal = "Any animal-source (48h)",
+          any_deb = "Any dairy/egg/bean (48h)", qual_protein_share = "Quality-protein g share (flagged)")
+CTRL_I <- "female + main_cook"
+
+fit_b1 <- function(dat, y, ctrl = CTRL_I) {
+  feols(as.formula(paste0(y, " ~ elder + elder:threegen + ", ctrl, " | hh_id")),
+        data = dat, cluster = ~xzc12)
+}
+
+t10 <- rbindlist(lapply(names(OUTS), function(y) {
+  m <- fit_b1(bl[!is.na(get(y))], y)
+  ct <- tidy_fe(m, "elder")
+  ct[, outcome := y]; ct
+}))
+wtab(t10, "table10_bline_gap_main.csv")
+
+# ---- Romano-Wolf stepdown over the outcome family (village bootstrap) -------
+main_terms <- c("elder","elder:threegen")
+get_t <- function(dat) {
+  sapply(names(OUTS), function(y) {
+    m <- tryCatch(fit_b1(dat[!is.na(get(y))], y), error = function(e) NULL)
+    if (is.null(m)) return(c(NA, NA))
+    ct <- coeftable(m)
+    c(ct["elder","t value"], ct["elder:threegen","t value"])
+  })
+}
+t_obs <- get_t(bl)
+set.seed(3); B <- 300
+vils <- unique(bl$xzc12)
+# null-imposed bootstrap: recenter t-stats (standard RW with cluster bootstrap)
+t_boot <- array(NA_real_, dim = c(2, length(OUTS), B))
+for (b in seq_len(B)) {
+  sv <- sample(vils, length(vils), replace = TRUE)
+  idx <- unlist(lapply(sv, function(v) which(bl$xzc12 == v)))
+  t_boot[,,b] <- get_t(bl[idx]) - t_obs
+}
+rw_p <- function(row) {
+  o <- order(-abs(t_obs[row,]))
+  p <- rep(NA_real_, length(o))
+  remaining <- o
+  for (k in seq_along(o)) {
+    maxnull <- apply(abs(t_boot[row, remaining, , drop = FALSE]), 3, max, na.rm = TRUE)
+    p[o[k]] <- mean(maxnull >= abs(t_obs[row, o[k]]), na.rm = TRUE)
+    if (k > 1) p[o[k]] <- max(p[o[k]], p[o[k-1]])   # enforce monotonicity
+    remaining <- setdiff(remaining, o[k])
+  }
+  p
+}
+rw <- data.table(outcome = names(OUTS),
+                 p_rw_elder = rw_p(1), p_rw_interaction = rw_p(2))
+wtab(rw, "table10a_romano_wolf.csv")
+
+# ---- R6 robustness for the main outcome (fgds10) -----------------------------
+r6 <- list()
+r6$main                 <- fit_b1(bl, "fgds10")
+r6$add_age              <- fit_b1(bl, "fgds10", paste0(CTRL_I, " + age_yrs"))
+r6$drop_low_home_days   <- fit_b1(bl[is.na(home_days) | home_days >= quantile(home_days, .25, na.rm = TRUE)], "fgds10")
+r6$drop_few_meals       <- fit_b1(bl[num(n_meals) >= 3], "fgds10")
+r6$binary_any_animal    <- fit_b1(bl, "any_animal")
+r6$women_only_wdds9     <- tryCatch(fit_b1(bl[female == 1 & !is.na(num(wdds9))][, wdds9 := num(wdds9)], "wdds9"),
+                                    error = function(e) NULL)
+t10b <- rbindlist(lapply(names(r6), function(nm) {
+  if (is.null(r6[[nm]])) return(NULL)
+  tidy_fe(r6[[nm]], "elder")[, spec := nm]
+}), fill = TRUE)
+wtab(t10b, "table10b_bline_r6_robustness.csv")
+
+# ---- elder-cook moderation (mechanism §8.3) ----------------------------------
+m_cook <- feols(fgds10 ~ elder + elder:threegen + elder:main_cook + female + main_cook | hh_id,
+                data = bl, cluster = ~xzc12)
+wtab(tidy_fe(m_cook, "elder|cook"), "table10c_elder_cook_moderation.csv")
+
+# ---- Fig 7: elder gap by living arrangement ----------------------------------
+mm <- fit_b1(bl, "fgds10")
+ct <- coeftable(mm); V <- vcov(mm)
+delta <- ct["elder","Estimate"]; theta <- ct["elder:threegen","Estimate"]
+se_d <- ct["elder","Std. Error"]
+se_dt <- sqrt(V["elder","elder"] + V["elder:threegen","elder:threegen"] + 2*V["elder","elder:threegen"])
+fig7 <- data.table(
+  arrangement = c("With non-elder adults\n(two-generation)", "Three generations"),
+  gap = c(delta, delta + theta), se = c(se_d, se_dt))
+p7 <- ggplot(fig7, aes(x = arrangement, y = gap)) +
+  geom_col(fill = "steelblue", alpha = .7, width = .5) +
+  geom_errorbar(aes(ymin = gap - 1.96*se, ymax = gap + 1.96*se), width = .12) +
+  geom_hline(yintercept = 0) +
+  labs(x = NULL, y = "Elder - non-elder adult FGDS-10 gap (within household)",
+       title = "Within-household elder diversity gap by living arrangement",
+       subtitle = sprintf("Household FE; N = %d members in %d mixed households; village-clustered 95%% CI",
+                          mm$nobs, uniqueN(bl$hh_id))) +
+  theme_minimal(base_size = 12)
+ggsave(file.path(DIR_FIG, "fig7_elder_gap_by_LA.png"), p7, width = 7.5, height = 5.5, dpi = 200)
+
+# ---- decision nodes D3/D4 -----------------------------------------------------
+p_theta <- ct["elder:threegen","Pr(>|t|)"]
+node <- if (p_theta > .1 & abs(theta) < .5*se_dt) "D3-like (theta ~ 0)" else if (theta < 0 & p_theta < .1) "D4 (theta < 0)" else if (theta > 0 & p_theta < .1) "positive theta" else "imprecise theta"
+writeLines(c("# B-line decision-node check",
+  sprintf("- delta (elder gap, two-generation hh): %.3f (se %.3f)", delta, se_d),
+  sprintf("- theta (x three-generation): %.3f (p = %.3f)", theta, p_theta),
+  sprintf("- classification: %s", node),
+  "- D3: headline 'provisioning gains pass through fully'; D4: 'richer table, not richer bowl'."),
+  file.path(DIR_REP, "decision_p2_D3_D4_check.md"))
+
+cat("B-LINE GAP OK\n")
+print(t10[term %in% c("elder","elder:threegen") & outcome %in% c("fgds10","any_animal"),
+          .(outcome, term, est, se, p, n)])
