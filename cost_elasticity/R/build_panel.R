@@ -96,8 +96,29 @@ w[, cost_other := 农药费 + 农膜费 + 农家肥费 + 技术服务费 + 工�
 w[, C_var := cost_labor + cost_mach + cost_fert + cost_seed + cost_other]
 
 w[, w_labor := 劳动日工价]
+# w_labor_hired：雇工工价（有真实省际变异的市场工价；劳动日工价为全国统一记账值，
+# 零截面变异——见 docs/review_data.md F1）。缺口省内对数插值，仍缺者留NA由品种内兜底
+w[, w_labor_hired := fifelse(is.finite(雇工工价) & 雇工工价 > 0, 雇工工价, NA_real_)]
+setorder(w, crop, province, year)
+w[, w_labor_hired := {
+  x <- w_labor_hired
+  if (sum(!is.na(x)) >= 3) exp(approx(year[!is.na(x)], log(x[!is.na(x)]), xout = year, rule = 2)$y)
+  else x
+}, by = .(crop, province)]
 w[, w_fert  := 化肥费 / 每亩化肥折纯用量]
 w[, w_seed  := 种子费 / 每亩种子用量]
+# w_seed 救回：个别卷原生缺"每亩种子用量"行（如小麦2012整年、2013卷020502.xls无附块），
+# 种子费在而用量缺 → 用省内相邻年 w_seed 对数插值（种子单价平滑），避免整年丢失
+w[, w_seed_src := fifelse(is.finite(w_seed), "obs", NA_character_)]
+w[, w_seed := {
+  x <- w_seed
+  fillable <- is.na(x) & is.finite(种子费) & 种子费 > 0
+  if (any(fillable) && sum(is.finite(x)) >= 3)
+    x[fillable] <- exp(approx(year[is.finite(w_seed)], log(w_seed[is.finite(w_seed)]),
+                              xout = year[fillable], rule = 2)$y)
+  x
+}, by = .(crop, province)]
+w[is.na(w_seed_src) & is.finite(w_seed), w_seed_src := "interp"]
 w[, q_output := 主产品产量]
 
 REGION <- c(河北="huabei", 山西="huabei", 内蒙古="dongbei", 辽宁="dongbei", 吉林="dongbei",
@@ -119,7 +140,8 @@ for (cr in CROPS) {
   d <- merge(d, po[, .(province, year, p_pest = chlorpyrifos, p_film = mulch_film)],
              by = c("province", "year"), all.x = TRUE)
   # 京津沪藏无发改委价格：机耕费用全国中位数、农药农膜用全国中位数兜底
-  for (v in c("w_mach", "p_pest", "p_film")) {
+  # 雇工工价仍缺者（该省该品种从未报雇工）同样以品种内当年中位数兜底
+  for (v in c("w_mach", "p_pest", "p_film", "w_labor_hired")) {
     med <- d[!is.na(get(v)), .(m = median(get(v))), by = year]
     d <- merge(d, med, by = "year", all.x = TRUE)
     nfill <- d[is.na(get(v)), .N]
@@ -140,7 +162,7 @@ for (cr in CROPS) {
   dropped <- d[!ok, .(province, year)]
   if (nrow(dropped) > 0)
     logit(crop = cr, step = "drop_obs", detail = paste0(nrow(dropped), " obs: ",
-          paste(head(sprintf("%s%d", dropped$province, dropped$year), 12), collapse = ",")))
+          paste(sprintf("%s%d", dropped$province, dropped$year), collapse = ",")))
   d <- d[ok]
 
   d[, `:=`(S_labor = cost_labor / C_var, S_mach = cost_mach / C_var,
@@ -160,7 +182,7 @@ for (cr in CROPS) {
 
   out <- d[, .(crop, province, region, year, C_var, q_output,
                S_labor, S_mach, S_fert, S_seed, S_other,
-               w_labor, w_mach, w_fert, w_seed, w_other,
+               w_labor, w_labor_hired, w_mach, w_fert, w_seed, w_other, w_seed_src,
                labor_days = 每亩用工数量, fert_kg = 每亩化肥折纯用量,
                cost_labor, cost_mach, cost_fert, cost_seed, cost_other,
                cost_land = 土地成本, land_rent = if ("流转地租金" %in% names(d)) 流转地租金 else NA_real_)]
