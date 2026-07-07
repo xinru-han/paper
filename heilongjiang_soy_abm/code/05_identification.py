@@ -145,8 +145,8 @@ for suit, lab in [("suit_vill_z", "村2021大豆份额"), ("suit_hhy_z", "户基
     # 推断增强：2023/2024系数的 wild bootstrap 与置换 p
     k23 = f"S:C(year, Treatment(2022))[2023]"
     k24 = f"S:C(year, Treatment(2022))[2024]"
-    row["wild_p23"] = wild_p(f, d, k23, B=1999)
-    row["wild_p24"] = wild_p(f, d, k24, B=1999)
+    row["wild_p23"] = wild_p(f, d, k23, B=999)
+    row["wild_p24"] = wild_p(f, d, k24, B=999)
     row["perm_p24"] = perm_p(f, d, k24, suit, B=499)
     # 赛马：Suit × 豆粮价格比（滞后）
     d2 = d[d["pr_ratio_lag"].notna()].copy()
@@ -182,6 +182,8 @@ plt.close()
 
 # ---------------- 磨损分析与 IPW ----------------
 att = p[p["year"] < 2024].copy()
+att["retained_next"] = att["retained_next"].map(
+    {True: 1.0, False: 0.0, "True": 1.0, "False": 0.0, 1.0: 1.0, 0.0: 0.0})
 for c in CTRL:
     att[c + "_miss"] = att[c].isna().astype(int)
     att[c] = att[c].fillna(att[c].median())

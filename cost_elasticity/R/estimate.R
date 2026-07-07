@@ -28,13 +28,23 @@ prep_data <- function(pan) {
   d
 }
 
-fit_crop <- function(cr, write_out = TRUE) {
+# method: "plain" 无约束ITSUR（LR检验、参照）；"cc" 曲率约束（惩罚κ=1e6，基线弹性）
+fit_crop <- function(cr, write_out = TRUE, method = "plain", kappa = 1e6) {
   pan <- fread(sprintf("data/panel_%s.csv", cr))
   d <- prep_data(pan)
   sys <- tl_build_system(d, K)
-  fit <- tl_itsur(sys)
-  stopifnot(fit$converged)
-  rec <- tl_recover(fit, K)
+  if (method == "cc") {
+    Sobs <- as.matrix(as.data.frame(d)[, paste0("S_", FACTORS[1:K])])
+    Sobs <- cbind(Sobs, 1 - rowSums(Sobs))
+    fit <- tl_itsur_c1(sys, K, colMeans(Sobs), S_obs = Sobs, kappa = kappa)
+    stopifnot(fit$converged)
+    rec <- list(Gamma = fit$Gamma_full,
+                lambda_nt = { l <- fit$theta[sprintf("lambda_%dt", 1:K)]; c(l, -sum(l)) })
+  } else {
+    fit <- tl_itsur(sys)
+    stopifnot(fit$converged)
+    rec <- tl_recover(fit, K)
+  }
 
   # 不变性检验：换 numeraire（用 seed 作numeraire）重估，完整Gamma应一致
   d2 <- copy(d)

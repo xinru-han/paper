@@ -12,6 +12,7 @@
   6) 双城区结构性零参与（估计样本外，玉米带完全分离）
 """
 import numpy as np
+import pandas as pd
 import json
 
 
@@ -57,34 +58,31 @@ def abm_init(agent_df, params, n_mc=500, seed=20260705,
 
     county = agent_df["county_name"].to_numpy()
 
-    def fe_rows(idx_map, betas):
-        """县FE + 年FE(取最新年，作前瞻环境)：返回 (N, n_mc)。"""
-        out = np.zeros((N, n_mc))
-        for name, j in idx_map.items():
-            if name.startswith("C(county)[T."):
-                lev = name.split("[T.")[1].rstrip("]")
-                out[county == lev] += betas[j]
-        yr_terms = sorted([v for v in idx_map if v.startswith("C(yr)[T.")])
-        if yr_terms:
-            out += betas[idx_map[yr_terms[-1]]]  # 最新年FE
-        return out
-
     state = {
         "N": N, "n_mc": n_mc, "rng": rng,
         "county": county, "village": agent_df["village"].to_numpy(),
         "B": agent_df["B"].to_numpy(float),
-        "logB": agent_df["logB"].to_numpy(float),
-        "head_age10": agent_df["head_age10"].to_numpy(float),
-        "head_edu": agent_df["head_edu"].to_numpy(float),
-        "labor_n": agent_df["labor_n"].to_numpy(float),
         "ey_corn": agent_df["ey_corn"].to_numpy(float),
         "ey_soy": agent_df["ey_soy"].to_numpy(float),
         "structural_zero": agent_df["structural_zero"].to_numpy(bool),
+        "D_init": agent_df.get("D_init", agent_df["plant_soy_init"]).to_numpy(float),
         "bP": bP, "bS": bS, "iP": iP, "iS": iS,
-        "feP": fe_rows(iP, bP), "feS": fe_rows(iS, bS),
         "sigma_macro": sigma_macro, "calib_offset": calib_offset,
         "sigma_s": S.get("resid_sd", 0.2),
     }
+    # 全部静态数值特征入 state（_linpred 按系数名自动取用）
+    skip = {"county_name", "village", "hh_id", "ey_corn", "ey_soy", "structural_zero",
+            "s_init", "plant_soy_init", "D_init"}
+    for col in agent_df.columns:
+        if col not in skip and col not in state:
+            v = pd.to_numeric(agent_df[col], errors="coerce")
+            state[col] = v.fillna(v.median()).to_numpy(float)
+    # 户内均值项（Wooldridge装置）：bar_<var> 列 → bars 字典
+    state["bars"] = {}
+    for col in agent_df.columns:
+        if col.startswith("bar_"):
+            v = pd.to_numeric(agent_df[col], errors="coerce")
+            state["bars"][col[4:]] = v.fillna(v.median()).to_numpy(float)
     ones = np.ones((1, n_mc))
     state["s_prev"] = agent_df["s_init"].to_numpy(float)[:, None] * ones
     state["plant_soy_prev"] = agent_df["plant_soy_init"].to_numpy(float)[:, None] * ones
@@ -112,12 +110,50 @@ def _dpi(exp, scenario, t, params, s_prev):
     return pi_soy - pi_corn
 
 
-def _b(state, eq, name):
-    """取方程 eq('P'/'S') 中变量 name 的系数行 (n_mc,)；缺失返回0。"""
+def _linpred(state, eq, dpi100, peer):
+    """通用线性预测：按 vcov_vars 逐项解析变量名 → agent 数据。
+
+    支持：Intercept / dpi100_* / plant_soy_lag / s_lag0 / peer_lag0 / D_init /
+    *_bar（agent常量）/ 静态户特征 / *_miss(=0) / 县FE、年FE(取最新年)。
+    返回 (N, n_mc)。
+    """
     idx = state["i" + eq]
-    if name in idx:
-        return state["b" + eq][idx[name]]
-    return np.zeros(state["n_mc"])
+    betas = state["b" + eq]
+    N, M = state["N"], state["n_mc"]
+    county = state["county"]
+    yr_terms = sorted([v for v in idx if v.startswith("C(yr)[T.") or v.startswith("C(year)[T.")])
+    latest_yr = yr_terms[-1] if yr_terms else None
+    xb = np.zeros((N, M))
+    for name, j in idx.items():
+        b = betas[j][None, :]  # (1, n_mc)
+        if name == "Intercept":
+            xb += b
+        elif name.startswith("dpi100") or name == "dpi_mkt100_base":
+            xb += b * dpi100
+        elif name == "plant_soy_lag":
+            xb += b * state["plant_soy_prev"]
+        elif name == "s_lag0":
+            xb += b * state["s_prev"]
+        elif name == "peer_lag0":
+            xb += b * peer
+        elif name.endswith("_miss") or name == "peer_miss":
+            continue  # 仿真中无缺失
+        elif name == "D_init":
+            xb += b * state["D_init"][:, None]
+        elif name.endswith("_bar"):
+            base = name[:-4]
+            arr = state["bars"].get(base)
+            if arr is not None:
+                xb += b * arr[:, None]
+        elif name.startswith("C(county)[T."):
+            lev = name.split("[T.")[1].rstrip("]")
+            xb += b * (county == lev)[:, None]
+        elif name.startswith(("C(yr)[T.", "C(year)[T.")):
+            if name == latest_yr:
+                xb += b  # 前瞻环境取最新年FE
+        elif name in state:
+            xb += b * np.asarray(state[name], float)[:, None]
+    return xb
 
 
 def abm_decide(state, exp, scenario, t, params, peer):
@@ -126,26 +162,16 @@ def abm_decide(state, exp, scenario, t, params, peer):
     dpi100 = dpi / 100.0
     macro = rng.normal(0, state["sigma_macro"], size=(1, state["n_mc"]))
 
-    xb = (_b(state, "P", "Intercept")[None, :] + state["feP"]
-          + _b(state, "P", "dpi100")[None, :] * dpi100
-          + _b(state, "P", "plant_soy_lag")[None, :] * state["plant_soy_prev"]
-          + _b(state, "P", "peer_lag0")[None, :] * peer
-          + _b(state, "P", "logB")[None, :] * state["logB"][:, None]
-          + _b(state, "P", "head_age10")[None, :] * state["head_age10"][:, None]
-          + _b(state, "P", "head_edu")[None, :] * state["head_edu"][:, None]
-          + _b(state, "P", "labor_n")[None, :] * state["labor_n"][:, None]
-          + state["a_i"] + macro + state["calib_offset"])
+    xb = _linpred(state, "P", dpi100, peer) + state["a_i"] + macro + state["calib_offset"]
     prob = _sigmoid(xb)
     prob[state["structural_zero"]] = 0.0  # 双城区结构性零参与
     plant_soy = (rng.random(prob.shape) < prob).astype(float)
 
-    xs = (_b(state, "S", "Intercept")[None, :] + state["feS"]
-          + _b(state, "S", "dpi100")[None, :] * dpi100
-          + _b(state, "S", "s_lag0")[None, :] * state["s_prev"]
-          + _b(state, "S", "logB")[None, :] * state["logB"][:, None])
-    s_mean = _sigmoid(xs)
-    eps = rng.normal(0, state["sigma_s"], size=s_mean.shape)
-    s = np.where(plant_soy > 0, np.clip(s_mean + eps, 0.02, 0.98), 0.0)
+    # 非条件份额方程 E[s|x]（含零）→ 条件份额 = E[s]/P(D=1)，上限0.98
+    mu_u = _sigmoid(_linpred(state, "S", dpi100, peer))
+    s_cond = np.clip(mu_u / np.maximum(prob, 1e-3), mu_u, 0.98)
+    eps = rng.normal(0, state["sigma_s"], size=mu_u.shape)
+    s = np.where(plant_soy > 0, np.clip(s_cond + eps, 0.02, 0.98), 0.0)
     return plant_soy, s, prob, dpi
 
 

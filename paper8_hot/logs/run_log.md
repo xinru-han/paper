@@ -26,3 +26,7 @@
 13:56:56 02: exposure series 87312 rows, 24 provinces, 0 missing tavg 
 13:57:26 02: scenario inputs written 
 14:08:03 05b: 2899390 trip days 
+14:10:53 05b: G01_主食 done 
+14:13:57 05b: G02_食用油 done 
+14:16:38 05b: G03_蔬菜 done 
+14:18:50 05b: G04_水果 done 

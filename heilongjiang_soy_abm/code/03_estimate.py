@@ -143,8 +143,8 @@ R["m3_wooldridge"] = cfit(f3, estL, sm.families.Binomial())
 # 随机效应 σ_a：BayesMixedGLM（同一设计 + 户随机截距）
 try:
     yv, Xv = patsy.dmatrices(f3, estL, return_type="dataframe")
-    ident = np.zeros(1, dtype=int)
     exog_vc = pd.get_dummies(estL["hh_id"]).values.astype(float)
+    ident = np.zeros(exog_vc.shape[1], dtype=int)
     from statsmodels.genmod.bayes_mixed_glm import BinomialBayesMixedGLM
     bm = BinomialBayesMixedGLM(yv.values.ravel(), Xv.values, exog_vc, ident,
                                vcp_p=2.0, fe_p=2.0)
@@ -172,12 +172,24 @@ f6 = (f"plant_soy ~ dpi_sub100:suit_vill_z + dpi_mkt100_base + plant_soy_lag"
 R["m6_subXsuit"] = cfit(f6, estL)
 
 # ---------- 稳健性 ----------
+def drop_novar(formula, data):
+    """剔除子样本中零方差的项，避免奇异。"""
+    lhs, rhs = formula.split("~")
+    keep = []
+    for t in [x.strip() for x in rhs.split("+")]:
+        if t.startswith("C(") or ":" in t or "*" in t:
+            keep.append(t)
+        elif t in data.columns and data[t].std(skipna=True) > 1e-12:
+            keep.append(t)
+    return lhs + "~ " + " + ".join(keep)
+
 R["r_ipw"] = cfit(f1, estL, sm.families.Binomial(), weights=estL["ipw"])
-R["r_balanced"] = cfit(f1, estL[estL["balanced3"] == 1], sm.families.Binomial())
+bald = estL[estL["balanced3"] == 1]
+R["r_balanced"] = cfit(drop_novar(f1, bald), bald, sm.families.Binomial())
 cc = estL[complete_mask.reindex(estL.index, fill_value=False)]
 if len(cc) > 80 and cc["plant_soy"].nunique() > 1:
     try:
-        R["r_complete"] = cfit(f1c, cc, sm.families.Binomial())
+        R["r_complete"] = cfit(drop_novar(f1c, cc), cc, sm.families.Binomial())
     except Exception as e:
         print("complete-case失败:", e)
 # Firth 罚似然

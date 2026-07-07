@@ -41,33 +41,55 @@ tl_itsur_c1 <- function(sys, K, Sbar, tol = 1e-9, maxit_sigma = 30,
     v <- c(); for (nn in 1:K) for (mm in nn:K) v <- c(v, Gam[nn, mm]); v
   }
   Xb_l <- lapply(1:J, function(j) Xl[((j - 1) * n + 1):(j * n), , drop = FALSE])
+  Xb_g <- lapply(1:J, function(j) Xg[((j - 1) * n + 1):(j * n), , drop = FALSE])
+  yb   <- lapply(1:J, function(j) yall[((j - 1) * n + 1):(j * n)])
 
-  # 给定 a 与 Σ^-1，profile 线性参数，返回 -加权SSR 相关目标
-  inner <- function(a, W) {
-    Gam <- c1_gamma_from_a(a, Sbar, K)
-    off <- as.numeric(Xg %*% gam_vec_from_G(Gam))
-    yst <- yall - off
-    A <- matrix(0, ncol(Xl), ncol(Xl)); b <- numeric(ncol(Xl))
-    yb <- lapply(1:J, function(j) yst[((j - 1) * n + 1):(j * n)])
+  # SSR(g) 闭式二次型的分块预计算（给定 W）：
+  #   SSR = c0 - 2 c1'g + g'C2 g，beta_lin = H (Aly - Alg g)
+  precompute <- function(W) {
+    Pl <- ncol(Xl); Pg <- ncol(Xg)
+    All <- matrix(0, Pl, Pl); Alg <- matrix(0, Pl, Pg); Agg <- matrix(0, Pg, Pg)
+    Aly <- numeric(Pl); Agy <- numeric(Pg); Ayy <- 0
     for (j in 1:J) for (l in 1:J) {
-      A <- A + W[j, l] * crossprod(Xb_l[[j]], Xb_l[[l]])
-      b <- b + W[j, l] * crossprod(Xb_l[[j]], yb[[l]])
+      w <- W[j, l]
+      All <- All + w * crossprod(Xb_l[[j]], Xb_l[[l]])
+      Alg <- Alg + w * crossprod(Xb_l[[j]], Xb_g[[l]])
+      Agg <- Agg + w * crossprod(Xb_g[[j]], Xb_g[[l]])
+      Aly <- Aly + w * crossprod(Xb_l[[j]], yb[[l]])
+      Agy <- Agy + w * crossprod(Xb_g[[j]], yb[[l]])
+      Ayy <- Ayy + w * sum(yb[[j]] * yb[[l]])
     }
-    bl <- solve(A, b)
-    res <- matrix(yst - Xl %*% bl, n, J)
-    ssr <- 0
-    for (j in 1:J) for (l in 1:J) ssr <- ssr + W[j, l] * sum(res[, j] * res[, l])
+    H <- solve(All)
+    list(H = H, Aly = Aly, Alg = Alg,
+         c0 = Ayy - as.numeric(t(Aly) %*% H %*% Aly),
+         c1 = as.numeric(Agy - t(Alg) %*% H %*% Aly),
+         C2 = Agg - t(Alg) %*% H %*% Alg)
+  }
+
+  penalty <- function(Gam) {
+    if (is.null(S_obs) || kappa <= 0) return(0)
     pen <- 0
-    if (!is.null(S_obs) && kappa > 0) {
-      for (i in seq_len(nrow(S_obs))) {
-        Si <- S_obs[i, ]
-        ev <- max(eigen(Gam + tcrossprod(Si) - diag(Si), symmetric = TRUE,
-                        only.values = TRUE)$values)
-        if (ev > 0) pen <- pen + ev^2
-      }
-      pen <- kappa * pen
+    for (i in seq_len(nrow(S_obs))) {
+      Si <- S_obs[i, ]
+      ev <- max(eigen(Gam + tcrossprod(Si) - diag(Si), symmetric = TRUE,
+                      only.values = TRUE)$values)
+      if (ev > 0) pen <- pen + ev^2
     }
-    list(ssr = ssr + pen, beta_lin = bl, resid = res, A = A)
+    kappa * pen
+  }
+
+  inner_obj <- function(a, pc) {
+    Gam <- c1_gamma_from_a(a, Sbar, K)
+    g <- gam_vec_from_G(Gam)
+    pc$c0 - 2 * sum(pc$c1 * g) + as.numeric(t(g) %*% pc$C2 %*% g) + penalty(Gam)
+  }
+
+  inner <- function(a, pc) {   # 完整解（收敛后取残差用）
+    Gam <- c1_gamma_from_a(a, Sbar, K)
+    g <- gam_vec_from_G(Gam)
+    bl <- as.numeric(pc$H %*% (pc$Aly - pc$Alg %*% g))
+    res <- matrix(yall - Xg %*% g - Xl %*% bl, n, J)
+    list(beta_lin = bl, resid = res)
   }
 
   # 初值：无约束拟合的 G 投影到最近半负定
@@ -81,10 +103,11 @@ tl_itsur_c1 <- function(sys, K, Sbar, tol = 1e-9, maxit_sigma = 30,
   Sig <- fit0$Sigma
   for (osig in 1:maxit_sigma) {
     W <- solve(Sig)
-    opt <- optim(a, function(x) inner(x, W)$ssr, method = "BFGS",
+    pc <- precompute(W)
+    opt <- optim(a, inner_obj, pc = pc, method = "BFGS",
                  control = list(maxit = 400, reltol = 1e-12))
     a <- opt$par
-    sol <- inner(a, W)
+    sol <- inner(a, pc)
     Sig_new <- crossprod(sol$resid) / n
     dS <- max(abs(Sig_new - Sig)); Sig <- Sig_new
     if (dS < tol) break
