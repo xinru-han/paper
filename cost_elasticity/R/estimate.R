@@ -46,21 +46,24 @@ fit_crop <- function(cr, write_out = TRUE, method = "plain", kappa = 1e6) {
     rec <- tl_recover(fit, K)
   }
 
-  # 不变性检验：换 numeraire（用 seed 作numeraire）重估，完整Gamma应一致
-  d2 <- copy(d)
-  perm <- c(1, 2, 3, 5, 4)  # labor mach fert other | seed 为numeraire
-  wmat <- as.matrix(pan[, paste0("w_", FACTORS), with = FALSE])
-  Smat <- as.matrix(pan[, paste0("S_", FACTORS), with = FALSE])
-  for (m in 1:K) {
-    x <- log(wmat[, perm[m]] / wmat[, perm[N]])
-    d2[[sprintf("lnw_%d", m)]] <- x - mean(x)
-    d2[[sprintf("S_%d", m)]] <- Smat[, perm[m]]
+  # 不变性检验（仅plain）：换 numeraire（用 seed）重估，完整Gamma应一致
+  inv_err <- NA_real_
+  if (method == "plain") {
+    d2 <- copy(d)
+    perm <- c(1, 2, 3, 5, 4)  # labor mach fert other | seed 为numeraire
+    wmat <- as.matrix(pan[, paste0("w_", FACTORS), with = FALSE])
+    Smat <- as.matrix(pan[, paste0("S_", FACTORS), with = FALSE])
+    for (m in 1:K) {
+      x <- log(wmat[, perm[m]] / wmat[, perm[N]])
+      d2[[sprintf("lnw_%d", m)]] <- x - mean(x)
+      d2[[sprintf("S_%d", m)]] <- Smat[, perm[m]]
+    }
+    x <- log(pan$C_var / wmat[, perm[N]]); d2$lnC <- x - mean(x)
+    fit2 <- tl_itsur(tl_build_system(d2, K))
+    G2 <- tl_recover(fit2, K)$Gamma[order(perm), order(perm)]
+    inv_err <- max(abs(G2 - rec$Gamma))
+    stopifnot(inv_err < 1e-4)
   }
-  x <- log(pan$C_var / wmat[, perm[N]]); d2$lnC <- x - mean(x)
-  fit2 <- tl_itsur(tl_build_system(d2, K))
-  G2 <- tl_recover(fit2, K)$Gamma[order(perm), order(perm)]
-  inv_err <- max(abs(G2 - rec$Gamma))
-  stopifnot(inv_err < 1e-4)
 
   # 拟合份额与凹性/单调性
   Shat <- tl_fitted_shares(fit, sys, K)
@@ -98,56 +101,65 @@ fit_crop <- function(cr, write_out = TRUE, method = "plain", kappa = 1e6) {
                          tauC = tauC, TFP = -tauC / eCy)[
     , lapply(.SD, mean), by = .(crop, year)][order(year)]
 
-  # LR 检验
-  lr <- function(drop, name, df) {
-    f0 <- tl_itsur(sys, drop_params = drop)
-    data.table(crop = cr, test = name, LR = 2 * (fit$logLik - f0$logLik), df = df,
-               p = pchisq(2 * (fit$logLik - f0$logLik), df, lower.tail = FALSE))
+  # LR 检验（仅plain：cc为惩罚估计，非ML）
+  tests <- NULL
+  if (method == "plain") {
+    lr <- function(drop, name, df) {
+      f0 <- tl_itsur(sys, drop_params = drop)
+      data.table(crop = cr, test = name, LR = 2 * (fit$logLik - f0$logLik), df = df,
+                 p = pchisq(2 * (fit$logLik - f0$logLik), df, lower.tail = FALSE))
+    }
+    tests <- rbindlist(list(
+      lr("^gamma_[1-4]y$", "homotheticity", K),
+      lr("^lambda_[1-4]t$", "hicks_neutral", K),
+      lr("^lambda_", "no_tech_change", K + 3),
+      lr("^gamma_[1-4]_[1-4]$", "cobb_douglas", K * (K + 1) / 2)))
   }
-  tests <- rbindlist(list(
-    lr("^gamma_[0-9]yq*$|^gamma_[1-4]y$", "homotheticity", K),
-    lr("^lambda_[1-4]t$", "hicks_neutral", K),
-    lr("^lambda_", "no_tech_change", K + 3),
-    lr("^gamma_[1-4]_[1-4]$", "cobb_douglas", K * (K + 1) / 2)))
 
   res <- list(crop = cr, fit = fit, rec = rec, d = d, sys = sys,
               conc_rate = mean(conc_ok), mono_rate = mean(mono_ok), inv_err = inv_err,
               el = el_dt, bias = bias, tests = tests, scale = scale_dt, Shat = Shat)
   if (write_out) {
+    suf <- if (method == "cc") paste0(cr, "_cc") else cr
     G <- rec$Gamma; dimnames(G) <- list(FACTORS, FACTORS)
-    fwrite(data.table(param = names(fit$theta), est = fit$theta,
-                      se_delta = sqrt(pmax(diag(fit$vcov), 0))), sprintf("out/params_%s.csv", cr))
-    fwrite(as.data.table(G, keep.rownames = "factor"), sprintf("out/gamma_%s.csv", cr))
+    se <- if (!is.null(fit$vcov)) sqrt(pmax(diag(fit$vcov), 0)) else NA_real_
+    fwrite(data.table(param = names(fit$theta), est = fit$theta, se_delta = se),
+           sprintf("out/params_%s.csv", suf))
+    fwrite(as.data.table(G, keep.rownames = "factor"), sprintf("out/gamma_%s.csv", suf))
     fwrite(cbind(d[, .(province, year)], as.data.table(setNames(as.data.frame(Shat), paste0("Shat_", FACTORS))),
                  as.data.table(setNames(as.data.frame(cbind(d[[ "S_1"]], d$S_2, d$S_3, d$S_4)), paste0("Sobs_", FACTORS[1:4]))),
                  mono_ok = mono_ok, conc_ok = conc_ok),
-           sprintf("out/fitted_shares_%s.csv", cr))
-    fwrite(el_dt, sprintf("out/elasticities_%s.csv", cr))
-    fwrite(bias, sprintf("out/bias_%s.csv", cr))
-    fwrite(tests, sprintf("out/tests_%s.csv", cr))
-    fwrite(scale_dt, sprintf("out/scale_tfp_%s.csv", cr))
-    fwrite(data.table(crop = cr, n_obs = nrow(d), n_prov = uniqueN(d$prov),
+           sprintf("out/fitted_shares_%s.csv", suf))
+    fwrite(el_dt, sprintf("out/elasticities_%s.csv", suf))
+    fwrite(bias, sprintf("out/bias_%s.csv", suf))
+    if (!is.null(tests)) fwrite(tests, sprintf("out/tests_%s.csv", suf))
+    fwrite(scale_dt, sprintf("out/scale_tfp_%s.csv", suf))
+    fwrite(data.table(crop = cr, method = method, n_obs = nrow(d), n_prov = uniqueN(d$prov),
                       iter = fit$iter, converged = fit$converged, inv_err = inv_err,
                       concavity_rate = mean(conc_ok), monotonicity_rate = mean(mono_ok)),
-           sprintf("out/concavity_%s.csv", cr))
+           sprintf("out/concavity_%s.csv", suf))
   }
   res
 }
 
 this_file <- sub("--file=", "", grep("--file=", commandArgs(FALSE), value = TRUE))
 if (length(this_file) && basename(this_file) == "estimate.R") {
-  crops <- commandArgs(trailingOnly = TRUE)
+  args <- commandArgs(trailingOnly = TRUE)
+  methods <- intersect(args, c("plain", "cc"))
+  crops <- setdiff(args, methods)
   if (!length(crops)) crops <- "corn"
-  for (cr in crops) {
-    cat(sprintf("\n===== %s =====\n", cr))
-    r <- fit_crop(cr)
+  if (!length(methods)) methods <- c("plain", "cc")
+  for (cr in crops) for (mt in methods) {
+    cat(sprintf("\n===== %s [%s] =====\n", cr, mt))
+    r <- fit_crop(cr, method = mt)
     cat(sprintf("n=%d, iter=%d, invariance=%.2e, concavity=%.1f%%, monotonicity=%.1f%%\n",
                 nrow(r$d), r$fit$iter, r$inv_err, 100 * r$conc_rate, 100 * r$mono_rate))
-    cat("\n-- Morishima (all, at fitted mean shares) --\n")
-    print(dcast(r$el[period == "all"], f_n ~ f_m, value.var = "morishima"), digits = 3)
     cat("\n-- own-price eps --\n")
     print(r$el[period == "all" & f_n == f_m, .(f_n, S_n = round(S_n, 3), eps = round(eps, 3))])
-    cat("\n-- tech bias --\n"); print(r$bias[, .(factor, lambda_nt = round(lambda_nt, 5), B = round(B, 4))])
-    cat("\n-- LR tests --\n"); print(r$tests[, .(test, LR = round(LR, 1), df, p = signif(p, 3))])
+    cat("-- Morishima (all) --\n")
+    print(dcast(r$el[period == "all"], f_n ~ f_m, value.var = "morishima"), digits = 3)
+    cat("-- tech bias --\n"); print(r$bias[, .(factor, lambda_nt = round(lambda_nt, 5), B = round(B, 4))])
+    if (!is.null(r$tests)) { cat("-- LR tests --\n")
+      print(r$tests[, .(test, LR = round(LR, 1), df, p = signif(p, 3))]) }
   }
 }

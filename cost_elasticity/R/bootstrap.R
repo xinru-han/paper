@@ -15,20 +15,15 @@ pan <- fread(sprintf("data/panel_%s.csv", cr))
 provs <- unique(pan$province)
 FN <- c("labor", "mach", "fert", "seed", "other")
 
-one_draw <- function(b) {
-  ps <- sample(provs, length(provs), replace = TRUE)
-  dl <- lapply(seq_along(ps), function(i) {
-    x <- pan[province == ps[i]]
-    x$province <- sprintf("bs%02d_%s", i, ps[i])   # 重抽省作为独立个体（各自FE）
-    x
-  })
-  pb <- rbindlist(dl)
+boot_body <- function(b, pb) {
   d <- prep_data(pb)
   sys <- tl_build_system(d, 4)
   fit <- tryCatch({
-    if (method == "c1") {
-      Sb <- colMeans(as.data.frame(d)[, paste0("S_", FN[1:4])]); Sb <- c(Sb, 1 - sum(Sb))
-      f <- tl_itsur_c1(sys, 4, Sb); f$Gamma <- f$Gamma_full; f
+    if (method == "cc") {
+      So <- as.matrix(as.data.frame(d)[, paste0("S_", FN[1:4])])
+      So <- cbind(So, 1 - rowSums(So))
+      f <- tl_itsur_c1(sys, 4, colMeans(So), S_obs = So, kappa = 1e6)
+      f$Gamma <- f$Gamma_full; f
     } else {
       f <- tl_itsur(sys); f$Gamma <- tl_recover(f, 4)$Gamma; f
     }
@@ -55,15 +50,21 @@ one_draw <- function(b) {
   rbindlist(rows, fill = TRUE)
 }
 
-res <- list()
-t0 <- Sys.time()
-for (b in 1:B) {
-  res[[b]] <- one_draw(b)
-  if (b %% 25 == 0) cat(sprintf("[boot %s %s] %d/%d (%.1f min)\n", cr, method, b, B,
-                                as.numeric(difftime(Sys.time(), t0, units = "mins"))))
+# 可复现的并行：先为每个draw固定省抽样（seed在抽样时消费），再mclapply
+draw_provs <- lapply(1:B, function(b) sample(provs, length(provs), replace = TRUE))
+one_draw_ps <- function(b, ps) {
+  dl <- lapply(seq_along(ps), function(i) {
+    x <- pan[province == ps[i]]
+    x$province <- sprintf("bs%02d_%s", i, ps[i])   # 重抽省作为独立个体（各自FE）
+    x
+  })
+  boot_body(b, rbindlist(dl))
 }
-dt <- rbindlist(res, fill = TRUE)
-suf <- ifelse(method == "c1", "_c1", "")
+t0 <- Sys.time()
+res <- parallel::mclapply(1:B, function(b) one_draw_ps(b, draw_provs[[b]]),
+                          mc.cores = min(6, parallel::detectCores() - 2))
+dt <- rbindlist(Filter(function(x) is.data.frame(x), res), fill = TRUE)
+suf <- ifelse(method == "cc", "_cc", "")
 fwrite(dt, sprintf("out/bootstrap_draws_%s%s.csv", cr, suf))
 okr <- dt[period == "all" | is.na(period), mean(ok)]
 cat(sprintf("done: %d draws, ok rate %.3f\n", B, okr))
