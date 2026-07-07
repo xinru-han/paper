@@ -14,7 +14,12 @@ scripts <- c(
   "09_mechanisms.R",         # roles / self-provisioning / binary outcomes
   "10_aging_projection.R",   # 2035 scenarios (provisioning-anchored)
   "11_county_policy_text.R", # county report text: diffusion + moderation
-  "12_grf_heterogeneity.R"   # appendix causal forest
+  "12_grf_heterogeneity.R",  # appendix causal forest
+  "14_wild_bootstrap.R",     # few-cluster wild cluster bootstrap-t
+  "15_threshold_sensitivity.R", # elder 60-vs-65, child cutoff, year split
+  "16_mnar_bounds.R",        # proxy-under-recording (MNAR) bounds
+  "18_bline_identification.R",  # generation-ladder placebo + health strata
+  "13_results_md.R"          # assemble RESULTS.md (runs last)
 )
 base <- "/root/data/Paper/食物消费数据/paper2-elder/code"
 for (s in scripts) {

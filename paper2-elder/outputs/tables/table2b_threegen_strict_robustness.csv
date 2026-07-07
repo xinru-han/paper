@@ -1,0 +1,3 @@
+term,est,se,t,p,n,spec
+"I(as.integer(living_arrangement == ""threegen""))",0.54688164460256,0.129165857562377,4.23394893142299,3.04825813538105e-05,716,age-composition threegen (headline)
+treat_strict,0.569458302139162,0.128707198899904,4.42444794857227,1.35018372119007e-05,716,strict 3-gen (elder+midadult+minor)

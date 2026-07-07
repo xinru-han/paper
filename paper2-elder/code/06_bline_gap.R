@@ -30,7 +30,11 @@ bl[, home_days := num(home_eating_days)]
 OUTS <- c(fgds10 = "FGDS-10 diversity", fvs_unique_foods = "Food variety score",
           dbi16_variety_subscore = "DBI-16 variety", any_animal = "Any animal-source (48h)",
           any_deb = "Any dairy/egg/bean (48h)", qual_protein_share = "Quality-protein g share (flagged)")
-CTRL_I <- "female + main_cook"
+# main_cook is a MEDIATOR of the provisioning mechanism (who cooks is itself part
+# of intra-household food organisation), so it is a bad control for the baseline
+# elder gap. Baseline now conditions on female only; main_cook enters as an
+# explicit robustness column (r6$add_maincook) and as the mechanism moderator.
+CTRL_I <- "female"
 
 fit_b1 <- function(dat, y, ctrl = CTRL_I) {
   feols(as.formula(paste0(y, " ~ elder + elder:threegen + ", ctrl, " | hh_id")),
@@ -84,6 +88,7 @@ wtab(rw, "table10a_romano_wolf.csv")
 r6 <- list()
 r6$main                 <- fit_b1(bl, "fgds10")
 r6$add_age              <- fit_b1(bl, "fgds10", paste0(CTRL_I, " + age_yrs"))
+r6$add_maincook         <- fit_b1(bl, "fgds10", paste0(CTRL_I, " + main_cook"))
 r6$drop_low_home_days   <- fit_b1(bl[is.na(home_days) | home_days >= quantile(home_days, .25, na.rm = TRUE)], "fgds10")
 r6$drop_few_meals       <- fit_b1(bl[num(n_meals) >= 3], "fgds10")
 r6$binary_any_animal    <- fit_b1(bl, "any_animal")

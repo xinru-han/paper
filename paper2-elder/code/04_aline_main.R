@@ -36,6 +36,26 @@ t2 <- rbindlist(lapply(names(mods), function(nm) {
 }))
 wtab(t2, "table2_aline_fe_sequence_hdds.csv")
 
+# ---- T2b: construct-validity robustness — STRICT three-generation flag -------
+# Age-composition "threegen" only requires a minor present. Re-run the headline
+# contrast using threegen_strict (>=1 elder + >=1 mid-adult 25-59 + >=1 minor),
+# comparing strict-3gen households against with-non-elder-adult households.
+if ("threegen_strict" %in% names(hh)) {
+  hh[, threegen_strict := num(threegen_strict)]
+  ds <- hh[living_arrangement %in% c("cohabit_nonelder","threegen")]
+  ds[, treat_strict := as.integer(threegen_strict == 1)]
+  m_strict <- feols(as.formula(paste0("hdds12 ~ treat_strict + ", CTRL, " | county_year")),
+                    data = ds, cluster = ~xzc12)
+  m_orig   <- feols(as.formula(paste0("hdds12 ~ I(as.integer(living_arrangement=='threegen')) + ",
+                    CTRL, " | county_year")), data = ds, cluster = ~xzc12)
+  t2b <- rbind(
+    tidy_fe(m_orig, "living_arrangement")[, spec := "age-composition threegen (headline)"],
+    tidy_fe(m_strict, "treat_strict")[, spec := "strict 3-gen (elder+midadult+minor)"])
+  wtab(t2b, "table2b_threegen_strict_robustness.csv")
+  cat("strict-3gen N treated:", ds[, sum(treat_strict)], " orig-3gen N:",
+      ds[, sum(living_arrangement=="threegen")], "\n")
+}
+
 # ---- T3: food structure shares (county-year FE) -----------------------------
 sh_out <- c("share_dairy_egg_bean","share_animal","share_fruit_veg")
 t3 <- rbindlist(lapply(sh_out, function(y) {
@@ -47,7 +67,27 @@ t3 <- rbindlist(lapply(sh_out, function(y) {
   rbind(tidy_fe(m, "^LA")[, `:=`(outcome = y, spec = "OLS")],
         tidy_fe(mf, "^LA")[, `:=`(outcome = y, spec = "frac_logit")])
 }))
+# BH-FDR across the A-line share family (all LA coefficients, OLS + frac-logit)
+t3[, p_bh_fdr := p.adjust(p, method = "BH")]
 wtab(t3, "table3_aline_food_structure_shares.csv")
+
+# ---- T3b: NEGATIVE-CONTROL outcome ------------------------------------------
+# Salt + condiment share of the monthly food basket: there is no dietary-diversity
+# mechanism by which three-generation co-residence should raise it. A near-zero,
+# non-significant three-gen coefficient here supports that the HDDS result is not a
+# generic "big households consume more of everything" artifact.
+cons_cols <- paste0(c("zhushi","doulei","roulei","danlei","nailei","youzhi",
+                      "shucai","shuiguo","tiaoliao","tang","cha","yan"), "_cons_monthly_jin")
+if (all(cons_cols %in% names(hh))) {
+  for (cc in cons_cols) hh[, (cc) := num(get(cc))]
+  hh[, food12_total_ := rowSums(.SD, na.rm = TRUE), .SDcols = cons_cols]
+  hh[, share_salt_cond := fifelse(food12_total_ > 0,
+        (num(yan_cons_monthly_jin) + num(tiaoliao_cons_monthly_jin)) / food12_total_, NA_real_)]
+  m_nc <- feols(share_salt_cond ~ LA + ln_income + any_elder_80 + n_elderly | county_year,
+                data = hh[is.finite(share_salt_cond)], cluster = ~xzc12)
+  wtab(tidy_fe(m_nc, "^LA")[, spec := "negative control: salt+condiment share"],
+       "table3b_negative_control.csv")
+}
 
 # ---- T4: scale vs composition (D5 check) ------------------------------------
 m_nosize <- feols(as.formula(paste0("hdds12 ~ LA + ", CTRL, " | county_year")), cluster = ~xzc12)

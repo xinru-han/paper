@@ -50,9 +50,18 @@ compute_all <- function(hh_d, eld_d) {
                total_elder_effect = bR[trm],
                allocation_residual = bR[trm] - phi1 * bA[trm])
   }))
-  out[, leakage_rate := fifelse(abs(phi1 * dHDDS) > 1e-8, 1 - total_elder_effect/(dHDDS), NA_real_)]
-  # leakage for three-gen headline: share of the HDDS gain (in fgds10-equivalent
-  # units at 1:1 group mapping) not showing up in elder intake
+  # Two distinct quantities, previously conflated in a single "leakage_rate":
+  #  (1) gap-to-household: 1 - bR/bA. Mixes scales (FGDS-10 vs HDDS-12) and BUNDLES
+  #      the normal <1 pass-through (phi1) common to ALL members with elder-specific
+  #      allocation loss. Kept for continuity but NOT elder-specific.
+  #  (2) allocation-specific leakage (unit-consistent, both in FGDS-10 units):
+  #      1 - realized/expected = 1 - total_elder_effect/passthrough_component.
+  #      This is the share the elder loses BEYOND the pass-through every member faces.
+  out[, leak_gap_to_hh := fifelse(abs(dHDDS) > 1e-8, 1 - total_elder_effect/dHDDS, NA_real_)]
+  out[, leak_allocation := fifelse(abs(passthrough_component) > 1e-8,
+                                   1 - total_elder_effect/passthrough_component, NA_real_)]
+  # backward-compatible alias (old headline used the gap-to-household ratio)
+  out[, leakage_rate := leak_gap_to_hh]
   out
 }
 
@@ -73,19 +82,25 @@ ci <- bootdt[, .(pass_lo = quantile(passthrough_component, .025, na.rm = TRUE),
                  pass_hi = quantile(passthrough_component, .975, na.rm = TRUE),
                  alloc_lo = quantile(allocation_residual, .025, na.rm = TRUE),
                  alloc_hi = quantile(allocation_residual, .975, na.rm = TRUE),
-                 leak_lo = quantile(leakage_rate, .025, na.rm = TRUE),
-                 leak_hi = quantile(leakage_rate, .975, na.rm = TRUE)), by = arrangement]
+                 leak_lo = quantile(leak_gap_to_hh, .025, na.rm = TRUE),
+                 leak_hi = quantile(leak_gap_to_hh, .975, na.rm = TRUE),
+                 leak_alloc_lo = quantile(leak_allocation, .025, na.rm = TRUE),
+                 leak_alloc_hi = quantile(leak_allocation, .975, na.rm = TRUE)), by = arrangement]
 t12 <- merge(dec, ci, by = "arrangement", all.x = TRUE)
 wtab(t12, "table12_decomposition.csv")
 
 # ---- headline: three-generation leakage --------------------------------------
 tg <- t12[arrangement == "threegen"]
 headline <- sprintf(paste0(
-  "Three-generation co-residence raises household HDDS by %.3f groups; the marginal pass-through of ",
-  "one HDDS group to elder FGDS-10 is %.3f. The elder-level total effect is %.3f groups, i.e. %.0f%% of the ",
-  "household provisioning gain reaches the older adult's own 48h intake; leakage = %.0f%% (95%% CI %.0f-%.0f%%)."),
-  tg$dHDDS, tg$phi1, tg$total_elder_effect, 100*tg$total_elder_effect/tg$dHDDS,
-  100*tg$leakage_rate, 100*tg$leak_lo, 100*tg$leak_hi)
+  "Three-generation co-residence raises household HDDS by %.3f groups; the marginal cross-sectional slope of ",
+  "elder FGDS-10 on household HDDS is %.3f (associational, NOT causal pass-through). Expected elder gain = ",
+  "phi1 x dHDDS = %.3f FGDS groups; realized elder gain (reduced form) = %.3f. TWO leakage measures: ",
+  "(1) gap-to-household 1-bR/bA = %.0f%% (95%% CI %.0f-%.0f%%) -- but this mostly reflects the <1 slope common ",
+  "to all members, not elder-specific loss; (2) ALLOCATION-specific 1-realized/expected = %.0f%% (95%% CI %.0f-%.0f%%) ",
+  "-- the share the elder loses BEYOND the pass-through every member faces. The honest headline is (2)."),
+  tg$dHDDS, tg$phi1, tg$passthrough_component, tg$total_elder_effect,
+  100*tg$leak_gap_to_hh, 100*tg$leak_lo, 100*tg$leak_hi,
+  100*tg$leak_allocation, 100*tg$leak_alloc_lo, 100*tg$leak_alloc_hi)
 
 # ---- leakage heterogeneity (elder cook / children / income) -------------------
 het_groups <- list(

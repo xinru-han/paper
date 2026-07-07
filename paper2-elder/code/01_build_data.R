@@ -96,6 +96,10 @@ comp <- mem[, .(hh_size_rec = .N,
                 n_elderly = sum(elderly, na.rm = TRUE),
                 n_children = sum(child, na.rm = TRUE),
                 n_nonelder_adult = sum(nonelder_adult, na.rm = TRUE),
+                # middle generation by age band (25-59): lets us build a stricter
+                # three-generation flag that requires a distinct parent generation,
+                # not merely "any non-elder adult + any minor".
+                n_midadult = sum(!is.na(age) & age >= 25 & age < ELDER_AGE, na.rm = TRUE),
                 n_age_missing = sum(is.na(age)),
                 any_elder_80 = as.integer(any(age >= 80, na.rm = TRUE)),
                 max_elder_age = suppressWarnings(as.numeric(max(as.numeric(age[elderly == 1]), na.rm = TRUE))),
@@ -116,6 +120,13 @@ comp[, living_arrangement := fcase(
   n_elderly == 1 & hh_size_rec == 1, "elder_alone",
   n_elderly >= 1 & n_nonelder_adult == 0 & n_children >= 1, "elder_child",
   default = "other")]
+# NOTE ON CONSTRUCT VALIDITY: "threegen" is an AGE-COMPOSITION category
+# (>=1 elder 60+, >=1 non-elder adult 18-59, >=1 minor <18). It is NOT verified
+# kinship: a true three-generation household whose grandchild is already 18+ falls
+# into cohabit_nonelder. relation_code (relationship-to-head) is available but the
+# survey codebook needed to map it reliably is not, so we add an age-based STRICT
+# flag instead of guessing codes.
+comp[, threegen_strict := as.integer(n_elderly >= 1 & n_midadult >= 1 & n_children >= 1)]
 la_dist <- comp[living_arrangement != "no_elder", .N, by = living_arrangement][order(-N)]
 rep <- c(rep, "", "## Living arrangement distribution (elder households)",
          paste(capture.output(print(la_dist)), collapse = "\n"))
@@ -195,9 +206,11 @@ rep <- c(rep, sprintf("- elder households (>=1 member age %d+): %d of %d", ELDER
 # Case-insensitive and broadened: the raw tables carry mixed-case identifiers
 # (huName, vilLat/vilLon, and *Phone columns), so a lowercase-only pattern missed
 # the phone columns. Reused for every write below.
-ID_PAT <- "name|lat|lon|phone|地址|身份|姓名|经度|纬度"
+# Match true identifier columns only. Anchored/lookaround so innocuous names do
+# NOT false-trip (e.g. reLATion_code, has_smartPHONE, lonGitude-free columns).
+ID_PAT <- "(?i)(hu_?name|vil_?name|真实姓名|户主姓名|vil_?lat|vil_?lon|经度|纬度|(?<!smart)phone|电话|手机号|身份证|家庭住址|详细地址)"
 assert_no_pii <- function(dt, label) {
-  hit <- grep(ID_PAT, names(dt), ignore.case = TRUE, value = TRUE)
+  hit <- grep(ID_PAT, names(dt), value = TRUE, perl = TRUE)
   if (length(hit)) stop(sprintf("PII leak in %s: %s", label, paste(hit, collapse = ", ")))
   invisible(TRUE)
 }

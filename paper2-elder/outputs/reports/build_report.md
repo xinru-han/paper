@@ -1,5 +1,5 @@
 # Paper 2 build report
-Generated: 2026-07-07 13:15:40
+Generated: 2026-07-07 20:27:59
 
 - household table: 3565 rows, 219 selected columns
 - member roster: 10301 members in 3547 households; median size 2

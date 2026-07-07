@@ -39,6 +39,20 @@ pt <- rbindlist(lapply(levels(eld$LA), function(la) {
   data.table(arrangement = la, phi1 = b, se = s, p = 2*pnorm(-abs(b/s)))
 }))
 wtab(pt, "table11b_passthrough_by_LA.csv")
-saveRDS(list(m_pool = m_pool, m_int = m_int, passthrough = pt),
+
+# ---- contamination robustness -------------------------------------------------
+# phi1 is a CROSS-SECTIONAL ASSOCIATIONAL SLOPE, not a causal pass-through: the
+# focal elder's own 48h diet mechanically enters household HDDS, biasing phi1 up,
+# worst where the elder IS most of the household (elder_alone, elder_only_multi).
+# Re-estimate the pooled slope excluding those arrangements as a robustness check.
+eld_multi <- eld[!(living_arrangement %in% c("elder_alone","elder_only_multi"))]
+m_clean <- feols(fgds10 ~ hdds + LA + female + main_cook + ln_income | county_year,
+                 data = eld_multi, cluster = ~xzc12)
+phi1_clean <- tidy_fe(m_clean, "^hdds$")[, spec := "phi1 excl. elder-alone/elder-only (mechanical)"]
+wtab(rbind(tidy_fe(m_pool, "^hdds$")[, spec := "phi1 pooled (all arrangements)"], phi1_clean),
+     "table11c_phi1_contamination_robust.csv")
+
+saveRDS(list(m_pool = m_pool, m_int = m_int, m_clean = m_clean, passthrough = pt),
         file.path(DIR_DERIV, "passthrough_models.rds"))
-cat("B2 OK\n"); print(pt)
+cat("B2 OK\n"); print(pt); cat("\nphi1 (all):", coef(m_pool)["hdds"],
+    " phi1 (excl. mechanical):", coef(m_clean)["hdds"], "\n")

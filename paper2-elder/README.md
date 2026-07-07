@@ -38,7 +38,24 @@ This folder contains the full executable pipeline (R) and all results.
 | 10_aging_projection.R | 2035 scenarios S0/S1/S2, k∈{4,6,8}, λ∈{25,50,75}% | table17, fig10 |
 | 11_county_policy_text.R | county report keywords, diffusion, moderation + placebo | table18, fig9, county panel |
 | 12_grf_heterogeneity.R | appendix causal forest (honest, village-clustered) | table19*, fig11 |
+| 14_wild_bootstrap.R | few-cluster wild cluster bootstrap-t (A-line + B-line) | table20 |
+| 15_threshold_sensitivity.R | elder 60-vs-65, child cutoff, 2023/2024 split | table21 |
+| 16_mnar_bounds.R | proxy-under-recording (MNAR) bounds on the elder gap | table22 |
+| 18_bline_identification.R | generation-ladder placebo + health strata (allocation vs physiology) | table24*, table25 |
 | 99_run_all.R | run everything in order | — |
+
+**Post-review revisions (methodological audit).** After the first full run the pipeline
+was re-audited by four adversarial reviewers. Fixed a cluster-bootstrap bug (AIPW SE),
+the permutation p-value, and a weak privacy assertion; relabelled A-line estimators as
+selection-on-observables (not causal ATT) and phi1 as a cross-sectional slope (not
+pass-through); split the leakage measure into gap-to-household (59%, mostly ordinary
+pass-through) vs allocation-specific (~5%, CI spans zero); added a generation-ladder
+placebo (child deficit ~4x the elder deficit), MNAR bounds (the elder gap flips under
+re-imputation), wild cluster bootstrap, 60-vs-65 and year-split sensitivity, a
+negative-control outcome, BH-FDR on the share family, a strict three-gen flag, and a
+Monte-Carlo band on the 2035 projection. Net effect: **headline #1 (leakage) and the
+"inequality against elders" framing are substantially qualified; the A-line HDDS effect
+and its robustness are unchanged.** See the "Post-review revisions" block in `RESULTS.md`.
 
 Run: `Rscript code/99_run_all.R` (R ≥ 4.1, packages in `/root/Rlibs`:
 data.table, fixest, WeightIt, cobalt, ggplot2, grf, readxl, stringr).

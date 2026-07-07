@@ -63,10 +63,12 @@ p11 <- ggplot(pd, aes(x, cate)) + geom_line(linewidth = 1, colour = "steelblue")
   theme_minimal(base_size = 12)
 ggsave(file.path(DIR_FIG, "fig11_grf_partial_dependence.png"), p11, width = 9, height = 4.5, dpi = 200)
 
+het_detected <- calib[2, 3] > 2
 writeLines(c("# GRF heterogeneity (appendix)",
   sprintf("- ATT (forest): %.3f (se %.3f)", ate["estimate"], ate["std.err"]),
-  sprintf("- Calibration: mean prediction t=%.2f, differential t=%.2f (differential>2 => real heterogeneity)",
-          calib[1,3], calib[2,3]),
-  "- Framing: conditional-association heterogeneity; feeds S2 targeting and leakage heterogeneity."),
+  sprintf("- Calibration: mean prediction t=%.2f, differential t=%.2f.", calib[1,3], calib[2,3]),
+  sprintf("- **Heterogeneity %s**: the differential-forest-prediction calibration coefficient is %s 2, so the forest does **not** give statistical evidence of treatment-effect heterogeneity. Subgroup CATE differences (and the leakage-by-subgroup contrasts they motivate) are therefore **suggestive only**, not established effect modification.",
+          if (het_detected) "DETECTED" else "NOT detected", if (het_detected) "above" else "below"),
+  "- Framing: conditional-association heterogeneity; treatment non-random."),
   file.path(DIR_REP, "grf_summary.md"))
 cat("GRF OK\n"); print(t19)

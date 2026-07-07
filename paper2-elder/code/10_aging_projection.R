@@ -76,6 +76,36 @@ scen <- rbind(s0row, scen)
 scen[, mean_elder_fgds10 := mean(eld$fgds10) + d_elder_fgds_provisioning]
 wtab(scen, "table17_aging_projection_scenarios.csv")
 
+# --- Monte-Carlo uncertainty band ----------------------------------------------
+# The point projection hides that bA (A-line LA->HDDS levels) and phi1 are
+# estimated. Propagate their sampling uncertainty (parametric bootstrap from the
+# clustered vcov) plus a selective-migration multiplier (migrating elders' true
+# HDDS drop may differ from the cross-sectional mean gap; sweep 0.5-1.5x).
+rmvn <- function(mu, Sig, n) {
+  L <- tryCatch(chol(Sig), error = function(e) chol(Sig + diag(1e-8, nrow(Sig))))
+  matrix(rnorm(n * length(mu)), n) %*% L + matrix(mu, n, length(mu), byrow = TRUE)
+}
+set.seed(2035)
+ND <- 2000
+bA_mu <- coef(mA); bA_dr <- rmvn(bA_mu, vcov(mA), ND); colnames(bA_dr) <- names(bA_mu)
+phi_mu <- unname(coef(mP)[1]); phi_se <- sqrt(vcov(mP)[1, 1])
+phi_dr <- rnorm(ND, phi_mu, phi_se)
+base_hdds <- mean(hh[living_arrangement == "cohabit_nonelder", hdds12], na.rm = TRUE)
+mc <- rbindlist(lapply(c(4, 6, 8), function(k) {
+  s1 <- shift_dist(s0, k); ds <- s1 - as.numeric(s0)
+  draws <- sapply(seq_len(ND), function(i) {
+    lvl <- sapply(LA_LEVELS, function(la) base_hdds + (if (la == "cohabit_nonelder") 0 else bA_dr[i, paste0("LA", la)]))
+    dHDDS_i <- sum(ds * lvl)
+    mig <- runif(1, 0.5, 1.5)               # selective-migration multiplier
+    phi_dr[i] * dHDDS_i * mig
+  })
+  data.table(k_pp_decade = k,
+             d_elder_fgds_med = median(draws),
+             lo95 = quantile(draws, .025), hi95 = quantile(draws, .975),
+             p_worse_than_zero = mean(draws < 0))
+}))
+wtab(mc, "table17b_projection_montecarlo.csv")
+
 # --- fig10: paths for k = 6 -----------------------------------------------------
 k6 <- scen[k_pp_decade == 6 | scenario == "S0 current"]
 m0 <- mean(eld$fgds10)
