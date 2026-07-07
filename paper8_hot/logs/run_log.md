@@ -39,3 +39,6 @@
 14:37:38 05b: done 
 14:37:43 05c: permutation x499 ... 
 14:53:43 05c: done 
+15:57:09 05a: frame ready 17354264 rows, 12 cols 
+15:58:10 05a: trip done 
+15:59:10 05a: done 
