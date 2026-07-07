@@ -69,3 +69,148 @@ Second, the direction of transition matters more than its existence, and dairy i
 Third, gradualism is cheap. The concavity of transition returns—55–65% of dividends at 50% depth, median 65% across 21 indicators—aligns the political economy of dietary change with its environmental economics. Dietary habits are culturally embedded and policy levers are soft²³,²⁹; a benchmark that demands halving pork consumption within a generation invites non-compliance, whereas a moderate pathway framed as "direction plus pace" captures most benefits while leaving supply chains, farm livelihoods and trade partners time to adjust. This finding extends the bundled-measures logic of recent China food-system assessments¹⁹,²⁰ to the temporal dimension, and it speaks to the observation that national food-system transformation pathways are typically strongest on production and weakest on consumption²⁹: a moderate demand-side pathway is the component such national strategies most tractably add. The distributional corollary is that China's dietary policy is de facto foreign agricultural policy—Brazilian soy growers, US hog producers and New Zealand dairy exporters hold multi-billion-dollar exposures to the Chinese Dietary Guidelines—arguing for embedding dietary-transition scenarios in agricultural trade diplomacy and for anticipatory adjustment support in exporter regions.
 
 Limitations bound these conclusions. CASM covers primary and first-stage processed commodities: highly processed foods, sweets and sugar-sweetened beverages—rising with income and urbanisation—are represented only through the sugar and oil channels, so our nutrition results likely understate the unhealthy tail of PTS; the world model omits sheep meat, eggs, aquatic products and horticulture, so the HDS aquatic channel's global effects are uncounted (making our global estimates conservative for water and feed markets). Footprint coefficients are held at 2023 levels to isolate the diet signal—supply-side technical change would scale, but not redirect, the results—and the Mekonnen–Hoekstra water coefficients (1996–2005) predate two decades of Chinese irrigation-efficiency gains, so China's blue-water level should be read as an upper bound. Behavioural change is imposed through preference shifters rather than derived from a policy module, and results are national averages without income-group or regional disaggregation. None of these caveats touches the central asymmetry: the environmental consequences of what China eats in 2050 will materialise mostly outside China, and a moderate, policy-guided transition captures most of what full convergence promises.
+
+## Methods
+
+### The China Agricultural Sector Model (CASM)
+
+CASM v2.2.7 is a recursive-dynamic, multi-market partial-equilibrium model of China's agricultural sector maintained at the Institute of Agricultural Economics and Development, Chinese Academy of Agricultural Sciences. It covers 37 crop, livestock and processed commodities and solves, for each year from the 2023/2024 base to 2050, a mixed-complementarity equilibrium in which domestic supply, demand components and trade clear every commodity market simultaneously. On the supply side, crop production is the product of sown area and yield, with area responding to lagged own- and cross-prices through partial-adjustment acreage equations and yield following exogenous technical progress with price responsiveness; livestock output responds to output prices and feed costs through supply elasticities and explicit feed-conversion linkages to the feed-grain and protein-meal markets. On the demand side, total domestic use is disaggregated into food, feed, processing, crushing, seed, waste and stock demand. Food demand is modelled for four household groups—urban and rural, each split into at-home and away-from-home consumption—so that out-of-home consumption, which rises with income and urbanisation and biases household-survey-based assessments when omitted¹⁷, is endogenous. The base-year food-consumption database reconciles National Bureau of Statistics household-survey quantities with supply-utilisation accounts, allocating the survey-unrecorded residual to away-from-home and processing uses; the reconciliation procedure, elasticity matrices and all base-year balances are published in the open model repository (Code availability). Domestic and border prices are linked through ad valorem tariff-and-margin wedges and the exchange rate, and net trade adjusts endogenously to clear each market, which is how demand-side scenario shocks are transmitted to (and from) world markets.
+
+The full algebraic specification, parameter files and a cell-level validation against the original GAMS implementation are provided in the repository. The Python re-implementation used here reproduces the GAMS solution to machine precision (median relative deviation ≤ 1.4 × 10⁻¹⁶ across ~1,076 compared cells per scenario for all 19 scenarios; Extended Data Fig. 4). Two legacy artefacts of the original implementation were repaired and documented rather than inherited: (i) nutrition outputs for BS/PTS in one legacy workbook derived from an outdated energy-coefficient table (for example, BS 2050 dietary energy of 3,070 kcal instead of the internally consistent 3,036 kcal); all nutrition values reported here use the single, current coefficient set; (ii) the legacy emission-factor tables did not define the ageing scenarios (A6/B6/C6), leaving their emissions unreported; the footprint module below applies scenario-invariant coefficients and therefore covers all 19 scenarios.
+
+### CASM-World and the transmission experiment
+
+CASM-World couples the China model to a 13-region, 31-commodity world agricultural market model in the tradition of the ERS/Penn State (PEATSim-type) partial-equilibrium framework³⁰, calibrated to a 2023 base year and solved annually to 2050 with world market-clearing residuals ≤ 7 × 10⁻⁹. Regions are the United States, EU-15, Brazil, Argentina, Australia, New Zealand, Canada, Japan, South Korea, India, Mexico, China and an aggregate rest-of-world; commodities span the staple grains, oilseeds and their oil/meal products, sugar, and the pork, beef, poultry and dairy complexes (butter, cheese, whole and skim milk powder, fluid-equivalent raw milk). China's dietary scenarios enter as annual food-demand preference shifters (constructed to be isomorphic to the domestic CASM demand-intercept shifts) from 2025 onward, superimposed on income-driven baseline growth in all regions; each region's supply, demand and net trade then adjust through world prices. Sheep meat, eggs, aquatic products, fruit and vegetables lie outside the world model's commodity space, so the global transmission of the HDS aquatic-product expansion is not captured; reported global effects are conservative in this respect. The commodity mapping, shifter construction and solver diagnostics are documented in the repository.
+
+### Scenario design
+
+Nineteen scenarios combine three dietary pathways plus a baseline with six demographic variants (Table 1). The **baseline (BS)** holds income elasticities of food demand fixed at calibrated 2023 levels, so per-capita demand evolves only with income and demography. The **preference-driven transition (PTS; scenarios A1–A6)** lets income elasticities evolve with per-capita GDP by linear interpolation across the income tiers estimated from cross-country demand regularities²⁶,²⁷, capturing staple saturation and continued animal-food upgrading. The **healthy-diet scenario (HDS; B1–B6)** converges per-capita consumption of each food group from its 2023 value to the composite healthy-diet benchmark (below) by 2050 along a constant-growth-rate path, q(t) = q(2023)·(1+r)^(t−2023) with r = (target/q(2023))^(1/27) − 1. The **moderate transition (MTS; C1–C6)** sets each commodity's annual per-capita demand growth to the arithmetic mean of the corresponding PTS and HDS growth rates, i.e. a 50% transition depth. Within each pathway, variant 1 is medium population with medium urbanisation; variants 2/3 are the UN World Population Prospects 2024 high (1.420 billion in 2035; 1.389 billion in 2050) and low (1.345 billion; 1.200 billion) population variants³¹; variants 4/5 are high and low urbanisation paths around the medium anchors of 75.4% (2035) and 81.4% (2050); and variant 6 is the ageing adjustment, which (i) converts head-count population into adult-equivalent consumers using age–sex dietary-energy requirement weights (1.4097 billion equivalents in 2023, 1.3970 billion in 2035, 1.2697 billion in 2050) and (ii) adds an ageing term to the income elasticities (−0.0314 per percentage-point rise in the old-age share). The medium population projection—1.4097 billion (2023), 1.3673 billion (2035), 1.2586 billion (2050)—is from the Institute of Quantitative and Technical Economics, Chinese Academy of Social Sciences; high/low variants are UN WPP 2024³¹. Aggregate demand is Q(s,c,t) = q(pathway,c,t) × POP(variant,t), with meat totals decomposed into pork, beef, mutton and poultry using pathway-specific internal shares. The full 19-scenario matrix, per-capita paths, elasticity tables and macro assumptions are released as machine-readable files (Supplementary Table 1; Code availability).
+
+### The composite healthy-diet benchmark
+
+The 2050 healthy-diet target is constructed from five dietary reference systems: the Dietary Guidelines for Chinese Residents (2022)³², the EAT-Lancet planetary-health reference diet¹⁴, Taiwan's food-based dietary guidelines, Japan's official dietary guidance, and the Mediterranean diet as operationalised in public-health guidance. For each of 11 food groups, each system's recommended intake range (g per person per day) is harmonised to common food-group definitions; the composite band is the cross-system minimum and maximum of the systems' midpoints, and the composite target is the midpoint of that band (a Korean guideline was excluded because it specifies servings without gram weights). Recommended *intake* is converted to *purchase* quantities by dividing by food-group edible shares and scaling to kg per year, giving, for example, composite targets of 106.9 kg cereals, 109.5 kg dairy, 37.8 kg meat and 75.0 kg aquatic products per person per year; the full benchmark table, edible shares and implied annual growth rates from the 2023 CASM base are given in Supplementary Table 2. HDS converges to the composite target; the composite band appears in Fig. 1 as the benchmark envelope.
+
+### Nutrition accounting
+
+Food quantities are converted to nutrients as N(s,t) = Σ_g Q_g(s,t) × e_g × n_g, where e_g is the edible share and n_g the energy/protein/fat/carbohydrate content per 100 g of food group g, taken from the China Food Composition Tables³³ mapped to the 21 CASM food commodities (coefficient file in the repository). Macronutrient energy shares use 4/9/4 kcal g⁻¹ for protein/fat/carbohydrate. Guideline-comparison indicators (red-meat grams per day, fat-energy share, etc.) are computed on edible-intake basis.
+
+### Environmental footprint accounting
+
+Four footprints—GHG, blue water, reactive nitrogen and land—are computed from an internationally sourced coefficient library in which every value is transcribed from a cited primary source and mapped to CASM and CASM-World commodity codes; unsourced cells are left empty and flagged, never imputed. **Carbon (main accounting):** FAOSTAT emission-intensities (farm-gate/on-farm boundary; reference year 2023)³⁴, China-specific where published and world values elsewhere. These validate the model's legacy China livestock factors item-by-item (for example pig meat 0.96 versus 0.92 t CO₂e t⁻¹; cattle meat 15.19 versus 15.82), giving the previously uncited domestic factors a traceable international anchor. **Carbon (sensitivity S1):** Poore & Nemecek cradle-to-retail life-cycle coefficients¹², which include feed, land-use change, processing, transport, packaging and retail and are roughly an order of magnitude larger for monogastrics; farm-gate and life-cycle boundaries are reported separately and never blended (Extended Data Fig. 2). **Blue water:** Mekonnen & Hoekstra crop and farm-animal water footprints (China columns where available)³⁵,³⁶, with green, blue and grey components kept separate and only blue reported in headline results. **Reactive nitrogen:** crop N-fertiliser application rates by crop and country³⁷ combined with IPCC 2019 livestock N-excretion defaults³⁸ and food-chain virtual-N/supply-chain factors³⁹,⁴⁰. **Land:** Poore & Nemecek land occupation (m²·yr kg⁻¹, arable plus pasture)¹² for diet land occupation, alongside the model's own physical harvested cropland—the conservative, model-internal metric behind the 21.7 Mha figure. Coefficients are held at 2023 values across scenarios and years to isolate the diet-composition and trade signal; the decomposition against scenario-specific technology assumptions is reported in Results. China footprints are computed on both production and consumption (production + imports − exports) boundaries; consumption-boundary results are headline.
+
+### The global net-effect (trade–emissions consistency) framework
+
+To answer whether China's dietary transition reduces global environmental pressure or merely displaces it, we compute for every scenario s and indicator k:
+
+ΔGlobal_k(s) = Σ_r Σ_c f_{k,r,c} × [X_{r,c}(s) − X_{r,c}(BS)],
+
+where X_{r,c} is CASM-World equilibrium production of commodity c in region r in 2050 and f_{k,r,c} the farm-gate footprint coefficient. The global net effect therefore equals China's domestic change *plus* the trade-induced production adjustment of all partners, evaluated under a single coefficient boundary—eliminating the inconsistency of applying domestic emission factors to a trading economy. Splitting the sum into China and ex-China terms yields the benefit-incidence shares (77–96% ex-China under HDS) in Fig. 4. Because region-specific coefficients are unavailable for some commodity–region pairs, world-mean coefficients are used there; this affects levels more than scenario differences, which are driven by quantity changes.
+
+### Validation and reproducibility
+
+The Python CASM reproduces the original GAMS results to machine precision across all 19 scenarios and all reported variables (median relative deviation ≤ 1.4 × 10⁻¹⁶; worst manuscript-table deviation 1.8 × 10⁻³, attributable to 2-decimal rounding in the manuscript tables), and CASM-World converges with market-clearing residuals ≤ 7 × 10⁻⁹ in every year of every scenario (Extended Data Fig. 4). All input workbooks, scenario files, coefficient libraries with citations, model code, solved results (long-format CSV) and the validation report are openly available (Code availability), permitting cell-level replication of every number in this paper.
+
+### Reporting summary
+
+Further information on research design is available in the Nature Portfolio Reporting Summary linked to this article.
+
+## Data availability
+
+All scenario definitions, macroeconomic and demographic assumptions, the healthy-diet benchmark, nutrient and environmental-footprint coefficient libraries (with per-cell source citations), and complete model outputs (`results_long.csv`, world and footprint result files) are available at https://github.com/xinru-han/paper (folder `food_demand_2050`). Primary external data are from FAOSTAT (emission intensities), published water/nitrogen/land coefficient sources cited in Methods, the UN World Population Prospects 2024, and the China Food Composition Tables.
+
+## Code availability
+
+The full Python source code of CASM v2.2.7, CASM-World, the footprint and post-analysis modules, figure-generation scripts and the GAMS-comparison validation suite is openly available at https://github.com/xinru-han/paper (folder `food_demand_2050`).
+
+## Acknowledgements
+
+We thank colleagues at the Institute of Agricultural Economics and Development, CAAS, for comments on earlier versions.
+
+## Author contributions
+
+S.H. and X.H. designed the study; X.H. developed the models and performed the simulations; S.H. and X.H. analysed results and wrote the paper.
+
+## Competing interests
+
+The authors declare no competing interests.
+
+---
+
+## Table 1 | Scenario design
+
+| Code | Dietary pathway | Population | Urbanisation | Ageing adjustment |
+|---|---|---|---|---|
+| BS | Baseline: income elasticities fixed at 2023 levels | Medium | Medium | No |
+| A1 / B1 / C1 | PTS / HDS / MTS | Medium | Medium | No |
+| A2 / B2 / C2 | PTS / HDS / MTS | High (UN WPP 2024) | Medium | No |
+| A3 / B3 / C3 | PTS / HDS / MTS | Low (UN WPP 2024) | Medium | No |
+| A4 / B4 / C4 | PTS / HDS / MTS | Medium | High | No |
+| A5 / B5 / C5 | PTS / HDS / MTS | Medium | Low | No |
+| A6 / B6 / C6 | PTS / HDS / MTS | Adult-equivalent | Medium | Yes (elasticity −0.0314 per pp old-age share) |
+
+PTS, preference-driven transition (income elasticities evolve with per-capita GDP); HDS, healthy-diet scenario (convergence to the composite guideline benchmark by 2050); MTS, moderate transition (per-capita demand growth = arithmetic mean of PTS and HDS). Medium population: 1.367 billion (2035), 1.259 billion (2050); high: 1.420/1.389 billion; low: 1.345/1.200 billion. Medium urbanisation: 75.4% (2035), 81.4% (2050). Adult-equivalent consumers: 1.397 billion (2035), 1.270 billion (2050). Full annual paths in Supplementary Table 1.
+
+---
+
+## Figure legends
+
+**Fig. 1 | Modelling framework and three dietary pathways for China to 2050.** (fig1_scenarios) **a**, The coupled CASM (China, 37 commodities, four household groups including out-of-home consumption) and CASM-World (13 regions × 31 commodities) framework with the four-footprint coefficient library and the global net-effect accounting loop. **b**, Per-capita consumption paths, 2023–2050, for 14 food commodities under BS, PTS (A1), MTS (C1) and HDS (B1), shown against the composite healthy-diet benchmark band derived from five dietary-guideline systems (shaded). HDS inverts, rather than shrinks, the animal-food mix: red meat contracts sharply while dairy, aquatic products and poultry expand.
+
+**Fig. 2 | China's dietary transition across nutrition and four environmental dimensions.** (fig2_china_multidim) **a**, Dietary energy and macronutrient energy shares in 2050 by pathway (BS 3,036 kcal; PTS 3,091; MTS 2,572; HDS 2,258 kcal per capita per day; fat share 39.7/41.7/36.7/33.0%). **b**, 2050 footprints at fixed 2023 coefficients (farm-gate carbon, blue water, reactive nitrogen, land occupation), all 19 scenarios, relative to BS: the diet-composition effect on China's own footprint is bounded at roughly ±10%, and only MTS improves all four dimensions simultaneously. **c**, Decomposition of the conventional headline emission reduction (HDS −31% versus BS) into diet-composition and supply-side technology components. Error bands: demographic variants within each pathway.
+
+**Fig. 3 | Global transmission of China's dietary transition (HDS versus BS, 2050).** (fig3_global_transmission) **a**, World price changes: pork −56%, soybean oil −48%, beef −40%, rice −37%, soybeans −35%, maize −33%, wheat −32%; whole milk powder +20% is the lone counter-cyclical channel. **b**, Map of regional supply responses: Brazil soybeans −11.7%, Argentina −14.0%, US soybeans −7.1%, US pork −46%, Brazil/Argentina/Australia beef −21 to −22%, EU beef +6.8%, EU/US whole-milk-powder production +33%/+41%, New Zealand powder exports +20%. **c**, Change in harvested cropland by region: −21.7 Mha outside China (rest-of-world −9.1, India −4.3, South America −3.6 Mha); under PTS ex-China cropland instead expands (+0.5 Mha).
+
+**Fig. 4 | The global net environmental effect and the economics of a moderate transition.** (fig4_global_net_effect) **a**, Bridge decomposition of 2050 global changes under HDS: carbon −495 Mt CO₂e (−9.3%), blue water −89 km³ (−7.1%), reactive nitrogen −10.4 Mt (−7.2%), land occupation −556 Mha (−8.8%), split into China and ex-China components; 77–96% of every benefit accrues outside China. **b**, Dividend realisation under MTS (50% transition depth) across health, world-market and global environmental indicators: median 65%, most indicators 55–70%—transition returns are concave in transition depth.
+
+**Extended Data Fig. 1 | Full 19-scenario matrix.** (ed1_scenario_matrix) 2050 outcomes for all scenarios across demand, nutrition and footprint indicators; demographic variants rescale, but never reorder, the dietary pathways.
+
+**Extended Data Fig. 2 | Carbon-boundary sensitivity.** (ed2_carbon_sensitivity) China 2050 diet carbon under farm-gate (FAOSTAT; BS 652 Mt CO₂e) versus cradle-to-retail life-cycle (Poore & Nemecek; BS 7,607 Mt) boundaries; boundaries are reported separately, never blended.
+
+**Extended Data Fig. 3 | Self-sufficiency reconfiguration.** (ed3_ssr_change) 2050 self-sufficiency ratios by commodity and scenario: staples move to net-export pressure under MTS/HDS; soybeans stay near 0.27 in all pathways; dairy falls from 0.75 (BS) to 0.37 (HDS)—the counter-cyclical import channel.
+
+**Extended Data Fig. 4 | Model validation.** (ed4_validation) Cell-level agreement of the open-source Python CASM with the original GAMS implementation (median relative deviation ≤ 1.4 × 10⁻¹⁶ across all 19 scenarios) and CASM-World market-clearing residuals (≤ 7 × 10⁻⁹ in all years and scenarios).
+
+---
+
+## References
+
+1. Popkin, B. M., Keyou, G., Zhai, F., Guo, X., Ma, H. & Zohoori, N. The nutrition transition in China: a cross-sectional analysis. *Eur. J. Clin. Nutr.* **47**, 333–346 (1993).
+2. Du, S., Lu, B., Zhai, F. & Popkin, B. M. A new stage of the nutrition transition in China. *Public Health Nutr.* **5**, 169–174 (2002).
+3. Zhu, Z. et al. Trends and disparities of energy intake and macronutrient composition in China: a series of national surveys, 1982–2012. *Nutrients* **12**, 2168 (2020).
+4. He, Y. et al. The dietary transition and its association with cardiometabolic mortality among Chinese adults, 1982–2012: a cross-sectional population-based study. *Lancet Diabetes Endocrinol.* **7**, 540–548 (2019).
+5. Du, S. F., Wang, H. J., Zhang, B., Zhai, F. Y. & Popkin, B. M. China in the period of transition from scarcity and extensive undernutrition to emerging nutrition-related non-communicable diseases, 1949–1992. *Obes. Rev.* **15**(S1), 8–15 (2014).
+6. Li, M. & Shi, Z. Dietary pattern during 1991–2011 and its association with cardio-metabolic risks in Chinese adults: the China Health and Nutrition Survey. *Nutrients* **9**, 1218 (2017).
+7. Popkin, B. M., Corvalan, C. & Grummer-Strawn, L. M. Dynamics of the double burden of malnutrition and the changing nutrition reality. *Lancet* **395**, 65–74 (2020).
+8. Fan, S. Economics in food systems transformation. *Nat. Food* **2**, 218–219 (2021).
+9. Long, W., Meng, T., Tian, X. & Fan, S. China's food security and food system governance: recent developments and global implications. *Food Policy* **137**, 103000 (2025).
+10. Godfray, H. C. J. et al. Food security: the challenge of feeding 9 billion people. *Science* **327**, 812–818 (2010).
+11. Tilman, D. & Clark, M. Global diets link environmental sustainability and human health. *Nature* **515**, 518–522 (2014).
+12. Poore, J. & Nemecek, T. Reducing food's environmental impacts through producers and consumers. *Science* **360**, 987–992 (2018).
+13. Springmann, M. et al. Options for keeping the food system within environmental limits. *Nature* **562**, 519–525 (2018).
+14. Willett, W. et al. Food in the Anthropocene: the EAT-Lancet Commission on healthy diets from sustainable food systems. *Lancet* **393**, 447–492 (2019).
+15. He, P., Baiocchi, G., Hubacek, K., Feng, K. & Yu, Y. The environmental impacts of rapidly changing diets and their nutritional quality in China. *Nat. Sustain.* **1**, 122–127 (2018).
+16. He, P., Baiocchi, G., Feng, K., Hubacek, K. & Yu, Y. Environmental impacts of dietary quality improvement in China. *J. Environ. Manage.* **240**, 518–526 (2019).
+17. Sheng, F., Wang, J., Chen, K. Z., Fan, S. & Gao, H. Changing Chinese diets to achieve a win–win solution for health and the environment. *China World Econ.* **29**, 34–52 (2021).
+18. Cai, H. et al. Aligning health, environment, and cost aspects of diets: identifying sustainable dietary patterns in China. *Environ. Impact Assess. Rev.* **106**, 107531 (2024).
+19. Wang, X., Bodirsky, B. L., Müller, C., Chen, K. Z. & Yuan, C. The triple benefits of slimming and greening the Chinese food system. *Nat. Food* **3**, 686–693 (2022).
+20. Wang, X. et al. Bundled measures for China's food system transformation reveal social and environmental co-benefits. *Nat. Food* **6**, 72–84 (2025).
+21. Liu, J. et al. Framing sustainability in a telecoupled world. *Ecol. Soc.* **18**(2), 26 (2013).
+22. Fuchs, R. et al. Why the US–China trade war spells disaster for the Amazon. *Nature* **567**, 451–454 (2019).
+23. Ammann, J., Arbenz, A., Mack, G., Nemecek, T. & El Benni, N. A review on policy instruments for sustainable food consumption. *Sustain. Prod. Consum.* **36**, 338–353 (2023).
+24. Chen, K. et al. Population aging mitigates food consumption-induced non-CO₂ GHG emissions in China. *npj Clim. Atmos. Sci.* **8**, 145 (2025).
+25. Liu, W., Zhang, G. & Zheng, X. Future foodscape: impact of population decline and aging on China's dietary carbon footprint and food security. *Glob. Food Secur.* **46**, 100875 (2025).
+26. Gouel, C. & Guimbard, H. Nutrition transition and the structure of global food demand. *Am. J. Agric. Econ.* **101**, 383–403 (2019).
+27. Roche, M., Comstock, A. & Ecker, O. The future of food demand: a global meta-analysis and projections of income and price elasticities. IFPRI Discussion Paper 2361 (IFPRI, 2025).
+28. Bodirsky, B. L. et al. A food system transformation pathway reconciles 1.5 °C global warming with improved health, environment and social inclusion. *Nat. Food* **6**, 1133–1152 (2025).
+29. Candel, J., Sietsma, A. J. & Biesbroek, R. National pathways for food systems transformation are limited in scope and degree of ambition. *Nat. Food* **6**, 809–816 (2025).
+30. Stout, J. & Abler, D. *ERS/Penn State Trade Model Documentation* (Pennsylvania State Univ./USDA Economic Research Service, 2004).
+31. United Nations, Department of Economic and Social Affairs, Population Division. *World Population Prospects 2024* (United Nations, 2024).
+32. Chinese Nutrition Society. *Dietary Guidelines for Chinese Residents (2022)* (People's Medical Publishing House, 2022).
+33. Yang, Y., Wang, G. & Pan, X. (eds) *China Food Composition Tables*, 6th edn (Peking Univ. Medical Press, 2018).
+34. FAO. FAOSTAT Emissions Intensities domain (reference year 2023). https://www.fao.org/faostat (accessed 2026).
+35. Mekonnen, M. M. & Hoekstra, A. Y. The green, blue and grey water footprint of crops and derived crop products. *Hydrol. Earth Syst. Sci.* **15**, 1577–1600 (2011).
+36. Mekonnen, M. M. & Hoekstra, A. Y. A global assessment of the water footprint of farm animal products. *Ecosystems* **15**, 401–415 (2012).
+37. Ludemann, C. I., Gruère, A., Heffer, P. & Dobermann, A. Global data on fertilizer use by crop and by country. *Sci. Data* **9**, 501 (2022).
+38. IPCC. *2019 Refinement to the 2006 IPCC Guidelines for National Greenhouse Gas Inventories* Vol. 4, Ch. 10 (IPCC, 2019).
+39. Leach, A. M. et al. A nitrogen footprint model to help consumers understand their role in nitrogen losses to the environment. *Environ. Dev.* **1**, 40–66 (2012).
+40. Uwizeye, A. et al. Nitrogen emissions along global livestock supply chains. *Nat. Food* **1**, 437–446 (2020).

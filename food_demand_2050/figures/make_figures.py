@@ -414,7 +414,7 @@ def fig4():
               ("Global reactive N (traded goods)", "Global: reactive N", OI["green"]),
               ("Rest-of-world harvested area", "Outside China: cropland release", OI["yellow"])]
     ax.plot([0, 100], [0, 100], ls="--", lw=0.8, color="0.6", zorder=1)
-    ax.text(72, 62, "proportional\nbenefit", fontsize=6, color="0.5", rotation=38)
+    ax.text(66, 54, "proportional\nbenefit", fontsize=6, color="0.5", rotation=40)
     for metric, lab, c in curves:
         r = MTS_EFF[MTS_EFF.metric == metric]
         if not len(r) or not np.isfinite(r.MTS_realisation_pct.iloc[0]):
@@ -427,8 +427,8 @@ def fig4():
     ax.set_xlabel("Transition depth, PTS → HDS (%)")
     ax.set_ylabel("Share of HDS dividend realised (%)")
     ax.set_ylim(0, 102)
-    ax.legend(frameon=False, fontsize=5.4, loc="upper left", handlelength=1.2,
-              borderaxespad=0.1, labelspacing=0.35)
+    ax.legend(frameon=False, fontsize=5.4, loc="lower right", handlelength=1.2,
+              borderaxespad=0.2, labelspacing=0.35)
     ax.set_title("Half the transition, ~60–70% of the dividend", fontsize=7.5)
     panel_label(ax, "b", dx=-0.14, dy=1.14)
 
