@@ -95,6 +95,31 @@ t10b <- rbindlist(lapply(names(r6), function(nm) {
 }), fill = TRUE)
 wtab(t10b, "table10b_bline_r6_robustness.csv")
 
+# ---- meal-frequency channel (reproducible source for the RESULTS narrative) --
+# Previously the "-0.32 fewer meals / 31.9% vs 22.9%" figures were stated in the
+# results text without a generating table. Estimate them explicitly here.
+bl[, n_meals_num := num(n_meals)]
+m_meals <- feols(n_meals_num ~ elder + female + main_cook | hh_id, data = bl, cluster = ~xzc12)
+mf <- tidy_fe(m_meals, "elder")[, spec := "n_meals ~ elder | hh_id"]
+share_lt3 <- bl[!is.na(n_meals_num), .(pct_lt3_meals = 100*mean(n_meals_num < 3),
+                                       mean_meals = mean(n_meals_num), n = .N),
+                by = .(group = fifelse(elder == 1, "elder", "non_elder_adult"))]
+wtab(mf, "table10d_meal_frequency_gap.csv")
+wtab(share_lt3, "table10d_meal_frequency_shares.csv")
+
+# ---- minimum detectable effect (MDE) for the imprecise interaction ------------
+# So "not significant" is not read as "precisely zero": report the 95% CI and the
+# 80%-power MDE (~2.8 x se) for theta and delta.
+mm0 <- fit_b1(bl, "fgds10"); ct0 <- coeftable(mm0)
+mde <- data.table(
+  term = c("elder", "elder:threegen"),
+  est  = ct0[c("elder","elder:threegen"), "Estimate"],
+  se   = ct0[c("elder","elder:threegen"), "Std. Error"],
+  ci_lo = ct0[c("elder","elder:threegen"), "Estimate"] - 1.96*ct0[c("elder","elder:threegen"), "Std. Error"],
+  ci_hi = ct0[c("elder","elder:threegen"), "Estimate"] + 1.96*ct0[c("elder","elder:threegen"), "Std. Error"],
+  mde_80 = 2.8 * ct0[c("elder","elder:threegen"), "Std. Error"])
+wtab(mde, "table10e_mde_power.csv")
+
 # ---- elder-cook moderation (mechanism §8.3) ----------------------------------
 m_cook <- feols(fgds10 ~ elder + elder:threegen + elder:main_cook + female + main_cook | hh_id,
                 data = bl, cluster = ~xzc12)

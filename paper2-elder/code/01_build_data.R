@@ -191,15 +191,26 @@ for (v in paste0("HB",1:9)) hh2[, (v) := num(get(v))]
 elder_hh <- hh2[n_elderly >= 1]
 rep <- c(rep, sprintf("- elder households (>=1 member age %d+): %d of %d", ELDER_AGE, nrow(elder_hh), nrow(hh2)))
 
-# privacy: assert no name/coordinate columns in outputs
-stopifnot(!any(grepl("huName|vilLat|vilLon|phone", names(elder_hh))))
+# privacy: assert no name / coordinate / phone columns leak into any export.
+# Case-insensitive and broadened: the raw tables carry mixed-case identifiers
+# (huName, vilLat/vilLon, and *Phone columns), so a lowercase-only pattern missed
+# the phone columns. Reused for every write below.
+ID_PAT <- "name|lat|lon|phone|地址|身份|姓名|经度|纬度"
+assert_no_pii <- function(dt, label) {
+  hit <- grep(ID_PAT, names(dt), ignore.case = TRUE, value = TRUE)
+  if (length(hit)) stop(sprintf("PII leak in %s: %s", label, paste(hit, collapse = ", ")))
+  invisible(TRUE)
+}
+assert_no_pii(elder_hh, "elder_hh")
 drop_raw <- grep("^family[123]_", names(elder_hh), value = TRUE)
 elder_out <- elder_hh[, setdiff(names(elder_hh), drop_raw), with = FALSE]
+assert_no_pii(elder_out, "hh_analysis.csv")
 fwrite(elder_out, file.path(DIR_DERIV, "hh_analysis.csv"))
 fwrite(hh2[, setdiff(names(hh2), drop_raw), with = FALSE][, .(nhCode, data_year, xzc12, provn, countyn,
        hdds12, hh_size_rec, n_elderly, n_children, n_nonelder_adult, living_arrangement,
        ln_income, market_access_index, retail_thickness_index)],
        file.path(DIR_DERIV, "hh_all_min.csv"))
+assert_no_pii(mem, "member_long.csv")
 fwrite(mem, file.path(DIR_DERIV, "member_long.csv"))
 
 # ---------------------------------------------------------------------------

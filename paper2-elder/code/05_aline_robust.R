@@ -68,7 +68,11 @@ att <- mean(att_scores)
 set.seed(1); B <- 500
 vils <- unique(d$xzc12)
 boot_att <- replicate(B, {
-  bs <- d[xzc12 %in% sample(vils, length(vils), replace = TRUE)]
+  # proper with-replacement cluster (village) resampling: replicate each village
+  # as many times as it is drawn, not a set-membership subsample (%in% would keep
+  # each village at most once and understate the bootstrap variance).
+  sv <- table(sample(vils, length(vils), replace = TRUE))
+  bs <- rbindlist(lapply(names(sv), function(v) d[xzc12 == v][rep(1:.N, sv[[v]])]), fill = TRUE)
   # recompute scores with fixed nuisance fits (score bootstrap approximation)
   m0b <- predict(mu0, newdata = bs)
   with(bs, mean((treat * (hdds12 - m0b) - (1 - treat) * ps/(1 - ps) * (hdds12 - m0b)) / mean(treat)))
@@ -100,7 +104,8 @@ perm <- replicate(1000, {
   dp <- copy(d)[, treat := sample(treat), by = xzc12]
   coef(feols(as.formula(paste("hdds12 ~ treat +", paste(XV, collapse = "+"), "| county_year")), data = dp))["treat"]
 })
-p_perm <- mean(abs(perm) >= abs(obs))
+# unbiased Monte-Carlo permutation p-value: (1 + #{|perm| >= |obs|}) / (1 + B)
+p_perm <- (1 + sum(abs(perm) >= abs(obs))) / (1 + length(perm))
 p5 <- ggplot(data.table(perm = perm), aes(perm)) +
   geom_histogram(bins = 50, fill = "steelblue", alpha = .7) +
   geom_vline(xintercept = obs, colour = "firebrick", linewidth = 1) +

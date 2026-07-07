@@ -59,7 +59,17 @@ if (!is.null(t10)) {
             fnum(g("dbi16_variety_subscore","elder:threegen")$est), stars(g("dbi16_variety_subscore","elder:threegen")$p),
             fnum(rw[outcome=="dbi16_variety_subscore", p_rw_interaction])),
     "- Presence/absence outcomes (any animal-source, any dairy/egg/bean — unit-robust) show **no elder gap**: the deficit is in variety breadth, not in being served protein foods at all.",
-    "- Meal-frequency channel: within the same household elders record **0.32 fewer meals*** (48h; 31.9% of elders <3 meals vs 22.9% of non-elder adults); restricting to members with >=3 recorded meals removes the FGDS gap. The elder deficit thus operates substantially through **skipped/omitted eating occasions** (real meal-skipping and/or proxy under-reporting; R6 discussion).", "")
+    {mf <- rd("table10d_meal_frequency_gap.csv"); sh <- rd("table10d_meal_frequency_shares.csv")
+     if (!is.null(mf) && !is.null(sh)) {
+       eg <- mf[term == "elder"][1]; se <- sh[group=="elder", pct_lt3_meals][1]; sa <- sh[group=="non_elder_adult", pct_lt3_meals][1]
+       sprintf("- Meal-frequency channel (table10d): within the same household elders record **%s%s fewer recorded meals** (se %s; 48h; %s%% of elders <3 recorded meals vs %s%% of non-elder adults); restricting to members with >=3 recorded meals removes the FGDS gap. The gap thus operates through **fewer recorded eating occasions** — which may be genuine meal-skipping and/or proxy under-recording of elders' meals; the data carry no respondent field to separate the two, so we do not claim behavioural skipping (measurement caveat, R6).",
+               fnum(eg$est), stars(eg$p), fnum(eg$se), fnum(se,1), fnum(sa,1))
+     } else "- Meal-frequency channel: see `table10d_meal_frequency_*.csv`."},
+    {md <- rd("table10e_mde_power.csv")
+     if (!is.null(md)) {th <- md[term=="elder:threegen"][1]
+       sprintf("- Power on the imprecise interaction (table10e): theta 95%% CI [%s, %s], 80%%-power MDE ~%s FGDS groups; the sample cannot rule out a moderate theta, so 'neither D3 nor D4' means **underpowered to distinguish**, not a precise zero.",
+               fnum(th$ci_lo), fnum(th$ci_hi), fnum(th$mde_80))
+     } else ""}, "")
 }
 
 # ---- pass-through ----
