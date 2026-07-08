@@ -30,6 +30,11 @@ s_tb    <- feols(n_taobao_village ~ post | town_code + year, data = p, cluster =
 print(etable(s_light, s_pop, s_tb, se.below = TRUE,
              headers = c("log灯光","log人口","淘宝村数")))
 
+## ---------- 1b. 镇特定线性趋势（吸收长期分化，应对pre-trend） ----------
+cat("\n---- 表1b 稳健：加镇特定线性趋势 ----\n")
+t_light <- feols(loglight ~ post | town_code[year] + year, data = p, cluster = ~county)
+print(etable(t_light, se.below = TRUE))
+
 ## ---------- 2. Sun-Abraham 事件研究（灯光） ----------
 cat("\n---- 表2 Sun-Abraham 事件研究 (log灯光) ----\n")
 es <- feols(loglight ~ sunab(Gf, year, ref.p = c(-1, .F)) | town_code + year,
@@ -37,12 +42,13 @@ es <- feols(loglight ~ sunab(Gf, year, ref.p = c(-1, .F)) | town_code + year,
 print(es)
 agg <- aggregate(es, "att")
 cat("\n聚合ATT(灯光):\n"); print(agg)
-# 导出事件时点系数供作图
-co <- summary(es, agg = FALSE)$coeftable
-es_dt <- data.table(term = rownames(co), est = co[,1], se = co[,2])
-es_dt <- es_dt[grepl("year::", term)]
-es_dt[, evt := as.integer(gsub(".*year::(-?[0-9]+).*", "\\1", term))]
-fwrite(es_dt[order(evt)], file.path(OUT, "eventstudy_light.csv"))
+# 按事件时间聚合cohort系数（fixest aggregate，模式捕获事件时间）
+es_agg <- aggregate(es, agg = "year::(-?[0-9]+)")
+es_dt <- data.table(term = rownames(es_agg), est = es_agg[,1], se = es_agg[,2])
+es_dt[, evt := as.integer(gsub(".*?(-?[0-9]+).*", "\\1", term))]
+es_dt <- es_dt[!is.na(evt)][order(evt)]
+fwrite(es_dt, file.path(OUT, "eventstudy_light.csv"))
+cat("\n事件时间聚合系数(灯光):\n"); print(es_dt)
 
 ## ---------- 3. 事件研究 人口 & 淘宝村 ----------
 cat("\n---- 表3 事件研究聚合ATT：人口 / 淘宝村 ----\n")
