@@ -26,7 +26,9 @@ c1_gamma_from_a <- function(a, Sbar, K) {
 #   penalty = kappa * sum_i max(eigmax(Gamma + S_iS_i' - diag(S_i)), 0)^2
 # （Terrell 1996 "在每个样本点施加凹性" 的惩罚化实现；kappa 足够大时≈约束估计）
 tl_itsur_c1 <- function(sys, K, Sbar, tol = 1e-9, maxit_sigma = 30,
-                        S_obs = NULL, kappa = 0) {
+                        S_obs = NULL, kappa = 0, a_init = NULL) {
+  # a_init: 可选热启动（下三角 A 自由元）；bootstrap 传全样本点估计的 a，
+  #   优化起点靠近最优 → 大幅减少 optim 迭代（收敛到同一最优，不改结果）。
   N <- K + 1
   J <- sys$J; n <- sys$n_obs
   pn <- sys$pnames
@@ -99,6 +101,7 @@ tl_itsur_c1 <- function(sys, K, Sbar, tol = 1e-9, maxit_sigma = 30,
   e <- eigen(-(Gkk0 + t(Gkk0)) / 2, symmetric = TRUE)
   Pos <- e$vectors %*% diag(pmax(e$values, 1e-6)) %*% t(e$vectors)
   L0 <- t(chol(Pos)); a <- L0[lower.tri(L0, diag = TRUE)]
+  if (!is.null(a_init) && length(a_init) == length(a)) a <- a_init   # 热启动
 
   Sig <- fit0$Sigma
   for (osig in 1:maxit_sigma) {

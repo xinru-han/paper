@@ -49,6 +49,8 @@ fit6 <- function(cr) {
     data.table(crop = cr, f_n = FACTORS6[n], f_m = FACTORS6[m], S_n = Sbar[n],
                eps = el$eps[n, m], morishima = el$morishima[n, m])))))
   fwrite(rows, sprintf("out/robust6f_%s.csv", cr))
+  fwrite(data.table(crop = cr, factor = FACTORS6, lambda_nt = lam, S_mean = Sbar, B = lam / Sbar),
+         sprintf("out/bias6f_%s.csv", cr))   # M7 偏向一致性用
   list(crop = cr, n = nrow(d), n_drop_land = nrow(pan) - nrow(d),
        conc = conc, mono = mono, el = el, Sbar = Sbar, lam = lam, rows = rows)
 }
