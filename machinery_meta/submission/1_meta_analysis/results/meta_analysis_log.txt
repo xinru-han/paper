@@ -1,0 +1,64 @@
+==========================================================================
+Table 1  Overall pooled effects (DerSimonian-Laird random effects)
+==========================================================================
+Grain yield            k=29 PCC=0.133*** [0.081, 0.185]  I2=95.6%  Q=638.84  | KH [0.072, 0.194] p=0.000
+Sown area              k= 7 PCC=0.060**  [0.002, 0.118]  I2=97.1%  Q=205.89  | KH [-0.033, 0.152] p=0.166
+Production efficiency  k=20 PCC=0.172*** [0.135, 0.209]  I2=92.5%  Q=252.67  | KH [0.117, 0.227] p=0.000
+
+==========================================================================
+Table 2  Subgroup pooled effects by mechanisation path
+==========================================================================
+Grain yield            All studies                        k=29 PCC=+0.133*** [+0.081, +0.185]  I2=95.6%
+Grain yield            Machinery capital input (MCI)      k=15 PCC=+0.089*** [+0.033, +0.145]  I2=90.7%
+Grain yield            Machinery services (AMS)           k= 7 PCC=+0.131*** [+0.074, +0.187]  I2=81.7%
+Grain yield            Comprehensive mechanisation (AML)  k= 7 PCC=+0.221**  [+0.020, +0.422]  I2=98.5%
+Sown area              All studies                        k= 7 PCC=+0.060**  [+0.002, +0.118]  I2=97.1%
+Sown area              Machinery capital input (MCI)      k= 3 PCC=-0.028    [-0.083, +0.027]  I2=93.0%
+Sown area              Machinery services (AMS)           k= 1 PCC=+0.176*** [+0.137, +0.215]  I2=0.0%
+Sown area              Comprehensive mechanisation (AML)  k= 3 PCC=+0.112*** [+0.050, +0.174]  I2=86.0%
+Production efficiency  All studies                        k=20 PCC=+0.172*** [+0.135, +0.209]  I2=92.5%
+Production efficiency  Machinery capital input (MCI)      k= 4 PCC=+0.191*** [+0.064, +0.318]  I2=89.0%
+Production efficiency  Machinery services (AMS)           k=14 PCC=+0.170*** [+0.114, +0.226]  I2=92.7%
+Production efficiency  Comprehensive mechanisation (AML)  k= 2 PCC=+0.207*** [+0.123, +0.290]  I2=0.0%
+
+==========================================================================
+Table 3  WLS meta-regression (baseline = MCI; study-clustered robust SE)
+==========================================================================
+
+[Grain yield] k=29
+  Constant       +0.562*** (0.189)
+  AMS (vs MCI)   +0.076    (0.057)
+  AML (vs MCI)   +0.162**  (0.073)
+  log(N)         -0.070*** (0.025)
+
+[Sown area] k=7
+  Constant       -0.011    (0.008)
+  AMS (vs MCI)   +0.187*** (0.008)
+  AML (vs MCI)   +0.098*** (0.023)
+
+[Production efficiency] k=20
+  Constant       +0.252*   (0.129)
+  AMS (vs MCI)   -0.013    (0.042)
+  AML (vs MCI)   +0.036    (0.076)
+  log(N)         -0.015    (0.011)
+
+==========================================================================
+Table 4  Publication bias (FAT-PET-PEESE; 1/v weights, clustered SE)
+==========================================================================
+
+[Grain yield] k=29
+  FAT slope = +3.356*** (p=0.0006)   PET intercept = +0.002 (p=0.9302)
+
+[Sown area] k=7
+  FAT slope = +5.219 (p=0.1123)   PET intercept = -0.029 (p=0.1760)
+
+[Production efficiency] k=20
+  FAT slope = +2.683*** (p=0.0001)   PET intercept = +0.062*** (p=0.0000)
+  PEESE = +0.072*** (p=0.0000)
+
+==========================================================================
+Table 5  Robustness (IQR trimming / simple mean / sample-size weighting)
+==========================================================================
+Grain yield            RE=0.133  IQR-trim=0.124(k=26, drop:P_22,P_25,E_15)  mean=0.143  Nwt=0.078
+Sown area              RE=0.060  IQR-trim=0.060(k=7, drop:-)  mean=0.061  Nwt=0.012
+Production efficiency  RE=0.172  IQR-trim=0.172(k=20, drop:-)  mean=0.181  Nwt=0.078

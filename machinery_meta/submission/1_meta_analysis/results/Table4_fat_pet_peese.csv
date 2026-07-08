@@ -1,0 +1,8 @@
+﻿dimension,test,coef,p,sig
+Grain yield,FAT,3.356,0.0006,***
+Grain yield,PET,0.002,0.9302,
+Sown area,FAT,5.219,0.1123,
+Sown area,PET,-0.029,0.176,
+Production efficiency,FAT,2.683,0.0001,***
+Production efficiency,PET,0.062,0.0,***
+Production efficiency,PEESE,0.072,0.0,***

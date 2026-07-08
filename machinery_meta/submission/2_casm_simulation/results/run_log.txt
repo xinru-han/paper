@@ -1,0 +1,4 @@
+BASE       yield_shift=0.0000 area_shift=0.0000  solved 17.8s
+S1-Medium  yield_shift=0.3912 area_shift=0.0000  solved 15.8s
+S1-High    yield_shift=0.5542 area_shift=0.0000  solved 15.8s
+S1-Low     yield_shift=0.2282 area_shift=0.0000  solved 15.4s

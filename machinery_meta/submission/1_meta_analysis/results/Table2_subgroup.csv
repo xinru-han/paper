@@ -1,0 +1,13 @@
+﻿dimension,path,k,pooled_PCC,sig,CI_low,CI_high,I2
+Grain yield,All studies,29,0.133,***,0.081,0.185,95.6
+Grain yield,Machinery capital input (MCI),15,0.089,***,0.033,0.145,90.7
+Grain yield,Machinery services (AMS),7,0.131,***,0.074,0.187,81.7
+Grain yield,Comprehensive mechanisation (AML),7,0.221,**,0.02,0.422,98.5
+Sown area,All studies,7,0.06,**,0.002,0.118,97.1
+Sown area,Machinery capital input (MCI),3,-0.028,,-0.083,0.027,93.0
+Sown area,Machinery services (AMS),1,0.176,***,0.137,0.215,0.0
+Sown area,Comprehensive mechanisation (AML),3,0.112,***,0.05,0.174,86.0
+Production efficiency,All studies,20,0.172,***,0.135,0.209,92.5
+Production efficiency,Machinery capital input (MCI),4,0.191,***,0.064,0.318,89.0
+Production efficiency,Machinery services (AMS),14,0.17,***,0.114,0.226,92.7
+Production efficiency,Comprehensive mechanisation (AML),2,0.207,***,0.123,0.29,0.0

@@ -1,0 +1,13 @@
+﻿dimension,weighting,pooled_PCC,k
+Grain yield,Random effects (base),0.133,29
+Grain yield,IQR-trimmed,0.124,26
+Grain yield,Simple mean,0.143,29
+Grain yield,Sample-size weighted,0.078,29
+Sown area,Random effects (base),0.06,7
+Sown area,IQR-trimmed,0.06,7
+Sown area,Simple mean,0.061,7
+Sown area,Sample-size weighted,0.012,7
+Production efficiency,Random effects (base),0.172,20
+Production efficiency,IQR-trimmed,0.172,20
+Production efficiency,Simple mean,0.181,20
+Production efficiency,Sample-size weighted,0.078,20
