@@ -1,0 +1,3 @@
+stat,t_real,perm_p,n_draws,note
+first stage (retail_pc1),-1.94724176937552,0.091,999,PP1: real corridor should sit in <5% tail
+reduced form (fgds10),-0.285047372692185,0.846,499,expected non-rejection given the null RF (power statement)
