@@ -37,7 +37,7 @@ state = json.load(open(STATE_F)) if os.path.exists(STATE_F) else {}
 
 def slug(path):
     s = os.path.splitext(os.path.basename(path))[0]
-    return re.sub(r"[^\w一-鿿.-]+", "_", s)[:120]
+    return re.sub(r"[^\w一-鿿.-]+", "_", s)[:80]
 
 
 todo = [p for p in pdfs if not os.path.exists(os.path.join(OUT, slug(p) + ".md"))]
@@ -48,7 +48,7 @@ for i in range(0, len(todo), BATCH):
     chunk = todo[i:i + BATCH]
     names = [slug(p) + ".pdf" for p in chunk]
     is_cn = ["文献筛选-中文" in p for p in chunk]
-    files_req = [{"name": n, "is_ocr": True, "data_id": n} for n in names]
+    files_req = [{"name": n, "is_ocr": True} for n in names]
     lang = "ch"  # 混合批次用ch，MinerU可自动处理英文
     r = requests.post(f"{API}/file-urls/batch", headers=HDR, json={
         "enable_formula": False, "enable_table": True,
