@@ -177,6 +177,48 @@ f6 = (f"plant_soy ~ dpi_sub100:suit_vill_z + dpi_mkt100_base + plant_soy_lag"
       f" + peer_lag0 + peer_miss + {XA} + C(village) + C(yr)")
 R["m6_subXsuit"] = cfit(f6, estL)
 
+# ---------- (7) 前导安慰剂：未来收益差 Δπ_{i,t+1} 预测当期 D_it（§3.5(3)③） ----------
+# 若在控制当期 Δπ 后，未来收益差仍显著预测当期选择，说明存在共同趋势/遗漏变量，
+# 需下调 Δπ 系数的因果解读。构造户内向前一期的 dpi100_base 作为前导项。
+lead_series = p.set_index(["hh_id", "year"])["dpi100_base"]
+for d_ in (est, estL):
+    d_["dpi100_base_lead"] = [lead_series.get((h, y + 1), np.nan)
+                              for h, y in zip(d_["hh_id"], d_["yr"])]
+elead = estL[estL["dpi100_base_lead"].notna()].copy()
+f_lead = (f"plant_soy ~ dpi100_base + dpi100_base_lead + plant_soy_lag"
+          f" + peer_lag0 + peer_miss + {XA} + {FE}")
+LEAD = {}
+try:
+    # 前导可用样本仅 2 个年份（有后一年者），logit MLE 因近共线/分离奇异 →
+    # 用 LPM（与全文少聚类推断锚一致，wild bootstrap 给 p），只关心前导项方向与显著性。
+    R["m7_lead_placebo"] = cfit(f_lead, elead)
+    f_leadonly = f_lead.replace("dpi100_base + dpi100_base_lead", "dpi100_base_lead")
+    R["m7_lead_only"] = cfit(f_leadonly, elead)
+    LEAD = {"n": int(R["m7_lead_placebo"].nobs),
+            "b_contemp": float(R["m7_lead_placebo"].params.get("dpi100_base", np.nan)),
+            "p_contemp": float(R["m7_lead_placebo"].pvalues.get("dpi100_base", np.nan)),
+            "b_lead": float(R["m7_lead_placebo"].params.get("dpi100_base_lead", np.nan)),
+            "p_lead": float(R["m7_lead_placebo"].pvalues.get("dpi100_base_lead", np.nan)),
+            "b_lead_only": float(R["m7_lead_only"].params.get("dpi100_base_lead", np.nan)),
+            "p_lead_only": float(R["m7_lead_only"].pvalues.get("dpi100_base_lead", np.nan))}
+    # 前导项 LPM wild bootstrap p（少聚类稳健，与全文推断协议一致）
+    LEAD["wild_p_lead"] = wild_p_ols(f_lead, elead, "dpi100_base_lead")
+except Exception as e:
+    print("前导安慰剂失败:", e)
+
+# ---------- (8) leave-one-village 价格/成本口径稳健性（§3.5(2) 反向因果） ----------
+dlov = estL[estL["dpi100_base_lov"].notna()].copy()
+LOV = {}
+try:
+    R["r_lov"] = cfit(f1.replace("dpi100_base", "dpi100_base_lov"), dlov, sm.families.Binomial())
+    amelov = ame_ci(R["r_lov"], dlov, "dpi100_base_lov")
+    LOV = {"n": int(R["r_lov"].nobs),
+           "b_lov": float(R["r_lov"].params.get("dpi100_base_lov", np.nan)),
+           "p_lov": float(R["r_lov"].pvalues.get("dpi100_base_lov", np.nan)),
+           "ame_lov": amelov[0], "ame_lov_ci": [amelov[1], amelov[2]]}
+except Exception as e:
+    print("LOV稳健性失败:", e)
+
 # ---------- 稳健性 ----------
 def drop_novar(formula, data):
     """剔除子样本中零方差的项，避免奇异。"""
@@ -346,6 +388,7 @@ params = {
         "resid_sd_uncond": float((sh_all["s"] - R["s_uncond"].predict(sh_all)).std()),
     },
     "inference": {"wild_bootstrap_p": WILD_P, "firth_beta": FIRTH_B, "anderson_hsiao": AH,
+                  "lead_placebo": LEAD, "lov_robustness": LOV,
                   "n_villages": int(estL["village"].nunique()),
                   "n_events": int(estL["plant_soy"].sum())},
     "controls_medians": {c: float(est[c].median()) for c in ALLC + ["logB"]},
@@ -355,8 +398,9 @@ with open(f"{OUT}/params/behavior_params.json", "w") as f:
 
 # ---------- 报告 ----------
 rep = ["# Phase 3 估计报告（规格矩阵版）\n"]
-key = ["dpi100_base", "dpi100_roll", "dpi100_loo", "plant_soy_lag", "peer_lag0",
-       "D_init", "dpi100_base_bar", "dpi_sub100:suit_vill_z", "dpi100_base:logB_c", "s_lag0", "logB"]
+key = ["dpi100_base", "dpi100_roll", "dpi100_loo", "dpi100_base_lov", "dpi100_base_lead",
+       "plant_soy_lag", "peer_lag0", "D_init", "dpi100_base_bar",
+       "dpi_sub100:suit_vill_z", "dpi100_base:logB_c", "s_lag0", "logB"]
 summ = []
 for name, m in R.items():
     for k in key:
@@ -371,6 +415,8 @@ rep += [S.to_string(index=False),
         f"σ_a(RE估计)={SIGMA_A:.3f}" if not np.isnan(SIGMA_A) else "σ_a估计失败",
         f"wild bootstrap p: {WILD_P}",
         f"Firth β={FIRTH_B:.3f}" if not np.isnan(FIRTH_B) else "Firth失败",
+        f"前导安慰剂(Δπ_t+1): {LEAD}",
+        f"LOV(剔本村价格/成本): {LOV}",
         f"Anderson-Hsiao: {AH}",
         f"规格曲线: β范围[{SC['b'].min():.3f},{SC['b'].max():.3f}], 全部>0: {bool((SC['b']>0).all())}",
         f"村数={estL['village'].nunique()}, 阳性事件={int(estL['plant_soy'].sum())}"]

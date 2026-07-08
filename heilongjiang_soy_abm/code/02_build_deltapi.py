@@ -54,6 +54,28 @@ ctab.to_csv(f"{OUT}/params/cost_table.csv", index=False)
 ptab.pivot_table(index=["county_name", "crop"], columns="year", values="count")\
     .to_csv(f"{OUT}/tables/price_cell_n.csv")
 
+# ---------- 1b. leave-one-village 价格/成本中位数（§3.5(2) 反向因果稳健性） ----------
+# 内生性关切：农户自身销售价/投入决策进入所在县中位数，再反向进入其 Δπ。
+# 剔除本村后重算县×年×作物价格/成本中位数（<5 户回退全县、再回退全省中位数），
+# 得到 dpi_base_lov：切断本村共同成分对本户解释变量的反向渗透。
+_cyc = {k: g[["village", "price", "cost_mu"]]
+        for k, g in cs.dropna(subset=["price"]).groupby(["county_name", "year", "crop"])}
+_cty_full = cs.groupby(["county_name", "year", "crop"])[["price", "cost_mu"]].median()
+_prov_full = cs.groupby(["year", "crop"])[["price", "cost_mu"]].median()
+
+def lov_med(cty, yr, cr, vill, val, min_n=5):
+    """剔除本村后的县×年×作物中位数；样本不足回退全县→全省。"""
+    g = _cyc.get((cty, yr, cr))
+    if g is not None:
+        sub = g[g["village"] != vill][val]
+        if sub.notna().sum() >= min_n:
+            return float(sub.median())
+    if (cty, yr, cr) in _cty_full.index:
+        v = _cty_full.loc[(cty, yr, cr), val]
+        if pd.notna(v):
+            return float(v)
+    return float(_prov_full.loc[(yr, cr), val]) if (yr, cr) in _prov_full.index else np.nan
+
 # ---------- 2. 补贴标准 ----------
 SUB_OFFICIAL = {2021: (68, 248), 2022: (28, 248), 2023: (15, 350), 2024: (20, 350)}
 sub = pd.DataFrame([{"year": y, "sub_corn": v[0], "sub_soy": v[1]} for y, v in SUB_OFFICIAL.items()])
@@ -148,6 +170,12 @@ for _, r in panel.iterrows():
             mkt = (p_s * y_s - c_s) - (p_c * y_c - c_c)
             rec[f"dpi_mkt_{ver}"] = mkt * d_mkt
             rec[f"dpi_{ver}"] = mkt * d_mkt + (s_s - s_c) * d_sub
+        # leave-one-village 价格/成本口径（基期锁定单产不变，只换价格/成本源）
+        pc_v, ps_v = lov_med(cty, tm1, "corn", vill, "price"), lov_med(cty, tm1, "soy", vill, "price")
+        cc_v, cs_v = lov_med(cty, tm1, "corn", vill, "cost_mu"), lov_med(cty, tm1, "soy", vill, "cost_mu")
+        yb_c, yb_s = ey_base(hh, cty, "corn"), ey_base(hh, cty, "soy")
+        mkt_v = (ps_v * yb_s - cs_v) - (pc_v * yb_c - cc_v)
+        rec["dpi_base_lov"] = mkt_v * d_mkt + (s_s - s_c) * d_sub
         rec["dpi_sub"] = (s_s - s_c) * d_sub
         rec["dpi_sub_lag"] = (s_s_l - s_c_l) * DEFL.get(tm1, np.nan) if tm1 in DEFL else np.nan
         # 村级补贴差（村报玉米标准，P1辅助识别）
@@ -161,6 +189,7 @@ for ver in ["roll", "base", "loo"]:
     panel[f"dpi100_{ver}"] = panel[f"dpi_{ver}"] / 100.0
     panel[f"dpi_mkt100_{ver}"] = panel[f"dpi_mkt_{ver}"] / 100.0
 panel["dpi_sub100"] = panel["dpi_sub"] / 100.0
+panel["dpi100_base_lov"] = panel["dpi_base_lov"] / 100.0
 # 兼容旧接口（滚动版）
 panel["dpi100"] = panel["dpi100_roll"]
 panel["dpi"] = panel["dpi_roll"]
@@ -181,6 +210,9 @@ rep = ["# Phase 2 Δπ 构建报告（修订版）\n",
        est[["dpi_roll", "dpi_base", "dpi_loo"]].describe().round(1).to_string(),
        "\n\n相关系数：\n" + est[["dpi_roll", "dpi_base", "dpi_loo"]].corr().round(3).to_string(),
        "\n\n## Suit 覆盖率\n" + panel[["suit_vill", "suit_hhy", "suit_cty"]].notna().mean().round(3).to_string(),
+       "\n\n## leave-one-village 价格/成本口径 dpi_base_lov\n"
+       + f"非缺失 {int(panel['dpi_base_lov'].notna().sum())} 行；"
+       + f"与 dpi_base 相关系数 {est[['dpi_base','dpi_base_lov']].corr().iloc[0,1]:.3f}",
        "\n\n## 村级补贴差覆盖\n" + f"dpi_sub_vill 非缺失 {panel['dpi_sub_vill'].notna().sum()} 行",
        "\n\n## 豆粮价格比（省级中位数）\n" + prov_p.round(2).to_string()]
 with open(f"{OUT}/logs/phase2_report.md", "w") as f:

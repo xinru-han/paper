@@ -26,6 +26,10 @@ suit_hhy     1.0
 suit_cty     1.0
 
 
+## leave-one-village 价格/成本口径 dpi_base_lov
+非缺失 616 行；与 dpi_base 相关系数 0.951
+
+
 ## 村级补贴差覆盖
 dpi_sub_vill 非缺失 334 行
 

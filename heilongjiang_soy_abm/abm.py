@@ -232,6 +232,80 @@ def make_scenario(years, p_corn, p_soy, sub_corn, sub_soy, sub_rot):
                 sub_corn=arr(sub_corn), sub_soy=arr(sub_soy), sub_rot=arr(sub_rot))
 
 
+def run_static(agent_df, params, scenario, n_mc=1000, seed=20260705, peer_on=True,
+               calib_offset=0.0, share_offset=0.0, param_uncertainty=True,
+               rot_mode="strict_new"):
+    """一期静态反事实主体仿真（§4/§5 静态口径）。
+
+    与 run_scenario 的区别：
+      * 不滚动年份、不更新状态、不加宏观年冲击 η_t；
+      * 不注入户随机截距 a_i —— 主线为 pooled logit（总体平均/APE 口径），
+        叠加 a_i 会在非线性 logit 中系统性衰减均值且与方差层双计（审阅所指）；
+        参数不确定性只来自系数抽样 β~N(β̂,V̂)。
+      * 参与率与份额用【期望】P_i、E[s_i]（非条件分数logit），不再抽 Bernoulli，
+        降低 MC 噪声；不确定性区间纯反映参数抽样。
+    scenario 为单期（长度 1）经济环境。rot_mode:
+      strict_new  —— 轮作补贴付于 max(0, ŝ_i − s_{i,-1})·B_i（严格新增面积）；
+      new_entrant —— 只付于上期未种豆户(D_{i,-1}=0)的预测大豆面积。
+    返回户级 P_i / E[s_i] / Δπ_i 与情景聚合（点估计+参数区间）。
+    """
+    state = abm_init(agent_df, params, n_mc=n_mc, seed=seed, sigma_a=0.0,
+                     sigma_macro=0.0, calib_offset=calib_offset,
+                     param_uncertainty=param_uncertainty)
+    exp = abm_expectations(state, scenario, 0, params)
+    peer = _village_peer(state) if peer_on else np.zeros((state["N"], state["n_mc"]))
+    dpi = _dpi(exp, scenario, 0, params, state["s_prev"])
+    dpi100 = dpi / 100.0
+    # 参与概率（无 a_i / 无宏观冲击），双城结构零
+    xbP = _linpred(state, "P", dpi100, peer) + state["calib_offset"]
+    prob = _sigmoid(xbP)
+    prob[state["structural_zero"]] = 0.0
+    # 非条件期望份额 E[s|x]（含零），加 share_offset 后过 sigmoid
+    mu_s = _sigmoid(_linpred(state, "S", dpi100, peer) + share_offset)
+    mu_s[state["structural_zero"]] = 0.0
+    B = state["B"][:, None]
+    s_prev = state["s_prev"]
+    nz = ~state["structural_zero"]
+    # 财政：玉米面积×玉米补贴 + 大豆面积×大豆补贴 + 新增轮作面积×轮作补贴
+    sc, ss, sr = scenario["sub_corn"][0], scenario["sub_soy"][0], scenario["sub_rot"][0]
+    area_soy = mu_s * B
+    area_corn = (1.0 - mu_s) * B
+    if rot_mode == "new_entrant":
+        entrant = (state["plant_soy_prev"] < 0.5)   # D_{i,-1}=0
+        rot_area = np.where(entrant, area_soy, 0.0)
+    else:  # strict_new
+        rot_area = np.maximum(0.0, mu_s - s_prev) * B
+    fiscal = area_corn * sc + area_soy * ss + rot_area * sr
+
+    part_rep = prob[nz].mean(axis=0)                 # (n_mc,)
+    share_rep = area_soy.sum(0) / B.sum()            # (n_mc,)
+    area_rep = area_soy.sum(0)
+    fiscal_rep = fiscal.sum(0)
+    rot_area_rep = rot_area.sum(0)
+    q = lambda x, p: float(np.quantile(x, p))
+    out = {
+        "soy_particip": float(part_rep.mean()),
+        "soy_particip_lo": q(part_rep, 0.05), "soy_particip_hi": q(part_rep, 0.95),
+        "soy_share": float(share_rep.mean()),
+        "soy_share_lo": q(share_rep, 0.05), "soy_share_hi": q(share_rep, 0.95),
+        "soy_area": float(area_rep.mean()),
+        "fiscal": float(fiscal_rep.mean()),
+        "fiscal_lo": q(fiscal_rep, 0.05), "fiscal_hi": q(fiscal_rep, 0.95),
+        "rot_area": float(rot_area_rep.mean()),
+        "total_area": float(B.sum()),
+    }
+    per_county = {}
+    for c in np.unique(state["county"]):
+        m = state["county"] == c
+        per_county[c] = {
+            "particip": float(prob[m].mean()),
+            "soy_share": float((area_soy[m].sum(0) / B[m].sum()).mean()),
+        }
+    return dict(agg=out, per_county=per_county,
+                agent_prob=prob.mean(axis=1), agent_share=mu_s.mean(axis=1),
+                agent_dpi=dpi.mean(axis=1), state=state)
+
+
 def run_scenario(agent_df, params, scenario, n_mc=500, seed=20260705, peer_on=True,
                  sigma_a=0.5, sigma_macro=0.3, calib_offset=0.0, param_uncertainty=True):
     state = abm_init(agent_df, params, n_mc=n_mc, seed=seed, sigma_a=sigma_a,
