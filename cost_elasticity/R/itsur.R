@@ -13,7 +13,8 @@
 
 # ---- 自由参数索引 ----------------------------------------------------------
 # 返回参数名向量与辅助索引
-tl_param_names <- function(K, fe_levels_share, fe_levels_cost) {
+tl_param_names <- function(K, fe_levels_share, fe_levels_cost,
+                           gamma_break = FALSE, xfe_levels = NULL) {
   gam <- c()
   for (n in 1:K) for (m in n:K) gam <- c(gam, sprintf("gamma_%d_%d", n, m))
   base <- c(sprintf("alpha_%d", 1:K),              # 份额截距
@@ -22,10 +23,19 @@ tl_param_names <- function(K, fe_levels_share, fe_levels_cost) {
             sprintf("lambda_%dt", 1:K),             # 份额-时间交互
             "alpha_0", "alpha_y", "gamma_yy",
             "lambda_t", "lambda_tt", "lambda_yt")
+  # M6a Γ断点：Δγ 块（对称，与 γ 同结构），份额乘 D2、成本乘 0.5·D2·lnw·lnw
+  dgam <- c()
+  if (gamma_break) for (n in 1:K) for (m in n:K) dgam <- c(dgam, sprintf("dgamma_%d_%d", n, m))
   fe_s <- c()
   for (n in 1:K) if (length(fe_levels_share)) fe_s <- c(fe_s, sprintf("fe%d_%s", n, fe_levels_share))
   fe_c <- if (length(fe_levels_cost)) sprintf("feC_%s", fe_levels_cost) else c()
-  c(base, fe_s, fe_c)
+  # M13b 区域×时期额外FE：xfe（份额截距+成本可积斜率，双重角色）+ xfeC（成本层截距）
+  xfe_s <- c(); xfe_c <- c()
+  if (length(xfe_levels)) {
+    for (n in 1:K) xfe_s <- c(xfe_s, sprintf("xfe%d_%s", n, xfe_levels))
+    if (length(fe_levels_cost)) xfe_c <- sprintf("xfeC_%s", xfe_levels)
+  }
+  c(base, dgam, fe_s, fe_c, xfe_s, xfe_c)
 }
 
 # ---- 设计矩阵构造 ----------------------------------------------------------
@@ -33,13 +43,17 @@ tl_param_names <- function(K, fe_levels_share, fe_levels_cost) {
 #      S_1..S_K（份额）、prov（factor 省份）
 # 返回 list(X, y, J, n_obs, pnames, eqnames)：堆叠系统 y = X theta
 tl_build_system <- function(dat, K, use_cost_eq = TRUE, share_time = "linear",
-                            year_dummies = NULL) {
+                            year_dummies = NULL, gamma_break = FALSE, extra_fe = NULL,
+                            break_year = 2014) {
   dat <- as.data.frame(dat)   # 防御：data.table 的 [ 语义不同
   n_obs <- nrow(dat)
   prov <- droplevels(factor(dat$prov))
   fe_lv <- levels(prov)[-1]                 # 第一个省为基准
+  # M13b 额外FE（如区域×时期）：extra_fe 为长度 n_obs 的标签，NA=参照(不加项)
+  xfe_lv <- if (!is.null(extra_fe)) sort(unique(extra_fe[!is.na(extra_fe)])) else NULL
   # share_time = "linear": lambda_nt * t；"gindex": 份额方程用年份哑变量 delta_n_tau（S2规格）
-  pn <- tl_param_names(K, fe_lv, if (use_cost_eq) fe_lv else c())
+  pn <- tl_param_names(K, fe_lv, if (use_cost_eq) fe_lv else c(),
+                       gamma_break = gamma_break, xfe_levels = xfe_lv)
   if (share_time == "gindex") {
     stopifnot(!is.null(year_dummies))
     yd_lv <- year_dummies[-1]               # 基准年
@@ -52,7 +66,9 @@ tl_build_system <- function(dat, K, use_cost_eq = TRUE, share_time = "linear",
 
   lnw <- as.matrix(dat[, sprintf("lnw_%d", 1:K), drop = FALSE])
   lny <- dat$lny; tt <- dat$tt
+  D2 <- if (gamma_break) as.numeric(dat$year >= break_year) else NULL   # M6a 断点指示
   FEmat <- if (length(fe_lv)) sapply(fe_lv, function(l) as.numeric(prov == l)) else NULL
+  XFEmat <- if (length(xfe_lv)) sapply(xfe_lv, function(l) as.numeric(!is.na(extra_fe) & extra_fe == l)) else NULL
 
   blocks_X <- list(); blocks_y <- list(); eqnames <- c()
   # ---- K个份额方程 ----
@@ -62,6 +78,10 @@ tl_build_system <- function(dat, K, use_cost_eq = TRUE, share_time = "linear",
     for (m in 1:K) {
       nm <- if (n <= m) sprintf("gamma_%d_%d", n, m) else sprintf("gamma_%d_%d", m, n)
       Xn[, idx(nm)] <- Xn[, idx(nm)] + lnw[, m]
+      if (gamma_break) {
+        dnm <- if (n <= m) sprintf("dgamma_%d_%d", n, m) else sprintf("dgamma_%d_%d", m, n)
+        Xn[, idx(dnm)] <- Xn[, idx(dnm)] + D2 * lnw[, m]
+      }
     }
     Xn[, idx(sprintf("gamma_%dy", n))] <- lny
     if (share_time == "linear") {
@@ -72,6 +92,8 @@ tl_build_system <- function(dat, K, use_cost_eq = TRUE, share_time = "linear",
     }
     if (!is.null(FEmat)) for (j in seq_along(fe_lv))
       Xn[, idx(sprintf("fe%d_%s", n, fe_lv[j]))] <- FEmat[, j]
+    if (!is.null(XFEmat)) for (j in seq_along(xfe_lv))
+      Xn[, idx(sprintf("xfe%d_%s", n, xfe_lv[j]))] <- XFEmat[, j]
     blocks_X[[length(blocks_X) + 1]] <- Xn
     blocks_y[[length(blocks_y) + 1]] <- dat[[sprintf("S_%d", n)]]
     eqnames <- c(eqnames, sprintf("share_%d", n))
@@ -85,6 +107,8 @@ tl_build_system <- function(dat, K, use_cost_eq = TRUE, share_time = "linear",
     for (n in 1:K) for (m in n:K) {
       w2 <- if (n == m) 0.5 * lnw[, n]^2 else lnw[, n] * lnw[, m]
       Xc[, idx(sprintf("gamma_%d_%d", n, m))] <- Xc[, idx(sprintf("gamma_%d_%d", n, m))] + w2
+      if (gamma_break)
+        Xc[, idx(sprintf("dgamma_%d_%d", n, m))] <- Xc[, idx(sprintf("dgamma_%d_%d", n, m))] + D2 * w2
     }
     for (n in 1:K) Xc[, idx(sprintf("gamma_%dy", n))] <- lnw[, n] * lny
     Xc[, idx("gamma_yy")] <- 0.5 * lny^2
@@ -98,6 +122,12 @@ tl_build_system <- function(dat, K, use_cost_eq = TRUE, share_time = "linear",
     # 可积性：份额方程含省截距fe_np，则由Shephard引理成本方程须含 sum_n fe_np*lnw_n
     if (!is.null(FEmat)) for (n in 1:K) for (j in seq_along(fe_lv))
       Xc[, idx(sprintf("fe%d_%s", n, fe_lv[j]))] <- FEmat[, j] * lnw[, n]
+    # M13b：区域×时期额外FE 的成本层截距 xfeC + 可积斜率 xfe（同 Shephard 机制）
+    if (!is.null(XFEmat)) {
+      for (j in seq_along(xfe_lv)) Xc[, idx(sprintf("xfeC_%s", xfe_lv[j]))] <- XFEmat[, j]
+      for (n in 1:K) for (j in seq_along(xfe_lv))
+        Xc[, idx(sprintf("xfe%d_%s", n, xfe_lv[j]))] <- XFEmat[, j] * lnw[, n]
+    }
     blocks_X[[length(blocks_X) + 1]] <- Xc
     blocks_y[[length(blocks_y) + 1]] <- dat$lnC
     eqnames <- c(eqnames, "cost")
@@ -165,7 +195,18 @@ tl_recover <- function(fit, K) {
   gy <- c(th[sprintf("gamma_%dy", 1:K)], -sum(th[sprintf("gamma_%dy", 1:K)]))
   lt <- th[sprintf("lambda_%dt", 1:K)]
   lt <- c(lt, -sum(lt))
-  list(Gamma = G, alpha = unname(alpha), gamma_y = unname(gy), lambda_nt = unname(lt))
+  # M6a：若含 Δγ 断点块，恢复 ΔGamma（后段 Γ = Gamma + DGamma）
+  DG <- NULL
+  if (any(grepl("^dgamma_[0-9]_[0-9]$", names(th)))) {
+    DG <- matrix(0, N, N)
+    for (n in 1:K) for (m in n:K) {
+      DG[n, m] <- th[sprintf("dgamma_%d_%d", n, m)]; DG[m, n] <- DG[n, m]
+    }
+    for (n in 1:K) { DG[n, N] <- -sum(DG[n, 1:K]); DG[N, n] <- DG[n, N] }
+    DG[N, N] <- -sum(DG[N, 1:K])
+  }
+  list(Gamma = G, alpha = unname(alpha), gamma_y = unname(gy), lambda_nt = unname(lt),
+       DGamma = DG)
 }
 
 # ---- 弹性（式5-7），在给定份额向量S处评估 -----------------------------------

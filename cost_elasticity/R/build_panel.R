@@ -180,7 +180,21 @@ for (cr in CROPS) {
   }
   d[, region := REGION[province]]
 
-  out <- d[, .(crop, province, region, year, C_var, q_output,
+  # M2a Spec B 预期产量：省内前3年亩产移动平均的对数底料 q_output_e
+  # 要求 {t-1,t-2,t-3} 中 ≥2 年可得（否则 NA，Spec B 中丢弃，样本起点顺延至2006）
+  setorder(d, province, year)
+  d[, q_output_e := {
+    qe <- rep(NA_real_, .N)
+    for (i in seq_len(.N)) {
+      idx <- which(year %in% (year[i] - 1:3))
+      if (length(idx) >= 2) qe[i] <- mean(q_output[idx])
+    }
+    qe
+  }, by = province]
+  n_specB_drop <- d[is.na(q_output_e), .N]
+  logit(crop = cr, step = "specB_lny_e", detail = sprintf("q_output_e NA(丢弃于SpecB) n=%d / %d", n_specB_drop, nrow(d)))
+
+  out <- d[, .(crop, province, region, year, C_var, q_output, q_output_e,
                S_labor, S_mach, S_fert, S_seed, S_other,
                w_labor, w_labor_hired, w_mach, w_fert, w_seed, w_other, w_seed_src,
                labor_days = 每亩用工数量, fert_kg = 每亩化肥折纯用量,
