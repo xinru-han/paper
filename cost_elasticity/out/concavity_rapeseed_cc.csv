@@ -1,2 +1,2 @@
-crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,monotonicity_rate
-rapeseed,cc,297,16,12,TRUE,,0.996632996632997,1
+crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,concavity_rate_obsS,monotonicity_rate
+rapeseed,cc,302,16,12,TRUE,,1,0.983443708609272,1

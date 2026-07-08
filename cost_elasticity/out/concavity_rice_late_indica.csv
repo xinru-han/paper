@@ -1,2 +1,2 @@
-crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,monotonicity_rate
-rice_late_indica,plain,189,9,47,TRUE,1.69044223063963e-11,1,1
+crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,concavity_rate_obsS,monotonicity_rate
+rice_late_indica,plain,189,9,35,TRUE,9.79923434063501e-12,1,1,1

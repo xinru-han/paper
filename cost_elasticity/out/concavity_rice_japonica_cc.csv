@@ -1,2 +1,2 @@
-crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,monotonicity_rate
-rice_japonica,cc,278,17,8,TRUE,,0.964028776978417,1
+crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,concavity_rate_obsS,monotonicity_rate
+rice_japonica,cc,278,17,8,TRUE,,0.967625899280575,0.985611510791367,1

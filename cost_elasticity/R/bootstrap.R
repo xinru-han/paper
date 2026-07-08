@@ -62,8 +62,9 @@ one_draw_ps <- function(b, ps) {
   boot_body(b, rbindlist(dl))
 }
 t0 <- Sys.time()
+ncores <- as.integer(Sys.getenv("BOOT_CORES", "6"))   # 内存紧张时可降（每核约2-4GB）
 res <- parallel::mclapply(1:B, function(b) one_draw_ps(b, draw_provs[[b]]),
-                          mc.cores = min(6, parallel::detectCores() - 2))
+                          mc.cores = min(ncores, parallel::detectCores() - 2))
 dt <- rbindlist(Filter(function(x) is.data.frame(x), res), fill = TRUE)
 suf <- ifelse(method == "cc", "_cc", "")
 fwrite(dt, sprintf("out/bootstrap_draws_%s%s.csv", cr, suf))

@@ -1,2 +1,2 @@
-crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,monotonicity_rate
-corn,cc,421,23,11,TRUE,,1,0.995249406175772
+crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,concavity_rate_obsS,monotonicity_rate
+corn,cc,427,23,12,TRUE,,1,0.992974238875878,1

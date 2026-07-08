@@ -1,2 +1,2 @@
-crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,monotonicity_rate
-wheat,cc,299,21,19,TRUE,,1,1
+crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,concavity_rate_obsS,monotonicity_rate
+wheat,cc,325,21,14,TRUE,,1,0.990769230769231,1

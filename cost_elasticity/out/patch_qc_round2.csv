@@ -1,0 +1,95 @@
+crop,province,year,check,rel,detail,status
+corn,内蒙古,2005,total_cost,0.0,生产359.03+土地100.13 vs 总459.16,ok
+corn,内蒙古,2005,msf_sum,0.0,分项和222.28 vs 222.28 (n=17),ok
+corn,内蒙古,2005,fert_purity_eq,0.0,折纯19.84 vs 化肥用量19.84,ok
+corn,北京,2005,total_cost,0.0,生产248.48+土地67.59 vs 总316.07,ok
+corn,北京,2005,msf_sum,0.0,分项和156.79 vs 156.79 (n=16),ok
+corn,北京,2005,fert_purity_eq,0.0,折纯19.57 vs 化肥用量19.57,ok
+corn,吉林,2005,total_cost,0.0,生产299.42+土地118.56 vs 总417.98,ok
+corn,吉林,2005,msf_sum,0.0,分项和179.77 vs 179.77 (n=16),ok
+corn,吉林,2005,fert_purity_eq,0.0,折纯15.62 vs 化肥用量15.62,ok
+corn,天津,2005,total_cost,0.0,生产243.36+土地83.04 vs 总326.4,ok
+corn,天津,2005,msf_sum,0.0,分项和165.73 vs 165.73 (n=18),ok
+corn,天津,2005,fert_purity_eq,0.0,折纯19.99 vs 化肥用量19.99,ok
+corn,安徽,2005,total_cost,0.0,生产265.84+土地34.89 vs 总300.73,ok
+corn,安徽,2005,msf_sum,0.0,分项和130.58 vs 130.58 (n=14),ok
+corn,安徽,2005,fert_purity_eq,0.0,折纯16.61 vs 化肥用量16.61,ok
+corn,山东,2005,total_cost,0.0,生产327.42+土地33.89 vs 总361.31,ok
+corn,山东,2005,msf_sum,0.0,分项和188.61 vs 188.61 (n=17),ok
+corn,山东,2005,fert_purity_eq,0.0,折纯22.37 vs 化肥用量22.37,ok
+corn,山西,2005,total_cost,0.0,生产328.93+土地46.08 vs 总375.01,ok
+corn,山西,2005,msf_sum,0.0,分项和176.63 vs 176.63 (n=16),ok
+corn,山西,2005,fert_purity_eq,0.0,折纯18.84 vs 化肥用量18.84,ok
+corn,江苏,2005,total_cost,0.0,生产276.98+土地59.1 vs 总336.08,ok
+corn,江苏,2005,msf_sum,0.0,分项和158.86 vs 158.86 (n=12),ok
+corn,江苏,2005,fert_purity_eq,0.0,折纯21.93 vs 化肥用量21.93,ok
+corn,河北,2005,total_cost,0.0,生产290.76+土地63.7 vs 总354.46,ok
+corn,河北,2005,msf_sum,0.0,分项和175.44 vs 175.44 (n=15),ok
+corn,河北,2005,fert_purity_eq,0.0,折纯16.39 vs 化肥用量16.39,ok
+corn,辽宁,2005,total_cost,0.0,生产308.73+土地102.5 vs 总411.23,ok
+corn,辽宁,2005,msf_sum,0.0,分项和192.12 vs 192.12 (n=16),ok
+corn,辽宁,2005,fert_purity_eq,0.0,折纯19.29 vs 化肥用量19.29,ok
+corn,黑龙江,2005,total_cost,0.0,生产221.32+土地94.31 vs 总315.63,ok
+corn,黑龙江,2005,msf_sum,0.0,分项和146.01 vs 146.01 (n=18),ok
+corn,黑龙江,2005,fert_purity_eq,0.0,折纯13.59 vs 化肥用量13.59,ok
+rapeseed,四川,2023,total_cost,0.0,生产1081.12+土地112.88 vs 总1194.0,ok
+rapeseed,四川,2023,msf_sum,0.0,分项和294.07 vs 294.07 (n=13),ok
+rapeseed,河南,2023,total_cost,0.0,生产613.5+土地164.32 vs 总777.82,ok
+rapeseed,河南,2023,msf_sum,0.0,分项和296.13 vs 296.13 (n=7),ok
+rapeseed,湖北,2023,total_cost,0.0,生产744.29+土地126.26 vs 总870.55,ok
+rapeseed,湖北,2023,msf_sum,0.0,分项和360.37 vs 360.37 (n=12),ok
+rapeseed,湖南,2023,total_cost,0.0,生产707.15+土地117.92 vs 总825.07,ok
+rapeseed,湖南,2023,msf_sum,0.0,分项和326.55 vs 326.55 (n=12),ok
+rapeseed,重庆,2023,total_cost,0.0,生产1017.77+土地113.1 vs 总1130.87,ok
+rapeseed,重庆,2023,msf_sum,0.0,分项和141.92 vs 141.92 (n=11),ok
+wheat,上海,2005,total_cost,0.0,生产203.0+土地174.28 vs 总377.28,ok
+wheat,上海,2005,msf_sum,0.0,分项和141.49 vs 141.49 (n=6),ok
+wheat,上海,2005,fert_purity_eq,0.0,折纯19.62 vs 化肥用量19.62,ok
+wheat,云南,2005,total_cost,0.0,生产313.17+土地61.52 vs 总374.69,ok
+wheat,云南,2005,msf_sum,0.0,分项和124.57 vs 124.57 (n=18),ok
+wheat,云南,2005,fert_purity_eq,0.0,折纯10.46 vs 化肥用量10.46,ok
+wheat,四川,2005,total_cost,0.0,生产341.79+土地29.03 vs 总370.82,ok
+wheat,四川,2005,msf_sum,0.0,分项和140.45 vs 140.45 (n=14),ok
+wheat,四川,2005,fert_purity_eq,0.0,折纯14.2 vs 化肥用量14.2,ok
+wheat,宁夏,2005,total_cost,0.0,生产424.75+土地14.51 vs 总439.26,ok
+wheat,宁夏,2005,msf_sum,0.0,分项和276.30 vs 276.3 (n=13),ok
+wheat,宁夏,2005,fert_purity_eq,0.0,折纯26.68 vs 化肥用量26.68,ok
+wheat,安徽,2005,total_cost,0.0,生产281.08+土地40.42 vs 总321.5,ok
+wheat,安徽,2005,msf_sum,0.0,分项和197.39 vs 197.39 (n=18),ok
+wheat,安徽,2005,fert_purity_eq,0.0,折纯21.6 vs 化肥用量21.6,ok
+wheat,山东,2005,total_cost,0.0,生产378.23+土地34.48 vs 总412.71,ok
+wheat,山东,2005,msf_sum,0.0,分项和258.35 vs 258.35 (n=17),ok
+wheat,山东,2005,fert_purity_eq,0.0,折纯25.0 vs 化肥用量25.0,ok
+wheat,山西,2005,total_cost,0.0,生产292.92+土地70.88 vs 总363.8,ok
+wheat,山西,2005,msf_sum,0.0,分项和204.64 vs 204.64 (n=12),ok
+wheat,山西,2005,fert_purity_eq,0.0,折纯17.53 vs 化肥用量17.53,ok
+wheat,新疆,2005,total_cost,0.0,生产355.14+土地69.5 vs 总424.64,ok
+wheat,新疆,2005,msf_sum,0.0,分项和258.53 vs 258.53 (n=17),ok
+wheat,新疆,2005,fert_purity_eq,0.0,折纯21.15 vs 化肥用量21.15,ok
+wheat,江苏,2005,total_cost,0.0,生产299.18+土地67.97 vs 总367.15,ok
+wheat,江苏,2005,msf_sum,0.0,分项和225.30 vs 225.3 (n=16),ok
+wheat,江苏,2005,fert_purity_eq,0.0,折纯23.3 vs 化肥用量23.3,ok
+wheat,河南,2005,total_cost,0.0,生产310.62+土地61.52 vs 总372.14,ok
+wheat,河南,2005,msf_sum,0.0,分项和205.66 vs 205.66 (n=12),ok
+wheat,河南,2005,fert_purity_eq,0.0,折纯21.58 vs 化肥用量21.58,ok
+wheat,湖北,2005,total_cost,0.0,生产254.77+土地40.41 vs 总295.18,ok
+wheat,湖北,2005,msf_sum,0.0,分项和158.44 vs 158.44 (n=15),ok
+wheat,湖北,2005,fert_purity_eq,0.0,折纯17.03 vs 化肥用量17.03,ok
+wheat,甘肃,2005,total_cost,0.0,生产413.71+土地51.67 vs 总465.38,ok
+wheat,甘肃,2005,msf_sum,0.0,分项和228.25 vs 228.25 (n=13),ok
+wheat,甘肃,2005,fert_purity_eq,0.0,折纯18.43 vs 化肥用量18.43,ok
+wheat,贵州,2005,total_cost,0.0,生产298.24+土地27.71 vs 总325.95,ok
+wheat,贵州,2005,msf_sum,0.0,分项和101.69 vs 101.69 (n=15),ok
+wheat,贵州,2005,fert_purity_eq,0.0,折纯7.48 vs 化肥用量7.48,ok
+wheat,重庆,2005,total_cost,0.0,生产325.91+土地20.33 vs 总346.24,ok
+wheat,重庆,2005,msf_sum,0.0,分项和69.36 vs 69.36 (n=14),ok
+wheat,重庆,2005,fert_purity_eq,0.0,折纯9.4 vs 化肥用量9.4,ok
+wheat,陕西,2005,total_cost,0.0,生产397.31+土地54.77 vs 总452.08,ok
+wheat,陕西,2005,msf_sum,0.0,分项和231.26 vs 231.26 (n=14),ok
+wheat,陕西,2005,fert_purity_eq,0.0,折纯29.05 vs 化肥用量29.05,ok
+wheat,青海,2005,total_cost,0.0,生产432.14+土地12.92 vs 总445.06,ok
+wheat,青海,2005,msf_sum,0.0,分项和165.10 vs 165.1 (n=14),ok
+wheat,青海,2005,fert_purity_eq,0.0,折纯10.99 vs 化肥用量10.99,ok
+wheat,黑龙江,2005,total_cost,0.0,生产176.64+土地86.03 vs 总262.67,ok
+wheat,黑龙江,2005,msf_sum,0.0,分项和146.94 vs 146.94 (n=13),ok
+wheat,黑龙江,2005,fert_purity_eq,0.0,折纯10.33 vs 化肥用量10.33,ok

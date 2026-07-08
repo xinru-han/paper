@@ -1,4 +1,4 @@
 crop,model,rmse,n_test
-wheat,translog,0.0415078763124606,38
-wheat,cobb_douglas,0.071240201082537,38
+wheat,translog,0.0388999307880767,38
+wheat,cobb_douglas,0.0694752209618242,38
 wheat,random_walk,0.0400837661585021,38

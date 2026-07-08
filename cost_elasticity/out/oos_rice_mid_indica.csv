@@ -1,4 +1,4 @@
 crop,model,rmse,n_test
-rice_mid_indica,translog,0.0480753818433508,39
-rice_mid_indica,cobb_douglas,0.0507054967456144,39
+rice_mid_indica,translog,0.0460674598665831,39
+rice_mid_indica,cobb_douglas,0.0510897576928105,39
 rice_mid_indica,random_walk,0.0415432785623158,39

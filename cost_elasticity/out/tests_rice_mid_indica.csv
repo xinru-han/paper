@@ -1,5 +1,5 @@
 crop,test,LR,df,p
-rice_mid_indica,homotheticity,33.0638892477327,4,1.15903824034891e-06
-rice_mid_indica,hicks_neutral,86.6920106937214,4,6.63626271319983e-18
-rice_mid_indica,no_tech_change,232.613372927322,7,1.38177684057019e-46
-rice_mid_indica,cobb_douglas,316.053076520018,10,6.2476618232583e-62
+rice_mid_indica,homotheticity,32.0309650219169,4,1.88542208297581e-06
+rice_mid_indica,hicks_neutral,57.9831836126177,4,7.69327352484749e-12
+rice_mid_indica,no_tech_change,195.935083930981,7,8.32676443672966e-39
+rice_mid_indica,cobb_douglas,302.808724088876,10,3.96107017246944e-59
