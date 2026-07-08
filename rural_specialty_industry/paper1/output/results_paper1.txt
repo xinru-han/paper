@@ -1,0 +1,92 @@
+==== Paper 1：产业强镇交错DID ====
+镇×年观测=650490 镇=43366 处理镇=1333 认定镇=823 年=2010-2024
+
+---- 表1 静态TWFE：post×treated ----
+                   s_light      s_pop             s_tb
+                 log灯光  log人口     淘宝村数
+Dependent Var.:   loglight     logpop n_taobao_village
+                                                      
+post             0.1707*** -0.0369***          0.0609*
+                (0.0198)   (0.0076)           (0.0252)
+Fixed-Effects:  ---------- ---------- ----------------
+town_code              Yes        Yes              Yes
+year                   Yes        Yes              Yes
+_______________ __________ __________ ________________
+S.E.: Clustered by: county by: county       by: county
+Observations       650,490    650,490          650,490
+R2                 0.92695    0.96445          0.49602
+Within R2          0.00042    0.00013          6.75e-5
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+---- 表2 Sun-Abraham 事件研究 (log灯光) ----
+OLS estimation, Dep. Var.: loglight
+Observations: 650,490
+Fixed-effects: town_code: 43,366,  year: 15
+Standard-errors: Clustered (county) 
+           Estimate Std. Error  t value   Pr(>|t|)    
+year::-13 -0.254650   0.066954 -3.80337 1.4575e-04 ***
+year::-12 -0.171119   0.050244 -3.40575 6.6898e-04 ***
+year::-11 -0.178047   0.043359 -4.10638 4.1325e-05 ***
+year::-10 -0.156392   0.035690 -4.38190 1.2192e-05 ***
+year::-9  -0.135237   0.030645 -4.41299 1.0575e-05 ***
+year::-8  -0.135584   0.026193 -5.17631 2.4210e-07 ***
+year::-7  -0.128049   0.025020 -5.11777 3.2978e-07 ***
+year::-6  -0.113485   0.022609 -5.01951 5.5002e-07 ***
+... 11 coefficients remaining (display them with summary() or use
+argument n)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.637549     Adj. R2: 0.921734
+                 Within R2: 6.862e-4
+
+聚合ATT(灯光):
+      Estimate Std. Error  t value     Pr(>|t|)
+ATT 0.08478001 0.01552477 5.460953 5.145186e-08
+
+---- 表3 事件研究聚合ATT：人口 / 淘宝村 ----
+人口 ATT:
+       Estimate  Std. Error   t value     Pr(>|t|)
+ATT -0.02559579 0.006355626 -4.027265 5.790764e-05
+淘宝村 ATT:
+      Estimate Std. Error  t value   Pr(>|t|)
+ATT 0.02974887 0.01634022 1.820592 0.06877409
+
+---- 表4 设计B：建设镇内 认定 vs 未认定 (post_cert) ----
+                      b1
+Dependent Var.: loglight
+                        
+post_build       0.0513 
+                (0.0345)
+post_cert       -0.0371 
+                (0.0418)
+Fixed-Effects:  --------
+town_code            Yes
+year                 Yes
+_______________ ________
+S.E.: Clustered by: co..
+Observations      19,995
+R2               0.90442
+Within R2        0.00028
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+解读：post_build=建设效应基准；post_cert=认定的增量效应(conditional-on-creation)
+
+---- 表5 异质性 by 主导批次早晚（2018-2020早 vs 2021+晚） ----
+                        h1
+Dependent Var.:   loglight
+                          
+post             0.1791***
+                (0.0293)  
+post_early      -0.0134   
+                (0.0387)  
+Fixed-Effects:  ----------
+town_code              Yes
+year                   Yes
+_______________ __________
+S.E.: Clustered by: county
+Observations       650,490
+R2                 0.92695
+Within R2          0.00042
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
