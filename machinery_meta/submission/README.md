@@ -23,10 +23,7 @@ self-contained parts plus the manuscript-revision script.
   casm_inputs/              model input workbooks
   results/                  Table8_grain.csv, Table9_cereal_staple.csv, long results
 
-manuscript/
-  manuscript_original.docx                       submitted draft
-  农业机械化对粮食综合生产能力_修订稿_tracked.docx  revised draft (Word track changes)
-  revise_manuscript.py                           applies updated numbers as tracked changes
+CORRECTIONS.md            errors fixed vs the original draft and the resulting number updates
 ```
 
 ## Reproduce
