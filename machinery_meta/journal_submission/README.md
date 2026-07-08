@@ -29,7 +29,7 @@ results/
   Table5_robustness.csv        Robustness (IQR / simple mean / N-weighted)
   Table8_grain.csv             CASM: grain totals, 2030 (output / net-trade / SSR)
   Table9_cereal_staple.csv     CASM: cereal and staple-grain security, 2030
-  figures/                     forest_*.png, funnel_*.png
+  forest_*.png, funnel_*.png   Forest and funnel plots
 ```
 
 ## Reproduce (meta-analysis)
