@@ -2,3 +2,35 @@ BASE       yield_shift=0.0000 area_shift=0.0000  solved 17.8s
 S1-Medium  yield_shift=0.3912 area_shift=0.0000  solved 15.8s
 S1-High    yield_shift=0.5542 area_shift=0.0000  solved 15.8s
 S1-Low     yield_shift=0.2282 area_shift=0.0000  solved 15.4s
+S2-Medium  yield_shift=0.4578 area_shift=0.0658  solved 25.6s
+S2-High    yield_shift=0.6213 area_shift=0.0893  solved 15.9s
+S2-Low     yield_shift=0.2943 area_shift=0.0423  solved 15.3s
+S3-Medium  yield_shift=0.2074 area_shift=0.0168  solved 15.7s
+S3-High    yield_shift=0.4486 area_shift=0.0364  solved 15.9s
+S3-Low     yield_shift=0.0241 area_shift=0.0020  solved 15.9s
+
+== Table 8 grain totals (2030) ==
+ scenario  output_10kt output_chg_pct  net_trade_10kt  SSR_pct  sown_area_100Mmu yield_chg_pct
+ Baseline        73377              -           12595    85.35           18.0112             -
+S1-Medium        74811           1.95           11294    86.88           18.0112          1.95
+  S1-High        75415           2.78           10745    87.53           18.0112          2.78
+   S1-Low        74211           1.14           11838    86.24           18.0112          1.14
+S2-Medium        75305           2.63           10850    87.41           18.0704          2.29
+  S2-High        76003           3.58           10217    88.15           18.0916          3.12
+   S2-Low        74611           1.68           11477    86.67           18.0493          1.47
+S3-Medium        74197           1.12           11852    86.23           18.0263          1.03
+  S3-High        75160           2.43           10979    87.25           18.0440          2.24
+   S3-Low        73472           0.13           12509    85.45           18.0130          0.12
+
+== Table 9 cereal & staple security (2030) ==
+ scenario  cereal_output_10kt  cereal_SSR_pct  cereal_net_trade_10kt  staple_output_10kt  staple_SSR_pct  staple_net_trade_10kt
+ Baseline               66233           98.79                    814               35326           99.08                    328
+S1-Medium               67529          100.53                   -357               36019          100.75                   -267
+  S1-High               68075          101.27                   -850               36311          101.45                   -518
+   S1-Low               66986           99.80                    133               35729          100.05                    -18
+S2-Medium               67974          101.13                   -757               36257          101.31                   -469
+  S2-High               68606          101.97                  -1326               36594          102.11                   -758
+   S2-Low               67348          100.29                   -192               35922          100.51                   -182
+S3-Medium               66973           99.78                    145               35722          100.03                    -11
+  S3-High               67844          100.95                   -640               36187          101.15                   -410
+   S3-Low               66319           98.90                    736               35372           99.19                    289
