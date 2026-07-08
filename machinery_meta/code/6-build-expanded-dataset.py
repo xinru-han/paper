@@ -53,6 +53,22 @@ for c in ["beta", "se", "t_stat", "N", "df", "mean_y", "mean_x",
 
 df = df[df["beta"].notna()].copy()
 
+# 剔除不宜与粮食口径直接合并的行：
+#  - 非粮/经济作物面积（趋粮化的镜像证据，方向相反）
+#  - 空间溢出（间接效应）项
+#  - 净收益/利润口径（非产量/产值）
+dep = df["dep_var"].fillna("")
+nts = df["notes"].fillna("")
+bad = (dep.str.contains("non.?grain|非粮|棉|cotton|油料|糖料|sugar|经济作物|cash crop",
+                        case=False, regex=True)
+       | nts.str.contains("空间溢出")
+       | dep.str.contains("net return|净收益|利润|profit", case=False)
+       # 经营规模/土地流转意愿不属于粮食面积口径（协议限定粮食面积/趋粮化）
+       | dep.str.contains("planting areas|transfer willingness|经营规模",
+                          case=False))
+log(f"剔除非粮镜像/空间溢出/净收益口径行: {int(bad.sum())}")
+df = df[~bad].copy()
+
 # 因变量为"无效率项/成本"的行：系数方向反号后并入 Efficiency（提取件notes中标注）
 flip_mask = df["notes"].fillna("").str.contains("无效率|反号|inefficien", case=False)
 df.loc[flip_mask, "beta"] = -df.loc[flip_mask, "beta"]

@@ -5,25 +5,33 @@ cn_g4.csv: 59 行
 cn_g5.csv: 46 行
 cn_g6.csv: 47 行
 cn_g7.csv: 10 行
-合计原始提取 367 行，来自 33 篇文献
-无效率方程反号处理: 17 行
-可计算PCC的行: 305 / 367
+en_g1.csv: 24 行
+en_g2.csv: 10 行
+en_g3.csv: 10 行
+en_g4.csv: 49 行
+en_g5.csv: 12 行
+en_g6.csv: 25 行
+en_g7.csv: 74 行
+合计原始提取 571 行，来自 55 篇文献
+剔除非粮镜像/空间溢出/净收益口径行: 31
+无效率方程反号处理: 27 行
+可计算PCC的行: 419 / 540
 
 == 效应量分布（估计值层面）==
 Path        AML  AMS  MCI  All
 Target                        
-Area         34   28    8   70
-Efficiency   55  115    8  178
-Yield        12   12   33   57
-All         101  155   49  305
+Area         34   28   14   76
+Efficiency   54  119   16  189
+Yield        12   42  100  154
+All         100  189  130  419
 
 == 文献层面覆盖 ==
 Path        AML  AMS  MCI
 Target                   
-Area          3    3    3
-Efficiency    3   14    4
-Yield         1    2    6
+Area          3    3    4
+Efficiency    3   15    5
+Yield         1    8   18
 
 |PCC|>0.99 异常行: 0
 
-已输出 /root/paper/machinery_meta/data/meta_effects_expanded.csv: 305 条效应量 / 30 篇文献
+已输出 /root/paper/machinery_meta/data/meta_effects_expanded.csv: 419 条效应量 / 48 篇文献
