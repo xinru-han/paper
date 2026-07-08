@@ -1,6 +1,29 @@
 # 农业机械化对粮食综合生产能力的影响：Meta分析 + CASM情景模拟
 
-## ★ v3 全文多效应量版（最新，2026-07-08）
+## ★★ ms版：manuscript对齐主线（最终采用，2026-07-08）
+
+按作者要求，以论文初稿（20260701）为基准复刻：v2 check后数据、
+一文一主效应量56条、轨道一PCC沿用manuscript数值、v1路径分类
+（MCI/AMS/AML）、DL随机效应+WLS Meta回归+FAT-PET-PEESE原框架，
+只修根本性错误并更新数字，结论结构不变。
+
+- `code/10-ms-meta.py` → `results/meta_ms/`：表1与manuscript**逐数一致**
+  （单产0.133***/面积0.060**/效率0.172***，I²、Q完全相同）；表2-5为
+  同口径重算更新；`audit_findings.txt` 为根本性错误检查报告
+- `code/11-ms-scenarios.py` → `results/casm_ms/simulation_plan_ms.csv`：
+  与论文表7同构，按式(25)用重算弹性中位数统一（修复表6/表7内部不一致），
+  Shifter与论文高度接近（S2: 0.458+0.066 vs 论文0.438+0.072）
+- `code/12-ms-casm.py` → `results/casm_ms/`：Python版CASM基线+9情景
+
+**错误检查主要发现**（详见`results/meta_ms/audit_findings.txt`）：
+① v1代码GPR模块使用虚构数据（已删）；② v1代码Meta回归缺LogN与表3不符
+（已补)；③ 论文表6弹性与表7 Shifter隐含弹性不一致（已按式25统一）；
+④ check版修订的β/SE与轨道一PCC存在36条不一致，建议附录说明提取基准；
+⑤ 分路径计数与表2略有出入；⑥ P_13缺号；⑦ DF=N近似（附KH参考CI）。
+
+---
+
+## v3 全文多效应量版（方法升级备选，2026-07-08）
 
 针对v2中"面积不显著、单产仅5%边缘显著"的功效不足问题，参照
 IFPRI DP02361（Roche等2025：215篇13000+条弹性，两层随机截距，1/√N精度项）与
