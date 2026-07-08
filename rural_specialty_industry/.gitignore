@@ -1,0 +1,8 @@
+# 工商注册逐年中间产物（大文件、企业级），保留本地不入库
+output/firm_reg/*.pkl.gz
+output/firm_reg/agri_firms_geo_*
+output/firm_reg/county_industry_2*.csv
+output/firm_reg/agri_county3_2*.csv
+output/firm_reg/*.log
+# 仅入库最终合并面板（output/*.csv 顶层）与 QC
+!output/firm_reg/qc_*.txt
