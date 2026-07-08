@@ -49,24 +49,38 @@ t10 <- rbindlist(lapply(names(OUTS), function(y) {
 wtab(t10, "table10_bline_gap_main.csv")
 
 # ---- Romano-Wolf stepdown over the outcome family (village bootstrap) -------
+# Audit fixes (2026-07): (i) resampled villages are RELABELLED so a village drawn
+# k times contributes k distinct clusters (set-membership labels understate the
+# bootstrap cluster variance); (ii) finite-sample p-value (1+#extreme)/(1+B) so
+# p can never be reported as exactly 0; (iii) B raised 300 -> 999. This test is
+# positioned as AUXILIARY multiplicity control alongside the wild cluster
+# bootstrap in 14_wild_bootstrap.R.
 main_terms <- c("elder","elder:threegen")
-get_t <- function(dat) {
+get_t <- function(dat, clvar = "xzc12") {
   sapply(names(OUTS), function(y) {
-    m <- tryCatch(fit_b1(dat[!is.na(get(y))], y), error = function(e) NULL)
+    m <- tryCatch(fit_b1_cl(dat[!is.na(get(y))], y, clvar), error = function(e) NULL)
     if (is.null(m)) return(c(NA, NA))
     ct <- coeftable(m)
     c(ct["elder","t value"], ct["elder:threegen","t value"])
   })
 }
+fit_b1_cl <- function(dat, y, clvar) {
+  feols(as.formula(paste0(y, " ~ elder + elder:threegen + ", CTRL_I, " | hh_id")),
+        data = dat, cluster = as.formula(paste0("~", clvar)))
+}
 t_obs <- get_t(bl)
-set.seed(3); B <- 300
+set.seed(3); B <- 999
 vils <- unique(bl$xzc12)
 # null-imposed bootstrap: recenter t-stats (standard RW with cluster bootstrap)
 t_boot <- array(NA_real_, dim = c(2, length(OUTS), B))
 for (b in seq_len(B)) {
   sv <- sample(vils, length(vils), replace = TRUE)
-  idx <- unlist(lapply(sv, function(v) which(bl$xzc12 == v)))
-  t_boot[,,b] <- get_t(bl[idx]) - t_obs
+  bs <- rbindlist(lapply(seq_along(sv), function(k) {
+    dv <- bl[xzc12 == sv[k]]
+    dv[, boot_cl := paste0(sv[k], "_", k)]   # relabel: each draw = its own cluster
+    dv
+  }))
+  t_boot[,,b] <- get_t(bs, "boot_cl") - t_obs
 }
 rw_p <- function(row) {
   o <- order(-abs(t_obs[row,]))
@@ -74,7 +88,8 @@ rw_p <- function(row) {
   remaining <- o
   for (k in seq_along(o)) {
     maxnull <- apply(abs(t_boot[row, remaining, , drop = FALSE]), 3, max, na.rm = TRUE)
-    p[o[k]] <- mean(maxnull >= abs(t_obs[row, o[k]]), na.rm = TRUE)
+    # finite-sample Monte-Carlo p: (1 + #extreme) / (1 + B), never exactly 0
+    p[o[k]] <- (1 + sum(maxnull >= abs(t_obs[row, o[k]]), na.rm = TRUE)) / (1 + B)
     if (k > 1) p[o[k]] <- max(p[o[k]], p[o[k-1]])   # enforce monotonicity
     remaining <- setdiff(remaining, o[k])
   }
@@ -83,6 +98,23 @@ rw_p <- function(row) {
 rw <- data.table(outcome = names(OUTS),
                  p_rw_elder = rw_p(1), p_rw_interaction = rw_p(2))
 wtab(rw, "table10a_romano_wolf.csv")
+
+# ---- presence-indicator provenance check (audit minor item #5) ---------------
+# any_animal etc. are built from mddwg_* gram fields (>0). Cross-check presence
+# against the independent DBI-16 gram family: unit errors rescale grams but do
+# not flip presence, and two independently-coded group families agreeing on
+# presence rules out "presence inherited from a bad merge" for these binaries.
+bl[, any_animal_dbiv := as.integer(num(dbiv_red_meat_g_48h) > 0 | num(dbiv_poultry_g_48h) > 0 |
+                                   num(dbiv_fish_shrimp_g_48h) > 0 | num(dbiv_egg_g_48h) > 0 |
+                                   num(dbiv_milk_g_48h) > 0)]
+agree_pres <- bl[!is.na(any_animal) & !is.na(any_animal_dbiv), mean(any_animal == any_animal_dbiv)]
+writeLines(sprintf(paste0("# Presence-indicator provenance check\n",
+  "- any_animal (MDD-W gram family) vs any animal (DBI-16 gram family): ",
+  "%.1f%% agreement over %d B-line members.\n",
+  "- Presence/absence binaries are robust to the Task-3 unit failures as long as ",
+  "zero/nonzero status is correct; two independently coded group families agree."),
+  100*agree_pres, bl[!is.na(any_animal) & !is.na(any_animal_dbiv), .N]),
+  file.path(DIR_REP, "presence_provenance_check.md"))
 
 # ---- R6 robustness for the main outcome (fgds10) -----------------------------
 r6 <- list()

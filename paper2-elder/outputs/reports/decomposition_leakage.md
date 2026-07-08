@@ -1,6 +1,7 @@
-# B3 decomposition & leakage
+# B3 descriptive reconciliation (accounting decomposition)
+NOT a formal mechanism estimate: quantities come from different samples and control sets; phi1 is an associational slope mechanically contaminated by the elder's own intake.
 
-Three-generation co-residence raises household HDDS by 0.519 groups; the marginal cross-sectional slope of elder FGDS-10 on household HDDS is 0.436 (associational, NOT causal pass-through). Expected elder gain = phi1 x dHDDS = 0.226 FGDS groups; realized elder gain (reduced form) = 0.214. TWO leakage measures: (1) gap-to-household 1-bR/bA = 59% (95% CI 19-108%) -- but this mostly reflects the <1 slope common to all members, not elder-specific loss; (2) ALLOCATION-specific 1-realized/expected = 5% (95% CI -91-118%) -- the share the elder loses BEYOND the pass-through every member faces. The honest headline is (2).
+Three-generation co-residence raises household HDDS by 0.519 groups; the marginal cross-sectional slope of elder FGDS-10 on household HDDS is 0.436 (associational, NOT causal pass-through). Expected elder gain = phi1 x dHDDS = 0.226 FGDS groups; realized elder gain (reduced form) = 0.214. TWO leakage measures: (1) gap-to-household 1-bR/bA = 59% (95% CI 19-108%) -- but this mostly reflects the <1 slope common to all members, not elder-specific loss, and should NOT be quoted as a leakage headline; (2) ALLOCATION-specific 1-realized/expected = 5% (95% CI -91-118%) -- the share the elder loses BEYOND the pass-through every member faces; this CI spans zero. The only citable conclusion is that allocation-specific leakage is indistinguishable from zero. All of this is a DESCRIPTIVE RECONCILIATION across different samples/control sets, not a mechanism estimate.
 
 ## By-arrangement decomposition
         arrangement       dHDDS      phi1 passthrough_component

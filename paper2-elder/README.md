@@ -15,8 +15,10 @@ This folder contains the full executable pipeline (R) and all results.
 - **B line (within household, identification core)**: elder vs non-elder-adult intake gap under
   household fixed effects in 557 mixed households (1,596 adults), interaction with
   three-generation living; Romano–Wolf stepdown over the outcome family.
-- **B3 decomposition**: elder-level arrangement differences = pass-through (φ1 × ΔHDDS)
-  + allocation residual; leakage rate with village-block-bootstrap CIs.
+- **B3 descriptive reconciliation** (accounting decomposition, NOT a mechanism estimate):
+  elder-level arrangement differences vs φ1 × ΔHDDS + allocation residual, with
+  village-block-bootstrap CIs; quantities come from different samples/control sets and
+  no leakage rate is a headline.
 - **Post-estimation**: 2035 aging/solo-living accounting projection (provisioning-anchored);
   county government work-report text (elder-feeding policy diffusion + exploratory moderation);
   honest causal-forest heterogeneity (appendix).
@@ -33,7 +35,7 @@ This folder contains the full executable pipeline (R) and all results.
 | 05_aline_robust.R | balance/overlap, 5 estimators, permutation, Oster, LOP | table7–9, fig3–6 |
 | 06_bline_gap.R | B1 household-FE gap + Romano–Wolf + R6 | table10*, fig7 |
 | 07_bline_passthrough.R | B2 pass-through φ1 by arrangement | table11* |
-| 08_decomposition_leakage.R | B3 + leakage + heterogeneity + bootstrap | table12–13, fig8 |
+| 08_decomposition_leakage.R | B3 descriptive reconciliation + heterogeneity + bootstrap | table12–13, fig8 |
 | 09_mechanisms.R | roles (Task 5), self-provisioning (Task 6), binaries (Task 8) | table14–16 |
 | 10_aging_projection.R | 2035 scenarios S0/S1/S2, k∈{4,6,8}, λ∈{25,50,75}% | table17, fig10 |
 | 11_county_policy_text.R | county report keywords, diffusion, moderation + placebo | table18, fig9, county panel |
@@ -41,6 +43,7 @@ This folder contains the full executable pipeline (R) and all results.
 | 14_wild_bootstrap.R | few-cluster wild cluster bootstrap-t (A-line + B-line) | table20 |
 | 15_threshold_sensitivity.R | elder 60-vs-65, child cutoff, 2023/2024 split | table21 |
 | 16_mnar_bounds.R | proxy-under-recording (MNAR) bounds on the elder gap | table22 |
+| 17_measurement_robustness.R | scale-free A-line outcomes; resident/48h-observed living-arrangement reconstructions | table26, table27* |
 | 18_bline_identification.R | generation-ladder placebo + health strata (allocation vs physiology) | table24*, table25 |
 | 99_run_all.R | run everything in order | — |
 
@@ -56,6 +59,25 @@ negative-control outcome, BH-FDR on the share family, a strict three-gen flag, a
 Monte-Carlo band on the 2035 projection. Net effect: **headline #1 (leakage) and the
 "inequality against elders" framing are substantially qualified; the A-line HDDS effect
 and its robustness are unchanged.** See the "Post-review revisions" block in `RESULTS.md`.
+
+**Post-review revisions round 2 (econometric audit, 2026-07-08,
+`paper2_elder_econometric_audit.md`).** (1) Scale-standardised A-line outcomes
+(17_measurement_robustness.R): union FGDS-10 (all / excl. elders / excl. children)
+stays strong, but mean member FGDS-10 and rarefaction-style HDDS (fixing recorded
+members/meals) are null → the A-line is read strictly as **household-table
+provisioning breadth**, never individual diet quality. (2) Resident-based (≥180
+days at home) and 48h-observed living-arrangement reconstructions: 98.9% agreement
+with the roster; A/B-line results stable. (3) B-line relabelled as a gap in
+**recorded** diversity, allocation caveat in the main text. (4) B3 relabelled a
+descriptive reconciliation; leakage removed from headlines. (5) Romano–Wolf:
+finite-sample p=(1+k)/(1+B), B=999, relabelled bootstrap clusters. (6) County
+policy-text merges keyed on (province, county). (7) Health strata rebuilt
+(chronic disease / self-rated health): the elder gap appears in **both** healthy
+and unhealthy strata. (8) B-line threshold sensitivity aligned to the main
+estimand (elder≥60 reproduces −0.294 exactly; elder≥65 → −0.426). (9) GRF output
+relabelled (conditional contrast, not ATT/CATE). Plus: de-ATT-ed estimator names,
+Oster caveat, imperfect-placebo note, presence-indicator provenance check,
+no-survey-weights note.
 
 Run: `Rscript code/99_run_all.R` (R ≥ 4.1, packages in `/root/Rlibs`:
 data.table, fixest, WeightIt, cobalt, ggplot2, grf, readxl, stringr).

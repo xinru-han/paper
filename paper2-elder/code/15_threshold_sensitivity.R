@@ -69,27 +69,46 @@ for (yr in sort(unique(hh$data_year))) {
 }
 
 # B-line elder gap at elder threshold 60 vs 65 -----------------------------------
-# elder flag from person age; keep mixed households (>=1 elder & >=1 non-elder adult 18-64/59)
-bline_gap <- function(elder_age) {
+# Audit fix (2026-07): this sensitivity must reproduce the MAIN B-line estimand
+# (06_bline_gap.R) exactly at elder>=60: same sample construction (households
+# classified cohabit_nonelder/threegen at the probed threshold, >=1 recorded
+# elder AND >=1 recorded non-elder adult) and same model
+# (fgds10 ~ elder + elder:threegen + female | hh_id), so the reported coefficient
+# is the two-generation baseline elder gap, directly comparable to table10.
+# The previous version pooled ALL mixed households and omitted elder:threegen,
+# which is a different estimand; it is retained below with an explicit label.
+bline_gap <- function(elder_age, aligned = TRUE) {
   p <- copy(per)
   p[, age_yrs := num(age_yrs)]
   p[, elder := as.integer(!is.na(age_yrs) & age_yrs >= elder_age)]
   p[, adult := as.integer(!is.na(age_yrs) & age_yrs >= 18)]
   p <- p[adult == 1 & !is.na(num(fgds10))]
   p[, fgds10 := num(fgds10)]; p[, female := num(female)]
-  # mixed households: both an elder and a non-elder adult present
+  if (aligned) {
+    la <- classify(elder_age)
+    p <- merge(p, la, by = c("nhCode","data_year"))
+    p <- p[la %in% c("cohabit_nonelder","threegen")]
+    p[, threegen := as.integer(la == "threegen")]
+  }
+  # mixed households: both an elder and a non-elder adult recorded
   mix <- p[, .(has_e = any(elder == 1), has_a = any(elder == 0)), by = .(nhCode, data_year)][has_e & has_a]
   p <- merge(p, mix[, .(nhCode, data_year)], by = c("nhCode","data_year"))
   p[, hh_id := paste(nhCode, data_year)]
   if (nrow(p) < 100 || p[, uniqueN(elder)] < 2) return(NULL)
-  m <- feols(fgds10 ~ elder + female | hh_id, data = p, cluster = ~xzc12)
+  fml <- if (aligned) fgds10 ~ elder + elder:threegen + female | hh_id
+         else fgds10 ~ elder + female | hh_id
+  m <- feols(fml, data = p, cluster = ~xzc12)
   ct <- coeftable(m)["elder", ]
   data.table(est = ct["Estimate"], se = ct["Std. Error"], p = ct["Pr(>|t|)"],
              n = nrow(p), n_treat = p[, sum(elder)])
 }
 for (ea in c(60, 65)) {
-  r <- bline_gap(ea)
-  if (!is.null(r)) res[[paste0("bline_elder", ea)]] <- r[, spec := sprintf("B-line elder gap, elder>=%d", ea)]
+  r <- bline_gap(ea, aligned = TRUE)
+  if (!is.null(r)) res[[paste0("bline_elder", ea)]] <-
+    r[, spec := sprintf("B-line elder gap (MAIN estimand: two-gen baseline, elder x threegen model), elder>=%d", ea)]
+  r2 <- bline_gap(ea, aligned = FALSE)
+  if (!is.null(r2)) res[[paste0("bline_pooled", ea)]] <-
+    r2[, spec := sprintf("B-line elder gap (pooled ALL mixed households, no interaction — different estimand), elder>=%d", ea)]
 }
 
 t21 <- rbindlist(res, fill = TRUE)[, .(spec, est, se, p, n, n_treat)]

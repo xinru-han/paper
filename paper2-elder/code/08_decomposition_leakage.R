@@ -1,5 +1,14 @@
 # =============================================================================
-# 08_decomposition_leakage.R — B3 reconciliation decomposition + leakage rate
+# 08_decomposition_leakage.R — B3 DESCRIPTIVE RECONCILIATION (accounting
+# decomposition). NOT a formal mechanism/mediation estimate:
+#  * phi1 is a cross-sectional slope of elder FGDS-10 on household HDDS-12, and
+#    the elder's own 48h diet mechanically enters household HDDS;
+#  * dHDDS (A line), phi1 (B2) and the reduced-form elder effect (B3) come from
+#    DIFFERENT samples and DIFFERENT control sets, so this is an accounting
+#    reconciliation of three separately-estimated quantities, not a structural
+#    decomposition of a single estimand;
+#  * "leakage" is therefore a descriptive gap measure, never a causal
+#    pass-through loss, and is NOT a headline number.
 # For each living arrangement k (vs base = with non-elder adults):
 #   Delta_k(elder fgds10) = phi1 * Delta_k(HDDS)   [pass-through component]
 #                         + allocation residual    [distribution component]
@@ -89,15 +98,17 @@ ci <- bootdt[, .(pass_lo = quantile(passthrough_component, .025, na.rm = TRUE),
 t12 <- merge(dec, ci, by = "arrangement", all.x = TRUE)
 wtab(t12, "table12_decomposition.csv")
 
-# ---- headline: three-generation leakage --------------------------------------
+# ---- three-generation reconciliation summary (NOT a headline number) ----------
 tg <- t12[arrangement == "threegen"]
 headline <- sprintf(paste0(
   "Three-generation co-residence raises household HDDS by %.3f groups; the marginal cross-sectional slope of ",
   "elder FGDS-10 on household HDDS is %.3f (associational, NOT causal pass-through). Expected elder gain = ",
   "phi1 x dHDDS = %.3f FGDS groups; realized elder gain (reduced form) = %.3f. TWO leakage measures: ",
   "(1) gap-to-household 1-bR/bA = %.0f%% (95%% CI %.0f-%.0f%%) -- but this mostly reflects the <1 slope common ",
-  "to all members, not elder-specific loss; (2) ALLOCATION-specific 1-realized/expected = %.0f%% (95%% CI %.0f-%.0f%%) ",
-  "-- the share the elder loses BEYOND the pass-through every member faces. The honest headline is (2)."),
+  "to all members, not elder-specific loss, and should NOT be quoted as a leakage headline; (2) ALLOCATION-specific ",
+  "1-realized/expected = %.0f%% (95%% CI %.0f-%.0f%%) -- the share the elder loses BEYOND the pass-through every member ",
+  "faces; this CI spans zero. The only citable conclusion is that allocation-specific leakage is indistinguishable ",
+  "from zero. All of this is a DESCRIPTIVE RECONCILIATION across different samples/control sets, not a mechanism estimate."),
   tg$dHDDS, tg$phi1, tg$passthrough_component, tg$total_elder_effect,
   100*tg$leak_gap_to_hh, 100*tg$leak_lo, 100*tg$leak_hi,
   100*tg$leak_allocation, 100*tg$leak_alloc_lo, 100*tg$leak_alloc_hi)
@@ -129,12 +140,13 @@ p8 <- ggplot(wf, aes(step, value)) +
   geom_col(fill = c("steelblue","goldenrod","firebrick"), alpha = .75, width = .55) +
   geom_text(aes(label = sprintf("%.3f", value)), vjust = -0.4, size = 4) +
   labs(x = NULL, y = "Dietary diversity groups (48h)",
-       title = "From the household table to the elder's bowl: three-generation gain",
-       subtitle = "Waterfall of the provisioning gain and what reaches older adults") +
+       title = "Descriptive reconciliation: household provisioning gain vs elder's recorded diversity",
+       subtitle = "Accounting waterfall (different samples/controls per bar; NOT a causal pass-through)") +
   theme_minimal(base_size = 12)
 ggsave(file.path(DIR_FIG, "fig8_waterfall_decomposition.png"), p8, width = 8, height = 5.5, dpi = 200)
 
-writeLines(c("# B3 decomposition & leakage", "", headline, "",
+writeLines(c("# B3 descriptive reconciliation (accounting decomposition)",
+  "NOT a formal mechanism estimate: quantities come from different samples and control sets; phi1 is an associational slope mechanically contaminated by the elder's own intake.", "", headline, "",
              "## By-arrangement decomposition", paste(capture.output(print(t12)), collapse = "\n"),
              "", "## Heterogeneity (three-gen leakage)", paste(capture.output(print(het)), collapse = "\n")),
            file.path(DIR_REP, "decomposition_leakage.md"))

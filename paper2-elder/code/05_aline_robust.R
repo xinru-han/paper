@@ -27,16 +27,16 @@ m0 <- feols(as.formula(paste("hdds12 ~ treat +", paste(XV, collapse = " + "), "|
             data = d, cluster = ~xzc12)
 res$OLS_countyFE <- tidy_fe(m0, "^treat")
 
-# ---- (1) IPW (ATT) -----------------------------------------------------------
+# ---- (1) IPW (ATT weights; estimand = adjusted contrast under selection-on-observables) -----------------------------------------------------------
 w_ipw <- weightit(fml_ps, data = d, method = "glm", estimand = "ATT")
 m1 <- feols(hdds12 ~ treat, data = d, weights = w_ipw$weights, cluster = ~xzc12)
-res$IPW_ATT <- tidy_fe(m1, "^treat")
+res$IPW_adj_contrast <- tidy_fe(m1, "^treat")
 
-# ---- (2) entropy balancing (ATT) ---------------------------------------------
+# ---- (2) entropy balancing (ATT weights; adjusted contrast) ---------------------------------------------
 w_eb <- tryCatch(weightit(fml_ps, data = d, method = "ebal", estimand = "ATT"), error = function(e) NULL)
 if (!is.null(w_eb)) {
   m2 <- feols(hdds12 ~ treat, data = d, weights = w_eb$weights, cluster = ~xzc12)
-  res$EntropyBal_ATT <- tidy_fe(m2, "^treat")
+  res$EntropyBal_adj_contrast <- tidy_fe(m2, "^treat")
 }
 
 # ---- (3) 1:1 nearest-neighbor PS matching with caliper -----------------------
@@ -54,10 +54,10 @@ for (i in order(-d$ps[tr])) {                      # match high-PS treated first
 mt <- data.table(tr = tr, ct = match_id)[!is.na(ct)]
 md <- d[c(mt$tr, mt$ct)][, pair := rep(seq_len(nrow(mt)), 2)]
 m3 <- feols(hdds12 ~ treat, data = md, cluster = ~pair)
-res$NN_match_caliper <- tidy_fe(m3, "^treat")
+res$NN_match_adj_contrast <- tidy_fe(m3, "^treat")
 cat(sprintf("Matched %d of %d treated (caliper %.3f on logit PS)\n", nrow(mt), length(tr), cal))
 
-# ---- (4) AIPW (doubly robust, ATT) -------------------------------------------
+# ---- (4) AIPW (doubly robust, ATT weights; adjusted contrast) -------------------------------------------
 mu1 <- lm(as.formula(paste("hdds12 ~", paste(XV, collapse = "+"), "+ factor(provy)")), data = d[treat == 1])
 mu0 <- lm(as.formula(paste("hdds12 ~", paste(XV, collapse = "+"), "+ factor(provy)")), data = d[treat == 0])
 m1hat <- predict(mu1, newdata = d); m0hat <- predict(mu0, newdata = d)
@@ -77,7 +77,7 @@ boot_att <- replicate(B, {
   m0b <- predict(mu0, newdata = bs)
   with(bs, mean((treat * (hdds12 - m0b) - (1 - treat) * ps/(1 - ps) * (hdds12 - m0b)) / mean(treat)))
 })
-res$AIPW_ATT <- data.table(term = "treat", est = att, se = sd(boot_att),
+res$AIPW_adj_contrast <- data.table(term = "treat", est = att, se = sd(boot_att),
                            t = att/sd(boot_att), p = 2*pnorm(-abs(att/sd(boot_att))), n = nrow(d))
 
 t7 <- rbindlist(lapply(names(res), function(nm) copy(res[[nm]])[, estimator := nm]), fill = TRUE)
@@ -146,6 +146,8 @@ writeLines(c("# A-line robustness summary",
   sprintf("- Permutation p-value (1000 within-village reshuffles): %.3f", p_perm),
   sprintf("- Oster beta* (delta=1, Rmax=1.3 R2): %.3f (OLS long: %.3f); delta for beta=0: %.2f",
           beta_star, bL, delta_b0),
+  "- CAUTION on delta_for_beta0: a large negative delta is NOT positive evidence of identification; it only says that, GIVEN the current observables, unobserved selection would have to act in the opposite direction and be implausibly strong to zero out the coefficient. It cannot rule out unobservables uncorrelated with the included controls.",
+  "- Estimator naming: IPW/entropy-balancing/AIPW use ATT-type weights but identify an adjusted (weighted) contrast under selection-on-observables, not a causal ATT.",
   sprintf("- Estimator range: %.3f to %.3f", min(t7$est), max(t7$est)),
   sprintf("- Matched sample: %d pairs of %d treated", nrow(mt), length(tr))),
   file.path(DIR_REP, "aline_robustness_summary.md"))

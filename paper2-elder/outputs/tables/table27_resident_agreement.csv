@@ -1,0 +1,5 @@
+comparison,agreement,n
+"resident (>=180 days at home) vs roster, all elder households",0.98937908496732,1224
+"resident vs roster, cohabit/threegen subsample",0.988811188811189,715
+"48h-observed vs roster, all elder households",0.70957095709571,1212
+"48h-observed vs roster, cohabit/threegen subsample",0.628169014084507,710

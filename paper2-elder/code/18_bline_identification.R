@@ -46,23 +46,37 @@ if (pc[, uniqueN(gen)] == 2 && nrow(pc) > 50) {
 }
 
 # ---- (2) elder gap stratified by elder health ---------------------------------
-# health_code: lower = healthier in most CHIP-style codings; we split at the
-# household level on whether the elder reports any chronic disease.
+# Audit fix (2026-07): the earlier split used median(health) over the WHOLE
+# B-line sample. Elders' modal self-rated health is 1 (the best code), so the
+# cutpoint was 1 and virtually every household landed in the "less healthy"
+# stratum — table25 had a single row and could not be cited. Two non-degenerate
+# household-level splits on the ELDER's health are used instead:
+#   (a) chronic disease: any co-resident elder lists >=1 chronic condition
+#       (disease_raw JSON array non-empty);
+#   (b) self-rated health: any co-resident elder rates health worse than the
+#       best code (health_code >= 2; 1 = best in this survey's coding).
 bl <- fread(file.path(DIR_DERIV, "bline_sample.csv"), colClasses = list(character = c("nhCode","pid","xzc12")))
 bl[, `:=`(fgds10 = num(fgds10), elder = as.integer(elderly == 1), female = num(female),
-          health = num(health_code), disease = num(disease_raw), hh_id = paste(nhCode, data_year))]
+          health = num(health_code), hh_id = paste(nhCode, data_year))]
+bl[, has_disease := as.integer(grepl("[0-9]", disease_raw))]
 bl <- bl[!is.na(fgds10) & !is.na(female)]
-# elder health flag propagated to household (does the elder look unhealthy?)
-elderh <- bl[elder == 1, .(elder_unhealthy = as.integer(any(!is.na(health) & health >= median(bl$health, na.rm = TRUE), na.rm = TRUE))), by = hh_id]
+elderh <- bl[elder == 1, .(
+  elder_disease   = as.integer(any(has_disease == 1, na.rm = TRUE)),
+  elder_srh_worse = as.integer(any(!is.na(health) & health >= 2))), by = hh_id]
 bl <- merge(bl, elderh, by = "hh_id", all.x = TRUE)
-strata <- rbindlist(lapply(c(0, 1), function(u) {
-  d <- bl[elder_unhealthy == u]
+strat_fit <- function(flagvar, val, lab) {
+  d <- bl[get(flagvar) == val]
   if (nrow(d) < 80 || d[, uniqueN(elder)] < 2) return(NULL)
   m <- feols(fgds10 ~ elder + female | hh_id, data = d, cluster = ~xzc12)
   ct <- coeftable(m)["elder", ]
-  data.table(stratum = ifelse(u == 1, "elder appears less healthy", "elder healthier"),
-             est = ct["Estimate"], se = ct["Std. Error"], p = ct["Pr(>|t|)"], n = nrow(d))
-}), fill = TRUE)
+  data.table(stratum = lab, est = ct["Estimate"], se = ct["Std. Error"],
+             p = ct["Pr(>|t|)"], n = nrow(d), n_households = uniqueN(d$hh_id))
+}
+strata <- rbindlist(list(
+  strat_fit("elder_disease",   1, "elder reports chronic disease"),
+  strat_fit("elder_disease",   0, "elder reports no chronic disease"),
+  strat_fit("elder_srh_worse", 1, "elder self-rated health worse than best"),
+  strat_fit("elder_srh_worse", 0, "elder self-rated health = best code")), fill = TRUE)
 wtab(strata, "table25_elder_health_strata.csv")
 
 cat("B-LINE IDENTIFICATION OK\n")

@@ -43,14 +43,16 @@ ctx[, nchar_total := nchar(content)]
 ctx[, dens_elderfood := 1e4 * n_elderfood / nchar_total]
 ctx[, dens_placebo   := 1e4 * n_placebo   / nchar_total]
 
+# audit fix (2026-07): county names repeat across provinces, so every county-level
+# key below is (provn, countyn), never countyn alone.
 county_panel <- ctx[, .(n_reports = .N, n_elderfood = sum(n_elderfood),
                         dens_elderfood = mean(dens_elderfood), dens_placebo = mean(dens_placebo)),
-                    by = .(provn, countyn, year)][order(countyn, year)]
-first_mention <- county_panel[n_elderfood > 0, .(t0_county = min(year)), by = .(countyn)]
+                    by = .(provn, countyn, year)][order(provn, countyn, year)]
+first_mention <- county_panel[n_elderfood > 0, .(t0_county = min(year)), by = .(provn, countyn)]
 intensity <- county_panel[year >= 2018, .(policy_intensity = mean(dens_elderfood),
                                           placebo_intensity = mean(dens_placebo)), by = .(provn, countyn)]
 intensity[, policy_intensity_z := as.numeric(scale(policy_intensity))]
-county_panel <- merge(county_panel, first_mention, by = "countyn", all.x = TRUE)
+county_panel <- merge(county_panel, first_mention, by = c("provn","countyn"), all.x = TRUE)
 fwrite(county_panel, file.path(DIR_DERIV, "county_policy_panel.csv"))
 fwrite(intensity, file.path(DIR_DERIV, "county_policy_intensity.csv"))
 
@@ -59,7 +61,7 @@ sent <- ctx[n_elderfood > 0, {
   ss <- unlist(strsplit(content, "[。；;]"))
   hit <- ss[str_detect(ss, paste(KW_ELDERFOOD, collapse = "|"))]
   .(sentence = hit)
-}, by = .(countyn, year)]
+}, by = .(provn, countyn, year)]
 set.seed(5)
 audit_smp <- sent[sample(.N, min(100, .N))]
 fwrite(audit_smp, file.path(DIR_REP, "text_validity_sample_100.csv"))
@@ -82,13 +84,15 @@ eld <- per[elderly == 1 & !is.na(num(fgds10)) & living_arrangement %in% LA_LEVEL
 eld[, `:=`(fgds10 = num(fgds10), LA = relevel(factor(living_arrangement, levels = LA_LEVELS), ref = "cohabit_nonelder"))]
 eld[is.na(main_cook), main_cook := 0]
 eld[, prov_year := paste(provn, data_year)]
-eld <- merge(eld, intensity[, .(countyn, policy_intensity_z, placebo_intensity)], by = "countyn", all.x = TRUE)
+eld <- merge(eld, intensity[, .(provn, countyn, policy_intensity_z, placebo_intensity)],
+             by = c("provn","countyn"), all.x = TRUE)
+eld[, county_id := paste(provn, countyn)]
 eld[, solo_or_elderonly := as.integer(living_arrangement %in% c("elder_alone","elder_only_multi"))]
 
 m18  <- feols(fgds10 ~ solo_or_elderonly*policy_intensity_z + female + main_cook + ln_income | prov_year,
-              data = eld, cluster = ~countyn)
+              data = eld, cluster = ~county_id)
 m18p <- feols(fgds10 ~ solo_or_elderonly*placebo_intensity + female + main_cook + ln_income | prov_year,
-              data = eld, cluster = ~countyn)
+              data = eld, cluster = ~county_id)
 t18 <- rbind(tidy_fe(m18,  "solo|policy")[, spec := "elder-feeding intensity"],
              tidy_fe(m18p, "solo|placebo")[, spec := "placebo: general commerce"])
 wtab(t18, "table18_policy_text_moderation.csv")

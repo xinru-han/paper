@@ -18,6 +18,7 @@ scripts <- c(
   "14_wild_bootstrap.R",     # few-cluster wild cluster bootstrap-t
   "15_threshold_sensitivity.R", # elder 60-vs-65, child cutoff, year split
   "16_mnar_bounds.R",        # proxy-under-recording (MNAR) bounds
+  "17_measurement_robustness.R", # scale-free outcomes + resident-based LA (audit #1-#2)
   "18_bline_identification.R",  # generation-ladder placebo + health strata
   "13_results_md.R"          # assemble RESULTS.md (runs last)
 )

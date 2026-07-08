@@ -33,7 +33,25 @@ if (!is.null(t2)) {
     paste0("- Three-generation vs with-non-elder-adults: ",
            paste(sprintf("%s under %s", paste0(fnum(tg$est), stars(tg$p)), tg$model), collapse = "; "), "."),
     "- Elder-only and elder-alone households provision 0.4-0.5 fewer groups (Table 2).")
-  L <- c(L, "- **Interpretation caveat**: A-line contrasts are cross-sectional and living arrangement is self-selected. The weighting estimators below (IPW/entropy-balancing/AIPW/matching) adjust for **observed** covariates only — they identify an *adjusted association under selection-on-observables*, **not** a causal ATT. The Oster bound (below) is the key check on unobserved selection.")
+  L <- c(L, "- **Interpretation caveat**: A-line contrasts are cross-sectional and living arrangement is self-selected. The weighting estimators below (IPW/entropy-balancing/AIPW/matching) use ATT-type weights but adjust for **observed** covariates only — they identify an *adjusted association under selection-on-observables*, **not** a causal ATT. The Oster bound (below) is the key check on unobserved selection.",
+    "- **What the outcome measures**: household HDDS-12 is the diversity of food groups OBSERVED at the household table over 48h. More (and more heterogeneous) members mechanically raise the chance of recording more groups, and household size is itself part of the living arrangement (a definitional, post-treatment component — the size-dummy decomposition in T4 is therefore an accounting split, not a mechanism estimate). The correct reading is **'three-generation households set a more diverse table'**, NOT 'co-residence improves diet quality'.")
+  t26 <- rd("table26_aline_scalefree.csv")
+  if (!is.null(t26)) L <- c(L, sprintf("- **Scale-standardised outcomes (table26, audit item #1)**: union FGDS-10 over all recorded members %s%s and union **excluding elders** %s%s remain strong (the richer table is not just the elder's own recorded intake), and union excluding children %s%s. But **mean member FGDS-10 is %s%s (null)** and HDDS-12 conditioning on the number of recorded members and recorded meals (rarefaction-style) is %s%s (null). Reading: the A-line result is a **household-table / provisioning-breadth** phenomenon carried by more people eating together; it does NOT show higher individual-level dietary diversity, and the paper's interpretation is restricted accordingly ('three-generation households set a more diverse table', never 'co-residence improves diet quality').",
+    fnum(t26[grepl("all recorded", spec), est][1]), stars(t26[grepl("all recorded", spec), p][1]),
+    fnum(t26[grepl("EXCLUDING elders", spec), est][1]), stars(t26[grepl("EXCLUDING elders", spec), p][1]),
+    fnum(t26[grepl("EXCLUDING children", spec), est][1]), stars(t26[grepl("EXCLUDING children", spec), p][1]),
+    fnum(t26[grepl("mean member", spec), est][1]), stars(t26[grepl("mean member", spec), p][1]),
+    fnum(t26[grepl("rarefaction", spec), est][1]), stars(t26[grepl("rarefaction", spec), p][1])))
+  t27 <- rd("table27_resident_agreement.csv"); t27b <- rd("table27b_resident_main_results.csv")
+  if (!is.null(t27) && !is.null(t27b)) L <- c(L, sprintf("- **Resident-based living arrangement (table27/27b, audit item #2)**: the roster classification agrees with a >=180-days-at-home reconstruction for %s%% of elder households (%s%% in the cohabit/threegen estimation sample) and with a 48h-observed-members reconstruction for %s%%. A-line three-gen coefficient: roster %s%s vs resident-based %s%s vs 48h-observed %s%s; B-line two-gen elder gap: roster %s%s vs resident-based %s%s. Registered-but-absent members do not drive the results.",
+    fnum(100*t27$agreement[1],1), fnum(100*t27$agreement[2],1), fnum(100*t27$agreement[3],1),
+    fnum(t27b[grepl("A-line, roster", spec), est][1]), stars(t27b[grepl("A-line, roster", spec), p][1]),
+    fnum(t27b[grepl("A-line, resident", spec), est][1]), stars(t27b[grepl("A-line, resident", spec), p][1]),
+    fnum(t27b[grepl("A-line, 48h", spec), est][1]), stars(t27b[grepl("A-line, 48h", spec), p][1]),
+    fnum(t27b[grepl("B-line elder gap, roster", spec) & term == "elder", est][1]),
+    stars(t27b[grepl("B-line elder gap, roster", spec) & term == "elder", p][1]),
+    fnum(t27b[grepl("B-line elder gap, resident", spec) & term == "elder", est][1]),
+    stars(t27b[grepl("B-line elder gap, resident", spec) & term == "elder", p][1])))
   t7 <- rd("table7_estimator_comparison.csv")
   if (!is.null(t7)) L <- c(L, paste0("- Estimator agreement (three-gen adjusted contrast on HDDS, selection-on-observables): ",
     paste(sprintf("%s %s", t7$estimator, fnum(t7$est)), collapse = "; "), "."))
@@ -46,7 +64,7 @@ if (!is.null(t2)) {
   if (!is.null(t2b)) L <- c(L, sprintf("- Construct validity: 'threegen' is an age-composition class (elder+adult+minor). Under a **strict** 3-gen flag (elder+mid-adult 25-59+minor), the HDDS effect is %s%s vs %s%s for the headline definition (table2b) — robust; only ~3 households differ.",
     fnum(t2b[grepl("strict", spec), est][1]), stars(t2b[grepl("strict", spec), p][1]),
     fnum(t2b[grepl("headline", spec), est][1]), stars(t2b[grepl("headline", spec), p][1])))
-  if (!is.null(nc)) L <- c(L, sprintf("- **Negative control** (salt+condiment share, should be unaffected): three-gen coef %s (p=%s) — near-zero, so the HDDS result is not a generic 'big households buy more of everything' artifact.",
+  if (!is.null(nc)) L <- c(L, sprintf("- **Negative-control outcome** (salt+condiment share): three-gen coef %s (p=%s) — near-zero. Caveat: this is an **imperfect placebo** (cooking style, household scale and communal meals could in principle move condiment shares too), so it is an auxiliary diagnostic, not proof of design validity.",
     fnum(nc[grepl("threegen", term), est][1]), fnum(nc[grepl("threegen", term), p][1])))
   if (!is.null(t21)) {L <- c(L, sprintf("- **Threshold/year sensitivity** (table21): elder>=60 -> elder>=65 gives %s vs %s; 2023-only %s, 2024-only %s — the A-line effect is stable to the hard-coded age cutoff and across survey years.",
     fnum(t21[grepl("elder>=60, pooled", spec), est][1]), fnum(t21[grepl("elder>=65, pooled", spec), est][1]),
@@ -58,17 +76,19 @@ if (!is.null(t2)) {
     L <- c(L, sprintf("- **Multiplicity (BH-FDR) on the food-share family** (table3): %d of %d share coefficients survive FDR<0.05 — the composition-shift (share) results are **not** robust to multiple testing and are demoted to secondary; the headline is HDDS diversity (T2), not the shares.", nsurv, nrow(t3)))}
   t4 <- rd("table4_scale_vs_composition.csv")
   L <- c(L, "### Scale vs composition (D5 TRIGGERED)",
-    "- Household-size dummies absorb **54.6%** of the three-gen coefficient: the provisioning gain is first a **meal-scale economy**, second a composition effect. Narrative adjusted per decision node D5.", "")
+    "- Household-size dummies absorb **54.6%** of the three-gen coefficient: the provisioning gain is first a **meal-scale economy**, second a composition effect. Because household size is a definitional component of the living arrangement (post-treatment), this split is an **accounting decomposition**, not a strict mechanism test; the scale-free outcomes in table26 are the cleaner check.",
+    "- **Design note**: the survey provides no sampling/design weights, so estimates are unweighted; robustness across province-year, county-year and village-year fixed effects (T2) covers the main design concern (regional composition).", "")
 }
 
 # ---- B line ----
 t10 <- rd("table10_bline_gap_main.csv"); rw <- rd("table10a_romano_wolf.csv")
 if (!is.null(t10)) {
   g <- function(o, trm) t10[outcome == o & term == trm]
-  L <- c(L, "## B line: within-household elder gap (household FE, 557 mixed households)",
-    sprintf("- FGDS-10: elders eat **%s%s** groups less than co-resident non-elder adults (se %s; Romano-Wolf p=%s).",
+  L <- c(L, "## B line: within-household elder gap in RECORDED dietary diversity (household FE, 557 mixed households)",
+    sprintf("- FGDS-10: elders' **recorded** 48h food-group diversity is **%s%s** groups lower than co-resident non-elder adults' (se %s; Romano-Wolf p=%s, village-bootstrap with relabelled clusters, B=999, finite-sample corrected).",
             fnum(g("fgds10","elder")$est), stars(g("fgds10","elder")$p), fnum(g("fgds10","elder")$se),
             fnum(rw[outcome=="fgds10", p_rw_elder])),
+    "- **MAIN-TEXT caveat (not appendix)**: this is a gap in *measured/recorded* diversity, and it is NOT evidence that households allocate food away from elders or that elders' true intake is worse. Three results bound the allocation reading: (i) adding age, the elder coefficient shrinks from -0.29 to about -0.17 and loses significance; (ii) restricting to members with >=3 recorded meals it disappears entirely (+0.04); (iii) the MNAR re-imputation below flips its sign. The candidate explanations — age gradient, fewer eating occasions, proxy under-recording of elders' meals — cannot be separated with these data.",
     sprintf("- Food variety score: %s%s; DBI-16 variety: %s%s.",
             fnum(g("fvs_unique_foods","elder")$est), stars(g("fvs_unique_foods","elder")$p),
             fnum(g("dbi16_variety_subscore","elder")$est), stars(g("dbi16_variety_subscore","elder")$p)),
@@ -97,7 +117,22 @@ if (!is.null(t10)) {
      if (!is.null(mn)) {bc <- mn[grepl("<3 recorded", scenario)][1]
        sprintf("- **MNAR / proxy-under-recording bound (table22)**: if the 32%% of elders with <3 recorded meals were actually eating like their co-resident adults (a recording artifact, not real skipping), the gap **flips to %s%s**. A uniform under-recording of only ~%s FGDS groups per elder nulls the gap. The elder deficit is thus **fragile to proxy under-recording** and cannot be asserted as a behavioural/nutritional fact.",
                fnum(bc$est), stars(bc$p), fnum(mn$breakdown_delta_all_elders[1]))
-     } else ""}, "")
+     } else ""},
+    {t21b <- rd("table21_threshold_year_sensitivity.csv")
+     if (!is.null(t21b) && any(grepl("MAIN estimand", t21b$spec))) {
+       sprintf("- **Threshold sensitivity, main-estimand aligned (table21)**: rebuilding the living-arrangement classification and re-running the exact main model (elder + elder x threegen, cohabit/threegen mixed households), the two-generation baseline elder gap is %s%s at elder>=60 and %s%s at elder>=65. A pooled all-mixed-household gap without the interaction (a different estimand) is also reported, explicitly labelled.",
+               fnum(t21b[grepl("MAIN estimand.*elder>=60", spec), est][1]), stars(t21b[grepl("MAIN estimand.*elder>=60", spec), p][1]),
+               fnum(t21b[grepl("MAIN estimand.*elder>=65", spec), est][1]), stars(t21b[grepl("MAIN estimand.*elder>=65", spec), p][1]))
+     } else ""},
+    {hs <- rd("table25_elder_health_strata.csv")
+     if (!is.null(hs) && nrow(hs) >= 2) {
+       gd <- function(sl) hs[grepl(sl, stratum)][1]
+       sprintf("- **Health-stratified elder gap (table25, fixed split)**: elder gap %s%s where the elder reports chronic disease vs %s%s where not; %s%s where self-rated health is below the best code vs %s%s at the best code. A gap present in BOTH strata points away from a purely physiological story; interpret descriptively (health is post-treatment).",
+               fnum(gd("reports chronic")$est), stars(gd("reports chronic")$p),
+               fnum(gd("no chronic")$est), stars(gd("no chronic")$p),
+               fnum(gd("worse than best")$est), stars(gd("worse than best")$p),
+               fnum(gd("best code")$est), stars(gd("best code")$p))
+     } else "- Health stratification (table25): not citable (degenerate strata)."}, "")
 }
 
 # ---- pass-through ----
@@ -117,11 +152,11 @@ if (!is.null(pt)) {
 t12 <- rd("table12_decomposition.csv")
 if (!is.null(t12)) {
   tg <- t12[arrangement == "threegen"]
-  L <- c(L, "## B3: decomposition and leakage (revised headline #1)",
-    sprintf("- Three-generation provisioning gain: **%s HDDS groups**; expected elder gain (phi1 x gain): %s; realized elder gain (reduced form): %s.",
+  L <- c(L, "## B3: descriptive reconciliation (accounting decomposition — NOT a mechanism estimate)",
+    "- **Status**: dHDDS (A line), phi1 (B2) and the reduced-form elder effect come from different samples and control sets, and the elder's own 48h diet mechanically enters household HDDS. This section reconciles three separately-estimated quantities as an accounting exercise; no number here is a causal pass-through, and **no leakage rate is a headline of the paper**.",
+    sprintf("- Reconciliation quantities: three-generation provisioning association **%s HDDS groups**; phi1 x gain = %s expected FGDS groups; reduced-form elder association = %s.",
             fnum(tg$dHDDS), fnum(tg$passthrough_component), fnum(tg$total_elder_effect)),
-    sprintf("- **Two leakage measures (the original single number conflated them).** (1) gap-to-household 1-bR/bA = **%s%%** (95%% CI %s-%s%%) — but this is dominated by the normal <1 slope phi1 that EVERY member faces, not elder-specific loss. (2) **Allocation-specific leakage 1-realized/expected = %s%%** (95%% CI %s-%s%%) — the share the elder loses *beyond* the pass-through everyone faces. This CI spans zero widely, so **elder-specific leakage is small and statistically indistinguishable from zero**. The honest headline is (2): once you net out ordinary pass-through, three-generation elders are **not** meaningfully shortchanged.",
-            fnum(100*tg$leak_gap_to_hh, 0), fnum(100*tg$leak_lo, 0), fnum(100*tg$leak_hi, 0),
+    sprintf("- **The only citable conclusion**: allocation-specific leakage (1 - realized/expected, both in FGDS-10 units) is %s%% with a 95%% CI of %s%% to %s%% — **spanning zero**, so elder-specific loss beyond the ordinary <1 cross-sectional slope is statistically indistinguishable from zero. (The gap-to-household ratio 1-bR/bA is retained in table12 for continuity only; it mixes scales and mostly reflects the <1 slope common to all members, and must not be quoted as elder-specific leakage.)",
             fnum(100*tg$leak_allocation, 0), fnum(100*tg$leak_alloc_lo, 0), fnum(100*tg$leak_alloc_hi, 0)),
     {h <- rd("table13_leakage_heterogeneity.csv");
      if (!is.null(h) && nrow(h)) sprintf("- Heterogeneity (gap-to-household basis, SUGGESTIVE only — grf finds no significant heterogeneity): %s%% when the elder is the household cook vs %s%% when not; %s%% (low income) vs %s%% (high income). Treat as exploratory, not an established policy lever.",
@@ -169,6 +204,24 @@ L <- c(L, "## Decision-node ledger",
   "| D5 scale attenuation>50% | **TRIGGERED (54.6%)** | meal-scale economies lead the mechanism narrative |",
   "| D7 census trend | default k=6pp/decade with {4,8} sensitivity | documented |",
   "| D8 policy-text sign | not triggered (imprecise +) | descriptive context only |")
+
+L <- c(L, "", "## Headline framing (three-layer conclusion, per econometric audit)",
+  "1. **Household level (A line)**: three-generation households show higher observed 48h household HDDS-12, stable across county-year/village-year FE, weighting estimators, permutation and threshold checks. This mainly reflects table diversity from household scale and communal meals — an adjusted provisioning association, **not** a causal effect of co-residence on diet quality.",
+  "2. **Individual level (B line)**: within the same household, elders' *recorded* food-group diversity is lower than co-resident non-elder adults'. The gap is sensitive to age controls, meal-recording counts and plausible proxy under-recording (MNAR flips it), and children show a larger deficit — so it **cannot** be read as intra-household allocation inequality against elders.",
+  "3. **Projection (2035)**: population aging and household downsizing may weaken elder dietary diversity through household provisioning; the estimates support a directional, small-magnitude **accounting projection**, not a strong causal forecast.", "")
+
+L <- c(L, "", "## Post-review revisions round 2 (econometric audit, 2026-07-08)",
+  "Per `paper2_elder_econometric_audit.md`:",
+  "- **#1 scale-free A-line outcomes** (17_measurement_robustness.R, table26): mean member FGDS-10, union FGDS-10 (all / excluding elders / excluding children), rarefaction-style HDDS fixing recorded members & meals.",
+  "- **#2 resident-based living arrangement** (table27/27b): >=180-days-at-home and 48h-observed reconstructions; agreement rates and re-estimated A/B-line main results reported.",
+  "- **#3 B-line relabelled** as a gap in *recorded* diversity with the allocation caveat promoted to the main text.",
+  "- **#4 B3 relabelled** as descriptive reconciliation; leakage rates removed from headlines; only the CI-spans-zero allocation-specific result is citable.",
+  "- **#5 Romano-Wolf fixed**: finite-sample p = (1+#extreme)/(1+B), B=999, bootstrap villages relabelled so repeated draws count as distinct clusters; positioned as auxiliary to the wild cluster bootstrap.",
+  "- **#6 county policy-text merges** now key on (province, county) with county_id clustering (county names repeat across provinces).",
+  "- **#7 health stratification fixed** (table25): chronic-disease and self-rated-health splits on the elder's own health replace the degenerate whole-sample-median split.",
+  "- **#8 B-line threshold sensitivity aligned** with the main estimand (same sample construction and elder x threegen model); the old pooled variant kept with an explicit different-estimand label.",
+  "- **#9 GRF language**: ATT/CATE replaced by adjusted average contrast / conditional contrast; forest framed as an ML heterogeneity diagnostic.",
+  "- Minor: estimator names de-ATT-ed; Oster delta caveat; negative control flagged as imperfect placebo; presence-indicator provenance cross-check (MDD-W vs DBI-16 gram families); no-survey-weights design note.")
 
 L <- c(L, "", "## Post-review revisions (methodological audit)",
   "This pipeline was re-audited by four adversarial reviewers (identification, estimator implementation, measurement, missed tests). Changes made:",
