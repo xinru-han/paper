@@ -15,12 +15,12 @@ FN <- c("labor","mach","fert","seed","other")
 PB <- list(`2004-2008`=2004:2008,`2009-2014`=2009:2014,`2015-2019`=2015:2019,`2020-2024`=2020:2024)
 
 # ---- 通用核心统计（给定 panel 与规格，返回核心弹性/偏向/凹性）--------------
-core_stats <- function(pan, kappa = 1e6, extra_fe = NULL, method = "cc") {
+core_stats <- function(pan, kappa = 1e6, extra_fe = NULL, method = "cc", a_init = NULL) {
   d <- prep_data(pan)
   sys <- tl_build_system(d, 4, extra_fe = extra_fe)
   So <- as.matrix(as.data.frame(d)[, paste0("S_", FN[1:4])]); So <- cbind(So, 1 - rowSums(So))
   if (method == "cc") {
-    fit <- tl_itsur_c1(sys, 4, colMeans(So), S_obs = So, kappa = kappa)
+    fit <- tl_itsur_c1(sys, 4, colMeans(So), S_obs = So, kappa = kappa, a_init = a_init)
     if (!fit$converged) return(NULL)
     G <- fit$Gamma_full
     lam <- { l <- fit$theta[sprintf("lambda_%dt", 1:4)]; c(l, -sum(l)) }
@@ -38,7 +38,8 @@ core_stats <- function(pan, kappa = 1e6, extra_fe = NULL, method = "cc") {
        eps_ll = el$eps[1, 1], eps_mm = el$eps[2, 2], eps_ff = el$eps[3, 3],
        M_ml = el$morishima[2, 1], M_lm = el$morishima[1, 2],
        B_labor = lam[1] / Sbar[1], B_mach = lam[2] / Sbar[2],
-       mml_2024 = unname(mml_p["2020-2024"]), G = G, Sbar = Sbar)
+       mml_2024 = unname(mml_p["2020-2024"]), G = G, Sbar = Sbar,
+       a = if (method == "cc") fit$a else NULL)
 }
 
 # 区域×时期 extra_fe（基期2004-08设NA，避免与省FE共线）
@@ -74,8 +75,9 @@ for (cr in CROPS) {
   cat("== robust_matrix:", cr, "==\n")
   pan <- fread(sprintf("data/panel_%s.csv", cr))
 
-  # 基线
+  # 基线（其凹性块 a 作后续所有 cc 变体的热启动种子，大幅提速）
   base <- core_stats(pan); master[[length(master)+1]] <- row_of(cr, "baseline_cc", base)
+  a0 <- base$a
 
   # M3a plain vs cc：plain 凹性违反率（在拟合份额处）、约束触发观测数、点估计位移
   pl <- core_stats(pan, method = "plain")
@@ -94,26 +96,26 @@ for (cr in CROPS) {
       d_M_ml = round(base$M_ml - pl$M_ml, 3))
   }
 
-  # M3b κ 网格
+  # M3b κ 网格（1e6 复用基线；其余热启动）
   for (kp in c(1e4, 1e5, 1e6, 1e7)) {
-    s <- core_stats(pan, kappa = kp)
+    s <- if (kp == 1e6) base else core_stats(pan, kappa = kp, a_init = a0)
     if (!is.null(s)) kappa_rows[[length(kappa_rows)+1]] <- data.table(crop = cr, kappa = kp,
       conc = round(s$conc, 3), eps_ll = round(s$eps_ll, 3), eps_mm = round(s$eps_mm, 3),
       M_ml = round(s$M_ml, 3), B_labor = round(s$B_labor, 4))
   }
 
   # M10 剔 w_mach 构造年
-  master[[length(master)+1]] <- row_of(cr, "wmach_years", core_stats(pan[!year %in% c(2004,2005,2011,2013,2024)]))
+  master[[length(master)+1]] <- row_of(cr, "wmach_years", core_stats(pan[!year %in% c(2004,2005,2011,2013,2024)], a_init = a0))
   # M11 仅原生 xls 年
-  master[[length(master)+1]] <- row_of(cr, "xlsonly", core_stats(pan[year %in% c(2006:2018, 2024)]))
+  master[[length(master)+1]] <- row_of(cr, "xlsonly", core_stats(pan[year %in% c(2006:2018, 2024)], a_init = a0))
   # M13c 剔疫情
-  master[[length(master)+1]] <- row_of(cr, "dropcovid", core_stats(pan[!year %in% 2020:2022]))
+  master[[length(master)+1]] <- row_of(cr, "dropcovid", core_stats(pan[!year %in% 2020:2022], a_init = a0))
   # M13b 区域×时期可积FE
-  master[[length(master)+1]] <- row_of(cr, "regionperiod", core_stats(pan, extra_fe = mk_regperiod(pan)))
+  master[[length(master)+1]] <- row_of(cr, "regionperiod", core_stats(pan, extra_fe = mk_regperiod(pan), a_init = a0))
   # M12c 发改委三肥替代 w_fert
   panf <- merge(pan, fert_ndrc, by = c("province","year"), all.x = TRUE)
   panf[!is.na(w_fert_ndrc), w_fert := w_fert_ndrc]
-  master[[length(master)+1]] <- row_of(cr, "fert_ndrc", core_stats(panf))
+  master[[length(master)+1]] <- row_of(cr, "fert_ndrc", core_stats(panf, a_init = a0))
 
   # M13a 价格变异诊断：各 ln(w_m/w_other) 对年份哑变量 R² + 省内SD（daywage 与 hired）
   d <- prep_data(pan)
