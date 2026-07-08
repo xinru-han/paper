@@ -1,0 +1,57 @@
+﻿No.,study_id,author_year,language,journal_tier,region,data_years,crop,model,outcome_dimension,mechanization_path
+1,P_01,孟娜_2026,Chinese,核心期刊,微观 / 安徽,2007-2024,rice,面板门槛,Grain yield,Machinery capital input
+2,P_02,姚成胜_2025,Chinese,核心期刊,宏观 / 全国,2003-2023,cgrn,空间杜宾 SDM,Grain yield,Comprehensive mechanisation
+3,P_03,彭建仿_2024,Chinese,核心期刊,宏观 / 全国,2011-2021,cgrn,固定效应 FE,Grain yield,Comprehensive mechanisation
+4,P_04,管宁宁_2024,Chinese,核心期刊,微观 / 江苏,2021,rice,Translog SFA,Production efficiency,Machinery services
+5,P_05,薛信阳_2024,Chinese,核心期刊,微观 / 豫鲁冀陕,2021,"whea, maiz",IV-Tobit,Production efficiency,Machinery services
+6,P_06,彭新宇_2023,Chinese,核心期刊,宏观 / 全国,2009-2019,cgrn,SFA + Tobit,Production efficiency,Machinery services
+7,P_07,魏素豪_2023,Chinese,核心期刊,微观 / 华北,2019,"whea, maiz",IV-Tobit,Production efficiency,Machinery services
+8,P_08,胡霞_2023,Chinese,核心期刊,微观 / 29省,"2015, 2017",cgrn,IV-Tobit,Sown area,Comprehensive mechanisation
+9,P_09,刘颖_2023,Chinese,核心期刊,微观 / 长江东北,2020,rice,SFA,Grain yield,Machinery capital input
+10,P_10,宦梅丽_2023,Chinese,核心期刊,微观 / 全国,2018,maiz,Probit + SFA,Production efficiency,Machinery services
+11,P_11,卢华_2023,Chinese,核心期刊,微观 / 江苏,2018,rice,IV 工具变量法,Grain yield,Machinery services
+12,P_12,薛信阳_2022,Chinese,核心期刊,微观 / 全国(CLDS),2016,cgrn,IV 回归,Sown area,Machinery services
+13,P_14,刘琼_2022,Chinese,核心期刊,宏观 / 主产区,1998-2017,cgrn,空间杜宾 SDM,Production efficiency,Machinery capital input
+14,P_15,仇童伟_2021,Chinese,核心期刊,微观 / 河南5县,2017,whea,计量回归(中等规模),Grain yield,Machinery services
+15,P_16,许佳彬_2021,Chinese,核心期刊,微观 / 黑龙江,2019,maiz,SFA 无效率模型,Production efficiency,Machinery services
+16,P_17,杨思雨_2022,Chinese,核心期刊,微观 / 6省区,2018,whea,门限回归,Production efficiency,Machinery services
+17,P_18,杨思雨_2021,Chinese,核心期刊,微观 / 12省区,2019,maiz,PSM 倾向得分匹配,Production efficiency,Machinery services
+18,P_19,朱满德_2021,Chinese,核心期刊,宏观 / 全国,1978-2018,cgrn,双向固定效应,Sown area,Comprehensive mechanisation
+19,P_20,睢忠林_2021,Chinese,核心期刊,宏观 / 15省,2001-2018,cgrn,PSDM 空间模型,Production efficiency,Machinery capital input
+20,P_21,宦梅丽_2021,Chinese,核心期刊,微观 / 全国,"2014, 2016",cgrn,SFA 无效率模型,Production efficiency,Machinery services
+21,P_22,徐建玲_2020,Chinese,核心期刊,宏观 / 20省,2004-2018,maiz,空间面板 SDM,Grain yield,Comprehensive mechanisation
+22,P_23,彭超_2020,Chinese,核心期刊,微观 / 全国,2003-2016,cgrn,SFA 无效率模型,Production efficiency,Machinery capital input
+23,P_24,张丽_2020,Chinese,核心期刊,宏观 / 31省,2004-2016,cgrn,变系数随机前沿,Production efficiency,Machinery services
+24,P_25,彭继权_2021,Chinese,核心期刊,微观 / 湖北省,2016,rice...,IV-Tobit 估计,Grain yield,Comprehensive mechanisation
+25,P_26,彭继权_2020,Chinese,核心期刊,微观 / 湖北省,2016,cgrn,IV-GMM / IV-Tobit,Sown area,Comprehensive mechanisation
+26,P_27,刘成_2019,Chinese,核心期刊,宏观 / 15省,2004-2015,whea,SFA 无效率模型,Production efficiency,Comprehensive mechanisation
+27,P_28,虞松波_2019,Chinese,核心期刊,宏观 / 15省,1994-2016,whea,空间随机前沿,Production efficiency,Machinery services
+28,P_29,陈实_2019,Chinese,核心期刊,宏观 / 湖北,1996-2014,rice,空间杜宾 SDM,Grain yield,Machinery capital input
+29,P_30,胡祎_2018,Chinese,核心期刊,宏观 / 15省,2000-2015,whea,Translog SFA,Production efficiency,Machinery services
+30,P_31,杨进_2018,Chinese,核心期刊,微观 / 全国,2009-2014,cgrn,面板固定效应 IV,Sown area,Machinery capital input
+31,E_01,Sang_2026,English,外文顶刊,微观 / 全国,2019,cgrn,CMP 模型,Grain yield,Machinery capital input
+32,E_02,Li_2023,English,外文顶刊,微观 / 江苏,2019,rice,控制函数法(CFA),Grain yield,Machinery services
+33,E_03,Wu_2025,English,外文顶刊,微观 / 全国,2015-2019,cgrn,联立方程模型,Production efficiency,Machinery services
+34,E_04,Ding_2025,English,外文顶刊,微观 / 鲁冀豫晋,2022,whea,多元内生/ESR,Grain yield,Machinery services
+35,E_05,Lu_2022,English,外文顶刊,微观 / 12县,2018,rice,MVP+IV(3SLS),Grain yield,Machinery services
+36,E_06,Shi_2026,English,外文顶刊,微观 / 江西,2023,rice,CMP / IV-probit,Grain yield,Machinery services
+37,E_07,Huang_2024,English,外文顶刊,宏观 / 110县,2000-2019,cgrn,双重差分法 (DID),Sown area,Machinery capital input
+38,E_08,Ma_2018,English,外文顶刊,微观 / 调研,2017,maiz,Bi-Ordered Probit+OLS,Grain yield,Machinery capital input
+39,E_09,Wang_2024,English,外文顶刊,宏观 / 县级面板,1998-2016,whea,矩估计法(Moment),Grain yield,Comprehensive mechanisation
+40,E_10,Yang_2023,English,外文期刊,微观 / 13主产省,2017,cgrn,2SLS / IV估计,Grain yield,Machinery capital input
+41,E_11,Zhou_2020,English,外文顶刊,微观 / 调研,2016,maiz,UQR + OLS,Grain yield,Machinery capital input
+42,E_12,Zeng_2025,English,外文期刊,微观 / 29省,2017,"rice, whea, maiz",Tobit + SEM,Grain yield,Machinery capital input
+43,E_13,Li_2024,English,外文顶刊,微观 / 江苏(CLES),2021,cgrn,计量回归 (OLS),Sown area,Machinery capital input
+44,E_14,Zhou_2025,English,外文顶刊,宏观 / 黄淮海33市,2016-2023,混合,双向固定效应,Production efficiency,Machinery capital input
+45,E_15,Chandio_2022,English,外文期刊,宏观 / 全国,1990-2017,cgrn,ARDL 时间序列,Grain yield,Machinery capital input
+46,E_16,Wang_2015,English,外文期刊,微观 / 江西,2012,rice,2SLS / IV估计,Grain yield,Machinery capital input
+47,E_17,Wang_2025,English,外文期刊,微观 / 全国,2019,cgrn,ESR 内生转换,Grain yield,Machinery services
+48,E_18,Li_2022,English,外文期刊,微观 / 陕甘宁,2018-2019,混合,计量回归 (OLS),Grain yield,Machinery capital input
+49,E_19,Zheng_2021,English,外文期刊,微观 / 调研,2018,混合,ESR 内生转换,Grain yield,Machinery capital input
+50,E_20,Sun_2024,English,外文期刊,微观 / 黑湘苏,2020,rice,2SLS / IV估计,Production efficiency,Machinery services
+51,E_21,Chandio_2024,English,外文顶刊,宏观 / 16主产省,2000-2020,rice,CS-ARDL 面板时间序列,Grain yield,Machinery capital input
+52,E_22,Li_2024,English,外文期刊,微观 / 山东,2017,混合,计量回归 (OLS),Production efficiency,Comprehensive mechanisation
+53,E_23,Li_2025,English,外文期刊,宏观 / 31省,2001-2022,cgrn,双向固定效应 / IV,Grain yield,Machinery capital input
+54,E_24,Qiao_2023,English,外文期刊,宏观 / 27省,2000-2016,cgrn,面板固定效应 / IV,Grain yield,Comprehensive mechanisation
+55,E_25,Abate_2021,English,外文期刊,宏观 / 全国,1978-2017,cgrn,ARDL 面板时间序列,Grain yield,Comprehensive mechanisation
+56,E_26,Wu_2021,English,外文期刊,宏观 / 江苏,2001-2017,cgrn,空间杜宾模型 SDM,Grain yield,Machinery capital input

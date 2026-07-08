@@ -1,0 +1,10 @@
+﻿scenario,path,proxy_indicator,annual_growth_pct,yield_elasticity,area_elasticity,yield_shifter_pct_per_yr,area_shifter_pct_per_yr,shock_crops,shock_years
+S1-Medium,Machinery capital input (MCI),Total agricultural machinery power,2.4,0.163,0.0,0.3912,0.0,"CGRN (rice,wheat,maize,soybean,barley,other grain,sorghum)",2026-2030
+S1-High,Machinery capital input (MCI),Total agricultural machinery power,3.4,0.163,0.0,0.5542,0.0,"CGRN (rice,wheat,maize,soybean,barley,other grain,sorghum)",2026-2030
+S1-Low,Machinery capital input (MCI),Total agricultural machinery power,1.4,0.163,0.0,0.2282,0.0,"CGRN (rice,wheat,maize,soybean,barley,other grain,sorghum)",2026-2030
+S2-Medium,Machinery socialised services (AMS),Machinery trusteeship service area,2.8,0.1635,0.0235,0.4578,0.0658,"CGRN (rice,wheat,maize,soybean,barley,other grain,sorghum)",2026-2030
+S2-High,Machinery socialised services (AMS),Machinery trusteeship service area,3.8,0.1635,0.0235,0.6213,0.0893,"CGRN (rice,wheat,maize,soybean,barley,other grain,sorghum)",2026-2030
+S2-Low,Machinery socialised services (AMS),Machinery trusteeship service area,1.8,0.1635,0.0235,0.2943,0.0423,"CGRN (rice,wheat,maize,soybean,barley,other grain,sorghum)",2026-2030
+S3-Medium,Comprehensive mechanisation (AML),Comprehensive mechanisation rate,1.121,0.185,0.015,0.2074,0.0168,"CGRN (rice,wheat,maize,soybean,barley,other grain,sorghum)",2026-2030
+S3-High,Comprehensive mechanisation (AML),Comprehensive mechanisation rate,2.425,0.185,0.015,0.4486,0.0364,"CGRN (rice,wheat,maize,soybean,barley,other grain,sorghum)",2026-2030
+S3-Low,Comprehensive mechanisation (AML),Comprehensive mechanisation rate,0.13,0.185,0.015,0.0241,0.002,"CGRN (rice,wheat,maize,soybean,barley,other grain,sorghum)",2026-2030
