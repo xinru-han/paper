@@ -4,5 +4,7 @@ output/firm_reg/agri_firms_geo_*
 output/firm_reg/county_industry_2*.csv
 output/firm_reg/agri_county3_2*.csv
 output/firm_reg/*.log
-# 仅入库最终合并面板（output/*.csv 顶层）与 QC
+# 全行业面板233MB过大，本地保留不入库；涉农面板(agri_*)入库
+output/county_industry_panel_2010_2023.csv
+# QC与涉农最终面板入库
 !output/firm_reg/qc_*.txt
