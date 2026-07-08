@@ -58,9 +58,18 @@ for i in range(0, len(todo), BATCH):
     batch_id = j["data"]["batch_id"]
     urls = j["data"]["file_urls"]
     for p, u in zip(chunk, urls):
-        with open(p, "rb") as f:
-            up = requests.put(u, data=f, timeout=300)
-        up.raise_for_status()
+        for attempt in range(5):
+            try:
+                with open(p, "rb") as f:
+                    up = requests.put(u, data=f, timeout=300)
+                up.raise_for_status()
+                break
+            except Exception as e:
+                print(f"upload retry {attempt+1} {os.path.basename(p)}: {e}",
+                      flush=True)
+                time.sleep(5 * (attempt + 1))
+        else:
+            raise RuntimeError(f"upload failed: {p}")
         print("uploaded", os.path.basename(p), flush=True)
     state[batch_id] = names
     json.dump(state, open(STATE_F, "w"), ensure_ascii=False, indent=1)
