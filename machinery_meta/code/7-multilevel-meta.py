@@ -199,7 +199,9 @@ for tg in TARGETS:
         for tier in [0, 1, 2]:
             sub = cell[cell["elast_type"].map(PRIO).eq(tier)]
             if len(sub):
-                med = sub["elasticity"].median()
+                # 两步中位数：先文献内取中位，再文献间取中位，
+                # 防止单篇多估计值主导（对标一文一权重原则）
+                med = sub.groupby("study_id")["elasticity"].median().median()
                 k = len(sub)
                 etype = {0: "full/reported", 1: "converted", 2: "semi"}[tier]
                 ids = ";".join(sub["study_id"].str[:18].unique()[:8])

@@ -1,0 +1,10 @@
+﻿Target,Path,k_elast,elast_type,elast_median,n_studies,ids
+Yield,MCI,23,full/reported,0.0559,6,14农业产业链发展提高农业生产效率了;35农业生产性服务对玉米生产技术效率;37农机社会化服务对小麦生产技术效率;46农业机械化对玉米生产的影响_促进;57农技推广率_农业机械化与湖北省水
+Yield,AMS,5,converted,0.0106,2,34谁更能从农机服务中获益_基于小麦
+Yield,AML,7,full/reported,0.748,1,51农业机械化水平对农户主粮生产的影
+Area,MCI,2,converted,0.3865,1,52机械化水平对农户种植结构的影响研
+Area,AMS,4,converted,0.1498,1,22农机服务市场发育与种植结构_趋粮
+Area,AML,6,converted,0.8057,1,52机械化水平对农户种植结构的影响研
+Efficiency,MCI,5,converted,-0.0098,2,33农村交通基础设施_农机跨区作业与;37农机社会化服务对小麦生产技术效率
+Efficiency,AMS,6,full/reported,0.0118,10,66农机服务对小麦生产技术效率有影响
+Efficiency,AML,2,full/reported,0.032,2,42农业机械对劳动力的替代能否提高粮

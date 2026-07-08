@@ -1,0 +1,29 @@
+cn_g1.csv: 19 行
+cn_g2.csv: 66 行
+cn_g3.csv: 120 行
+cn_g4.csv: 59 行
+cn_g5.csv: 46 行
+cn_g6.csv: 47 行
+cn_g7.csv: 10 行
+合计原始提取 367 行，来自 33 篇文献
+无效率方程反号处理: 17 行
+可计算PCC的行: 305 / 367
+
+== 效应量分布（估计值层面）==
+Path        AML  AMS  MCI  All
+Target                        
+Area         34   28    8   70
+Efficiency   55  115    8  178
+Yield        12   12   33   57
+All         101  155   49  305
+
+== 文献层面覆盖 ==
+Path        AML  AMS  MCI
+Target                   
+Area          3    3    3
+Efficiency    3   14    4
+Yield         1    2    6
+
+|PCC|>0.99 异常行: 0
+
+已输出 /root/paper/machinery_meta/data/meta_effects_expanded.csv: 305 条效应量 / 30 篇文献
