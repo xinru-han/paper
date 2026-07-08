@@ -27,8 +27,18 @@ class AdminMatcher:
                                     + self.county["区县名称"].map(norm))
         self.cc2code = dict(zip(self.county["cc_concat"], self.county["区县代码"]))
         self.pc2code = {}          # (province_std, county_std)->code(唯一时)
+        self.pcCoreC2code, ccore_cnt = {}, {}   # (省,县核心)->码
+        self.pref2counties = {}    # (province_std, 城市std)->set(区县代码)  地市展开
+        _CSUF = re.compile(r"(县|市|区|旗|自治县|自治旗|林区|特区)$")
         for _, r in self.county.iterrows():
             self.pc2code.setdefault((r["province_std"], r["county_std"]), r["区县代码"])
+            core = _CSUF.sub("", r["county_std"])
+            if core:
+                ccore_cnt[(r["province_std"], core)] = ccore_cnt.get((r["province_std"], core), 0) + 1
+                self.pcCoreC2code[(r["province_std"], core)] = r["区县代码"]
+            self.pref2counties.setdefault(
+                (r["province_std"], norm(r["城市"])), set()).add(r["区县代码"])
+        self.ccore_unique = {k for k, v in ccore_cnt.items() if v == 1}
         # 镇：(province_std, county_std, town_std)->镇代码；(province_std, town_std)->唯一
         self.pct2code = {}
         self.pt2code, pt_cnt = {}, {}
@@ -59,6 +69,26 @@ class AdminMatcher:
             if cc.endswith(cn):
                 return self.pc2code.get((p, cn))
         return None
+
+    def county_codes_flex(self, province, name):
+        """返回 set：县级->单县；地市/州级->该市全部县；含撤县设区核心名回退。"""
+        p = strip_prov(province)
+        nm = norm(name)
+        if (p, nm) in self.pc2code:
+            return {self.pc2code[(p, nm)]}
+        # 地市/州级授予 -> 展开
+        pref = re.sub(r"(市|州|地区|自治州|盟)$", "", nm)
+        for suf in ("市", "州", "地区", "自治州", "盟"):
+            if (p, nm) in self.pref2counties:
+                return set(self.pref2counties[(p, nm)])
+        if (p, nm + "市") in self.pref2counties:
+            return set(self.pref2counties[(p, nm + "市")])
+        # 县核心名回退（撤县设区/市）
+        core = re.sub(r"(县|市|区|旗|自治县|自治旗|林区|特区)$", "", nm)
+        if core and (p, core) in self.ccore_unique:
+            return {self.pcCoreC2code[(p, core)]}
+        code = self.county_code(province, name)
+        return {code} if code else set()
 
     # --- 镇级匹配：province + county(可空) + town ---
     def town_code(self, province, county, town):

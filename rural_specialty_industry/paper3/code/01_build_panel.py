@@ -73,21 +73,28 @@ def county_flags(policy, statuses, yr=2019):
         sub = sub[sub.status.isin(statuses)]
     codes = set()
     for r in sub.itertuples():
-        cc = M.county_code(r.province, (r.county if pd.notna(r.county) else "") if False else r.county)
-        # county字段可能是"县名"或"市名"；用 province+county 直接匹配
-        code = M.pc2code.get((strip_prov(r.province), norm(r.county))) if pd.notna(r.county) else None
-        if code is None and pd.notna(r.county):
-            code = M.county_code(r.province, r.county)
-        if code:
-            codes.add(code)
+        if pd.notna(r.county):
+            codes |= M.county_codes_flex(r.province, r.county)
     return codes
 
 
 park = county_flags("现代产业园", None)
 tqz = county_flags("特优区", None)
 brand = county_flags("品牌目录", None)
-gi = county_flags("地理标志", None)          # GI county字段多空，主要靠名特优新
 mte = county_flags("名特优新", None)
+
+# GI：无county字段，从证书持有人名/产品名扫县名（province内匹配）
+gi_ev = e[(e.policy == "地理标志") & (e.batch_year <= 2019)]
+gi = set()
+for r in gi_ev.itertuples():
+    p = strip_prov(r.province)
+    text = norm(r.holder) + norm(r.product)
+    for cn in sorted(M.county_names.get(p, ()), key=len, reverse=True):
+        if cn and len(cn) >= 2 and cn in text:
+            code = M.pc2code.get((p, cn))
+            if code:
+                gi.add(code)
+            break
 rep.append(f"县级政策覆盖县数: 产业园={len(park)} 特优区={len(tqz)} "
            f"品牌={len(brand)} 名特优新={len(mte)} GI(县)={len(gi)}")
 
@@ -134,10 +141,11 @@ town["park_pre"] = town["county_code"].isin({str(x) for x in park}).astype(int)
 town["tqz_pre"] = town["county_code"].isin({str(x) for x in tqz}).astype(int)
 town["brand_pre"] = town["county_code"].isin({str(x) for x in brand}).astype(int)
 town["mte_pre"] = town["county_code"].isin({str(x) for x in mte}).astype(int)
+town["gi_pre"] = town["county_code"].isin({str(x) for x in gi}).astype(int)
 town["grain800"] = town["county_code"].isin(grain800).astype(int)
 town["grain720"] = town["county_code"].isin(grain720).astype(int)
 # 灯光/企业
-town = town.merge(l19, on="乡镇代码", how="left").merge(l15, on="乡镇代码", how="left")
+town = town.merge(l19, on="town_code", how="left").merge(l15, on="town_code", how="left")
 town = town.merge(agri_pre, on="county_code", how="left")
 town["agri_firms_pre"] = town["agri_firms_pre"].fillna(0)
 town["coop_pre"] = town["coop_pre"].fillna(0)
@@ -158,14 +166,14 @@ panel_risk = panel[panel["entered_before"] == 0].copy()
 
 keep = ["town_code", "county_code", "省", "区县名称", "镇", "year",
         "ten_enter", "yi_enter", "has_yi_by", "qz_pre2020",
-        "park_pre", "tqz_pre", "brand_pre", "mte_pre", "grain800", "grain720",
+        "park_pre", "tqz_pre", "brand_pre", "mte_pre", "gi_pre", "grain800", "grain720",
         "light_mean_2019", "light_sum_2019", "light_sum_2015",
         "agri_firms_pre", "coop_pre"]
 panel_risk[keep].to_csv(f"{OUT}/town_panel.csv", index=False, encoding="utf-8-sig")
 
 # 政策梯度层级（村→镇→县）计数
 town["policy_layers"] = town[["qz_pre2020", "park_pre", "tqz_pre",
-                              "brand_pre", "mte_pre"]].sum(axis=1)
+                              "brand_pre", "mte_pre", "gi_pre"]].sum(axis=1)
 town[["town_code", "county_code", "省", "区县名称", "镇", "policy_layers",
       "ten_entry_year", "yi_entry_year"]].to_csv(
     f"{OUT}/town_master.csv", index=False, encoding="utf-8-sig")
