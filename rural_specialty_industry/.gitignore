@@ -8,3 +8,6 @@ output/firm_reg/*.log
 output/county_industry_panel_2010_2023.csv
 # QC与涉农最终面板入库
 !output/firm_reg/qc_*.txt
+# 大中间面板（可由code重生，仅留最终结果表/系数/图）
+paper1/output/town_year_panel.csv
+paper3/output/town_panel.csv
