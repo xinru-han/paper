@@ -1,2 +1,2 @@
 crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,concavity_rate_obsS,monotonicity_rate
-corn,plain,427,23,22,TRUE,1.26328947303023e-11,0.679156908665105,0.655737704918033,1
+corn,plain,427,23,22,TRUE,1.24898980047305e-11,0.679156908665105,0.655737704918033,1

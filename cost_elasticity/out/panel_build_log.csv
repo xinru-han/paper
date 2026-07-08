@@ -4,40 +4,50 @@ corn,fill_p_pest,national_median n=9
 corn,fill_p_film,national_median n=9
 corn,w_other_weight,pesticide_weight=0.797
 corn,drop_obs,1 obs: 贵州2004
+corn,specB_lny_e,q_output_e NA(丢弃于SpecB) n=45 / 427
 wheat,fill_w_mach,national_median n=12
 wheat,fill_p_pest,national_median n=14
 wheat,fill_p_film,national_median n=14
 wheat,w_other_weight,pesticide_weight=0.950
 wheat,drop_obs,"3 obs: 贵州2004,青海2004,陕西2023"
 wheat,drop_unitvalue_outlier,"甘肃2023(wf=0.18,wl=97.0,ws=8.3)"
+wheat,specB_lny_e,q_output_e NA(丢弃于SpecB) n=42 / 325
 soybean,fill_p_pest,national_median n=1
 soybean,fill_p_film,national_median n=1
 soybean,w_other_weight,pesticide_weight=0.950
 soybean,drop_obs,"10 obs: 重庆2004,重庆2005,重庆2007,重庆2008,重庆2009,重庆2011,重庆2012,重庆2013,重庆2015,重庆2016"
+soybean,specB_lny_e,q_output_e NA(丢弃于SpecB) n=36 / 240
 rice_early_indica,fill_p_pest,national_median n=8
 rice_early_indica,fill_p_film,national_median n=8
 rice_early_indica,w_other_weight,pesticide_weight=0.913
+rice_early_indica,specB_lny_e,q_output_e NA(丢弃于SpecB) n=18 / 189
 rice_mid_indica,w_other_weight,pesticide_weight=0.851
 rice_mid_indica,drop_obs,"4 obs: 江苏2004,江西2004,贵州2004,陕西2008"
+rice_mid_indica,specB_lny_e,q_output_e NA(丢弃于SpecB) n=27 / 237
 rice_late_indica,fill_p_pest,national_median n=8
 rice_late_indica,fill_p_film,national_median n=8
 rice_late_indica,w_other_weight,pesticide_weight=0.950
+rice_late_indica,specB_lny_e,q_output_e NA(丢弃于SpecB) n=18 / 189
 rice_japonica,fill_w_mach,national_median n=8
 rice_japonica,fill_p_pest,national_median n=9
 rice_japonica,fill_p_film,national_median n=9
 rice_japonica,w_other_weight,pesticide_weight=0.873
+rice_japonica,specB_lny_e,q_output_e NA(丢弃于SpecB) n=33 / 278
 peanut,fill_p_pest,national_median n=3
 peanut,fill_p_film,national_median n=3
 peanut,w_other_weight,pesticide_weight=0.853
 peanut,drop_obs,"22 obs: 贵州2004,重庆2004,四川2005,福建2005,重庆2005,四川2006,广西2006,四川2007,重庆2007,重庆2008,四川2009,重庆2009,四川2010,重庆2010,四川2011,重庆2011,四川2012,重庆2012,四川2013,重庆2013,四川2014,四川2015"
+peanut,specB_lny_e,q_output_e NA(丢弃于SpecB) n=41 / 222
 rapeseed,fill_w_mach,national_median n=4
 rapeseed,fill_p_pest,national_median n=6
 rapeseed,fill_p_film,national_median n=6
 rapeseed,w_other_weight,pesticide_weight=0.950
 rapeseed,drop_obs,"15 obs: 上海2004,湖南2004,重庆2004,四川2005,江西2005,河南2005,湖北2005,湖南2005,重庆2005,江西2006,湖南2006,重庆2006,江西2007,湖南2007,重庆2007"
+rapeseed,specB_lny_e,q_output_e NA(丢弃于SpecB) n=35 / 302
 cotton,fill_w_mach,national_median n=7
 cotton,fill_p_pest,national_median n=7
 cotton,fill_p_film,national_median n=7
 cotton,w_other_weight,pesticide_weight=0.720
 cotton,drop_obs,"172 obs: 浙江2004,山东2005,新疆2005,江西2005,河北2005,河南2005,浙江2005,湖北2005,湖南2005,甘肃2005,辽宁2005,陕西2005,天津2006,山东2006,山西2006,江西2006,河北2006,河南2006,浙江2006,湖北2006,湖南2006,辽宁2006,陕西2006,天津2007,山东2007,山西2007,江西2007,河北2007,河南2007,浙江2007,湖北2007,湖南2007,辽宁2007,陕西2007,天津2008,山东2008,山西2008,江西2008,河北2008,河南2008,浙江2008,湖北2008,湖南2008,陕西2008,天津2009,山东2009,山西2009,江西2009,浙江2009,湖北2009,湖南2009,陕西2009,天津2010,山东2010,山西2010,江西2010,河北2010,河南2010,湖北2010,湖南2010,陕西2010,天津2011,山东2011,山西2011,江西2011,河北2011,河南2011,湖北2011,湖南2011,陕西2011,山东2012,山西2012,江西2012,河北2012,河南2012,湖北2012,湖南2012,陕西2012,山东2013,山西2013,江西2013,河北2013,河南2013,湖北2013,湖南2013,陕西2013,山东2014,山西2014,江西2014,河北2014,河南2014,湖北2014,湖南2014,陕西2014,山东2015,山西2015,江西2015,河北2015,河南2015,湖北2015,湖南2015,陕西2015,安徽2016,山东2016,山西2016,新疆2016,江苏2016,江西2016,河北2016,河南2016,湖北2016,湖南2016,甘肃2016,陕西2016,山东2017,山西2017,河北2017,河南2017,湖北2017,湖南2017,陕西2017,山东2018,山西2018,江西2018,河北2018,河南2018,湖北2018,湖南2018,陕西2018,山东2019,江西2019,河北2019,河南2019,湖南2019,陕西2019,山东2020,江西2020,河北2020,河南2020,湖北2020,湖南2020,陕西2020,山东2021,江西2021,河北2021,河南2021,湖北2021,湖南2021,陕西2021,山东2022,江西2022,河北2022,河南2022,湖北2022,湖南2022,陕西2022,安徽2023,山东2023,江苏2023,江西2023,河北2023,河南2023,湖北2023,湖南2023,陕西2023,山东2024,江西2024,河北2024,河南2024,湖北2024,湖南2024,陕西2024"
 cotton,drop_unitvalue_outlier,"安徽2007(wf=4.20,wl=18.7,ws=574.0);安徽2008(wf=6.76,wl=21.6,ws=1607.4);安徽2009(wf=5.42,wl=24.8,ws=4501.0);安徽2010(wf=6.18,wl=31.3,ws=3052.1);安徽2011(wf=6.57,wl=40.0,ws=2069.6);安徽2012(wf=6.53,wl=56.0,ws=1403.4);安徽2013(wf=6.34,wl=68.0,ws=951.6);安徽2014(wf=5.48,wl=74.4,ws=645.3);江西2017(wf=5.63,wl=83.1,ws=882.8);湖北2019(wf=5.80,wl=86.4,ws=5725.0)"
+cotton,specB_lny_e,q_output_e NA(丢弃于SpecB) n=21 / 79

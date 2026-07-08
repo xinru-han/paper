@@ -1,4 +1,4 @@
 crop,model,rmse,n_test
-soybean,translog,0.0489093958593159,39
-soybean,cobb_douglas,0.0600495063154629,39
+soybean,translog,0.0489093958593185,39
+soybean,cobb_douglas,0.0600495063154652,39
 soybean,random_walk,0.0418982792719293,39

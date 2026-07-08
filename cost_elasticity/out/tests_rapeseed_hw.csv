@@ -1,0 +1,5 @@
+crop,test,LR,df,p
+rapeseed_hw,homotheticity,24.6859843669899,4,5.81781405008727e-05
+rapeseed_hw,hicks_neutral,34.1656507045973,4,6.89111507049913e-07
+rapeseed_hw,no_tech_change,61.1975899532226,7,8.70032543094712e-11
+rapeseed_hw,cobb_douglas,236.571835449653,10,3.59260329552444e-45

@@ -1,0 +1,2 @@
+crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,concavity_rate_obsS,monotonicity_rate
+rice_early_indica_hw,plain,189,9,30,TRUE,1.70022329548658e-12,0.994708994708995,0.973544973544973,1

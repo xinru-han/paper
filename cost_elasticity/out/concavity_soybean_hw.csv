@@ -1,0 +1,2 @@
+crop,method,n_obs,n_prov,iter,converged,inv_err,concavity_rate,concavity_rate_obsS,monotonicity_rate
+soybean_hw,plain,240,15,19,TRUE,6.79239997580794e-12,0.7625,0.695833333333333,1

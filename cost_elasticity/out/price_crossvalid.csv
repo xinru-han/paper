@@ -1,0 +1,10 @@
+crop,cor_wfert_urea,cor_wfert_dap,cor_wfert_npkcl,cor_wfert_gm3,cor_wseed_nattrend
+corn,0.778,0.785,0.777,0.856,0.899
+wheat,0.443,0.484,0.525,0.508,0.932
+soybean,0.671,0.749,0.732,0.774,0.841
+rice_japonica,0.747,0.755,0.788,0.823,0.746
+rice_mid_indica,0.816,0.802,0.804,0.892,0.93
+rice_early_indica,0.816,0.851,0.871,0.921,0.559
+rice_late_indica,0.846,0.856,0.868,0.936,0.806
+peanut,0.734,0.836,0.824,0.86,0.832
+rapeseed,0.674,0.687,0.685,0.735,0.541

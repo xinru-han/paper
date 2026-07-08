@@ -1,0 +1,5 @@
+crop,test,LR,df,p
+rice_japonica_hw,homotheticity,56.5158001080472,4,1.56312276596625e-11
+rice_japonica_hw,hicks_neutral,105.495709120227,4,6.64138972024023e-22
+rice_japonica_hw,no_tech_change,135.152264384251,7,5.26124947508467e-26
+rice_japonica_hw,cobb_douglas,379.620950269711,10,2.03529665465809e-75

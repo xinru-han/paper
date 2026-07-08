@@ -34,5 +34,13 @@
 - **G2（Spec B 预期产量）✅ 未触发**：9 品种 |ΔM_ml| 全 <0.15（最大 soybean −0.10），无核心弹性变号 → **Spec B 进稳健性、基线不动**。附带证据：ε_Cy 在 Spec B 下仍病态（rapeseed 100% 为负、mid_indica 62%），**独立佐证 M4 撤除 RTS/TFP**。（`out/specB_compare.csv`、`out/specB_G2_flags.csv`）
 - **G3（Γ 断点 2004–13 vs 2014–24）→ 全品种"H1 部分复活"**：9 品种全部拒绝 Γ 稳定（LR 43–149，p 1e-6~1e-27），且 **M_ML 后段一律更高**（共同评估点 pre≈0.2–0.9 → post≈1.5–1.9，Δ+0.64~+1.60）；Δλ 显示劳动节约偏向 2014 后加速（6/9 品种 dB_labor<0）。→ **叙事修正：替代弹性并非"稳定"，而是刘易斯转折后显著上升**，与工资诱致机械化一致，比 pooled S2 更支持 H1。稳健性由 M9 玉米/粳稻 bootstrap-LR 复核。（`out/gamma_break_test.csv`、`out/elasticities_split_*.csv`、`out/gamma_break_G3.csv`）
 
-robust_matrix 数值待跑完补记；hw 全套 postest（M12a）已随本阶段产出 `*_hw_cc.csv`。
+**robust_matrix 数值（全部产出，热启动跑完）：**
+- **M3a plain/cc**：曲率约束抬升 M_ml 显著者 corn +0.18、wheat +0.15、peanut +0.30、rapeseed +0.34（plain 凹性违反率 28–49%、触发观测 62–158）；rice_early/late 近零位移（plain 本已凹）。→ 须诚实披露"旱作 M_ml≈1 部分是约束产物"。（`out/plaincc_compare.csv`）
+- **M3b κ 网格**：max|ΔM_ml(1e6→1e7)|=0.024（soybean，余 <0.013）；**略超 0.02 验收线**，记为"近收敛，soybean 边际敏感 0.024（仍在 bootstrap CI 内）"，基线保持 κ=1e6。（`out/kappa_sensitivity.csv`）
+- **M13b 区域×时期可积FE**：M_ml 一律小降 −0.05~−0.15（corn −0.151、soybean −0.152 触 0.15 线）→ 识别节须注明"吸收区域×时期共同冲击后替代估计软化 ~10–15%，符号与旱>稻排序不变"。（`out/robust_regionperiod.csv`）
+- **M10/M11/M13c/M12c**：wmach剔年/仅原生xls年/剔疫情/发改委三肥替代 均已产出对照（`out/robust_{wmach_years,xlsonly,dropcovid,fertndrc}.csv`）。
+- **M13a 价格变异诊断**：`out/price_variation_diag.csv`（各 ln(w_m/w_other) 对年份 R² + 省内SD，daywage vs hired）。
+- **M12a hw**：9 品种 hw 全套 postest 产出，eps_ll∈[−0.45,−0.26]、M_ml∈[0.69,0.97]，全部同号。
+
+R2 ✅ 完成。后处理管线（chain_post → run_post_R2）已自动接续：Group A(S2/6f/decomp/priceCV) → B(M9 tests_boot/M8 induced_regional) → C(M1 bootstrap B=500) → D(hw+doubleblock) → E(M4 tauC/M7 consistency)。
 

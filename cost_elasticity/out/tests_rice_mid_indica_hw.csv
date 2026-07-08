@@ -1,0 +1,5 @@
+crop,test,LR,df,p
+rice_mid_indica_hw,homotheticity,24.6850192890088,4,5.82041155134278e-05
+rice_mid_indica_hw,hicks_neutral,48.1012504496757,4,8.99010467040472e-10
+rice_mid_indica_hw,no_tech_change,101.392554097376,7,5.56243717023811e-19
+rice_mid_indica_hw,cobb_douglas,232.55737225243,10,2.49841720453071e-44
