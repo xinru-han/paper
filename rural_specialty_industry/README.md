@@ -16,6 +16,7 @@
   - `superstar_outcomes.csv` — 亿元村693 + 十亿元镇466（含期次年份）
   - `province_year_counts.csv` — 省×年×政策计数面板
   - `summary_stats.md` — 核对汇总
+  - `grain_county_800_2009.csv` / `grain_capacity_720_2024.csv` — 产粮大县名单（带标准化县代码，三篇共用异质性/政治经济学维度）
 
 ## 核对基准
 

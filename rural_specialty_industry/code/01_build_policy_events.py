@@ -13,7 +13,7 @@ import warnings
 import pandas as pd
 
 warnings.filterwarnings("ignore")
-DATA = "/root/data/乡村特色产业数据"
+DATA = "/root/data/数据/乡村产业数据/乡村特色产业数据"
 OUT = "/root/paper/rural_specialty_industry/output"
 
 rows = []
