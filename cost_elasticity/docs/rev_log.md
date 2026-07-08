@@ -23,3 +23,16 @@
 - **回归测试**：改后 `test_cd.R` A/B 全过（含 F-4 可积守门断言）。
 
 产出：改版 `R/itsur.R`（tl_param_names/tl_build_system/tl_recover）、`R/build_panel.R`、重建 `data/panel_*.csv`（+q_output_e 列）
+
+---
+
+## R2 — 主重估矩阵（2026-07-08/09，运行中）
+
+四作业并行：robust_matrix（M3/M10/M11/M12c/M13a-c）、robust_specB（M2）、gamma_break（M6）、baseline+hw postest（M12a）。robust_matrix 加凹性块热启动（`a_init`）+ 单线程BLAS 提速。
+
+**决策门结论：**
+- **G2（Spec B 预期产量）✅ 未触发**：9 品种 |ΔM_ml| 全 <0.15（最大 soybean −0.10），无核心弹性变号 → **Spec B 进稳健性、基线不动**。附带证据：ε_Cy 在 Spec B 下仍病态（rapeseed 100% 为负、mid_indica 62%），**独立佐证 M4 撤除 RTS/TFP**。（`out/specB_compare.csv`、`out/specB_G2_flags.csv`）
+- **G3（Γ 断点 2004–13 vs 2014–24）→ 全品种"H1 部分复活"**：9 品种全部拒绝 Γ 稳定（LR 43–149，p 1e-6~1e-27），且 **M_ML 后段一律更高**（共同评估点 pre≈0.2–0.9 → post≈1.5–1.9，Δ+0.64~+1.60）；Δλ 显示劳动节约偏向 2014 后加速（6/9 品种 dB_labor<0）。→ **叙事修正：替代弹性并非"稳定"，而是刘易斯转折后显著上升**，与工资诱致机械化一致，比 pooled S2 更支持 H1。稳健性由 M9 玉米/粳稻 bootstrap-LR 复核。（`out/gamma_break_test.csv`、`out/elasticities_split_*.csv`、`out/gamma_break_G3.csv`）
+
+robust_matrix 数值待跑完补记；hw 全套 postest（M12a）已随本阶段产出 `*_hw_cc.csv`。
+
