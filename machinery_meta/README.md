@@ -1,4 +1,42 @@
-# 农业机械化对粮食综合生产能力的影响：Meta分析 + CASM情景模拟（v2，check后数据）
+# 农业机械化对粮食综合生产能力的影响：Meta分析 + CASM情景模拟
+
+## ★ v3 全文多效应量版（最新，2026-07-08）
+
+针对v2中"面积不显著、单产仅5%边缘显著"的功效不足问题，参照
+IFPRI DP02361（Roche等2025：215篇13000+条弹性，两层随机截距，1/√N精度项）与
+Tan等(2026, JAE)（34篇87条，逆方差RE+WLS+Egger/Begg）的范式，
+放弃"一文一主效应量"，对77篇原始文献（文献筛选-中文38篇+英文39篇）
+用MinerU API全文OCR后提取**全部合格效应量**：
+
+- `code/5-mineru-ocr.py` 全文OCR（77/77成功；全文md不入库，版权原因）
+- `docs/extraction_protocol.md` 多效应量提取协议（14个提取批次，来源可回溯至表号）
+- `data/extracted_parts/*.csv` 分批提取件 → `data/meta_effects_expanded.csv`
+  （540条原始提取 → 419条可算PCC，48篇文献；无效率方程反号、
+  非粮镜像/空间溢出/净收益口径剔除）
+- `code/meta_stats.py` + `code/7-multilevel-meta.py`：相关效应RVE
+  （Hedges-Tipton-Johnson 2010，rho=0.8，文献层面聚类稳健SE，t(m-1)推断），
+  IFPRI式[Q1−3IQR,Q3+3IQR]异常值规则，RVE Meta回归（含1/√N精度项），
+  Egger/Begg + FAT-PET-PEESE → `results/meta_v3/`
+- `code/8-scenario-design-v3.py`：单锚点PCC校准（λ=单产合并弹性/单产合并PCC
+  =0.0705/0.106=0.665；各单元弹性=λ×单元RVE合并PCC，10%不显著记0）
+  → `results/casm_v3/simulation_plan_v3.csv`
+- `code/9-run-casm-v3.py`：CASM基线+9情景 → `results/casm_v3/`
+
+**v3 主要结果（RVE合并PCC，主分析）**：
+
+| 维度 | k条/m篇 | 合并PCC | p值 | 发表偏倚 |
+|---|---|---|---|---|
+| 粮食单产 | 152/24 | **+0.106***\* | <0.0001 | FAT不显著；PET +0.078***、PEESE +0.096***稳健 |
+| 播种面积 | 73/9 | **+0.164***\* | 0.0013 | FAT/Egger/Begg均不显著；PET +0.142* |
+| 生产效率 | 170/18 | **+0.146***\* | 0.0001 | FAT不显著 |
+
+分路径：单产 MCI +0.084***、AMS +0.091***；面积 MCI +0.203**、AML +0.248***、
+AMS +0.071(不显著)；效率 AMS +0.160***。三维度合并效应全部1%显著——
+扩充样本+RVE后，面积维度显著性问题在不动任何数据的前提下由检验功效解决。
+
+---
+
+## v2 check后数据版（历史版本，2026-07-08）
 
 对应论文：《农业机械化提升粮食综合生产能力的作用路径与政策潜力——基于Meta分析与CASM情景模拟》
 （初稿 20260701）。本目录是对 `code_data_v1` 的全面更新：使用人工check后的中英文

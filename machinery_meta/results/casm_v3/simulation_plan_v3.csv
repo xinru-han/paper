@@ -1,0 +1,11 @@
+﻿情景,机械化路径,代理指标,代理指标年均增速(%),单产弹性(λ×PCC),面积弹性(λ×PCC),每年单产Shifter(%),每年面积Shifter(%),冲击作物,冲击年份,施加方式,单产证据,面积证据
+S1-Medium,农机资本投入(MCI),全国农业机械总动力,2.4,0.0559,0.135,0.1341,0.324,"CGRN(RICE,WHEA,MAIZ,SOYS,BARL,OTGR,SORG)",2026-2030,叠加于基准AYGR0/AAGR0之上,合并PCC=+0.084(p=0.000),合并PCC=+0.203(p=0.023)
+S1-High,农机资本投入(MCI),全国农业机械总动力,3.4,0.0559,0.135,0.19,0.459,"CGRN(RICE,WHEA,MAIZ,SOYS,BARL,OTGR,SORG)",2026-2030,叠加于基准AYGR0/AAGR0之上,合并PCC=+0.084(p=0.000),合并PCC=+0.203(p=0.023)
+S1-Low,农机资本投入(MCI),全国农业机械总动力,1.4,0.0559,0.135,0.0782,0.189,"CGRN(RICE,WHEA,MAIZ,SOYS,BARL,OTGR,SORG)",2026-2030,叠加于基准AYGR0/AAGR0之上,合并PCC=+0.084(p=0.000),合并PCC=+0.203(p=0.023)
+S2-Medium,农机社会化服务(AMS),全国农机托管作业面积,2.8,0.0605,0.0,0.1695,0.0,"CGRN(RICE,WHEA,MAIZ,SOYS,BARL,OTGR,SORG)",2026-2030,叠加于基准AYGR0/AAGR0之上,合并PCC=+0.091(p=0.001),合并PCC=+0.071不显著(p=0.199)，冲击=0
+S2-High,农机社会化服务(AMS),全国农机托管作业面积,3.8,0.0605,0.0,0.23,0.0,"CGRN(RICE,WHEA,MAIZ,SOYS,BARL,OTGR,SORG)",2026-2030,叠加于基准AYGR0/AAGR0之上,合并PCC=+0.091(p=0.001),合并PCC=+0.071不显著(p=0.199)，冲击=0
+S2-Low,农机社会化服务(AMS),全国农机托管作业面积,1.8,0.0605,0.0,0.1089,0.0,"CGRN(RICE,WHEA,MAIZ,SOYS,BARL,OTGR,SORG)",2026-2030,叠加于基准AYGR0/AAGR0之上,合并PCC=+0.091(p=0.001),合并PCC=+0.071不显著(p=0.199)，冲击=0
+S3-Medium,综合机械化水平(AML),耕种收综合机械化率,1.121,0.0705,0.1649,0.079,0.1849,"CGRN(RICE,WHEA,MAIZ,SOYS,BARL,OTGR,SORG)",2026-2030,叠加于基准AYGR0/AAGR0之上,子组文献不足，取中性假设PCC=0.106,合并PCC=+0.248(p=0.004)
+S3-High,综合机械化水平(AML),耕种收综合机械化率,2.425,0.0705,0.1649,0.171,0.4,"CGRN(RICE,WHEA,MAIZ,SOYS,BARL,OTGR,SORG)",2026-2030,叠加于基准AYGR0/AAGR0之上,子组文献不足，取中性假设PCC=0.106,合并PCC=+0.248(p=0.004)
+S3-Low,综合机械化水平(AML),耕种收综合机械化率,0.13,0.0705,0.1649,0.0092,0.0215,"CGRN(RICE,WHEA,MAIZ,SOYS,BARL,OTGR,SORG)",2026-2030,叠加于基准AYGR0/AAGR0之上,子组文献不足，取中性假设PCC=0.106,合并PCC=+0.248(p=0.004)
+映射公式,λ=E_yield_pooled/PCC_yield_ALL=0.0705/0.106=0.6651,弹性=λ×单元RVE合并PCC；10%不显著记0,,,,,,,,,,

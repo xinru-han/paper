@@ -1,2 +1,4 @@
 .matplotlib/
 __pycache__/
+data/fulltext_md/
+data/mineru_run.log
