@@ -1,0 +1,10 @@
+﻿Target,Path,k_elast,elast_type,elast_median,ids
+Yield,MCI,6,full,0.178,P_09;P_22;P_29;E_08;E_25;E_26
+Yield,AMS,6,semi(近似),0.1635,P_11;P_15;E_02;E_04;E_05;E_17
+Yield,AML,1,full,0.182,P_02
+Area,MCI,1,full,0.584,E_24
+Area,AMS,1,full,-0.221,P_31
+Area,AML,1,full,0.015,P_19
+Efficiency,MCI,1,full,0.51,E_14
+Efficiency,AMS,1,semi(近似),0.134,E_20
+Efficiency,AML,0,none,,
