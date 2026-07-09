@@ -1,0 +1,7 @@
+﻿scenario,Path,Target,k,elasticity_median,elasticity_mean,elasticity_N_weighted,elasticity_used_for_shifter,note
+S1,MCI,Yield,7,0.171,0.16528571428571429,0.1701062730627306,0.171,按Path中位数；去除|elasticity|>=0.99；去掉E_22/E_24
+S1,MCI,Area,0,,,,0.0,按Path中位数；去除|elasticity|>=0.99；去掉E_22/E_24；沿用原方案S1不冲击面积
+S2,AMS,Yield,6,0.16349999999999998,0.16966666666666663,0.1770425723472669,0.16349999999999998,按Path中位数；去除|elasticity|>=0.99；去掉E_22/E_24
+S2,AMS,Area,3,0.0235,0.06983333333333333,-0.12379689875342048,0.0235,按Path中位数；去除|elasticity|>=0.99；去掉E_22/E_24
+S3,AML,Yield,1,0.182,0.182,0.182,0.182,按Path中位数；去除|elasticity|>=0.99；去掉E_22/E_24
+S3,AML,Area,1,0.015,0.015,0.015000000000000001,0.015,按Path中位数；去除|elasticity|>=0.99；去掉E_22/E_24
