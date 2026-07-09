@@ -1,0 +1,8 @@
+crop,test,df,LR_obs,p_analytic,crit5,boot_n,boot_LR_median,boot_LR_lo,boot_LR_hi,boot_nonreject_rate
+corn,homotheticity,4,35.5,3.66e-07,9.49,200,38.8,11.1,88,0.005
+corn,hicks_neutral,4,185.04,6.17e-39,9.49,200,201.9,139.4,292.2,0
+corn,no_tech_change,7,519.89,4.24e-108,14.07,200,548.3,391.4,725.8,0
+corn,cobb_douglas,10,1032.55,1.82e-215,18.31,200,1089.4,821.2,1381.6,0
+wheat,homotheticity,4,8.68,0.0696,9.49,200,16,2.1,51,0.275
+corn,gamma_break,10,118.47,1.04e-20,18.31,200,144,76.7,255.1,0
+rice_japonica,gamma_break,10,59.77,4.01e-09,18.31,200,75.8,32.6,168.9,0.005

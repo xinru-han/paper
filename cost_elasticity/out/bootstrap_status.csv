@@ -1,0 +1,10 @@
+crop,fit_fail,ok,prep_fail,attempts,ok_rate
+corn,0,500,0,500,1
+peanut,0,500,0,500,1
+rapeseed,0,500,0,500,1
+rice_early_indica,0,456,44,500,0.912
+rice_japonica,0,500,0,500,1
+rice_late_indica,1,455,44,500,0.91
+rice_mid_indica,0,500,0,500,1
+soybean,0,500,0,500,1
+wheat,3,497,0,500,0.994

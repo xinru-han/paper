@@ -1,4 +1,4 @@
 crop,model,rmse,n_test
-peanut,translog,0.0398064313139503,38
-peanut,cobb_douglas,0.0565850476235274,38
+peanut,translog,0.0398064313139531,38
+peanut,cobb_douglas,0.0565850476235266,38
 peanut,random_walk,0.0281465930342831,38

@@ -68,9 +68,9 @@ relwage <- function() {
   rows <- list()
   for (cr in CROPS) {
     pan <- fread(sprintf("data/panel_%s.csv", cr)); pan[, reg := assign_region(pan)]
-    agg <- pan[, .(w = weighted.mean(w_labor_hired, q_output, na.rm = TRUE)), by = .(crop = cr, region = reg, year)]
-    agg[, wbar := weighted.mean(w, table(pan$reg)[region], na.rm = TRUE), by = year]  # 年内区域均值
-    agg[, lnrel := log(w / mean(w)), by = .(crop, year)]                              # 相对当年区域均值
+    agg <- pan[, .(w = weighted.mean(w_labor_hired, q_output, na.rm = TRUE)), by = .(region = reg, year)]
+    agg[, crop := cr]
+    agg[, lnrel := log(w / mean(w)), by = .(crop, year)]   # 相对当年区域均值
     setorder(agg, crop, region, year)
     agg[, dlnrel := c(NA, diff(lnrel)), by = .(crop, region)]
     rows[[cr]] <- agg[, .(crop, region, year, dlnrel)]
@@ -141,12 +141,11 @@ for (n in c("labor","mach")) {
 }
 ii <- rbindlist(res); fwrite(ii, "out/induced_regional.csv")
 
-# G4：placebo 干净（|t|<1.5）且 Σψ>0 → suggestive 回正文；否则降级描述性
-lab13 <- ii[factor == "labor" & spec == "k1_3"]
-clean_plac <- abs(lab13$placebo_F1_t) < 1.5 & abs(lab13$placebo_F2_t) < 1.5
-g4 <- data.table(factor = "labor", sum_psi = lab13$sum_psi, t_dk = lab13$t_dk,
-  placebo_F1_t = lab13$placebo_F1_t, placebo_F2_t = lab13$placebo_F2_t,
-  verdict = ifelse(clean_plac & lab13$sum_psi > 0, "suggestive_evidence(回正文)", "descriptive_only(删因果语言)"))
+# G4：placebo 干净（|t|<1.5）且 Σψ>0 显著 → suggestive 回正文；否则降级描述性。两版分别判。
+g4 <- ii[, .(factor, spec, sum_psi, t_dk, placebo_F1_t, placebo_F2_t)]
+g4[, clean_placebo := abs(placebo_F1_t) < 1.5 & abs(placebo_F2_t) < 1.5]
+g4[, verdict := ifelse(clean_placebo & sum_psi > 0 & abs(t_dk) > 1.96,
+                       "suggestive_evidence(回正文)", "descriptive_only(删因果语言)")]
 fwrite(g4, "out/induced_regional_G4.csv")
 cat("\n===== M8 区域×品种诱致性 第二阶段 =====\n"); print(ii)
 cat("\n===== G4 =====\n"); print(g4)
