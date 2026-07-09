@@ -1,0 +1,16 @@
+[34] Loading panel and main fit ...
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells   439532  23.5     868505   46.4    665588   35.6
+Vcells 50047613 381.9  526878194 4019.8 548535000 4185.0
+[34] 3000 households, 62449 rows, B = 8, cores = 2
+[34] Running bootstrap ...
+  rep 1 done (0.3 min elapsed)
+  rep 2 done (0.4 min elapsed)
+  rep 3 done (0.6 min elapsed)
+  rep 4 done (0.7 min elapsed)
+  rep 5 done (0.9 min elapsed)
+  rep 6 done (1.0 min elapsed)
+  rep 7 done (1.2 min elapsed)
+  rep 8 done (1.3 min elapsed)
+[34] 8/8 replications succeeded
+[34] Done in 1.4 min.

@@ -1,0 +1,3 @@
+﻿test,method,stat,df,p_value
+H0: all A(z) price interactions = 0,Wald_household_cluster,482.679339292315,108,8.76915803754997e-49
+H0: all A(z) price interactions = 0,supt_province_score_boot,3.61694375624685,,0.001001001001001

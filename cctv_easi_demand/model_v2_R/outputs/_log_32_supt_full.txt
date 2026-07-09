@@ -1,0 +1,61 @@
+[32] Loading panel ...
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells   436043  23.3     858431   45.9    665588   35.6
+Vcells 51251824 391.1  528255734 4030.3 550017178 4196.3
+[32] First stage probits ...
+    probits done in 0.6 min
+   code positive_rate mean_pred     brier  pseudo_r2       auc iterations
+1:  G01     0.5928661 0.5929935 0.2261873 0.04692977 0.6442283          5
+2:  G02     0.3349678 0.3346757 0.2014511 0.08141271 0.6894582          6
+3:  G03     0.8320449 0.8322038 0.1159960 0.16742707 0.7791165          6
+4:  G04     0.8339587 0.8339545 0.1172396 0.14908538 0.7625357          6
+5:  G05     0.6247901 0.6243392 0.1931252 0.14101960 0.7410902          6
+6:  G06     0.4330938 0.4336932 0.2103353 0.11238438 0.7177610          6
+7:  G07     0.3447131 0.3447014 0.1879541 0.14236696 0.7460180          6
+8:  G08     0.5335071 0.5336772 0.1956134 0.17153438 0.7656694          6
+9:  G09     0.7094530 0.7095633 0.1933667 0.05004494 0.6508498          5
+[32] Main constrained SY-EASI system (FGLS) ...
+    system done, 352 parameters
+[32] Analytic cluster-robust SEs ...
+[32] Studentized score-based cluster multiplier bootstrap (province, Webb weights) ...
+[32] Elasticities and curvature ...
+         food_group10  own_price negative
+1:           G01_主食 -1.6809870     TRUE
+2:         G02_食用油 -0.3365232     TRUE
+3:           G03_蔬菜 -0.8161319     TRUE
+4:           G04_水果 -0.7209225     TRUE
+5:           G05_猪肉 -0.6765506     TRUE
+6: G06_禽类及其他肉类 -1.2939413     TRUE
+7:         G07_牛羊肉 -0.1379297     TRUE
+8:           G08_海鲜 -0.9885424     TRUE
+9:         G09_乳制品 -1.0052307     TRUE
+Curvature (aggregate): all eigenvalues <= 0 : FALSE
+[1]  0.1077  0.0176  0.0011 -0.0340 -0.0655 -0.0915 -0.1629 -0.2272 -0.2804
+[32] EASI-y2p variant (y^2 x price interactions; NOT QUAIDS) ...
+[32] A(z) heterogeneous-price-response variant ...
+                                  test                   method       stat  df
+1: H0: all A(z) price interactions = 0   Wald_household_cluster 678.220645 108
+2: H0: all A(z) price interactions = 0 supt_province_score_boot   5.565017  NA
+        p_value
+1: 1.892066e-83
+2: 0.000000e+00
+[32] Numeraire invariance check (omit G05) ...
+   matrix_1 matrix_2 max_abs_diff_marshallian max_abs_diff_expenditure
+1: omit_G03 omit_G05                0.5820338               0.07865132
+   corr_marshallian
+1:        0.9481615
+            used  (Mb) gc trigger   (Mb)   max used   (Mb)
+Ncells    469384  25.1     858431   45.9     858431   45.9
+Vcells 114611405 874.5  759693612 5796.1 1186875660 9055.2
+[32] Out-of-fold fit (5-fold household CV) ...
+         food_group10     oof_r2  oof_rmse
+1:           G01_主食 0.02038451 0.1535974
+2:         G02_食用油 0.02959532 0.1518965
+3:           G03_蔬菜 0.05346630 0.1277811
+4:           G04_水果 0.03754795 0.1718310
+5:           G05_猪肉 0.02985612 0.1504115
+6: G06_禽类及其他肉类 0.05665375 0.1024251
+7:         G07_牛羊肉 0.05059599 0.1314974
+8:           G08_海鲜 0.06353631 0.1219355
+9:         G09_乳制品 0.03540997 0.2255434
+[32] Done.

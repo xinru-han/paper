@@ -1,0 +1,5 @@
+[34b] merging 2 draws files:
+  bootstrap_draws_curv_b1_v2.rds
+  bootstrap_draws_curv_b2_v2.rds
+[34b] total replications: 210
+[34b] Done.

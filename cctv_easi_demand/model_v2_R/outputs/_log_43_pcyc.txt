@@ -1,0 +1,24 @@
+=== outlier audit quantiles ===
+                    variable   min  p0_5     p1     p5     p25     p50     p75
+                      <char> <num> <num>  <num>  <num>   <num>   <num>   <num>
+1:    total_food_spend_month  0.18 8.500 14.400 53.900 181.800 340.000 589.190
+2: total_food_spend_pc_month  0.06 3.333  5.889 21.092  74.667 148.767 278.333
+3:   food_transactions_month  1.00 1.000  1.000  3.000   8.000  14.000  23.000
+        p95      p99    p99_5      max
+      <num>    <num>    <num>    <num>
+1: 1242.390 2114.453 2576.866 15806.45
+2:  633.333 1111.736 1386.527 10537.63
+3:   43.000   66.000   78.000   246.00
+
+=== outlier audit flags ===
+                       metric       value
+                       <char>       <num>
+1:            hh_months_total 583668.0000
+2: share_pc_spend_below_20rmb      0.0463
+3:    share_lt_3_transactions      0.0437
+4:    share_lt_5_transactions      0.1073
+5:       G01_purchaser_months 346037.0000
+6:       G01_share_eq_1_count   3438.0000
+7:     G01_share_gt_0.6_share      0.0331
+
+=== DONE outlier audit ===

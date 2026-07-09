@@ -1,0 +1,37 @@
+################ MONTHLY (reference, full sample) ################
+
+[monthly] n_obs=583668  staple purchase rate=0.593
+own-price:
+          G01_主食         G02_食用油           G03_蔬菜           G04_水果 
+            -1.681             -0.337             -0.816             -0.721 
+          G05_猪肉 G06_禽类及其他肉类         G07_牛羊肉           G08_海鲜 
+            -0.677             -1.294             -0.138             -0.989 
+        G09_乳制品 
+            -1.005 
+[monthly] probit pseudoR2 G01=0.047 G09=0.050
+            used   (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells    456065   24.4     863017   46.1    863017   46.1
+Vcells 196808243 1501.6  637585698 4864.4 796926054 6080.1
+
+################ QUARTERLY aggregation ################
+Warning messages:
+1: In dcast.data.table(panel, ID + year_month ~ group_code, value.var = vc) :
+  'fun.aggregate' is NULL, but found duplicate row/column combinations, so defaulting to length(). That is, the variables [ID, year_month, group_code] used in 'formula' do not uniquely identify rows in the input 'data'. In such cases, 'fun.aggregate' is used to derive a single representative value for each combination in the output data.table, for example by summing or averaging (fun.aggregate=sum or fun.aggregate=mean, respectively). Check the resulting table for values larger than 1 to see which combinations were not unique. See ?dcast.data.table for more details.
+2: In dcast.data.table(panel, ID + year_month ~ group_code, value.var = vc) :
+  'fun.aggregate' is NULL, but found duplicate row/column combinations, so defaulting to length(). That is, the variables [ID, year_month, group_code] used in 'formula' do not uniquely identify rows in the input 'data'. In such cases, 'fun.aggregate' is used to derive a single representative value for each combination in the output data.table, for example by summing or averaging (fun.aggregate=sum or fun.aggregate=mean, respectively). Check the resulting table for values larger than 1 to see which combinations were not unique. See ?dcast.data.table for more details.
+3: In dcast.data.table(panel, ID + year_month ~ group_code, value.var = vc) :
+  'fun.aggregate' is NULL, but found duplicate row/column combinations, so defaulting to length(). That is, the variables [ID, year_month, group_code] used in 'formula' do not uniquely identify rows in the input 'data'. In such cases, 'fun.aggregate' is used to derive a single representative value for each combination in the output data.table, for example by summing or averaging (fun.aggregate=sum or fun.aggregate=mean, respectively). Check the resulting table for values larger than 1 to see which combinations were not unique. See ?dcast.data.table for more details.
+Error in solve.default(xtx, xty) : 
+  system is computationally singular: reciprocal condition number = 1.63581e-17
+Calls: estimate_own -> fit_system -> solve_once -> solve -> solve.default
+In addition: Warning messages:
+1: In log(1 - p0) : NaNs produced
+2: In log(1 - p0) : NaNs produced
+3: In log(1 - p0) : NaNs produced
+4: In log(1 - p0) : NaNs produced
+5: In log(1 - p0) : NaNs produced
+6: In log(1 - p0) : NaNs produced
+7: In log(1 - p0) : NaNs produced
+8: In log(1 - p0) : NaNs produced
+9: In log(1 - p0) : NaNs produced
+Execution halted

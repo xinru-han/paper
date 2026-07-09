@@ -1,0 +1,67 @@
+[33] Loading panel ...
+[33] R1: no time FE (mechanism demo) ...
+            used   (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells    455512   24.4     838705   44.8    838705   44.8
+Vcells 194866942 1486.8  758131386 5784.1 947653933 7230.1
+[33] R2: hybrid price (lambda=0.25, admissible groups) ...
+            used   (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells    455628   24.4     838705   44.8    838705   44.8
+Vcells 194869884 1486.8  729035346 5562.1 947653933 7230.1
+[33] R4: drop lockdown months ...
+            used   (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells    456036   24.4     838705   44.8    838705   44.8
+Vcells 197499529 1506.9  699937932 5340.2 947653933 7230.1
+[33] R5: OECD equivalence scale ...
+            used   (Mb) gc trigger   (Mb)   max used   (Mb)
+Ncells    456060   24.4     838705   44.8     838705   44.8
+Vcells 197501707 1506.9  967827156 7384.0 1209724791 9229.5
+[33] R6: minimum spend 20 yuan ...
+            used   (Mb) gc trigger   (Mb)   max used   (Mb)
+Ncells    456060   24.4     838705   44.8     838705   44.8
+Vcells 197503899 1506.9  774261725 5907.2 1209724791 9229.5
+[33] R7: iterated Stone deflator ...
+            used   (Mb) gc trigger   (Mb)   max used   (Mb)
+Ncells    456475   24.4     838705   44.8     838705   44.8
+Vcells 197507049 1506.9  743355256 5671.4 1209724791 9229.5
+[33] R8: trim 1%/99% expenditure tails ...
+            used   (Mb) gc trigger   (Mb)   max used   (Mb)
+Ncells    457620   24.5     838705   44.8     838705   44.8
+Vcells 197511888 1506.9  685201644 5227.7 1209724791 9229.5
+[33] R9: budget shares narrowed to the priced sub-basket ...
+            used   (Mb) gc trigger   (Mb)   max used   (Mb)
+Ncells    457728   24.5     838705   44.8     838705   44.8
+Vcells 197514107 1507.0  947455712 7228.6 1209724791 9229.5
+Key: <food_group10>
+         food_group10 R1_no_time_fe  R2_hybrid R4_drop_lockdown R5_oecd_scale
+               <char>         <num>      <num>            <num>         <num>
+1:           G01_主食    -0.2407247 -1.0746621       -0.5629556    -1.1125002
+2:         G02_食用油    -0.9823966 -0.7943057       -1.0402411    -0.7872277
+3:           G03_蔬菜    -0.4398422 -0.8058170       -0.9295753    -0.8046032
+4:           G04_水果    -0.3424330 -1.0792858       -0.8734253    -1.0674443
+5:           G05_猪肉    -0.5730882 -0.6411025       -0.6448622    -0.6486017
+6: G06_禽类及其他肉类    -1.1383920 -1.1680185       -1.0690727    -1.1614342
+7:         G07_牛羊肉    -0.7927562 -0.6978138       -1.0345901    -0.7147563
+8:           G08_海鲜    -1.3352373 -0.9983052       -0.7195083    -0.9421011
+9:         G09_乳制品    -1.1392986 -1.0035843       -1.0077241    -1.0022457
+   R6_min_spend20 R7_iterated_stone R8_trim1pct R9_priced_subbasket
+            <num>             <num>       <num>               <num>
+1:     -1.0392094        -1.0258467  -1.1080751          -1.0592608
+2:     -0.7651213        -0.7926963  -0.7371064          -0.9258509
+3:     -0.8180837        -0.8002533  -0.8117444          -0.8306705
+4:     -1.0788318        -1.0668207  -1.0687998          -1.1180521
+5:     -0.6460194        -0.6368790  -0.6397449          -0.6269607
+6:     -1.1613302        -1.1357640  -1.1995899          -1.1659934
+7:     -0.7915407        -0.7364449  -0.7441343          -0.7285881
+8:     -0.9570978        -0.9398569  -0.9574470          -0.8886432
+9:     -1.0092750        -1.0316458  -1.0012036          -0.9936058
+               variant    eig_max curvature_ok
+                <char>      <num>       <lgcl>
+1:       R1_no_time_fe 0.11687292        FALSE
+2:           R2_hybrid 0.02021442        FALSE
+3:    R4_drop_lockdown 0.02061211        FALSE
+4:       R5_oecd_scale 0.01784262        FALSE
+5:      R6_min_spend20 0.02159402        FALSE
+6:   R7_iterated_stone 0.02167710        FALSE
+7:         R8_trim1pct 0.02119909        FALSE
+8: R9_priced_subbasket 0.02182508        FALSE
+[33] Done.

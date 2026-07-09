@@ -1,0 +1,7 @@
+﻿statistic,value
+share_nsd_constrained_all,0.989646511372904
+share_nsd_constrained_y_in_1_99,1
+share_nsd_unconstrained_all,0
+p50_eigmax_constrained,4.17884597198109e-18
+p99_eigmax_constrained,0.000321211381158967
+max_eigmax_constrained,0.148973079600428

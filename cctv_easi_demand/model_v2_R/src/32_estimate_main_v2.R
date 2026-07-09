@@ -5,11 +5,13 @@
 #  - constrained SY-EASI share system, 8 equations (G03 vegetables omitted),
 #    month-of-year FE + year FE + Mundlak means, fixed-weight Stone deflation,
 #    iterated FGLS
-#  - household- and province-clustered analytic sandwich SEs
-#  - province-level wild cluster bootstrap for price coefficients
+#  - household- and province-clustered analytic sandwich SEs (CR1; two-step-
+#    naive — full two-step uncertainty comes from the pairs bootstrap, 34)
+#  - province-level studentized score-based cluster multiplier bootstrap
+#    (Webb weights) for price coefficients
 #  - elasticities (with participation margin), curvature diagnostics at the
 #    aggregate point and on an expenditure-quintile x income grid
-#  - QUAIDS variant, A(z) parametric heterogeneity variant + Wald test
+#  - EASI-y2p variant (y^2 x price), A(z) heterogeneity variant + Wald test
 #  - numeraire invariance check (omit G05 instead of G03)
 #  - out-of-fold fit (5-fold household CV)
 # ============================================================================
@@ -25,6 +27,8 @@ SMOKE <- nzchar(Sys.getenv("SMOKE_V2"))
 
 message("[32] Loading panel ...")
 panel <- fread(file.path(base, "data_derived", "household_month_group9_v2.csv"), encoding = "UTF-8")
+message("[32] Purchase-cycle SY exclusion regressors active: ",
+        paste(intersect(PCYC_BASE, names(panel)), collapse = ", "))
 wide <- make_wide(panel, price_col = "lp_ext")
 rm(panel); gc(FALSE)
 if (SMOKE) {
@@ -42,13 +46,13 @@ wide <- add_mundlak(wide, omit = "G03")
 message("[32] First stage probits ...")
 t0 <- Sys.time()
 fs <- fit_probits(wide, wt, omit = "G03")
-message(sprintf("    probits done in %.1f min", as.numeric(difftime(Sys.time), t0, units="mins"))[1])
+message(sprintf("    probits done in %.1f min", as.numeric(difftime(Sys.time(), t0, units = "mins"))))
 print(fs$stats)
 fwrite(fs$stats, file.path(odir, "probit_fit_stats_v2.csv"), bom = TRUE)
 pp <- predict_probits(wide, fs$betas, omit = "G03")
 
 message("[32] Main constrained SY-EASI system (FGLS) ...")
-lay <- system_layout(omit = "G03", az = FALSE, quaids = FALSE)
+lay <- system_layout(omit = "G03", az = FALSE, y2p = FALSE)
 fit <- fit_system(wide, lay, pp$Phi, pp$phi, wt, Sigma = NULL, n_fgls = 2, keep_xtx_inv = TRUE)
 message(sprintf("    system done, %d parameters", lay$n_par))
 
@@ -61,35 +65,59 @@ coefs <- data.table(term = lay$term_names, estimate = fit$beta,
 coefs[, t_household := estimate / se_cluster_household]
 fwrite(coefs, file.path(odir, "system_coefficients_main_v2.csv"), bom = TRUE)
 
-message("[32] Wild cluster bootstrap (province, Webb weights) for price terms ...")
-wild_cluster <- function(wide, lay, Phi, phi, wt, fitobj, B = 999, seed = 42) {
+message("[32] Studentized score-based cluster multiplier bootstrap (province, Webb weights) ...")
+# NOT a restricted wild cluster bootstrap (no null-imposed re-estimation).
+# Province-level score blocks are multiplied by Webb weights and mapped
+# through xtx_inv into coefficient perturbations; each draw is STUDENTIZED by
+# its own draw-specific CR1 province-clustered SE, so the reference
+# distribution is of t-statistics (asymptotic refinement rests on
+# studentization; unstudentized versions can be badly sized with 24 clusters
+# of very unequal size).
+score_multiplier_boot <- function(wide, lay, Phi, phi, wt, fitobj, B = 999, seed = 42,
+                                  joint_idx = NULL) {
   set.seed(seed)
   G <- lay$G
   Sinv <- solve(fitobj$Sigma)
   U <- fitobj$resid %*% Sinv
   prov <- as.integer(factor(wide$Province))
   nP <- max(prov)
-  blocks <- vector("list", G)
+  P <- lay$n_par
+  A <- matrix(0, nP, P)                      # per-province system score blocks
   for (g in seq_len(G)) {
     z <- build_Ag(wide, g, lay, Phi, phi)
-    blocks[[g]] <- list(S = rowsum(z$A * (wt * U[, g]), prov), cols = z$cols)
+    A[, z$cols] <- A[, z$cols] + rowsum(z$A * (wt * U[, g]), prov)
   }
+  Gm <- A %*% fitobj$xtx_inv                 # nP x P: per-province coefficient influence
+  cr1 <- nP / (nP - 1)
+  se0 <- sqrt(colSums(Gm^2) * cr1)           # CR1 province-clustered SE
+  t0 <- fitobj$beta / se0
   webb <- c(-sqrt(1.5), -1, -sqrt(0.5), sqrt(0.5), 1, sqrt(1.5))
-  P <- lay$n_par
-  draws <- matrix(0, B, P)
+  tdr <- matrix(0, B, P)
   for (b in seq_len(B)) {
     fl <- sample(webb, nP, replace = TRUE)
-    delta <- numeric(P)
-    for (g in seq_len(G)) delta[blocks[[g]]$cols] <- delta[blocks[[g]]$cols] + as.numeric(crossprod(blocks[[g]]$S, fl))
-    draws[b, ] <- as.numeric(fitobj$xtx_inv %*% delta)
+    num <- colSums(Gm * fl)
+    den <- sqrt(colSums(Gm^2 * fl^2) * cr1)  # draw-specific SE -> studentized draw
+    tdr[b, ] <- num / den
   }
-  pv <- colMeans(abs(draws) >= matrix(abs(fitobj$beta), B, P, byrow = TRUE))
-  data.table(term = lay$term_names, estimate = fitobj$beta, wild_cluster_p = pv)
+  pv <- colMeans(abs(tdr) >= matrix(abs(t0), B, P, byrow = TRUE))
+  out <- data.table(term = lay$term_names, estimate = fitobj$beta,
+                    se_province_cr1 = se0, t_province = t0, score_boot_p_studentized = pv)
+  if (!is.null(joint_idx)) {
+    # sup-t joint test over joint_idx: valid with province clustering even when
+    # #restrictions > #clusters (where a joint Wald is rank-infeasible)
+    s0 <- max(abs(t0[joint_idx]))
+    sb <- apply(abs(tdr[, joint_idx, drop = FALSE]), 1, max)
+    attr(out, "joint_supt_stat") <- s0
+    attr(out, "joint_supt_p") <- mean(sb >= s0)
+  }
+  out
 }
-wc <- wild_cluster(wide, lay, pp$Phi, pp$phi, wt, fit, B = if (SMOKE) 99 else 999)
-fwrite(wc[grepl("^(bp|cyp)__", term)], file.path(odir, "wild_cluster_province_price_terms_v2.csv"), bom = TRUE)
+wc <- score_multiplier_boot(wide, lay, pp$Phi, pp$phi, wt, fit, B = if (SMOKE) 99 else 999)
+fwrite(wc[grepl("^(bp|cyp)__", term)],
+       file.path(odir, "score_multiplier_boot_province_price_terms_v2.csv"), bom = TRUE)
 
 message("[32] Elasticities and curvature ...")
+stopifnot(!anyNA(wide$income_group_order))   # NA here would silently poison the incQ subgroup splits
 xq <- cut(wide$total_food_spend_pc_month,
           quantile(wide$total_food_spend_pc_month, seq(0, 1, 0.2)), include.lowest = TRUE, labels = FALSE)
 subgroups <- list(low_income = wide$low_income == 1,
@@ -135,24 +163,35 @@ sub_rows <- rbindlist(lapply(names(el$sub), function(nm) {
 }))
 fwrite(sub_rows, file.path(odir, "subgroup_elasticities_main_v2.csv"), bom = TRUE)
 
-message("[32] QUAIDS variant ...")
-layq <- system_layout(omit = "G03", az = FALSE, quaids = TRUE)
+message("[32] EASI-y2p variant (y^2 x price interactions; NOT QUAIDS) ...")
+layq <- system_layout(omit = "G03", az = FALSE, y2p = TRUE)
 fitq <- fit_system(wide, layq, pp$Phi, pp$phi, wt, Sigma = NULL, n_fgls = 2)
 elq <- compute_elasticities(wide, layq, fitq$beta, fs$betas, stone_w, wt)
-save_el(elq$all, "quaids_v2")
-fwrite(data.table(food_group10 = GROUPS9, own_easi = diag(el$all$mar), own_quaids = diag(elq$all$mar)),
-       file.path(rdir, "own_price_easi_vs_quaids_v2.csv"), bom = TRUE)
+save_el(elq$all, "easi_y2p_v2")
+fwrite(data.table(food_group10 = GROUPS9, own_easi = diag(el$all$mar), own_easi_y2p = diag(elq$all$mar)),
+       file.path(rdir, "own_price_easi_vs_y2p_v2.csv"), bom = TRUE)
 
 message("[32] A(z) heterogeneous-price-response variant ...")
-laz <- system_layout(omit = "G03", az = TRUE, quaids = FALSE)
+laz <- system_layout(omit = "G03", az = TRUE, y2p = FALSE)
 fitz <- fit_system(wide, laz, pp$Phi, pp$phi, wt, Sigma = NULL, n_fgls = 2, keep_xtx_inv = TRUE)
 Vz <- system_cluster_vcov(wide, laz, pp$Phi, pp$phi, wt, fitz$beta, fitz$Sigma, fitz$xtx_inv, cluster = wide$ID)
 az_idx <- grep("^az_", laz$term_names)
 bz <- fitz$beta[az_idx]
+# Two complementary joint tests. A province-clustered joint Wald is
+# rank-infeasible here (108 restrictions > 23 = G-1 rank of the clustered
+# vcov), so the province-level test is a sup-t from the studentized score
+# multiplier bootstrap instead. Both are two-step-naive; final significance
+# statements rest on the pairs cluster bootstrap (script 34).
 Wstat <- tryCatch(as.numeric(t(bz) %*% solve(Vz[az_idx, az_idx], bz)), error = function(e) NA_real_)
-wald <- data.table(test = "H0: all A(z) price interactions = 0",
-                   wald = Wstat, df = length(az_idx),
-                   p_value = pchisq(Wstat, length(az_idx), lower.tail = FALSE))
+wcz <- score_multiplier_boot(wide, laz, pp$Phi, pp$phi, wt, fitz,
+                             B = if (SMOKE) 99 else 999, joint_idx = az_idx)
+wald <- rbind(
+  data.table(test = "H0: all A(z) price interactions = 0",
+             method = "Wald_household_cluster", stat = Wstat, df = length(az_idx),
+             p_value = pchisq(Wstat, length(az_idx), lower.tail = FALSE)),
+  data.table(test = "H0: all A(z) price interactions = 0",
+             method = "supt_province_score_boot", stat = attr(wcz, "joint_supt_stat"),
+             df = NA_integer_, p_value = attr(wcz, "joint_supt_p")))
 print(wald)
 fwrite(wald, file.path(odir, "az_wald_test_v2.csv"), bom = TRUE)
 elz <- compute_elasticities(wide, laz, fitz$beta, fs$betas, stone_w, wt,
@@ -174,7 +213,7 @@ eq5 <- setdiff(CODES9, "G05")
 for (rc in paste0("r_", eq5)) wide2[, paste0("mn_", rc) := mean(get(rc)), by = ID]
 fs5 <- fit_probits(wide2, wt, omit = "G05")
 pp5 <- predict_probits(wide2, fs5$betas, omit = "G05")
-lay5 <- system_layout(omit = "G05", az = FALSE, quaids = FALSE)
+lay5 <- system_layout(omit = "G05", az = FALSE, y2p = FALSE)
 fit5 <- fit_system(wide2, lay5, pp5$Phi, pp5$phi, wt, Sigma = NULL, n_fgls = 2)
 el5 <- compute_elasticities(wide2, lay5, fit5$beta, fs5$betas, stone_w, wt)
 inv_chk <- data.table(matrix_1 = "omit_G03", matrix_2 = "omit_G05",
@@ -186,17 +225,22 @@ fwrite(inv_chk, file.path(rdir, "numeraire_invariance_check_v2.csv"), bom = TRUE
 rm(wide2); gc(FALSE)
 
 message("[32] Out-of-fold fit (5-fold household CV) ...")
+# Fully fold-clean: Stone weights, y/relative prices, Mundlak means, probits,
+# Sigma and the FGLS system are all re-derived from the training folds only.
 oof <- rbindlist(lapply(1:5, function(k) {
   wtr <- as.numeric(wide$fold != k)
-  sw_k <- compute_stone_weights(wide, wtr)
-  # training-fold estimates
-  fsk <- fit_probits(wide, wtr, omit = "G03", beta0_list = fs$betas)
-  ppk <- predict_probits(wide, fsk$betas, omit = "G03")
-  fitk <- fit_system(wide, lay, ppk$Phi, ppk$phi, wtr, Sigma = fit$Sigma)
-  predk <- predict_shares(wide, lay, fitk$beta, fsk$betas, sw_k)
-  te <- wide$fold == k
-  W <- as.matrix(wide[te, paste0("w_", CODES9), with = FALSE])
+  wk <- copy(wide)
+  sw_k <- compute_stone_weights(wk, wtr)
+  wk <- derive_vars(wk, sw_k, omit = "G03")
+  wk <- add_mundlak(wk, omit = "G03")
+  fsk <- fit_probits(wk, wtr, omit = "G03", beta0_list = fs$betas)
+  ppk <- predict_probits(wk, fsk$betas, omit = "G03")
+  fitk <- fit_system(wk, lay, ppk$Phi, ppk$phi, wtr, Sigma = NULL, n_fgls = 2)
+  predk <- predict_shares(wk, lay, fitk$beta, fsk$betas, sw_k)
+  te <- wk$fold == k
+  W <- as.matrix(wk[te, paste0("w_", CODES9), with = FALSE])
   Pk <- predk[te, ]
+  rm(wk); gc(FALSE)
   rbindlist(lapply(seq_along(CODES9), function(g) {
     ssr <- sum((W[, g] - Pk[, g])^2); sst <- sum((W[, g] - mean(W[, g]))^2)
     data.table(fold = k, food_group10 = GROUPS9[g], oof_r2 = 1 - ssr / sst,
@@ -207,7 +251,7 @@ fwrite(oof, file.path(odir, "out_of_fold_fit_v2.csv"), bom = TRUE)
 print(oof[, .(oof_r2 = mean(oof_r2), oof_rmse = mean(oof_rmse)), by = food_group10])
 
 saveRDS(list(lay = lay, beta = fit$beta, Sigma = fit$Sigma, probit_betas = fs$betas,
-             stone_w = stone_w, elasticities = el, elasticities_quaids = elq$all,
+             stone_w = stone_w, elasticities = el, elasticities_y2p = elq$all,
              lay_az = laz, beta_az = fitz$beta, Sigma_az = fitz$Sigma,
              V_hh = V_hh, V_pr = V_pr, subgroups_def = names(subgroups)),
         file.path(odir, "main_fit_v2.rds"))

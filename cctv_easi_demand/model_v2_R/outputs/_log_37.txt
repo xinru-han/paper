@@ -1,0 +1,69 @@
+[37] Loading panel and main fit ...
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells   436234  23.3     859057   45.9    665588   35.6
+Vcells 50293509 383.8  527161459 4022.0 548780892 4186.9
+[37] One GLS solve with fixed Sigma (keeping normal equations) ...
+    y quantiles: 1%=-0.50 5%=0.79 mean=2.65 95%=4.18 99%=4.73
+  unconstrained_uncond         eig_max(agg) =   0.1077  curv_ok = FALSE
+  unconstrained_latent         eig_max(agg) =   0.3713  curv_ok = FALSE
+  B_only_uncond                eig_max(agg) =   0.0712  curv_ok = FALSE
+  B_only_latent                eig_max(agg) =   0.2537  curv_ok = FALSE
+  mean_point_uncond            eig_max(agg) =   0.0301  curv_ok = FALSE
+  mean_point_latent            eig_max(agg) =   0.0972  curv_ok = FALSE
+  two_point_5_95_uncond        eig_max(agg) =   0.0179  curv_ok = FALSE
+  two_point_5_95_latent        eig_max(agg) =   0.0348  curv_ok = FALSE
+  two_point_1_99_uncond        eig_max(agg) =   0.0134  curv_ok = FALSE
+  two_point_1_99_latent        eig_max(agg) =   0.0240  curv_ok = FALSE
+           setting        system     point    eig_max    eig_min curvature_ok
+ 1:  unconstrained unconditional aggregate 0.10771737 -0.2804323        FALSE
+ 2:  unconstrained unconditional       xq1 0.05643814 -0.3487623        FALSE
+ 3:  unconstrained unconditional       xq5 0.14552326 -0.3114496        FALSE
+ 4:  unconstrained        latent aggregate 0.37126110 -0.6863676        FALSE
+ 5:  unconstrained        latent       xq1 0.69693829 -1.6881288        FALSE
+ 6:  unconstrained        latent       xq5 0.34918713 -0.6229191        FALSE
+ 7:         B_only unconditional aggregate 0.07118365 -0.2967525        FALSE
+ 8:         B_only unconditional       xq1 0.01239346 -0.4016606        FALSE
+ 9:         B_only unconditional       xq5 0.10485463 -0.3128536        FALSE
+10:         B_only        latent aggregate 0.25366916 -0.6616338        FALSE
+11:         B_only        latent       xq1 0.30071662 -2.4800012        FALSE
+12:         B_only        latent       xq5 0.24096630 -0.5973987        FALSE
+13:     mean_point unconditional aggregate 0.03009459 -0.3644666        FALSE
+14:     mean_point unconditional       xq1 0.01622626 -0.3942130        FALSE
+15:     mean_point unconditional       xq5 0.04039953 -0.3692524        FALSE
+16:     mean_point        latent aggregate 0.09721347 -0.6964081        FALSE
+17:     mean_point        latent       xq1 0.44959879 -2.1557615        FALSE
+18:     mean_point        latent       xq5 0.06613604 -0.6258314        FALSE
+19: two_point_5_95 unconditional aggregate 0.01791598 -0.3811544        FALSE
+20: two_point_5_95 unconditional       xq1 0.01631615 -0.4022943        FALSE
+21: two_point_5_95 unconditional       xq5 0.02068566 -0.3675226        FALSE
+22: two_point_5_95        latent aggregate 0.03481682 -0.7875208        FALSE
+23: two_point_5_95        latent       xq1 0.25998767 -2.6854895        FALSE
+24: two_point_5_95        latent       xq5 0.01927617 -0.6711485        FALSE
+25: two_point_1_99 unconditional aggregate 0.01336674 -0.3811396        FALSE
+26: two_point_1_99 unconditional       xq1 0.01372248 -0.3977585        FALSE
+27: two_point_1_99 unconditional       xq5 0.01386319 -0.3724722        FALSE
+28: two_point_1_99        latent aggregate 0.02401039 -0.8259250        FALSE
+29: two_point_1_99        latent       xq1 0.23147343 -2.5364416        FALSE
+30: two_point_1_99        latent       xq5 0.01393350 -0.7014747        FALSE
+           setting        system     point    eig_max    eig_min curvature_ok
+         food_group10     B_only mean_point two_point_1_99 two_point_5_95
+1:           G01_主食 -1.9996649 -2.2890644     -2.9412030     -2.8395160
+2:         G02_食用油 -1.2135293 -1.3085288     -1.8237989     -1.7337738
+3:           G03_蔬菜 -0.8410428 -1.3554192     -1.0105828     -1.0261939
+4:           G04_水果 -0.7402572 -1.1148362     -1.2477591     -1.2208070
+5:           G05_猪肉 -0.6864845 -0.9401697     -1.1256013     -1.0919583
+6: G06_禽类及其他肉类 -1.4264819 -1.3559986     -1.5668953     -1.4985787
+7:         G07_牛羊肉 -0.5097877 -0.5940792     -0.7980343     -0.8801719
+8:           G08_海鲜 -1.1779855 -1.5372289     -1.6629874     -1.6033202
+9:         G09_乳制品 -1.3172460 -1.3230601     -1.5641613     -1.6250251
+   unconstrained
+1:    -1.6809870
+2:    -0.3365232
+3:    -0.8161319
+4:    -0.7209225
+5:    -0.6765506
+6:    -1.2939413
+7:    -0.1379297
+8:    -0.9885424
+9:    -1.0052307
+[37] Done.

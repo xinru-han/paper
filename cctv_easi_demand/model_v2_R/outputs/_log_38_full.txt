@@ -1,0 +1,50 @@
+[38] Loading panel and constrained fit ...
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells   436762  23.4     860565   46.0    665588   35.6
+Vcells 50042743 381.8  526872569 4019.8 548530120 4185.0
+[38] (a) Representative-point analytic elasticities ...
+             point eig_max_constrained curvature_ok_constrained
+ 1:      aggregate        8.605751e-18                     TRUE
+ 2:     low_income       -3.942717e-17                     TRUE
+ 3: non_low_income       -2.729325e-17                     TRUE
+ 4:        elderly       -6.068684e-17                     TRUE
+ 5:    non_elderly       -2.352244e-17                     TRUE
+ 6:   large_family       -3.142124e-18                     TRUE
+ 7:   small_family        3.037841e-17                     TRUE
+ 8:            xq1        4.316235e-17                     TRUE
+ 9:            xq2       -9.899271e-17                     TRUE
+10:            xq3       -5.014957e-17                     TRUE
+11:            xq4       -6.082992e-17                     TRUE
+12:            xq5        6.725018e-17                     TRUE
+13:           inc1       -8.238943e-17                     TRUE
+14:           inc2        4.684422e-17                     TRUE
+15:           inc3       -7.611494e-18                     TRUE
+16:           inc4        2.777972e-17                     TRUE
+17:           inc5       -1.856246e-17                     TRUE
+    eig_max_unconstrained curvature_ok_unconstrained      n
+ 1:             0.3594308                      FALSE 583668
+ 2:             0.3565624                      FALSE 182410
+ 3:             0.3609117                      FALSE 401258
+ 4:             0.3322675                      FALSE 137581
+ 5:             0.3710090                      FALSE 446087
+ 6:             0.4051876                      FALSE  99142
+ 7:             0.3529720                      FALSE 484526
+ 8:             0.5284379                      FALSE 116749
+ 9:             0.3968013                      FALSE 116859
+10:             0.3533476                      FALSE 116593
+11:             0.3270489                      FALSE 116733
+12:             0.3031523                      FALSE 116734
+13:             0.3563999                      FALSE  82983
+14:             0.3567004                      FALSE  99427
+15:             0.3552006                      FALSE 103395
+16:             0.3584259                      FALSE 110455
+17:             0.3659239                      FALSE 187408
+[38] (b) Household-month-level curvature check ...
+                         statistic        value
+1:       share_nsd_constrained_all 9.838264e-01
+2: share_nsd_constrained_y_in_1_99 1.000000e+00
+3:     share_nsd_unconstrained_all 0.000000e+00
+4:          p50_eigmax_constrained 5.316021e-18
+5:          p99_eigmax_constrained 4.619266e-03
+6:          max_eigmax_constrained 1.306012e-01
+[38] Done.

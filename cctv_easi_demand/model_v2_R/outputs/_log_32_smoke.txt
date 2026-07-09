@@ -1,0 +1,58 @@
+[32] Loading panel ...
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells   434217  23.2     853268   45.6    665588   35.6
+Vcells 50024177 381.7  526851178 4019.6 548511560 4184.9
+[32] SMOKE mode: 62449 rows, 3000 households
+[32] First stage probits ...
+    probits done in 0.0 min
+   code positive_rate mean_pred     brier  pseudo_r2       auc iterations
+1:  G01     0.5932361 0.5933488 0.2254723 0.04921976 0.6466355          5
+2:  G02     0.3349934 0.3348213 0.2024448 0.07682263 0.6845730          6
+3:  G03     0.8303416 0.8305615 0.1158052 0.17345915 0.7835461          6
+4:  G04     0.8335762 0.8336232 0.1157940 0.16100046 0.7716903          6
+5:  G05     0.6326442 0.6320455 0.1920818 0.13821930 0.7388781          6
+6:  G06     0.4352352 0.4359041 0.2116673 0.10827214 0.7147027          6
+7:  G07     0.3402777 0.3403601 0.1878736 0.13857087 0.7424251          6
+8:  G08     0.5336354 0.5338168 0.1977187 0.16449861 0.7601173          6
+9:  G09     0.7129978 0.7131163 0.1905349 0.05642470 0.6602600          5
+[32] Main constrained SY-EASI system (FGLS) ...
+    system done, 352 parameters
+[32] Analytic cluster-robust SEs ...
+[32] Wild cluster bootstrap (province, Webb weights) for price terms ...
+[32] Elasticities and curvature ...
+         food_group10  own_price negative
+1:           G01_主食 -2.0045733     TRUE
+2:         G02_食用油 -0.5375742     TRUE
+3:           G03_蔬菜 -0.8149394     TRUE
+4:           G04_水果 -0.5888900     TRUE
+5:           G05_猪肉 -0.6464901     TRUE
+6: G06_禽类及其他肉类 -0.8577093     TRUE
+7:         G07_牛羊肉  0.4368477    FALSE
+8:           G08_海鲜 -1.1696504     TRUE
+9:         G09_乳制品 -1.3106184     TRUE
+Curvature (aggregate): all eigenvalues <= 0 : FALSE
+[1]  0.1111  0.0464  0.0011 -0.0336 -0.0530 -0.0814 -0.1708 -0.2700 -0.3111
+[32] QUAIDS variant ...
+[32] A(z) heterogeneous-price-response variant ...
+                                  test     wald  df      p_value
+1: H0: all A(z) price interactions = 0 169.8498 108 0.0001352487
+[32] Numeraire invariance check (omit G05) ...
+   matrix_1 matrix_2 max_abs_diff_marshallian max_abs_diff_expenditure
+1: omit_G03 omit_G05                0.7882684               0.09196891
+   corr_marshallian
+1:        0.9248001
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells   466776  25.0     853268   45.6    853268   45.6
+Vcells 28159621 214.9  337184755 2572.6 548511560 4184.9
+[32] Out-of-fold fit (5-fold household CV) ...
+         food_group10     oof_r2  oof_rmse
+1:           G01_主食 0.01847896 0.1518656
+2:         G02_食用油 0.02344895 0.1531164
+3:           G03_蔬菜 0.04332168 0.1257333
+4:           G04_水果 0.02913200 0.1708205
+5:           G05_猪肉 0.02657548 0.1498264
+6: G06_禽类及其他肉类 0.04809454 0.1029405
+7:         G07_牛羊肉 0.04604379 0.1309163
+8:           G08_海鲜 0.05663576 0.1210434
+9:         G09_乳制品 0.02994353 0.2275891
+[32] Done.

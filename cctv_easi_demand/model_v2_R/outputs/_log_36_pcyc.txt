@@ -1,0 +1,48 @@
+[36] Loading panel ...
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells   439594  23.5     865748   46.3    665588   35.6
+Vcells 44296081 338.0  519957363 3967.0 649461106 4955.0
+[36] First stage probits ...
+[36] Unconstrained FGLS (keeping normal equations) ...
+[36] Imposing curvature: B + yC NSD at 1%/99% quantiles of y ...
+    converged: TRUE | criterion gap: 2965 | y range [-0.5, 4.73]
+    eigenvalues of B + y_lo C and B + y_hi C:
+[1]  0.0000  0.0000  0.0000  0.0000 -0.0111 -0.2611 -0.4223 -0.7099
+[1]  0.0000  0.0000  0.0000  0.0000 -0.0124 -0.0335 -0.1647 -0.2713
+[36] Elasticities under constrained estimates ...
+         food_group10 own_price negative
+               <char>     <num>   <lgcl>
+1:           G01_主食 -2.453892     TRUE
+2:         G02_食用油 -1.833246     TRUE
+3:           G03_蔬菜 -1.133915     TRUE
+4:           G04_水果 -1.410125     TRUE
+5:           G05_猪肉 -1.065804     TRUE
+6: G06_禽类及其他肉类 -1.437272     TRUE
+7:         G07_牛羊肉 -1.216514     TRUE
+8:           G08_海鲜 -1.481831     TRUE
+9:         G09_乳制品 -1.347713     TRUE
+Curvature (aggregate, constrained): FALSE
+[1]  0.0017 -0.0820 -0.0905 -0.1082 -0.1181 -0.1544 -0.2030 -0.2379 -0.3330
+         food_group10 exp_unconstrained exp_constrained own_unconstrained
+               <char>             <num>           <num>             <num>
+1:           G01_主食         1.0140868       1.0160990        -1.0791961
+2:         G02_食用油         1.2014003       1.2022902        -0.7779405
+3:           G03_蔬菜         0.6705983       0.6738216        -0.8179708
+4:           G04_水果         0.8820018       0.8819301        -1.0786920
+5:           G05_猪肉         1.0208149       1.0206299        -0.6444200
+6: G06_禽类及其他肉类         1.0330789       1.0338982        -1.1561633
+7:         G07_牛羊肉         1.4378411       1.4364897        -0.7439837
+8:           G08_海鲜         0.9821091       0.9824201        -0.9379892
+9:         G09_乳制品         0.9618144       0.9617404        -1.0024661
+   own_constrained
+             <num>
+1:       -2.453892
+2:       -1.833246
+3:       -1.133915
+4:       -1.410125
+5:       -1.065804
+6:       -1.437272
+7:       -1.216514
+8:       -1.481831
+9:       -1.347713
+[36] Done.

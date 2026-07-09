@@ -25,6 +25,7 @@ suppressPackageStartupMessages({
 })
 
 base <- "/root/data/Paper/央视数据/Paper1-EASI/model_v2_R"
+source(file.path(base, "src", "pcyc_lib_v2.R"))
 raw_path <- "/root/data/数据/央视数据/Data_merged.csv"
 processed <- "/root/data/Paper/央视数据/Paper1-EASI/processed"
 set.seed(20260707)
@@ -154,8 +155,7 @@ hm_total <- merge(hm_total, hh_fold, by = "ID", all.x = TRUE)
 uv <- dt[is.finite(log_raw_uv) & spend_pos > 0 & food_group10 %in% groups9]
 uv <- merge(uv, hm_total[, .(ID, year_month, log_total_food_spend_pc_month, fold)],
             by = c("ID","year_month"))
-uv <- merge(uv, category_map[, .(Category, heterogeneity_tier)], by = "Category")
-uv <- uv[heterogeneity_tier %in% c("A","B")]
+uv <- uv[heterogeneity_tier %in% c("A","B")]  # tier already on dt via category_map merge
 uv[, q_low := quantile(log_raw_uv, 0.005, na.rm = TRUE), by = .(Category, Province, year)]
 uv[, q_high := quantile(log_raw_uv, 0.995, na.rm = TRUE), by = .(Category, Province, year)]
 uv[, log_uv_w := pmin(pmax(log_raw_uv, q_low), q_high)]
@@ -175,6 +175,7 @@ fold_cells <- rbindlist(lapply(1:5, function(k) {
   z
 }))
 # category-level internal, averaged over folds, only well-populated cells
+# (certification only — certification does not require self-exclusion)
 int_cat <- fold_cells[n_hh >= 30, .(int_lp = mean(int_lp)), by = .(Province, year_month, Category, food_group10)]
 
 # internal group index with the same fixed weights (only cells with FULL basket)
@@ -182,6 +183,16 @@ int_w <- merge(int_cat, bw[, .(Category, weight0)], by = "Category")
 int_group <- int_w[, .(lp_int = sum(weight0 * int_lp), n_cat = .N), by = .(Province, year_month, food_group10)]
 int_group <- merge(int_group, full_basket, by = "food_group10")
 int_group <- int_group[n_cat == n_full]     # full fixed basket only: no composition drift
+
+# fold-SPECIFIC internal group index: any internal price that enters a demand
+# equation must exclude the household's own fold (no LOO leakage). Averaging
+# over folds would re-admit each household's own unit values via the other
+# four fold estimates.
+int_w_fold <- merge(fold_cells[n_hh >= 30], bw[, .(Category, weight0)], by = "Category")
+int_group_fold <- int_w_fold[, .(lp_int = sum(weight0 * int_lp), n_cat = .N),
+                             by = .(fold, Province, year_month, food_group10)]
+int_group_fold <- merge(int_group_fold, full_basket, by = "food_group10")
+int_group_fold <- int_group_fold[n_cat == n_full]
 
 # ---------------------------------------------------------------------------
 # 4. Price certification table
@@ -198,6 +209,12 @@ cert <- cert_dt[, .(
   corr_level = safe_cor(lp_int, lp_ext),
   corr_delta = safe_cor(d_int, d_ext)
 ), by = food_group10]
+# third certification indicator: median across provinces of the WITHIN-province
+# time-series correlation (pooled corr_level can pass on cross-province level
+# agreement alone, while FE identification rests on time variation)
+cert_wp <- cert_dt[, .(cw = safe_cor(lp_int, lp_ext)), by = .(food_group10, Province)]
+cert_wp <- cert_wp[, .(corr_within_prov_median = median(cw, na.rm = TRUE)), by = food_group10]
+cert <- merge(cert, cert_wp, by = "food_group10", all.x = TRUE)
 cert[, cert_level := fcase(
   !is.finite(corr_level), "no_internal_signal",
   corr_level >= 0.5 & corr_delta >= 0.15, "pass",
@@ -207,16 +224,33 @@ cert[, cert_level := fcase(
 cert[, internal_admissible_robustness := cert_level %in% c("pass","caution")]
 fwrite(cert, file.path(base, "outputs", "price", "price_certification_v2.csv"), bom = TRUE)
 
-# hybrid price for robustness: admissible groups get bounded internal weight
+# hybrid price for robustness: admissible groups get bounded internal weight.
+# FOLD-SPECIFIC throughout — the alignment constant gap_p, the aligned internal
+# index and the blend are all computed from fold-excluded data, and the panel
+# merge below keys on fold, so household i (fold k) only ever meets a hybrid
+# price built without its own unit values.
 lam <- 0.25
-hyb <- copy(cert_dt)
+hyb <- ext_group[, .(fold = 1:5), by = .(Province, year_month, food_group10, lp_ext)]
+hyb <- merge(hyb, int_group_fold[, .(fold, Province, year_month, food_group10, lp_int)],
+             by = c("fold","Province","year_month","food_group10"), all.x = TRUE)
 hyb <- merge(hyb, cert[, .(food_group10, internal_admissible_robustness)], by = "food_group10")
-hyb[, gap_p := mean(lp_ext - lp_int, na.rm = TRUE), by = .(food_group10, Province)]
+hyb[, gap_p := mean(lp_ext - lp_int, na.rm = TRUE), by = .(fold, food_group10, Province)]
 hyb[, lp_int_aligned := lp_int + gap_p]
 hyb[, lp_hybrid := fifelse(internal_admissible_robustness & is.finite(lp_int_aligned),
                            (1 - lam) * lp_ext + lam * lp_int_aligned, lp_ext)]
-fwrite(hyb[, .(Province, year_month, food_group10, lp_ext, lp_int, lp_int_aligned, lp_hybrid)],
+fwrite(hyb[, .(fold, Province, year_month, food_group10, lp_ext, lp_int, lp_int_aligned, lp_hybrid)],
        file.path(base, "data_derived", "group_prices_v2.csv"), bom = TRUE)
+
+# C1: share of each group's spending covered by the priced (observed external)
+# sub-basket — the group price proxies the whole group by this sub-basket
+covg <- dt[food_group10 %in% groups9, .(
+  priced_share_2021 = sum(spend_pos[year == 2021 & Category %in% observed_external]) /
+                      sum(spend_pos[year == 2021]),
+  priced_share_all  = sum(spend_pos[Category %in% observed_external]) / sum(spend_pos)
+), by = food_group10]
+setorder(covg, food_group10)
+fwrite(covg, file.path(base, "outputs", "price", "price_coverage_2021_v2.csv"), bom = TRUE)
+print(covg)
 
 # price variance decomposition: how much variation survives the FE structure
 vd_rows <- list()
@@ -240,7 +274,9 @@ fwrite(rbindlist(vd_rows), file.path(base, "outputs", "price", "price_variance_d
 # ---------------------------------------------------------------------------
 message("[30] Building 9-group household-month panel ...")
 grp <- dt[food_group10 %in% groups9,
-          .(spend_month = sum(spend_pos), transaction_count_month = .N),
+          .(spend_month = sum(spend_pos),
+            spend_month_priced = sum(spend_pos[Category %in% observed_external]),
+            transaction_count_month = .N),
           by = .(ID, year_month, food_group10)]
 grid <- hm_total[, .(food_group10 = groups9), by = .(ID, year_month, Province, Family_Type,
                                                      Family_Size, Family_Income,
@@ -249,19 +285,24 @@ grid <- hm_total[, .(food_group10 = groups9), by = .(ID, year_month, Province, F
                                                      total_food_spend_pc_month, log_total_food_spend_pc_month,
                                                      nut_spend_month, fold)]
 panel <- merge(grid, grp, by = c("ID","year_month","food_group10"), all.x = TRUE)
-for (v in c("spend_month","transaction_count_month")) panel[is.na(get(v)), (v) := 0]
+for (v in c("spend_month","spend_month_priced","transaction_count_month")) panel[is.na(get(v)), (v) := 0]
 panel[, positive_purchase := as.integer(spend_month > 0)]
 panel[, budget_share := spend_month / total_food_spend_month]
-panel <- merge(panel, hyb[, .(Province, year_month, food_group10, lp_ext, lp_hybrid)],
-               by = c("Province","year_month","food_group10"), all.x = TRUE)
+panel <- merge(panel, hyb[, .(fold, Province, year_month, food_group10, lp_ext, lp_hybrid)],
+               by = c("fold","Province","year_month","food_group10"), all.x = TRUE)
 stopifnot(!anyNA(panel$lp_ext))
 cov <- fread(file.path(processed, "province_month_covariates_2020_2022.csv"), encoding = "UTF-8")
 setnames(cov, "province", "Province")
 panel <- merge(panel, cov, by = c("Province","year_month"), all.x = TRUE)
 panel[, income_group_order := unname(income_order[Family_Income])]
+stopifnot(!anyNA(panel$income_group_order))   # unmatched income band would silently poison subgroup splits
 panel[, low_income := as.integer(income_group_order <= 2)]
 panel[, elderly_household := as.integer(Family_Type == "老年家庭")]
 panel[, large_family := as.integer(Family_Size %in% c("家庭人口数4","家庭人口数5+"))]
+# Purchase-cycle exclusion regressors for the SY participation stage (built from
+# strictly past purchase timing; sharpen the weak G01/G09 probits and absorb the
+# stock-up-timing extensive margin that inflates monthly storable elasticities).
+panel <- add_purchase_cycle_vars(panel)
 setorder(panel, ID, year_month, food_group10)
 fwrite(panel, file.path(base, "data_derived", "household_month_group9_v2.csv"), bom = TRUE)
 

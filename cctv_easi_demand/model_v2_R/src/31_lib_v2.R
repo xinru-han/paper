@@ -36,11 +36,16 @@ make_wide <- function(panel, price_col = "lp_ext") {
     setnames(x, CODES9, paste0(pfx, "_", CODES9), skip_absent = TRUE)
     x
   }
-  wide <- Reduce(function(a, b) merge(a, b, by = c("ID","year_month"), all.x = TRUE),
-                 list(bw, cast_one("budget_share","w"), cast_one("positive_purchase","pos"),
-                      cast_one(price_col,"lp")))
+  cast_list <- list(bw, cast_one("budget_share","w"), cast_one("positive_purchase","pos"),
+                    cast_one(price_col,"lp"))
+  # carry group-specific purchase-cycle exclusion regressors if present in panel
+  pcyc_present <- intersect(PCYC_BASE, names(panel))
+  for (v in pcyc_present) cast_list[[length(cast_list) + 1]] <- cast_one(v, v)
+  wide <- Reduce(function(a, b) merge(a, b, by = c("ID","year_month"), all.x = TRUE), cast_list)
   setorder(wide, ID, year_month)
-  for (v in c(paste0("w_",CODES9), paste0("pos_",CODES9))) wide[is.na(get(v)), (v) := 0]
+  zero_fill <- c(paste0("w_",CODES9), paste0("pos_",CODES9))
+  for (v in pcyc_present) zero_fill <- c(zero_fill, paste0(v, "_", CODES9))
+  for (v in zero_fill) if (v %in% names(wide)) wide[is.na(get(v)), (v) := 0]
   lp_cols <- paste0("lp_", CODES9)
   wide <- wide[rowSums(!is.finite(as.matrix(wide[, ..lp_cols]))) == 0]
   # scaled covariates
@@ -120,20 +125,35 @@ probit_newton <- function(X, y, wt, beta0 = NULL, maxit = 30, tol = 1e-9) {
   list(beta = beta, iterations = it, deviance = dev_old)
 }
 
-build_probit_X <- function(wide, omit = "G03") {
+# Purchase-cycle exclusion regressors (SY participation stage). These are the
+# group's OWN lagged purchase-timing variables (built by add_purchase_cycle_vars
+# in pcyc_lib_v2.R and cast to wide as <base>_<code>); excluded from the
+# consumption equation. They sharpen the weak staple/dairy participation probits
+# and absorb the stock-up-timing (extensive) margin that otherwise inflates the
+# monthly own-price elasticity of storable groups. Active whenever the panel
+# carries the columns (script 30 builds them); harmless if absent.
+PCYC_BASE <- c("pcyc_bought_lag1","pcyc_recency","pcyc_nohist")
+
+build_probit_X <- function(wide, omit = "G03", code = NULL) {
   eq_codes <- setdiff(CODES9, omit)
   r_cols <- paste0("r_", eq_codes)
   mn_cols <- paste0("mn_", r_cols)
   cols <- c("y_easi", r_cols, DEMO_COLS, Z_COLS, MONTH_D, YEAR_D, "mean_y_hh", mn_cols)
+  # group-specific purchase-cycle exclusion regressors, if activated & present
+  if (!is.null(code) && length(PCYC_BASE)) {
+    pc <- paste0(PCYC_BASE, "_", code)
+    pc <- pc[pc %in% names(wide)]
+    cols <- c(cols, pc)
+  }
   X <- cbind(const = 1, as.matrix(wide[, ..cols]))
   storage.mode(X) <- "double"
   X
 }
 
 fit_probits <- function(wide, wt, omit = "G03", beta0_list = NULL) {
-  X <- build_probit_X(wide, omit)
   betas <- list(); stats <- list()
   for (code in CODES9) {
+    X <- build_probit_X(wide, omit, code = code)
     y <- wide[[paste0("pos_", code)]]
     b0 <- if (!is.null(beta0_list)) beta0_list[[code]] else NULL
     fit <- probit_newton(X, y, wt, beta0 = b0)
@@ -157,10 +177,10 @@ fit_probits <- function(wide, wt, omit = "G03", beta0_list = NULL) {
 }
 
 predict_probits <- function(wide, betas, omit = "G03") {
-  X <- build_probit_X(wide, omit)
   Phi <- matrix(NA_real_, nrow(wide), 9, dimnames = list(NULL, CODES9))
   phi <- Phi
   for (code in CODES9) {
+    X <- build_probit_X(wide, omit, code = code)
     xb <- pmin(pmax(as.numeric(X %*% betas[[code]]), -8), 8)
     Phi[, code] <- pmin(pmax(pnorm(xb), 1e-6), 1 - 1e-6)
     phi[, code] <- dnorm(xb)
@@ -178,7 +198,10 @@ predict_probits <- function(wide, betas, omit = "G03") {
 #   shared symmetric y x price coefficients c_{ij}          : 36
 #   [optional A(z)] symmetric price x demo_d, d = 1..3      : 3 x 36
 #   per-equation sigma (SY correction loading on phi_g)     : 8
-system_layout <- function(omit = "G03", az = FALSE, quaids = FALSE) {
+# y2p = TRUE replaces the y x price interaction with y^2 x price. This is an
+# EASI functional-form variant ("EASI-y2p"), NOT Banks-Blundell-Lewbel QUAIDS
+# (no lambda/b(p) structure); it must not be labelled QUAIDS anywhere.
+system_layout <- function(omit = "G03", az = FALSE, y2p = FALSE) {
   eq_codes <- setdiff(CODES9, omit)
   G <- length(eq_codes)
   base_terms <- c("const","y_easi","y_easi2", DEMO_COLS, Z_COLS, MONTH_D, YEAR_D,
@@ -201,7 +224,7 @@ system_layout <- function(omit = "G03", az = FALSE, quaids = FALSE) {
   list(eq_codes = eq_codes, G = G, base_terms = base_terms, up = up,
        pair_index = pair_index, term_names = term_names, nb = nb, np = np,
        off_bp = off_bp, off_cyp = off_cyp, off_az = off_az, off_sigma = off_sigma,
-       az = az, az_dims = az_dims, quaids = quaids, omit = omit,
+       az = az, az_dims = az_dims, y2p = y2p, omit = omit,
        n_par = length(term_names))
 }
 
@@ -214,7 +237,7 @@ build_Ag <- function(wide, g, lay, Phi, phi) {
   # symmetric mapping: column for pair k in eq g takes value r_j where j pairs with g
   Pm <- matrix(0, n, lay$G)
   for (j in seq_len(lay$G)) Pm[, j] <- R[, j]      # value r_j enters pair (g,j)
-  ymult <- if (lay$quaids) wide$y_easi2 else wide$y_easi
+  ymult <- if (isTRUE(lay$y2p) || isTRUE(lay$quaids)) wide$y_easi2 else wide$y_easi  # quaids: legacy rds compat
   mult <- Phi[, code]
   blocks <- list(mult * Bm, mult * Pm, mult * (ymult * Pm))
   cols <- list(seq_len(lay$nb) + (g - 1) * lay$nb,
@@ -251,8 +274,30 @@ fit_system <- function(wide, lay, Phi, phi, wt, Sigma = NULL, n_fgls = 2,
       xtx[colg[[g]], colg[[h]]] <- xtx[colg[[g]], colg[[h]]] + s * crossprod(Ag[[g]], wt * Ag[[h]])
       xty[colg[[g]]] <- xty[colg[[g]]] + s * as.numeric(crossprod(Ag[[g]], wt * yg[[h]]))
     }
-    diag(xtx) <- diag(xtx) + ridge
-    list(beta = as.numeric(solve(xtx, xty)), xtx = xtx)
+    base_xtx <- xtx
+    xscale <- median(abs(diag(base_xtx)), na.rm = TRUE)
+    if (!is.finite(xscale) || xscale <= 0) xscale <- 1
+    ridge_grid <- max(ridge, ridge * xscale) * 10^(0:10)
+    last_err <- NULL
+    for (rr in ridge_grid) {
+      xtx <- base_xtx
+      diag(xtx) <- diag(xtx) + rr
+      sol <- tryCatch(solve(xtx, xty), error = function(e) { last_err <<- e; NULL })
+      if (!is.null(sol) && all(is.finite(sol))) return(list(beta = as.numeric(sol), xtx = xtx))
+    }
+    stop(last_err)
+  }
+  invert_sigma <- function(S) {
+    S <- (S + t(S)) / 2
+    sscale <- median(abs(diag(S)), na.rm = TRUE)
+    if (!is.finite(sscale) || sscale <= 0) sscale <- 1
+    ridge_grid <- max(ridge, ridge * sscale) * 10^(0:10)
+    last_err <- NULL
+    for (rr in ridge_grid) {
+      Sinv <- tryCatch(solve(S + diag(rr, nrow(S))), error = function(e) { last_err <<- e; NULL })
+      if (!is.null(Sinv) && all(is.finite(Sinv))) return(Sinv)
+    }
+    stop(last_err)
   }
   resid_cov <- function(beta) {
     E <- matrix(0, n, G)
@@ -265,21 +310,112 @@ fit_system <- function(wide, lay, Phi, phi, wt, Sigma = NULL, n_fgls = 2,
     for (it in seq_len(n_fgls)) {
       rc <- resid_cov(fit$beta)
       Sigma <- rc$S
-      fit <- solve_once(solve(Sigma))
+      fit <- solve_once(invert_sigma(Sigma))
     }
   } else {
-    fit <- solve_once(solve(Sigma))
+    fit <- solve_once(invert_sigma(Sigma))
   }
   rc <- resid_cov(fit$beta)
   beta <- fit$beta; names(beta) <- lay$term_names
   out <- list(beta = beta, Sigma = Sigma %||% rc$S, resid = rc$E, colg = colg)
-  if (keep_xtx_inv) out$xtx_inv <- solve(fit$xtx)
+  if (keep_xtx_inv) {
+    out$xtx_inv <- solve(fit$xtx)
+    out$xtx <- fit$xtx
+    out$xty <- as.numeric(fit$xtx %*% fit$beta)
+  }
   # cluster scores for sandwich (computed lazily by caller via system_scores)
   out$Ag_dims <- vapply(Ag, ncol, 1L)
   out
 }
 
 `%||%` <- function(x, y) if (is.null(x)) y else x
+
+# ---------------------------------------------------------------------------
+# Curvature imposition: constrain the symmetric price coefficient block to
+# B = -LL' (negative semidefinite). Because the model is linear given B, the
+# FGLS criterion concentrates to a quadratic in the bp block with the Schur
+# complement as weight; the constrained estimator solves
+#   min_L  (b(L))' Sb (b(L)) - 2 (b(L))' sb,  b(L) = vech(-LL')
+# by BFGS over the 36 Cholesky elements. Since ww' - diag(w) is NSD under
+# adding-up, B NSD delivers a NSD Slutsky matrix at reference prices
+# (Lewbel-Pendakur EASI; cf. Moschini 1998, Ryan & Wales 1998).
+# Requires fit_system(..., keep_xtx_inv = TRUE).
+# ---------------------------------------------------------------------------
+impose_curvature <- function(fit, lay, y_lo = NULL, y_hi = NULL) {
+  P <- lay$n_par; G <- lay$G; np <- lay$np
+  two_point <- !is.null(y_lo) && !is.null(y_hi)
+  b_idx <- lay$off_bp + seq_len(np)                  # bp block
+  c_idx <- lay$off_cyp + seq_len(np)                 # cyp block
+  q_idx <- if (two_point) c(b_idx, c_idx) else b_idx # constrained block
+  f_idx <- setdiff(seq_len(P), q_idx)
+  X <- fit$xtx; y <- fit$xty
+  Xff_inv_Xfq <- solve(X[f_idx, f_idx], X[f_idx, q_idx])
+  Xff_inv_yf  <- solve(X[f_idx, f_idx], y[f_idx])
+  Sq <- X[q_idx, q_idx] - X[q_idx, f_idx] %*% Xff_inv_Xfq
+  sq <- y[q_idx] - as.numeric(X[q_idx, f_idx] %*% Xff_inv_yf)
+  Sq <- (Sq + t(Sq)) / 2
+  up <- lay$up
+  vech_of <- function(B) B[cbind(up[, 1], up[, 2])]
+  unvech <- function(v) {
+    M <- matrix(0, G, G)
+    M[cbind(up[, 1], up[, 2])] <- v; M[cbind(up[, 2], up[, 1])] <- v
+    M
+  }
+  ltri <- which(lower.tri(matrix(0, G, G), diag = TRUE))
+  nl <- length(ltri)
+  clip_chol <- function(M) {
+    e <- eigen((M + t(M)) / 2, symmetric = TRUE)
+    d <- pmin(e$values, -1e-6)
+    t(chol(-(e$vectors %*% (d * t(e$vectors))) + diag(1e-8, G)))
+  }
+  if (two_point) {
+    # M(y) = B + y C is affine in y, so NSD at y_lo and y_hi implies NSD on
+    # the whole interval. Parameterize M(y_lo) = -L1 L1', M(y_hi) = -L2 L2'.
+    bc_of <- function(par) {
+      L1 <- matrix(0, G, G); L1[ltri] <- par[seq_len(nl)]
+      L2 <- matrix(0, G, G); L2[ltri] <- par[nl + seq_len(nl)]
+      M1 <- -tcrossprod(L1); M2 <- -tcrossprod(L2)
+      Cm <- (M2 - M1) / (y_hi - y_lo)
+      Bm <- M1 - y_lo * Cm
+      list(B = Bm, C = Cm, v = c(vech_of(Bm), vech_of(Cm)))
+    }
+    obj <- function(par) {
+      v <- bc_of(par)$v
+      as.numeric(t(v) %*% Sq %*% v - 2 * sum(v * sq))
+    }
+    B0 <- unvech(fit$beta[b_idx]); C0 <- unvech(fit$beta[c_idx])
+    par0 <- c(clip_chol(B0 + y_lo * C0)[ltri], clip_chol(B0 + y_hi * C0)[ltri])
+  } else {
+    bc_of <- function(par) {
+      L <- matrix(0, G, G); L[ltri] <- par
+      Bm <- -tcrossprod(L)
+      list(B = Bm, C = NULL, v = vech_of(Bm))
+    }
+    obj <- function(par) {
+      v <- bc_of(par)$v
+      as.numeric(t(v) %*% Sq %*% v - 2 * sum(v * sq))
+    }
+    par0 <- clip_chol(unvech(fit$beta[b_idx]))[ltri]
+  }
+  op <- optim(par0, obj, method = "BFGS",
+              control = list(maxit = 5000, reltol = 1e-14))
+  sol <- bc_of(op$par)
+  beta_c <- fit$beta
+  beta_c[q_idx] <- sol$v
+  beta_c[f_idx] <- as.numeric(Xff_inv_yf - Xff_inv_Xfq %*% sol$v)
+  names(beta_c) <- lay$term_names
+  vh <- fit$beta[q_idx]
+  q_unc <- as.numeric(t(vh) %*% Sq %*% vh - 2 * sum(vh * sq))
+  eigs <- function(M) if (is.null(M)) NULL else
+    sort(eigen((M + t(M)) / 2, symmetric = TRUE, only.values = TRUE)$values,
+         decreasing = TRUE)
+  list(beta = beta_c, B = sol$B, C = sol$C, converged = op$convergence == 0,
+       criterion_gap = op$value - q_unc, two_point = two_point,
+       y_lo = y_lo, y_hi = y_hi,
+       B_eigen = eigs(sol$B),
+       M_lo_eigen = if (two_point) eigs(sol$B + y_lo * sol$C) else NULL,
+       M_hi_eigen = if (two_point) eigs(sol$B + y_hi * sol$C) else NULL)
+}
 
 # Cluster-robust sandwich covariance of system coefficients (two-step-naive;
 # full two-step uncertainty is carried by the pairs cluster bootstrap).
@@ -300,7 +436,8 @@ system_cluster_vcov <- function(wide, lay, Phi, phi, wt, beta, Sigma, xtx_inv,
   for (g in seq_len(G)) Scores[, colg[[g]]] <- Scores[, colg[[g]]] + Ag[[g]] * (wt * U[, g])
   cl <- as.integer(factor(cluster))
   Sc <- rowsum(Scores, cl)
-  meat <- crossprod(Sc)
+  nG <- nrow(Sc)
+  meat <- crossprod(Sc) * nG / (nG - 1)   # CR1 small-sample factor
   V <- xtx_inv %*% meat %*% xtx_inv
   dimnames(V) <- list(lay$term_names, lay$term_names)
   V
@@ -310,8 +447,9 @@ system_cluster_vcov <- function(wide, lay, Phi, phi, wt, beta, Sigma, xtx_inv,
 # Prediction and elasticities
 # ---------------------------------------------------------------------------
 # Recomputes derived vars AND participation probabilities under perturbation.
-predict_shares <- function(wide, lay, beta, probit_betas, stone_w) {
+predict_shares <- function(wide, lay, beta, probit_betas, stone_w, latent = FALSE) {
   pp <- predict_probits(wide, probit_betas, lay$omit)
+  if (latent) { pp$Phi[] <- 1; pp$phi[] <- 0 }   # latent (uncensored) system
   n <- nrow(wide)
   pred <- matrix(0, n, 9, dimnames = list(NULL, CODES9))
   for (g in seq_len(lay$G)) {
@@ -340,19 +478,84 @@ perturb_wide <- function(wide, stone_w, lay, what = c("none","exp","price"), cod
   out
 }
 
+# ---------------------------------------------------------------------------
+# Analytic elasticities at a representative point (wbar, ybar), latent system.
+# Recovers the omitted group's price row/column via homogeneity + symmetry.
+# Under the two-point curvature constraint, diag(wbar) %*% EH is NSD by
+# construction (= Gamma(ybar) + wbar wbar' - diag(wbar), both parts NSD).
+# ---------------------------------------------------------------------------
+build_gamma9 <- function(beta, lay, ybar) {
+  G <- lay$G
+  unvech <- function(v) {
+    M <- matrix(0, G, G)
+    M[cbind(lay$up[, 1], lay$up[, 2])] <- v
+    M[cbind(lay$up[, 2], lay$up[, 1])] <- v
+    M
+  }
+  Gam8 <- unvech(beta[lay$off_bp + seq_len(lay$np)]) +
+          ybar * unvech(beta[lay$off_cyp + seq_len(lay$np)])
+  Gam9 <- matrix(0, 9, 9, dimnames = list(CODES9, CODES9))
+  Gam9[lay$eq_codes, lay$eq_codes] <- Gam8
+  Gam9[lay$eq_codes, lay$omit] <- -rowSums(Gam8)
+  Gam9[lay$omit, lay$eq_codes] <- -colSums(Gam8)
+  Gam9[lay$omit, lay$omit] <- sum(Gam8)
+  Gam9
+}
+
+analytic_elasticities <- function(beta, lay, wbar, ybar) {
+  stopifnot(length(wbar) == 9)
+  wbar <- as.numeric(wbar); names(wbar) <- CODES9
+  Gam9 <- build_gamma9(beta, lay, ybar)
+  by <- setNames(numeric(9), CODES9)
+  by2 <- setNames(numeric(9), CODES9)
+  for (g in seq_len(lay$G)) {
+    cc <- lay$eq_codes[g]
+    by[cc]  <- beta[(g - 1) * lay$nb + which(lay$base_terms == "y_easi")]
+    by2[cc] <- beta[(g - 1) * lay$nb + which(lay$base_terms == "y_easi2")]
+  }
+  by[lay$omit]  <- -sum(by[lay$eq_codes])
+  by2[lay$omit] <- -sum(by2[lay$eq_codes])
+  e_exp <- 1 + (by + 2 * ybar * by2) / wbar
+  EH <- Gam9 / wbar - diag(9) + matrix(wbar, 9, 9, byrow = TRUE)
+  EM <- EH - e_exp %o% wbar
+  Sm <- diag(wbar) %*% EH
+  Ssym <- (Sm + t(Sm)) / 2
+  eig <- sort(eigen(Ssym, symmetric = TRUE, only.values = TRUE)$values, decreasing = TRUE)
+  dimnames(EH) <- dimnames(EM) <- list(CODES9, CODES9)
+  list(exp = e_exp, hick = EH, mar = EM, eigenvalues = eig,
+       curvature_ok = all(eig <= 1e-8), wbar = wbar, ybar = ybar)
+}
+
+# Household-month-level curvature check on the latent system:
+# S_i = Gamma(y_i) + w_i w_i' - diag(w_i), w_i = predicted latent shares.
+household_curvature_check <- function(wide, lay, beta, probit_betas, stone_w) {
+  w_pred <- predict_shares(wide, lay, beta, probit_betas, stone_w, latent = TRUE)
+  B9 <- build_gamma9(beta, lay, 0)
+  C9 <- build_gamma9(beta, lay, 1) - B9
+  y <- wide$y_easi
+  n <- nrow(wide)
+  eig_max <- numeric(n)
+  for (i in seq_len(n)) {
+    w <- w_pred[i, ]
+    S <- B9 + y[i] * C9 + tcrossprod(w) - diag(w)
+    eig_max[i] <- eigen((S + t(S)) / 2, symmetric = TRUE, only.values = TRUE)$values[1]
+  }
+  eig_max
+}
+
 quantity_matrix <- function(wide, shares) {
   prices <- exp(as.matrix(wide[, paste0("lp_", CODES9), with = FALSE]))
   shares * wide$total_food_spend_pc_month / prices
 }
 
 # Aggregate (weighted-mean-quantity) elasticities plus subgroup versions
-compute_elasticities <- function(wide, lay, beta, probit_betas, stone_w, wt,
+compute_elasticities <- function(wide, lay, beta, probit_betas, stone_w, wt, latent = FALSE,
                                  h = 0.01, subgroups = NULL,
                                  log_x_col = "log_total_food_spend_pc_month") {
-  base_sh <- predict_shares(wide, lay, beta, probit_betas, stone_w)
+  base_sh <- predict_shares(wide, lay, beta, probit_betas, stone_w, latent)
   q0 <- quantity_matrix(wide, base_sh)
   wexp <- perturb_wide(wide, stone_w, lay, "exp", h = h, log_x_col = log_x_col)
-  q_exp <- quantity_matrix(wexp, predict_shares(wexp, lay, beta, probit_betas, stone_w))
+  q_exp <- quantity_matrix(wexp, predict_shares(wexp, lay, beta, probit_betas, stone_w, latent))
   wm <- function(M, idx) {
     W <- wt[idx]
     colSums(M[idx, , drop = FALSE] * W) / sum(W)
@@ -362,7 +565,7 @@ compute_elasticities <- function(wide, lay, beta, probit_betas, stone_w, wt,
   price_q <- vector("list", 9); names(price_q) <- CODES9
   for (code in CODES9) {
     wp <- perturb_wide(wide, stone_w, lay, "price", code = code, h = h, log_x_col = log_x_col)
-    price_q[[code]] <- quantity_matrix(wp, predict_shares(wp, lay, beta, probit_betas, stone_w))
+    price_q[[code]] <- quantity_matrix(wp, predict_shares(wp, lay, beta, probit_betas, stone_w, latent))
   }
   make_set <- function(idx) {
     ev <- agg(q_exp, idx)

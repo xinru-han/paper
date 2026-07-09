@@ -1,0 +1,70 @@
+[38] Loading panel and constrained fit ...
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells   436762  23.4     860565   46.0    665588   35.6
+Vcells 50042743 381.8  526872569 4019.8 548530120 4185.0
+[38] (a) Representative-point analytic elasticities ...
+             point eig_max_constrained curvature_ok_constrained
+ 1:      aggregate       -1.044385e-17                     TRUE
+ 2:     low_income       -9.561518e-17                     TRUE
+ 3: non_low_income       -2.878932e-17                     TRUE
+ 4:        elderly       -6.566671e-17                     TRUE
+ 5:    non_elderly        2.131784e-17                     TRUE
+ 6:   large_family       -3.583590e-18                     TRUE
+ 7:   small_family        7.655696e-17                     TRUE
+ 8:            xq1       -7.276324e-17                     TRUE
+ 9:            xq2       -1.355860e-17                     TRUE
+10:            xq3        2.639477e-17                     TRUE
+11:            xq4       -6.706460e-17                     TRUE
+12:            xq5        4.980199e-17                     TRUE
+13:           inc1        4.971700e-17                     TRUE
+14:           inc2       -1.036586e-16                     TRUE
+15:           inc3        7.967535e-17                     TRUE
+16:           inc4        4.869461e-17                     TRUE
+17:           inc5       -7.994521e-18                     TRUE
+    eig_max_unconstrained curvature_ok_unconstrained     n
+ 1:             0.3600748                      FALSE 62449
+ 2:             0.3580815                      FALSE 20269
+ 3:             0.3611742                      FALSE 42180
+ 4:             0.3348524                      FALSE 14731
+ 5:             0.3705878                      FALSE 47718
+ 6:             0.4057537                      FALSE 10129
+ 7:             0.3539364                      FALSE 52320
+ 8:             0.5285719                      FALSE 12490
+ 9:             0.3960091                      FALSE 12490
+10:             0.3537823                      FALSE 12489
+11:             0.3278577                      FALSE 12491
+12:             0.3035898                      FALSE 12489
+13:             0.3563091                      FALSE  9449
+14:             0.3596633                      FALSE 10820
+15:             0.3568024                      FALSE 11049
+16:             0.3581977                      FALSE 11289
+17:             0.3656318                      FALSE 19842
+       point       food_group10   expenditure     own_price own_price_hicksian
+1: aggregate           G01_主食 94642.6354125 -2.103945e+05      -2.103942e+05
+2: aggregate         G02_食用油     0.3582562 -2.479414e+00      -2.444792e+00
+3: aggregate           G03_蔬菜     0.4840633 -7.183722e-01      -3.717675e-01
+4: aggregate           G04_水果     2.3648558 -2.564483e+00      -2.474180e+00
+5: aggregate           G05_猪肉     5.3844325 -7.262588e+00      -7.226795e+00
+6: aggregate G06_禽类及其他肉类    42.0179904 -5.626097e+01      -5.617205e+01
+7: aggregate         G07_牛羊肉     0.9326736 -1.320272e+00      -1.213393e+00
+8: aggregate           G08_海鲜    -1.1571701 -5.872605e+00      -5.902183e+00
+9: aggregate         G09_乳制品   440.7570305 -6.240984e+02      -6.240005e+02
+   expenditure_unconstrained own_price_unconstrained     n
+1:              2.099494e+05           -2.532770e+05 62449
+2:              7.245507e-01            3.168440e-01 62449
+3:              3.623589e-01           -5.194809e-01 62449
+4:              2.438678e+00           -1.433872e-01 62449
+5:             -2.980645e+00            2.608688e+00 62449
+6:              1.000135e+02           -6.697239e+01 62449
+7:              6.414342e+00            5.326558e+00 62449
+8:             -4.186863e+00           -1.788262e+00 62449
+9:             -1.904791e+01            3.573745e+02 62449
+[38] (b) Household-month-level curvature check ...
+                         statistic        value
+1:       share_nsd_constrained_all 9.863889e-01
+2: share_nsd_constrained_y_in_1_99 1.000000e+00
+3:     share_nsd_unconstrained_all 0.000000e+00
+4:          p50_eigmax_constrained 5.626392e-18
+5:          p99_eigmax_constrained 1.782869e-03
+6:          max_eigmax_constrained 7.139690e-02
+[38] Done.

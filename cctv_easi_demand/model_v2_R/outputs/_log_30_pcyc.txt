@@ -5,14 +5,26 @@
 [30] Building external fixed-weight group price index ...
 [30] Internal CF-LOO unit values for certification ...
 [30] Price certification ...
+         food_group10 priced_share_2021 priced_share_all
+               <char>             <num>            <num>
+1:           G01_主食         0.9006023        0.8975110
+2:         G02_食用油         1.0000000        1.0000000
+3:           G03_蔬菜         1.0000000        1.0000000
+4:           G04_水果         1.0000000        1.0000000
+5:           G05_猪肉         1.0000000        1.0000000
+6: G06_禽类及其他肉类         1.0000000        1.0000000
+7:         G07_牛羊肉         1.0000000        1.0000000
+8:           G08_海鲜         1.0000000        1.0000000
+9:         G09_乳制品         0.6223176        0.6200249
 [30] Building 9-group household-month panel ...
                                metric        value
+                               <char>        <num>
 1: raw_rows_2020_2022_mapped_10groups 1.042011e+07
 2:                   raw_rows_9groups 1.013450e+07
 3:                         households 2.763800e+04
 4:     active_household_months_9group 5.836680e+05
 5:                         panel_rows 5.253012e+06
-6:  budget_share_max_abs_adding_error 2.886580e-15
+6:  budget_share_max_abs_adding_error 2.664535e-15
 7:           mean_nut_share_of_food10 3.263951e-02
 8:        external_price_missing_rows 0.000000e+00
 [30] Done.
