@@ -1,4 +1,4 @@
-# CASM no-E22/E24 simulation summary
+# CASM final simulation summary
 
 All CASM-Python runs converged for BASE plus nine machinery scenarios. Shocks are applied to CGRN crops in 2026-2030 as additions to AYGR0/AAGR0 growth rates.
 
@@ -17,7 +17,7 @@ All CASM-Python runs converged for BASE plus nine machinery scenarios. Shocks ar
 | S3-High    |           74266.4 |                2.39346  |           12733.9 |                85.3634 |           18.0304 |           2.20777  |
 
 ## Shifter comparison against first draft
-| scenario   | Target   |   old_v1_shifter_pct |   new_no_E22_E24_shifter_pct |   diff_pct_point | Path   | speed   |
+| scenario   | Target   |   old_v1_shifter_pct |   new_shifter_pct |   diff_pct_point | Path   | speed   |
 |:-----------|:---------|---------------------:|-----------------------------:|-----------------:|:-------|:--------|
 | S1-Low     | Yield    |                0.25  |                     0.246198 |        -0.003802 | MCI    | Low     |
 | S1-Low     | Area     |                0     |                     0        |         0        | MCI    | Low     |

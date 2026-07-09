@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Reproduce the no-E22/E24 meta-analysis comparison against the first draft.
+"""Reproduce the final meta-analysis comparison against the first draft.
 
 Inputs are kept outside this archive so the script can be rerun after moving the
 archive inside the same project tree. The statistical definitions follow the
@@ -18,7 +18,7 @@ from scipy import stats
 
 
 PROJECT = Path("/root/data/Paper/农机Meta")
-ARCHIVE = PROJECT / "machinery_meta_submission_no_E22_E24"
+ARCHIVE = PROJECT / "machinery_meta_submission_final"
 OUT = ARCHIVE / "results" / "meta"
 DATA_OUT = ARCHIVE / "data"
 REMOVE_IDS = {"E_22", "E_24"}
@@ -187,27 +187,27 @@ def main():
         for c in ["PCC", "SE_PCC", "弹性", "样本量"]:
             df[c] = pd.to_numeric(df[c], errors="coerce")
 
-    manual.to_csv(DATA_OUT / "manual_first_model_ready_data_no_E22_E24.csv",
+    manual.to_csv(DATA_OUT / "manual_first_model_ready_data_final.csv",
                   index=False, encoding="utf-8-sig")
 
     meta_v1, drops_v1 = meta_results(v1, "v1第一版")
-    meta_m, drops_m = meta_results(manual, "人工核实_no_E22_E24")
-    wls_v1, wls_m = wls_results(v1, "v1第一版"), wls_results(manual, "人工核实_no_E22_E24")
-    fat_v1, fat_m = fat_results(v1, "v1第一版"), fat_results(manual, "人工核实_no_E22_E24")
+    meta_m, drops_m = meta_results(manual, "人工核实_final_sample")
+    wls_v1, wls_m = wls_results(v1, "v1第一版"), wls_results(manual, "人工核实_final_sample")
+    fat_v1, fat_m = fat_results(v1, "v1第一版"), fat_results(manual, "人工核实_final_sample")
 
-    out_xlsx = OUT / "no_E22_E24_all_estimates_vs_v1.xlsx"
+    out_xlsx = OUT / "final_all_estimates_vs_v1.xlsx"
     with pd.ExcelWriter(out_xlsx, engine="openpyxl") as writer:
         pd.concat([meta_v1, meta_m], ignore_index=True).to_excel(writer, index=False, sheet_name="meta_all_results")
-        compare(meta_v1, meta_m, ["stage", "Target", "Indicator_Type"], "_no_E22_E24").to_excel(
+        compare(meta_v1, meta_m, ["stage", "Target", "Indicator_Type"], "_final").to_excel(
             writer, index=False, sheet_name="meta_compare_vs_v1")
         pd.concat([wls_v1, wls_m], ignore_index=True).to_excel(writer, index=False, sheet_name="wls_reg_all_results")
-        compare(wls_v1, wls_m, ["model", "Target", "term"], "_no_E22_E24").to_excel(
+        compare(wls_v1, wls_m, ["model", "Target", "term"], "_final").to_excel(
             writer, index=False, sheet_name="wls_reg_compare_vs_v1")
         pd.concat([fat_v1, fat_m], ignore_index=True).to_excel(writer, index=False, sheet_name="fat_pet_peese_all")
-        compare(fat_v1, fat_m, ["scope", "test"], "_no_E22_E24").to_excel(
+        compare(fat_v1, fat_m, ["scope", "test"], "_final").to_excel(
             writer, index=False, sheet_name="fat_pet_peese_compare_vs_v1")
         pd.concat([drops_v1, drops_m], ignore_index=True).to_excel(writer, index=False, sheet_name="outlier_drops")
-        manual_all[manual_all["编号"].isin(REMOVE_IDS)].to_excel(writer, index=False, sheet_name="removed_E22_E24")
+        manual_all[manual_all["编号"].isin(REMOVE_IDS)].to_excel(writer, index=False, sheet_name="excluded_records")
     print(f"wrote {out_xlsx}")
 
 

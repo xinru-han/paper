@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Build CASM machinery scenarios from the verified no-E22/E24 meta evidence.
+"""Build CASM machinery scenarios from the verified final meta evidence.
 
 Scenario design follows the first-draft 3 paths x 3 speeds structure:
 S1=MCI, S2=AMS, S3=AML. Shifters are annual percentage-point additions to
@@ -15,7 +15,7 @@ import pandas as pd
 
 
 PROJECT = Path("/root/data/Paper/农机Meta")
-ARCHIVE = PROJECT / "machinery_meta_submission_no_E22_E24"
+ARCHIVE = PROJECT / "machinery_meta_submission_final"
 RESULTS = ARCHIVE / "results" / "casm"
 DATA = ARCHIVE / "data"
 REMOVE_IDS = {"E_22", "E_24"}
@@ -53,7 +53,7 @@ def main():
     df = df[~df["编号"].isin(REMOVE_IDS)].copy()
     df["elasticity"] = pd.to_numeric(df["elasticity"], errors="coerce")
     df["N"] = pd.to_numeric(df["N"], errors="coerce")
-    df.to_csv(DATA / "meta_base_dataset_no_E22_E24.csv", index=False, encoding="utf-8-sig")
+    df.to_csv(DATA / "meta_base_dataset_final.csv", index=False, encoding="utf-8-sig")
 
     work = df[df["elasticity"].notna() & (df["elasticity"].abs() < 0.99)].copy()
     elastic_rows = []
@@ -67,7 +67,7 @@ def main():
             else:
                 med = mean = wavg = np.nan
             used = med
-            note = "按Path中位数；去除|elasticity|>=0.99；去掉E_22/E_24"
+            note = "按Path中位数；去除|elasticity|>=0.99；最终样本"
             if scenario == "S1" and target == "Area":
                 used = 0.0
                 note += "；沿用原方案S1不冲击面积"
@@ -104,11 +104,11 @@ def main():
             })
     plan = pd.DataFrame(rows)
 
-    with pd.ExcelWriter(RESULTS / "casm_scenario_plan_no_E22_E24.xlsx", engine="openpyxl") as writer:
+    with pd.ExcelWriter(RESULTS / "casm_scenario_plan_final.xlsx", engine="openpyxl") as writer:
         plan.to_excel(writer, index=False, sheet_name="simulation_plan")
         elastic.to_excel(writer, index=False, sheet_name="path_elasticities")
-    plan.to_csv(RESULTS / "simulation_plan_no_E22_E24.csv", index=False, encoding="utf-8-sig")
-    elastic.to_csv(RESULTS / "path_elasticities_no_E22_E24.csv", index=False, encoding="utf-8-sig")
+    plan.to_csv(RESULTS / "simulation_plan_final.csv", index=False, encoding="utf-8-sig")
+    elastic.to_csv(RESULTS / "path_elasticities_final.csv", index=False, encoding="utf-8-sig")
     print(plan[["scenario", "代理指标年均化增幅(%)", "每年单产Shifter(%)", "每年面积Shifter(%)"]].to_string(index=False))
 
 

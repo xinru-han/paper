@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Run CASM-Python for the no-E22/E24 machinery scenarios.
+"""Run CASM-Python for the final machinery scenarios.
 
 The CASM source code is not copied into this archive. Set CASM_PYTHON_DIR to
 the external CASM-Python repository if it is not located at
@@ -19,9 +19,9 @@ import pandas as pd
 
 
 PROJECT = Path("/root/data/Paper/农机Meta")
-ARCHIVE = PROJECT / "machinery_meta_submission_no_E22_E24"
+ARCHIVE = PROJECT / "machinery_meta_submission_final"
 RESULTS = ARCHIVE / "results" / "casm"
-PLAN_FILE = RESULTS / "simulation_plan_no_E22_E24.csv"
+PLAN_FILE = RESULTS / "simulation_plan_final.csv"
 CASM_TEMPLATE = PROJECT / "CASM20260410MACHINE2"
 CASM_INPUT_COPY = RESULTS / "casm_inputs_used"
 CASM_PYTHON_DIR = Path(os.environ.get("CASM_PYTHON_DIR", "/root/data/CASM/casm_python"))
@@ -100,7 +100,7 @@ def write_long_results(results):
                     "QE": df.loc[crop, "QE"],
                     "NETQM": df.loc[crop, "NETQM"],
                 })
-    pd.DataFrame(rows).to_csv(RESULTS / "casm_results_long_no_E22_E24.csv",
+    pd.DataFrame(rows).to_csv(RESULTS / "casm_results_long_final.csv",
                               index=False, encoding="utf-8-sig")
 
 
@@ -142,7 +142,7 @@ def main():
         print(f"{r['scenario']:10s} yield={r['y_shift']:.6f}% area={r['a_shift']:.6f}% {elapsed:.1f}s", flush=True)
 
     write_long_results(results)
-    pd.DataFrame(logs).to_csv(RESULTS / "casm_run_log_no_E22_E24.csv",
+    pd.DataFrame(logs).to_csv(RESULTS / "casm_run_log_final.csv",
                               index=False, encoding="utf-8-sig")
 
     # Summary tables for manuscript upload.
@@ -180,15 +180,15 @@ def main():
         security_rows.append(rec)
     security = pd.DataFrame(security_rows)
 
-    with pd.ExcelWriter(RESULTS / "casm_simulation_outputs_no_E22_E24.xlsx", engine="openpyxl") as writer:
+    with pd.ExcelWriter(RESULTS / "casm_simulation_outputs_final.xlsx", engine="openpyxl") as writer:
         plan.to_excel(writer, index=False, sheet_name="scenario_plan")
         grain.to_excel(writer, index=False, sheet_name="grain_2030")
         security.to_excel(writer, index=False, sheet_name="food_security_2030")
         pd.DataFrame(logs).to_excel(writer, index=False, sheet_name="run_log")
 
-    grain.to_csv(RESULTS / "table_grain_2030_no_E22_E24.csv", index=False, encoding="utf-8-sig")
-    security.to_csv(RESULTS / "table_food_security_2030_no_E22_E24.csv", index=False, encoding="utf-8-sig")
-    print(f"wrote {RESULTS / 'casm_simulation_outputs_no_E22_E24.xlsx'}")
+    grain.to_csv(RESULTS / "table_grain_2030_final.csv", index=False, encoding="utf-8-sig")
+    security.to_csv(RESULTS / "table_food_security_2030_final.csv", index=False, encoding="utf-8-sig")
+    print(f"wrote {RESULTS / 'casm_simulation_outputs_final.xlsx'}")
 
 
 if __name__ == "__main__":
