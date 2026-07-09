@@ -11,9 +11,10 @@ rd <- function(f) if (file.exists(f)) fread(f) else { miss <<- c(miss, f); NULL 
 wr <- function(dt, stem, title) {
   if (is.null(dt) || !nrow(dt)) return(invisible())
   fwrite(dt, sprintf("tables/%s.csv", stem))
+  body <- dt[, do.call(paste, c(lapply(.SD, as.character), sep = " | "))]
   md <- c(sprintf("### %s", title), "", paste0("| ", paste(names(dt), collapse = " | "), " |"),
           paste0("|", paste(rep("---", ncol(dt)), collapse = "|"), "|"),
-          dt[, do.call(paste, c(lapply(.SD, as.character), sep = " | "))][, paste0("| ", ., " |")])
+          paste0("| ", body, " |"))
   writeLines(md, sprintf("tables/%s.md", stem))
 }
 
@@ -27,9 +28,10 @@ el_cc <- rbindlist(lapply(CROPS, function(cr){ e<-rd(sprintf("out/elasticities_%
 el_hw <- rbindlist(lapply(CROPS, function(cr){ e<-rd(sprintf("out/elasticities_%s_hw_cc.csv",cr)); if(is.null(e))return(NULL)
   ea<-e[period=="all"]; data.table(crop=cr, eps_ll_hw=ea[f_n=="labor"&f_m=="labor",eps], M_ml_hw=ea[f_n=="mach"&f_m=="labor",morishima]) }))
 ci <- rd("out/bootstrap_ci_cc.csv")
+if(!is.null(ci)) setnames(ci, c("eps_ll","eps_mm","M_ml","B_labor"), c("eps_ll_ci","eps_mm_ci","M_ml_ci","B_labor_ci"), skip_absent=TRUE)
+if(!is.null(el_cc)) setnames(el_cc, c("eps_ll","eps_mm","M_ml"), c("eps_ll_pt","eps_mm_pt","M_ml_pt"))
 t2 <- if(!is.null(el_cc)) Reduce(function(a,b) merge(a,b,by="crop",all.x=TRUE), Filter(Negate(is.null), list(el_cc, el_hw, ci))) else NULL
-if(!is.null(t2)) t2[, (setdiff(names(t2), c("crop","eps_ll_ci","eps_mm_ci","M_ml_ci","B_labor_ci"))) :=
-  lapply(.SD, function(x) if(is.numeric(x)) round(x,3) else x), .SDcols=setdiff(names(t2), c("crop"))]
+if(!is.null(t2)) t2[, (names(t2)[sapply(t2,is.numeric)]) := lapply(.SD, round, 3), .SDcols=sapply(t2,is.numeric)]
 wr(t2, "T2_elasticity_main", "T2 弹性主表（cc；daywage 与 hired；M1 percentile CI）")
 
 # T3 跨品种 M_ml 差异 CI

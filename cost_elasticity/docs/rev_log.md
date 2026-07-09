@@ -44,3 +44,30 @@
 
 R2 ✅ 完成。后处理管线（chain_post → run_post_R2）已自动接续：Group A(S2/6f/decomp/priceCV) → B(M9 tests_boot/M8 induced_regional) → C(M1 bootstrap B=500) → D(hw+doubleblock) → E(M4 tauC/M7 consistency)。
 
+
+---
+
+## R3/R4/R5 — bootstrap + postest v2 + 区域诱致性（2026-07-09）
+
+- **M1 bootstrap（B=500 联合重抽，热启动+单线程BLAS，per-draw 101s，6核）**：cc + hw 各 500 draws。
+  ok 率：7 品种 100%、wheat 99.4%；**early/late indica 91.2%/91.0%**（省份少，joint 交集偶 <4 省 →
+  prep_fail 44，CI 基于 ~455 draws，已披露，非 fit 失败）。产出 draws/status/ci/crosscrop/manifest。
+  跨品种：**旱作−稻作 M_ML 差 0.329 [0.137, 0.479] 排除零**；corn/soybean 显著高于各稻。
+  玉米双 block（省×时期）M_ML 0.60[0.53,0.75]（更细FE，偏低）。
+- **M9 tests_boot**：玉米四检验 bootstrap 非拒绝率 0–0.5%（强拒绝稳健）；**玉米/粳稻断点非拒绝
+  0–0.5%（G3 断点抗序列相关）**；wheat 位似性 analytic p=0.070、bootstrap 非拒绝 27.5%（未拒，重表述）。
+- **M8 induced_regional（G4）**：labor k1–5 Σψ=0.344 t_DK=3.86 placebo 干净 → **suggestive，回正文**；
+  k1–3 边界（placebo F2 t=2.17）；mach placebo 失败→描述性。较 pooled 根本改善（符号转正）。
+- **M4 tauC**：τ_C≈−0.01~−0.04/年；scale_tfp 改名 _deprecated；grep 自查 TFP/RTS 零 value-claim。
+- **M7 bias_consistency**：consistent=TRUE 仅 corn/japonica/mid_indica 劳动节约 + 四稻机械使用；
+  wheat/soybean/peanut/rapeseed 跨规格不一致，不下偏向结论。
+- **M12a/b**：hw 全套 postest；价格交叉验证 w_fert vs 发改委三肥 corr 0.51–0.94。
+
+## R6 — 表/图/终版 summary（2026-07-09）
+
+- **M14c build_tables**：T1–T9（md+csv）0 缺失。
+- **build_figs v2**：F3v2 断点两段 M_ML、F6 M_ML bootstrap CI 森林图、F7 区域诱致系数；F5 实际口径待 INPUT。
+- **results_summary_v2.md**：12 节结构；**禁止表述 6 条逐条自查通过**（TFP/RTS 仅出现在"撤除"语境，
+  零 value-claim；旱>稻带 CI；偏向限定 consistent 品种；诱致因果只在 placebo 干净的 labor k1–5）。
+- **data_appendix.md**：15 项价格口径 + 插补计数 + 毒死蜱局限 + OCR 规模 + F4 完成性。
+- **M5 待 INPUT-1/2**（分省播种面积 + 农村CPI）后补跑实际口径分解。
