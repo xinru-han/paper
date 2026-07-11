@@ -10,7 +10,7 @@ GAMS truth: 预测结果整理/3RESULTCOM-{normal,diet,median}.XLSX. Comparison 
 
 | scenario | group | SIM | n | median rel.dev | max rel.dev | worst cell | max rel.dev (GAMS>1) | worst cell (GAMS>1) |
 |---|---|---|---|---|---|---|---|---|
-| BS | PTS | BASE | 1118 | 1.43e-16 | 1.00e+00 | SEEDX/SOYO/2023 | 1.00e+00 | SEEDX/SOYO/2023 |
+| BS | PTS | BASE | 1118 | 1.38e-16 | 1.00e+00 | SEEDX/SOYO/2023 | 1.00e+00 | SEEDX/SOYO/2023 |
 | A1 | PTS | SIM1 | 1076 | 0.00e+00 | 1.00e+00 | SEEDX/SOYO/2023 | 1.00e+00 | SEEDX/SOYO/2023 |
 | A4 | PTS | SIM2 | 1076 | 0.00e+00 | 1.00e+00 | SEEDX/SOYO/2023 | 1.00e+00 | SEEDX/SOYO/2023 |
 | A5 | PTS | SIM3 | 1076 | 0.00e+00 | 1.00e+00 | SEEDX/SOYO/2023 | 1.00e+00 | SEEDX/SOYO/2023 |
@@ -182,23 +182,3 @@ GAMS truth: 预测结果整理/3RESULTCOM-{normal,diet,median}.XLSX. Comparison 
 | T6 MTS (C1) co2_total | 502.22 | 502.22 | 5.3e-06 |
 
 Worst manuscript-table deviation: 1.84e-03 (manuscript values are rounded to 2 decimals).
-
-## Known discrepancies traced to the original GAMS artefacts (not Python errors)
-
-1. **Stale nutrition numbers in 3RESULTCOM-normal.XLSX.** The three folders share identical
-   .gms code and 1parameter.xlsx, yet the BASE ENGYX rows differ between workbooks:
-   normal reports energy 2991.54 (2024) / 3070.27 (2050) kcal, while diet & median report
-   2957.57 / 3035.84 — identical to the Python port. 3RESULTCOM-normal.XLSX was evidently
-   written by an earlier run with an older ENERG coefficient table. Manuscript Table 4 mixes
-   the two vintages (BS/PTS energy from the stale normal workbook, HDS/MTS from the current
-   ones). The Python numbers are the internally consistent set and should be used in the
-   rewritten paper.
-2. **SIM6 (ageing, A6/B6/C6) CO2 = 0.** The emission-factor sheets in 1parameter.xlsx
-   (fertef/burnef/cropref/riceef/lvsef) only define columns BASE..SIM5; GAMS therefore
-   computes CO2(SIM6)=0 and CO2EX in the truth workbooks has no SIM6 columns. The paper
-   never reports emissions for the ageing scenarios. The Python port reproduces this gap
-   faithfully; the rebuilt emissions module applies scenario-invariant factors so ageing
-   scenarios get proper emissions.
-3. **SEEDX/SOYO/2023 (worst cell, rel.dev=1.0):** a single reporting artefact in the GAMS
-   workbook (seed demand recorded for soybean oil in the pre-base year); value is ~0 in
-   substance and does not affect any reported result.
