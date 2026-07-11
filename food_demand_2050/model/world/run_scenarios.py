@@ -2,11 +2,11 @@
 
 Runs the CASM-World (CASM China + PEATSim world) model for 2024-2050 under
 four Chinese dietary scenarios (BS / PTS / HDS / MTS) and writes long-format
-results to /root/paper/food_demand_2050/results/world/.
+results to the repository-local results/world directory.
 
 Method (least-intrusive, baseline-preserving):
-  * The cw package under /root/data/CASM/casm_world is imported READ-ONLY;
-    no file there is modified.  All scenario logic lives here.
+  * The repository-local cw package is imported by default. Set
+    CASM_WORLD_PATH to use an external copy for comparison.
   * Horizon extension 2036-2050: after Data() is built, the in-memory macro
     dict (POP, RGDP) is extrapolated with the 2030-2035 CAGR; RXCHRATE and
     tariffs (TMBASE/TM2BASE) are held at their 2035 values.
@@ -29,7 +29,10 @@ import csv
 import warnings
 
 warnings.filterwarnings("ignore")
-sys.path.insert(0, "/root/data/CASM/casm_world")
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(HERE))
+CW_PATH = os.environ.get("CASM_WORLD_PATH", HERE)
+sys.path.insert(0, CW_PATH)
 
 import numpy as np
 
@@ -37,7 +40,7 @@ from cw.data import Data
 from cw.calib import Calibration
 from cw.model import Model
 
-RESULTS = "/root/paper/food_demand_2050/results/world"
+RESULTS = os.path.join(ROOT, "results", "world")
 YEARS = [str(y) for y in range(2024, 2051)]
 REPORT_YEARS = ["2024", "2030", "2035", "2040", "2045", "2050"]
 EXPORT = ["PRD", "CON", "FOO", "FEE", "CRU", "EXP", "IMP", "AHV",

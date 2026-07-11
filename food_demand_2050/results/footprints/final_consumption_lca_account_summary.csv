@@ -1,0 +1,2533 @@
+account,geography,scenario,indicator,region,unit,year,value
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2025,3990.53
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2026,4011.5
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2027,4034.56
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2028,4056.96
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2029,4078.96
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2030,4100.33
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2031,4120.91
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2032,4142.36
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2033,4163.69
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2034,4184.89
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2035,4206.23
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2036,4225.99
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2037,4245.66
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2038,4264.19
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2039,4281.69
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2040,4297.8
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2041,4312.44
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2042,4326.56
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2043,4339.28
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2044,4350.59
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2045,4360.29
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2046,4368.01
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2047,4373.83
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2048,4377.55
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2049,4378.81
+final_consumption_lca,China,A1,co2_lca_final_food,CHN,Mt CO2e,2050,4377.52
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2025,826.649
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2026,834.745
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2027,843.422
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2028,851.934
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2029,860.38
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2030,868.671
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2031,876.612
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2032,884.898
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2033,893.184
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2034,901.471
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2035,909.823
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2036,917.644
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2037,925.502
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2038,933.04
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2039,940.275
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2040,947.128
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2041,953.476
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2042,959.735
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2043,965.601
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2044,971.071
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2045,976.093
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2046,980.557
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2047,984.533
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2048,987.943
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2049,990.702
+final_consumption_lca,China,A1,land_lca_final_food,CHN,Mha,2050,992.782
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2025,169.266
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2026,168.862
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2027,168.511
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2028,168.14
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2029,167.748
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2030,167.333
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2031,166.96
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2032,166.582
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2033,166.189
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2034,165.778
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2035,165.358
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2036,164.967
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2037,164.567
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2038,164.145
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2039,163.705
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2040,163.236
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2041,162.779
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2042,162.303
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2043,161.796
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2044,161.261
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2045,160.689
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2046,160.079
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2047,159.418
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2048,158.706
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2049,157.929
+final_consumption_lca,China,A1,water_blue_lca_final_food,CHN,km3,2050,157.085
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2025,3990.4
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2026,4011.2
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2027,4033.99
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2028,4056.05
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2029,4077.64
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2030,4098.51
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2031,4118.55
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2032,4139.42
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2033,4160.09
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2034,4180.56
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2035,4201.09
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2036,4220.05
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2037,4238.88
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2038,4256.51
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2039,4273.03
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2040,4288.1
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2041,4301.73
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2042,4314.83
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2043,4326.48
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2044,4336.67
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2045,4345.2
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2046,4351.73
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2047,4356.34
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2048,4358.81
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2049,4358.79
+final_consumption_lca,China,A2,co2_lca_final_food,CHN,Mt CO2e,2050,4356.17
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2025,826.843
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2026,835.06
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2027,843.834
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2028,852.416
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2029,860.904
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2030,869.205
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2031,877.104
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2032,885.334
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2033,893.536
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2034,901.711
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2035,909.924
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2036,917.569
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2037,925.24
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2038,932.567
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2039,939.567
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2040,946.159
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2041,952.228
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2042,958.204
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2043,963.768
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2044,968.917
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2045,973.6
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2046,977.712
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2047,981.325
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2048,984.357
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2049,986.725
+final_consumption_lca,China,A2,land_lca_final_food,CHN,Mha,2050,988.401
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2025,169.141
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2026,168.637
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2027,168.187
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2028,167.716
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2029,167.224
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2030,166.708
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2031,166.255
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2032,165.798
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2033,165.325
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2034,164.835
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2035,164.334
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2036,163.882
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2037,163.422
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2038,162.939
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2039,162.439
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2040,161.908
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2041,161.406
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2042,160.886
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2043,160.335
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2044,159.755
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2045,159.138
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2046,158.488
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2047,157.787
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2048,157.035
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2049,156.219
+final_consumption_lca,China,A2,water_blue_lca_final_food,CHN,km3,2050,155.336
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2025,3989.65
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2026,4010.57
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2027,4032.27
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2028,4053.28
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2029,4074.01
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2030,4094.61
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2031,4114.17
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2032,4134.7
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2033,4155.12
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2034,4175.61
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2035,4196.64
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2036,4215.86
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2037,4235.05
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2038,4253.3
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2039,4270.25
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2040,4286.34
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2041,4300.59
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2042,4314.37
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2043,4326.82
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2044,4337.73
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2045,4346.87
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2046,4353.79
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2047,4358.92
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2048,4361.65
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2049,4361.89
+final_consumption_lca,China,A3,co2_lca_final_food,CHN,Mt CO2e,2050,4360.95
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2025,826.141
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2026,834.073
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2027,842.326
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2028,850.414
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2029,858.469
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2030,866.419
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2031,874.077
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2032,882.105
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2033,890.142
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2034,898.233
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2035,906.435
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2036,914.14
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2037,921.898
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2038,929.383
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2039,936.518
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2040,943.363
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2041,949.675
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2042,955.909
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2043,961.772
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2044,967.213
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2045,972.171
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2046,976.533
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2047,980.429
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2048,983.698
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2049,986.308
+final_consumption_lca,China,A3,land_lca_final_food,CHN,Mha,2050,988.537
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2025,169.408
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2026,169.088
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2027,168.766
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2028,168.418
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2029,168.053
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2030,167.722
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2031,167.361
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2032,166.999
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2033,166.619
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2034,166.228
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2035,165.872
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2036,165.486
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2037,165.094
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2038,164.685
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2039,164.246
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2040,163.818
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2041,163.352
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2042,162.869
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2043,162.358
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2044,161.811
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2045,161.226
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2046,160.584
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2047,159.895
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2048,159.142
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2049,158.323
+final_consumption_lca,China,A3,water_blue_lca_final_food,CHN,km3,2050,157.532
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2025,3996.62
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2026,4023.65
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2027,4052.74
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2028,4081.17
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2029,4109.2
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2030,4140.13
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2031,4170.31
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2032,4201.46
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2033,4232.64
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2034,4263.86
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2035,4297.79
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2036,4330.37
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2037,4363.13
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2038,4394.98
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2039,4425.97
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2040,4455.72
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2041,4484.07
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2042,4511.99
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2043,4538.52
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2044,4563.63
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2045,4587.14
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2046,4608.69
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2047,4628.42
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2048,4646.14
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2049,4661.54
+final_consumption_lca,China,A4,co2_lca_final_food,CHN,Mt CO2e,2050,4674.56
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2025,827.912
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2026,837.273
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2027,847.223
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2028,857.019
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2029,866.76
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2030,877.102
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2031,887.119
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2032,897.524
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2033,907.975
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2034,918.483
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2035,929.628
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2036,940.31
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2037,951.109
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2038,961.657
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2039,971.961
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2040,981.931
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2041,991.425
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2042,1000.87
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2043,1009.94
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2044,1018.62
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2045,1026.88
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2046,1034.59
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2047,1041.84
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2048,1048.56
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2049,1054.67
+final_consumption_lca,China,A4,land_lca_final_food,CHN,Mha,2050,1060.15
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2025,169.525
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2026,169.373
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2027,169.271
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2028,169.143
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2029,168.992
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2030,168.957
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2031,168.961
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2032,168.959
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2033,168.941
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2034,168.907
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2035,168.957
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2036,169.042
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2037,169.12
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2038,169.18
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2039,169.222
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2040,169.234
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2041,169.257
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2042,169.259
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2043,169.226
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2044,169.158
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2045,169.049
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2046,168.9
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2047,168.698
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2048,168.443
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2049,168.126
+final_consumption_lca,China,A4,water_blue_lca_final_food,CHN,km3,2050,167.744
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2025,3984.43
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2026,3999.35
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2027,4016.37
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2028,4032.73
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2029,4048.7
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2030,4060.55
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2031,4071.56
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2032,4083.35
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2033,4094.92
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2034,4106.24
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2035,4115.2
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2036,4122.4
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2037,4129.27
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2038,4134.81
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2039,4139.09
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2040,4141.79
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2041,4142.83
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2042,4143.14
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2043,4141.89
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2044,4139.1
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2045,4134.62
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2046,4128.16
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2047,4119.84
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2048,4109.53
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2049,4096.93
+final_consumption_lca,China,A5,co2_lca_final_food,CHN,Mt CO2e,2050,4081.98
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2025,825.387
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2026,832.216
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2027,839.619
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2028,846.848
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2029,853.999
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2030,860.242
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2031,866.113
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2032,872.293
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2033,878.433
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2034,884.529
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2035,890.133
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2036,895.15
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2037,900.132
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2038,904.73
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2039,908.961
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2040,912.747
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2041,915.975
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2042,919.048
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2043,921.677
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2044,923.864
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2045,925.575
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2046,926.714
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2047,927.361
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2048,927.455
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2049,926.926
+final_consumption_lca,China,A5,land_lca_final_food,CHN,Mha,2050,925.756
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2025,169.008
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2026,168.35
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2027,167.751
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2028,167.136
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2029,166.504
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2030,165.709
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2031,164.96
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2032,164.209
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2033,163.445
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2034,162.663
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2035,161.779
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2036,160.923
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2037,160.056
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2038,159.165
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2039,158.254
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2040,157.31
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2041,156.376
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2042,155.422
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2043,154.436
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2044,153.422
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2045,152.373
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2046,151.289
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2047,150.161
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2048,148.989
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2049,147.762
+final_consumption_lca,China,A5,water_blue_lca_final_food,CHN,km3,2050,146.48
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2025,3989.18
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2026,4007.44
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2027,4030.93
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2028,4058
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2029,4083.27
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2030,4106.54
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2031,4130.14
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2032,4145.98
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2033,4160.08
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2034,4174.11
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2035,4187.62
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2036,4197.87
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2037,4207.9
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2038,4212.85
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2039,4216.56
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2040,4216.54
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2041,4215.87
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2042,4213.69
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2043,4210.32
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2044,4205.92
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2045,4198.77
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2046,4190.29
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2047,4182.33
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2048,4169.1
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2049,4152.15
+final_consumption_lca,China,A6,co2_lca_final_food,CHN,Mt CO2e,2050,4133.28
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2025,826.372
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2026,833.903
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2027,842.668
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2028,852.153
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2029,861.281
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2030,869.971
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2031,878.548
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2032,885.66
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2033,892.423
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2034,899.191
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2035,905.88
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2036,911.669
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2037,917.459
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2038,922.075
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2039,926.333
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2040,929.691
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2041,932.709
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2042,935.41
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2043,937.748
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2044,939.759
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2045,941.065
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2046,941.942
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2047,942.848
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2048,942.484
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2049,941.187
+final_consumption_lca,China,A6,land_lca_final_food,CHN,Mha,2050,939.339
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2025,169.212
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2026,168.699
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2027,168.366
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2028,168.181
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2029,167.919
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2030,167.578
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2031,167.322
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2032,166.724
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2033,166.049
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2034,165.361
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2035,164.641
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2036,163.889
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2037,163.127
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2038,162.196
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2039,161.245
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2040,160.18
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2041,159.163
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2042,158.097
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2043,157.012
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2044,155.917
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2045,154.749
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2046,153.57
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2047,152.434
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2048,151.133
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2049,149.726
+final_consumption_lca,China,A6,water_blue_lca_final_food,CHN,km3,2050,148.28
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2025,3908.38
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2026,3850.74
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2027,3798.49
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2028,3748.99
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2029,3702.47
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2030,3658.74
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2031,3617.68
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2032,3580.57
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2033,3546.61
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2034,3515.77
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2035,3488.26
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2036,3462.51
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2037,3439.72
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2038,3419.19
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2039,3400.98
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2040,3384.83
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2041,3370.63
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2042,3359
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2043,3349.37
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2044,3341.75
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2045,3335.96
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2046,3331.67
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2047,3328.93
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2048,3327.6
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2049,3327.39
+final_consumption_lca,China,B1,co2_lca_final_food,CHN,Mt CO2e,2050,3328.19
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2025,797.599
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2026,777.564
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2027,758.945
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2028,741.03
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2029,723.899
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2030,707.476
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2031,691.63
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2032,676.86
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2033,662.884
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2034,649.69
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2035,637.306
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2036,625.333
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2037,614.128
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2038,603.469
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2039,593.367
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2040,583.775
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2041,574.651
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2042,566.192
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2043,558.234
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2044,550.773
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2045,543.778
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2046,537.195
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2047,531.045
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2048,525.289
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2049,519.879
+final_consumption_lca,China,B1,land_lca_final_food,CHN,Mha,2050,514.797
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2025,166.937
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2026,164.294
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2027,161.791
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2028,159.353
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2029,156.981
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2030,154.672
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2031,152.485
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2032,150.375
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2033,148.331
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2034,146.351
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2035,144.441
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2036,142.633
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2037,140.891
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2038,139.205
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2039,137.578
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2040,135.998
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2041,134.499
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2042,133.056
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2043,131.657
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2044,130.303
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2045,128.987
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2046,127.707
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2047,126.453
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2048,125.222
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2049,124.005
+final_consumption_lca,China,B1,water_blue_lca_final_food,CHN,km3,2050,122.798
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2025,3908.26
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2026,3850.44
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2027,3797.95
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2028,3748.17
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2029,3701.33
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2030,3657.24
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2031,3615.84
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2032,3578.42
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2033,3544.12
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2034,3512.95
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2035,3485.11
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2036,3459.08
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2037,3436.05
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2038,3415.27
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2039,3396.83
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2040,3380.46
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2041,3366.1
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2042,3354.33
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2043,3344.58
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2044,3336.84
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2045,3330.95
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2046,3326.59
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2047,3323.78
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2048,3322.4
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2049,3322.14
+final_consumption_lca,China,B2,co2_lca_final_food,CHN,Mt CO2e,2050,3322.91
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2025,797.78
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2026,777.835
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2027,759.269
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2028,741.372
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2029,724.228
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2030,707.758
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2031,691.828
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2032,676.964
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2033,662.877
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2034,649.554
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2035,637.027
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2036,624.9
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2037,613.542
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2038,602.72
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2039,592.45
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2040,582.682
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2041,573.386
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2042,564.761
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2043,556.633
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2044,548.999
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2045,541.828
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2046,535.071
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2047,528.747
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2048,522.815
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2049,517.228
+final_consumption_lca,China,B2,land_lca_final_food,CHN,Mha,2050,511.966
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2025,166.814
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2026,164.076
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2027,161.48
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2028,158.952
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2029,156.492
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2030,154.097
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2031,151.844
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2032,149.671
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2033,147.566
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2034,145.526
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2035,143.558
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2036,141.709
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2037,139.927
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2038,138.202
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2039,136.536
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2040,134.918
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2041,133.395
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2042,131.926
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2043,130.503
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2044,129.123
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2045,127.782
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2046,126.48
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2047,125.202
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2048,123.948
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2049,122.708
+final_consumption_lca,China,B2,water_blue_lca_final_food,CHN,km3,2050,121.477
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2025,3907.53
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2026,3849.87
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2027,3796.35
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2028,3745.59
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2029,3697.93
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2030,3653.49
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2031,3611.5
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2032,3573.54
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2033,3538.7
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2034,3507.12
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2035,3479.09
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2036,3452.66
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2037,3429.2
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2038,3408.09
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2039,3389.04
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2040,3372.33
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2041,3357.33
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2042,3344.89
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2043,3334.46
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2044,3325.87
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2045,3318.91
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2046,3313.27
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2047,3309.21
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2048,3306.28
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2049,3304.39
+final_consumption_lca,China,B3,co2_lca_final_food,CHN,Mt CO2e,2050,3304
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2025,797.119
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2026,776.967
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2027,758.013
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2028,739.793
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2029,722.413
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2030,705.814
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2031,689.839
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2032,674.973
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2033,660.915
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2034,647.683
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2035,635.311
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2036,623.354
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2037,612.175
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2038,601.57
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2039,591.488
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2040,581.98
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2041,572.901
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2042,564.489
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2043,556.585
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2044,549.158
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2045,542.174
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2046,535.573
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2047,529.413
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2048,523.611
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2049,518.148
+final_consumption_lca,China,B3,land_lca_final_food,CHN,Mha,2050,513.189
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2025,167.077
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2026,164.515
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2027,162.035
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2028,159.617
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2029,157.265
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2030,155.03
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2031,152.848
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2032,150.746
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2033,148.707
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2034,146.738
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2035,144.878
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2036,143.067
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2037,141.324
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2038,139.642
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2039,138.008
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2040,136.456
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2041,134.943
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2042,133.487
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2043,132.078
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2044,130.708
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2045,129.376
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2046,128.067
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2047,126.786
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2048,125.521
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2049,124.268
+final_consumption_lca,China,B3,water_blue_lca_final_food,CHN,km3,2050,123.099
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2025,3914.35
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2026,3862.41
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2027,3815.61
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2028,3771.37
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2029,3729.93
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2030,3694.25
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2031,3661.05
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2032,3631.66
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2033,3605.35
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2034,3582.12
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2035,3564.19
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2036,3548.03
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2037,3534.9
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2038,3524.06
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2039,3515.59
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2040,3509.21
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2041,3504.79
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2042,3502.96
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2043,3503.16
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2044,3505.39
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2045,3509.51
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2046,3515.26
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2047,3522.7
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2048,3531.77
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2049,3542.23
+final_consumption_lca,China,B4,co2_lca_final_food,CHN,Mt CO2e,2050,3554.03
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2025,798.817
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2026,779.918
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2027,762.365
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2028,745.452
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2029,729.267
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2030,714.342
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2031,699.92
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2032,686.517
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2033,673.862
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2034,661.95
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2035,651.179
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2036,640.778
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2037,631.12
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2038,621.978
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2039,613.363
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2040,605.226
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2041,597.522
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2042,590.459
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2043,583.867
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2044,577.743
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2045,572.069
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2046,566.796
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2047,561.956
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2048,557.519
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2049,553.447
+final_consumption_lca,China,B4,land_lca_final_food,CHN,Mha,2050,549.73
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2025,167.192
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2026,164.792
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2027,162.52
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2028,160.304
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2029,158.145
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2030,156.173
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2031,154.313
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2032,152.52
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2033,150.787
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2034,149.113
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2035,147.586
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2036,146.156
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2037,144.789
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2038,143.475
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2039,142.214
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2040,140.995
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2041,139.853
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2042,138.758
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2043,137.702
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2044,136.684
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2045,135.698
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2046,134.744
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2047,133.813
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2048,132.905
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2049,132.011
+final_consumption_lca,China,B4,water_blue_lca_final_food,CHN,km3,2050,131.131
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2025,3902.42
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2026,3839.08
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2027,3781.36
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2028,3726.61
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2029,3675.01
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2030,3623.24
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2031,3574.36
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2032,3529.57
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2033,3488.04
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2034,3449.7
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2035,3412.76
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2036,3377.63
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2037,3345.43
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2038,3315.44
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2039,3287.71
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2040,3261.96
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2041,3238.07
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2042,3216.6
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2043,3197.01
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2044,3179.29
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2045,3163.3
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2046,3148.73
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2047,3135.62
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2048,3123.86
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2049,3113.19
+final_consumption_lca,China,B5,co2_lca_final_food,CHN,Mt CO2e,2050,3103.49
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2025,796.381
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2026,775.208
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2027,755.523
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2028,736.606
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2029,718.53
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2030,700.611
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2031,683.346
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2032,667.218
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2033,651.937
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2034,637.48
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2035,623.513
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2036,610.004
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2037,597.294
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2038,585.158
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2039,573.606
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2040,562.584
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2041,552.05
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2042,542.189
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2043,532.84
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2044,523.998
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2045,515.635
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2046,507.697
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2047,500.207
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2048,493.127
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2049,486.412
+final_consumption_lca,China,B5,land_lca_final_food,CHN,Mha,2050,480.042
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2025,166.683
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2026,163.796
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2027,161.061
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2028,158.402
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2029,155.817
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2030,153.171
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2031,150.659
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2032,148.232
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2033,145.881
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2034,143.6
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2035,141.315
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2036,139.136
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2037,137.029
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2038,134.981
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2039,132.996
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2040,131.061
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2041,129.21
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2042,127.415
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2043,125.668
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2044,123.968
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2045,122.311
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2046,120.695
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2047,119.109
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2048,117.555
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2049,116.022
+final_consumption_lca,China,B5,water_blue_lca_final_food,CHN,km3,2050,114.508
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2025,3908.38
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2026,3850.74
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2027,3798.49
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2028,3747.73
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2029,3699.91
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2030,3653.62
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2031,3613.05
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2032,3580.3
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2033,3549.27
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2034,3520.05
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2035,3495.11
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2036,3464.41
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2037,3435.41
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2038,3408.86
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2039,3384.24
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2040,3360.39
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2041,3338.55
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2042,3316.18
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2043,3295.8
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2044,3275.67
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2045,3258.02
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2046,3241.19
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2047,3226.1
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2048,3212.71
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2049,3199.55
+final_consumption_lca,China,B6,co2_lca_final_food,CHN,Mt CO2e,2050,3187.79
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2025,797.599
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2026,777.564
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2027,758.945
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2028,740.783
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2029,723.404
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2030,706.498
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2031,690.755
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2032,676.808
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2033,663.373
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2034,650.467
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2035,638.536
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2036,625.669
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2037,613.373
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2038,601.684
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2039,590.508
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2040,579.649
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2041,569.298
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2042,559.131
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2043,549.499
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2044,540.117
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2045,531.345
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2046,522.914
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2047,514.98
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2048,507.519
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2049,500.296
+final_consumption_lca,China,B6,land_lca_final_food,CHN,Mha,2050,493.491
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2025,166.937
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2026,164.294
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2027,161.791
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2028,159.301
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2029,156.876
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2030,154.461
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2031,152.293
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2032,150.363
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2033,148.44
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2034,146.527
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2035,144.724
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2036,142.711
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2037,140.714
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2038,138.783
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2039,136.896
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2040,135.006
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2041,133.203
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2042,131.334
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2043,129.514
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2044,127.675
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2045,125.907
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2046,124.154
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2047,122.442
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2048,120.774
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2049,119.093
+final_consumption_lca,China,B6,water_blue_lca_final_food,CHN,km3,2050,117.447
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2025,3983.84
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2026,3997.92
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2027,4013.84
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2028,4028.9
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2029,4043.34
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2030,4056.96
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2031,4069.61
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2032,4082.89
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2033,4095.86
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2034,4108.49
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2035,4121.05
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2036,4131.92
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2037,4142.51
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2038,4151.82
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2039,4159.96
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2040,4166.6
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2041,4171.72
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2042,4176.18
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2043,4179.16
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2044,4180.68
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2045,4180.55
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2046,4178.42
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2047,4174.41
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2048,4168.32
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2049,4159.84
+final_consumption_lca,China,BS,co2_lca_final_food,CHN,Mt CO2e,2050,4148.89
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2025,824.682
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2026,830.759
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2027,837.361
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2028,843.747
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2029,850.013
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2030,856.075
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2031,861.744
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2032,867.7
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2033,873.605
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2034,879.461
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2035,885.329
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2036,890.637
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2037,895.932
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2038,900.874
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2039,905.481
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2040,909.68
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2041,913.359
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2042,916.917
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2043,920.065
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2044,922.804
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2045,925.09
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2046,926.821
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2047,928.069
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2048,928.763
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2049,928.83
+final_consumption_lca,China,BS,land_lca_final_food,CHN,Mha,2050,928.248
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2025,169.229
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2026,168.779
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2027,168.375
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2028,167.942
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2029,167.481
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2030,166.99
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2031,166.534
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2032,166.066
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2033,165.574
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2034,165.058
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2035,164.525
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2036,164.017
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2037,163.494
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2038,162.942
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2039,162.367
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2040,161.758
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2041,161.157
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2042,160.533
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2043,159.874
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2044,159.183
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2045,158.451
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2046,157.679
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2047,156.853
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2048,155.974
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2049,155.029
+final_consumption_lca,China,BS,water_blue_lca_final_food,CHN,km3,2050,154.016
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2025,3949.45
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2026,3929.87
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2027,3912.8
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2028,3895.6
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2029,3878.55
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2030,3861.49
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2031,3844.32
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2032,3828.52
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2033,3813.24
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2034,3798.5
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2035,3784.55
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2036,3769.84
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2037,3755.7
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2038,3741.32
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2039,3726.83
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2040,3711.95
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2041,3696.67
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2042,3681.73
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2043,3666.5
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2044,3651.02
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2045,3635.13
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2046,3618.57
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2047,3601.42
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2048,3583.57
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2049,3564.77
+final_consumption_lca,China,C1,co2_lca_final_food,CHN,Mt CO2e,2050,3544.96
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2025,812.124
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2026,805.752
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2027,799.992
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2028,794.127
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2029,788.26
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2030,782.324
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2031,776.172
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2032,770.408
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2033,764.733
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2034,759.154
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2035,753.726
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2036,747.982
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2037,742.381
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2038,736.659
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2039,730.843
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2040,724.888
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2041,718.739
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2042,712.69
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2043,706.538
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2044,700.296
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2045,693.94
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2046,687.413
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2047,680.77
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2048,673.976
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2049,666.989
+final_consumption_lca,China,C1,land_lca_final_food,CHN,Mha,2050,659.805
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2025,168.102
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2026,166.556
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2027,165.087
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2028,163.62
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2029,162.156
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2030,160.694
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2031,159.296
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2032,157.917
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2033,156.547
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2034,155.185
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2035,153.838
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2036,152.543
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2037,151.262
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2038,149.986
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2039,148.718
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2040,147.447
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2041,146.212
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2042,144.985
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2043,143.756
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2044,142.526
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2045,141.289
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2046,140.044
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2047,138.779
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2048,137.496
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2049,136.183
+final_consumption_lca,China,C1,water_blue_lca_final_food,CHN,km3,2050,134.838
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2025,3949.33
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2026,3929.56
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2027,3912.24
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2028,3894.73
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2029,3877.31
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2030,3859.81
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2031,3842.19
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2032,3825.93
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2033,3810.15
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2034,3794.87
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2035,3780.35
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2036,3765.1
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2037,3750.43
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2038,3735.49
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2039,3720.41
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2040,3704.93
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2041,3689.1
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2042,3673.63
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2043,3657.87
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2044,3641.83
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2045,3625.4
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2046,3608.3
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2047,3590.62
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2048,3572.24
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2049,3552.92
+final_consumption_lca,China,C2,co2_lca_final_food,CHN,Mt CO2e,2050,3532.59
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2025,812.312
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2026,806.045
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2027,800.359
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2028,794.535
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2029,788.68
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2030,782.722
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2031,776.504
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2032,770.659
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2033,764.882
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2034,759.177
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2035,753.604
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2036,747.694
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2037,741.922
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2038,736.014
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2039,729.999
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2040,723.833
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2041,717.469
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2042,711.209
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2043,704.839
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2044,698.372
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2045,691.785
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2046,685.028
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2047,678.154
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2048,671.126
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2049,663.903
+final_consumption_lca,China,C2,land_lca_final_food,CHN,Mha,2050,656.482
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2025,167.977
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2026,166.335
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2027,164.769
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2028,163.207
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2029,161.65
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2030,160.095
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2031,158.624
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2032,157.175
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2033,155.735
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2034,154.304
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2035,152.889
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2036,151.544
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2037,150.216
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2038,148.891
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2039,147.576
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2040,146.258
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2041,144.991
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2042,143.732
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2043,142.472
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2044,141.211
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2045,139.943
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2046,138.671
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2047,137.38
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2048,136.07
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2049,134.731
+final_consumption_lca,China,C2,water_blue_lca_final_food,CHN,km3,2050,133.361
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2025,3948.59
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2026,3928.96
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2027,3910.59
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2028,3892.08
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2029,3873.84
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2030,3856.07
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2031,3837.95
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2032,3821.31
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2033,3805.17
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2034,3789.76
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2035,3775.46
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2036,3760.2
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2037,3745.56
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2038,3730.81
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2039,3715.71
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2040,3700.62
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2041,3684.82
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2042,3669.39
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2043,3653.71
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2044,3637.64
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2045,3620.99
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2046,3603.48
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2047,3585.44
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2048,3566.45
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2049,3546.45
+final_consumption_lca,China,C3,co2_lca_final_food,CHN,Mt CO2e,2050,3526.34
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2025,811.63
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2026,805.119
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2027,798.98
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2028,792.754
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2029,786.574
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2030,780.389
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2031,774.043
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2032,768.116
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2033,762.293
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2034,756.616
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2035,751.141
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2036,745.369
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2037,739.756
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2038,734.058
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2039,728.229
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2040,722.34
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2041,716.22
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2042,710.209
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2043,704.11
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2044,697.898
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2045,691.548
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2046,684.994
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2047,678.341
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2048,671.494
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2049,664.447
+final_consumption_lca,China,C3,land_lca_final_food,CHN,Mha,2050,657.42
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2025,168.242
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2026,166.78
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2027,165.336
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2028,163.891
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2029,162.451
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2030,161.067
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2031,159.678
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2032,158.311
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2033,156.95
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2034,155.603
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2035,154.312
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2036,153.018
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2037,151.74
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2038,150.471
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2039,149.2
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2040,147.963
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2041,146.716
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2042,145.478
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2043,144.24
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2044,142.996
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2045,141.743
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2046,140.466
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2047,139.173
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2048,137.852
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2049,136.499
+final_consumption_lca,China,C3,water_blue_lca_final_food,CHN,km3,2050,135.195
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2025,3955.49
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2026,3941.77
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2027,3930.43
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2028,3918.85
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2029,3907.32
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2030,3898.97
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2031,3890.4
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2032,3883.14
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2033,3876.39
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2034,3870.18
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2035,3866.93
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2036,3862.95
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2037,3859.62
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2038,3856.07
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2039,3852.42
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2040,3848.35
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2041,3843.8
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2042,3839.53
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2043,3834.86
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2044,3829.8
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2045,3824.26
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2046,3817.96
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2047,3811.05
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2048,3803.44
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2049,3794.94
+final_consumption_lca,China,C4,co2_lca_final_food,CHN,Mt CO2e,2050,3785.51
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2025,813.364
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2026,808.192
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2027,803.597
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2028,798.866
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2029,794.105
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2030,789.917
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2031,785.476
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2032,781.4
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2033,777.398
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2034,773.48
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2035,770.133
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2036,766.457
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2037,762.922
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2038,759.253
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2039,755.472
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2040,751.525
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2041,747.345
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2042,743.235
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2043,738.98
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2044,734.588
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2045,730.043
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2046,725.291
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2047,720.397
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2048,715.33
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2049,710.055
+final_consumption_lca,China,C4,land_lca_final_food,CHN,Mha,2050,704.577
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2025,168.358
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2026,167.061
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2027,165.831
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2028,164.596
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2029,163.358
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2030,162.254
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2031,161.205
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2032,160.17
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2033,159.14
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2034,158.114
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2035,157.187
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2036,156.31
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2037,155.447
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2038,154.586
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2039,153.729
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2040,152.865
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2041,152.032
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2042,151.199
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2043,150.357
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2044,149.505
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2045,148.64
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2046,147.761
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2047,146.858
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2048,145.932
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2049,144.976
+final_consumption_lca,China,C4,water_blue_lca_final_food,CHN,km3,2050,143.988
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2025,3943.42
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2026,3917.96
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2027,3895.16
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2028,3872.34
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2029,3849.79
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2030,3824.02
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2031,3798.28
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2032,3773.98
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2033,3750.26
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2034,3727.11
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2035,3702.64
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2036,3677.43
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2037,3652.75
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2038,3627.8
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2039,3602.71
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2040,3577.21
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2041,3551.28
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2042,3525.65
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2043,3499.72
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2044,3473.53
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2045,3447
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2046,3419.87
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2047,3392.28
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2048,3364.16
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2049,3335.29
+final_consumption_lca,China,C5,co2_lca_final_food,CHN,Mt CO2e,2050,3305.63
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2025,810.884
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2026,803.312
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2027,796.385
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2028,789.386
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2029,782.413
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2030,774.733
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2031,766.876
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2032,759.434
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2033,752.104
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2034,744.887
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2035,737.414
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2036,729.647
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2037,722.031
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2038,714.307
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2039,706.503
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2040,698.575
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2041,690.471
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2042,682.476
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2043,674.398
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2044,666.252
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2045,658.025
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2046,649.667
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2047,641.238
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2048,632.711
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2049,624.052
+final_consumption_lca,China,C5,land_lca_final_food,CHN,Mha,2050,615.26
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2025,167.845
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2026,166.052
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2027,164.342
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2028,162.643
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2029,160.953
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2030,159.135
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2031,157.388
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2032,155.668
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2033,153.962
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2034,152.269
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2035,150.509
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2036,148.803
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2037,147.116
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2038,145.435
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2039,143.765
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2040,142.095
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2041,140.462
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2042,138.839
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2043,137.217
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2044,135.597
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2045,133.977
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2046,132.354
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2047,130.72
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2048,129.077
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2049,127.416
+final_consumption_lca,China,C5,water_blue_lca_final_food,CHN,km3,2050,125.735
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2023,3929.68
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2024,3968.52
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2025,3949.45
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2026,3929.87
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2027,3912.8
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2028,3894.29
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2029,3875.88
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2030,3856.1
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2031,3839.4
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2032,3828.22
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2033,3816.09
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2034,3803.11
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2035,3791.97
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2036,3771.9
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2037,3751
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2038,3730.06
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2039,3708.54
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2040,3685.24
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2041,3661.61
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2042,3634.98
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2043,3608.09
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2044,3579.13
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2045,3550.57
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2046,3520.74
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2047,3490.67
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2048,3460.41
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2049,3428.44
+final_consumption_lca,China,C6,co2_lca_final_food,CHN,Mt CO2e,2050,3396.11
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2023,812.598
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2024,818.026
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2025,812.124
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2026,805.752
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2027,799.992
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2028,793.862
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2029,787.721
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2030,781.243
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2031,775.192
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2032,770.349
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2033,765.296
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2034,760.059
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2035,755.176
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2036,748.383
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2037,741.473
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2038,734.491
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2039,727.343
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2040,719.8
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2041,712.095
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2042,703.877
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2043,695.586
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2044,686.886
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2045,678.251
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2046,669.36
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2047,660.445
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2048,651.496
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2049,642.239
+final_consumption_lca,China,C6,land_lca_final_food,CHN,Mha,2050,632.93
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2023,169.308
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2024,169.751
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2025,168.102
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2026,166.556
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2027,165.087
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2028,163.567
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2029,162.048
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2030,160.476
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2031,159.097
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2032,157.905
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2033,156.662
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2034,155.371
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2035,154.136
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2036,152.625
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2037,151.074
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2038,149.536
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2039,147.989
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2040,146.385
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2041,144.821
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2042,143.134
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2043,141.449
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2044,139.693
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2045,137.965
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2046,136.207
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2047,134.447
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2048,132.69
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2049,130.876
+final_consumption_lca,China,C6,water_blue_lca_final_food,CHN,km3,2050,129.059
+final_consumption_lca,World,BS,co2_lca_final_food,ARG,Mt CO2e,2024,323.314
+final_consumption_lca,World,BS,co2_lca_final_food,ARG,Mt CO2e,2030,343.476
+final_consumption_lca,World,BS,co2_lca_final_food,ARG,Mt CO2e,2035,370.653
+final_consumption_lca,World,BS,co2_lca_final_food,ARG,Mt CO2e,2040,400.354
+final_consumption_lca,World,BS,co2_lca_final_food,ARG,Mt CO2e,2045,433.424
+final_consumption_lca,World,BS,co2_lca_final_food,ARG,Mt CO2e,2050,470.095
+final_consumption_lca,World,BS,co2_lca_final_food,AUS,Mt CO2e,2024,225.918
+final_consumption_lca,World,BS,co2_lca_final_food,AUS,Mt CO2e,2030,229.048
+final_consumption_lca,World,BS,co2_lca_final_food,AUS,Mt CO2e,2035,231.669
+final_consumption_lca,World,BS,co2_lca_final_food,AUS,Mt CO2e,2040,234.467
+final_consumption_lca,World,BS,co2_lca_final_food,AUS,Mt CO2e,2045,237.862
+final_consumption_lca,World,BS,co2_lca_final_food,AUS,Mt CO2e,2050,241.822
+final_consumption_lca,World,BS,co2_lca_final_food,BRZ,Mt CO2e,2024,1908.3
+final_consumption_lca,World,BS,co2_lca_final_food,BRZ,Mt CO2e,2030,1839.68
+final_consumption_lca,World,BS,co2_lca_final_food,BRZ,Mt CO2e,2035,1831.36
+final_consumption_lca,World,BS,co2_lca_final_food,BRZ,Mt CO2e,2040,1844.04
+final_consumption_lca,World,BS,co2_lca_final_food,BRZ,Mt CO2e,2045,1878.41
+final_consumption_lca,World,BS,co2_lca_final_food,BRZ,Mt CO2e,2050,1934.47
+final_consumption_lca,World,BS,co2_lca_final_food,CAN,Mt CO2e,2024,156.199
+final_consumption_lca,World,BS,co2_lca_final_food,CAN,Mt CO2e,2030,164.67
+final_consumption_lca,World,BS,co2_lca_final_food,CAN,Mt CO2e,2035,170.475
+final_consumption_lca,World,BS,co2_lca_final_food,CAN,Mt CO2e,2040,176.51
+final_consumption_lca,World,BS,co2_lca_final_food,CAN,Mt CO2e,2045,182.835
+final_consumption_lca,World,BS,co2_lca_final_food,CAN,Mt CO2e,2050,189.356
+final_consumption_lca,World,BS,co2_lca_final_food,CHN,Mt CO2e,2024,2944.84
+final_consumption_lca,World,BS,co2_lca_final_food,CHN,Mt CO2e,2030,3238.41
+final_consumption_lca,World,BS,co2_lca_final_food,CHN,Mt CO2e,2035,3476.94
+final_consumption_lca,World,BS,co2_lca_final_food,CHN,Mt CO2e,2040,3744.35
+final_consumption_lca,World,BS,co2_lca_final_food,CHN,Mt CO2e,2045,4040.39
+final_consumption_lca,World,BS,co2_lca_final_food,CHN,Mt CO2e,2050,4366.78
+final_consumption_lca,World,BS,co2_lca_final_food,E15,Mt CO2e,2024,1494.3
+final_consumption_lca,World,BS,co2_lca_final_food,E15,Mt CO2e,2030,1408.38
+final_consumption_lca,World,BS,co2_lca_final_food,E15,Mt CO2e,2035,1333.52
+final_consumption_lca,World,BS,co2_lca_final_food,E15,Mt CO2e,2040,1270.53
+final_consumption_lca,World,BS,co2_lca_final_food,E15,Mt CO2e,2045,1217.15
+final_consumption_lca,World,BS,co2_lca_final_food,E15,Mt CO2e,2050,1169.53
+final_consumption_lca,World,BS,co2_lca_final_food,IND,Mt CO2e,2024,2159.42
+final_consumption_lca,World,BS,co2_lca_final_food,IND,Mt CO2e,2030,2150.03
+final_consumption_lca,World,BS,co2_lca_final_food,IND,Mt CO2e,2035,2140.09
+final_consumption_lca,World,BS,co2_lca_final_food,IND,Mt CO2e,2040,2128.25
+final_consumption_lca,World,BS,co2_lca_final_food,IND,Mt CO2e,2045,2120.7
+final_consumption_lca,World,BS,co2_lca_final_food,IND,Mt CO2e,2050,2117.12
+final_consumption_lca,World,BS,co2_lca_final_food,JPN,Mt CO2e,2024,242.893
+final_consumption_lca,World,BS,co2_lca_final_food,JPN,Mt CO2e,2030,239.041
+final_consumption_lca,World,BS,co2_lca_final_food,JPN,Mt CO2e,2035,227.945
+final_consumption_lca,World,BS,co2_lca_final_food,JPN,Mt CO2e,2040,216.511
+final_consumption_lca,World,BS,co2_lca_final_food,JPN,Mt CO2e,2045,205.627
+final_consumption_lca,World,BS,co2_lca_final_food,JPN,Mt CO2e,2050,195.014
+final_consumption_lca,World,BS,co2_lca_final_food,KOR,Mt CO2e,2024,160.087
+final_consumption_lca,World,BS,co2_lca_final_food,KOR,Mt CO2e,2030,166.486
+final_consumption_lca,World,BS,co2_lca_final_food,KOR,Mt CO2e,2035,169.64
+final_consumption_lca,World,BS,co2_lca_final_food,KOR,Mt CO2e,2040,172.972
+final_consumption_lca,World,BS,co2_lca_final_food,KOR,Mt CO2e,2045,176.515
+final_consumption_lca,World,BS,co2_lca_final_food,KOR,Mt CO2e,2050,180.099
+final_consumption_lca,World,BS,co2_lca_final_food,MEX,Mt CO2e,2024,490.307
+final_consumption_lca,World,BS,co2_lca_final_food,MEX,Mt CO2e,2030,495.689
+final_consumption_lca,World,BS,co2_lca_final_food,MEX,Mt CO2e,2035,511.223
+final_consumption_lca,World,BS,co2_lca_final_food,MEX,Mt CO2e,2040,530.663
+final_consumption_lca,World,BS,co2_lca_final_food,MEX,Mt CO2e,2045,554.456
+final_consumption_lca,World,BS,co2_lca_final_food,MEX,Mt CO2e,2050,582.52
+final_consumption_lca,World,BS,co2_lca_final_food,NZL,Mt CO2e,2024,12.6287
+final_consumption_lca,World,BS,co2_lca_final_food,NZL,Mt CO2e,2030,13.5227
+final_consumption_lca,World,BS,co2_lca_final_food,NZL,Mt CO2e,2035,14.1597
+final_consumption_lca,World,BS,co2_lca_final_food,NZL,Mt CO2e,2040,14.8449
+final_consumption_lca,World,BS,co2_lca_final_food,NZL,Mt CO2e,2045,15.5589
+final_consumption_lca,World,BS,co2_lca_final_food,NZL,Mt CO2e,2050,16.3
+final_consumption_lca,World,BS,co2_lca_final_food,ROW,Mt CO2e,2024,6159.61
+final_consumption_lca,World,BS,co2_lca_final_food,ROW,Mt CO2e,2030,6384.96
+final_consumption_lca,World,BS,co2_lca_final_food,ROW,Mt CO2e,2035,6610.06
+final_consumption_lca,World,BS,co2_lca_final_food,ROW,Mt CO2e,2040,6889.85
+final_consumption_lca,World,BS,co2_lca_final_food,ROW,Mt CO2e,2045,7245
+final_consumption_lca,World,BS,co2_lca_final_food,ROW,Mt CO2e,2050,7667.91
+final_consumption_lca,World,BS,co2_lca_final_food,USA,Mt CO2e,2024,1974.23
+final_consumption_lca,World,BS,co2_lca_final_food,USA,Mt CO2e,2030,1951.74
+final_consumption_lca,World,BS,co2_lca_final_food,USA,Mt CO2e,2035,1934.46
+final_consumption_lca,World,BS,co2_lca_final_food,USA,Mt CO2e,2040,1919.56
+final_consumption_lca,World,BS,co2_lca_final_food,USA,Mt CO2e,2045,1909.43
+final_consumption_lca,World,BS,co2_lca_final_food,USA,Mt CO2e,2050,1899.7
+final_consumption_lca,World,BS,land_lca_final_food,ARG,Mha,2024,88.4045
+final_consumption_lca,World,BS,land_lca_final_food,ARG,Mha,2030,95.5172
+final_consumption_lca,World,BS,land_lca_final_food,ARG,Mha,2035,104.391
+final_consumption_lca,World,BS,land_lca_final_food,ARG,Mha,2040,114.03
+final_consumption_lca,World,BS,land_lca_final_food,ARG,Mha,2045,124.646
+final_consumption_lca,World,BS,land_lca_final_food,ARG,Mha,2050,136.29
+final_consumption_lca,World,BS,land_lca_final_food,AUS,Mha,2024,44.7114
+final_consumption_lca,World,BS,land_lca_final_food,AUS,Mha,2030,47.1442
+final_consumption_lca,World,BS,land_lca_final_food,AUS,Mha,2035,49.0444
+final_consumption_lca,World,BS,land_lca_final_food,AUS,Mha,2040,51.0299
+final_consumption_lca,World,BS,land_lca_final_food,AUS,Mha,2045,53.1634
+final_consumption_lca,World,BS,land_lca_final_food,AUS,Mha,2050,55.4286
+final_consumption_lca,World,BS,land_lca_final_food,BRZ,Mha,2024,309.578
+final_consumption_lca,World,BS,land_lca_final_food,BRZ,Mha,2030,324.295
+final_consumption_lca,World,BS,land_lca_final_food,BRZ,Mha,2035,344.048
+final_consumption_lca,World,BS,land_lca_final_food,BRZ,Mha,2040,367.298
+final_consumption_lca,World,BS,land_lca_final_food,BRZ,Mha,2045,394.485
+final_consumption_lca,World,BS,land_lca_final_food,BRZ,Mha,2050,425.541
+final_consumption_lca,World,BS,land_lca_final_food,CAN,Mha,2024,44.1035
+final_consumption_lca,World,BS,land_lca_final_food,CAN,Mha,2030,46.4617
+final_consumption_lca,World,BS,land_lca_final_food,CAN,Mha,2035,48.0618
+final_consumption_lca,World,BS,land_lca_final_food,CAN,Mha,2040,49.7234
+final_consumption_lca,World,BS,land_lca_final_food,CAN,Mha,2045,51.4678
+final_consumption_lca,World,BS,land_lca_final_food,CAN,Mha,2050,53.2618
+final_consumption_lca,World,BS,land_lca_final_food,CHN,Mha,2024,526.097
+final_consumption_lca,World,BS,land_lca_final_food,CHN,Mha,2030,588.524
+final_consumption_lca,World,BS,land_lca_final_food,CHN,Mha,2035,639.875
+final_consumption_lca,World,BS,land_lca_final_food,CHN,Mha,2040,696.563
+final_consumption_lca,World,BS,land_lca_final_food,CHN,Mha,2045,758.934
+final_consumption_lca,World,BS,land_lca_final_food,CHN,Mha,2050,827.298
+final_consumption_lca,World,BS,land_lca_final_food,E15,Mha,2024,380.614
+final_consumption_lca,World,BS,land_lca_final_food,E15,Mha,2030,366.05
+final_consumption_lca,World,BS,land_lca_final_food,E15,Mha,2035,351.071
+final_consumption_lca,World,BS,land_lca_final_food,E15,Mha,2040,337.851
+final_consumption_lca,World,BS,land_lca_final_food,E15,Mha,2045,326.15
+final_consumption_lca,World,BS,land_lca_final_food,E15,Mha,2050,315.157
+final_consumption_lca,World,BS,land_lca_final_food,IND,Mha,2024,246.853
+final_consumption_lca,World,BS,land_lca_final_food,IND,Mha,2030,254.945
+final_consumption_lca,World,BS,land_lca_final_food,IND,Mha,2035,260.734
+final_consumption_lca,World,BS,land_lca_final_food,IND,Mha,2040,266.615
+final_consumption_lca,World,BS,land_lca_final_food,IND,Mha,2045,273.228
+final_consumption_lca,World,BS,land_lca_final_food,IND,Mha,2050,280.414
+final_consumption_lca,World,BS,land_lca_final_food,JPN,Mha,2024,57.4472
+final_consumption_lca,World,BS,land_lca_final_food,JPN,Mha,2030,56.572
+final_consumption_lca,World,BS,land_lca_final_food,JPN,Mha,2035,53.8114
+final_consumption_lca,World,BS,land_lca_final_food,JPN,Mha,2040,50.9683
+final_consumption_lca,World,BS,land_lca_final_food,JPN,Mha,2045,48.2813
+final_consumption_lca,World,BS,land_lca_final_food,JPN,Mha,2050,45.6616
+final_consumption_lca,World,BS,land_lca_final_food,KOR,Mha,2024,40.1441
+final_consumption_lca,World,BS,land_lca_final_food,KOR,Mha,2030,41.6725
+final_consumption_lca,World,BS,land_lca_final_food,KOR,Mha,2035,42.3705
+final_consumption_lca,World,BS,land_lca_final_food,KOR,Mha,2040,43.1177
+final_consumption_lca,World,BS,land_lca_final_food,KOR,Mha,2045,43.9328
+final_consumption_lca,World,BS,land_lca_final_food,KOR,Mha,2050,44.755
+final_consumption_lca,World,BS,land_lca_final_food,MEX,Mha,2024,94.8771
+final_consumption_lca,World,BS,land_lca_final_food,MEX,Mha,2030,101.178
+final_consumption_lca,World,BS,land_lca_final_food,MEX,Mha,2035,107.682
+final_consumption_lca,World,BS,land_lca_final_food,MEX,Mha,2040,114.93
+final_consumption_lca,World,BS,land_lca_final_food,MEX,Mha,2045,123.055
+final_consumption_lca,World,BS,land_lca_final_food,MEX,Mha,2050,131.983
+final_consumption_lca,World,BS,land_lca_final_food,NZL,Mha,2024,3.33205
+final_consumption_lca,World,BS,land_lca_final_food,NZL,Mha,2030,3.56522
+final_consumption_lca,World,BS,land_lca_final_food,NZL,Mha,2035,3.73033
+final_consumption_lca,World,BS,land_lca_final_food,NZL,Mha,2040,3.90819
+final_consumption_lca,World,BS,land_lca_final_food,NZL,Mha,2045,4.09394
+final_consumption_lca,World,BS,land_lca_final_food,NZL,Mha,2050,4.28666
+final_consumption_lca,World,BS,land_lca_final_food,ROW,Mha,2024,1236.86
+final_consumption_lca,World,BS,land_lca_final_food,ROW,Mha,2030,1343.78
+final_consumption_lca,World,BS,land_lca_final_food,ROW,Mha,2035,1433.27
+final_consumption_lca,World,BS,land_lca_final_food,ROW,Mha,2040,1531.51
+final_consumption_lca,World,BS,land_lca_final_food,ROW,Mha,2045,1642.23
+final_consumption_lca,World,BS,land_lca_final_food,ROW,Mha,2050,1764.16
+final_consumption_lca,World,BS,land_lca_final_food,USA,Mha,2024,534.467
+final_consumption_lca,World,BS,land_lca_final_food,USA,Mha,2030,535.893
+final_consumption_lca,World,BS,land_lca_final_food,USA,Mha,2035,535.62
+final_consumption_lca,World,BS,land_lca_final_food,USA,Mha,2040,536.101
+final_consumption_lca,World,BS,land_lca_final_food,USA,Mha,2045,538.034
+final_consumption_lca,World,BS,land_lca_final_food,USA,Mha,2050,539.986
+final_consumption_lca,World,BS,water_blue_lca_final_food,ARG,km3,2024,5.40707
+final_consumption_lca,World,BS,water_blue_lca_final_food,ARG,km3,2030,5.75094
+final_consumption_lca,World,BS,water_blue_lca_final_food,ARG,km3,2035,6.21615
+final_consumption_lca,World,BS,water_blue_lca_final_food,ARG,km3,2040,6.72546
+final_consumption_lca,World,BS,water_blue_lca_final_food,ARG,km3,2045,7.29007
+final_consumption_lca,World,BS,water_blue_lca_final_food,ARG,km3,2050,7.91719
+final_consumption_lca,World,BS,water_blue_lca_final_food,AUS,km3,2024,4.07982
+final_consumption_lca,World,BS,water_blue_lca_final_food,AUS,km3,2030,4.14541
+final_consumption_lca,World,BS,water_blue_lca_final_food,AUS,km3,2035,4.20209
+final_consumption_lca,World,BS,water_blue_lca_final_food,AUS,km3,2040,4.26229
+final_consumption_lca,World,BS,water_blue_lca_final_food,AUS,km3,2045,4.33243
+final_consumption_lca,World,BS,water_blue_lca_final_food,AUS,km3,2050,4.41321
+final_consumption_lca,World,BS,water_blue_lca_final_food,BRZ,km3,2024,34.8966
+final_consumption_lca,World,BS,water_blue_lca_final_food,BRZ,km3,2030,33.8953
+final_consumption_lca,World,BS,water_blue_lca_final_food,BRZ,km3,2035,34.0098
+final_consumption_lca,World,BS,water_blue_lca_final_food,BRZ,km3,2040,34.5329
+final_consumption_lca,World,BS,water_blue_lca_final_food,BRZ,km3,2045,35.4578
+final_consumption_lca,World,BS,water_blue_lca_final_food,BRZ,km3,2050,36.8147
+final_consumption_lca,World,BS,water_blue_lca_final_food,CAN,km3,2024,3.09828
+final_consumption_lca,World,BS,water_blue_lca_final_food,CAN,km3,2030,3.27602
+final_consumption_lca,World,BS,water_blue_lca_final_food,CAN,km3,2035,3.4024
+final_consumption_lca,World,BS,water_blue_lca_final_food,CAN,km3,2040,3.53318
+final_consumption_lca,World,BS,water_blue_lca_final_food,CAN,km3,2045,3.6678
+final_consumption_lca,World,BS,water_blue_lca_final_food,CAN,km3,2050,3.80647
+final_consumption_lca,World,BS,water_blue_lca_final_food,CHN,km3,2024,112.102
+final_consumption_lca,World,BS,water_blue_lca_final_food,CHN,km3,2030,124.98
+final_consumption_lca,World,BS,water_blue_lca_final_food,CHN,km3,2035,135.583
+final_consumption_lca,World,BS,water_blue_lca_final_food,CHN,km3,2040,147.31
+final_consumption_lca,World,BS,water_blue_lca_final_food,CHN,km3,2045,160.148
+final_consumption_lca,World,BS,water_blue_lca_final_food,CHN,km3,2050,174.189
+final_consumption_lca,World,BS,water_blue_lca_final_food,E15,km3,2024,43.1727
+final_consumption_lca,World,BS,water_blue_lca_final_food,E15,km3,2030,42.5566
+final_consumption_lca,World,BS,water_blue_lca_final_food,E15,km3,2035,41.9191
+final_consumption_lca,World,BS,water_blue_lca_final_food,E15,km3,2040,41.4203
+final_consumption_lca,World,BS,water_blue_lca_final_food,E15,km3,2045,41.0093
+final_consumption_lca,World,BS,water_blue_lca_final_food,E15,km3,2050,40.6532
+final_consumption_lca,World,BS,water_blue_lca_final_food,IND,km3,2024,99.9266
+final_consumption_lca,World,BS,water_blue_lca_final_food,IND,km3,2030,104.659
+final_consumption_lca,World,BS,water_blue_lca_final_food,IND,km3,2035,108.29
+final_consumption_lca,World,BS,water_blue_lca_final_food,IND,km3,2040,112.038
+final_consumption_lca,World,BS,water_blue_lca_final_food,IND,km3,2045,116.029
+final_consumption_lca,World,BS,water_blue_lca_final_food,IND,km3,2050,120.285
+final_consumption_lca,World,BS,water_blue_lca_final_food,JPN,km3,2024,6.8986
+final_consumption_lca,World,BS,water_blue_lca_final_food,JPN,km3,2030,6.82504
+final_consumption_lca,World,BS,water_blue_lca_final_food,JPN,km3,2035,6.61886
+final_consumption_lca,World,BS,water_blue_lca_final_food,JPN,km3,2040,6.40318
+final_consumption_lca,World,BS,water_blue_lca_final_food,JPN,km3,2045,6.19125
+final_consumption_lca,World,BS,water_blue_lca_final_food,JPN,km3,2050,5.98146
+final_consumption_lca,World,BS,water_blue_lca_final_food,KOR,km3,2024,4.25227
+final_consumption_lca,World,BS,water_blue_lca_final_food,KOR,km3,2030,4.45046
+final_consumption_lca,World,BS,water_blue_lca_final_food,KOR,km3,2035,4.56623
+final_consumption_lca,World,BS,water_blue_lca_final_food,KOR,km3,2040,4.68456
+final_consumption_lca,World,BS,water_blue_lca_final_food,KOR,km3,2045,4.80417
+final_consumption_lca,World,BS,water_blue_lca_final_food,KOR,km3,2050,4.92508
+final_consumption_lca,World,BS,water_blue_lca_final_food,MEX,km3,2024,11.8043
+final_consumption_lca,World,BS,water_blue_lca_final_food,MEX,km3,2030,12.2761
+final_consumption_lca,World,BS,water_blue_lca_final_food,MEX,km3,2035,12.9232
+final_consumption_lca,World,BS,water_blue_lca_final_food,MEX,km3,2040,13.6721
+final_consumption_lca,World,BS,water_blue_lca_final_food,MEX,km3,2045,14.5247
+final_consumption_lca,World,BS,water_blue_lca_final_food,MEX,km3,2050,15.4929
+final_consumption_lca,World,BS,water_blue_lca_final_food,NZL,km3,2024,0.349587
+final_consumption_lca,World,BS,water_blue_lca_final_food,NZL,km3,2030,0.374925
+final_consumption_lca,World,BS,water_blue_lca_final_food,NZL,km3,2035,0.393219
+final_consumption_lca,World,BS,water_blue_lca_final_food,NZL,km3,2040,0.412813
+final_consumption_lca,World,BS,water_blue_lca_final_food,NZL,km3,2045,0.433064
+final_consumption_lca,World,BS,water_blue_lca_final_food,NZL,km3,2050,0.454063
+final_consumption_lca,World,BS,water_blue_lca_final_food,ROW,km3,2024,230.189
+final_consumption_lca,World,BS,water_blue_lca_final_food,ROW,km3,2030,248.599
+final_consumption_lca,World,BS,water_blue_lca_final_food,ROW,km3,2035,264.903
+final_consumption_lca,World,BS,water_blue_lca_final_food,ROW,km3,2040,283.071
+final_consumption_lca,World,BS,water_blue_lca_final_food,ROW,km3,2045,303.555
+final_consumption_lca,World,BS,water_blue_lca_final_food,ROW,km3,2050,326.384
+final_consumption_lca,World,BS,water_blue_lca_final_food,USA,km3,2024,35.1183
+final_consumption_lca,World,BS,water_blue_lca_final_food,USA,km3,2030,34.2765
+final_consumption_lca,World,BS,water_blue_lca_final_food,USA,km3,2035,33.8836
+final_consumption_lca,World,BS,water_blue_lca_final_food,USA,km3,2040,33.5104
+final_consumption_lca,World,BS,water_blue_lca_final_food,USA,km3,2045,33.1756
+final_consumption_lca,World,BS,water_blue_lca_final_food,USA,km3,2050,32.8596
+final_consumption_lca,World,HDS,co2_lca_final_food,ARG,Mt CO2e,2024,323.314
+final_consumption_lca,World,HDS,co2_lca_final_food,ARG,Mt CO2e,2030,345.332
+final_consumption_lca,World,HDS,co2_lca_final_food,ARG,Mt CO2e,2035,374.125
+final_consumption_lca,World,HDS,co2_lca_final_food,ARG,Mt CO2e,2040,405.789
+final_consumption_lca,World,HDS,co2_lca_final_food,ARG,Mt CO2e,2045,440.913
+final_consumption_lca,World,HDS,co2_lca_final_food,ARG,Mt CO2e,2050,479.896
+final_consumption_lca,World,HDS,co2_lca_final_food,AUS,Mt CO2e,2024,225.918
+final_consumption_lca,World,HDS,co2_lca_final_food,AUS,Mt CO2e,2030,229.768
+final_consumption_lca,World,HDS,co2_lca_final_food,AUS,Mt CO2e,2035,232.815
+final_consumption_lca,World,HDS,co2_lca_final_food,AUS,Mt CO2e,2040,236.067
+final_consumption_lca,World,HDS,co2_lca_final_food,AUS,Mt CO2e,2045,239.777
+final_consumption_lca,World,HDS,co2_lca_final_food,AUS,Mt CO2e,2050,244.053
+final_consumption_lca,World,HDS,co2_lca_final_food,BRZ,Mt CO2e,2024,1908.3
+final_consumption_lca,World,HDS,co2_lca_final_food,BRZ,Mt CO2e,2030,1851.42
+final_consumption_lca,World,HDS,co2_lca_final_food,BRZ,Mt CO2e,2035,1848.4
+final_consumption_lca,World,HDS,co2_lca_final_food,BRZ,Mt CO2e,2040,1866.49
+final_consumption_lca,World,HDS,co2_lca_final_food,BRZ,Mt CO2e,2045,1903.8
+final_consumption_lca,World,HDS,co2_lca_final_food,BRZ,Mt CO2e,2050,1962.55
+final_consumption_lca,World,HDS,co2_lca_final_food,CAN,Mt CO2e,2024,156.199
+final_consumption_lca,World,HDS,co2_lca_final_food,CAN,Mt CO2e,2030,164.751
+final_consumption_lca,World,HDS,co2_lca_final_food,CAN,Mt CO2e,2035,170.588
+final_consumption_lca,World,HDS,co2_lca_final_food,CAN,Mt CO2e,2040,176.569
+final_consumption_lca,World,HDS,co2_lca_final_food,CAN,Mt CO2e,2045,182.714
+final_consumption_lca,World,HDS,co2_lca_final_food,CAN,Mt CO2e,2050,189.12
+final_consumption_lca,World,HDS,co2_lca_final_food,CHN,Mt CO2e,2024,2944.84
+final_consumption_lca,World,HDS,co2_lca_final_food,CHN,Mt CO2e,2030,2730.21
+final_consumption_lca,World,HDS,co2_lca_final_food,CHN,Mt CO2e,2035,2559.99
+final_consumption_lca,World,HDS,co2_lca_final_food,CHN,Mt CO2e,2040,2423.83
+final_consumption_lca,World,HDS,co2_lca_final_food,CHN,Mt CO2e,2045,2317.53
+final_consumption_lca,World,HDS,co2_lca_final_food,CHN,Mt CO2e,2050,2239.29
+final_consumption_lca,World,HDS,co2_lca_final_food,E15,Mt CO2e,2024,1494.3
+final_consumption_lca,World,HDS,co2_lca_final_food,E15,Mt CO2e,2030,1449.48
+final_consumption_lca,World,HDS,co2_lca_final_food,E15,Mt CO2e,2035,1401.26
+final_consumption_lca,World,HDS,co2_lca_final_food,E15,Mt CO2e,2040,1362.43
+final_consumption_lca,World,HDS,co2_lca_final_food,E15,Mt CO2e,2045,1325.85
+final_consumption_lca,World,HDS,co2_lca_final_food,E15,Mt CO2e,2050,1292.53
+final_consumption_lca,World,HDS,co2_lca_final_food,IND,Mt CO2e,2024,2159.42
+final_consumption_lca,World,HDS,co2_lca_final_food,IND,Mt CO2e,2030,2160.19
+final_consumption_lca,World,HDS,co2_lca_final_food,IND,Mt CO2e,2035,2157.09
+final_consumption_lca,World,HDS,co2_lca_final_food,IND,Mt CO2e,2040,2152.41
+final_consumption_lca,World,HDS,co2_lca_final_food,IND,Mt CO2e,2045,2150.9
+final_consumption_lca,World,HDS,co2_lca_final_food,IND,Mt CO2e,2050,2153.78
+final_consumption_lca,World,HDS,co2_lca_final_food,JPN,Mt CO2e,2024,242.893
+final_consumption_lca,World,HDS,co2_lca_final_food,JPN,Mt CO2e,2030,244.65
+final_consumption_lca,World,HDS,co2_lca_final_food,JPN,Mt CO2e,2035,237.433
+final_consumption_lca,World,HDS,co2_lca_final_food,JPN,Mt CO2e,2040,229.549
+final_consumption_lca,World,HDS,co2_lca_final_food,JPN,Mt CO2e,2045,221.227
+final_consumption_lca,World,HDS,co2_lca_final_food,JPN,Mt CO2e,2050,212.808
+final_consumption_lca,World,HDS,co2_lca_final_food,KOR,Mt CO2e,2024,160.087
+final_consumption_lca,World,HDS,co2_lca_final_food,KOR,Mt CO2e,2030,165.535
+final_consumption_lca,World,HDS,co2_lca_final_food,KOR,Mt CO2e,2035,167.908
+final_consumption_lca,World,HDS,co2_lca_final_food,KOR,Mt CO2e,2040,170.277
+final_consumption_lca,World,HDS,co2_lca_final_food,KOR,Mt CO2e,2045,172.753
+final_consumption_lca,World,HDS,co2_lca_final_food,KOR,Mt CO2e,2050,175.459
+final_consumption_lca,World,HDS,co2_lca_final_food,MEX,Mt CO2e,2024,490.307
+final_consumption_lca,World,HDS,co2_lca_final_food,MEX,Mt CO2e,2030,496.542
+final_consumption_lca,World,HDS,co2_lca_final_food,MEX,Mt CO2e,2035,512.194
+final_consumption_lca,World,HDS,co2_lca_final_food,MEX,Mt CO2e,2040,531.613
+final_consumption_lca,World,HDS,co2_lca_final_food,MEX,Mt CO2e,2045,554.92
+final_consumption_lca,World,HDS,co2_lca_final_food,MEX,Mt CO2e,2050,582.671
+final_consumption_lca,World,HDS,co2_lca_final_food,NZL,Mt CO2e,2024,12.6287
+final_consumption_lca,World,HDS,co2_lca_final_food,NZL,Mt CO2e,2030,13.631
+final_consumption_lca,World,HDS,co2_lca_final_food,NZL,Mt CO2e,2035,14.3669
+final_consumption_lca,World,HDS,co2_lca_final_food,NZL,Mt CO2e,2040,15.1687
+final_consumption_lca,World,HDS,co2_lca_final_food,NZL,Mt CO2e,2045,16.0079
+final_consumption_lca,World,HDS,co2_lca_final_food,NZL,Mt CO2e,2050,16.8869
+final_consumption_lca,World,HDS,co2_lca_final_food,ROW,Mt CO2e,2024,6159.61
+final_consumption_lca,World,HDS,co2_lca_final_food,ROW,Mt CO2e,2030,6417.86
+final_consumption_lca,World,HDS,co2_lca_final_food,ROW,Mt CO2e,2035,6658.29
+final_consumption_lca,World,HDS,co2_lca_final_food,ROW,Mt CO2e,2040,6950.23
+final_consumption_lca,World,HDS,co2_lca_final_food,ROW,Mt CO2e,2045,7308.56
+final_consumption_lca,World,HDS,co2_lca_final_food,ROW,Mt CO2e,2050,7737.08
+final_consumption_lca,World,HDS,co2_lca_final_food,USA,Mt CO2e,2024,1974.23
+final_consumption_lca,World,HDS,co2_lca_final_food,USA,Mt CO2e,2030,1961.3
+final_consumption_lca,World,HDS,co2_lca_final_food,USA,Mt CO2e,2035,1948.61
+final_consumption_lca,World,HDS,co2_lca_final_food,USA,Mt CO2e,2040,1933.46
+final_consumption_lca,World,HDS,co2_lca_final_food,USA,Mt CO2e,2045,1916.05
+final_consumption_lca,World,HDS,co2_lca_final_food,USA,Mt CO2e,2050,1900.17
+final_consumption_lca,World,HDS,land_lca_final_food,ARG,Mha,2024,88.4045
+final_consumption_lca,World,HDS,land_lca_final_food,ARG,Mha,2030,96.0577
+final_consumption_lca,World,HDS,land_lca_final_food,ARG,Mha,2035,105.424
+final_consumption_lca,World,HDS,land_lca_final_food,ARG,Mha,2040,115.641
+final_consumption_lca,World,HDS,land_lca_final_food,ARG,Mha,2045,126.852
+final_consumption_lca,World,HDS,land_lca_final_food,ARG,Mha,2050,139.185
+final_consumption_lca,World,HDS,land_lca_final_food,AUS,Mha,2024,44.7114
+final_consumption_lca,World,HDS,land_lca_final_food,AUS,Mha,2030,47.2451
+final_consumption_lca,World,HDS,land_lca_final_food,AUS,Mha,2035,49.2122
+final_consumption_lca,World,HDS,land_lca_final_food,AUS,Mha,2040,51.2531
+final_consumption_lca,World,HDS,land_lca_final_food,AUS,Mha,2045,53.4099
+final_consumption_lca,World,HDS,land_lca_final_food,AUS,Mha,2050,55.7104
+final_consumption_lca,World,HDS,land_lca_final_food,BRZ,Mha,2024,309.578
+final_consumption_lca,World,HDS,land_lca_final_food,BRZ,Mha,2030,325.582
+final_consumption_lca,World,HDS,land_lca_final_food,BRZ,Mha,2035,346.067
+final_consumption_lca,World,HDS,land_lca_final_food,BRZ,Mha,2040,369.841
+final_consumption_lca,World,HDS,land_lca_final_food,BRZ,Mha,2045,397.063
+final_consumption_lca,World,HDS,land_lca_final_food,BRZ,Mha,2050,428.388
+final_consumption_lca,World,HDS,land_lca_final_food,CAN,Mha,2024,44.1035
+final_consumption_lca,World,HDS,land_lca_final_food,CAN,Mha,2030,46.4906
+final_consumption_lca,World,HDS,land_lca_final_food,CAN,Mha,2035,48.0995
+final_consumption_lca,World,HDS,land_lca_final_food,CAN,Mha,2040,49.7364
+final_consumption_lca,World,HDS,land_lca_final_food,CAN,Mha,2045,51.4103
+final_consumption_lca,World,HDS,land_lca_final_food,CAN,Mha,2050,53.1539
+final_consumption_lca,World,HDS,land_lca_final_food,CHN,Mha,2024,526.097
+final_consumption_lca,World,HDS,land_lca_final_food,CHN,Mha,2030,469.067
+final_consumption_lca,World,HDS,land_lca_final_food,CHN,Mha,2035,426.046
+final_consumption_lca,World,HDS,land_lca_final_food,CHN,Mha,2040,391.075
+final_consumption_lca,World,HDS,land_lca_final_food,CHN,Mha,2045,363.317
+final_consumption_lca,World,HDS,land_lca_final_food,CHN,Mha,2050,342.095
+final_consumption_lca,World,HDS,land_lca_final_food,E15,Mha,2024,380.614
+final_consumption_lca,World,HDS,land_lca_final_food,E15,Mha,2030,375.935
+final_consumption_lca,World,HDS,land_lca_final_food,E15,Mha,2035,367.397
+final_consumption_lca,World,HDS,land_lca_final_food,E15,Mha,2040,359.739
+final_consumption_lca,World,HDS,land_lca_final_food,E15,Mha,2045,351.57
+final_consumption_lca,World,HDS,land_lca_final_food,E15,Mha,2050,343.477
+final_consumption_lca,World,HDS,land_lca_final_food,IND,Mha,2024,246.853
+final_consumption_lca,World,HDS,land_lca_final_food,IND,Mha,2030,255.681
+final_consumption_lca,World,HDS,land_lca_final_food,IND,Mha,2035,261.933
+final_consumption_lca,World,HDS,land_lca_final_food,IND,Mha,2040,268.185
+final_consumption_lca,World,HDS,land_lca_final_food,IND,Mha,2045,274.932
+final_consumption_lca,World,HDS,land_lca_final_food,IND,Mha,2050,282.393
+final_consumption_lca,World,HDS,land_lca_final_food,JPN,Mha,2024,57.4472
+final_consumption_lca,World,HDS,land_lca_final_food,JPN,Mha,2030,58.004
+final_consumption_lca,World,HDS,land_lca_final_food,JPN,Mha,2035,56.2146
+final_consumption_lca,World,HDS,land_lca_final_food,JPN,Mha,2040,54.2336
+final_consumption_lca,World,HDS,land_lca_final_food,JPN,Mha,2045,52.1354
+final_consumption_lca,World,HDS,land_lca_final_food,JPN,Mha,2050,50.0211
+final_consumption_lca,World,HDS,land_lca_final_food,KOR,Mha,2024,40.1441
+final_consumption_lca,World,HDS,land_lca_final_food,KOR,Mha,2030,41.344
+final_consumption_lca,World,HDS,land_lca_final_food,KOR,Mha,2035,41.7627
+final_consumption_lca,World,HDS,land_lca_final_food,KOR,Mha,2040,42.1585
+final_consumption_lca,World,HDS,land_lca_final_food,KOR,Mha,2045,42.5786
+final_consumption_lca,World,HDS,land_lca_final_food,KOR,Mha,2050,43.0665
+final_consumption_lca,World,HDS,land_lca_final_food,MEX,Mha,2024,94.8771
+final_consumption_lca,World,HDS,land_lca_final_food,MEX,Mha,2030,101.152
+final_consumption_lca,World,HDS,land_lca_final_food,MEX,Mha,2035,107.556
+final_consumption_lca,World,HDS,land_lca_final_food,MEX,Mha,2040,114.571
+final_consumption_lca,World,HDS,land_lca_final_food,MEX,Mha,2045,122.3
+final_consumption_lca,World,HDS,land_lca_final_food,MEX,Mha,2050,130.916
+final_consumption_lca,World,HDS,land_lca_final_food,NZL,Mha,2024,3.33205
+final_consumption_lca,World,HDS,land_lca_final_food,NZL,Mha,2030,3.59425
+final_consumption_lca,World,HDS,land_lca_final_food,NZL,Mha,2035,3.78539
+final_consumption_lca,World,HDS,land_lca_final_food,NZL,Mha,2040,3.99326
+final_consumption_lca,World,HDS,land_lca_final_food,NZL,Mha,2045,4.21057
+final_consumption_lca,World,HDS,land_lca_final_food,NZL,Mha,2050,4.43845
+final_consumption_lca,World,HDS,land_lca_final_food,ROW,Mha,2024,1236.86
+final_consumption_lca,World,HDS,land_lca_final_food,ROW,Mha,2030,1347.46
+final_consumption_lca,World,HDS,land_lca_final_food,ROW,Mha,2035,1438.89
+final_consumption_lca,World,HDS,land_lca_final_food,ROW,Mha,2040,1537.94
+final_consumption_lca,World,HDS,land_lca_final_food,ROW,Mha,2045,1647.31
+final_consumption_lca,World,HDS,land_lca_final_food,ROW,Mha,2050,1768.95
+final_consumption_lca,World,HDS,land_lca_final_food,USA,Mha,2024,534.467
+final_consumption_lca,World,HDS,land_lca_final_food,USA,Mha,2030,534.727
+final_consumption_lca,World,HDS,land_lca_final_food,USA,Mha,2035,532.821
+final_consumption_lca,World,HDS,land_lca_final_food,USA,Mha,2040,530.053
+final_consumption_lca,World,HDS,land_lca_final_food,USA,Mha,2045,527.095
+final_consumption_lca,World,HDS,land_lca_final_food,USA,Mha,2050,525.061
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ARG,km3,2024,5.40707
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ARG,km3,2030,5.76445
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ARG,km3,2035,6.24272
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ARG,km3,2040,6.77214
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ARG,km3,2045,7.36235
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ARG,km3,2050,8.01664
+final_consumption_lca,World,HDS,water_blue_lca_final_food,AUS,km3,2024,4.07982
+final_consumption_lca,World,HDS,water_blue_lca_final_food,AUS,km3,2030,4.15615
+final_consumption_lca,World,HDS,water_blue_lca_final_food,AUS,km3,2035,4.21956
+final_consumption_lca,World,HDS,water_blue_lca_final_food,AUS,km3,2040,4.2884
+final_consumption_lca,World,HDS,water_blue_lca_final_food,AUS,km3,2045,4.36658
+final_consumption_lca,World,HDS,water_blue_lca_final_food,AUS,km3,2050,4.45488
+final_consumption_lca,World,HDS,water_blue_lca_final_food,BRZ,km3,2024,34.8966
+final_consumption_lca,World,HDS,water_blue_lca_final_food,BRZ,km3,2030,34.0519
+final_consumption_lca,World,HDS,water_blue_lca_final_food,BRZ,km3,2035,34.2312
+final_consumption_lca,World,HDS,water_blue_lca_final_food,BRZ,km3,2040,34.8536
+final_consumption_lca,World,HDS,water_blue_lca_final_food,BRZ,km3,2045,35.8779
+final_consumption_lca,World,HDS,water_blue_lca_final_food,BRZ,km3,2050,37.3201
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CAN,km3,2024,3.09828
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CAN,km3,2030,3.27661
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CAN,km3,2035,3.40414
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CAN,km3,2040,3.53671
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CAN,km3,2045,3.67345
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CAN,km3,2050,3.81428
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CHN,km3,2024,112.102
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CHN,km3,2030,111.51
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CHN,km3,2035,110.556
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CHN,km3,2040,110.219
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CHN,km3,2045,110.458
+final_consumption_lca,World,HDS,water_blue_lca_final_food,CHN,km3,2050,111.265
+final_consumption_lca,World,HDS,water_blue_lca_final_food,E15,km3,2024,43.1727
+final_consumption_lca,World,HDS,water_blue_lca_final_food,E15,km3,2030,43.1641
+final_consumption_lca,World,HDS,water_blue_lca_final_food,E15,km3,2035,42.967
+final_consumption_lca,World,HDS,water_blue_lca_final_food,E15,km3,2040,42.9164
+final_consumption_lca,World,HDS,water_blue_lca_final_food,E15,km3,2045,42.8854
+final_consumption_lca,World,HDS,water_blue_lca_final_food,E15,km3,2050,42.8663
+final_consumption_lca,World,HDS,water_blue_lca_final_food,IND,km3,2024,99.9266
+final_consumption_lca,World,HDS,water_blue_lca_final_food,IND,km3,2030,104.827
+final_consumption_lca,World,HDS,water_blue_lca_final_food,IND,km3,2035,108.608
+final_consumption_lca,World,HDS,water_blue_lca_final_food,IND,km3,2040,112.53
+final_consumption_lca,World,HDS,water_blue_lca_final_food,IND,km3,2045,116.731
+final_consumption_lca,World,HDS,water_blue_lca_final_food,IND,km3,2050,121.218
+final_consumption_lca,World,HDS,water_blue_lca_final_food,JPN,km3,2024,6.8986
+final_consumption_lca,World,HDS,water_blue_lca_final_food,JPN,km3,2030,6.92126
+final_consumption_lca,World,HDS,water_blue_lca_final_food,JPN,km3,2035,6.78602
+final_consumption_lca,World,HDS,water_blue_lca_final_food,JPN,km3,2040,6.64045
+final_consumption_lca,World,HDS,water_blue_lca_final_food,JPN,km3,2045,6.4856
+final_consumption_lca,World,HDS,water_blue_lca_final_food,JPN,km3,2050,6.32459
+final_consumption_lca,World,HDS,water_blue_lca_final_food,KOR,km3,2024,4.25227
+final_consumption_lca,World,HDS,water_blue_lca_final_food,KOR,km3,2030,4.44638
+final_consumption_lca,World,HDS,water_blue_lca_final_food,KOR,km3,2035,4.56078
+final_consumption_lca,World,HDS,water_blue_lca_final_food,KOR,km3,2040,4.67907
+final_consumption_lca,World,HDS,water_blue_lca_final_food,KOR,km3,2045,4.80018
+final_consumption_lca,World,HDS,water_blue_lca_final_food,KOR,km3,2050,4.92361
+final_consumption_lca,World,HDS,water_blue_lca_final_food,MEX,km3,2024,11.8043
+final_consumption_lca,World,HDS,water_blue_lca_final_food,MEX,km3,2030,12.284
+final_consumption_lca,World,HDS,water_blue_lca_final_food,MEX,km3,2035,12.936
+final_consumption_lca,World,HDS,water_blue_lca_final_food,MEX,km3,2040,13.7035
+final_consumption_lca,World,HDS,water_blue_lca_final_food,MEX,km3,2045,14.5857
+final_consumption_lca,World,HDS,water_blue_lca_final_food,MEX,km3,2050,15.5853
+final_consumption_lca,World,HDS,water_blue_lca_final_food,NZL,km3,2024,0.349587
+final_consumption_lca,World,HDS,water_blue_lca_final_food,NZL,km3,2030,0.376878
+final_consumption_lca,World,HDS,water_blue_lca_final_food,NZL,km3,2035,0.397117
+final_consumption_lca,World,HDS,water_blue_lca_final_food,NZL,km3,2040,0.419161
+final_consumption_lca,World,HDS,water_blue_lca_final_food,NZL,km3,2045,0.442274
+final_consumption_lca,World,HDS,water_blue_lca_final_food,NZL,km3,2050,0.466389
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ROW,km3,2024,230.189
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ROW,km3,2030,249.089
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ROW,km3,2035,265.703
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ROW,km3,2040,284.255
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ROW,km3,2045,305.156
+final_consumption_lca,World,HDS,water_blue_lca_final_food,ROW,km3,2050,328.47
+final_consumption_lca,World,HDS,water_blue_lca_final_food,USA,km3,2024,35.1183
+final_consumption_lca,World,HDS,water_blue_lca_final_food,USA,km3,2030,34.9553
+final_consumption_lca,World,HDS,water_blue_lca_final_food,USA,km3,2035,35.0377
+final_consumption_lca,World,HDS,water_blue_lca_final_food,USA,km3,2040,35.1115
+final_consumption_lca,World,HDS,water_blue_lca_final_food,USA,km3,2045,35.081
+final_consumption_lca,World,HDS,water_blue_lca_final_food,USA,km3,2050,34.9724
+final_consumption_lca,World,MTS,co2_lca_final_food,ARG,Mt CO2e,2024,323.314
+final_consumption_lca,World,MTS,co2_lca_final_food,ARG,Mt CO2e,2030,344.388
+final_consumption_lca,World,MTS,co2_lca_final_food,ARG,Mt CO2e,2035,372.414
+final_consumption_lca,World,MTS,co2_lca_final_food,ARG,Mt CO2e,2040,403.146
+final_consumption_lca,World,MTS,co2_lca_final_food,ARG,Mt CO2e,2045,437.392
+final_consumption_lca,World,MTS,co2_lca_final_food,ARG,Mt CO2e,2050,475.448
+final_consumption_lca,World,MTS,co2_lca_final_food,AUS,Mt CO2e,2024,225.918
+final_consumption_lca,World,MTS,co2_lca_final_food,AUS,Mt CO2e,2030,229.412
+final_consumption_lca,World,MTS,co2_lca_final_food,AUS,Mt CO2e,2035,232.287
+final_consumption_lca,World,MTS,co2_lca_final_food,AUS,Mt CO2e,2040,235.369
+final_consumption_lca,World,MTS,co2_lca_final_food,AUS,Mt CO2e,2045,238.997
+final_consumption_lca,World,MTS,co2_lca_final_food,AUS,Mt CO2e,2050,243.203
+final_consumption_lca,World,MTS,co2_lca_final_food,BRZ,Mt CO2e,2024,1908.3
+final_consumption_lca,World,MTS,co2_lca_final_food,BRZ,Mt CO2e,2030,1845.59
+final_consumption_lca,World,MTS,co2_lca_final_food,BRZ,Mt CO2e,2035,1840.41
+final_consumption_lca,World,MTS,co2_lca_final_food,BRZ,Mt CO2e,2040,1856.38
+final_consumption_lca,World,MTS,co2_lca_final_food,BRZ,Mt CO2e,2045,1892.92
+final_consumption_lca,World,MTS,co2_lca_final_food,BRZ,Mt CO2e,2050,1950.95
+final_consumption_lca,World,MTS,co2_lca_final_food,CAN,Mt CO2e,2024,156.199
+final_consumption_lca,World,MTS,co2_lca_final_food,CAN,Mt CO2e,2030,164.73
+final_consumption_lca,World,MTS,co2_lca_final_food,CAN,Mt CO2e,2035,170.592
+final_consumption_lca,World,MTS,co2_lca_final_food,CAN,Mt CO2e,2040,176.668
+final_consumption_lca,World,MTS,co2_lca_final_food,CAN,Mt CO2e,2045,182.96
+final_consumption_lca,World,MTS,co2_lca_final_food,CAN,Mt CO2e,2050,189.471
+final_consumption_lca,World,MTS,co2_lca_final_food,CHN,Mt CO2e,2024,2944.84
+final_consumption_lca,World,MTS,co2_lca_final_food,CHN,Mt CO2e,2030,2983.01
+final_consumption_lca,World,MTS,co2_lca_final_food,CHN,Mt CO2e,2035,2990.8
+final_consumption_lca,World,MTS,co2_lca_final_food,CHN,Mt CO2e,2040,3008.68
+final_consumption_lca,World,MTS,co2_lca_final_food,CHN,Mt CO2e,2045,3034.14
+final_consumption_lca,World,MTS,co2_lca_final_food,CHN,Mt CO2e,2050,3067.98
+final_consumption_lca,World,MTS,co2_lca_final_food,E15,Mt CO2e,2024,1494.3
+final_consumption_lca,World,MTS,co2_lca_final_food,E15,Mt CO2e,2030,1428.49
+final_consumption_lca,World,MTS,co2_lca_final_food,E15,Mt CO2e,2035,1367.89
+final_consumption_lca,World,MTS,co2_lca_final_food,E15,Mt CO2e,2040,1318.02
+final_consumption_lca,World,MTS,co2_lca_final_food,E15,Mt CO2e,2045,1275.26
+final_consumption_lca,World,MTS,co2_lca_final_food,E15,Mt CO2e,2050,1237.44
+final_consumption_lca,World,MTS,co2_lca_final_food,IND,Mt CO2e,2024,2159.42
+final_consumption_lca,World,MTS,co2_lca_final_food,IND,Mt CO2e,2030,2155.4
+final_consumption_lca,World,MTS,co2_lca_final_food,IND,Mt CO2e,2035,2149.52
+final_consumption_lca,World,MTS,co2_lca_final_food,IND,Mt CO2e,2040,2142.08
+final_consumption_lca,World,MTS,co2_lca_final_food,IND,Mt CO2e,2045,2138.55
+final_consumption_lca,World,MTS,co2_lca_final_food,IND,Mt CO2e,2050,2139.15
+final_consumption_lca,World,MTS,co2_lca_final_food,JPN,Mt CO2e,2024,242.893
+final_consumption_lca,World,MTS,co2_lca_final_food,JPN,Mt CO2e,2030,241.793
+final_consumption_lca,World,MTS,co2_lca_final_food,JPN,Mt CO2e,2035,232.777
+final_consumption_lca,World,MTS,co2_lca_final_food,JPN,Mt CO2e,2040,223.282
+final_consumption_lca,World,MTS,co2_lca_final_food,JPN,Mt CO2e,2045,214.019
+final_consumption_lca,World,MTS,co2_lca_final_food,JPN,Mt CO2e,2050,204.92
+final_consumption_lca,World,MTS,co2_lca_final_food,KOR,Mt CO2e,2024,160.087
+final_consumption_lca,World,MTS,co2_lca_final_food,KOR,Mt CO2e,2030,166.06
+final_consumption_lca,World,MTS,co2_lca_final_food,KOR,Mt CO2e,2035,168.871
+final_consumption_lca,World,MTS,co2_lca_final_food,KOR,Mt CO2e,2040,171.798
+final_consumption_lca,World,MTS,co2_lca_final_food,KOR,Mt CO2e,2045,174.796
+final_consumption_lca,World,MTS,co2_lca_final_food,KOR,Mt CO2e,2050,177.872
+final_consumption_lca,World,MTS,co2_lca_final_food,MEX,Mt CO2e,2024,490.307
+final_consumption_lca,World,MTS,co2_lca_final_food,MEX,Mt CO2e,2030,496.16
+final_consumption_lca,World,MTS,co2_lca_final_food,MEX,Mt CO2e,2035,511.854
+final_consumption_lca,World,MTS,co2_lca_final_food,MEX,Mt CO2e,2040,531.397
+final_consumption_lca,World,MTS,co2_lca_final_food,MEX,Mt CO2e,2045,554.976
+final_consumption_lca,World,MTS,co2_lca_final_food,MEX,Mt CO2e,2050,582.82
+final_consumption_lca,World,MTS,co2_lca_final_food,NZL,Mt CO2e,2024,12.6287
+final_consumption_lca,World,MTS,co2_lca_final_food,NZL,Mt CO2e,2030,13.5775
+final_consumption_lca,World,MTS,co2_lca_final_food,NZL,Mt CO2e,2035,14.2671
+final_consumption_lca,World,MTS,co2_lca_final_food,NZL,Mt CO2e,2040,15.0141
+final_consumption_lca,World,MTS,co2_lca_final_food,NZL,Mt CO2e,2045,15.7991
+final_consumption_lca,World,MTS,co2_lca_final_food,NZL,Mt CO2e,2050,16.6211
+final_consumption_lca,World,MTS,co2_lca_final_food,ROW,Mt CO2e,2024,6159.61
+final_consumption_lca,World,MTS,co2_lca_final_food,ROW,Mt CO2e,2030,6402.12
+final_consumption_lca,World,MTS,co2_lca_final_food,ROW,Mt CO2e,2035,6637.32
+final_consumption_lca,World,MTS,co2_lca_final_food,ROW,Mt CO2e,2040,6926.39
+final_consumption_lca,World,MTS,co2_lca_final_food,ROW,Mt CO2e,2045,7286.47
+final_consumption_lca,World,MTS,co2_lca_final_food,ROW,Mt CO2e,2050,7715.13
+final_consumption_lca,World,MTS,co2_lca_final_food,USA,Mt CO2e,2024,1974.23
+final_consumption_lca,World,MTS,co2_lca_final_food,USA,Mt CO2e,2030,1957.24
+final_consumption_lca,World,MTS,co2_lca_final_food,USA,Mt CO2e,2035,1943.58
+final_consumption_lca,World,MTS,co2_lca_final_food,USA,Mt CO2e,2040,1930.38
+final_consumption_lca,World,MTS,co2_lca_final_food,USA,Mt CO2e,2045,1917.51
+final_consumption_lca,World,MTS,co2_lca_final_food,USA,Mt CO2e,2050,1904.93
+final_consumption_lca,World,MTS,land_lca_final_food,ARG,Mha,2024,88.4045
+final_consumption_lca,World,MTS,land_lca_final_food,ARG,Mha,2030,95.7888
+final_consumption_lca,World,MTS,land_lca_final_food,ARG,Mha,2035,104.929
+final_consumption_lca,World,MTS,land_lca_final_food,ARG,Mha,2040,114.888
+final_consumption_lca,World,MTS,land_lca_final_food,ARG,Mha,2045,125.86
+final_consumption_lca,World,MTS,land_lca_final_food,ARG,Mha,2050,137.932
+final_consumption_lca,World,MTS,land_lca_final_food,AUS,Mha,2024,44.7114
+final_consumption_lca,World,MTS,land_lca_final_food,AUS,Mha,2030,47.1988
+final_consumption_lca,World,MTS,land_lca_final_food,AUS,Mha,2035,49.1436
+final_consumption_lca,World,MTS,land_lca_final_food,AUS,Mha,2040,51.1743
+final_consumption_lca,World,MTS,land_lca_final_food,AUS,Mha,2045,53.3375
+final_consumption_lca,World,MTS,land_lca_final_food,AUS,Mha,2050,55.6388
+final_consumption_lca,World,MTS,land_lca_final_food,BRZ,Mha,2024,309.578
+final_consumption_lca,World,MTS,land_lca_final_food,BRZ,Mha,2030,325.022
+final_consumption_lca,World,MTS,land_lca_final_food,BRZ,Mha,2035,345.313
+final_consumption_lca,World,MTS,land_lca_final_food,BRZ,Mha,2040,369.1
+final_consumption_lca,World,MTS,land_lca_final_food,BRZ,Mha,2045,396.561
+final_consumption_lca,World,MTS,land_lca_final_food,BRZ,Mha,2050,427.987
+final_consumption_lca,World,MTS,land_lca_final_food,CAN,Mha,2024,44.1035
+final_consumption_lca,World,MTS,land_lca_final_food,CAN,Mha,2030,46.4839
+final_consumption_lca,World,MTS,land_lca_final_food,CAN,Mha,2035,48.104
+final_consumption_lca,World,MTS,land_lca_final_food,CAN,Mha,2040,49.7786
+final_consumption_lca,World,MTS,land_lca_final_food,CAN,Mha,2045,51.5093
+final_consumption_lca,World,MTS,land_lca_final_food,CAN,Mha,2050,53.2963
+final_consumption_lca,World,MTS,land_lca_final_food,CHN,Mha,2024,526.097
+final_consumption_lca,World,MTS,land_lca_final_food,CHN,Mha,2030,528.454
+final_consumption_lca,World,MTS,land_lca_final_food,CHN,Mha,2035,525.928
+final_consumption_lca,World,MTS,land_lca_final_food,CHN,Mha,2040,524.754
+final_consumption_lca,World,MTS,land_lca_final_food,CHN,Mha,2045,524.769
+final_consumption_lca,World,MTS,land_lca_final_food,CHN,Mha,2050,526.1
+final_consumption_lca,World,MTS,land_lca_final_food,E15,Mha,2024,380.614
+final_consumption_lca,World,MTS,land_lca_final_food,E15,Mha,2030,370.922
+final_consumption_lca,World,MTS,land_lca_final_food,E15,Mha,2035,359.454
+final_consumption_lca,World,MTS,land_lca_final_food,E15,Mha,2040,349.364
+final_consumption_lca,World,MTS,land_lca_final_food,E15,Mha,2045,340.042
+final_consumption_lca,World,MTS,land_lca_final_food,E15,Mha,2050,331.193
+final_consumption_lca,World,MTS,land_lca_final_food,IND,Mha,2024,246.853
+final_consumption_lca,World,MTS,land_lca_final_food,IND,Mha,2030,255.367
+final_consumption_lca,World,MTS,land_lca_final_food,IND,Mha,2035,261.493
+final_consumption_lca,World,MTS,land_lca_final_food,IND,Mha,2040,267.72
+final_consumption_lca,World,MTS,land_lca_final_food,IND,Mha,2045,274.554
+final_consumption_lca,World,MTS,land_lca_final_food,IND,Mha,2050,282.022
+final_consumption_lca,World,MTS,land_lca_final_food,JPN,Mha,2024,57.4472
+final_consumption_lca,World,MTS,land_lca_final_food,JPN,Mha,2030,57.2801
+final_consumption_lca,World,MTS,land_lca_final_food,JPN,Mha,2035,55.0496
+final_consumption_lca,World,MTS,land_lca_final_food,JPN,Mha,2040,52.6916
+final_consumption_lca,World,MTS,land_lca_final_food,JPN,Mha,2045,50.3944
+final_consumption_lca,World,MTS,land_lca_final_food,JPN,Mha,2050,48.1389
+final_consumption_lca,World,MTS,land_lca_final_food,KOR,Mha,2024,40.1441
+final_consumption_lca,World,MTS,land_lca_final_food,KOR,Mha,2030,41.5269
+final_consumption_lca,World,MTS,land_lca_final_food,KOR,Mha,2035,42.1043
+final_consumption_lca,World,MTS,land_lca_final_food,KOR,Mha,2040,42.707
+final_consumption_lca,World,MTS,land_lca_final_food,KOR,Mha,2045,43.3249
+final_consumption_lca,World,MTS,land_lca_final_food,KOR,Mha,2050,43.9606
+final_consumption_lca,World,MTS,land_lca_final_food,MEX,Mha,2024,94.8771
+final_consumption_lca,World,MTS,land_lca_final_food,MEX,Mha,2030,101.202
+final_consumption_lca,World,MTS,land_lca_final_food,MEX,Mha,2035,107.71
+final_consumption_lca,World,MTS,land_lca_final_food,MEX,Mha,2040,114.927
+final_consumption_lca,World,MTS,land_lca_final_food,MEX,Mha,2045,122.904
+final_consumption_lca,World,MTS,land_lca_final_food,MEX,Mha,2050,131.697
+final_consumption_lca,World,MTS,land_lca_final_food,NZL,Mha,2024,3.33205
+final_consumption_lca,World,MTS,land_lca_final_food,NZL,Mha,2030,3.58015
+final_consumption_lca,World,MTS,land_lca_final_food,NZL,Mha,2035,3.75941
+final_consumption_lca,World,MTS,land_lca_final_food,NZL,Mha,2040,3.95367
+final_consumption_lca,World,MTS,land_lca_final_food,NZL,Mha,2045,4.15779
+final_consumption_lca,World,MTS,land_lca_final_food,NZL,Mha,2050,4.37148
+final_consumption_lca,World,MTS,land_lca_final_food,ROW,Mha,2024,1236.86
+final_consumption_lca,World,MTS,land_lca_final_food,ROW,Mha,2030,1345.9
+final_consumption_lca,World,MTS,land_lca_final_food,ROW,Mha,2035,1437.04
+final_consumption_lca,World,MTS,land_lca_final_food,ROW,Mha,2040,1536.75
+final_consumption_lca,World,MTS,land_lca_final_food,ROW,Mha,2045,1647.79
+final_consumption_lca,World,MTS,land_lca_final_food,ROW,Mha,2050,1770.48
+final_consumption_lca,World,MTS,land_lca_final_food,USA,Mha,2024,534.467
+final_consumption_lca,World,MTS,land_lca_final_food,USA,Mha,2030,535.714
+final_consumption_lca,World,MTS,land_lca_final_food,USA,Mha,2035,535.14
+final_consumption_lca,World,MTS,land_lca_final_food,USA,Mha,2040,534.763
+final_consumption_lca,World,MTS,land_lca_final_food,USA,Mha,2045,534.53
+final_consumption_lca,World,MTS,land_lca_final_food,USA,Mha,2050,534.453
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ARG,km3,2024,5.40707
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ARG,km3,2030,5.75689
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ARG,km3,2035,6.22773
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ARG,km3,2040,6.74517
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ARG,km3,2045,7.32172
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ARG,km3,2050,7.96262
+final_consumption_lca,World,MTS,water_blue_lca_final_food,AUS,km3,2024,4.07982
+final_consumption_lca,World,MTS,water_blue_lca_final_food,AUS,km3,2030,4.15062
+final_consumption_lca,World,MTS,water_blue_lca_final_food,AUS,km3,2035,4.2109
+final_consumption_lca,World,MTS,water_blue_lca_final_food,AUS,km3,2040,4.27561
+final_consumption_lca,World,MTS,water_blue_lca_final_food,AUS,km3,2045,4.35048
+final_consumption_lca,World,MTS,water_blue_lca_final_food,AUS,km3,2050,4.4361
+final_consumption_lca,World,MTS,water_blue_lca_final_food,BRZ,km3,2024,34.8966
+final_consumption_lca,World,MTS,water_blue_lca_final_food,BRZ,km3,2030,33.9666
+final_consumption_lca,World,MTS,water_blue_lca_final_food,BRZ,km3,2035,34.108
+final_consumption_lca,World,MTS,water_blue_lca_final_food,BRZ,km3,2040,34.6653
+final_consumption_lca,World,MTS,water_blue_lca_final_food,BRZ,km3,2045,35.6272
+final_consumption_lca,World,MTS,water_blue_lca_final_food,BRZ,km3,2050,37.0153
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CAN,km3,2024,3.09828
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CAN,km3,2030,3.27626
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CAN,km3,2035,3.40329
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CAN,km3,2040,3.53505
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CAN,km3,2045,3.67103
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CAN,km3,2050,3.81129
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CHN,km3,2024,112.102
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CHN,km3,2030,117.835
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CHN,km3,2035,121.792
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CHN,km3,2040,126.15
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CHN,km3,2045,130.831
+final_consumption_lca,World,MTS,water_blue_lca_final_food,CHN,km3,2050,135.871
+final_consumption_lca,World,MTS,water_blue_lca_final_food,E15,km3,2024,43.1727
+final_consumption_lca,World,MTS,water_blue_lca_final_food,E15,km3,2030,42.8505
+final_consumption_lca,World,MTS,water_blue_lca_final_food,E15,km3,2035,42.4396
+final_consumption_lca,World,MTS,water_blue_lca_final_food,E15,km3,2040,42.1676
+final_consumption_lca,World,MTS,water_blue_lca_final_food,E15,km3,2045,41.9731
+final_consumption_lca,World,MTS,water_blue_lca_final_food,E15,km3,2050,41.8254
+final_consumption_lca,World,MTS,water_blue_lca_final_food,IND,km3,2024,99.9266
+final_consumption_lca,World,MTS,water_blue_lca_final_food,IND,km3,2030,104.762
+final_consumption_lca,World,MTS,water_blue_lca_final_food,IND,km3,2035,108.487
+final_consumption_lca,World,MTS,water_blue_lca_final_food,IND,km3,2040,112.346
+final_consumption_lca,World,MTS,water_blue_lca_final_food,IND,km3,2045,116.469
+final_consumption_lca,World,MTS,water_blue_lca_final_food,IND,km3,2050,120.867
+final_consumption_lca,World,MTS,water_blue_lca_final_food,JPN,km3,2024,6.8986
+final_consumption_lca,World,MTS,water_blue_lca_final_food,JPN,km3,2030,6.8719
+final_consumption_lca,World,MTS,water_blue_lca_final_food,JPN,km3,2035,6.7027
+final_consumption_lca,World,MTS,water_blue_lca_final_food,JPN,km3,2040,6.52336
+final_consumption_lca,World,MTS,water_blue_lca_final_food,JPN,km3,2045,6.34513
+final_consumption_lca,World,MTS,water_blue_lca_final_food,JPN,km3,2050,6.16702
+final_consumption_lca,World,MTS,water_blue_lca_final_food,KOR,km3,2024,4.25227
+final_consumption_lca,World,MTS,water_blue_lca_final_food,KOR,km3,2030,4.44836
+final_consumption_lca,World,MTS,water_blue_lca_final_food,KOR,km3,2035,4.5632
+final_consumption_lca,World,MTS,water_blue_lca_final_food,KOR,km3,2040,4.68109
+final_consumption_lca,World,MTS,water_blue_lca_final_food,KOR,km3,2045,4.80087
+final_consumption_lca,World,MTS,water_blue_lca_final_food,KOR,km3,2050,4.92255
+final_consumption_lca,World,MTS,water_blue_lca_final_food,MEX,km3,2024,11.8043
+final_consumption_lca,World,MTS,water_blue_lca_final_food,MEX,km3,2030,12.278
+final_consumption_lca,World,MTS,water_blue_lca_final_food,MEX,km3,2035,12.9242
+final_consumption_lca,World,MTS,water_blue_lca_final_food,MEX,km3,2040,13.6752
+final_consumption_lca,World,MTS,water_blue_lca_final_food,MEX,km3,2045,14.5354
+final_consumption_lca,World,MTS,water_blue_lca_final_food,MEX,km3,2050,15.5122
+final_consumption_lca,World,MTS,water_blue_lca_final_food,NZL,km3,2024,0.349587
+final_consumption_lca,World,MTS,water_blue_lca_final_food,NZL,km3,2030,0.375916
+final_consumption_lca,World,MTS,water_blue_lca_final_food,NZL,km3,2035,0.395221
+final_consumption_lca,World,MTS,water_blue_lca_final_food,NZL,km3,2040,0.416063
+final_consumption_lca,World,MTS,water_blue_lca_final_food,NZL,km3,2045,0.437879
+final_consumption_lca,World,MTS,water_blue_lca_final_food,NZL,km3,2050,0.460651
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ROW,km3,2024,230.189
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ROW,km3,2030,248.853
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ROW,km3,2035,265.332
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ROW,km3,2040,283.706
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ROW,km3,2045,304.422
+final_consumption_lca,World,MTS,water_blue_lca_final_food,ROW,km3,2050,327.525
+final_consumption_lca,World,MTS,water_blue_lca_final_food,USA,km3,2024,35.1183
+final_consumption_lca,World,MTS,water_blue_lca_final_food,USA,km3,2030,34.5929
+final_consumption_lca,World,MTS,water_blue_lca_final_food,USA,km3,2035,34.4282
+final_consumption_lca,World,MTS,water_blue_lca_final_food,USA,km3,2040,34.2572
+final_consumption_lca,World,MTS,water_blue_lca_final_food,USA,km3,2045,34.0757
+final_consumption_lca,World,MTS,water_blue_lca_final_food,USA,km3,2050,33.878
+final_consumption_lca,World,PTS,co2_lca_final_food,ARG,Mt CO2e,2024,323.314
+final_consumption_lca,World,PTS,co2_lca_final_food,ARG,Mt CO2e,2030,343.359
+final_consumption_lca,World,PTS,co2_lca_final_food,ARG,Mt CO2e,2035,370.42
+final_consumption_lca,World,PTS,co2_lca_final_food,ARG,Mt CO2e,2040,399.979
+final_consumption_lca,World,PTS,co2_lca_final_food,ARG,Mt CO2e,2045,432.881
+final_consumption_lca,World,PTS,co2_lca_final_food,ARG,Mt CO2e,2050,469.35
+final_consumption_lca,World,PTS,co2_lca_final_food,AUS,Mt CO2e,2024,225.918
+final_consumption_lca,World,PTS,co2_lca_final_food,AUS,Mt CO2e,2030,229.016
+final_consumption_lca,World,PTS,co2_lca_final_food,AUS,Mt CO2e,2035,231.624
+final_consumption_lca,World,PTS,co2_lca_final_food,AUS,Mt CO2e,2040,234.408
+final_consumption_lca,World,PTS,co2_lca_final_food,AUS,Mt CO2e,2045,237.796
+final_consumption_lca,World,PTS,co2_lca_final_food,AUS,Mt CO2e,2050,241.751
+final_consumption_lca,World,PTS,co2_lca_final_food,BRZ,Mt CO2e,2024,1908.3
+final_consumption_lca,World,PTS,co2_lca_final_food,BRZ,Mt CO2e,2030,1839.19
+final_consumption_lca,World,PTS,co2_lca_final_food,BRZ,Mt CO2e,2035,1830.84
+final_consumption_lca,World,PTS,co2_lca_final_food,BRZ,Mt CO2e,2040,1843.54
+final_consumption_lca,World,PTS,co2_lca_final_food,BRZ,Mt CO2e,2045,1878.14
+final_consumption_lca,World,PTS,co2_lca_final_food,BRZ,Mt CO2e,2050,1934.56
+final_consumption_lca,World,PTS,co2_lca_final_food,CAN,Mt CO2e,2024,156.199
+final_consumption_lca,World,PTS,co2_lca_final_food,CAN,Mt CO2e,2030,164.694
+final_consumption_lca,World,PTS,co2_lca_final_food,CAN,Mt CO2e,2035,170.519
+final_consumption_lca,World,PTS,co2_lca_final_food,CAN,Mt CO2e,2040,176.584
+final_consumption_lca,World,PTS,co2_lca_final_food,CAN,Mt CO2e,2045,182.952
+final_consumption_lca,World,PTS,co2_lca_final_food,CAN,Mt CO2e,2050,189.52
+final_consumption_lca,World,PTS,co2_lca_final_food,CHN,Mt CO2e,2024,2944.84
+final_consumption_lca,World,PTS,co2_lca_final_food,CHN,Mt CO2e,2030,3267.87
+final_consumption_lca,World,PTS,co2_lca_final_food,CHN,Mt CO2e,2035,3536.9
+final_consumption_lca,World,PTS,co2_lca_final_food,CHN,Mt CO2e,2040,3841.2
+final_consumption_lca,World,PTS,co2_lca_final_food,CHN,Mt CO2e,2045,4181.6
+final_consumption_lca,World,PTS,co2_lca_final_food,CHN,Mt CO2e,2050,4560.76
+final_consumption_lca,World,PTS,co2_lca_final_food,E15,Mt CO2e,2024,1494.3
+final_consumption_lca,World,PTS,co2_lca_final_food,E15,Mt CO2e,2030,1405.66
+final_consumption_lca,World,PTS,co2_lca_final_food,E15,Mt CO2e,2035,1328.69
+final_consumption_lca,World,PTS,co2_lca_final_food,E15,Mt CO2e,2040,1263.84
+final_consumption_lca,World,PTS,co2_lca_final_food,E15,Mt CO2e,2045,1208.84
+final_consumption_lca,World,PTS,co2_lca_final_food,E15,Mt CO2e,2050,1159.68
+final_consumption_lca,World,PTS,co2_lca_final_food,IND,Mt CO2e,2024,2159.42
+final_consumption_lca,World,PTS,co2_lca_final_food,IND,Mt CO2e,2030,2150.22
+final_consumption_lca,World,PTS,co2_lca_final_food,IND,Mt CO2e,2035,2140.67
+final_consumption_lca,World,PTS,co2_lca_final_food,IND,Mt CO2e,2040,2129.27
+final_consumption_lca,World,PTS,co2_lca_final_food,IND,Mt CO2e,2045,2122.33
+final_consumption_lca,World,PTS,co2_lca_final_food,IND,Mt CO2e,2050,2119.45
+final_consumption_lca,World,PTS,co2_lca_final_food,JPN,Mt CO2e,2024,242.893
+final_consumption_lca,World,PTS,co2_lca_final_food,JPN,Mt CO2e,2030,238.672
+final_consumption_lca,World,PTS,co2_lca_final_food,JPN,Mt CO2e,2035,227.271
+final_consumption_lca,World,PTS,co2_lca_final_food,JPN,Mt CO2e,2040,215.568
+final_consumption_lca,World,PTS,co2_lca_final_food,JPN,Mt CO2e,2045,204.446
+final_consumption_lca,World,PTS,co2_lca_final_food,JPN,Mt CO2e,2050,193.605
+final_consumption_lca,World,PTS,co2_lca_final_food,KOR,Mt CO2e,2024,160.087
+final_consumption_lca,World,PTS,co2_lca_final_food,KOR,Mt CO2e,2030,166.623
+final_consumption_lca,World,PTS,co2_lca_final_food,KOR,Mt CO2e,2035,169.897
+final_consumption_lca,World,PTS,co2_lca_final_food,KOR,Mt CO2e,2040,173.368
+final_consumption_lca,World,PTS,co2_lca_final_food,KOR,Mt CO2e,2045,177.075
+final_consumption_lca,World,PTS,co2_lca_final_food,KOR,Mt CO2e,2050,180.827
+final_consumption_lca,World,PTS,co2_lca_final_food,MEX,Mt CO2e,2024,490.307
+final_consumption_lca,World,PTS,co2_lca_final_food,MEX,Mt CO2e,2030,495.755
+final_consumption_lca,World,PTS,co2_lca_final_food,MEX,Mt CO2e,2035,511.409
+final_consumption_lca,World,PTS,co2_lca_final_food,MEX,Mt CO2e,2040,531.004
+final_consumption_lca,World,PTS,co2_lca_final_food,MEX,Mt CO2e,2045,555.016
+final_consumption_lca,World,PTS,co2_lca_final_food,MEX,Mt CO2e,2050,583.335
+final_consumption_lca,World,PTS,co2_lca_final_food,NZL,Mt CO2e,2024,12.6287
+final_consumption_lca,World,PTS,co2_lca_final_food,NZL,Mt CO2e,2030,13.5202
+final_consumption_lca,World,PTS,co2_lca_final_food,NZL,Mt CO2e,2035,14.1545
+final_consumption_lca,World,PTS,co2_lca_final_food,NZL,Mt CO2e,2040,14.8366
+final_consumption_lca,World,PTS,co2_lca_final_food,NZL,Mt CO2e,2045,15.547
+final_consumption_lca,World,PTS,co2_lca_final_food,NZL,Mt CO2e,2050,16.2839
+final_consumption_lca,World,PTS,co2_lca_final_food,ROW,Mt CO2e,2024,6159.61
+final_consumption_lca,World,PTS,co2_lca_final_food,ROW,Mt CO2e,2030,6384.62
+final_consumption_lca,World,PTS,co2_lca_final_food,ROW,Mt CO2e,2035,6610.44
+final_consumption_lca,World,PTS,co2_lca_final_food,ROW,Mt CO2e,2040,6891.46
+final_consumption_lca,World,PTS,co2_lca_final_food,ROW,Mt CO2e,2045,7248.64
+final_consumption_lca,World,PTS,co2_lca_final_food,ROW,Mt CO2e,2050,7673.91
+final_consumption_lca,World,PTS,co2_lca_final_food,USA,Mt CO2e,2024,1974.23
+final_consumption_lca,World,PTS,co2_lca_final_food,USA,Mt CO2e,2030,1953.18
+final_consumption_lca,World,PTS,co2_lca_final_food,USA,Mt CO2e,2035,1937.47
+final_consumption_lca,World,PTS,co2_lca_final_food,USA,Mt CO2e,2040,1924.85
+final_consumption_lca,World,PTS,co2_lca_final_food,USA,Mt CO2e,2045,1917.82
+final_consumption_lca,World,PTS,co2_lca_final_food,USA,Mt CO2e,2050,1911.64
+final_consumption_lca,World,PTS,land_lca_final_food,ARG,Mha,2024,88.4045
+final_consumption_lca,World,PTS,land_lca_final_food,ARG,Mha,2030,95.4942
+final_consumption_lca,World,PTS,land_lca_final_food,ARG,Mha,2035,104.343
+final_consumption_lca,World,PTS,land_lca_final_food,ARG,Mha,2040,113.955
+final_consumption_lca,World,PTS,land_lca_final_food,ARG,Mha,2045,124.538
+final_consumption_lca,World,PTS,land_lca_final_food,ARG,Mha,2050,136.145
+final_consumption_lca,World,PTS,land_lca_final_food,AUS,Mha,2024,44.7114
+final_consumption_lca,World,PTS,land_lca_final_food,AUS,Mha,2030,47.1463
+final_consumption_lca,World,PTS,land_lca_final_food,AUS,Mha,2035,49.0497
+final_consumption_lca,World,PTS,land_lca_final_food,AUS,Mha,2040,51.0407
+final_consumption_lca,World,PTS,land_lca_final_food,AUS,Mha,2045,53.1824
+final_consumption_lca,World,PTS,land_lca_final_food,AUS,Mha,2050,55.457
+final_consumption_lca,World,PTS,land_lca_final_food,BRZ,Mha,2024,309.578
+final_consumption_lca,World,PTS,land_lca_final_food,BRZ,Mha,2030,324.395
+final_consumption_lca,World,PTS,land_lca_final_food,BRZ,Mha,2035,344.285
+final_consumption_lca,World,PTS,land_lca_final_food,BRZ,Mha,2040,367.727
+final_consumption_lca,World,PTS,land_lca_final_food,BRZ,Mha,2045,395.189
+final_consumption_lca,World,PTS,land_lca_final_food,BRZ,Mha,2050,426.583
+final_consumption_lca,World,PTS,land_lca_final_food,CAN,Mha,2024,44.1035
+final_consumption_lca,World,PTS,land_lca_final_food,CAN,Mha,2030,46.471
+final_consumption_lca,World,PTS,land_lca_final_food,CAN,Mha,2035,48.0799
+final_consumption_lca,World,PTS,land_lca_final_food,CAN,Mha,2040,49.7535
+final_consumption_lca,World,PTS,land_lca_final_food,CAN,Mha,2045,51.5149
+final_consumption_lca,World,PTS,land_lca_final_food,CAN,Mha,2050,53.3278
+final_consumption_lca,World,PTS,land_lca_final_food,CHN,Mha,2024,526.097
+final_consumption_lca,World,PTS,land_lca_final_food,CHN,Mha,2030,596.034
+final_consumption_lca,World,PTS,land_lca_final_food,CHN,Mha,2035,655.097
+final_consumption_lca,World,PTS,land_lca_final_food,CHN,Mha,2040,721.061
+final_consumption_lca,World,PTS,land_lca_final_food,CHN,Mha,2045,794.531
+final_consumption_lca,World,PTS,land_lca_final_food,CHN,Mha,2050,876.06
+final_consumption_lca,World,PTS,land_lca_final_food,E15,Mha,2024,380.614
+final_consumption_lca,World,PTS,land_lca_final_food,E15,Mha,2030,365.452
+final_consumption_lca,World,PTS,land_lca_final_food,E15,Mha,2035,349.996
+final_consumption_lca,World,PTS,land_lca_final_food,E15,Mha,2040,336.37
+final_consumption_lca,World,PTS,land_lca_final_food,E15,Mha,2045,324.338
+final_consumption_lca,World,PTS,land_lca_final_food,E15,Mha,2050,313.036
+final_consumption_lca,World,PTS,land_lca_final_food,IND,Mha,2024,246.853
+final_consumption_lca,World,PTS,land_lca_final_food,IND,Mha,2030,255.006
+final_consumption_lca,World,PTS,land_lca_final_food,IND,Mha,2035,260.867
+final_consumption_lca,World,PTS,land_lca_final_food,IND,Mha,2040,266.839
+final_consumption_lca,World,PTS,land_lca_final_food,IND,Mha,2045,273.577
+final_consumption_lca,World,PTS,land_lca_final_food,IND,Mha,2050,280.904
+final_consumption_lca,World,PTS,land_lca_final_food,JPN,Mha,2024,57.4472
+final_consumption_lca,World,PTS,land_lca_final_food,JPN,Mha,2030,56.4846
+final_consumption_lca,World,PTS,land_lca_final_food,JPN,Mha,2035,53.6519
+final_consumption_lca,World,PTS,land_lca_final_food,JPN,Mha,2040,50.7465
+final_consumption_lca,World,PTS,land_lca_final_food,JPN,Mha,2045,48.006
+final_consumption_lca,World,PTS,land_lca_final_food,JPN,Mha,2050,45.3352
+final_consumption_lca,World,PTS,land_lca_final_food,KOR,Mha,2024,40.1441
+final_consumption_lca,World,PTS,land_lca_final_food,KOR,Mha,2030,41.7216
+final_consumption_lca,World,PTS,land_lca_final_food,KOR,Mha,2035,42.4634
+final_consumption_lca,World,PTS,land_lca_final_food,KOR,Mha,2040,43.2612
+final_consumption_lca,World,PTS,land_lca_final_food,KOR,Mha,2045,44.1361
+final_consumption_lca,World,PTS,land_lca_final_food,KOR,Mha,2050,45.0207
+final_consumption_lca,World,PTS,land_lca_final_food,MEX,Mha,2024,94.8771
+final_consumption_lca,World,PTS,land_lca_final_food,MEX,Mha,2030,101.251
+final_consumption_lca,World,PTS,land_lca_final_food,MEX,Mha,2035,107.833
+final_consumption_lca,World,PTS,land_lca_final_food,MEX,Mha,2040,115.181
+final_consumption_lca,World,PTS,land_lca_final_food,MEX,Mha,2045,123.438
+final_consumption_lca,World,PTS,land_lca_final_food,MEX,Mha,2050,132.519
+final_consumption_lca,World,PTS,land_lca_final_food,NZL,Mha,2024,3.33205
+final_consumption_lca,World,PTS,land_lca_final_food,NZL,Mha,2030,3.56493
+final_consumption_lca,World,PTS,land_lca_final_food,NZL,Mha,2035,3.72971
+final_consumption_lca,World,PTS,land_lca_final_food,NZL,Mha,2040,3.90723
+final_consumption_lca,World,PTS,land_lca_final_food,NZL,Mha,2045,4.09264
+final_consumption_lca,World,PTS,land_lca_final_food,NZL,Mha,2050,4.28497
+final_consumption_lca,World,PTS,land_lca_final_food,ROW,Mha,2024,1236.86
+final_consumption_lca,World,PTS,land_lca_final_food,ROW,Mha,2030,1344.05
+final_consumption_lca,World,PTS,land_lca_final_food,ROW,Mha,2035,1433.87
+final_consumption_lca,World,PTS,land_lca_final_food,ROW,Mha,2040,1532.6
+final_consumption_lca,World,PTS,land_lca_final_food,ROW,Mha,2045,1644.04
+final_consumption_lca,World,PTS,land_lca_final_food,ROW,Mha,2050,1766.8
+final_consumption_lca,World,PTS,land_lca_final_food,USA,Mha,2024,534.467
+final_consumption_lca,World,PTS,land_lca_final_food,USA,Mha,2030,536.787
+final_consumption_lca,World,PTS,land_lca_final_food,USA,Mha,2035,537.349
+final_consumption_lca,World,PTS,land_lca_final_food,USA,Mha,2040,538.859
+final_consumption_lca,World,PTS,land_lca_final_food,USA,Mha,2045,542.048
+final_consumption_lca,World,PTS,land_lca_final_food,USA,Mha,2050,545.368
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ARG,km3,2024,5.40707
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ARG,km3,2030,5.74905
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ARG,km3,2035,6.21233
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ARG,km3,2040,6.7191
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ARG,km3,2045,7.28038
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ARG,km3,2050,7.9034
+final_consumption_lca,World,PTS,water_blue_lca_final_food,AUS,km3,2024,4.07982
+final_consumption_lca,World,PTS,water_blue_lca_final_food,AUS,km3,2030,4.14455
+final_consumption_lca,World,PTS,water_blue_lca_final_food,AUS,km3,2035,4.20066
+final_consumption_lca,World,PTS,water_blue_lca_final_food,AUS,km3,2040,4.26016
+final_consumption_lca,World,PTS,water_blue_lca_final_food,AUS,km3,2045,4.32955
+final_consumption_lca,World,PTS,water_blue_lca_final_food,AUS,km3,2050,4.40951
+final_consumption_lca,World,PTS,water_blue_lca_final_food,BRZ,km3,2024,34.8966
+final_consumption_lca,World,PTS,water_blue_lca_final_food,BRZ,km3,2030,33.8774
+final_consumption_lca,World,PTS,water_blue_lca_final_food,BRZ,km3,2035,33.9809
+final_consumption_lca,World,PTS,water_blue_lca_final_food,BRZ,km3,2040,34.4893
+final_consumption_lca,World,PTS,water_blue_lca_final_food,BRZ,km3,2045,35.3972
+final_consumption_lca,World,PTS,water_blue_lca_final_food,BRZ,km3,2050,36.7339
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CAN,km3,2024,3.09828
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CAN,km3,2030,3.27583
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CAN,km3,2035,3.40199
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CAN,km3,2040,3.53253
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CAN,km3,2045,3.66693
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CAN,km3,2050,3.80532
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CHN,km3,2024,112.102
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CHN,km3,2030,124.741
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CHN,km3,2035,135.143
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CHN,km3,2040,146.671
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CHN,km3,2045,159.323
+final_consumption_lca,World,PTS,water_blue_lca_final_food,CHN,km3,2050,173.192
+final_consumption_lca,World,PTS,water_blue_lca_final_food,E15,km3,2024,43.1727
+final_consumption_lca,World,PTS,water_blue_lca_final_food,E15,km3,2030,42.5153
+final_consumption_lca,World,PTS,water_blue_lca_final_food,E15,km3,2035,41.8454
+final_consumption_lca,World,PTS,water_blue_lca_final_food,E15,km3,2040,41.317
+final_consumption_lca,World,PTS,water_blue_lca_final_food,E15,km3,2045,40.8794
+final_consumption_lca,World,PTS,water_blue_lca_final_food,E15,km3,2050,40.4987
+final_consumption_lca,World,PTS,water_blue_lca_final_food,IND,km3,2024,99.9266
+final_consumption_lca,World,PTS,water_blue_lca_final_food,IND,km3,2030,104.696
+final_consumption_lca,World,PTS,water_blue_lca_final_food,IND,km3,2035,108.367
+final_consumption_lca,World,PTS,water_blue_lca_final_food,IND,km3,2040,112.161
+final_consumption_lca,World,PTS,water_blue_lca_final_food,IND,km3,2045,116.207
+final_consumption_lca,World,PTS,water_blue_lca_final_food,IND,km3,2050,120.525
+final_consumption_lca,World,PTS,water_blue_lca_final_food,JPN,km3,2024,6.8986
+final_consumption_lca,World,PTS,water_blue_lca_final_food,JPN,km3,2030,6.81854
+final_consumption_lca,World,PTS,water_blue_lca_final_food,JPN,km3,2035,6.60695
+final_consumption_lca,World,PTS,water_blue_lca_final_food,JPN,km3,2040,6.38637
+final_consumption_lca,World,PTS,water_blue_lca_final_food,JPN,km3,2045,6.16994
+final_consumption_lca,World,PTS,water_blue_lca_final_food,JPN,km3,2050,5.95594
+final_consumption_lca,World,PTS,water_blue_lca_final_food,KOR,km3,2024,4.25227
+final_consumption_lca,World,PTS,water_blue_lca_final_food,KOR,km3,2030,4.45081
+final_consumption_lca,World,PTS,water_blue_lca_final_food,KOR,km3,2035,4.56683
+final_consumption_lca,World,PTS,water_blue_lca_final_food,KOR,km3,2040,4.68545
+final_consumption_lca,World,PTS,water_blue_lca_final_food,KOR,km3,2045,4.80535
+final_consumption_lca,World,PTS,water_blue_lca_final_food,KOR,km3,2050,4.92652
+final_consumption_lca,World,PTS,water_blue_lca_final_food,MEX,km3,2024,11.8043
+final_consumption_lca,World,PTS,water_blue_lca_final_food,MEX,km3,2030,12.2736
+final_consumption_lca,World,PTS,water_blue_lca_final_food,MEX,km3,2035,12.9188
+final_consumption_lca,World,PTS,water_blue_lca_final_food,MEX,km3,2040,13.6649
+final_consumption_lca,World,PTS,water_blue_lca_final_food,MEX,km3,2045,14.5139
+final_consumption_lca,World,PTS,water_blue_lca_final_food,MEX,km3,2050,15.4774
+final_consumption_lca,World,PTS,water_blue_lca_final_food,NZL,km3,2024,0.349587
+final_consumption_lca,World,PTS,water_blue_lca_final_food,NZL,km3,2030,0.374898
+final_consumption_lca,World,PTS,water_blue_lca_final_food,NZL,km3,2035,0.393157
+final_consumption_lca,World,PTS,water_blue_lca_final_food,NZL,km3,2040,0.412707
+final_consumption_lca,World,PTS,water_blue_lca_final_food,NZL,km3,2045,0.432899
+final_consumption_lca,World,PTS,water_blue_lca_final_food,NZL,km3,2050,0.453831
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ROW,km3,2024,230.189
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ROW,km3,2030,248.606
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ROW,km3,2035,264.934
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ROW,km3,2040,283.135
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ROW,km3,2045,303.662
+final_consumption_lca,World,PTS,water_blue_lca_final_food,ROW,km3,2050,326.544
+final_consumption_lca,World,PTS,water_blue_lca_final_food,USA,km3,2024,35.1183
+final_consumption_lca,World,PTS,water_blue_lca_final_food,USA,km3,2030,34.2243
+final_consumption_lca,World,PTS,water_blue_lca_final_food,USA,km3,2035,33.7961
+final_consumption_lca,World,PTS,water_blue_lca_final_food,USA,km3,2040,33.3998
+final_consumption_lca,World,PTS,water_blue_lca_final_food,USA,km3,2045,33.0544
+final_consumption_lca,World,PTS,water_blue_lca_final_food,USA,km3,2050,32.7382

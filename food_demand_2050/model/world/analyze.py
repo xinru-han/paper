@@ -11,8 +11,10 @@ separately from this output.
 
 import csv
 import collections
+import os
 
-RESULTS = "/root/paper/food_demand_2050/results/world"
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+RESULTS = os.path.join(ROOT, "results", "world")
 D = collections.defaultdict(float)   # (scen, com, reg, year, var) -> value
 
 with open(f"{RESULTS}/world_results_long.csv") as fh:
