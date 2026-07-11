@@ -2,7 +2,8 @@
 "Alternative pathways for China's diet transition ... to 2050"
 with the Python port of CASM v2.2.7 (base year 2024, projections 2025-2050).
 
-Scenario design (three folders under /root/data/Paper/食物预测2050/, which
+Scenario design (three folders under FOOD2050_PAPER_DIR, defaulting to
+/root/data/Paper/食物预测2050/, which
 differ only in 2simulation.xlsm, i.e. in the AFHGR0 diet-preference drift):
 
     folder               group  diet pathway            paper codes
@@ -42,7 +43,7 @@ from casm.model import Model
 from casm.simulate import run_base
 from casm.output import Output
 
-PAPER_DIR = "/root/data/Paper/食物预测2050"
+PAPER_DIR = os.environ.get("FOOD2050_PAPER_DIR", "/root/data/Paper/食物预测2050")
 FOLDERS = {
     "PTS": os.path.join(PAPER_DIR, "CASM20251118"),
     "HDS": os.path.join(PAPER_DIR, "CASM20251118diet"),

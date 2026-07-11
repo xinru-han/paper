@@ -1,0 +1,6 @@
+claim_id,manuscript_section,claim_text,source_file,filter,operation,expected_value,actual_value,tolerance,unit,difference,status
+abs_price_pork_hds,Abstract,HDS cuts world pork prices by 56%.,results/world/world_results_long.csv,"scenario=HDS, commodity=PRK, variable=PRF, year=2050",percent_change_vs_BS,-56.0,-56.3344,0.6,%,-0.334351,pass
+abs_price_soybean_hds,Abstract,HDS cuts world soybean prices by 35%.,results/world/world_results_long.csv,"scenario=HDS, commodity=SBS, variable=PRF, year=2050",percent_change_vs_BS,-35.0,-34.6339,0.6,%,0.36607,pass
+abs_carbon_model_covered_hds,Abstract,Model-covered farm-gate GHG changes by -0.50 Gt CO2e.,results/footprints/direct_production_account_summary.csv,"scenario=HDS, indicator=co2_faostat_direct, year=2050",HDS_minus_BS,-500.0,-495.259,10.0,Mt CO2e,4.7407,pass
+abs_carbon_exchina_share,Abstract,91% of model-covered carbon reduction occurs outside China.,results/footprints/direct_production_account_summary.csv,"scenario=HDS, indicator=co2_faostat_direct, year=2050",exCHN_delta / WLD_delta,91.0,90.9696,1.0,%,-0.030421,pass
+abs_exchina_harvested_area_hds,Abstract,Harvested cropland outside China changes by -21.7 Mha.,results/footprints/direct_production_account_summary.csv,"scenario=HDS, indicator=land_harvested, year=2050",HDS_minus_BS exCHN,-21.7,-21.6457,0.2,Mha,0.054315,pass

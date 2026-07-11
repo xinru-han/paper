@@ -18,7 +18,7 @@ import openpyxl
 HERE = os.path.dirname(os.path.abspath(__file__))
 RESULTS = os.path.join(HERE, "..", "results")
 DOCS = os.path.join(HERE, "..", "docs", "manuscript_tables")
-TRUTH_DIR = "/root/data/Paper/食物预测2050/预测结果整理"
+TRUTH_DIR = os.environ.get("FOOD2050_TRUTH_DIR", "/root/data/Paper/食物预测2050/预测结果整理")
 
 TRUTH_FILES = {"PTS": "3RESULTCOM-normal.XLSX",
                "HDS": "3RESULTCOM-diet.XLSX",

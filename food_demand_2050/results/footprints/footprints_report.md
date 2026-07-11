@@ -72,8 +72,9 @@ differences flow entirely through trade) — BS production-side values: carbon
 
 ## B. World — 2050 footprints and the global net effect of China's diet transition
 
-Farm-gate carbon, blue water, reactive N and land, summed over the 13 CASM-World
-regions, split China / rest-of-world (exCHN) / world total.
+Legacy mixed-boundary totals are retained below for comparability with earlier drafts.
+The revised main account is `direct_production_account.csv`; water, nitrogen and
+lifecycle land should not be interpreted as complete global direct totals.
 
 ### BS 2050 baseline
 | Indicator | China | rest-of-world | World |
@@ -102,13 +103,12 @@ regions, split China / rest-of-world (exCHN) / world total.
 | **Harvested cropland (Mha)** | −1.0 | **−21.7** | 96 % |
 
 **The global net-effect story (Nature-subjournal core):** a healthy-diet
-transition in China (HDS) lowers **global** farm-gate agricultural emissions by
-~0.50 Gt CO2e (−9.3 %), saves ~89 km³ of blue water (−7.1 %), cuts ~10.4 Mt of
-reactive nitrogen (−7.2 %), and releases ~556 Mha of land occupation — of which
-**21.7 Mha is physical harvested cropland reduction outside China** (`land_harvested`
+transition in China (HDS/CGS) lowers **model-covered** farm-gate carbon by
+~0.50 Gt CO2e and reduces physical harvested cropland outside China by
+**21.7 Mha** (`land_harvested`
 exCHN, matching the known 21.7 Mha figure to two significant digits). The
-striking result is that **the majority of physical environmental reductions occur
-outside China** (77-96 %): because China imports a large share of its feed and
+striking result is that most model-covered carbon and cropland changes occur
+outside China: because China imports a large share of its feed and
 animal products, moderating domestic animal-food demand propagates through trade
 and relieves environmental pressure primarily on exporting regions
 (Americas, Oceania, ROW). This is the net global environmental effect of China's

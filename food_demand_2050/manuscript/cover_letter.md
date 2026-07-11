@@ -1,20 +1,20 @@
 # Cover Letter
 
-Dear Editors of *Nature Food*,
+Dear Editors,
 
-Please consider our Analysis manuscript, **"China's dietary transition to 2050 reshapes global agricultural markets and environmental footprints"**, for publication in *Nature Food*.
+Please consider our working manuscript, **"China's dietary transition to 2050: implications for agricultural markets, trade and model-covered environmental pressures"**, for a food-security or environmental-management journal route.
 
-What 1.4 billion Chinese consumers will eat by mid-century is usually treated as a domestic nutrition question. We show it is a global resource-reallocation problem. Using a sequentially linked China agricultural-sector model (CASM), a 13-region world agricultural market model and a fully cited four-dimension footprint library, we trace three dietary pathways—preference-driven upgrading, convergence to a composite healthy-diet benchmark, and a moderate half-way transition—through domestic nutrition, world markets and the planet's carbon, water, nitrogen and land accounts.
+What 1.4 billion Chinese consumers will eat by mid-century is usually treated as a domestic nutrition question. We show it is a global resource-reallocation problem. Using a sequentially linked China agricultural-sector model (CASM), a 13-region world agricultural market model and a fully cited footprint library, we trace three dietary pathways—preference-driven upgrading, convergence to a composite-guideline benchmark, and a moderate half-way transition—through model-implied food availability, world markets and boundary-specific environmental accounts.
 
 The paper offers three advances we believe will interest your readership:
 
 1. **Global spillovers of a single country's diet, quantified with an explicit multi-region market model.** A Chinese healthy-diet transition cuts world pork prices by 56% and soybean prices by 35%, contracts Brazilian and Argentine soybean production by 12–14% and US pork production by 46%, and reduces harvested cropland outside China by 21.7 Mha—while dairy, China's one guideline-gap food, pushes world milk-powder prices up 20% against the trend.
 
-2. **A global net-effect accounting that resolves the trade–emissions inconsistency** endemic to national diet studies. China's healthy diet lowers *global* agricultural emissions by 0.50 Gt CO₂e (−9.3%), plus 89 km³ of blue water and 10.4 Mt of reactive nitrogen—with 77–96% of physical reductions occurring outside China. Domestic-only accounting would miss nine-tenths of the climate effect.
+2. **A global net-effect accounting that resolves the trade–emissions inconsistency** endemic to national diet studies. The composite-guideline scenario lowers model-covered farm-gate GHG emissions by 0.50 Gt CO₂e, with 91% of the carbon reduction occurring outside China. Water, nitrogen and lifecycle land are now reported in separated direct-production and final-product footprint accounts rather than mixed as one global total.
 
-3.  **Transition pathways rather than endpoint comparison.** A moderate transition—half the growth-rate adjustment—is associated with 55–65% (median 65%) of the PTS-to-HDS changes across nutrition-proxy, market and environmental indicators, converting the healthy-diet benchmark from an all-or-nothing target into a policy direction while leaving the curvature claim for sensitivity analysis.
+3. **Transition pathways rather than endpoint comparison.** A moderate transition—half the growth-rate adjustment—is associated with a large share of the PTS-to-CGS changes in the current construction, while the curvature claim is left for endpoint/log interpolation and elasticity sensitivity analysis.
 
-The work speaks directly to recent *Nature Food* articles: it supplies the country-led, trade-resolved counterpart to Bodirsky et al. (2025) on global food-system transformation pathways, addresses the consumption-side gap that Candel et al. (2025) identify in national transformation strategies, and extends Wang et al. (2022, 2025) on China's food system to the global-transmission dimension.
+The work supplies a country-led, trade-resolved counterpart to global food-system transformation studies and extends China food-system analysis to the global-transmission dimension.
 
 The entire analysis is open: model source code, all scenario inputs, the per-value-cited coefficient library, results and a machine-precision validation report are publicly available (github.com/xinru-han/paper, folder `food_demand_2050`), permitting cell-level replication of every number.
 
