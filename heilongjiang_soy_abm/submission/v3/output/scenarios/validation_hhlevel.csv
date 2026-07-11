@@ -1,0 +1,2 @@
+n,base_rate,hit_rate,brier,brier_naive,auc
+82,0.2317,0.7561,0.1543,0.178,0.8814
