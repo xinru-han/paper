@@ -1,7 +1,7 @@
 quantity,value
-AR upper-bound MDD-W uplift per +1sd retail (pp),7.67
-implied women crossing threshold per village per +1sd (AR UB),1.15
+AR upper-bound MDD-W uplift per +1sd retail (pp),8.77
+implied women crossing threshold per village per +1sd (AR UB),1.32
 "school-feeding benchmark (US$/beneficiary-yr, literature)",40-80
-break-even village investment for parity at AR UB (US$/yr),46-92
-elasticity retail_pc1 ~ ln report intensity (counties),0.582 (p=0.09)
+break-even village investment for parity at AR UB (US$/yr),53-105
+elasticity retail_pc1 ~ ln report intensity (counties),0.792 (p=0.04)
 NOTE,point effect ~0 => point-estimate cost is unbounded; the AR bound prices the BEST CASE

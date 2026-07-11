@@ -1,5 +1,13 @@
 # Paper 3 — Rugged Roads to a Diverse Diet: Terrain, Rural Food Environments, and Nutrition in China
 
+> **AUDIT HOLD (2026-07-11):** the village-coordinate input used to build the
+> terrain IV contains cross-province geocoding errors (46/361 implied township
+> distances exceed 100 km). All IV, reduced-form, gap-accounting and investment-
+> pricing results below are withdrawn pending a rebuild from the validated Baidu
+> village coordinates. Text county fixed effects also overstated 40 counties as
+> 63; code now uses the six-digit county-code prefix. See
+> `outputs/reports/data_model_audit_20260711.md`.
+
 Evidence from a 2023–2024 eight-province rural China food & nutrition survey
 (361 villages, 3,565 households, 8,565 individual 48h dietary recalls; 63 counties).
 
