@@ -8,7 +8,7 @@ source("/root/data/Paper/食物消费数据/paper3-foodenv/code/00_setup.R")
 con <- log_open("10_robustness.log")
 
 pers <- fread(file.path(DIR_DERIV, "p3_person.csv"), colClasses = list(character = c("xzc12","nhCode")))
-pers[, county_id := paste(provn, countyn, sep = "_")]
+pers[, county_id := substr(xzc12, 1, 6)]
 XC <- c(XI, XH, ZV)
 rows <- list()
 add <- function(label, m, term = IV_RF) {

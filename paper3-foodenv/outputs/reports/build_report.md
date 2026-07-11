@@ -1,5 +1,5 @@
 # Paper 3 build report
-Generated: 2026-07-09 00:23:04
+Generated: 2026-07-11 17:35:00
 
 - village survey: 361 villages (181 in 2023 / 180 in 2024); fe03_min missing 17
 - POI file: 8778 POIs within 5km across 176 villages (villages w/o any POI get 0)
@@ -10,7 +10,7 @@ Generated: 2026-07-09 00:23:04
 - food_ssr_w rebuilt (delivered overall rate broken): mean 0.26, median 0.22
 - person block: 8565 recalls; women 15-49 (mddw eligible): 982; children 6-59m: 101
 - age missing (roster-unmatched recalls): 3038 of 8565 -> median-imputed + dummy
-- counties appearing in both years: 0 of 63 (county×year FE == county FE)
+- counties appearing in both years: 0 of 40 (county×year FE == county FE)
 
 Sample flow:
 - person recalls: 8565

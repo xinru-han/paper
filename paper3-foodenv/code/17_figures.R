@@ -11,7 +11,7 @@ con <- log_open("17_figures.log")
 gsave <- function(p, f, w = 7, h = 5) { ggsave(file.path(DIR_FIG, f), p, width = w, height = h, dpi = 200); cat("  [fig]", f, "\n") }
 
 vg <- fread(file.path(DIR_DERIV, "p3_village.csv"), colClasses = list(character = "xzc12"))
-vg[, county_id := paste(provn, countyn, sep = "_")]
+vg[, county_id := substr(xzc12, 1, 6)]
 
 # ---- F2 binned first stage (residualized on ZV + county FE) -----------------
 m_x <- feols(rhs(IV_RF, ZV, fe = "county_id"), vg); m_y <- feols(rhs(TREAT, ZV, fe = "county_id"), vg)

@@ -13,7 +13,7 @@ source("/root/data/Paper/食物消费数据/paper3-foodenv/code/00_setup.R")
 con <- log_open("12_placebo.log")
 
 vg <- fread(file.path(DIR_DERIV, "p3_village.csv"), colClasses = list(character = "xzc12"))
-vg[, county_id := paste(provn, countyn, sep = "_")]
+vg[, county_id := substr(xzc12, 1, 6)]
 pers <- fread(file.path(DIR_DERIV, "p3_person.csv"), colClasses = list(character = c("xzc12","nhCode")))
 
 # ---- (A) destination race ---------------------------------------------------

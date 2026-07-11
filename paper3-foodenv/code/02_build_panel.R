@@ -188,13 +188,16 @@ pers[is.na(dep_ratio), dep_ratio := med_dep]
 pers[is.na(hh_size_rec), hh_size_rec := median(pers$hh_size_rec, na.rm = TRUE)]
 rep <- c(rep, sprintf("- age missing (roster-unmatched recalls): %d of %d -> median-imputed + dummy",
                       sum(pers$age_miss), nrow(pers)))
-pers[, county_year := paste(provn, countyn, data_year, sep = "_")]
-pers[, county_id   := paste(provn, countyn, sep = "_")]
-hh2[, county_year := paste(provn, countyn, data_year, sep = "_")]
-hh2[, county_id   := paste(provn, countyn, sep = "_")]
+# County names are not canonical in the survey exports (e.g. the same code is
+# recorded as both "永吉市" and "永吉县"). Use the GB/T 2260 county prefix.
+pers[, county_id   := substr(xzc12, 1, 6)]
+pers[, county_year := paste(county_id, data_year, sep = "_")]
+hh2[, county_id   := substr(xzc12, 1, 6)]
+hh2[, county_year := paste(county_id, data_year, sep = "_")]
 vg2 <- merge(vg, unique(per[, .(xzc12, provn, countyn)]), by = "xzc12", all.x = TRUE)
 vg2 <- unique(vg2, by = "xzc12")
-vg2[, county_year := paste(provn, countyn, data_year, sep = "_")]
+vg2[, county_id := substr(xzc12, 1, 6)]
+vg2[, county_year := paste(county_id, data_year, sep = "_")]
 
 # do counties appear in both survey years? (决定 county×year FE 的实际含义)
 cyr <- unique(pers[, .(county_id, data_year)])[, .N, by = county_id]

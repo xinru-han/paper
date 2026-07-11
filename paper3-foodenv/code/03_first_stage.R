@@ -9,7 +9,7 @@ con <- log_open("03_first_stage.log")
 
 pers <- fread(file.path(DIR_DERIV, "p3_person.csv"), colClasses = list(character = c("xzc12","nhCode")))
 vg   <- fread(file.path(DIR_DERIV, "p3_village.csv"),  colClasses = list(character = "xzc12"))
-vg[, county_id := paste(provn, countyn, sep = "_")]
+vg[, county_id := substr(xzc12, 1, 6)]
 
 TREATS <- c("retail_pc1", "retail_lnfresh", "access_dist")
 IVCOLS <- as.vector(outer(c("town","county"), c(1,2,5),

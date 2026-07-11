@@ -1,5 +1,5 @@
 # Paper 3 — IV column mapping (fixed)
-Generated: 2026-07-08 23:51:32
+Generated: 2026-07-11 17:34:59
 
 IV construction (GEE run 2026-04-26, see 地形变量与IV_GEE流程说明.md):
 `iv_terrain_barrier_{town,county}_gee_Xkm = log(route_cost_distance / euclidean_distance)`

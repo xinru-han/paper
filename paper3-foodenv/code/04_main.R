@@ -14,7 +14,7 @@ pers <- fread(file.path(DIR_DERIV, "p3_person.csv"), colClasses = list(character
 # village coordinates for Conley SEs only (never written to outputs)
 crd <- fread(F_CORR(5))[, .(xzc12 = as.character(xzc12), lat = num(vil_wgs_lat), lon = num(vil_wgs_lng))]
 pers <- merge(pers, crd, by = "xzc12", all.x = TRUE)
-pers[, county_id := paste(provn, countyn, sep = "_")]
+pers[, county_id := substr(xzc12, 1, 6)]
 XC <- c(XI, XH, ZV)
 
 # ---- Anderson–Rubin CI by grid inversion (single endog, single IV) ----------
