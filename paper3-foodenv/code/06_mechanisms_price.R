@@ -9,7 +9,7 @@ source("/root/data/Paper/食物消费数据/paper3-foodenv/code/00_setup.R")
 con <- log_open("06_price.log")
 
 hh <- fread(file.path(DIR_DERIV, "p3_household.csv"), colClasses = list(character = c("xzc12","nhCode")))
-hh[, county_year := paste(provn, countyn, data_year, sep = "_")]
+hh[, county_year := paste(substr(xzc12, 1, 6), data_year, sep = "_")]
 
 # village x category median paid price (only among buyers with a valid price)
 pl <- list()

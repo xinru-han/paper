@@ -2,9 +2,9 @@ quantity,value
 MDD-W attainment (baseline),13.9%
 shortfall (pp),86.1
 "uplift, 2SLS scaling (pp, point)",0.00
-"uplift, 2SLS scaling MC 95% CI","[0.00, 8.23]"
+"uplift, 2SLS scaling MC 95% CI","[0.00, 9.26]"
 "uplift, RF scaling (pp, point)",0.00
-"uplift, RF scaling MC 95% CI","[0.00, 1.92]"
-"uplift, AR 95% UPPER BOUND (pp)",7.67
+"uplift, RF scaling MC 95% CI","[0.00, 1.73]"
+"uplift, AR 95% UPPER BOUND (pp)",8.77
 "attribution share of shortfall (point, 2SLS)",0.0%
-attribution share UPPER BOUND (AR),8.9%
+attribution share UPPER BOUND (AR),10.2%

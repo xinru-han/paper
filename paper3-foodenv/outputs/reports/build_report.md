@@ -1,5 +1,5 @@
 # Paper 3 build report
-Generated: 2026-07-11 17:35:00
+Generated: 2026-07-11 17:37:40
 
 - village survey: 361 villages (181 in 2023 / 180 in 2024); fe03_min missing 17
 - POI file: 8778 POIs within 5km across 176 villages (villages w/o any POI get 0)

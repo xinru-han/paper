@@ -13,7 +13,7 @@ suppressPackageStartupMessages(library(readxl))
 con <- log_open("15_pricing.log")
 
 vg <- fread(file.path(DIR_DERIV, "p3_village.csv"), colClasses = list(character = "xzc12"))
-vg[, county_id := paste(provn, countyn, sep = "_")]
+vg[, county_id := substr(xzc12, 1, 6)]
 
 # ---- county report keyword intensity ---------------------------------------
 tx <- as.data.table(read_excel(F_COUNTY_TXT))
@@ -30,6 +30,7 @@ cint <- tx[, .(kw_per_10k = 1e4 * sum(kw_total) / sum(txt_len), n_reports = .N),
 
 # match to sample counties (countyn strings contain the county name)
 cty <- unique(vg[, .(provn, countyn, county_id)])
+cty <- cty[order(nchar(countyn), decreasing = TRUE), .SD[1], by = county_id]
 cint[, matched := FALSE]
 mfun <- function(pn, cn_) {
   hit <- cint[grepl(substr(gsub("市|地区|自治州|盟", "", cn_), nchar(gsub("市|地区|自治州|盟","",cn_)) - 2, nchar(gsub("市|地区|自治州|盟","",cn_))), county, fixed = TRUE) |

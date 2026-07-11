@@ -1,5 +1,5 @@
 # prereg_p3.md — pre-registered first-stage grid and D1 decision
-Generated: 2026-07-09 00:01:06
+Generated: 2026-07-11 17:37:42
 
 ## Grid (all combinations evaluated, none selected ex post beyond the rule below)
 - treatments: retail_pc1 (PCA), retail_lnfresh, access_dist
@@ -16,8 +16,8 @@ pick the best-F combo from the grid for 2SLS and downgrade the paper's primary
 framing to the reduced form in detour (quasi-experimental terrain-isolation
 gradient), targeting Food Policy / World Development.
 
-## Outcome: D1 FIRES. Primary combo F = 5.8 (<10).
-Best combo: retail_pc1 <- detour_town_1km with person-level village-clustered F = 10.4.
+## Outcome: D1 FIRES. Primary combo F = 4.3 (<10).
+Best combo: retail_pc1 <- detour_town_1km with person-level village-clustered F = 9.7.
 
 Consequences applied throughout the pipeline:
 1. PRIMARY: reduced form  y ~ detour_town_5km + Z | county FE (person level, village cluster).

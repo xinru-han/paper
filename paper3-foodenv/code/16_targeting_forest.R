@@ -21,7 +21,7 @@ cl <- as.integer(factor(d$xzc12))
 # demean Y and W within county×year first: the forest must target the same
 # within-county variation as the design (raw causal_forest would re-admit the
 # cross-county development gradient the FE removes)
-d[, county_year := paste(provn, countyn, data_year, sep = "_")]
+d[, county_year := paste(substr(xzc12, 1, 6), data_year, sep = "_")]
 d[, `:=`(y_dm = fgds10 - mean(fgds10), w_dm = detour_town_5km - mean(detour_town_5km)),
   by = county_year]
 

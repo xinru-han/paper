@@ -13,7 +13,7 @@ con <- log_open("09_exclusion.log")
 
 pers <- fread(file.path(DIR_DERIV, "p3_person.csv"), colClasses = list(character = c("xzc12","nhCode")))
 hh   <- fread(file.path(DIR_DERIV, "p3_household.csv"), colClasses = list(character = c("xzc12","nhCode")))
-hh[, county_year := paste(provn, countyn, data_year, sep = "_")]
+hh[, county_year := paste(substr(xzc12, 1, 6), data_year, sep = "_")]
 XC <- c(XI, XH, ZV)
 rows <- list()
 add <- function(label, m, term = IV_RF) {

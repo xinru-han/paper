@@ -7,7 +7,7 @@ source("/root/data/Paper/食物消费数据/paper3-foodenv/code/00_setup.R")
 con <- log_open("07_purchase.log")
 
 hh <- fread(file.path(DIR_DERIV, "p3_household.csv"), colClasses = list(character = c("xzc12","nhCode")))
-hh[, county_year := paste(provn, countyn, data_year, sep = "_")]
+hh[, county_year := paste(substr(xzc12, 1, 6), data_year, sep = "_")]
 XHH <- c("ln_income", "hh_size_rec", "dep_ratio", "hb_fridge", "hb_vehicle", "ln_sown", ZV)
 
 FOOD9 <- setdiff(FOOD12, c("tang", "cha", "yan"))   # sugar/tea columns are degenerate (n<12); tobacco not food
@@ -52,7 +52,7 @@ a <- coeftable(m_f)[IV_RF, ]
 res2[["fafh"]] <- data.table(outcome = "fafh_any (person)", b = a[1], se = a[2], p = a[4], n = m_f$nobs)
 
 vg <- fread(file.path(DIR_DERIV, "p3_village.csv"), colClasses = list(character = "xzc12"))
-vg[, county_id := paste(provn, countyn, sep = "_")]
+vg[, county_id := substr(xzc12, 1, 6)]
 vg[, ln_rest := log1p(poi_restaurant_5km)]
 m_r <- feols(rhs("ln_rest", c(IV_RF, ZV), fe = "county_id"), vg, vcov = "hetero")
 a <- coeftable(m_r)[IV_RF, ]
