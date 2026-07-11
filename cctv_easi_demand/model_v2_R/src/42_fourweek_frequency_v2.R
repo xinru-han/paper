@@ -64,9 +64,18 @@ ext_group <- ext[, .(lp_ext = sum(weight0 * external_log_price), n_cat = .N),
                  by = .(Province, year_month, food_group10)]
 ext_group <- merge(ext_group, full_basket, by = "food_group10")[n_cat == n_full]
 
-# household-28day-group spends
-grp <- dt[, .(spend = sum(spend_pos), fsz = family_size_midpoint[1]),
-          by = .(ID, Province, p28, mid_month, food_group10)]
+# household-28day-group spends. Build the full zero grid first; otherwise only
+# observed purchase rows are present and purchase rates mechanically approach 1.
+hhp <- unique(dt[, .(ID, Province, p28, mid_month,
+                     Family_Size, fsz = family_size_midpoint)])
+grid <- CJ(ID = unique(hhp$ID), p28 = sort(unique(hhp$p28)),
+           food_group10 = unname(GROUPS9), unique = TRUE)
+grid <- merge(grid, hhp, by = c("ID","p28"), all.x = TRUE)
+grid <- grid[!is.na(Province)]
+sp <- dt[, .(spend = sum(spend_pos)),
+         by = .(ID, p28, food_group10)]
+grp <- merge(grid, sp, by = c("ID","p28","food_group10"), all.x = TRUE)
+grp[is.na(spend), spend := 0]
 tot <- grp[, .(tot_spend = sum(spend)), by = .(ID, p28)]
 grp <- merge(grp, tot, by = c("ID","p28"))[tot_spend > 0]
 grp <- merge(grp, ext_group[, .(Province, mid_month = year_month, food_group10, lp_ext)],

@@ -15,6 +15,7 @@ Z_COLS <- c("z_cpi","z_covid","z_holiday","z_temp","z_precip","z_wholesale")
 DEMO_COLS <- c("low_income","elderly_household","large_family")
 MONTH_D <- paste0("m_", sprintf("%02d", 2:12))
 YEAR_D  <- c("yr_2021","yr_2022")
+EXTRA_BASE_COLS <- character(0)
 
 # ---------------------------------------------------------------------------
 # Wide data preparation
@@ -205,7 +206,7 @@ system_layout <- function(omit = "G03", az = FALSE, y2p = FALSE) {
   eq_codes <- setdiff(CODES9, omit)
   G <- length(eq_codes)
   base_terms <- c("const","y_easi","y_easi2", DEMO_COLS, Z_COLS, MONTH_D, YEAR_D,
-                  "mean_y_hh", paste0("mn_r_", eq_codes))
+                  "mean_y_hh", paste0("mn_r_", eq_codes), EXTRA_BASE_COLS)
   up <- which(upper.tri(matrix(0, G, G), diag = TRUE), arr.ind = TRUE)
   pair_names <- paste0("p", up[,1], "_", up[,2])
   pair_index <- matrix(NA_integer_, G, G)

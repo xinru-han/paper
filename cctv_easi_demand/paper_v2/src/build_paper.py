@@ -67,6 +67,11 @@ robust_fwz = rd("robustness/robustness_freq_winsor_zero_v2.csv")
 prate_freq = rd("robustness/purchase_rate_by_frequency_v2.csv")
 cv_nat = rd("welfare/cv_national_by_income_v2.csv")
 sflow = rd("validation/sample_flow_v2.csv")
+cf_cmp = rd("audit/control_function_own_price_compare_v2.csv")
+cf_dwh = rd("audit/expenditure_control_function_dwh_v2.csv")
+pc_excl = rd("audit/purchase_cycle_exclusion_tests_v2.csv")
+clip_diag = rd("audit/predicted_share_clipping_diagnostics_v2.csv")
+asym_diag = rd("audit/hicksian_asymmetry_diagnostics_v2.csv")
 
 missing = [n for n, d in [("descriptives", desc), ("bootstrap CIs", exp_ci),
                           ("robustness", robust), ("welfare", cv_nat)] if d is None]
@@ -101,9 +106,9 @@ sec.left_margin = sec.right_margin = Cm(2.5)
 # ---- Title page -----------------------------------------------------------
 t = doc.add_paragraph()
 t.alignment = WD_ALIGN_PARAGRAPH.CENTER
-run = t.add_run("Food demand and the welfare cost of food price changes in China: "
-                "evidence from a curvature-constrained censored EASI system "
-                "on high-frequency household scanner data")
+run = t.add_run("Monthly food purchase demand and food price changes in China: "
+                "evidence from a censored EASI system on high-frequency "
+                "household scanner data")
 run.bold = True
 run.font.size = Pt(14)
 
@@ -114,17 +119,17 @@ p.add_run("[Author names withheld for review]\n").italic = True
 doc.add_paragraph()
 h = u.add_heading(doc, "Abstract", 2)
 abstract = (
-    f"We estimate a complete food demand system for urban China on a monthly panel of "
+    f"We estimate a complete monthly food purchase-demand system for urban China on a panel of "
     f"{N_HH} households ({N_HM} household-month observations, {N_PROV} provinces, 2020–2022) "
     "built from continuous scanner records. Prices are measured from external provincial "
-    "market series with fixed 2021 baskets, eliminating unit-value endogeneity. We estimate "
+    "market series with fixed 2021 baskets, avoiding household unit-value endogeneity. We estimate "
     "an Exact Affine Stone Index (EASI) demand system with a two-step censored specification, "
     "correlated random effects, and month and year fixed effects. The participation-adjusted "
-    "system is already essentially regular—its largest Slutsky eigenvalue is economically "
-    "negligible—so we report the unconstrained elasticities as primary and show that imposing "
-    "Slutsky negativity globally through a Cholesky reparameterization of the price-coefficient "
-    "matrix at two support points leaves the qualitative pattern intact while, as expected, "
-    "tightening only the least-identified small-share elasticities. All nine own-price "
+    "system is interpreted as a purchase system: monthly zeroes often reflect shopping timing "
+    "and inventory cycles rather than literal zero consumption. We therefore report "
+    "Marshallian purchase elasticities as the primary results, treat latent curvature checks "
+    "as regularity diagnostics, and report welfare calculations only as exploratory "
+    "potential-demand approximations. All nine own-price "
     "elasticities are negative and economically plausible. Exploiting the daily transaction timestamps, "
     "we add purchase-cycle exclusion variables to the participation stage that separate the "
     "inventory-cycle and corner-solution mechanisms behind monthly zero purchases of "
@@ -133,14 +138,11 @@ abstract = (
     "purchase timing is left in the price coefficient. "
     "Inference combines household- and province-clustered standard errors, a "
     "studentized province-level score multiplier bootstrap with Webb weights, and a "
-    "household pairs cluster bootstrap over the full two-step "
-    "pipeline. Using the estimated Hicksian elasticities we compute the compensating "
-    "variation of the 2020–2022 food price changes. Because the period is dominated by the "
-    "post-African-swine-fever reversal of pork prices against broad increases elsewhere, the "
-    "incidence is progressive: net losses rise monotonically with income, from roughly zero "
-    "for the poorest quintile—whose substitution gain nearly cancels its first-order loss—to "
-    "the largest loss for the richest. The results provide elasticity and welfare inputs for food price policy "
-    "in China."
+    "household pairs cluster bootstrap over the full two-step pipeline, plus audit-response "
+    "diagnostics for expenditure control functions, purchase-cycle exclusion restrictions, "
+    "prediction clipping, and leave-one-province-out price sensitivity. The results provide "
+    "purchase-elasticity inputs for food price policy in China while making clear which "
+    "welfare and structural-consumption claims require stronger identifying assumptions."
 )
 doc.add_paragraph(abstract)
 p = doc.add_paragraph()
@@ -378,19 +380,22 @@ doc.add_paragraph(
     "Unconditional elasticities are computed numerically by perturbing each price (or "
     "total expenditure) by one percent and re-solving the full observed-share prediction "
     "(3), including the re-evaluation of participation probabilities—so both the "
-    "intensive and extensive margins respond. Hicksian elasticities follow from the "
-    "Slutsky equation"
+    "intensive and extensive purchase margins respond. The compensated matrix reported "
+    "below is a Slutsky-style diagnostic constructed from"
 )
 u.add_equation(doc,
                r"e_{gh}^{H} = e_{gh}^{M} + e_{g}\,\overline{w}_{h}", "6")
 doc.add_paragraph(
     "The elasticity experiment holds the household Mundlak means at their base values "
     "while prices, participation probabilities, and shares respond, so the estimates are "
-    "short-run responses with the household's long-run component fixed."
+    "short-run monthly purchase responses with the household's long-run component fixed. "
+    "Because the Shonkwiler-Yen participation stage is not itself a globally integrable "
+    "corner-demand model, the unconditional compensated matrix is not interpreted as a "
+    "strict Hicksian demand system."
 )
 doc.add_paragraph(
     "Inference proceeds at three levels. Analytic sandwich standard errors—with the "
-    "CR1 small-sample correction—are clustered by household (primary) and by province; "
+    "CR1 small-sample correction— are clustered by household and by province; "
     "they treat the first-stage probits, the Stone weights, and the estimated error "
     "covariance as known, and are therefore reported as two-step-naive reference values "
     "only. Price-coefficient inference is additionally checked with a studentized "
@@ -400,13 +405,10 @@ doc.add_paragraph(
     "of t-statistics—the studentization that gives multiplier bootstraps their "
     "asymptotic refinement with a modest number (24) of heterogeneous clusters. This is "
     "a score (multiplier) bootstrap, not a restricted wild cluster bootstrap with "
-    "null-imposed re-estimation. Finally, all elasticity and welfare confidence "
-    "intervals—and all significance statements in the text—come from a 210-replication "
-    "household pairs cluster bootstrap that resamples households with replacement "
-    "(implemented as frequency weights) and re-executes the entire pipeline—Stone "
-    "weights, probits, constrained GLS, and elasticity computation—in every "
-    "replication, thereby carrying the two-step and generated-regressor uncertainty "
-    "that the analytic formulas omit."
+    "null-imposed re-estimation. Household pairs bootstrap intervals are retained as "
+    "composition-and-two-step uncertainty checks, but price elasticities are interpreted "
+    "against the province-level price variation and the 24-cluster sensitivity diagnostics "
+    "reported in the audit appendix."
 )
 
 # ---- 4. Results ------------------------------------------------------------
@@ -575,14 +577,11 @@ if robust_fwz is not None:
         except Exception:
             prate_txt = ""
     bits = []
-    dh = fwz_own("Z1_dual_hurdle")
     w1 = fwz_own("W1_winsor_sh_2p5")
     s5 = fwz_own("S1_minTx5")
     if s5: bits.append(f"a basket-completeness screen dropping thin-recording "
                        f"household-months ({s5})")
     if w1: bits.append(f"winsorizing group budget shares at 2.5 percent ({w1})")
-    if dh: bits.append(f"a Cragg double-hurdle that treats never-buyers as structural "
-                       f"zeros ({dh})")
     bundle = ("; ".join(bits)) if bits else ""
     paras.append(
         "Because the storable groups—staples above all—carry the most lumpy, "
@@ -593,9 +592,11 @@ if robust_fwz is not None:
         "them delivers the plausible near-unit-elastic staple response reported above and "
         "raises every participation pseudo-R². Following the infrequency-of-purchase "
         "literature (Cragg, 1971; Deaton and Irish, 1984; Blundell and Meghir, 1987), we "
-        "confirm the interpretation with a frequency-gradient diagnostic: aggregating the "
-        "data from monthly to quarterly and annual windows collapses the storable groups' "
-        "zero rates while leaving perishables' roughly unchanged." + prate_txt +
+        "confirm the interpretation with reduced-form frequency diagnostics rather than "
+        "a degenerate quarterly or annual full SY system: aggregating the data from "
+        "monthly to quarterly and annual windows collapses the storable groups' zero "
+        "rates while leaving perishables' roughly unchanged, and the 28-day diagnostic "
+        "is rebuilt on a complete household-window-group zero grid." + prate_txt +
         (" The staple own-price elasticity is furthermore stable under " + bundle + "."
          if bundle else "") +
         " These checks confirm that the main elasticities are not artifacts of thin "
@@ -606,12 +607,45 @@ if robust_fwz is not None:
 for para in paras:
     doc.add_paragraph(para)
 
+if cf_cmp is not None or pc_excl is not None or clip_diag is not None:
+    audit_bits = []
+    if cf_cmp is not None:
+        maxdiff = cf_cmp["diff_cf_minus_fgls"].abs().max()
+        audit_bits.append(
+            f"the expenditure control-function sensitivity changes own-price elasticities "
+            f"by at most {u.fmt(maxdiff, 2)}")
+    if pc_excl is not None:
+        nrej = int((pc_excl["p_value"] < 0.05).sum())
+        audit_bits.append(
+            f"purchase-cycle variables are jointly significant in {nrej} auxiliary "
+            "share equations, so they are treated as identifying exclusions only with "
+            "caution")
+    if clip_diag is not None:
+        mxneg = 100 * float(clip_diag["negative_share_rate"].max())
+        audit_bits.append(
+            f"the largest raw negative predicted-share rate is {u.fmt(mxneg, 1)} percent")
+    if asym_diag is not None:
+        try:
+            av = float(asym_diag.loc[asym_diag["metric"] == "max_abs_S_minus_St", "value"].iloc[0])
+            audit_bits.append(f"the unconditional Slutsky asymmetry diagnostic is {u.fmt(av, 3)}")
+        except Exception:
+            pass
+    doc.add_paragraph(
+        "The audit appendix reports diagnostics that bound the interpretation of the "
+        "monthly purchase system: " + "; ".join(audit_bits) + ". These results are why "
+        "the paper frames the main contribution as externally priced monthly purchase "
+        "elasticities rather than a fully structural consumption-welfare model."
+    )
+
 # ---- 6. Welfare -------------------------------------------------------------
-u.add_heading(doc, "6. The welfare incidence of the 2020–2022 food price changes", 1)
+u.add_heading(doc, "6. Exploratory welfare incidence of the 2020–2022 food price changes", 1)
 doc.add_paragraph(
-    "We convert the estimated system into money-metric welfare effects with the "
-    "second-order approximation to compensating variation, evaluated with income-group-"
-    "specific budget shares and Hicksian elasticities:"
+    "As an exploratory calculation, we convert the latent/potential demand system into "
+    "money-metric effects with the second-order approximation to compensating variation, "
+    "evaluated with income-group-specific budget shares and the compensated diagnostic "
+    "matrix. Because the unconditional purchase system combines participation and "
+    "conditional shares outside a single globally integrable corner-demand model, these "
+    "numbers are not used as strict welfare estimates:"
 )
 u.add_equation(
     doc,
@@ -674,19 +708,16 @@ doc.add_paragraph(
 # ---- 7. Conclusion ----------------------------------------------------------
 u.add_heading(doc, "7. Conclusions", 1)
 doc.add_paragraph(
-    "We provide a theoretically coherent, externally priced, and fully inferenced food "
-    "demand system for urban China at monthly frequency, and use it to quantify the "
-    "distributional welfare incidence of the 2020–2022 food price movements. "
-    "Methodologically, the paper shows that global curvature can be imposed on an EASI "
-    "system by full-information concentrated GLS at trivial cost, resolving the "
-    "regularity failures that typically undermine policy use of estimated demand "
-    "systems. Substantively, monthly own-price elasticities are uniformly negative and "
-    "larger than annual estimates, poorer households adjust most, and the incidence of "
-    "the 2020–2022 price changes—dominated by the pork price reversal—was progressive, "
-    "with net losses rising from roughly zero at the bottom of the income distribution to "
-    "their largest at the top. "
-    "The elasticity and welfare estimates provide direct inputs for the design of food "
-    "price stabilization and targeted transfer policy in China."
+    "We provide an externally priced monthly food purchase-demand system for urban China. "
+    "The scanner panel is especially useful for separating purchase incidence from "
+    "conditional basket allocation, but the same feature means that monthly zeroes should "
+    "not be read mechanically as zero consumption. Substantively, own-price purchase "
+    "elasticities are uniformly negative, poorer households adjust most, and storable "
+    "goods require explicit purchase-cycle diagnostics. The exploratory incidence "
+    "calculation for 2020-2022 shows how the pork price reversal can offset first-order "
+    "food inflation exposure for lower-income households, but the policy-ready result is "
+    "the purchase-elasticity structure; strict welfare analysis would require either a "
+    "validated potential-consumption interpretation or an integrable corner-demand model."
 )
 
 # ---- References -------------------------------------------------------------
@@ -752,8 +783,7 @@ if probit is not None:
                      "effects and Mundlak means; household-clustered.")
 
 # Table 3
-u.add_heading(doc, "Table 3. Expenditure and Marshallian own-price elasticities "
-                   "(curvature-constrained)", 3)
+u.add_heading(doc, "Table 3. Expenditure and Marshallian own-price purchase elasticities", 3)
 if exp_ci is not None and mar_ci is not None:
     own = mar_ci[mar_ci["demand_group"] == mar_ci["price_group"]].set_index("demand_group")
     rows = []
@@ -767,12 +797,12 @@ if exp_ci is not None and mar_ci is not None:
                      f'[{u.fmt(o["ci_lo"],2)}, {u.fmt(o["ci_hi"],2)}]'])
     u.add_table(doc, ["Food group", "Expenditure", "(SE)", "95% CI",
                       "Own-price", "(SE)", "95% CI"], rows,
-                note="Notes: participation-adjusted elasticities; SEs and percentile "
-                     "CIs from a 210-replication household pairs cluster bootstrap over "
-                     "the full two-step constrained pipeline.")
+                note="Notes: participation-adjusted monthly purchase elasticities; "
+                     "household bootstrap CIs are composition/two-step uncertainty checks. "
+                     "Province-level price-cluster diagnostics are reported in the audit appendix.")
 
 # Table 4
-u.add_heading(doc, "Table 4. Hicksian (compensated) price elasticity matrix", 3)
+u.add_heading(doc, "Table 4. Compensated price elasticity diagnostic matrix", 3)
 if hick_ci is not None:
     labels = [EN[c] for c in ORDER_CN]
     header = ["Demand \\ Price"] + labels

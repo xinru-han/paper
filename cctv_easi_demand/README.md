@@ -1,19 +1,33 @@
-# CCTV EASI Demand
+# CCTV EASI Purchase Demand v2
 
-This directory contains the code and generated results for the CCTV food demand
-EASI project.
+This project estimates a nine-group monthly food purchase-demand system for
+China using CCTV scanner data and external provincial food prices.
 
-Included:
-- `model_v2_R/src/` and run scripts for the v2 demand pipeline.
-- `model_v2_R/outputs/` generated tables, logs, robustness checks, inference
-  outputs, and welfare results.
-- `paper_v2/` manuscript builder, figures, and the generated DOCX manuscript.
-- `final_demand_model_R/`, `scripts/`, selected `processed/*.md` reports, and
-  reproduction summaries.
+The current revision follows the Food Policy-oriented response to
+`EASI_V2_econometric_audit_AJAE_FoodPolicy.md`:
 
-Excluded:
-- Raw and derived household-level data in `processed/`, `model_v2_R/data_derived/`,
-  and `repro_run/data_derived/`.
-- Cache files and platform metadata.
+- monthly outcomes are described as purchase demand, not literal consumption;
+- invalid quarterly/annual full SY and full-sample ever-buyer double-hurdle
+  outputs are removed from the robustness bundle;
+- the 28-day frequency diagnostic now builds a complete zero grid;
+- welfare outputs are retained as exploratory/potential-demand calculations
+  rather than a strict unconditional corner-demand welfare result;
+- audit diagnostics are written to `model_v2_R/outputs/audit/`;
+- generated outputs are indexed in `model_v2_R/outputs/results_manifest_v2.csv`.
 
-The latest manuscript is `paper_v2/manuscript_food_policy_v2.docx`.
+Raw and derived household-level data are intentionally not versioned in git.
+Required local data inputs include `model_v2_R/data_derived/` and selected files
+under `processed/`.
+
+Main commands:
+
+```bash
+Rscript run_all.R
+bash paper_v2/src/run_finalize.sh
+```
+
+The latest generated manuscript is:
+
+```text
+paper_v2/manuscript_food_policy_v2.docx
+```

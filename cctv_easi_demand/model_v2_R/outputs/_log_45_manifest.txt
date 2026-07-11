@@ -1,0 +1,5 @@
+There were 50 or more warnings (use warnings() to see the first 50)
+Warning message:
+In system2("git", c("rev-parse", "HEAD"), stdout = TRUE, stderr = FALSE) :
+  running command ''git' rev-parse HEAD 2>/dev/null' had status 128
+[45] wrote results_manifest_v2.csv and sessionInfo.txt

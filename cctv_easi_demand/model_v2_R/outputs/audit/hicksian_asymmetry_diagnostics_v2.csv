@@ -1,0 +1,4 @@
+﻿metric,value
+max_abs_S_minus_St,0.0648544159540548
+frobenius_S_minus_St,0.137748032833506
+max_abs_hicksian_minus_transpose,0.348422813780026
