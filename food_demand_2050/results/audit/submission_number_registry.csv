@@ -1,7 +1,7 @@
 label,value,unit,source_file,selector,generating_script,scenario_version,rounding_rule
 CASM commodity count,37,commodities,submission_config.yaml,model.casm_commodity_count,manual config,submission_config.yaml,integer
 CASM-World region count,13,regions,submission_config.yaml,model.casm_world_regions,manual config,submission_config.yaml,integer
-scenario count,0,scenarios,scenarios/scenario_definitions.csv,all rows,audit_manuscript_repository_consistency.py,submission_config.yaml,integer
+scenario count,19,scenarios,scenarios/scenario_definitions.csv,all rows,audit_manuscript_repository_consistency.py,submission_config.yaml,integer
 world pork price change HDS vs BS,-56.334,%,results/world/world_results_long.csv,"scenario=HDS, commodity=PRK, variable=PRF, year=2050",source model script listed in repository,submission_config.yaml,3 decimals for audit; manuscript rounds by context
 world soybean price change HDS vs BS,-34.634,%,results/world/world_results_long.csv,"scenario=HDS, commodity=SBS, variable=PRF, year=2050",source model script listed in repository,submission_config.yaml,3 decimals for audit; manuscript rounds by context
 world maize price change HDS vs BS,-33.305,%,results/world/world_results_long.csv,"scenario=HDS, commodity=CRN, variable=PRF, year=2050",source model script listed in repository,submission_config.yaml,3 decimals for audit; manuscript rounds by context

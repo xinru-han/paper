@@ -1,4 +1,4 @@
-domain,metric,unit,BS,PTS,MTS,HDS,dividend_HDS_minus_PTS,MTS_realisation_pct
+domain,metric,unit,BS,PTS,MTS,HDS,change_HDS_minus_PTS,MTS_realisation_pct
 China diet,Dietary energy,kcal/cap/day,3035.837,3091.1,2571.503,2257.699,-833.401,62.347
 China diet,Fat intake,g/cap/day,133.804,143.113,104.744,82.716,-60.397,63.527
 China diet,Protein intake,g/cap/day,104.284,107.804,98.768,98.088,-9.716,93.004

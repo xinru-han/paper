@@ -22,7 +22,7 @@ Per-capita shares of EAT-Lancet food-system boundaries at 9.7 bn people (GHG 5 G
 
 Note: farm-gate GHG per capita sits almost exactly on the boundary share under BS and only diet-driven scenarios move it below; the land metric uses cradle land incl. pasture (P&N) and is not directly comparable with the cropland-only boundary — flagged in the csv.
 
-## 3. MTS efficiency — share of the PTS→HDS dividend realised at half the transition depth (`mts_efficiency.csv`)
+## 3. MTS realisation — share of the PTS→HDS change under the moderate pathway (`mts_efficiency.csv`)
 
 | Domain | Metric | PTS | MTS | HDS | MTS realisation % |
 |---|---|---:|---:|---:|---:|
@@ -38,7 +38,7 @@ Note: farm-gate GHG per capita sits almost exactly on the boundary share under B
 | Global net effect | Global agri CO2 (traded goods) (Mt CO2e) | 5373.2 | 5009.4 | 4813.6 | **65** |
 | Global net effect | Rest-of-world harvested area (Mha) | 922.8 | 909.9 | 900.6 | **58** |
 
-- Median realisation across all 21 metrics: **65%** — a 50% transition depth secures well over half of every health and global environmental dividend (declining marginal cost of transition).
+- Median realisation across all 21 metrics: **65%**. The current growth-rate interpolation gives a median realisation above half of the PTS-HDS change; this combines scenario construction and market response.
 - Realisation >100% for fixed-coefficient consumption CO2/land occurs because HDS's large dairy/aquatic expansion partly offsets its red-meat cuts, while MTS avoids that rebound.
 
 ## 4. Diet health proxies vs guidelines (`diet_health_proxies_2050.csv`)
@@ -70,5 +70,5 @@ Note: farm-gate GHG per capita sits almost exactly on the boundary share under B
 - `ssr_2050_matrix.csv` — SSR 2050, 14 commodities x 19 scenarios (+2024)
 - `import_dependence_soy_dairy.csv` — soybean & dairy import dependence
 - `per_capita_footprints_vs_boundaries.csv` — planetary-boundary ratios
-- `mts_efficiency.csv` — full MTS dividend-realisation table
+- `mts_efficiency.csv` — full MTS realisation table
 - `diet_health_proxies_2050.csv` — guideline deviations, all 19 scenarios

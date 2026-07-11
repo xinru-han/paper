@@ -137,9 +137,9 @@ def analysis_boundaries(df, cfp):
 
 # ---------------------------------------------------- 3. MTS efficiency
 def _real(pts, mts, hds):
-    """Share of the PTS->HDS dividend realised by MTS (%).
+    """Share of the PTS->HDS change realised by MTS (%).
 
-    Returns NaN when the PTS->HDS dividend is <2% of the metric's scale
+    Returns NaN when the PTS->HDS change is <2% of the metric's scale
     (ratio not meaningful, e.g. China blue water where HDS ~= PTS)."""
     scale = max(abs(pts), abs(hds), 1e-9)
     if abs(hds - pts) < 0.02 * scale:
@@ -153,7 +153,7 @@ def analysis_mts(df, cfp, wfp, wl):
     def add(domain, metric, unit, pts, mts, hds, bs=np.nan):
         rows.append({"domain": domain, "metric": metric, "unit": unit,
                      "BS": bs, "PTS": pts, "MTS": mts, "HDS": hds,
-                     "dividend_HDS_minus_PTS": hds - pts,
+                     "change_HDS_minus_PTS": hds - pts,
                      "MTS_realisation_pct": _real(pts, mts, hds)})
 
     # --- China nutrition / diet (results_long, 2050, ALL)
@@ -344,8 +344,8 @@ def write_readme(ssr_mat, bounds, mts, health):
         "uses cradle land incl. pasture (P&N) and is not directly comparable with "
         "the cropland-only boundary — flagged in the csv.",
         "",
-        "## 3. MTS efficiency — share of the PTS→HDS dividend realised at half "
-        "the transition depth (`mts_efficiency.csv`)",
+        "## 3. MTS realisation — share of the PTS→HDS change under the moderate "
+        "pathway (`mts_efficiency.csv`)",
         "",
         "| Domain | Metric | PTS | MTS | HDS | MTS realisation % |",
         "|---|---|---:|---:|---:|---:|",
@@ -356,9 +356,8 @@ def write_readme(ssr_mat, bounds, mts, health):
     med = mts.MTS_realisation_pct.median()
     lines += [
         "",
-        f"- Median realisation across all {len(mts)} metrics: **{med:.0f}%** — a "
-        "50% transition depth secures well over half of every health and global "
-        "environmental dividend (declining marginal cost of transition).",
+        f"- Median realisation across all {len(mts)} metrics: **{med:.0f}%**. "
+        "The current growth-rate interpolation gives a median realisation above half of the PTS-HDS change; this combines scenario construction and market response.",
         "- Realisation >100% for fixed-coefficient consumption CO2/land occurs "
         "because HDS's large dairy/aquatic expansion partly offsets its red-meat "
         "cuts, while MTS avoids that rebound.",
@@ -394,7 +393,7 @@ def write_readme(ssr_mat, bounds, mts, health):
         "- `ssr_2050_matrix.csv` — SSR 2050, 14 commodities x 19 scenarios (+2024)",
         "- `import_dependence_soy_dairy.csv` — soybean & dairy import dependence",
         "- `per_capita_footprints_vs_boundaries.csv` — planetary-boundary ratios",
-        "- `mts_efficiency.csv` — full MTS dividend-realisation table",
+        "- `mts_efficiency.csv` — full MTS realisation table",
         "- `diet_health_proxies_2050.csv` — guideline deviations, all 19 scenarios",
     ]
     with open(os.path.join(OUT, "README.md"), "w") as f:

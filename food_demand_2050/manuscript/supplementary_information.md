@@ -4,7 +4,7 @@
 
 Shengnan Huang, Xinru Han\*
 
-This Supplementary Information contains: the full 19-scenario definition matrix (Supplementary Table 1); the composite healthy-diet benchmark (Supplementary Table 2); upgraded demand, nutrition and emissions tables with percentage-change columns (Supplementary Tables 3–7); guideline-comparison diet indicators (Supplementary Table 8); the 19-scenario multi-footprint matrix (Supplementary Table 9); planetary-boundary comparison (Supplementary Table 10); the MTS dividend-realisation table (Supplementary Table 11); footprint coefficient summary (Supplementary Table 12); and the model validation summary (Supplementary Note 1). All values are reproducible from the open repository (github.com/xinru-han/paper, folder `food_demand_2050`).
+This Supplementary Information contains: the full 19-scenario definition matrix (Supplementary Table 1); the composite healthy-diet benchmark (Supplementary Table 2); upgraded demand, nutrition and emissions tables with percentage-change columns (Supplementary Tables 3–7); guideline-comparison diet indicators (Supplementary Table 8); the 19-scenario multi-footprint matrix (Supplementary Table 9); planetary-boundary comparison (Supplementary Table 10); the MTS realisation table (Supplementary Table 11); footprint coefficient summary (Supplementary Table 12); and the model validation summary (Supplementary Note 1). All values are reproducible from the open repository (github.com/xinru-han/paper, folder `food_demand_2050`).
 
 ---
 
@@ -204,7 +204,7 @@ Spread versus BS 2050: carbon −7.4% (C5) to +10.0% (A4); land −9.9% to +10.9
 
 Per-capita planetary-boundary comparison (EAT-Lancet food-system boundaries at 9.7 bn people): China's farm-gate GHG per capita is 1.01× the boundary share under BS, 1.05× under PTS and 0.95× under MTS; reactive N (~4×) and land (~7×, cradle incl. pasture, not directly comparable to the cropland-only boundary) exceed boundary shares in all scenarios. Sources: `results/footprints/world_footprints_summary.csv`, `results/post_analysis/per_capita_footprints_vs_boundaries.csv`.
 
-## Supplementary Table 11 | MTS dividend realisation (share of the PTS→HDS change achieved at 50% transition depth)
+## Supplementary Table 11 | MTS realisation (share of the PTS→HDS change under the moderate pathway)
 
 | Domain | Indicator | PTS | MTS | HDS | MTS realisation |
 |---|---|---:|---:|---:|---:|

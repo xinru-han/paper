@@ -105,9 +105,9 @@ regions, split China / rest-of-world (exCHN) / world total.
 transition in China (HDS) lowers **global** farm-gate agricultural emissions by
 ~0.50 Gt CO2e (−9.3 %), saves ~89 km³ of blue water (−7.1 %), cuts ~10.4 Mt of
 reactive nitrogen (−7.2 %), and releases ~556 Mha of land occupation — of which
-**21.7 Mha is physical harvested cropland released outside China** (`land_harvested`
+**21.7 Mha is physical harvested cropland reduction outside China** (`land_harvested`
 exCHN, matching the known 21.7 Mha figure to two significant digits). The
-striking result is that **the majority of every environmental benefit accrues
+striking result is that **the majority of physical environmental reductions occur
 outside China** (77-96 %): because China imports a large share of its feed and
 animal products, moderating domestic animal-food demand propagates through trade
 and relieves environmental pressure primarily on exporting regions
@@ -117,7 +117,7 @@ dietary transition — a China policy with a predominantly ex-China footprint.
 The two land metrics measure different things: `land_prod` is P&N total
 occupation including pasture (large, ruminant/pasture-dominated); `land_harvested`
 is the model's own physical harvested cropland (the 21.7 Mha metric). Both are
-reported; the cropland figure is the conservative, model-internal one.
+reported; the cropland figure is the model-internal physical-area metric.
 
 ---
 

@@ -93,7 +93,8 @@ def main() -> None:
     registry: list[dict[str, str]] = []
 
     scenario_rows = load_csv(os.path.join(ROOT, "scenarios", "scenario_definitions.csv"))
-    scenario_codes = sorted(r["scenario"] for r in scenario_rows if r.get("scenario"))
+    scenario_col = "scenario" if "scenario" in scenario_rows[0] else "code"
+    scenario_codes = [r[scenario_col] for r in scenario_rows if r.get(scenario_col)]
     expected = ["BS"] + [f"{g}{i}" for g in "ABC" for i in range(1, 7)]
     findings.append(
         Finding(
@@ -167,7 +168,7 @@ def main() -> None:
 
     with open(REGISTRY, "w", newline="") as fh:
         fieldnames = ["label", "value", "unit", "source_file", "selector", "generating_script", "scenario_version", "rounding_rule"]
-        writer = csv.DictWriter(fh, fieldnames=fieldnames)
+        writer = csv.DictWriter(fh, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(registry)
 
