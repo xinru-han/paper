@@ -1,0 +1,2 @@
+model,order,gmm_steps,converged,N,parameters,J,J_df,J_p,firststage_F,firststage_p,firststage_r2
+easi,1,2,1,3200,105,25.521894,20,.18218896,7.900362,.00043861143,.43505993

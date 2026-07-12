@@ -1,0 +1,9 @@
+metric,value
+households before household-size screen,3565
+reported size differs from roster,67
+invalid size repaired from roster,4
+unresolved size dropped,18
+households with identified head,2902
+households with multiple head codes,6
+identified female heads (sex code zero),297
+head sex missing,343

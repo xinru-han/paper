@@ -7,9 +7,11 @@ DEST="/root/paper/paper0_easi_community_price"
 
 mkdir -p "${DEST}"
 rsync -a --delete \
-  --exclude 'data/*.dta' \
+  --exclude 'data/' \
   --exclude 'outputs/*.dta' \
   --exclude 'outputs/*.ster' \
+  --exclude 'outputs/village_community_prices.csv' \
+  --exclude '*.log' \
   --exclude '.DS_Store' \
   --exclude '._*' \
   "${SRC}/" "${DEST}/"

@@ -1,0 +1,3 @@
+v 3
+d General food demand-system estimators
+p fooddem Arbitrary-good AIDS, QUAIDS, EASI, and GEASI systems

@@ -1,6 +1,8 @@
 version 17
-do "$EASI_ROOT/code/00_config.do"
+do "/root/data/Paper/食物消费数据/paper0-EASI/easi_community_price/code/00_config.do"
+do "$EASI_CODE/00_build_household_unit_values.do"
 do "$EASI_CODE/01_build_village_prices.do"
 do "$EASI_CODE/02_build_analysis_data.do"
 do "$EASI_CODE/03_descriptives.do"
 do "$EASI_CODE/04_estimate_easi.do"
+do "$EASI_CODE/05_validate_outputs.do"

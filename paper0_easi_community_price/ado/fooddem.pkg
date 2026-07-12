@@ -1,0 +1,20 @@
+v 3
+d fooddem: Arbitrary-good AIDS, QUAIDS, EASI, and GEASI systems
+d Version 1.0.0, 12 July 2026
+f fooddem.ado
+f fooddem.sthlp
+f fooddem_gmm.ado
+f fooddem_easi_linear.ado
+f fooddem_easi_gmm.ado
+f fooddem_p.ado
+f nlsurfooddem.ado
+f fooddem_select.ado
+f fooddem_tests.ado
+f fooddem_endogtest.ado
+f fooddem_elasticities.ado
+f fooddem_regularity.ado
+f fooddem_demographics.ado
+f fooddem_income.ado
+f fooddem_uvprice.ado
+f fooddem_export.ado
+f fooddem_precommitments.ado

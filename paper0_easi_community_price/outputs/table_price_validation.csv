@@ -1,0 +1,13 @@
+group,comparison,n,log_correlation,median_ratio
+1,community vs corrected UV,361,.1558610710045219,1.0621544
+1,community vs raw unit value,3102,.0722793649554112,.98365331
+2,community vs corrected UV,361,.1857027915617863,.93781126
+2,community vs raw unit value,2433,.0870091965290734,.90566039
+3,community vs corrected UV,361,.4947410993893877,1.0839984
+3,community vs raw unit value,2714,.2473800494836301,1.0663606
+4,community vs corrected UV,361,.1961953237993925,1.040401
+4,community vs raw unit value,2013,.0941689194765269,1.0309278
+5,community vs corrected UV,361,.3408696684901977,1.7719107
+5,community vs raw unit value,2738,.1872866211224512,1.6543778
+6,community vs corrected UV,361,.2816176169733494,.48768133
+6,community vs raw unit value,2630,.1676339006371582,.47083741

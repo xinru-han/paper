@@ -1,0 +1,7 @@
+group,sample_n,n_consuming,n_zero,share_consuming,sy_action
+1,3234,3234,0,1,bypass: almost universal
+2,3234,3220,14,.9956709956709957,bypass: almost universal
+3,3234,3234,0,1,bypass: almost universal
+4,3234,3219,15,.9953617810760668,bypass: almost universal
+5,3234,3234,0,1,bypass: almost universal
+6,3234,3234,0,1,bypass: almost universal

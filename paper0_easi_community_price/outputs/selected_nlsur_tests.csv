@@ -1,0 +1,6 @@
+test,statistic,df,p_value
+demographics_joint_zero,131.9718999445572,45,1.7807363e-10
+all_share_shifters_joint_zero,403.2788250840155,80,0
+expenditure_exogeneity,23.12190514577627,5,.00031992377
+excluded_instruments_first_stage,7.900361885577942,,.00043861143
+theory_restrictions_imposed,1,,

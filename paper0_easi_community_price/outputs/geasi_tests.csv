@@ -1,0 +1,7 @@
+test,statistic,df,p_value
+demographics_joint_zero,11.33852949175112,45,.99999994
+all_share_shifters_joint_zero,95.60796977069911,80,.11243986
+precommitments_joint_zero,.0021828273053438,6,1
+GMM_overidentification_identity_weight,.5281538171440926,74,
+excluded_instruments_first_stage,7.900361885577942,,.00043861143
+theory_restrictions_imposed,1,,

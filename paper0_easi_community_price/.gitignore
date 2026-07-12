@@ -1,6 +1,6 @@
 data/*.dta
+data/*.csv
 outputs/*.dta
 outputs/*.ster
-outputs/*.csv
-outputs/*.txt
+outputs/village_community_prices.csv
 *.log
