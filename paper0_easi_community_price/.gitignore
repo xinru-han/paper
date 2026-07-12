@@ -1,0 +1,6 @@
+data/*.dta
+outputs/*.dta
+outputs/*.ster
+outputs/*.csv
+outputs/*.txt
+*.log
