@@ -118,4 +118,6 @@ Household-level DTA files and estimation objects are intentionally ignored by
 Git. Version-controlled CSV results contain aggregates, not household IDs.
 
 See `METHODS_AND_AUDIT.md` for the methodological decisions and unresolved
-interpretive cautions, and `RESULTS_SUMMARY.md` for the current empirical run.
+interpretive cautions, `RESULTS_SUMMARY.md` for the current empirical run, and
+`MAIN_RESULTS_PRESENTATION.md` for a table-first presentation of the main
+results.
