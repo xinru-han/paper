@@ -1,5 +1,10 @@
 # 食物需求系统主要结果展示
 
+> **历史基线，已被取代（2026-07-13）。** 本文件使用未区分购买、自产和
+> 赠送的旧数量口径，以下弹性表不得作为最终结果引用。当前主结果、价格符号、
+> 共同正份额支持、自产机会成本和遗漏偏误见
+> [`HICKSIAN_SELFCONSUMPTION_CORRECTION.md`](HICKSIAN_SELFCONSUMPTION_CORRECTION.md)。
+
 本文件整理当前完整流程跑完后的主要输出，便于快速检查。结果来自
 `outputs/` 下的 CSV 表和 Stata 估计文件；六类食物依次为：
 

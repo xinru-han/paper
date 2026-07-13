@@ -48,11 +48,6 @@ fooddem_select using "$EASI_OUT/model_selection_gmm_onestep.csv", ///
 local best_model "`r(preferred_model)'"
 local best_order = r(preferred_order)
 local best_estimate "`r(preferred_estimate)'"
-local best_easi_order = r(preferred_easi_order)
-local best_easi_estimate "`r(preferred_easi_estimate)'"
-
-estimates restore `best_easi_estimate'
-estimates store fd_easi_gmm_for_geasi
 estimates restore `best_estimate'
 estimates store fd_selected_gmm1
 fooddem_export using "$EASI_OUT/selected_model_parameters_gmm_onestep.csv", ///
@@ -198,43 +193,6 @@ preserve
     postclose `dmem'
     use `dstats', clear
     export delimited using "$EASI_OUT/income_elasticity_by_demographics.csv", replace
-restore
-
-* GEASI is a nested robustness check at the preferred EASI order. It does not
-* enter the AIDS/QUAIDS/EASI BIC choice if numerical convergence fails.
-estimates restore fd_easi_gmm_for_geasi
-tempname easiwarm cstart geasiwarm gsmem
-matrix `easiwarm' = e(b)
-matrix `cstart' = J(1, 6, 0)
-matrix colnames `cstart' = c1 c2 c3 c4 c5 c6
-matrix `geasiwarm' = `easiwarm', `cstart'
-tempfile gs
-postfile `gsmem' int easi_order return_code byte converged double N parameters ///
-    J J_df J_p using `gs', replace
-capture noisily fooddem, model(easi) order(`best_easi_order') precommitment ///
-    shares(`shares') prices(`prices') expenditure(ln_foodexp) estimator(gmm) ///
-    demographics(`demos') quantities(`quantities') selection(sy) ///
-    endogeneity(iv) instruments(`excluded') ///
-    cluster(village_cluster) gmmsteps(1) from(`geasiwarm') ///
-    iterate(100) tolerance(1e-5)
-local geasi_rc = _rc
-if `geasi_rc' {
-    post `gsmem' (`best_easi_order') (`geasi_rc') (0) (.) (.) (.) (.) (.)
-}
-else {
-    local geasi_converged = cond(missing(e(converged)), 1, e(converged))
-    post `gsmem' (`best_easi_order') (0) (`geasi_converged') (e(N)) ///
-        (e(fooddem_npar)) (e(J)) (e(J_df)) (.)
-    estimates save "$EASI_OUT/geasi_robustness.ster", replace
-    fooddem_export using "$EASI_OUT/geasi_parameters.csv", ///
-        label("geasi_order`best_easi_order'_gmm_onestep") replace
-    fooddem_precommitments using "$EASI_OUT/geasi_precommitments.csv", replace
-    fooddem_tests using "$EASI_OUT/geasi_tests.csv", demographics(`core_demos') replace
-}
-postclose `gsmem'
-preserve
-    use `gs', clear
-    export delimited using "$EASI_OUT/geasi_robustness_status.csv", replace
 restore
 
 * NLSUR with a control-function residual provides an estimator and expenditure

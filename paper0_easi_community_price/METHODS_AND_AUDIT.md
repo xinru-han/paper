@@ -2,11 +2,13 @@
 
 ## Scope
 
-The implementation follows the checks emphasized by Hovhannisyan et al. (2025):
-common spatial prices rather than uncorrected household unit values, sequential
-Engel-rank tests, GEASI precommitment tests, demographic tests, expenditure
-endogeneity, theoretical regularity, and conditional versus unconditional
-elasticities for an incomplete food system.
+The implementation follows the transferable checks emphasized by Hovhannisyan
+et al. (2025): common spatial prices rather than uncorrected household unit
+values, sequential Engel-rank tests, demographic tests, expenditure endogeneity,
+theoretical regularity, and conditional versus unconditional elasticities for an
+incomplete food system. This household cross-sectional application does not run
+GEASI. The purchase/own/gift addendum and current results are documented in
+`HICKSIAN_SELFCONSUMPTION_CORRECTION.md`.
 
 ## Identifier and merge audit
 
@@ -88,8 +90,10 @@ correction, stored probit coefficients are used to recompute participation
 probabilities under every price, expenditure, and demographic counterfactual;
 elasticities therefore include the extensive margin. The analytic demand-system
 covariance conditions on the first-stage probits, so materially censored
-applications should cluster-bootstrap the entire command. No such first-stage
-uncertainty enters this application because all six probits are bypassed.
+applications should cluster-bootstrap the entire command. All six probits are
+bypassed only in the legacy aggregate-quantity baseline. The source-reconstructed
+total, purchase, omit-self, and own systems activate different SY equations; the
+omission contrast therefore bootstraps the complete two-system workflow by village.
 
 ## Model choice and restrictions
 
@@ -133,15 +137,13 @@ The empirical sequence is:
 3. Select order sequentially inside each nested family, then use residual BIC
    for the nonnested AIDS-family versus EASI comparison.
 4. Warm-start clustered two-step GMM at the selected one-step solution.
-5. At the preferred EASI order, test GEASI precommitments jointly against zero.
-6. Repeat functional-form selection by NLSUR with a control-function residual.
+5. Repeat functional-form selection by NLSUR with a control-function residual.
+6. Reconstruct purchase, own, and gift quantities; estimate total, purchase,
+   omit-self, and diagnostic own-consumption systems.
 
-The GEASI robustness specification estimates one precommitted quantity per food
-group while demographic variables enter the discretionary share equations. It
-does not estimate a separate demographic coefficient for every precommitment:
-with 16 share shifters that expansion would add 102 parameters to a system with
-only 125 available moments and would be underidentified. The reusable command
-rejects rank-deficient specifications instead of silently dropping parameters.
+The reusable package retains an optional GEASI interface for other applications,
+and its synthetic tests verify the extra moment conditions. It is not invoked by
+this empirical pipeline and has no output in the current results directory.
 
 An identity-weight one-step J statistic is not labeled Hansen. Hansen's J is
 reported only for efficient two-step GMM. A rejected overidentification or

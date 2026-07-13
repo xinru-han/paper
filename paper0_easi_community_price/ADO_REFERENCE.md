@@ -51,6 +51,7 @@ CSV。所有写文件的命令均需要已有文件时显式使用 `replace`。
 | `fooddem_endogtest` | 将已保存的一阶段、控制函数和过度识别结果返回至 `r()`。 |
 | `fooddem_elasticities` | 数值计算 Marshallian、Hicksian 和支出弹性。 |
 | `fooddem_regularity` | 检查加总、份额、单调性、Slutsky 对称性及曲率。 |
+| `fooddem_curvature` | 将局部潜在 Slutsky 矩阵投影为满足加总、对称与负半定的矩阵。 |
 | `fooddem_demographics` | 计算人口特征对预测份额的局部或离散影响。 |
 | `fooddem_income` | 二、三阶段预算下的收入、数量、价值和质量弹性。 |
 | `fooddem_uvprice` | 按 Deaton 或市场中位数法恢复单位价值稳健性价格。 |
@@ -190,12 +191,14 @@ GEASI 以有界变换 `c = scale * tanh(theta)` 表示预先承诺数量，保�
 ### 语法
 
 ```stata
-predict neww1 neww2 ... newwK
+fooddem_p neww1 neww2 ... newwK [, latent holdselection]
 ```
 
 该命令只能在最近一次 `fooddem` 之后使用，且必须给出恰好 `K` 个新的数值
 变量。它重新建立估计时的中心化数据、控制函数与 SY 修正，并产生完整 `K`
-个预测份额。
+个预测份额。默认值为 SY **无条件**份额，每次反事实均重新计算参与概率；
+`holdselection` 固定参与概率，只保留条件强度边际；`latent` 绕过 SY 变换，
+返回施加加总、齐次性和对称性的潜在结构份额。三种口径不能混合解释。
 
 对 EASI/GEASI，预测时求解隐式效用方程的全部实根，并选择最接近观测隐式
 效用的稳定根。若不存在稳定根，命令以返回码 430 停止，而不是悄悄输出错误
@@ -277,7 +280,9 @@ return list
 ### `fooddem_elasticities`
 
 ```stata
-fooddem_elasticities using filename, [step(.001) replace]
+fooddem_elasticities using filename, ///
+    [step(.001) margin(unconditional|intensive|latent) minshare(0) ///
+     sample(varname) replace]
 ```
 
 使用比例扰动 `h = ln(1 + step)` 的中心差分，计算每户的：
@@ -286,24 +291,45 @@ fooddem_elasticities using filename, [step(.001) replace]
 - Marshallian 价格弹性（全部 `K x K` 组合）；
 - Hicksian 价格弹性（全部 `K x K` 组合）。
 
-输出字段为 `elasticity_type`、`demand_good`、`shock_good`、`elasticity`、
-`std_dev`、`p10`、`p50`、`p90`、`n_valid`。其中 `std_dev` 是户间弹性异质性
-的标准差，**不是** 参数估计标准误。数值扰动时会重新求 EASI 根和 SY 参与
-修正；`0 < step <= .1`。
+`margin()` 默认 `unconditional`；另可选择固定参与概率的 `intensive` 或潜在
+结构系统的 `latent`。输出同时给出户均 `elasticity`、按预测数量加权的
+`aggregate_elasticity`、剔除户级弹性两端各 1% 后的 `trimmed_aggregate`、
+截尾户均、分位数、负值率、接近零比率和有效样本数。其中 `std_dev` 是户间
+异质性而**不是**参数估计标准误。极小预测份额会使户级比率弹性爆炸，故主表
+应报告总体加权口径，并同时展示中位数、截尾总体值和预测份额正值率。
+所有品类使用同一个内部支持集：只有 `K` 个基准拟合份额都大于
+`minshare()` 的家庭才进入任一弹性；默认阈值为零。`support_rate` 和
+`min_share_floor` 随每行输出，避免逐方程删样本掩盖系统拟合失败。
+`sample()` 可进一步施加调用者提供的共同支持指标，适合在两套模型的拟合
+份额交集上计算配对弹性差异。
 
 ### `fooddem_regularity`
 
 ```stata
-fooddem_regularity using filename, [step(.001) replace]
+fooddem_regularity using filename, ///
+    [step(.001) margin(unconditional|intensive|latent) replace]
 ```
 
 该命令以同样的数值导数检查并导出：加总最大误差、预测份额为正的比例、
 正支出弹性比例、负 Hicksian 自价格弹性比例、Slutsky 对称性最大误差，以及
 对称化 Slutsky 矩阵最大特征值。它也返回 `r(hicksian)` 和 `r(slutsky)`。
 
-加总、齐次性和对称性已在潜在需求系统中施加；曲率/负半定性没有施加，
-因而是实证诊断而非保证。SY 修正后的无条件需求也可能不完全继承潜在系统
-的有限样本正则性。
+加总、齐次性和对称性是在潜在需求系统中施加的，因此理论检验默认
+`margin(latent)`。`unconditional` 和 `intensive` 用于描述 SY 转换后的经验
+边际，不应以其 Slutsky 对称性判断参数化是否正确。曲率/负半定性没有在估计
+中全局施加，因而是实证诊断而非保证。
+
+### `fooddem_curvature`
+
+```stata
+fooddem_curvature using filename, [replace]
+```
+
+该命令先取得潜在结构系统的样本局部 Slutsky 矩阵，进行对称化和加总空间
+投影，再把正特征值截为零。输出原始/投影 Hicksian 矩阵、逐元素调整、投影
+前后最大特征值与 Frobenius 调整范数，并返回 `r(projected_slutsky)`。
+它是代表点的局部曲率修正，不会重估结构参数，也不会把每个家庭或每个价格
+点强制为全局负半定；因此必须与直接价格、异常值和弱识别敏感性一起报告。
 
 ### `fooddem_demographics`
 
@@ -323,7 +349,7 @@ fooddem_demographics using filename, [step(.001) replace]
 ```stata
 fooddem_income using filename, income(varname) ///
     [ values(varlist) controls(varlist) id(varname) step(.001) ///
-      valuemethod(ppml|logols) cluster(varname) replace ]
+      valuemethod(ppml|logols) cluster(varname) minshare(0) replace ]
 ```
 
 命令在当前需求系统基础上构建二、三阶段预算分解：
@@ -336,7 +362,10 @@ fooddem_income using filename, income(varname) ///
    减数量弹性”得到质量/来源弹性。
 
 默认 `valuemethod(ppml)`，保留零商品价值；`logols` 只适合零值已被合理处理
-的样本。`id()` 在该命令的工作样本中必须唯一。输出是**户级长表**，包含
+的样本。条件支出和收入数量弹性使用所有品类拟合份额共同高于
+`minshare()` 的内部支持，输出 `interior_support` 和 `support_rate`。
+`id()` 在该命令的工作样本中必须唯一。命令结束时恢复调用前的数据和
+`fooddem` 估计状态，因此可以对不同来源系统连续调用。输出是**户级长表**，包含
 收入、控制变量、总支出弹性、每组支出/数量/价值/质量收入弹性及估计方法；
 它通常含微观信息，应在公开版本控制前先聚合或脱敏。
 
@@ -404,8 +433,9 @@ fooddem_export using filename, [label(string) replace]
    `fooddem_firststage`、`fooddem_elasticities` 和 `fooddem_regularity`。
 5. 对支出内生性报告 IV/CF 设定、一阶段强度、两步 Hansen（如可用）和工具
    集合敏感性。弱工具变量时，应降低因果解释强度。
-6. 将 GEASI、NLSUR/控制函数、单位价值价格及替代品类定义作为稳健性分析，
-   而非在没有识别支持时机械挑选“最好看”的结果。
+6. 将 NLSUR/控制函数、单位价值价格及替代品类定义作为稳健性分析，而非在
+   没有识别支持时机械挑选“最好看”的结果。本横截面食物消费应用不估计
+   GEASI；通用包中的预先承诺接口不进入这里的模型选择或结果表。
 7. 最后运行收入和质量分解，并明确区分条件支出弹性、无条件收入弹性、数量
    弹性与质量/来源弹性。
 

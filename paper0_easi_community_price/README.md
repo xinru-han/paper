@@ -10,8 +10,11 @@ staples, beans/bean products, meat, edible oil, vegetables, and fruit.
 do "/root/data/Paper/食物消费数据/paper0-EASI/easi_community_price/code/00_run_all.do"
 ```
 
-`04_estimate_easi.do` estimates several nonlinear systems on the full sample
-and can take tens of minutes. Stata SE 17 is licensed in the current container.
+`04_estimate_easi.do` estimates the legacy comparison systems, while `07`-`11`
+reconstruct purchase/own/gift quantities, estimate the source-corrected systems,
+request 199 village-bootstrap replications (with failed joint-support draws
+reported separately), and assemble the main tables. The full run can take more
+than one hour. Stata 17 is licensed in the current container.
 `06_instrument_sensitivity.do` runs the same-sample weak-instrument sensitivity
 specifications, and `05_validate_outputs.do` then rejects incomplete, stale, or
 internally inconsistent model-selection and postestimation files.
@@ -29,9 +32,11 @@ help fooddem
   first 12 characters of the 14-character household ID plus survey year.
 - Household unit values are reconstructed from original module-level purchased
   quantities and expenditures. Legacy `*_price_wavg` fields are not used.
-- Demand expenditure and shares use village community prices, not household
-  unit values. Thus own production and zero purchases do not create artificial
-  household prices.
+- Replacement-cost total demand values every consumed unit at the village retail
+  price. Purchase demand uses purchased quantities only. Own consumption is also
+  valued separately at a screened village farmgate opportunity price built from
+  questionnaire item 08; this separate system is a diagnostic because production
+  choice makes the farmgate price endogenous.
 - Invalid household size is repaired from the eight-member roster only when the
   reported size is invalid and the roster is observed. All repairs and deletions
   are counted in `outputs/household_demographic_audit.csv`.
@@ -54,6 +59,14 @@ this order: same-town median, nearest directly reporting village in the same
 county-year, county-year median, and province-year median. Imputed values never
 become donors for later levels. Price source is retained in `p#_source`.
 
+`01b_build_self_prices.do` separately builds question-08 farmgate opportunity
+prices. It uses an own-village median only with at least three producers, then
+the median from other eligible villages in the same town, the nearest eligible
+county village, the county eligible-village median, and province/year retail
+price wedges estimated from eligible village medians. The target village is
+excluded from the town donor pool, and neither ineligible target reports nor
+imputed prices can propagate to another tier.
+
 `fooddem_uvprice` separately implements a unit-value robustness series following
 the common-market price, demographic-quality, and quantity-effect decomposition.
 Those recovered prices validate but do not replace questionnaire community
@@ -62,7 +75,7 @@ prices in the main models.
 ## Estimation package
 
 The `ado/fooddem*.ado` package accepts any number of goods greater than two.
-`fooddem` estimates AIDS, QUAIDS, polynomial EASI, or GEASI precommitments by
+`fooddem` estimates AIDS, QUAIDS, polynomial EASI, or optional GEASI precommitments by
 GMM or NLSUR while imposing adding-up, homogeneity, and symmetry by construction.
 It supports:
 
@@ -86,6 +99,9 @@ It supports:
 - joint and instrument-conditional first-stage F tests, partial R-squared, and
   same-sample instrument-set sensitivity estimates.
 
+The empirical pipeline does not run GEASI for this cross-sectional application.
+The generic package retains the optional interface for other research designs.
+
 The supplied survey does not contain a documented household sampling weight;
 reported estimates are household-unweighted and use village-year clustered
 inference.
@@ -93,8 +109,9 @@ inference.
 When SY participation equations are active, the analytic structural covariance
 conditions on their estimated coefficients. Applications with material censoring
 should bootstrap the whole estimator at the sampling-cluster level. This caveat
-does not affect the present six-group estimates because every participation
-equation is bypassed under the declared 98% identification rule.
+matters for the source-specific systems: the total, purchase, omit-self, and own
+systems activate different participation equations. The omission-bias test
+therefore bootstraps the complete two-system workflow by village.
 
 Prices passed to `fooddem, prices()` and expenditure passed to
 `expenditure()` must be in logs. See `help fooddem` after adding `ado/` to the
@@ -109,15 +126,18 @@ identification limits.
 - `table_purchase_coverage.csv`: observed household purchase-value coverage.
 - `model_selection_gmm_onestep.csv`: AIDS/QUAIDS/EASI functional-form comparison.
 - `selected_model_*`: preferred clustered two-step GMM estimates and tests.
-- `geasi_*`: precommitment robustness at the preferred EASI order.
 - `model_selection_nlsur_cf.csv`: NLSUR/control-function robustness.
 - `income_elasticity_*`: overall, income-decile, and demographic distributions.
 - `instrument_*`: excluded-instrument relevance and EASI(1) sensitivity results.
+- `source_*`: source-corrected prices, total/purchase/own diagnostic systems,
+  elasticity comparisons, curvature projection, and omission-bias bootstrap.
 
 Household-level DTA files and estimation objects are intentionally ignored by
 Git. Version-controlled CSV results contain aggregates, not household IDs.
 
-See `METHODS_AND_AUDIT.md` for the methodological decisions and unresolved
-interpretive cautions, `RESULTS_SUMMARY.md` for the current empirical run, and
-`MAIN_RESULTS_PRESENTATION.md` for a table-first presentation of the main
-results.
+See `METHODS_AND_AUDIT.md` for the audit trail. `RESULTS_SUMMARY.md` and
+`MAIN_RESULTS_PRESENTATION.md` are retained as explicitly marked legacy
+baselines. The authoritative current report is
+[`HICKSIAN_SELFCONSUMPTION_CORRECTION.md`](HICKSIAN_SELFCONSUMPTION_CORRECTION.md),
+which contains the corrected price-sign, own-consumption, curvature, and
+omission-bias analysis.

@@ -1,7 +1,7 @@
-*! Predictions after fooddem 1.0.0  12jul2026
+*! Predictions after fooddem 1.2.0  13jul2026
 program define fooddem_p
     version 17
-    syntax newvarlist(min=3 numeric) [if] [in]
+    syntax newvarlist(min=3 numeric) [if] [in] [, HOLDSelection LATENT]
     if "`e(fooddem_model)'" == "" {
         di as error "fooddem estimation results not found"
         exit 301
@@ -19,7 +19,8 @@ program define fooddem_p
     * Active Shonkwiler-Yen probabilities are functions of the participation
     * covariates. Recompute them for every counterfactual so price, expenditure,
     * and demographic elasticities include both intensive and extensive margins.
-    if "`e(fooddem_selection)'" == "sy" {
+    if "`e(fooddem_selection)'" == "sy" & "`holdselection'" == "" & ///
+        "`latent'" == "" {
         tempname syb
         matrix `syb' = e(fooddem_syb)
         local active "`e(fooddem_syactive)'"
@@ -40,6 +41,12 @@ program define fooddem_p
                 local pdfi : word `i' of `pdflist'
                 quietly replace `phii' = normal(`xb') if `touse'
                 quietly replace `pdfi' = normalden(`xb') if `touse'
+            }
+            else {
+                local phii : word `i' of `philist'
+                local pdfi : word `i' of `pdflist'
+                quietly replace `phii' = 1 if `touse'
+                quietly replace `pdfi' = 0 if `touse'
             }
         }
     }
@@ -72,7 +79,7 @@ program define fooddem_p
     global FD_XMEAN = e(fooddem_xmean)
     global FD_PRECOMMIT = ("`e(fooddem_precommitment)'" != "")
     global FD_CSCALE "`e(fooddem_cscales)'"
-    global FD_SY = ("`e(fooddem_selection)'" == "sy")
+    global FD_SY = ("`e(fooddem_selection)'" == "sy" & "`latent'" == "")
     global FD_SYACTIVE "`e(fooddem_syactive)'"
     global FD_PRED 1
     global FD_EASIY ""
@@ -154,6 +161,7 @@ program define fooddem_p
             local rootfail = r(N)
             global FD_EASIY ""
             global FD_PRED 0
+            global FD_SY = ("`e(fooddem_selection)'" == "sy")
             di as error "EASI counterfactual has no stable real utility root for `rootfail' observations"
             exit 430
         }
@@ -172,6 +180,8 @@ program define fooddem_p
     quietly replace `newk' = 1 - `newk' if `touse'
     global FD_EASIY ""
     global FD_PRED 0
+    * Postestimation modes must not leak into later internal moment evaluation.
+    global FD_SY = ("`e(fooddem_selection)'" == "sy")
 end
 
 capture mata: mata drop _fooddem_easi_root()

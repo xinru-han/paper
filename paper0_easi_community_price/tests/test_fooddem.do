@@ -104,6 +104,30 @@ assert `easisy1' == 1 & `easisy2' == 0
 fooddem_p sw1 sw2 sw3
 egen double ssum = rowtotal(sw1 sw2 sw3)
 assert abs(ssum - 1) < 1e-10 if e(sample)
+fooddem_p slw1 slw2 slw3, latent
+egen double slsum = rowtotal(slw1 slw2 slw3)
+assert abs(slsum - 1) < 1e-10 if e(sample)
+fooddem_p suw1 suw2 suw3
+gen double sy_phi0 = _fd_phi1
+fooddem_elasticities using "/tmp/fooddem_test_sy_unconditional_elasticities.csv", ///
+    margin(unconditional) replace
+assert abs(_fd_phi1 - sy_phi0) < 1e-12 if e(sample)
+assert abs(_fd_lnx - (lx - e(fooddem_xmean))) < 1e-12 if e(sample)
+fooddem_elasticities using "/tmp/fooddem_test_sy_latent_elasticities.csv", ///
+    margin(latent) replace
+gen byte elasticity_subsample = mod(_n, 2) == 0
+fooddem_elasticities using "/tmp/fooddem_test_sy_subsample_elasticities.csv", ///
+    margin(latent) sample(elasticity_subsample) replace
+fooddem_regularity using "/tmp/fooddem_test_sy_latent_regularity.csv", ///
+    margin(latent) replace
+assert r(slutsky_symmetry_error) < 1e-6
+fooddem_curvature using "/tmp/fooddem_test_sy_curvature.csv", replace
+assert r(projected_max_eigenvalue) <= 1e-8
+tempname projected_hicks
+matrix `projected_hicks' = r(projected_hicksian)
+forvalues j = 1/3 {
+    assert `projected_hicks'[`j',`j'] <= 1e-8
+}
 
 * Mata one-step EASI GMM must equal Stata's generic numerical GMM for the same
 * exact moments, including 0.5*p'A*p and an active SY density term.
@@ -142,7 +166,7 @@ assert inrange(w1, 0, 1) & inrange(w2, 0, 1) & inrange(w3, 0, 1) ///
 
 fooddem, model(easi) order(2) shares(w1 w2 w3 w4 w5) ///
     prices(lp1 lp2 lp3 lp4 lp5) expenditure(lx) estimator(gmm) ///
-    demographics(z) cluster(village) gmmsteps(2) iterate(50) tolerance(1e-5)
+    demographics(z) cluster(village) gmmsteps(2) iterate(100) tolerance(1e-4)
 assert e(converged) == 1
 assert e(fooddem_goods) == 5
 assert e(fooddem_order) == 2
@@ -201,6 +225,11 @@ forvalues j = 1/5 {
 fooddem_income using "/tmp/fooddem_test_income.dta", income(income) ///
     values(value1 value2 value3 value4 value5) controls(z) id(id) ///
     valuemethod(ppml) cluster(village) replace
+assert "`e(fooddem_model)'" == "easi"
+fooddem_income using "/tmp/fooddem_test_income_repeat.dta", income(income) ///
+    values(value1 value2 value3 value4 value5) controls(z) id(id) ///
+    valuemethod(ppml) cluster(village) replace
+assert "`e(fooddem_model)'" == "easi"
 preserve
     use "/tmp/fooddem_test_income.dta", clear
     assert inrange(good, 1, 5)

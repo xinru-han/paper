@@ -1,4 +1,4 @@
-*! Demographic share elasticities/discrete effects after fooddem 1.0.0  12jul2026
+*! Demographic share elasticities/discrete effects after fooddem 1.2.0  13jul2026
 program define fooddem_demographics, rclass
     version 17
     syntax using/, [STEP(real 0.001) REPLACE]
@@ -71,6 +71,14 @@ program define fooddem_demographics, rclass
             }
         }
     }
+    * The final demographic counterfactual has been undone in the raw data;
+    * synchronize the internal model and SY variables with that baseline.
+    local reset ""
+    forvalues i = 1/`k' {
+        tempvar reset`i'
+        local reset "`reset' `reset`i''"
+    }
+    quietly fooddem_p `reset'
     postclose `mem'
     preserve
         use `results', clear

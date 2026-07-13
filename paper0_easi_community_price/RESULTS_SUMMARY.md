@@ -1,5 +1,10 @@
 # Current empirical results
 
+> **Superseded legacy baseline (13 July 2026).** This file predates the
+> purchase/own/gift reconstruction and common-interior elasticity aggregation.
+> Do not cite its elasticity means or GEASI paragraph as final results. Use
+> [`HICKSIAN_SELFCONSUMPTION_CORRECTION.md`](HICKSIAN_SELFCONSUMPTION_CORRECTION.md).
+
 The structural results are from the Stata 17 run on 12 July 2026; instrument
 sensitivity checks were completed on 13 July 2026. Food groups are
 staples, beans/bean products, meat, edible oil, vegetables, and fruit, in that

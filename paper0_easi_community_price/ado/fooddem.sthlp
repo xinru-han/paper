@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.1.0 13jul2026}{...}
+{* *! version 1.2.0 13jul2026}{...}
 {vieweralsosee "gmm" "help gmm"}{...}
 {vieweralsosee "nlsur" "help nlsur"}{...}
 {title:Title}
@@ -102,14 +102,15 @@ In addition to standard {cmd:gmm} or {cmd:nlsur} results, {cmd:fooddem} stores:
 
 {title:Postestimation and companion commands}
 
-{phang}{cmd:fooddem_p newshare1 ... newshareK} predicts all K shares.{p_end}
+{phang}{cmd:fooddem_p newshare1 ... newshareK [, latent holdselection]} predicts all K unconditional, intensive-margin, or latent shares.{p_end}
 {phang}{cmd:fooddem_select using filename, ...} compares AIDS, QUAIDS, and EASI orders.{p_end}
 {phang}{cmd:fooddem_tests using filename} exports nested, demographic, endogeneity, SY, GEASI, and overidentification tests.{p_end}
 {phang}{cmd:fooddem_firststage using filename} exports joint and instrument-conditional excluded-instrument F tests and partial R-squared values.{p_end}
-{phang}{cmd:fooddem_elasticities using filename} exports expenditure, Marshallian, and Hicksian elasticities.{p_end}
-{phang}{cmd:fooddem_regularity using filename} checks positivity, monotonicity, curvature, adding-up, and numerical Slutsky symmetry.{p_end}
+{phang}{cmd:fooddem_elasticities using filename [, margin(unconditional|intensive|latent) minshare(#) sample(varname)]} exports expenditure, Marshallian, and Hicksian elasticities on a common interior support plus quantity-weighted and tail-trimmed aggregates.{p_end}
+{phang}{cmd:fooddem_regularity using filename [, margin(unconditional|intensive|latent)]} checks positivity, monotonicity, curvature, adding-up, and numerical Slutsky symmetry; latent is the default theory margin.{p_end}
+{phang}{cmd:fooddem_curvature using filename} projects the local latent Slutsky matrix to the nearest symmetric negative-semidefinite matrix while preserving adding-up.{p_end}
 {phang}{cmd:fooddem_demographics using filename} exports demographic elasticities or binary discrete effects.{p_end}
-{phang}{cmd:fooddem_income using filename, income() values() [cluster()]} computes two-stage income and third-stage quality elasticities; PPML is the default value equation.{p_end}
+{phang}{cmd:fooddem_income using filename, income() values() [cluster() minshare(#)]} computes two-stage income and third-stage quality elasticities on the common interior support; PPML is the default value equation.{p_end}
 {phang}{cmd:fooddem_uvprice, ...} recovers common-market prices from unit values or expenditures and quantities.{p_end}
 {phang}{cmd:fooddem_precommitments using filename} transforms GEASI latent parameters into precommitted quantities with delta-method standard errors.{p_end}
 {phang}{cmd:fooddem_export using filename} exports coefficients and standard errors.{p_end}

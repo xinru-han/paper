@@ -32,11 +32,6 @@ assert r(N) == 1
 count if test == "theory_restrictions_imposed" & statistic == 1
 assert r(N) == 1
 
-import delimited using "$EASI_OUT/geasi_robustness_status.csv", clear
-assert _N == 1
-assert missing(j_p)
-assert return_code == 0 & converged == 1
-
 import delimited using "$EASI_OUT/selected_model_elasticities.csv", clear
 assert _N == 78
 assert n_valid > 0 & !missing(elasticity)
@@ -82,5 +77,87 @@ count if diagnostic == "adding_up_max_abs_error" & passed == 1
 assert r(N) == 4
 count if diagnostic == "slutsky_symmetry_max_abs_error" & passed == 1
 assert r(N) == 4
+
+* Source-specific reconstruction and primary replacement-cost system.
+use "$EASI_DATA/village_self_prices.dta", clear
+isid village_id data_year
+assert _N == 361
+forvalues g = 1/6 {
+    assert pself`g' > 0 & pself`g' < .
+    assert inrange(pself`g'_source, 1, 6)
+}
+
+use "$EASI_DATA/source_analysis_ready.dta", clear
+isid household_id
+forvalues g = 1/6 {
+    assert qt`g' >= 0 & qt`g' < . & qb`g' >= 0 & qb`g' < . & ///
+        qs`g' >= 0 & qs`g' < . & qg`g' >= 0 & qg`g' < . & ///
+        qo`g' >= 0 & qo`g' < .
+    assert abs(qt`g' - qb`g' - qs`g' - qg`g') < 1e-5 * max(1, qt`g')
+    assert abs(qo`g' - qb`g' - qg`g') < 1e-8
+    assert p`g' > 0 & p`g' < .
+    assert pself`g' > 0 & pself`g' < .
+    assert inrange(st`g', 0, 1) if sample_total
+}
+egen double _check_st = rowtotal(st1 st2 st3 st4 st5 st6)
+assert abs(_check_st - 1) < 1e-8 if sample_total
+drop _check_st
+
+import delimited using "$EASI_OUT/source_model_selection_total.csv", clear
+count if bic_preferred == 1 & converged == 1
+assert r(N) == 1
+
+import delimited using "$EASI_OUT/source_composition_descriptives.csv", clear
+assert _N == 6
+assert n > 0 & total_quantity_mean >= 0
+assert inrange(purchase_participation, 0, 1) & ///
+    inrange(self_participation, 0, 1) & inrange(gift_participation, 0, 1)
+
+foreach system in total buy omitself self {
+    import delimited using "$EASI_OUT/source_`system'_tests.csv", clear
+    count if test == "Hansen_overidentification" & inrange(p_value, 0, 1)
+    assert r(N) == 1
+    count if test == "theory_restrictions_imposed" & statistic == 1
+    assert r(N) == 1
+}
+
+foreach f in source_total_elasticities_unconditional.csv ///
+    source_total_elasticities_intensive.csv source_total_elasticities_latent.csv ///
+    source_buy_elasticities_unconditional.csv source_buy_elasticities_latent.csv ///
+    source_omitself_elasticities_unconditional.csv ///
+    source_omitself_elasticities_latent.csv {
+    import delimited using "$EASI_OUT/`f'", clear
+    assert _N == 78
+    assert n_valid > 0 & !missing(aggregate_elasticity)
+}
+
+import delimited using "$EASI_OUT/source_total_curvature_projection.csv", clear
+assert _N == 36
+assert projected_max_eigenvalue <= 1e-8
+assert projected_hicksian <= 1e-10 if demand_good == shock_good
+
+import delimited using "$EASI_OUT/source_omission_bias_tests.csv", clear
+assert _N == 12
+assert bootstrap_reps_requested >= 199 & bootstrap_reps_successful >= 99 ///
+    & clusters > 1
+assert bootstrap_reps_successful + bootstrap_reps_failed == ///
+    bootstrap_reps_requested
+assert !missing(difference, se, p_value)
+
+import delimited using "$EASI_OUT/source_self_allocation_models.csv", clear
+assert _N == 72
+assert n > 0 & !missing(coefficient, se, p_value)
+
+import delimited using "$EASI_OUT/source_elasticity_comparison.csv", clear
+assert _N == 120
+assert !missing(aggregate_elasticity, trimmed_aggregate)
+assert structural_interpretation == 0 if system == "self"
+assert structural_interpretation == 1 if system != "self"
+
+import delimited using "$EASI_OUT/source_income_elasticity_summary.csv", clear
+assert _N == 120
+assert n > 0 & !missing(mean)
+assert structural_interpretation == 0 if system == "self"
+assert structural_interpretation == 1 if system != "self"
 
 display as result "community-price food-demand output validation passed"

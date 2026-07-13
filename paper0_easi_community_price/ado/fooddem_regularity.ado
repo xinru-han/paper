@@ -1,7 +1,7 @@
-*! Demand-theory regularity diagnostics after fooddem 1.0.0  12jul2026
+*! Demand-theory regularity diagnostics after fooddem 1.2.0  13jul2026
 program define fooddem_regularity, rclass
     version 17
-    syntax using/, [STEP(real 0.001) REPLACE]
+    syntax using/, [STEP(real 0.001) MARGIN(string) REPLACE]
     if "`e(fooddem_model)'" == "" {
         di as error "fooddem estimation results not found"
         exit 301
@@ -10,6 +10,15 @@ program define fooddem_regularity, rclass
         di as error "step() must be in (0,.1]"
         exit 198
     }
+    local margin = lower("`margin'")
+    if "`margin'" == "" local margin "latent"
+    if !inlist("`margin'", "unconditional", "intensive", "latent") {
+        di as error "margin() must be unconditional, intensive, or latent"
+        exit 198
+    }
+    local predopt ""
+    if "`margin'" == "intensive" local predopt ", holdselection"
+    if "`margin'" == "latent" local predopt ", latent"
 
     local k = e(fooddem_goods)
     local prices "`e(fooddem_prices)'"
@@ -20,16 +29,22 @@ program define fooddem_regularity, rclass
         tempvar b`i'
         local base "`base' `b`i''"
     }
-    quietly fooddem_p `base'
+    if "`margin'" == "latent" {
+        quietly fooddem_p `base', latent
+    }
+    else {
+        quietly fooddem_p `base'
+    }
 
     tempvar sumfit positive xbak
     egen double `sumfit' = rowtotal(`base') if e(sample)
     gen byte `positive' = 1 if e(sample)
     forvalues i = 1/`k' {
         local bi : word `i' of `base'
-        replace `positive' = 0 if `bi' <= 0 & e(sample)
+        replace `positive' = 0 if (missing(`bi') | `bi' <= 0) & e(sample)
     }
-    quietly summarize `sumfit' if e(sample), meanonly
+    replace `sumfit' = . if `positive' != 1
+    quietly summarize `sumfit' if e(sample) & `positive' == 1, meanonly
     local add_error = max(abs(r(min) - 1), abs(r(max) - 1))
     quietly summarize `positive' if e(sample), meanonly
     local positive_rate = r(mean)
@@ -45,9 +60,9 @@ program define fooddem_regularity, rclass
         local xnew "`xnew' `xn`i''"
         local xlow "`xlow' `xl`i''"
     }
-    quietly fooddem_p `xnew'
+    quietly fooddem_p `xnew' `predopt'
     replace `expvar' = `xbak' - `h' if e(sample)
-    quietly fooddem_p `xlow'
+    quietly fooddem_p `xlow' `predopt'
     replace `expvar' = `xbak'
     local etas ""
     local eta_positive_n = 0
@@ -59,9 +74,10 @@ program define fooddem_regularity, rclass
         tempvar eta`i'
         gen double `eta`i'' = 1 + (`ni' - `li') / (2 * `h' * `bi') if e(sample) & `bi' > 0
         local etas "`etas' `eta`i''"
-        quietly count if !missing(`eta`i'') & e(sample)
+        quietly count if !missing(`eta`i'') & e(sample) & `positive' == 1
         local eta_valid_n = `eta_valid_n' + r(N)
-        quietly count if `eta`i'' > 0 & !missing(`eta`i'') & e(sample)
+        quietly count if `eta`i'' > 0 & !missing(`eta`i'') & ///
+            e(sample) & `positive' == 1
         local eta_positive_n = `eta_positive_n' + r(N)
     }
     local eta_positive_rate = `eta_positive_n' / `eta_valid_n'
@@ -85,9 +101,9 @@ program define fooddem_regularity, rclass
             local pnew "`pnew' `pn`j'_`i''"
             local plow "`plow' `pl`j'_`i''"
         }
-        quietly fooddem_p `pnew'
+        quietly fooddem_p `pnew' `predopt'
         replace `pj' = `pbak' - `h' if e(sample)
-        quietly fooddem_p `plow'
+        quietly fooddem_p `plow' `predopt'
         replace `pj' = `pbak'
         forvalues i = 1/`k' {
             local bi : word `i' of `base'
@@ -101,12 +117,13 @@ program define fooddem_regularity, rclass
             * A single common positive-share sample is required for both S_ij
             * and S_ji. Row-specific deletion mechanically creates asymmetry.
             gen double `sij' = `bi' * `eh' if e(sample) & `positive' == 1
-            quietly summarize `eh' if e(sample), meanonly
+            quietly summarize `eh' if e(sample) & `positive' == 1, meanonly
             matrix `H'[`i',`j'] = r(mean)
             if `i' == `j' {
-                quietly count if !missing(`eh') & e(sample)
+                quietly count if !missing(`eh') & e(sample) & `positive' == 1
                 local own_valid_n = `own_valid_n' + r(N)
-                quietly count if `eh' <= 0 & !missing(`eh') & e(sample)
+                quietly count if `eh' <= 0 & !missing(`eh') & ///
+                    e(sample) & `positive' == 1
                 local own_negative_n = `own_negative_n' + r(N)
             }
             quietly summarize `sij' if e(sample) & `positive' == 1, meanonly
@@ -119,16 +136,25 @@ program define fooddem_regularity, rclass
     local symerr = scalar(__fd_symerr)
     local maxeig = scalar(__fd_maxeig)
 
+    * Restore internal centered variables and SY probabilities after the final
+    * lower-price finite difference.
+    local reset ""
+    forvalues i = 1/`k' {
+        tempvar reset`i'
+        local reset "`reset' `reset`i''"
+    }
+    quietly fooddem_p `reset' `predopt'
+
     tempname mem
     tempfile result
-    postfile `mem' str48 diagnostic double value threshold byte passed using `result', replace
-    post `mem' ("adding_up_max_abs_error") (`add_error') (1e-8) (`add_error' < 1e-8)
-    post `mem' ("positive_fitted_share_rate") (`positive_rate') (1) (`positive_rate' == 1)
-    post `mem' ("positive_expenditure_elasticities") (`eta_positive_rate') (1) (`eta_positive_rate' == 1)
-    post `mem' ("negative_hicksian_own_elasticities") (`own_negative_rate') (1) (`own_negative_rate' == 1)
-    post `mem' ("slutsky_symmetry_max_abs_error") (`symerr') (1e-4) (`symerr' < 1e-4)
-    post `mem' ("slutsky_max_eigenvalue") (`maxeig') (0) (`maxeig' <= 1e-8)
-    post `mem' ("adding_up_homogeneity_symmetry_imposed") (1) (1) (1)
+    postfile `mem' str14 margin str48 diagnostic double value threshold byte passed using `result', replace
+    post `mem' ("`margin'") ("adding_up_max_abs_error") (`add_error') (1e-8) (`add_error' < 1e-8)
+    post `mem' ("`margin'") ("positive_fitted_share_rate") (`positive_rate') (1) (`positive_rate' == 1)
+    post `mem' ("`margin'") ("positive_expenditure_elasticities") (`eta_positive_rate') (1) (`eta_positive_rate' == 1)
+    post `mem' ("`margin'") ("negative_hicksian_own_elasticities") (`own_negative_rate') (1) (`own_negative_rate' == 1)
+    post `mem' ("`margin'") ("slutsky_symmetry_max_abs_error") (`symerr') (1e-4) (`symerr' < 1e-4)
+    post `mem' ("`margin'") ("slutsky_max_eigenvalue") (`maxeig') (0) (`maxeig' <= 1e-8)
+    post `mem' ("`margin'") ("adding_up_homogeneity_symmetry_imposed") (1) (1) (1)
     postclose `mem'
     preserve
         use `result', clear
