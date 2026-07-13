@@ -98,7 +98,9 @@ equation is bypassed under the declared 98% identification rule.
 
 Prices passed to `fooddem, prices()` and expenditure passed to
 `expenditure()` must be in logs. See `help fooddem` after adding `ado/` to the
-Stata adopath.
+Stata adopath. [`ADO_REFERENCE.md`](ADO_REFERENCE.md) documents every public
+and internal ado file, its interface, outputs, diagnostics, and current
+identification limits.
 
 ## Main outputs
 
