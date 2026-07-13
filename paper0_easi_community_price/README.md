@@ -12,8 +12,9 @@ do "/root/data/Paper/食物消费数据/paper0-EASI/easi_community_price/code/00
 
 `04_estimate_easi.do` estimates several nonlinear systems on the full sample
 and can take tens of minutes. Stata SE 17 is licensed in the current container.
-`05_validate_outputs.do` then rejects incomplete, stale, or internally
-inconsistent model-selection and postestimation files.
+`06_instrument_sensitivity.do` runs the same-sample weak-instrument sensitivity
+specifications, and `05_validate_outputs.do` then rejects incomplete, stale, or
+internally inconsistent model-selection and postestimation files.
 
 To install only the reusable command set in another Stata project:
 
@@ -81,7 +82,9 @@ It supports:
 - two-stage budgeting and third-stage quality decomposition, with PPML value
   equations retaining zero commodity expenditures and optional clustered inference;
 - model-order, precommitment, demographic, endogeneity, overidentification, and
-  demand-regularity diagnostics.
+  demand-regularity diagnostics;
+- joint and instrument-conditional first-stage F tests, partial R-squared, and
+  same-sample instrument-set sensitivity estimates.
 
 The supplied survey does not contain a documented household sampling weight;
 reported estimates are household-unweighted and use village-year clustered
@@ -107,6 +110,7 @@ Stata adopath.
 - `geasi_*`: precommitment robustness at the preferred EASI order.
 - `model_selection_nlsur_cf.csv`: NLSUR/control-function robustness.
 - `income_elasticity_*`: overall, income-decile, and demographic distributions.
+- `instrument_*`: excluded-instrument relevance and EASI(1) sensitivity results.
 
 Household-level DTA files and estimation objects are intentionally ignored by
 Git. Version-controlled CSV results contain aggregates, not household IDs.

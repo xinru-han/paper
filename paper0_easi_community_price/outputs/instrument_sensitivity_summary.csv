@@ -1,0 +1,5 @@
+specification,excluded_instruments,N,parameters,converged,J,J_df,J_p,firststage_F,firststage_p,firststage_R2,max_abs_b_diff_main
+income_log_and_inverse,ln_income inv_income,3200,105,1,25.521921,20,.18218803,7.900362,.00043861143,.43505993,2.3286748e-07
+income_log_only,ln_income,3200,105,1,20.806934,15,.14311209,11.999605,.00059626059,.43423089,
+income_inverse_only,inv_income,3200,105,1,27.693922,15,.023565419,.027844196,.86756933,.42970675,
+expenditure_exogenous,none,3200,105,1,21.142378,15,.13234164,,,,

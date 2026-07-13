@@ -1,0 +1,4 @@
+test,instrument,F,df_num,df_den,p_value,partial_R2,firststage_R2,N
+excluded_instruments_joint,ln_income inv_income,7.90036188557789,2,360,.00043861143,.0094022267,.43505993,3200
+instrument_conditional,ln_income,14.53158415677104,1,360,.00016209348,.0093867341,.43505993,3200
+instrument_conditional,inv_income,6.617113996204903,1,360,.010500519,.0014653365,.43505993,3200

@@ -53,6 +53,10 @@ fooddem, model(aids) shares(w1 w2 w3) prices(lp1 lp2 lp3) ///
     instruments(income_iv) gmmsteps(1) iterate(40) tolerance(1e-5)
 assert e(fooddem_firststage_F) > 10
 assert !missing(e(J))
+fooddem_firststage using "/tmp/fooddem_test_firststage.csv", replace
+assert r(joint_F) > 10
+assert r(joint_partial_R2) > 0
+assert "`e(fooddem_model)'" == "aids"
 
 * Demographic translating and the control-function residual must enter both
 * shares and the AIDS price index, preserving conditional Slutsky symmetry.

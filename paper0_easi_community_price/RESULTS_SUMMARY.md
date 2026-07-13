@@ -1,6 +1,7 @@
 # Current empirical results
 
-These results are from the final Stata 17 run on 12 July 2026. Food groups are
+The structural results are from the Stata 17 run on 12 July 2026; instrument
+sensitivity checks were completed on 13 July 2026. Food groups are
 staples, beans/bean products, meat, edible oil, vegetables, and fruit, in that
 order. All inference is household-unweighted and clustered by village-year.
 
@@ -25,8 +26,9 @@ order. All inference is household-unweighted and clustered by village-year.
 - Within the AIDS family, the QUAIDS quadratic terms are jointly insignificant
   (`p=0.174`), so the sequential test retains AIDS.
 - EASI(2) estimates but cannot supply stable real counterfactual utility roots
-  across the full sample (`return_code=430`). EASI(3) is empirically unstable, with a very
-  large residual sum of squares. The sequential EASI choice is therefore EASI(1).
+  across the full sample (`return_code=430`). EASI(3) is empirically unstable,
+  with a very large residual sum of squares. The sequential EASI choice is
+  therefore EASI(1).
 - Among the valid family choices, one-step residual BIC favors EASI(1):
   `-62,707.3` versus `-62,412.3` for AIDS. This residual BIC is a nonnested
   selection diagnostic, not a formal GMM likelihood-ratio test.
@@ -36,6 +38,15 @@ order. All inference is household-unweighted and clustered by village-year.
 - The cluster-robust excluded-instrument first-stage statistic is `F=7.90`
   (`p=0.000439`). Its value below the conventional 10 benchmark is a material
   weak-instrument warning even though the instruments are jointly significant.
+- The joint excluded-instrument partial R-squared is 0.0094. Conditional on the
+  other instrument, `ln_income` has `F=14.53` and `inv_income` has `F=6.62`.
+  Used alone, log income has `F=12.00`, whereas inverse income has only
+  `F=0.028`; the inverse-only Hansen test also rejects (`p=0.0236`).
+- The log-income-only expenditure-elasticity means are 0.473, 0.835, 1.432,
+  0.398, 0.788, and 1.296. Their directions broadly agree with the dual-
+  instrument model, but the oil and vegetable magnitudes show meaningful IV
+  sensitivity. Treating expenditure as exogenous moves all six means close to
+  one, so the endogenous-expenditure treatment is empirically consequential.
 - GEASI precommitments are jointly indistinguishable from zero (`p=1.000`) and
   have very large standard errors. They are not used as the main specification.
 - The NLSUR/control-function comparison selects AIDS by BIC. The joint control-
@@ -67,6 +78,9 @@ errors; elasticity inference should use a full village-year cluster bootstrap.
   `2.40e-10` for the preferred GMM model and `1.54e-14` for NLSUR.
 - Global curvature fails: the maximum Slutsky eigenvalues are 0.00635 and
   0.00868. Only 69.2% and 69.8% of valid own Hicksian elasticities are negative.
+- Curvature also fails under the log-income-only, inverse-income-only, and
+  expenditure-exogenous sensitivity specifications, so it is not an artifact
+  of the baseline instrument set.
 - Positive fitted-share rates are 94.4% for GMM and 98.4% for NLSUR. These
   empirical regularity failures are retained rather than hidden by trimming.
 - No documented survey weight is available. Province and survey wave are

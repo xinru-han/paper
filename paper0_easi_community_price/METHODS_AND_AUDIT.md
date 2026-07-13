@@ -148,6 +148,13 @@ reported only for efficient two-step GMM. A rejected overidentification or
 regularity test is evidence against the empirical specification and is retained
 in the output; it is not overridden by the theoretical parameter constraints.
 
+Because the cluster-robust joint first-stage F is below ten, the pipeline also
+re-estimates the selected EASI(1) specification on the identical sample with
+log income alone, inverse income alone, and expenditure treated as exogenous.
+`fooddem_firststage` reports the joint and instrument-conditional cluster-robust
+F tests plus OLS partial R-squared values. These checks diagnose sensitivity;
+they do not turn conventional GMM inference into weak-IV-robust inference.
+
 ## Incomplete-system elasticities
 
 The demand-system expenditure elasticities are conditional on total expenditure
@@ -173,4 +180,5 @@ by income decile, and by demographic group.
   are exported as separate audit tables.
 - `tests/test_fooddem.do` covers arbitrary-good estimation, adding-up,
   AIDS/QUAIDS/EASI selection, GMM/NLSUR, prediction, elasticities, unit-value
-  recovery, zero-consumption handling, and income/quality decomposition.
+  recovery, zero-consumption handling, first-stage diagnostics, and income/quality
+  decomposition.

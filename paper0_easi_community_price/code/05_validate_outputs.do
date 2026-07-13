@@ -60,4 +60,27 @@ count if bic_preferred == 1
 assert r(N) == 1
 assert converged == 1 if bic_preferred == 1
 
+import delimited using "$EASI_OUT/instrument_firststage_diagnostics.csv", clear
+assert _N == 3
+count if test == "excluded_instruments_joint" & df_num == 2 & df_den > 0
+assert r(N) == 1
+assert partial_r2 > 0 & inrange(p_value, 0, 1)
+
+import delimited using "$EASI_OUT/instrument_sensitivity_summary.csv", clear
+assert _N == 4
+assert n == 3200 & converged == 1
+assert inrange(j_p, 0, 1)
+assert max_abs_b_diff_main < 1e-5 if specification == "income_log_and_inverse"
+
+import delimited using "$EASI_OUT/instrument_sensitivity_elasticities.csv", clear
+assert _N == 312
+assert n_valid > 0 & !missing(elasticity)
+
+import delimited using "$EASI_OUT/instrument_sensitivity_regularity.csv", clear
+assert _N == 28
+count if diagnostic == "adding_up_max_abs_error" & passed == 1
+assert r(N) == 4
+count if diagnostic == "slutsky_symmetry_max_abs_error" & passed == 1
+assert r(N) == 4
+
 display as result "community-price food-demand output validation passed"

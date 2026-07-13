@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.0.0 12jul2026}{...}
+{* *! version 1.1.0 13jul2026}{...}
 {vieweralsosee "gmm" "help gmm"}{...}
 {vieweralsosee "nlsur" "help nlsur"}{...}
 {title:Title}
@@ -105,6 +105,7 @@ In addition to standard {cmd:gmm} or {cmd:nlsur} results, {cmd:fooddem} stores:
 {phang}{cmd:fooddem_p newshare1 ... newshareK} predicts all K shares.{p_end}
 {phang}{cmd:fooddem_select using filename, ...} compares AIDS, QUAIDS, and EASI orders.{p_end}
 {phang}{cmd:fooddem_tests using filename} exports nested, demographic, endogeneity, SY, GEASI, and overidentification tests.{p_end}
+{phang}{cmd:fooddem_firststage using filename} exports joint and instrument-conditional excluded-instrument F tests and partial R-squared values.{p_end}
 {phang}{cmd:fooddem_elasticities using filename} exports expenditure, Marshallian, and Hicksian elasticities.{p_end}
 {phang}{cmd:fooddem_regularity using filename} checks positivity, monotonicity, curvature, adding-up, and numerical Slutsky symmetry.{p_end}
 {phang}{cmd:fooddem_demographics using filename} exports demographic elasticities or binary discrete effects.{p_end}
