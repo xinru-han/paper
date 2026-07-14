@@ -1,0 +1,31 @@
+design,model,order,elasticity_type,demand_good,shock_good,reference_share,elasticity,demand_good_name,shock_good_name,demand_good_zh
+SY-QUAIDS baseline,quaids,2,expenditure,1,0,0.0292426076556439,2.4561903,corn,,玉米
+SY-QUAIDS baseline,quaids,2,expenditure,2,0,0.2394290178539817,0.60202986,sorghum,,高粱
+SY-QUAIDS baseline,quaids,2,expenditure,3,0,0.1704676387258105,0.62750787,cassava,,木薯干
+SY-QUAIDS baseline,quaids,2,expenditure,4,0,0.2272029525657874,0.67884427,oats,,燕麦
+SY-QUAIDS baseline,quaids,2,expenditure,5,0,0.3336577831987766,1.5669527,barley,,大麦
+SY-QUAIDS baseline,quaids,2,marshallian,1,1,0.0292426076556439,-4.190568,corn,corn,玉米
+SY-QUAIDS baseline,quaids,2,hicksian,1,1,0.0292426076556439,-4.1187425,corn,corn,玉米
+SY-QUAIDS baseline,quaids,2,marshallian,2,2,0.2394290178539817,-1.5982471,sorghum,sorghum,高粱
+SY-QUAIDS baseline,quaids,2,hicksian,2,2,0.2394290178539817,-1.4541036,sorghum,sorghum,高粱
+SY-QUAIDS baseline,quaids,2,marshallian,3,3,0.1704676387258105,-2.6754732,cassava,cassava,木薯干
+SY-QUAIDS baseline,quaids,2,hicksian,3,3,0.1704676387258105,-2.5685034,cassava,cassava,木薯干
+SY-QUAIDS baseline,quaids,2,marshallian,4,4,0.2272029525657874,-1.282813,oats,oats,燕麦
+SY-QUAIDS baseline,quaids,2,hicksian,4,4,0.2272029525657874,-1.1285775,oats,oats,燕麦
+SY-QUAIDS baseline,quaids,2,marshallian,5,5,0.3336577831987766,-2.6948109,barley,barley,大麦
+SY-QUAIDS baseline,quaids,2,hicksian,5,5,0.3336577831987766,-2.1719849,barley,barley,大麦
+No-SY EASI(3) robustness,easi,3,expenditure,1,0,0.1404784338061625,1.2003548,corn,,玉米
+No-SY EASI(3) robustness,easi,3,expenditure,2,0,0.1570782626567768,0.81109929,sorghum,,高粱
+No-SY EASI(3) robustness,easi,3,expenditure,3,0,0.2070875602964501,0.97273868,cassava,,木薯干
+No-SY EASI(3) robustness,easi,3,expenditure,4,0,0.0781900055420755,0.82646883,oats,,燕麦
+No-SY EASI(3) robustness,easi,3,expenditure,5,0,0.417165737698535,1.0497178,barley,,大麦
+No-SY EASI(3) robustness,easi,3,marshallian,1,1,0.1404784338061625,-1.2741367,corn,corn,玉米
+No-SY EASI(3) robustness,easi,3,hicksian,1,1,0.1404784338061625,-1.1055127,corn,corn,玉米
+No-SY EASI(3) robustness,easi,3,marshallian,2,2,0.1570782626567768,-1.1470189,sorghum,sorghum,高粱
+No-SY EASI(3) robustness,easi,3,hicksian,2,2,0.1570782626567768,-1.0196128,sorghum,sorghum,高粱
+No-SY EASI(3) robustness,easi,3,marshallian,3,3,0.2070875602964501,-2.6294622,cassava,cassava,木薯干
+No-SY EASI(3) robustness,easi,3,hicksian,3,3,0.2070875602964501,-2.4280202,cassava,cassava,木薯干
+No-SY EASI(3) robustness,easi,3,marshallian,4,4,0.0781900055420755,-1.2804241,oats,oats,燕麦
+No-SY EASI(3) robustness,easi,3,hicksian,4,4,0.0781900055420755,-1.2158024,oats,oats,燕麦
+No-SY EASI(3) robustness,easi,3,marshallian,5,5,0.417165737698535,-1.9094537,barley,barley,大麦
+No-SY EASI(3) robustness,easi,3,hicksian,5,5,0.417165737698535,-1.4715474,barley,barley,大麦

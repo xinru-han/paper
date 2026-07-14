@@ -1,0 +1,3 @@
+preferred_model=easi
+preferred_order=3
+preferred_estimate=fd_easi3
