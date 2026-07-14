@@ -1,4 +1,4 @@
-*! General AIDS/QUAIDS/EASI demand systems 1.0.0  12jul2026
+*! General AIDS/QUAIDS/EASI demand systems 1.3.0  14jul2026
 program define fooddem, eclass sortpreserve
     version 17
     syntax [if] [in], MODEL(string) SHARES(varlist numeric min=3) ///
@@ -7,16 +7,18 @@ program define fooddem, eclass sortpreserve
          QUANTities(varlist numeric) SELection(string) SELectvars(varlist numeric) ///
          ENDogeneity(string) INSTruments(varlist numeric) CLuster(varname) ///
          PRECommitment FROM(name) GMMsteps(integer 2) ITERate(integer 200) ///
-         TOLerance(real 1e-6)]
+         TOLerance(real 1e-6) CURVature(string)]
 
     marksample touse, novarlist
     local model = lower("`model'")
     local estimator = lower("`estimator'")
     local selection = lower("`selection'")
     local endogeneity = lower("`endogeneity'")
+    local curvature = lower("`curvature'")
     if "`estimator'" == "" local estimator "gmm"
     if "`selection'" == "" local selection "none"
     if "`endogeneity'" == "" local endogeneity "none"
+    if "`curvature'" == "" local curvature "none"
     if !inlist("`model'", "aids", "quaids", "easi") {
         di as error "model() must be aids, quaids, or easi"
         exit 198
@@ -31,6 +33,18 @@ program define fooddem, eclass sortpreserve
     }
     if !inlist("`endogeneity'", "none", "iv", "cf") {
         di as error "endogeneity() must be none, iv, or cf"
+        exit 198
+    }
+    if !inlist("`curvature'", "none", "local", "global") {
+        di as error "curvature() must be none, local, or global"
+        exit 198
+    }
+    if "`curvature'" != "none" & ("`model'" != "easi" | "`estimator'" != "gmm") {
+        di as error "curvature() is currently available for EASI GMM"
+        exit 198
+    }
+    if "`curvature'" != "none" & "`precommitment'" != "" {
+        di as error "curvature() is not available with precommitment"
         exit 198
     }
     if "`estimator'" == "nlsur" & "`endogeneity'" == "iv" {
@@ -478,7 +492,8 @@ program define fooddem, eclass sortpreserve
             quietly fooddem_easi_gmm if `touse', shares(`shares') lnp(`modelprices') ///
                 expenditure(`modelexp') order(`order') instruments(`zinst') ///
                 pnames(`pnames') initial(`easistart') steps(`gmmsteps') ///
-                iterate(`iterate') tolerance(`tolerance') `linearopts' `geasiopts'
+                iterate(`iterate') tolerance(`tolerance') curvature(`curvature') ///
+                `linearopts' `geasiopts'
         }
         else {
             quietly gmm fooddem_gmm if `touse', nequations(`neq') parameters(`pnames') ///
@@ -517,6 +532,7 @@ program define fooddem, eclass sortpreserve
     ereturn local fooddem_instruments "`instruments'"
     ereturn local fooddem_cluster "`cluster'"
     ereturn local fooddem_precommitment "`precommitment'"
+    ereturn local fooddem_curvature "`curvature'"
     ereturn local fooddem_cscales "`cscales'"
     ereturn local fooddem_pnames "`pnames'"
     ereturn scalar fooddem_goods = `k'

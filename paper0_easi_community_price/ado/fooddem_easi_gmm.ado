@@ -1,4 +1,4 @@
-*! Exact constrained EASI/GEASI nonlinear GMM solver 1.0.0  12jul2026
+*! Exact constrained EASI/GEASI nonlinear GMM solver 1.1.0  14jul2026
 program define fooddem_easi_gmm, eclass sortpreserve
     version 17
     syntax [if] [in], SHARES(varlist numeric min=3) LNP(varlist numeric min=3) ///
@@ -7,7 +7,22 @@ program define fooddem_easi_gmm, eclass sortpreserve
         CF(varname numeric) PHI(varlist numeric) PDF(varlist numeric) ///
         SYACTIVE(numlist integer) CLuster(varname numeric) STEPS(integer 1) ///
         ITERate(integer 200) TOLerance(real 1e-6) RAWLNP(varlist numeric) ///
-        RAWEXP(varname numeric) CSCALES(numlist) XMEAN(real 0)]
+        RAWEXP(varname numeric) CSCALES(numlist) XMEAN(real 0) ///
+        CURVature(string)]
+
+    local curvature = lower("`curvature'")
+    if "`curvature'" == "" local curvature "none"
+    if !inlist("`curvature'", "none", "local", "global") {
+        di as error "curvature() must be none, local, or global"
+        exit 198
+    }
+    if "`curvature'" != "none" & "`rawlnp'" != "" {
+        di as error "curvature() is not available for GEASI precommitments"
+        exit 198
+    }
+    local curvemode = 0
+    if "`curvature'" == "local" local curvemode = 1
+    if "`curvature'" == "global" local curvemode = 2
 
     marksample touse, novarlist
     markout `touse' `shares' `lnp' `expenditure' `instruments' ///
@@ -61,6 +76,7 @@ program define fooddem_easi_gmm, eclass sortpreserve
         "`expenditure'", "`demographics'", "`cf'", "`phi'", "`pdf'", ///
         "`syactive'", "`instruments'", "`cluster'", "`rawlnp'", ///
         "`rawexp'", "`cscales'", `xmean', `order', `npar', ///
+        `curvemode', ///
         `steps', `iterate', `tolerance', "`b0'", "`b'", "`V'", "`J'", ///
         "`Jdf'", "`prank'", "`N'", "`Nclust'", "`qinst'", "`conv'", ///
         "`iters'", "`criterion'")
@@ -93,6 +109,7 @@ program define fooddem_easi_gmm, eclass sortpreserve
         ereturn local clustvar "`cluster'"
     }
     ereturn local title "Exact constrained EASI/GEASI GMM"
+    ereturn local curvature "`curvature'"
     ereturn local cmd "fooddem_easi_gmm"
 end
 
@@ -102,6 +119,13 @@ capture mata: mata drop _fooddem_easi_nl_errors()
 capture mata: mata drop _fooddem_easi_nl_jacobian()
 capture mata: mata drop _fooddem_easi_nl_optimize()
 capture mata: mata drop _fooddem_easi_nl_clusterS()
+capture mata: mata drop _fooddem_helmert()
+capture mata: mata drop _fd_softplus()
+capture mata: mata drop _fd_invsoftplus()
+capture mata: mata drop _fooddem_curve_wref()
+capture mata: mata drop _fooddem_curve_to_theta()
+capture mata: mata drop _fooddem_curve_to_beta()
+capture mata: mata drop _fd_curve_transform_J()
 capture mata: mata drop _fooddem_easi_gmm_fit()
 mata:
 mata set matastrict on
@@ -110,6 +134,169 @@ __fooddem_geasi_rawP = J(0, 0, .)
 __fooddem_geasi_rawx = J(0, 1, .)
 __fooddem_geasi_cscales = J(1, 0, .)
 __fooddem_geasi_xmean = 0
+__fooddem_curve_mode = 0
+
+real scalar _fd_softplus(real scalar x)
+{
+    if (x > 30) return(x)
+    if (x < -30) return(exp(x))
+    return(ln(1 + exp(x)))
+}
+
+real scalar _fd_invsoftplus(real scalar x)
+{
+    x = max((x, 1e-10))
+    if (x > 30) return(x)
+    return(ln(exp(x) - 1))
+}
+
+real matrix _fooddem_helmert(real scalar k)
+{
+    real matrix Q
+    real scalar j
+
+    Q = J(k, k - 1, 0)
+    for (j = 1; j <= k - 1; j++) {
+        Q[1..j, j] = J(j, 1, 1 / sqrt(j * (j + 1)))
+        Q[j + 1, j] = -j / sqrt(j * (j + 1))
+    }
+    return(Q)
+}
+
+real colvector _fooddem_curve_wref(
+    real colvector beta,
+    real scalar k,
+    real scalar hmax,
+    real matrix D,
+    real matrix CF)
+{
+    real scalar neq, nd, pos, i, d
+    real colvector wref, rvec
+    real matrix T
+
+    neq = k - 1
+    nd = cols(D)
+    wref = beta[1..neq]
+    pos = neq + neq * hmax + neq * (neq + 1) / 2
+    T = J(neq, nd, 0)
+    for (i = 1; i <= neq; i++) {
+        for (d = 1; d <= nd; d++) T[i, d] = beta[++pos]
+    }
+    if (nd > 0) wref = wref + T * mean(D)'
+    rvec = J(neq, 1, 0)
+    if (cols(CF) > 0) {
+        for (i = 1; i <= neq; i++) rvec[i] = beta[++pos]
+        wref = wref + rvec * mean(CF)
+    }
+    return(wref \ (1 - sum(wref)))
+}
+
+real colvector _fooddem_curve_to_theta(
+    real colvector beta,
+    real scalar k,
+    real scalar hmax,
+    real matrix D,
+    real matrix CF,
+    real scalar curvemode)
+{
+    real scalar neq, pos, a, bb
+    real colvector theta, wref, eval
+    real matrix G, S, Q, M, U, L
+
+    neq = k - 1
+    theta = beta
+    wref = _fooddem_curve_wref(beta, k, hmax, D, CF)
+    G = J(k, k, 0)
+    pos = neq + neq * hmax
+    for (a = 1; a <= neq; a++) {
+        for (bb = a; bb <= neq; bb++) {
+            G[a, bb] = beta[++pos]
+            G[bb, a] = G[a, bb]
+        }
+    }
+    for (a = 1; a <= neq; a++) {
+        G[a, k] = -sum(G[a, 1..neq])
+        G[k, a] = G[a, k]
+    }
+    G[k, k] = sum(G[1..neq, 1..neq])
+    Q = _fooddem_helmert(k)
+    if (curvemode == 1) S = G + wref * wref' - diag(wref)
+    else S = G
+    M = -(Q' * ((S + S') / 2) * Q)
+    symeigensystem((M + M') / 2, U, eval)
+    eval = (eval :> 1e-8) :* eval + (eval :<= 1e-8) :* 1e-8
+    M = U' * diag(eval) * U
+    L = cholesky((M + M') / 2)
+    pos = neq + neq * hmax
+    for (a = 1; a <= neq; a++) {
+        for (bb = a; bb <= neq; bb++) {
+            pos++
+            if (curvemode == 2 & bb == a) theta[pos] = _fd_invsoftplus(L[bb,a])
+            else theta[pos] = L[bb,a]
+        }
+    }
+    return(theta)
+}
+
+real colvector _fooddem_curve_to_beta(
+    real colvector theta,
+    real scalar k,
+    real scalar hmax,
+    real matrix D,
+    real matrix CF,
+    real scalar curvemode)
+{
+    real scalar neq, pos, a, bb
+    real colvector beta, wref
+    real matrix G, Q, L
+
+    neq = k - 1
+    beta = theta
+    wref = _fooddem_curve_wref(theta, k, hmax, D, CF)
+    L = J(neq, neq, 0)
+    pos = neq + neq * hmax
+    for (a = 1; a <= neq; a++) {
+        for (bb = a; bb <= neq; bb++) {
+            pos++
+            if (curvemode == 2 & bb == a) L[bb,a] = _fd_softplus(theta[pos])
+            else L[bb,a] = theta[pos]
+        }
+    }
+    Q = _fooddem_helmert(k)
+    if (curvemode == 1) G = diag(wref) - wref * wref' - Q * L * L' * Q'
+    else G = -Q * L * L' * Q'
+    pos = neq + neq * hmax
+    for (a = 1; a <= neq; a++) {
+        for (bb = a; bb <= neq; bb++) beta[++pos] = G[a, bb]
+    }
+    return(beta)
+}
+
+real matrix _fd_curve_transform_J(
+    real colvector theta,
+    real scalar k,
+    real scalar hmax,
+    real matrix D,
+    real matrix CF,
+    real scalar curvemode)
+{
+    real scalar p, j, delta
+    real colvector tp, tm
+    real matrix Jt
+
+    p = rows(theta)
+    Jt = J(p, p, 0)
+    for (j = 1; j <= p; j++) {
+        delta = 1e-6 * (1 + abs(theta[j]))
+        tp = theta
+        tm = theta
+        tp[j] = tp[j] + delta
+        tm[j] = tm[j] - delta
+        Jt[, j] = (_fooddem_curve_to_beta(tp, k, hmax, D, CF, curvemode) -
+            _fooddem_curve_to_beta(tm, k, hmax, D, CF, curvemode)) / (2 * delta)
+    }
+    return(Jt)
+}
 
 real matrix _fooddem_easi_nl_predict(
     real colvector beta,
@@ -127,10 +314,11 @@ real matrix _fooddem_easi_nl_predict(
     external real colvector __fooddem_geasi_rawx
     external real rowvector __fooddem_geasi_cscales
     external real scalar __fooddem_geasi_xmean
+    external real scalar __fooddem_curve_mode
     real scalar n, k, neq, nd, pos, i, j, h, d, a, bb
     real colvector avec, rvec, dvec, cvec, xlevel, totalcommit
-    real colvector discretionary, y, pAp, base
-    real matrix B, G, T, commit, pred
+    real colvector discretionary, y, pAp, base, wref
+    real matrix B, G, L, Q, T, commit, pred
 
     n = rows(Sall)
     k = cols(Sall)
@@ -144,17 +332,22 @@ real matrix _fooddem_easi_nl_predict(
         for (h = 1; h <= hmax; h++) B[i, h] = beta[++pos]
     }
     G = J(k, k, 0)
+    L = J(neq, neq, 0)
     for (a = 1; a <= neq; a++) {
         for (bb = a; bb <= neq; bb++) {
-            G[a, bb] = beta[++pos]
-            G[bb, a] = G[a, bb]
+            if (__fooddem_curve_mode) {
+                pos++
+                if (__fooddem_curve_mode == 2 & bb == a) {
+                    L[bb,a] = _fd_softplus(beta[pos])
+                }
+                else L[bb,a] = beta[pos]
+            }
+            else {
+                G[a, bb] = beta[++pos]
+                G[bb, a] = G[a, bb]
+            }
         }
     }
-    for (i = 1; i <= neq; i++) {
-        G[i, k] = -sum(G[i, 1..neq])
-        G[k, i] = G[i, k]
-    }
-    G[k, k] = sum(G[1..neq, 1..neq])
     T = J(neq, nd, 0)
     for (i = 1; i <= neq; i++) {
         for (d = 1; d <= nd; d++) T[i, d] = beta[++pos]
@@ -174,6 +367,25 @@ real matrix _fooddem_easi_nl_predict(
         }
     }
     if (pos != rows(beta)) _error(3200)
+
+    if (__fooddem_curve_mode) {
+        wref = avec
+        if (nd > 0) wref = wref + T * mean(D)'
+        if (cols(CF) > 0) wref = wref + rvec * mean(CF)
+        wref = wref \ (1 - sum(wref))
+        Q = _fooddem_helmert(k)
+        if (__fooddem_curve_mode == 1) {
+            G = diag(wref) - wref * wref' - Q * L * L' * Q'
+        }
+        else G = -Q * L * L' * Q'
+    }
+    else {
+        for (i = 1; i <= neq; i++) {
+            G[i, k] = -sum(G[i, 1..neq])
+            G[k, i] = G[i, k]
+        }
+        G[k, k] = sum(G[1..neq, 1..neq])
+    }
 
     pAp = rowsum((P * G) :* P)
     discretionary = x
@@ -383,6 +595,7 @@ void _fooddem_easi_gmm_fit(
     real scalar xmean,
     real scalar hmax,
     real scalar p,
+    real scalar curvemode,
     real scalar steps,
     real scalar maxiter,
     real scalar tolerance,
@@ -403,9 +616,10 @@ void _fooddem_easi_gmm_fit(
     external real colvector __fooddem_geasi_rawx
     external real rowvector __fooddem_geasi_cscales
     external real scalar __fooddem_geasi_xmean
+    external real scalar __fooddem_curve_mode
     real colvector idx, x, cl, beta0, beta1, beta, gbar
     real matrix Sall, P, D, CF, Phi, Pdf, Z, W, Omega, OmegaV
-    real matrix E1, E, J, bread, V
+    real matrix E1, E, J, bread, V, Jt
     real rowvector active
     real scalar n, k, neq, q, conv1, conv2, iter1, iter2
     real scalar rankJ, Jstat, Jdf, nclust, adjust, criterion
@@ -437,6 +651,7 @@ void _fooddem_easi_gmm_fit(
     __fooddem_geasi_rawx = J(n, 1, .)
     __fooddem_geasi_cscales = J(1, 0, .)
     __fooddem_geasi_xmean = xmean
+    __fooddem_curve_mode = curvemode
     if (strtrim(rawpricevars) != "") {
         __fooddem_geasi_rawP = st_data(idx, tokens(rawpricevars))
         __fooddem_geasi_rawx = st_data(idx, rawexpvar)
@@ -444,6 +659,7 @@ void _fooddem_easi_gmm_fit(
     }
     beta0 = st_matrix(initname)'
     if (rows(beta0) != p) _error(3200)
+    if (curvemode) beta0 = _fooddem_curve_to_theta(beta0, k, hmax, D, CF, curvemode)
 
     W = I(q * neq)
     conv1 = 0
@@ -482,6 +698,12 @@ void _fooddem_easi_gmm_fit(
     criterion = quadcross(gbar, W * gbar)
     Jstat = n * criterion
     Jdf = q * neq - rankJ
+
+    if (curvemode) {
+        Jt = _fd_curve_transform_J(beta, k, hmax, D, CF, curvemode)
+        V = Jt * V * Jt'
+        beta = _fooddem_curve_to_beta(beta, k, hmax, D, CF, curvemode)
+    }
 
     st_matrix(bname, beta')
     st_matrix(Vname, V)

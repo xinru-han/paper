@@ -1,0 +1,6 @@
+specification,N,J,J_df,Hansen_p,reference_max_eigenvalue,converged
+unrestricted,3118,28.731956,19,.070319876,.002620264,1
+curvature_local,3118,28.824924,19,.068789303,4.4049394e-18,1
+curvature_global,3118,236.76794,19,0,-1.1080546e-16,0
+directprice_unrestr,1443,19.000559,19,.45680022,.022679845,1
+directprice_local,1443,57.419155,19,9.8341898e-06,-8.8353163e-18,1
