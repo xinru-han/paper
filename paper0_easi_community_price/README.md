@@ -72,6 +72,14 @@ the common-market price, demographic-quality, and quantity-effect decomposition.
 Those recovered prices validate but do not replace questionnaire community
 prices in the main models.
 
+`13_fruit_price_diagnostics.do` audits the remaining fruit-specific boundary
+mismatch. Household group 6 contains fresh fruit, nuts, preserved fruit, and
+dried fruit, whereas the main representative price is apple/orange based. The
+diagnostic constructs all seven village subcategory prices, fills each category
+before aggregation, and applies fixed pooled purchase-expenditure weights. It
+then recomputes fruit value, total food expenditure, and all six shares before
+repeating model selection and clustered GMM estimation.
+
 ## Estimation package
 
 The `ado/fooddem*.ado` package accepts any number of goods greater than two.
@@ -134,6 +142,8 @@ identification limits.
 - `source_*`: source-corrected prices, total/purchase/own diagnostic systems,
   elasticity comparisons, curvature projection/constrained reestimation, and
   omission-bias bootstrap.
+- `fruit_*`: seven-category fruit weights/prices, price-identification audit,
+  functional-form selection, and formally comparable fruit elasticity results.
 
 Household-level DTA files and estimation objects are intentionally ignored by
 Git. Version-controlled CSV results contain aggregates, not household IDs.
@@ -143,4 +153,5 @@ See `METHODS_AND_AUDIT.md` for the audit trail. `RESULTS_SUMMARY.md` and
 baselines. The authoritative current report is
 [`HICKSIAN_SELFCONSUMPTION_CORRECTION.md`](HICKSIAN_SELFCONSUMPTION_CORRECTION.md),
 which contains the corrected price-sign, own-consumption, curvature, and
-omission-bias analysis.
+omission-bias analysis. The focused follow-up is
+[`FRUIT_SIGNIFICANCE_DIAGNOSTICS.md`](FRUIT_SIGNIFICANCE_DIAGNOSTICS.md).
