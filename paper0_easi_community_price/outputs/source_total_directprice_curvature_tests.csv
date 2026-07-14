@@ -1,0 +1,7 @@
+test,statistic,df,p_value
+demographics_joint_zero,163.2912905555183,45,2.5204717e-15
+all_share_shifters_joint_zero,722.4777568472296,80,0
+Shonkwiler_Yen_terms_joint_zero,3.340035471890777,1,.067613155
+Hansen_overidentification,57.41915562018507,19,9.8341898e-06
+excluded_instruments_first_stage,8.015555530143159,,.00047619519
+theory_restrictions_imposed,1,,

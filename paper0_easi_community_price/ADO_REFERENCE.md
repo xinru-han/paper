@@ -31,6 +31,7 @@ fooddem_firststage using "outputs/firststage.csv", replace
 fooddem_tests      using "outputs/tests.csv", demographics(urban hhsize year_2024) replace
 fooddem_elasticities using "outputs/elasticities.csv", replace
 fooddem_regularity   using "outputs/regularity.csv", replace
+fooddem_reference    using "outputs/reference_elasticities.csv", replace
 fooddem_export       using "outputs/parameters.csv", replace
 ```
 
@@ -52,6 +53,7 @@ CSV。所有写文件的命令均需要已有文件时显式使用 `replace`。
 | `fooddem_elasticities` | 数值计算 Marshallian、Hicksian 和支出弹性。 |
 | `fooddem_regularity` | 检查加总、份额、单调性、Slutsky 对称性及曲率。 |
 | `fooddem_curvature` | 将局部潜在 Slutsky 矩阵投影为满足加总、对称与负半定的矩阵。 |
+| `fooddem_reference` | 在样本均值处计算弹性，并给出 delta-method 标准误、p 值和置信区间。 |
 | `fooddem_demographics` | 计算人口特征对预测份额的局部或离散影响。 |
 | `fooddem_income` | 二、三阶段预算下的收入、数量、价值和质量弹性。 |
 | `fooddem_uvprice` | 按 Deaton 或市场中位数法恢复单位价值稳健性价格。 |
@@ -316,8 +318,9 @@ fooddem_regularity using filename, ///
 
 加总、齐次性和对称性是在潜在需求系统中施加的，因此理论检验默认
 `margin(latent)`。`unconditional` 和 `intensive` 用于描述 SY 转换后的经验
-边际，不应以其 Slutsky 对称性判断参数化是否正确。曲率/负半定性没有在估计
-中全局施加，因而是实证诊断而非保证。
+边际，不应以其 Slutsky 对称性判断参数化是否正确。默认 `curvature(none)`
+不施加负半定性；`curvature(local)` 在样本均值处施加，
+`curvature(global)` 使用更强的全局充分条件。
 
 ### `fooddem_curvature`
 
@@ -330,6 +333,22 @@ fooddem_curvature using filename, [replace]
 前后最大特征值与 Frobenius 调整范数，并返回 `r(projected_slutsky)`。
 它是代表点的局部曲率修正，不会重估结构参数，也不会把每个家庭或每个价格
 点强制为全局负半定；因此必须与直接价格、异常值和弱识别敏感性一起报告。
+
+### 曲率约束重估与 `fooddem_reference`
+
+```stata
+fooddem, model(easi) order(1) ... curvature(local)
+fooddem_reference using filename, [sample(varname) replace]
+```
+
+`curvature(local)` 用 Cholesky 重参数化把样本均值处的 Slutsky 矩阵写成
+`-Q*L*L'*Q'`，其中 `Q` 张成加总约束子空间。该约束进入 GMM 目标函数，
+所以不是估计后的改号。`fooddem_reference` 在同一均值点导出支出、
+Marshallian 和 Hicksian 弹性及 delta-method 推断。
+
+`curvature(global)` 令 EASI 价格矩阵本身等于 `-Q*L*L'*Q'`。这足以保证
+所有正拟合份额观察的 Hicksian 自价格非正，但限制明显更强。只有在优化收敛、
+Hansen 检验和其他识别诊断同时可接受时，才可作为主结果。
 
 ### `fooddem_demographics`
 

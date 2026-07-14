@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.2.0 13jul2026}{...}
+{* *! version 1.3.0 14jul2026}{...}
 {vieweralsosee "gmm" "help gmm"}{...}
 {vieweralsosee "nlsur" "help nlsur"}{...}
 {title:Title}
@@ -34,6 +34,7 @@
 {synopt:{opt gmmsteps(1|2)}}one-step or two-step GMM; default is 2{p_end}
 {synopt:{opt iterate(#)}}maximum optimizer iterations{p_end}
 {synopt:{opt tolerance(#)}}GMM convergence tolerance{p_end}
+{synopt:{opt curvature(none|local|global)}}EASI-GMM curvature parameterization; default is {cmd:none}{p_end}
 {synoptline}
 
 {title:Data requirements}
@@ -99,6 +100,7 @@ In addition to standard {cmd:gmm} or {cmd:nlsur} results, {cmd:fooddem} stores:
 {synopt:{cmd:e(fooddem_firststage_r2)}}first-stage R-squared{p_end}
 {synopt:{cmd:e(fooddem_syactive)}}good-specific SY activation indicators{p_end}
 {synopt:{cmd:e(fooddem_cluster)}}sampling-cluster variable, if supplied{p_end}
+{synopt:{cmd:e(fooddem_curvature)}}curvature parameterization{p_end}
 
 {title:Postestimation and companion commands}
 
@@ -109,6 +111,7 @@ In addition to standard {cmd:gmm} or {cmd:nlsur} results, {cmd:fooddem} stores:
 {phang}{cmd:fooddem_elasticities using filename [, margin(unconditional|intensive|latent) minshare(#) sample(varname)]} exports expenditure, Marshallian, and Hicksian elasticities on a common interior support plus quantity-weighted and tail-trimmed aggregates.{p_end}
 {phang}{cmd:fooddem_regularity using filename [, margin(unconditional|intensive|latent)]} checks positivity, monotonicity, curvature, adding-up, and numerical Slutsky symmetry; latent is the default theory margin.{p_end}
 {phang}{cmd:fooddem_curvature using filename} projects the local latent Slutsky matrix to the nearest symmetric negative-semidefinite matrix while preserving adding-up.{p_end}
+{phang}{cmd:fooddem_reference using filename [, sample(varname)]} exports sample-average EASI elasticities with delta-method standard errors, p-values, and confidence intervals.{p_end}
 {phang}{cmd:fooddem_demographics using filename} exports demographic elasticities or binary discrete effects.{p_end}
 {phang}{cmd:fooddem_income using filename, income() values() [cluster() minshare(#)]} computes two-stage income and third-stage quality elasticities on the common interior support; PPML is the default value equation.{p_end}
 {phang}{cmd:fooddem_uvprice, ...} recovers common-market prices from unit values or expenditures and quantities.{p_end}
@@ -122,3 +125,7 @@ In addition to standard {cmd:gmm} or {cmd:nlsur} results, {cmd:fooddem} stores:
 {phang2}{cmd:. fooddem, model(easi) order(3) shares(w1 w2 w3 w4 w5) prices(lnp1 lnp2 lnp3 lnp4 lnp5) expenditure(lnx) estimator(nlsur) endogeneity(cf) instruments(lnincome) quantities(q1 q2 q3 q4 q5) selection(sy)}{p_end}
 
 {phang2}{cmd:. fooddem_elasticities using elasticities.csv, replace}{p_end}
+
+{phang2}{cmd:. fooddem, model(easi) order(1) shares(w1 w2 w3) prices(lnp1 lnp2 lnp3) expenditure(lnx) estimator(gmm) curvature(local)}{p_end}
+
+{phang2}{cmd:. fooddem_reference using reference_elasticities.csv, replace}{p_end}

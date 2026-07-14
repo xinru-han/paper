@@ -136,6 +136,46 @@ assert _N == 36
 assert projected_max_eigenvalue <= 1e-8
 assert projected_hicksian <= 1e-10 if demand_good == shock_good
 
+* The preferred repair reestimates EASI with local curvature at the sample
+* average, rather than changing positive elasticities after estimation.
+import delimited using "$EASI_OUT/source_total_curvature_estimation_comparison.csv", clear
+assert _N == 5
+assert converged == 1 if specification == "curvature_local"
+assert reference_max_eigenvalue <= 1e-8 if specification == "curvature_local"
+assert hansen_p > .05 if specification == "curvature_local"
+assert converged == 0 & hansen_p < .01 if specification == "curvature_global"
+assert converged == 1 & hansen_p > .05 if specification == "directprice_unrestr"
+assert hansen_p < .01 if specification == "directprice_local"
+
+import delimited using "$EASI_OUT/source_total_curvature_constrained_reference.csv", clear
+assert _N == 78
+assert elasticity <= 1e-8 if elasticity_type == "hicksian" & ///
+    demand_good == shock_good
+assert !missing(std_error, p_value, ci_low, ci_high)
+
+* Global curvature is a deliberately stronger diagnostic. It must eliminate
+* every positive own-price response, but it is not accepted as the main model
+* unless it also converges and passes specification tests.
+import delimited using "$EASI_OUT/source_total_curvature_global_regularity_latent.csv", clear
+count if diagnostic == "negative_hicksian_own_elasticities" & passed == 1
+assert r(N) == 1
+count if diagnostic == "slutsky_max_eigenvalue" & passed == 1
+assert r(N) == 1
+
+* The direct-price unrestricted model is the price-identification robustness
+* result: all six aggregate own-price elasticities are negative and its Hansen
+* test passes. Locally constraining this smaller sample is rejected, so it is
+* not substituted for the unrestricted direct-price estimates.
+import delimited using "$EASI_OUT/source_total_directprice_elasticities_latent.csv", clear
+assert aggregate_elasticity < 0 if elasticity_type == "hicksian" & ///
+    demand_good == shock_good
+
+import delimited using "$EASI_OUT/source_total_directprice_reference_unconstrained.csv", clear
+assert _N == 78
+assert elasticity < 0 if elasticity_type == "hicksian" & ///
+    demand_good == shock_good
+assert !missing(std_error, p_value, ci_low, ci_high)
+
 import delimited using "$EASI_OUT/source_omission_bias_tests.csv", clear
 assert _N == 12
 assert bootstrap_reps_requested >= 199 & bootstrap_reps_successful >= 99 ///

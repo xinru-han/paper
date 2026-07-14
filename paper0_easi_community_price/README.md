@@ -92,6 +92,8 @@ It supports:
   EASI and GEASI, including the `0.5 p'Ap` implicit-utility correction;
 - Marshallian, Hicksian, expenditure, demographic, income, quantity, value, and
   quality elasticities;
+- local and global curvature-constrained EASI-GMM plus sample-average
+  delta-method elasticity inference;
 - two-stage budgeting and third-stage quality decomposition, with PPML value
   equations retaining zero commodity expenditures and optional clustered inference;
 - model-order, precommitment, demographic, endogeneity, overidentification, and
@@ -130,7 +132,8 @@ identification limits.
 - `income_elasticity_*`: overall, income-decile, and demographic distributions.
 - `instrument_*`: excluded-instrument relevance and EASI(1) sensitivity results.
 - `source_*`: source-corrected prices, total/purchase/own diagnostic systems,
-  elasticity comparisons, curvature projection, and omission-bias bootstrap.
+  elasticity comparisons, curvature projection/constrained reestimation, and
+  omission-bias bootstrap.
 
 Household-level DTA files and estimation objects are intentionally ignored by
 Git. Version-controlled CSV results contain aggregates, not household IDs.

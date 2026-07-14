@@ -129,8 +129,45 @@ forvalues j = 1/3 {
     assert `projected_hicks'[`j',`j'] <= 1e-8
 }
 
+* Local curvature must be imposed during GMM estimation, not by changing the
+* reported elasticity after estimation. Reference-point delta-method inference
+* uses the transformed physical gamma coefficients and their covariance.
+fooddem, model(easi) order(1) shares(w1 w2 w3) prices(lp1 lp2 lp3) ///
+    expenditure(lx) estimator(gmm) demographics(z) quantities(q1 q2 q3) ///
+    selection(sy) selectvars(select_z) gmmsteps(1) curvature(local) ///
+    iterate(80) tolerance(1e-6)
+assert e(converged) == 1
+assert "`e(fooddem_curvature)'" == "local"
+fooddem_reference using "/tmp/fooddem_test_curvature_reference.csv", replace
+assert r(slutsky_max_eigenvalue) <= 1e-8
+preserve
+    import delimited using "/tmp/fooddem_test_curvature_reference.csv", clear
+    assert elasticity <= 1e-8 if elasticity_type == "hicksian" & ///
+        demand_good == shock_good
+    assert !missing(std_error, p_value)
+restore
+fooddem_p cw1 cw2 cw3, latent
+egen double csum = rowtotal(cw1 cw2 cw3)
+assert abs(csum - 1) < 1e-10 if e(sample)
+
+* The global sufficient condition gamma=-Q*L*L'*Q' makes the Slutsky
+* matrix negative semidefinite at every positive fitted-share observation.
+fooddem, model(easi) order(1) shares(w1 w2 w3) prices(lp1 lp2 lp3) ///
+    expenditure(lx) estimator(gmm) demographics(z) quantities(q1 q2 q3) ///
+    selection(sy) selectvars(select_z) gmmsteps(1) curvature(global) ///
+    iterate(80) tolerance(1e-5)
+assert e(converged) == 1
+assert "`e(fooddem_curvature)'" == "global"
+fooddem_regularity using "/tmp/fooddem_test_curvature_global.csv", ///
+    margin(latent) replace
+assert r(slutsky_max_eigenvalue) <= 1e-8
+assert r(negative_hicksian_own_rate) > .999999
+
 * Mata one-step EASI GMM must equal Stata's generic numerical GMM for the same
 * exact moments, including 0.5*p'A*p and an active SY density term.
+fooddem, model(easi) order(1) shares(w1 w2 w3) prices(lp1 lp2 lp3) ///
+    expenditure(lx) estimator(gmm) demographics(z) quantities(q1 q2 q3) ///
+    selection(sy) selectvars(select_z) gmmsteps(1)
 tempname mata_b numeric_b maxdiff
 matrix `mata_b' = e(b)
 local mata_pnames "`e(fooddem_pnames)'"
