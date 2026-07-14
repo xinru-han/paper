@@ -155,3 +155,10 @@ baselines. The authoritative current report is
 which contains the corrected price-sign, own-consumption, curvature, and
 omission-bias analysis. The focused follow-up is
 [`FRUIT_SIGNIFICANCE_DIAGNOSTICS.md`](FRUIT_SIGNIFICANCE_DIAGNOSTICS.md).
+
+The preferred total-consumption system can be re-estimated with a village-year
+cluster bootstrap using `code/14_total_bootstrap.do`; `code/15_finalize_total_bootstrap.do`
+post-processes the saved replicates into `outputs/total_bootstrap_elasticities.csv`
+and `outputs/total_bootstrap_tests.csv`. The bootstrap keeps total consumption,
+community prices, SY participation correction, expenditure IVs, and local
+Slutsky curvature fixed as the main specification.
