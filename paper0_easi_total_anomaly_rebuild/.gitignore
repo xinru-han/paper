@@ -1,0 +1,5 @@
+data/
+*.log
+__pycache__/
+outputs/*.ster
+outputs/household_anomaly_flags.csv

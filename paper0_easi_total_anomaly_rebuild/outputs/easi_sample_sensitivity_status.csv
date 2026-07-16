@@ -1,0 +1,9 @@
+sample,return_code,order,n,hansen_p,firststage_p,converged,preferred_model,preferred_order
+main,0,1,3069,.1264136941791354,,1,aids,1
+physical,0,1,3141,.1337316694043691,,1,aids,1
+total5,0,1,3093,.0930332861842583,,1,aids,1
+allcomponents,0,1,3068,.1263151305964514,,1,aids,1
+strict45,0,1,3061,.1517037783064477,,1,aids,1
+lenient60,0,1,3091,.0951344987706365,,1,aids,1
+p99,0,1,3138,.1330768786881061,,1,aids,1
+localprice,0,1,1288,.372299936232945,,1,aids,1
