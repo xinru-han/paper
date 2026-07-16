@@ -162,3 +162,6 @@ post-processes the saved replicates into `outputs/total_bootstrap_elasticities.c
 and `outputs/total_bootstrap_tests.csv`. The bootstrap keeps total consumption,
 community prices, SY participation correction, expenditure IVs, and local
 Slutsky curvature fixed as the main specification.
+
+`COMPLETE_RESULTS.txt` concatenates the current reports and all principal CSV
+outputs into one auditable plain-text results file.
