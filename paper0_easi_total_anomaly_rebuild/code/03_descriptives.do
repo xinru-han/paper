@@ -87,6 +87,83 @@ preserve
     export delimited using "$AR_OUT/price_variation.csv", replace
 restore
 
+* Low-price tail diagnostics distinguish genuine concentration from repeated
+* geographic donor values and record which raw quotes failed the weak-support
+* screen. The final-price table is one row per village-year.
+preserve
+    use "$AR_DATA/village_community_prices.dta", clear
+    forvalues g = 1/6 {
+        rename p`g'_village p`g'
+    }
+    keep village_id data_year p1-p6 p1_source-p6_source ///
+        p*_outlet_count p*_weak_low_flag p*_local_corroborated ///
+        p*_lower_mad_protected p*_five_mad_flag
+    tempname lmem
+    tempfile lowtail
+    postfile `lmem' int group long villages double min p005 p01 p025 p05 ///
+        p10 p50 long min_count bottom5_count bottom5_unique ///
+        weak_low_removed lower_mad_protected using `lowtail', replace
+    forvalues g = 1/6 {
+        quietly summarize p`g', meanonly
+        local n = r(N)
+        local min = r(min)
+        quietly _pctile p`g', p(.5 1 2.5 5 10 50)
+        local p005 = r(r1)
+        local p01 = r(r2)
+        local p025 = r(r3)
+        local p05 = r(r4)
+        local p10 = r(r5)
+        local p50 = r(r6)
+        quietly count if p`g' == `min'
+        local nmin = r(N)
+        quietly count if p`g' <= `p05'
+        local nbottom = r(N)
+        quietly levelsof p`g' if p`g' <= `p05', local(lowlevels)
+        local nlevels : word count `lowlevels'
+        quietly count if p`g'_weak_low_flag == 1
+        local nweak = r(N)
+        quietly count if p`g'_lower_mad_protected == 1
+        local nprotected = r(N)
+        post `lmem' (`g') (`n') (`min') (`p005') (`p01') (`p025') ///
+            (`p05') (`p10') (`p50') (`nmin') (`nbottom') (`nlevels') ///
+            (`nweak') (`nprotected')
+    }
+    postclose `lmem'
+    use `lowtail', clear
+    gen double min_share = min_count / villages
+    gen double bottom5_average_multiplicity = bottom5_count / bottom5_unique
+    export delimited using "$AR_OUT/price_low_tail_audit.csv", replace
+restore
+
+preserve
+    use "$AR_DATA/village_community_prices.dta", clear
+    forvalues g = 1/6 {
+        rename p`g'_village p`g'
+    }
+    keep village_id data_year p1-p6 p1_source-p6_source ///
+        p*_outlet_count p*_weak_low_flag p*_local_corroborated
+    tempfile villageprices
+    save `villageprices'
+    tempname smem
+    tempfile lowsources
+    postfile `smem' int group source long villages double share ///
+        using `lowsources', replace
+    forvalues g = 1/6 {
+        quietly _pctile p`g', p(10)
+        local p10 = r(r1)
+        quietly count if p`g' <= `p10'
+        local ntail = r(N)
+        quietly levelsof p`g'_source if p`g' <= `p10', local(sources)
+        foreach s of local sources {
+            quietly count if p`g' <= `p10' & p`g'_source == `s'
+            post `smem' (`g') (`s') (r(N)) (r(N) / `ntail')
+        }
+    }
+    postclose `smem'
+    use `lowsources', clear
+    export delimited using "$AR_OUT/price_low_tail_sources.csv", replace
+restore
+
 tempname vmem
 tempfile validation
 postfile `vmem' int group long n double median_uv_price_ratio p1_ratio ///

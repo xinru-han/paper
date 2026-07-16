@@ -15,7 +15,16 @@ isid village_id data_year
 forvalues g = 1/6 {
     assert p`g'_village > 0 & p`g'_village <= 200
     assert inlist(p`g'_source, 1, 3, 4, 5, 6)
+    assert p`g'_source != 1 if p`g'_weak_low_flag == 1
+    assert inlist(p`g'_weak_low_flag, 0, 1, .)
+    assert inlist(p`g'_lower_mad_protected, 0, 1, .)
 }
+
+import delimited using "$AR_OUT/price_low_tail_audit.csv", clear
+assert _N == 6
+assert min > 0 & min <= p005 & p005 <= p01 & p01 <= p025
+assert p025 <= p05 & p05 <= p10 & p10 <= p50
+assert min_count >= 1 & bottom5_count >= min_count & bottom5_unique >= 1
 
 use "$AR_DATA/total_anomaly_analysis.dta", clear
 isid household_id data_year

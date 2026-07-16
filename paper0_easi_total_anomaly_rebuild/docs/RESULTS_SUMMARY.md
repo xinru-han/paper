@@ -16,7 +16,7 @@ No Cholesky curvature constraint or elasticity sign projection is used.
  8. sensitivity: total and self at 4.5 MAD: 3,095
  9. sensitivity: total and self at six MAD: 3,125
 10. sensitivity: total and self positive p99: 3,172
-11. preferred anomalies and own/town/nearest prices: 1,304
+11. preferred anomalies and own/town/nearest prices: 1,379
 
 ==============================================================================
 2. PHYSICAL QUANTITY AUDIT
@@ -47,104 +47,112 @@ Fruit        self  flagged=  7; min/median/max flagged=80.36/150.00/2142.86
 ==============================================================================
 4. COMMUNITY PRICE DIAGNOSTICS
 ==============================================================================
-Staples      mean=2.8446 median=2.7000 p99=5.0000 max=5.8750 own-village representative share=0.601
-Beans        mean=4.4355 median=4.0000 p99=11.2500 max=13.9000 own-village representative share=0.454
+Staples      mean=2.8430 median=2.7000 p99=5.0000 max=5.8750 own-village representative share=0.593
+Beans        mean=4.4445 median=4.0000 p99=11.2500 max=13.9000 own-village representative share=0.452
 Meat         mean=13.4700 median=12.7500 p99=27.4000 max=30.0000 own-village representative share=0.440
 Edible oil   mean=8.5652 median=7.9900 p99=18.0000 max=21.7000 own-village representative share=0.449
 Vegetables   mean=2.2367 median=2.0000 p99=5.4900 max=7.9000 own-village representative share=0.452
-Fruit        mean=5.8369 median=5.5000 p99=12.0000 max=12.0000 own-village representative share=0.332
+Fruit        mean=5.6820 median=5.3800 p99=12.0000 max=12.0000 own-village representative share=0.360
+
+Lower-tail audit after local corroboration and weak-support screening:
+Staples      min=1.9000 p0.5=1.9550 p1=1.9800 p5=2.1150; minimum villages=1; bottom-5% average multiplicity=2.22; bottom-decile direct share=0.632; weak single-outlet lows removed=2; locally corroborated lower MAD values retained=0
+Beans        min=2.0000 p0.5=2.0000 p1=2.0000 p5=2.4800; minimum villages=5; bottom-5% average multiplicity=3.17; bottom-decile direct share=0.514; weak single-outlet lows removed=1; locally corroborated lower MAD values retained=0
+Meat         min=8.0000 p0.5=8.0000 p1=8.9900 p5=9.0000; minimum villages=3; bottom-5% average multiplicity=10.67; bottom-decile direct share=0.381; weak single-outlet lows removed=1; locally corroborated lower MAD values retained=0
+Edible oil   min=4.0000 p0.5=4.5000 p1=4.5900 p5=5.7000; minimum villages=1; bottom-5% average multiplicity=2.22; bottom-decile direct share=0.568; weak single-outlet lows removed=0; locally corroborated lower MAD values retained=0
+Vegetables   min=0.6800 p0.5=0.6800 p1=0.9800 p5=1.2000; minimum villages=2; bottom-5% average multiplicity=2.22; bottom-decile direct share=0.568; weak single-outlet lows removed=3; locally corroborated lower MAD values retained=0
+Fruit        min=1.6000 p0.5=1.6000 p1=1.6000 p5=3.0000; minimum villages=4; bottom-5% average multiplicity=5.20; bottom-decile direct share=0.333; weak single-outlet lows removed=1; locally corroborated lower MAD values retained=6
 
 Household unit values are validation only:
-Staples      median UV/community ratio=1.035; log correlation=0.013
-Beans        median UV/community ratio=0.952; log correlation=0.123
+Staples      median UV/community ratio=1.035; log correlation=0.011
+Beans        median UV/community ratio=0.952; log correlation=0.116
 Meat         median UV/community ratio=1.058; log correlation=0.268
 Edible oil   median UV/community ratio=1.031; log correlation=0.006
 Vegetables   median UV/community ratio=1.686; log correlation=0.193
-Fruit        median UV/community ratio=0.479; log correlation=0.021
+Fruit        median UV/community ratio=0.500; log correlation=0.049
 
 ==============================================================================
 5. MODEL SELECTION ON THE COMMON PREFERRED SAMPLE
 ==============================================================================
-AIDS    order=1 converged=1 N=3069 BIC=-57433.71 Engel-order p=NA selected=1
-EASI    order=1 converged=1 N=3069 BIC=-57363.06 Engel-order p=NA selected=0
+AIDS    order=1 converged=1 N=3069 BIC=-57365.19 Engel-order p=NA selected=1
+EASI    order=1 converged=1 N=3069 BIC=-57239.20 Engel-order p=NA selected=0
 EASI    order=2 converged=0 N=3069 BIC=NA Engel-order p=NA selected=0
-EASI    order=3 converged=1 N=3069 BIC=70594.18 Engel-order p=0.0063 selected=0
-QUAIDS  order=2 converged=1 N=3069 BIC=-42160.74 Engel-order p=0.4049 selected=0
+EASI    order=3 converged=1 N=3069 BIC=55771.14 Engel-order p=0.0075 selected=0
+QUAIDS  order=2 converged=1 N=3069 BIC=-39188.97 Engel-order p=0.2090 selected=0
 
 ==============================================================================
 6. TWO-STEP GMM SPECIFICATION TESTS
 ==============================================================================
-AIDS    Hansen p=0.1170; excluded-instrument p=0.0000
-QUAIDS  Hansen p=0.2299; excluded-instrument p=0.0000
-EASI    Hansen p=0.1264; excluded-instrument p=0.0000
+AIDS    Hansen p=0.0956; excluded-instrument p=0.0000
+QUAIDS  Hansen p=0.5353; excluded-instrument p=0.0000
+EASI    Hansen p=0.1064; excluded-instrument p=0.0000
 
 ==============================================================================
 7. EASI REFERENCE ELASTICITIES: VILLAGE-CLUSTER BOOTSTRAP
 ==============================================================================
 
 EXPENDITURE
-Staples      estimate=0.5489 SE=0.1857 p=0.0031 95% CI=[0.1850, 0.9128]
-Beans        estimate=0.5226 SE=0.4455 p=0.2408 95% CI=[-0.3507, 1.3959]
-Meat         estimate=1.2912 SE=0.1199 p=0.0000 95% CI=[1.0561, 1.5262]
-Edible oil   estimate=0.8267 SE=0.2254 p=0.0002 95% CI=[0.3849, 1.2685]
-Vegetables   estimate=0.5359 SE=0.1589 p=0.0007 95% CI=[0.2246, 0.8473]
-Fruit        estimate=1.3234 SE=0.1490 p=0.0000 95% CI=[1.0314, 1.6154]
+Staples      estimate=0.5486 SE=0.1693 p=0.0012 95% CI=[0.2167, 0.8805]
+Beans        estimate=0.5515 SE=0.4007 p=0.1687 95% CI=[-0.2338, 1.3369]
+Meat         estimate=1.3092 SE=0.1128 p=0.0000 95% CI=[1.0881, 1.5303]
+Edible oil   estimate=0.8522 SE=0.2283 p=0.0002 95% CI=[0.4047, 1.2996]
+Vegetables   estimate=0.5188 SE=0.1591 p=0.0011 95% CI=[0.2070, 0.8306]
+Fruit        estimate=1.3140 SE=0.1547 p=0.0000 95% CI=[1.0108, 1.6172]
 
 MARSHALLIAN
-Staples      estimate=-0.3496 SE=0.0944 p=0.0002 95% CI=[-0.5346, -0.1646]
-Beans        estimate=-0.3134 SE=0.7278 p=0.6667 95% CI=[-1.7399, 1.1131]
-Meat         estimate=-0.6025 SE=0.0956 p=0.0000 95% CI=[-0.7898, -0.4152]
-Edible oil   estimate=-0.1831 SE=0.1032 p=0.0760 95% CI=[-0.3855, 0.0192]
-Vegetables   estimate=-0.3383 SE=0.0761 p=0.0000 95% CI=[-0.4875, -0.1891]
-Fruit        estimate=-0.3999 SE=0.0990 p=0.0001 95% CI=[-0.5940, -0.2058]
+Staples      estimate=-0.2880 SE=0.0997 p=0.0039 95% CI=[-0.4833, -0.0927]
+Beans        estimate=-0.3785 SE=0.3799 p=0.3191 95% CI=[-1.1231, 0.3661]
+Meat         estimate=-0.6474 SE=0.1027 p=0.0000 95% CI=[-0.8487, -0.4460]
+Edible oil   estimate=-0.1882 SE=0.1023 p=0.0659 95% CI=[-0.3887, 0.0124]
+Vegetables   estimate=-0.3059 SE=0.0750 p=0.0000 95% CI=[-0.4530, -0.1588]
+Fruit        estimate=-0.3083 SE=0.1151 p=0.0074 95% CI=[-0.5339, -0.0828]
 
 HICKSIAN
-Staples      estimate=-0.2411 SE=0.0874 p=0.0058 95% CI=[-0.4125, -0.0698]
-Beans        estimate=-0.2942 SE=0.7275 p=0.6859 95% CI=[-1.7202, 1.1317]
-Meat         estimate=-0.1420 SE=0.0828 p=0.0862 95% CI=[-0.3042, 0.0202]
-Edible oil   estimate=-0.1246 SE=0.0959 p=0.1936 95% CI=[-0.3125, 0.0633]
-Vegetables   estimate=-0.2741 SE=0.0748 p=0.0002 95% CI=[-0.4207, -0.1276]
-Fruit        estimate=-0.1108 SE=0.0913 p=0.2251 95% CI=[-0.2897, 0.0682]
+Staples      estimate=-0.1789 SE=0.0932 p=0.0548 95% CI=[-0.3616, 0.0037]
+Beans        estimate=-0.3561 SE=0.3735 p=0.3404 95% CI=[-1.0882, 0.3760]
+Meat         estimate=-0.1790 SE=0.0904 p=0.0476 95% CI=[-0.3562, -0.0019]
+Edible oil   estimate=-0.1273 SE=0.0939 p=0.1752 95% CI=[-0.3113, 0.0567]
+Vegetables   estimate=-0.2432 SE=0.0721 p=0.0007 95% CI=[-0.3846, -0.1018]
+Fruit        estimate=-0.0318 SE=0.1049 p=0.7618 95% CI=[-0.2374, 0.1738]
 
 ==============================================================================
 8. UNRESTRICTED EASI HICKSIAN OWN-PRICE SAMPLE SENSITIVITY
 ==============================================================================
-main           Hansen p=0.1264 | Staples=-0.2411, Beans=-0.2942, Meat=-0.1420, Edible oil=-0.1246, Vegetables=-0.2741, Fruit=-0.1108
-physical       Hansen p=0.1337 | Staples=-0.2525, Beans=-0.2050, Meat=-0.1430, Edible oil=-0.1001, Vegetables=-0.2746, Fruit=-0.1060
-total5         Hansen p=0.0930 | Staples=-0.2348, Beans=-0.2848, Meat=-0.1420, Edible oil=-0.1217, Vegetables=-0.2644, Fruit=-0.0964
-allcomponents  Hansen p=0.1263 | Staples=-0.2413, Beans=-0.2950, Meat=-0.1454, Edible oil=-0.1235, Vegetables=-0.2758, Fruit=-0.1102
-strict45       Hansen p=0.1517 | Staples=-0.2445, Beans=-0.2888, Meat=-0.1401, Edible oil=-0.1176, Vegetables=-0.2716, Fruit=-0.1127
-lenient60      Hansen p=0.0951 | Staples=-0.2436, Beans=-0.2687, Meat=-0.1447, Edible oil=-0.1247, Vegetables=-0.2629, Fruit=-0.1091
-p99            Hansen p=0.1331 | Staples=-0.2529, Beans=-0.2046, Meat=-0.1416, Edible oil=-0.1006, Vegetables=-0.2739, Fruit=-0.1072
-localprice     Hansen p=0.3723 | Staples=-0.4314, Beans=-0.3559, Meat=-0.3902, Edible oil=-0.2228, Vegetables=-0.3133, Fruit=-0.0754
+main           Hansen p=0.1064 | Staples=-0.1789, Beans=-0.3561, Meat=-0.1790, Edible oil=-0.1273, Vegetables=-0.2432, Fruit=-0.0318
+physical       Hansen p=0.1017 | Staples=-0.2054, Beans=-0.2618, Meat=-0.1719, Edible oil=-0.1048, Vegetables=-0.2374, Fruit=-0.0390
+total5         Hansen p=0.0738 | Staples=-0.1791, Beans=-0.3541, Meat=-0.1827, Edible oil=-0.1251, Vegetables=-0.2333, Fruit=-0.0244
+allcomponents  Hansen p=0.1052 | Staples=-0.1778, Beans=-0.3564, Meat=-0.1820, Edible oil=-0.1261, Vegetables=-0.2442, Fruit=-0.0317
+strict45       Hansen p=0.1234 | Staples=-0.1826, Beans=-0.3511, Meat=-0.1764, Edible oil=-0.1208, Vegetables=-0.2410, Fruit=-0.0332
+lenient60      Hansen p=0.0776 | Staples=-0.1818, Beans=-0.3369, Meat=-0.1826, Edible oil=-0.1283, Vegetables=-0.2310, Fruit=-0.0417
+p99            Hansen p=0.0992 | Staples=-0.2065, Beans=-0.2642, Meat=-0.1707, Edible oil=-0.1049, Vegetables=-0.2369, Fruit=-0.0400
+localprice     Hansen p=0.5757 | Staples=-0.2837, Beans=-0.3639, Meat=-0.4118, Edible oil=-0.2660, Vegetables=-0.2995, Fruit=0.1321
 
 ==============================================================================
 9. HOUSEHOLD ELASTICITY DISTRIBUTION ON COMMON 0.5% SHARE SUPPORT
 ==============================================================================
 
 AIDS
-Staples      median=-0.2787 p10=-0.3644 p90=0.3239 negative share=0.794 N support=2,584
-Beans        median=-0.3093 p10=-0.5609 p90=0.6842 negative share=0.751 N support=2,584
-Meat         median=-0.1197 p10=-0.1734 p90=0.1531 negative share=0.830 N support=2,584
-Edible oil   median=-0.1414 p10=-0.3660 p90=0.3850 negative share=0.694 N support=2,584
-Vegetables   median=-0.3111 p10=-0.4528 p90=0.4911 negative share=0.793 N support=2,584
-Fruit        median=-0.0819 p10=-0.2098 p90=0.7337 negative share=0.612 N support=2,584
+Staples      median=-0.2225 p10=-0.3300 p90=0.4760 negative share=0.740 N support=2,663
+Beans        median=-0.3460 p10=-0.5727 p90=0.5501 negative share=0.774 N support=2,663
+Meat         median=-0.1525 p10=-0.2098 p90=0.0693 negative share=0.873 N support=2,663
+Edible oil   median=-0.1292 p10=-0.3573 p90=0.3770 negative share=0.683 N support=2,663
+Vegetables   median=-0.2773 p10=-0.4320 p90=0.5801 negative share=0.775 N support=2,663
+Fruit        median=-0.0118 p10=-0.1706 p90=0.8674 negative share=0.514 N support=2,663
 
 QUAIDS
-Staples      median=0.1265 p10=-0.1513 p90=1.1562 negative share=0.316 N support=2,508
-Beans        median=-0.4018 p10=-0.6632 p90=0.5882 negative share=0.774 N support=2,508
-Meat         median=-0.1938 p10=-0.2047 p90=-0.1019 negative share=0.969 N support=2,508
-Edible oil   median=-0.0495 p10=-0.3375 p90=0.6873 negative share=0.553 N support=2,508
-Vegetables   median=-0.2489 p10=-0.3881 p90=0.0816 negative share=0.870 N support=2,508
-Fruit        median=-0.2390 p10=-0.2967 p90=0.3666 negative share=0.783 N support=2,508
+Staples      median=0.1105 p10=-0.1529 p90=0.9592 negative share=0.339 N support=2,530
+Beans        median=-0.4525 p10=-0.6146 p90=0.4125 negative share=0.823 N support=2,530
+Meat         median=-0.1973 p10=-0.2098 p90=-0.0962 negative share=0.960 N support=2,530
+Edible oil   median=-0.1109 p10=-0.3742 p90=0.5353 negative share=0.639 N support=2,530
+Vegetables   median=-0.2707 p10=-0.3971 p90=0.0719 negative share=0.865 N support=2,530
+Fruit        median=-0.1024 p10=-0.2143 p90=0.6590 negative share=0.642 N support=2,530
 
 EASI
-Staples      median=-0.2649 p10=-0.3322 p90=0.2448 negative share=0.818 N support=2,567
-Beans        median=-0.3338 p10=-0.5704 p90=0.5957 negative share=0.764 N support=2,567
-Meat         median=-0.1266 p10=-0.1535 p90=0.2300 negative share=0.793 N support=2,567
-Edible oil   median=-0.1458 p10=-0.3680 p90=0.3803 negative share=0.702 N support=2,567
-Vegetables   median=-0.3110 p10=-0.4438 p90=0.4895 negative share=0.796 N support=2,567
-Fruit        median=-0.0827 p10=-0.2214 p90=0.8179 negative share=0.616 N support=2,567
+Staples      median=-0.1980 p10=-0.2937 p90=0.4166 negative share=0.745 N support=2,610
+Beans        median=-0.3722 p10=-0.5895 p90=0.4714 negative share=0.791 N support=2,610
+Meat         median=-0.1633 p10=-0.1852 p90=0.1709 negative share=0.834 N support=2,610
+Edible oil   median=-0.1385 p10=-0.3617 p90=0.3801 negative share=0.693 N support=2,610
+Vegetables   median=-0.2801 p10=-0.4244 p90=0.6026 negative share=0.776 N support=2,610
+Fruit        median=-0.0097 p10=-0.1761 p90=1.0033 negative share=0.511 N support=2,610
 
 ==============================================================================
 10. INTERPRETATION

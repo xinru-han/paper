@@ -56,21 +56,37 @@ inserted into the demand-system price.
 
 1. Invalid quotes at or below zero or above 200 yuan/jin are removed.
 2. High/low entries recorded in reverse order are reordered.
-3. Representative-product quotes are aggregated across outlets by the median.
-4. Representative prices are screened on logs within province-year using five
-   scaled MADs.
-5. Missing village prices are filled from the same-town representative median,
+3. Repeated questionnaire-row copies of the same price question are reduced
+   first. Independent support is counted by outlet, not by raw column count.
+4. Representative-product quotes are aggregated across outlets by the median.
+5. Representative prices are screened on logs within province-year using five
+   scaled MADs. A lower-tail value is retained when at least two villages in
+   the same town-year lie within a 25 percent log band around the town median.
+6. A representative price supported by only one outlet receives an additional
+   one-sided three-scaled-MAD check. It is removed only when neither the local
+   town price nor the independently reported, calibrated broad-category price
+   corroborates it within a 25 percent log band. No category-specific minimum
+   price or percentile floor is imposed.
+7. Missing village prices are filled from the same-town representative median,
    the nearest representative village in the same county, the county
    representative median, then the province representative median.
-6. Donor prices are always direct representative quotes. Imputed observations
+8. Donor prices are always direct representative quotes. Imputed observations
    never become donors.
 
 The questionnaire's broad high-price and low-price category quotes are retained
-as an audit series. They are not used in the main price. They can represent
+as an audit series. They can corroborate a weak representative quote but are
+not themselves used in the main price or donor pool. They can represent
 different qualities and, in the oil group, produced values above 60 yuan/jin
 that had almost zero correlation with household purchase unit values. Allowing
 those midpoints into the donor pool generated the positive compensated oil
 own-price response.
+
+This design follows the price-identification logic emphasized by Hovhannisyan
+et al. (2025) and Deaton (1988): households in a sufficiently local geographic
+market face a common price, while household unit values also contain quality,
+quantity, store-format, and reporting components. Here actual village market
+quotes are available, so household unit values remain validation data rather
+than price replacements.
 
 ## Estimation and inference
 

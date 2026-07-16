@@ -31,11 +31,19 @@ the earlier curvature-constrained results.
 6. Main prices use comparable representative-product quotes. Missing villages
    are filled from same-town representative medians, the nearest representative
    village in the county, county medians, then province medians. Broad
-   high/low-category midpoints are retained only for audit.
+   high/low-category midpoints are retained only for audit and corroboration.
 7. Price outliers are removed before geographic imputation. Every imputation
    donor is a direct representative-product quote, never an already imputed
    value.
 8. Household unit values never replace village prices; they are validation data.
+9. No price floor is used. A low representative quote is removed only when it
+   has one-outlet support, lies below three scaled MADs, and is corroborated by
+   neither same-town villages nor the independently reported broad price.
+
+The wide household file is reduced to the fields actually used by the model
+through `code/extract_household_core.py`. This permits the complete pipeline to
+run under Stata editions with a 2,048-variable limit without changing the
+household sample or estimands.
 
 ## Estimation
 

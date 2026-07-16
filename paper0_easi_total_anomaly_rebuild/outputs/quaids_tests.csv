@@ -1,8 +1,8 @@
 test,statistic,df,p_value
-highest_Engel_order_joint_zero,9.022623275921136,5,.10816519
-demographics_joint_zero,112.7874687700072,45,9.6464980e-08
-all_share_shifters_joint_zero,760.526253343947,80,0
-Shonkwiler_Yen_terms_joint_zero,.0827493025661033,1,.77360564
-Hansen_overidentification,28.74509627740401,24,.22987187
-excluded_instruments_first_stage,11.04740103388485,,.000022081344
+highest_Engel_order_joint_zero,6.567455758639079,5,.25484666
+demographics_joint_zero,133.4060479913121,45,1.0913976e-10
+all_share_shifters_joint_zero,764.4127020884524,80,0
+Shonkwiler_Yen_terms_joint_zero,.2892055624169072,1,.59073007
+Hansen_overidentification,22.73819453403762,24,.53529394
+excluded_instruments_first_stage,11.00470335108713,,.00002298771
 theory_restrictions_imposed,1,,

@@ -101,14 +101,31 @@ forvalues g = 1/6 {
         local midranges "`midranges' mid`g'_`outlet'"
     }
 
+    * Count genuinely distinct outlet observations. The questionnaire repeats
+    * each representative-product field across category rows, so the raw
+    * column count is not independent price support.
+    egen int rep`g'_outlet_count = rownonmiss(`representative')
     egen double rep`g'_raw = rowmedian(`representative')
     egen double range`g'_raw = rowmedian(`midranges')
+    gen double rep`g'_before_screen = rep`g'_raw
     egen double rep`g'_min = rowmin(`representative')
     egen double rep`g'_max = rowmax(`representative')
     gen byte rep`g'_outlet_dispersion = rep`g'_max / rep`g'_min > 4 ///
         if rep`g'_min > 0 & rep`g'_max < .
     quietly count if rep`g'_outlet_dispersion == 1
     post `amem' (`g') ("representative_outlet_ratio_above_four") (r(N))
+
+    * A low quote repeated across nearby villages is market information, not
+    * an isolated tail error. Protect a representative price when at least two
+    * villages in the same town-year report prices within a 25 percent log
+    * band around their town median. This protection applies only to the lower
+    * tail; implausibly high values remain subject to the symmetric screen.
+    gen double ln_local_rep`g' = ln(rep`g'_raw) if rep`g'_raw > 0
+    bysort town_id data_year: egen double town_med_ln_rep`g' = median(ln_local_rep`g')
+    bysort town_id data_year: egen int town_n_rep`g' = count(ln_local_rep`g')
+    gen byte rep`g'_local_corroborated = town_n_rep`g' >= 2 & ///
+        abs(ln_local_rep`g' - town_med_ln_rep`g') <= ln(1.25) ///
+        if !missing(ln_local_rep`g')
 
     * Remove isolated data-entry errors separately within survey year. The
     * five-MAD rule acts on logs and therefore treats proportional deviations
@@ -118,12 +135,26 @@ forvalues g = 1/6 {
         bysort province_id data_year: egen double med_`kind'`g' = median(ln_`kind'`g')
         gen double ad_`kind'`g' = abs(ln_`kind'`g' - med_`kind'`g')
         bysort province_id data_year: egen double mad_`kind'`g' = median(ad_`kind'`g')
+        local local_protection ""
+        if "`kind'" == "rep" {
+            local local_protection "& !(ln_rep`g' < med_rep`g' & rep`g'_local_corroborated == 1)"
+        }
         gen byte out_`kind'`g' = ad_`kind'`g' > 5 * 1.4826 * mad_`kind'`g' ///
-            if !missing(ad_`kind'`g') & mad_`kind'`g' > 0
+            `local_protection' if !missing(ad_`kind'`g') & mad_`kind'`g' > 0
         quietly count if out_`kind'`g' == 1
         post `amem' (`g') ("`kind'_five_MAD_outliers") (r(N))
         replace `kind'`g'_raw = . if out_`kind'`g' == 1
     }
+
+    * Store the robust lower-tail score before calibrating the independent
+    * broad-category audit price below.
+    gen double rep`g'_weak_low_z = ///
+        (ln_rep`g' - med_rep`g') / (1.4826 * mad_rep`g') ///
+        if mad_rep`g' > 0 & !missing(ln_rep`g')
+    gen byte rep`g'_lower_mad_protected = ///
+        ad_rep`g' > 5 * 1.4826 * mad_rep`g' & ///
+        ln_rep`g' < med_rep`g' & rep`g'_local_corroborated == 1 ///
+        if !missing(ad_rep`g') & mad_rep`g' > 0
 
     * Calibrate the broad-category midpoint to the representative basket in
     * overlapping villages, separately by year. This prevents a method switch
@@ -134,8 +165,32 @@ forvalues g = 1/6 {
     local overall_adj = r(p50)
     replace adj`g' = `overall_adj' if missing(adj`g')
     gen double range`g'_cal = range`g'_raw * exp(adj`g')
+
+    * A single-outlet lower-tail quote receives a stricter one-sided check.
+    * It is removed only when neither nearby villages nor the independently
+    * reported broad-category price corroborates it within a 25 percent log
+    * band. This targets weak measurement support without imposing a minimum.
+    gen byte rep`g'_range_corroborated = range`g'_cal > 0 & rep`g'_raw > 0 & ///
+        abs(ln(rep`g'_raw / range`g'_cal)) <= ln(1.25)
+    gen byte out_rep`g'_weak_low = rep`g'_outlet_count == 1 & ///
+        rep`g'_weak_low_z < -3 & rep`g'_local_corroborated != 1 & ///
+        rep`g'_range_corroborated != 1 if !missing(rep`g'_weak_low_z)
+    quietly count if out_rep`g'_weak_low == 1
+    post `amem' (`g') ("single_outlet_uncorroborated_lower_tail") (r(N))
+    quietly count if rep`g'_lower_mad_protected == 1
+    post `amem' (`g') ("locally_corroborated_lower_tail_retained") (r(N))
+    quietly count if rep`g'_range_corroborated == 1
+    post `amem' (`g') ("broad_category_price_corroborated") (r(N))
+    replace rep`g'_raw = . if out_rep`g'_weak_low == 1
+
     gen double p`g'_direct = rep`g'_raw
     gen byte p`g'_direct_method = 1 if !missing(rep`g'_raw)
+    gen int p`g'_outlet_count = rep`g'_outlet_count
+    gen byte p`g'_weak_low_flag = out_rep`g'_weak_low
+    gen byte p`g'_local_corroborated = rep`g'_local_corroborated
+    gen byte p`g'_range_corroborated = rep`g'_range_corroborated
+    gen byte p`g'_lower_mad_protected = rep`g'_lower_mad_protected
+    gen byte p`g'_five_mad_flag = out_rep`g'
 
     * The main donor pool contains comparable representative products only.
     * Broad high/low category midpoints remain an audit series: for oil in
@@ -146,11 +201,13 @@ forvalues g = 1/6 {
     gen double ad_direct`g' = abs(ln_direct`g' - med_direct`g')
     bysort province_id data_year: egen double mad_direct`g' = median(ad_direct`g')
     gen byte out_direct`g' = ad_direct`g' > 5 * 1.4826 * mad_direct`g' ///
+        & !(ln_direct`g' < med_direct`g' & p`g'_local_corroborated == 1) ///
         if !missing(ad_direct`g') & mad_direct`g' > 0
     quietly count if out_direct`g' == 1
     post `amem' (`g') ("combined_direct_five_MAD_outliers") (r(N))
     replace p`g'_direct = . if out_direct`g' == 1
     replace p`g'_direct_method = . if out_direct`g' == 1
+    replace p`g'_five_mad_flag = 1 if out_direct`g' == 1
 
     quietly count if p`g'_direct_method == 1
     post `amem' (`g') ("representative_direct_villages") (r(N))
@@ -162,6 +219,23 @@ forvalues g = 1/6 {
     post `amem' (`g') ("invalid_high_low_quotes") (`invalid_range')
     post `amem' (`g') ("outlets_high_below_low") (`reversed')
     post `amem' (`g') ("midrange_log_calibration") (`overall_adj')
+
+    * The raw village file is close to Stata/BE's 2,048-variable limit. Once a
+    * food group has been reduced to its retained price and audit fields, drop
+    * its repeated questionnaire columns and construction-only intermediates.
+    capture drop `representative' `midranges'
+    forvalues o = 1/`outlet' {
+        capture drop hp`g'_`o' lp`g'_`o' wide`g'_`o'
+    }
+    capture drop rep`g'_min rep`g'_max rep`g'_outlet_dispersion ///
+        ln_local_rep`g' town_med_ln_rep`g' town_n_rep`g' ///
+        ln_rep`g' med_rep`g' ad_rep`g' mad_rep`g' out_rep`g' ///
+        ln_range`g' med_range`g' ad_range`g' mad_range`g' out_range`g' ///
+        range`g'_raw lnratio`g' adj`g' ln_direct`g' med_direct`g' ///
+        ad_direct`g' mad_direct`g' out_direct`g'
+    foreach stem of local g`g' {
+        capture drop `stem'_*
+    }
 }
 postclose `amem'
 preserve
@@ -171,14 +245,33 @@ restore
 
 preserve
     keep village_id data_year province_id ///
+        rep1_before_screen rep2_before_screen rep3_before_screen ///
+        rep4_before_screen rep5_before_screen rep6_before_screen ///
         rep1_raw rep2_raw rep3_raw rep4_raw rep5_raw rep6_raw ///
+        rep1_outlet_count rep2_outlet_count rep3_outlet_count ///
+        rep4_outlet_count rep5_outlet_count rep6_outlet_count ///
+        rep1_weak_low_z rep2_weak_low_z rep3_weak_low_z ///
+        rep4_weak_low_z rep5_weak_low_z rep6_weak_low_z ///
+        out_rep1_weak_low out_rep2_weak_low out_rep3_weak_low ///
+        out_rep4_weak_low out_rep5_weak_low out_rep6_weak_low ///
+        rep1_local_corroborated rep2_local_corroborated ///
+        rep3_local_corroborated rep4_local_corroborated ///
+        rep5_local_corroborated rep6_local_corroborated ///
+        rep1_range_corroborated rep2_range_corroborated ///
+        rep3_range_corroborated rep4_range_corroborated ///
+        rep5_range_corroborated rep6_range_corroborated ///
+        rep1_lower_mad_protected rep2_lower_mad_protected ///
+        rep3_lower_mad_protected rep4_lower_mad_protected ///
+        rep5_lower_mad_protected rep6_lower_mad_protected ///
         range1_cal range2_cal range3_cal range4_cal range5_cal range6_cal ///
         p1_direct p2_direct p3_direct p4_direct p5_direct p6_direct
     export delimited using "$AR_OUT/representative_vs_midrange_prices.csv", replace
 restore
 
 keep village_id data_year town_id county_id province_id vilLat vilLon ///
-    p*_direct p*_direct_method
+    p*_direct p*_direct_method p*_outlet_count p*_weak_low_flag ///
+    p*_local_corroborated p*_range_corroborated ///
+    p*_lower_mad_protected p*_five_mad_flag
 tempfile donor hhkeys town county province nearest target
 save `donor'
 
@@ -217,7 +310,7 @@ restore
 
 * Build the target universe from household keys. This also incorporates the
 * two household village-year keys absent from the village questionnaire.
-use "$AR_RAW/户表数据_已清洗.dta", clear
+use "$AR_DATA/household_core.dta", clear
 keep nhCode data_year vilLat vilLon
 gen str12 village_id = substr(strtrim(nhCode), 1, 12)
 drop nhCode
@@ -228,7 +321,18 @@ gen str2 province_id = substr(village_id, 1, 2)
 merge 1:1 village_id data_year using `donor', ///
     keep(master match) keepusing(p1_direct p2_direct p3_direct p4_direct p5_direct p6_direct ///
     p1_direct_method p2_direct_method p3_direct_method p4_direct_method ///
-    p5_direct_method p6_direct_method) gen(village_merge)
+    p5_direct_method p6_direct_method p1_outlet_count p2_outlet_count ///
+    p3_outlet_count p4_outlet_count p5_outlet_count p6_outlet_count ///
+    p1_weak_low_flag p2_weak_low_flag p3_weak_low_flag p4_weak_low_flag ///
+    p5_weak_low_flag p6_weak_low_flag p1_local_corroborated ///
+    p2_local_corroborated p3_local_corroborated p4_local_corroborated ///
+    p5_local_corroborated p6_local_corroborated p1_lower_mad_protected ///
+    p1_range_corroborated p2_range_corroborated p3_range_corroborated ///
+    p4_range_corroborated p5_range_corroborated p6_range_corroborated ///
+    p2_lower_mad_protected p3_lower_mad_protected p4_lower_mad_protected ///
+    p5_lower_mad_protected p6_lower_mad_protected p1_five_mad_flag ///
+    p2_five_mad_flag p3_five_mad_flag p4_five_mad_flag ///
+    p5_five_mad_flag p6_five_mad_flag) gen(village_merge)
 gen byte village_questionnaire_missing = village_merge == 1
 drop village_merge
 isid village_id data_year

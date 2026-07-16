@@ -1,7 +1,7 @@
 version 17
 do "/root/data/Paper/食物消费数据/paper0-EASI/easi_total_anomaly_rebuild/code/00_config.do"
 
-use "$AR_RAW/户表数据_已清洗.dta", clear
+use "$AR_DATA/household_core.dta", clear
 rename nhCode household_id
 replace household_id = strtrim(household_id)
 assert strlen(household_id) <= 20 if household_id != ""

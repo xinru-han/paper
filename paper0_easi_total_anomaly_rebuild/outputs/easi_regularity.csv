@@ -1,8 +1,8 @@
 margin,diagnostic,value,threshold,passed
 latent,adding_up_max_abs_error,0,9.9999999e-09,1
-latent,positive_fitted_share_rate,.8765070055392636,1,0
-latent,positive_expenditure_elasticities,.9364312267657993,1,0
-latent,negative_hicksian_own_elasticities,.7394671623296158,1,0
-latent,slutsky_symmetry_max_abs_error,1.88620508101e-10,.000099999997,1
-latent,slutsky_max_eigenvalue,.0027939630735859,0,0
+latent,positive_fitted_share_rate,.8813945910720105,1,0
+latent,positive_expenditure_elasticities,.9367837338262477,1,0
+latent,negative_hicksian_own_elasticities,.7178065311152187,1,0
+latent,slutsky_symmetry_max_abs_error,3.56397737711e-10,.000099999997,1
+latent,slutsky_max_eigenvalue,.0115293860629275,0,0
 latent,adding_up_homogeneity_symmetry_imposed,1,1,1

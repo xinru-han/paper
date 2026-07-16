@@ -67,6 +67,26 @@ def main():
             f"p99={fmt(r.p99)} max={fmt(r.max)} "
             f"own-village representative share={fmt(r.direct_share,3)}"
         )
+    low = pd.read_csv(OUT / "price_low_tail_audit.csv")
+    low_sources = pd.read_csv(OUT / "price_low_tail_sources.csv")
+    lines.append("")
+    lines.append("Lower-tail audit after local corroboration and weak-support screening:")
+    for r in low.itertuples():
+        direct = low_sources[
+            (low_sources["group"] == r.group) & (low_sources["source"] == 1)
+        ]["share"]
+        direct_share = direct.iloc[0] if len(direct) else 0
+        lines.append(
+            f"{FOODS[r.group]:<12} min={fmt(r.min)} p0.5={fmt(r.p005)} "
+            f"p1={fmt(r.p01)} p5={fmt(r.p05)}; "
+            f"minimum villages={int(r.min_count)}; "
+            f"bottom-5% average multiplicity="
+            f"{fmt(r.bottom5_average_multiplicity,2)}; "
+            f"bottom-decile direct share={fmt(direct_share,3)}; "
+            f"weak single-outlet lows removed={int(r.weak_low_removed)}; "
+            f"locally corroborated lower MAD values retained="
+            f"{int(r.lower_mad_protected)}"
+        )
     uv = pd.read_csv(OUT / "unit_value_price_validation.csv")
     lines.append("")
     lines.append("Household unit values are validation only:")
@@ -161,6 +181,85 @@ def main():
     (ROOT / "COMPLETE_RESULTS.txt").write_text(text, encoding="utf-8")
     (ROOT / "docs" / "RESULTS_SUMMARY.md").write_text(
         "```\n" + text + "```\n", encoding="utf-8"
+    )
+
+    representative = pd.read_csv(
+        OUT / "representative_vs_midrange_prices.csv",
+        dtype={"village_id": "string"},
+    )
+    audit = [
+        "# Low-price tail audit",
+        "",
+        "No category-specific minimum, percentile floor, curvature constraint, "
+        "or elasticity-sign rule is used.",
+        "",
+        "A raw representative price exits the direct donor pool only when it is "
+        "supported by one outlet, is more than three scaled MADs below its "
+        "province-year median, and is corroborated by neither same-town prices "
+        "nor the calibrated broad-category quote within a 25 percent log band.",
+        "",
+        "## Final lower tail",
+        "",
+        "| Food | Min | p1 | p5 | Villages at min | Bottom-5% unique values | "
+        "Weak lows removed | Lower MAD values locally retained |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|",
+    ]
+    for r in low.itertuples():
+        audit.append(
+            f"| {FOODS[r.group]} | {fmt(r.min)} | {fmt(r.p01)} | "
+            f"{fmt(r.p05)} | {int(r.min_count)} | "
+            f"{int(r.bottom5_unique)} | {int(r.weak_low_removed)} | "
+            f"{int(r.lower_mad_protected)} |"
+        )
+
+    audit.extend(
+        [
+            "",
+            "## Removed weak lower-tail quotes",
+            "",
+            "| Food | Village | Year | Raw price | Outlet support | Robust z | "
+            "Calibrated broad price |",
+            "|---|---|---:|---:|---:|---:|---:|",
+        ]
+    )
+    for group, food in FOODS.items():
+        flag = representative[f"out_rep{group}_weak_low"].fillna(0).eq(1)
+        for row in representative.loc[flag].itertuples():
+            audit.append(
+                f"| {food} | {row.village_id} | {int(row.data_year)} | "
+                f"{fmt(getattr(row, f'rep{group}_before_screen'))} | "
+                f"{int(getattr(row, f'rep{group}_outlet_count'))} | "
+                f"{fmt(getattr(row, f'rep{group}_weak_low_z'), 2)} | "
+                f"{fmt(getattr(row, f'range{group}_cal'))} |"
+            )
+
+    audit.extend(
+        [
+            "",
+            "## Interpretation",
+            "",
+            "- Staples 1.50 and 1.60 yuan/jin and beans 1.48 yuan/jin were "
+            "single-outlet observations contradicted by both local and broad "
+            "price evidence; they were replaced through the pre-specified "
+            "geographic hierarchy.",
+            "- Vegetables 0.68 yuan/jin remains because two direct villages in "
+            "the same town report it and a third nearby direct quote is close.",
+            "- Fruit 1.60 yuan/jin remains because two direct villages report "
+            "it, the calibrated broad quote is about 1.59, and household unit "
+            "values in those villages are compatible. Two additional villages "
+            "inherit it through town/nearest-village imputation.",
+            "- Meat 9.00 yuan/jin is heaped because direct questionnaire prices "
+            "are rounded and geographic imputation repeats donor medians. The "
+            "concentration is visible in the audit but is not an isolated raw "
+            "minimum or a basis for imposing a price floor.",
+            "",
+            "The detailed village rows and source codes are in "
+            "`outputs/village_community_prices.csv`; bottom-decile source shares "
+            "are in `outputs/price_low_tail_sources.csv`.",
+        ]
+    )
+    (ROOT / "docs" / "LOW_PRICE_AUDIT.md").write_text(
+        "\n".join(audit) + "\n", encoding="utf-8"
     )
 
 

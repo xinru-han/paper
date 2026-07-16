@@ -1,7 +1,7 @@
 test,statistic,df,p_value
-demographics_joint_zero,109.0426121866579,45,3.0959245e-07
-all_share_shifters_joint_zero,511.0780470612493,80,0
-Shonkwiler_Yen_terms_joint_zero,.2144636096327827,1,.64329112
-Hansen_overidentification,25.87423469825595,19,.13373166
-excluded_instruments_first_stage,10.50999463865383,,.000036660407
+demographics_joint_zero,108.1113336102437,45,4.1224968e-07
+all_share_shifters_joint_zero,532.5519297426345,80,0
+Shonkwiler_Yen_terms_joint_zero,.0557452893325147,1,.81335163
+Hansen_overidentification,27.12952813480258,19,.10167202
+excluded_instruments_first_stage,10.43303450632293,,.000039425599
 theory_restrictions_imposed,1,,

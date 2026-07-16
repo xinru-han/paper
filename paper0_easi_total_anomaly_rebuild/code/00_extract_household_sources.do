@@ -2,8 +2,20 @@ version 17
 do "/root/data/Paper/食物消费数据/paper0-EASI/easi_total_anomaly_rebuild/code/00_config.do"
 
 capture erase "$AR_DATA/household_sources.csv"
+capture erase "$AR_DATA/household_core.dta"
 capture erase "$AR_OUT/source_field_audit.csv"
 capture erase "$AR_OUT/source_summary_audit.csv"
+
+shell /usr/bin/python3 "$AR_CODE/extract_household_core.py" ///
+    --input "$AR_RAW/户表数据_已清洗.dta" ///
+    --output "$AR_DATA/household_core.dta" ///
+    > /tmp/easi_anomaly_household_core.log 2>&1
+capture confirm file "$AR_DATA/household_core.dta"
+if _rc {
+    capture type /tmp/easi_anomaly_household_core.log
+    di as error "compact household field extraction failed"
+    exit 601
+}
 
 shell /usr/bin/python3 "$AR_CODE/extract_household_sources.py" ///
     --source "$AR_SOURCE" ///
