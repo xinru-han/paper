@@ -69,3 +69,9 @@ Hicksian 自价格弹性：
 - 代表品价格修复解决了油脂正自价格符号，但豆类、油脂和水果的 compensated own-price 估计仍较不精确，不应表述为显著需求反应。
 - 户级弹性分布即使在共同 0.5% 拟合份额支持上仍有异质性；应报告中位数、分位数和负值比例，而不只报告加权均值。
 - 本日志已写入本地项目。当前会话未暴露 Notion MCP 写入工具，待连接 Notion app 后再同步到科研日志数据库。
+
+## GitHub
+
+- 提交：`be91ba0 Rebuild food demand from raw anomalies`
+- 分支：`agent/fruit-price-final-v2`
+- Draft PR：<https://github.com/xinru-han/paper/pull/4>
