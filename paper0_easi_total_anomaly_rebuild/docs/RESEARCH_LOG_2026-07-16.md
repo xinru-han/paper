@@ -88,5 +88,6 @@ Hicksian 自价格弹性：
 ## GitHub
 
 - 基础重建提交：`be91ba0 Rebuild food demand from raw anomalies`
+- 最低价核查提交：`71669dc Audit and correct lower-tail food prices`
 - 分支：`agent/fruit-price-final-v2`
 - Draft PR：<https://github.com/xinru-han/paper/pull/4>
