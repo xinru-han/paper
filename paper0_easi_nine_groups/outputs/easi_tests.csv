@@ -1,0 +1,8 @@
+test,statistic,df,p_value
+highest_Engel_order_joint_zero,6.690642782519065,8,.57034773
+demographics_joint_zero,268.2979069197281,72,2.0939583e-24
+all_share_shifters_joint_zero,1017.51352728407,128,0
+Shonkwiler_Yen_terms_joint_zero,99.54425950262495,5,6.5933074e-20
+Hansen_overidentification,114.9064703592943,55,4.0628779e-06
+excluded_instruments_first_stage,10.93032493940482,,.000024635809
+theory_restrictions_imposed,1,,

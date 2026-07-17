@@ -1,0 +1,4 @@
+data/*.dta
+logs/*.log
+outputs/*.ster
+__pycache__/

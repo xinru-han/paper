@@ -1,0 +1,3 @@
+﻿model,weighting,converged,overidentification_statistic,overidentification_df,overidentification_p,positive_fitted_share_rate,negative_hicksian_own_rate,slutsky_max_eigenvalue,accepted_for_interpretation,reason
+EASI GMM-IV two-step,two-step robust,1,114.9064703592943,55.0,4.0628779e-06,0.0073458958799106,0.5217391304347826,0.1989728021230483,0,Hansen test rejects; fitted shares are almost always nonpositive
+EASI GMM-IV one-step,identity,1,0.7712183079650342,55.0,,0.0006387735547748,0.6666666666666666,0.2997875290907757,0,identity-weight sensitivity also produces almost universally nonpositive shares
