@@ -1,0 +1,6 @@
+# Derived records retain household or village identifiers and stay local.
+outputs/household_item_long.dta
+outputs/community_price_endpoint_long.csv
+
+# The repository-wide rule ignores workbooks; this aggregate review workbook is intentional.
+!outputs/FOOD_ITEM_DESCRIPTIVES.xlsx
