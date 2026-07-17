@@ -1,0 +1,8 @@
+test,statistic,df,p_value
+highest_Engel_order_joint_zero,86.63840031630454,8,2.2336117e-15
+demographics_joint_zero,161.0320654112304,72,9.2239096e-09
+all_share_shifters_joint_zero,899.7179362405361,128,0
+expenditure_exogeneity,34.85874861265157,8,.000028369794
+Shonkwiler_Yen_terms_joint_zero,10.84374010551088,5,.054567706
+excluded_instruments_first_stage,10.93032493940482,,.000024635809
+theory_restrictions_imposed,1,,
