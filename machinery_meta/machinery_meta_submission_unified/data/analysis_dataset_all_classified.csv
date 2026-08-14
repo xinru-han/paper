@@ -1,0 +1,57 @@
+﻿编号,来源,标题,作者_年份,期刊级别,数据层级/区域,调研/数据年份,作物分类,N,因变量定义 (Y) 及形式,自变量定义 (X) 及形式,PCC,SE_PCC,elasticity,Target,Path,included_in_analysis,sample_exclusion_reason,path_exclusion_reason
+P_01,中文人工check,,孟娜_2026,核心期刊,微观 / 安徽,2007-2024,rice,2412,水稻单产 (Level),耕地块数 (Level),0.139,0.02,0.188,Yield,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+P_02,中文人工check,,姚成胜_2025,核心期刊,宏观 / 全国,2003-2023,cgrn,651,粮食总产 (Log),耦合协调度 (Log),0.362,0.034,0.182,Yield,AML,True,,
+P_03,中文人工check,,彭建仿_2024,核心期刊,宏观 / 全国,2011-2021,cgrn,341,粮食单产 (Level),数字技术 (Level),0.116,0.054,0.194,Yield,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+P_04,中文人工check,,管宁宁_2024,核心期刊,微观 / 江苏,2021,rice,533,产出效率 TE (Level),农业产业链服务 (Level),0.086,0.043,,Efficiency,AMS,True,,
+P_05,中文人工check,,薛信阳_2024,核心期刊,微观 / 豫鲁冀陕,2021,"whea, maiz",491,技术效率 TE (Level),农机社会化服务费用 (Log),0.432,0.04,,Efficiency,AMS,True,,
+P_06,中文人工check,,彭新宇_2023,核心期刊,宏观 / 全国,2009-2019,cgrn,309,技术无效率 (Level),农机服务规模经营 sca (Level),0.386,0.05,,Efficiency,AMS,True,,
+P_07,中文人工check,,魏素豪_2023,核心期刊,微观 / 华北,2019-2020,"whea, maiz",667,技术效率 TE (Level),本地化农机作业服务环节数 (Level),0.13,0.038,,Efficiency,AMS,True,,
+P_08,中文人工check,,胡霞_2023,核心期刊,微观 / 29省,"2015, 2017",cgrn,9297,粮食作物播种面积占比 (Level),农机服务市场发育程度 (Level),0.071,0.01,0.407,Area,AMS,True,,
+P_09,中文人工check,,刘颖_2023,核心期刊,微观 / 长江东北,2020,rice,859,水稻产量 (Log),亩均机械投入费 (Log),0.083,0.034,0.207,Yield,MCI,True,,
+P_10,中文人工check,,宦梅丽_2023,核心期刊,微观 / 全国,2018,maiz,1185,技术非效率 (Level),农机服务概率预测值 Service_p (Level),0.056,0.026,,Efficiency,AMS,True,,
+P_11,中文人工check,,卢华_2023,核心期刊,微观 / 江苏,2018,rice,328,粮食单产 (Log),农机服务 (虚拟),0.23,0.054,0.18,Yield,AMS,True,,
+P_12,中文人工check,,薛信阳_2022,核心期刊,微观 / 全国(CLDS),2016,cgrn,2272,粮食作物种植面积 (Level),农机社会化服务 (虚拟),0.176,0.02,0.0235,Area,AMS,True,,
+P_14,中文人工check,,刘琼_2022,核心期刊,宏观 / 主产区,1998-2017,cgrn,260,农业生产效率 SBM (Level),大中型农机跨区作业 wx_lnmechmax (Log),0.196,0.061,,Efficiency,AMS,True,,
+P_15,中文人工check,,仇童伟_2021,核心期刊,微观 / 河南5县,2017,whea,3179,农地产出率 (Level),农机服务使用率 (Level),0.097,0.051,0.134,Yield,AMS,True,,
+P_16,中文人工check,,许佳彬_2021,核心期刊,微观 / 黑龙江,2019,maiz,298,技术无效率 (Level),农机作业服务 (Level),0.205,0.057,,Efficiency,AMS,True,,
+P_17,中文人工check,,杨思雨_2022,核心期刊,微观 / 6省区,2019,whea,544,小麦生产技术效率 (Level),农机社会化服务 (Level),0.079,0.043,,Efficiency,AMS,True,,
+P_18,中文人工check,,杨思雨_2021,核心期刊,微观 / 12省区,2019,maiz,597,玉米生产技术效率 (Level),农机社会化服务 (虚拟),0.329,0.039,,Efficiency,AMS,True,,
+P_19,中文人工check,,朱满德_2021,核心期刊,宏观 / 全国,1978-2018,cgrn,1189,粮食播种面积占比 (Level),综合机械化率 (Level),0.103,0.029,0.015,Area,AML,True,,
+P_20,中文人工check,,睢忠林_2021,核心期刊,宏观 / 15省,2005-2018,cgrn,210,环境效率 GTFP (Level),农业机械替代劳动力 ML (Level),0.216,0.059,,Efficiency,MCI,True,,
+P_21,中文人工check,,宦梅丽_2021,核心期刊,微观 / 全国,"2014, 2016",cgrn,2063,粮食生产技术效率 (Level),机耕服务 Tillage (虚拟),0.028,0.014,,Efficiency,AMS,True,,
+P_22,中文人工check,,徐建玲_2020,核心期刊,宏观 / 20省,2004-2018,maiz,300,玉米单产 (Log),农业机械化投入 (Log),-0.211,0.056,-0.158,Yield,MCI,True,,
+P_23,中文人工check,,彭超_2020,核心期刊,微观 / 全国,2003-2016,cgrn,226741,粮食产值 (Log),机械作业费用 (Log),0.07,0.003,,Efficiency,AMS,True,,
+P_24,中文人工check,,张丽_2020,核心期刊,宏观 / 31省,2004-2016,cgrn,394,TFP增长率 ΔTFP/TFP (Level),农机服务发展中级阶段 PD2 (虚拟),0.139,0.049,,Efficiency,AMS,True,,
+P_25,中文人工check,,彭继权_2021,核心期刊,微观 / 湖北省,2016,rice/whea/maiz/pota,1682,主粮单产 (Log),农业机械投入额 (Log),0.482,0.03,1.22,Yield,MCI,True,,
+P_26,中文人工check,,彭继权_2020,核心期刊,微观 / 湖北省,2016,cgrn,1682,粮食作物种植面积比例 (Level),机械化水平 Mechine (Level),0.168,0.024,1.104,Area,AML,True,,
+P_27,中文人工check,,刘成_2019,核心期刊,宏观 / 15省,2004-2015,whea,180,小麦生产技术效率 (Level),农机服务比例 ser (Level),0.162,0.074,,Efficiency,AMS,True,,
+P_28,中文人工check,,虞松波_2019,核心期刊,宏观 / 15省,1994-2016,whea,345,小麦成本效率 CE (Level),农业机械化水平 lnmec (Log),0.123,0.053,,Efficiency,AML,True,,
+P_29,中文人工check,,陈实_2019,核心期刊,宏观 / 湖北,1996-2014,rice,304,水稻产量 (Log),农业机械总动力 (Log),0.207,0.056,0.584,Yield,MCI,True,,
+P_30,中文人工check,,胡祎_2018,核心期刊,宏观 / 15省,2000-2015,whea,240,小麦生产技术效率 (Level),农机服务使用水平 lev (Log),0.262,0.062,,Efficiency,AMS,True,,
+P_31,中文人工check,,杨进_2018,核心期刊,微观 / 全国,2009-2014,cgrn,54211,粮食播种面积占比 (Level),"每亩农业机械作业费用 (村中值, Log)",-0.009,0.005,-0.221,Area,AMS,True,,
+E_01,英文人工check,"Access to Credit and Mechanisation Service Expenditure: An Analysis Considering Access, Sources, Purposes and Amounts of Credit",Sang_2026,外文顶刊,微观 / 10省,2019,cgrn,1819,农机服务支出 (Log)，100元/亩,信贷获取 (虚拟),0.057,0.028,0.473,Yield,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_02,英文人工check,"Can mechanized pesticide application help reduce pesticide use and increase crop yield? Evidence from rice farmers in Jiangsu province, China",Li_2023,外文顶刊,微观 / 江苏,2019,rice,847,水稻单产，100kg/mu (Level),农机施药服务 (虚拟),0.095,0.03,0.147,Yield,AMS,True,,
+E_03,英文人工check,Capital constraints or biased norms? Tracing the root of gendered agricultural productivity in rural China,Wu_2025,外文顶刊,微观 / 全国,2015、2017、2019,cgrn,21432,土地生产率，每公顷作物产出，yuan/ha (Log),是否女性户主,0.12,0.009,0.219,Efficiency,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_04,英文人工check,Outsourcing Fertilizer Mechanization Services to Different Types of Service Providers: Assessing the Impact on Fertilizer Application for Wheat Producers in China,Ding_2025,外文顶刊,微观 / 鲁冀豫晋,2022,whea,993,单产 (Level)，kg/mu,化肥机械服务 FMS(虚拟),0.124,0.03,0.227,Yield,AMS,True,,
+E_05,英文人工check,Adoption patterns and productivity impacts of agricultural mechanization services,Lu_2022,外文顶刊,微观 / 12县,2018,rice,404,水稻单产 (Level)，kg/mu,农机服务采纳 (虚拟),0.092,0.031,0.078,Yield,AMS,True,,
+E_06,英文人工check,Agricultural production trusteeship and farmers' high-quality rice cultivation: Evidence from rural China,Shi_2026,外文顶刊,微观 / 江西,2023,rice,1688,优质水稻种植规模，亩,农业生产托管 (虚拟),0.059,0.03,,Yield,AMS,True,,
+E_07,英文人工check,Basic Farmland Construction in China: A cost-effective investment for agricultural productivity and disaster resistance,Huang_2024,外文顶刊,宏观 / 220县,2000-2019,cgrn,4400,农业人均GDP，元(Log)；农作物播种面积，公顷 (Log),高标准农田建设 (DID虚拟),0.025,0.015,0.063,Area,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_08,英文人工check,"Farm machinery use, off-farm employment and farm performance in China",Ma_2018,外文顶刊,微观 / 调研,2017,maiz,493,"玉米单产 (Level),100kg/mu",农机使用强度 (计数),0.141,0.044,0.171,Yield,MCI,True,,
+E_09,英文人工check,"Calamitous weather, yield risk and mitigation effect of harvest mechanisation: Evidence from China's winter wheat",Wang_2024,外文顶刊,宏观 / 县级面板,1998-2016,whea,15416,产量下行风险(偏度) (Level),"收获机械使用强度 (连续),kW/ha",0.024,0.009,,Yield,MCI,True,,
+E_10,英文人工check,Do Farm Subsidies Effectively Increase Grain Production? Evidence from Major Grain-Producing Regions of China,Yang_2023,外文期刊,微观 / 13主产省,2017,cgrn,3472,粮食产量 (Log),农业补贴总额 (Log),-0.024,0.017,,Yield,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_11,英文人工check,Farm machinery use and maize yields in China: an analysis accounting for selection bias and heterogeneity,Zhou_2020,外文顶刊,微观 / 调研,2016,maiz,493,玉米单产，kg/mu (Log),农机使用 (虚拟),0.147,0.044,0.089,Yield,MCI,True,,
+E_12,英文人工check,How aging affects low-carbon crop yield in rural China?,Zeng_2025,外文期刊,微观 / 29省,2017,"rice, whea, maiz",2889,作物产量，kg/ha (Log),户主年龄≥65岁 (虚拟),-0.055,0.019,-0.606,Yield,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_13,英文人工check,How does the improvement of farmers' financial literacy affect food production? Analysis of behavior and constraints based on element substitution and planting structure adjustment,Li_2024,外文顶刊,微观 / 江苏(CLES),2021,cgrn,1642,种粮面积占比 (Level),金融素养 (Level),-0.106,0.02,-0.441,Area,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_14,英文人工check,Impact of agricultural machinery purchase subsidies on the sustainable and intensive utilization of cultivated land: A perspective on agricultural machinery socialization services,Zhou_2025,外文顶刊,宏观 / 黄淮海33市,2016-2023,混合,987,耕地集约利用SIU (Level),"农机购置补贴AMPS,10000yuan/km2 (Level)",0.31,0.058,0.51,Efficiency,MCI,True,,
+E_15,英文人工check,The impact of R&D investment on grain crops production in China: Analysing the role of agricultural credit and CO₂ emissions,Chandio_2022,外文期刊,宏观 / 全国,1990-2017,cgrn,28,粮食总产量，万吨 (Log),R&D，百万元 (Log) / 农业信贷，百万元,0.488,0.165,0.366,Yield,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_16,英文人工check,Is small still beautiful? A comparative study of rice farm size and productivity in China and India,Wang_2015,外文期刊,微观 / 江西,2012,rice,1394,产量，ton/ha (Log/Level),地块面积，ha（Log）,0.061,0.053,0.155,Yield,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_17,英文人工check,"Land transfer-in choices, agricultural mechanization services, and farm performance: insights from Chinese grain farmers",Wang_2025,外文期刊,微观 / 全国,2020,cgrn,2024,粮食总产量，1000 kg (Level),农机服务采纳，1000 yuan/mu (Level),0.227,0.021,0.252,Yield,AMS,True,,
+E_18,英文人工check,"Non-agricultural labor transfer, factor allocation and farmland yield: Evidence from the part-time peasants in Loess Plateau region of Northwest China",Li_2022,外文期刊,微观 / 陕甘宁,2018-2019,混合,935,耕地亩均农业净收益 (Log),非农转移比例 (Level),-0.139,0.032,-0.108,Yield,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_19,英文人工check,"Renting-in cropland, machinery use intensity, and land productivity in rural China",Zheng_2021,外文期刊,微观 / 山东、河南、安徽,2018,whea,558,自有机械使用强度，购买机械服务使用强度（计数）,租入耕地 (虚拟),0.05,0.042,0.038,Yield,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_20,英文人工check,Resource misallocation and machinery outsourcing services of rice production in China,Sun_2025,外文期刊,微观 / 黑湘苏,2020,rice,708,资源扭曲指数（Log）,农机外包服务AMS (虚拟),0.066,0.037,0.134,Efficiency,AMS,True,,
+E_21,英文人工check,Does fiscal expenditure matter for agricultural development? Examining the impact of technological progress on food production,Chandio_2024,外文顶刊,宏观 / 16主产省,2000-2020,rice,336,水稻产量，10000 tons (Log),农业公共投资，100 million(Log),0.233,0.053,0.18,Yield,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_22,英文人工check,"Sustainable Intensification and Large-scale Operation of Cultivated Land Use at the Farmers' Scale: A Case Study of Shandong Province, China",Li_2024,外文期刊,微观 / 山东,2017,cgrn,294,种植面积，公顷（Level）,耕地可持续集约利用SICLU (Level),0.229,0.052,0.225,Area,OTH,False,Core explanatory variable is non-mechanisation (OTH),Core explanatory variable is non-mechanisation (OTH)
+E_23,英文人工check,The Effectiveness and Mechanisms of China's Grain Support Policies in Relation to Grain Yield—An Evaluation of a Wide Range of Policies,Li_2025,外文期刊,宏观 / 31省,2001-2022,cgrn,681,人均粮食产量 (Level),粮食支持政策强度 (Log),0.166,0.038,0.038,Yield,OTH,False,,Core explanatory variable is non-mechanisation (OTH)
+E_24,英文人工check,The impact of mechanization on crop production in China,Qiao_2023,外文期刊,宏观 / 全国,2000-2016,混合,526,粮食作物播种面积，千公顷 (Level),农业机械总动力，百万千瓦 (Level),0.464,0.041,0.584,Area,MCI,False,Pre-specified influential macro level-level record exclusion retained in the final sample,
+E_25,英文人工check,"The impact of the supply of farmland, level of agricultural mechanisation, and supply of rural labour on grain yields in China",Abate_2021,外文期刊,宏观 / 全国,1978-2017,cgrn,40,粮食总产量，吨 (Log),农业机械总动力，千瓦 (Log),0.32,0.15,0.185,Yield,MCI,True,,
+E_26,英文人工check,Threshold effect or spatial spillover? The impact of agricultural mechanization on grain production,Wu_2021,外文期刊,宏观 / 江苏,2000-2016,cgrn,221,粮食产量，吨 (Log),农业机械化，千瓦 (Log),0.125,0.067,0.079,Yield,MCI,True,,
