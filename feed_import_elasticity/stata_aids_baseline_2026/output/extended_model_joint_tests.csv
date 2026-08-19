@@ -1,0 +1,8 @@
+model,test,chi2,df,p_value
+quaids,all_price_terms_zero,44.77835358675195,10,2.3843572e-06
+quaids,all_quadratic_terms_zero,7.401833390259237,4,.11611675
+sy_aids,all_price_terms_zero,71.87416211744249,10,1.9245956e-11
+sy_aids,all_SY_density_terms_zero,758.9153982955795,5,0
+sy_quaids,all_price_terms_zero,115.7237336806334,10,3.7222384e-20
+sy_quaids,all_quadratic_terms_zero,89.28686347412155,4,1.8663033e-18
+sy_quaids,all_SY_density_terms_zero,534.7555240760756,5,0

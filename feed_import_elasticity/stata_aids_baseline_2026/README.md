@@ -25,3 +25,7 @@ bash code/run_all.sh
 ```
 
 Potential anomalies are reported, not automatically deleted or winsorized.
+
+The same sample is also used for QUAIDS, two-step SY-AIDS, and two-step
+SY-QUAIDS. Their complete latent reference elasticities and specification
+diagnostics are reported in `EXTENDED_MODELS_RESULTS.md`.
