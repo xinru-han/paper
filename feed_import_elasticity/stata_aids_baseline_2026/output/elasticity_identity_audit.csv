@@ -1,0 +1,4 @@
+identity,value,target,absolute_gap
+share_weighted_expenditure_elasticity,1.000000009692764,1,9.692763924817882e-09
+max_abs_marshallian_row_sum_plus_expenditure,7.000000024071085e-08,0,7.000000024071085e-08
+max_abs_hicksian_row_sum,5.2999999999858716e-08,0,5.2999999999858716e-08
