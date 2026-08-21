@@ -1,0 +1,33 @@
+group,price_source,households
+1,own village: representative products,1982
+1,own village: calibrated category midpoint,712
+1,same-town direct median,426
+1,nearest direct village in county,87
+1,county direct median,27
+2,own village: representative products,1478
+2,own village: calibrated category midpoint,697
+2,same-town direct median,725
+2,nearest direct village in county,77
+2,county direct median,93
+2,province direct median,164
+3,own village: representative products,1413
+3,own village: calibrated category midpoint,850
+3,same-town direct median,737
+3,nearest direct village in county,99
+3,county direct median,135
+4,own village: representative products,1463
+4,own village: calibrated category midpoint,1057
+4,same-town direct median,511
+4,nearest direct village in county,166
+4,county direct median,37
+5,own village: representative products,1528
+5,own village: calibrated category midpoint,408
+5,same-town direct median,730
+5,nearest direct village in county,269
+5,county direct median,299
+6,own village: representative products,1210
+6,own village: calibrated category midpoint,564
+6,same-town direct median,845
+6,nearest direct village in county,219
+6,county direct median,317
+6,province direct median,79

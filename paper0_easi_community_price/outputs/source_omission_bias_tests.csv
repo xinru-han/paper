@@ -1,0 +1,13 @@
+elasticity,good,difference,se,z,p_value,ci_low,ci_high,bootstrap_reps_requested,bootstrap_reps_successful,bootstrap_reps_failed,clusters,gmm_steps,contrast,ci_method
+expenditure,1,.7454110905528069,.2522929,2.9545465,.0031312897,.25091702,1.2399051,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+expenditure,2,-.0022808313369751,.30839929,-.0073957089,.99409914,-.6067434,.60218173,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+expenditure,3,-.2855885028839109,.10960642,-2.605582,.0091718305,-.50041705,-.07075993,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+expenditure,4,.0088695287704468,.30131891,.029435685,.97651714,-.58171552,.59945458,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+expenditure,5,.5660579800605769,.24186423,2.3403957,.019263323,.092004083,1.0401119,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+expenditure,6,-.094797730445862,.12445233,-.76171923,.44622761,-.33872429,.14912884,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,1,-.3855880498886108,.13058986,-2.9526646,.0031504403,-.64154416,-.12963194,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,2,-.1317816972732544,.22104485,-.59617627,.55105746,-.56502962,.30146623,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,3,-.0027867555618286,.087493636,-.031850953,.9745909,-.17427428,.16870077,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,4,-.2822143882513046,.22826529,-1.2363439,.21633078,-.72961438,.16518559,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,5,-.0049844831228256,.15883347,-.031381819,.97496504,-.31629807,.3063291,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,6,.0699872560799122,.08716394,.80293822,.42201045,-.10085406,.24082857,199,156,43,360,1,omit-self minus total,cluster bootstrap normal

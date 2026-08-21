@@ -1,0 +1,31 @@
+group,statistic,value
+1,households with own consumption,2680
+1,households with reported own price,1810
+1,reports covering at least half quantity,1714
+1,robust price outliers removed,31
+1,clean household opportunity prices,1683
+2,households with own consumption,961
+2,households with reported own price,585
+2,reports covering at least half quantity,574
+2,robust price outliers removed,6
+2,clean household opportunity prices,568
+3,households with own consumption,1452
+3,households with reported own price,1046
+3,reports covering at least half quantity,1021
+3,robust price outliers removed,4
+3,clean household opportunity prices,1017
+4,households with own consumption,1155
+4,households with reported own price,760
+4,reports covering at least half quantity,759
+4,robust price outliers removed,41
+4,clean household opportunity prices,718
+5,households with own consumption,2970
+5,households with reported own price,1948
+5,reports covering at least half quantity,1835
+5,robust price outliers removed,14
+5,clean household opportunity prices,1821
+6,households with own consumption,941
+6,households with reported own price,610
+6,reports covering at least half quantity,597
+6,robust price outliers removed,3
+6,clean household opportunity prices,594

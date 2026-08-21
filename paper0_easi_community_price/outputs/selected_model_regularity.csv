@@ -1,0 +1,8 @@
+diagnostic,value,threshold,passed
+adding_up_max_abs_error,0,9.9999999e-09,1
+positive_fitted_share_rate,.9440625,1,0
+positive_expenditure_elasticities,.977114898989899,1,0
+negative_hicksian_own_elasticities,.6923926767676768,1,0
+slutsky_symmetry_max_abs_error,2.39962605342e-10,.000099999997,1
+slutsky_max_eigenvalue,.006346376993491,0,0
+adding_up_homogeneity_symmetry_imposed,1,1,1

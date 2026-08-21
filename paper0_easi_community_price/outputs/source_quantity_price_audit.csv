@@ -1,0 +1,181 @@
+group,statistic,value
+1,qt1: mean,41.79615817835961
+1,qt1: p50,14.08990669250488
+1,qt1: p99,257.1428527832031
+1,qb1: mean,26.02869357848256
+1,qb1: p50,7.257316827774048
+1,qb1: p99,197.5855560302734
+1,qs1: mean,14.67127541830435
+1,qs1: p50,2.142857074737549
+1,qs1: p99,165
+1,qg1: mean,1.096189203321979
+1,qg1: p50,0
+1,qg1: p99,34.28571319580078
+1,q_reconciliation1: mean,-.9642039690088395
+1,q_reconciliation1: p50,-.0855915539683103
+1,q_reconciliation1: p99,53.57142857142858
+1,fallback_share1: mean,.3002363138504172
+1,fallback_share1: p50,.0832098226997732
+1,fallback_share1: p99,1
+1,price_wedge1: mean,1.010800092535513
+1,price_wedge1: p50,.8163265306122448
+1,price_wedge1: p99,5.454173313414192
+1,source_share_qty1: mean,.3362888384507938
+1,source_share_qty1: p50,.2566923402846323
+1,source_share_qty1: p99,.9982319214391218
+1,total participation rate,.9996827411167513
+1,purchase participation rate,.9847715736040609
+1,own-consumption participation rate,.7566624365482234
+1,robust quantity-tail households,1
+1,positive-quantity top-one-percent,30
+1,robust local-price-tail households,35
+2,qt2: mean,4.578262203047702
+2,qt2: p50,1.153846144676208
+2,qt2: p99,42.85714340209961
+2,qb2: mean,3.657186981740285
+2,qb2: p50,.8364944159984589
+2,qb2: p99,34.28571319580078
+2,qs2: mean,.8442953371086517
+2,qs2: p50,0
+2,qs2: p99,21.4285717010498
+2,qg2: mean,.0767798789939075
+2,qg2: p50,0
+2,qg2: p99,.8655462265014648
+2,q_reconciliation2: mean,.174809622848032
+2,q_reconciliation2: p50,0
+2,q_reconciliation2: p99,10.71428516932896
+2,fallback_share2: mean,.3192633432635862
+2,fallback_share2: p50,0
+2,fallback_share2: p99,1
+2,price_wedge2: mean,1.091668826964016
+2,price_wedge2: p50,1
+2,price_wedge2: p99,4.5
+2,source_share_qty2: mean,.141930023183867
+2,source_share_qty2: p50,0
+2,source_share_qty2: p99,1
+2,total participation rate,.9365482233502538
+2,purchase participation rate,.899746192893401
+2,own-consumption participation rate,.2712563451776649
+2,robust quantity-tail households,146
+2,positive-quantity top-one-percent,28
+2,robust local-price-tail households,30
+3,qt3: mean,17.70996648594583
+3,qt3: p50,6.546097755432129
+3,qt3: p99,122.2561950683594
+3,qb3: mean,12.73204057730396
+3,qb3: p50,4.658999919891357
+3,qb3: p99,92.03121185302734
+3,qs3: mean,4.111063746901803
+3,qs3: p50,0
+3,qs3: p99,64.28571319580078
+3,qg3: mean,.8668621322700014
+3,qg3: p50,0
+3,qg3: p99,21.50545120239258
+3,q_reconciliation3: mean,4.695402898316697
+3,q_reconciliation3: p50,.8196762964666923
+3,q_reconciliation3: p99,55.71428615025111
+3,fallback_share3: mean,.4773597594664682
+3,fallback_share3: p50,.4556680377887365
+3,fallback_share3: p99,1
+3,price_wedge3: mean,1.576085858416768
+3,price_wedge3: p50,1.457835233106948
+3,price_wedge3: p99,4.084824810606061
+3,source_share_qty3: mean,.1664415146394286
+3,source_share_qty3: p50,0
+3,source_share_qty3: p99,1
+3,total participation rate,.9911167512690355
+3,purchase participation rate,.9514593908629442
+3,own-consumption participation rate,.4035532994923858
+3,robust quantity-tail households,1
+3,positive-quantity top-one-percent,30
+3,robust local-price-tail households,0
+4,qt4: mean,5.099058255318642
+4,qt4: p50,1.120332717895508
+4,qt4: p99,42.85714340209961
+4,qb4: mean,3.801599198802218
+4,qb4: p50,.4255327731370926
+4,qb4: p99,42.85714340209961
+4,qs4: mean,1.158642380876921
+4,qs4: p50,0
+4,qs4: p99,21.4285717010498
+4,qg4: mean,.1388166702138544
+4,qg4: p50,0
+4,qg4: p99,4.310344696044922
+4,q_reconciliation4: mean,-.0414922539493945
+4,q_reconciliation4: p50,-6.66916882830e-10
+4,q_reconciliation4: p99,8.622034089039948
+4,fallback_share4: mean,.163664397975904
+4,fallback_share4: p50,0
+4,fallback_share4: p99,1
+4,price_wedge4: mean,1.405938666050289
+4,price_wedge4: p50,1.319261213720317
+4,price_wedge4: p99,3.793626707132018
+4,source_share_qty4: mean,.2749134032916919
+4,source_share_qty4: p50,0
+4,source_share_qty4: p99,1
+4,total participation rate,.9819162436548223
+4,purchase participation rate,.7097081218274112
+4,own-consumption participation rate,.3204314720812182
+4,robust quantity-tail households,325
+4,positive-quantity top-one-percent,25
+4,robust local-price-tail households,30
+5,qt5: mean,38.13731722744846
+5,qt5: p50,9.892789840698242
+5,qt5: p99,255.2572937011719
+5,qb5: mean,13.30772242919503
+5,qb5: p50,3.415545225143433
+5,qb5: p99,129.8606872558594
+5,qs5: mean,23.76925113161576
+5,qs5: p50,2.552260041236877
+5,qs5: p99,218.5714263916016
+5,qg5: mean,1.060343665163757
+5,qg5: p50,0
+5,qg5: p99,27.85714340209961
+5,q_reconciliation5: mean,-2.681755348026305
+5,q_reconciliation5: p50,-.1264084061422237
+5,q_reconciliation5: p99,54.05278778076172
+5,fallback_share5: mean,.3646551423054479
+5,fallback_share5: p50,.1482950293835685
+5,fallback_share5: p99,1
+5,price_wedge5: mean,1.383151732704817
+5,price_wedge5: p50,1.28849941936941
+5,price_wedge5: p99,3.361344688078936
+5,source_share_qty5: mean,.4984198625419045
+5,source_share_qty5: p50,.5332553259296634
+5,source_share_qty5: p99,1
+5,total participation rate,.9993654822335025
+5,purchase participation rate,.9213197969543148
+5,own-consumption participation rate,.8321700507614214
+5,robust quantity-tail households,11
+5,positive-quantity top-one-percent,30
+5,robust local-price-tail households,84
+6,qt6: mean,25.22108442098113
+6,qt6: p50,7.502267360687256
+6,qt6: p99,182.4142913818359
+6,qb6: mean,19.92418266486419
+6,qb6: p50,5.80680251121521
+6,qb6: p99,160.2142791748047
+6,qs6: mean,4.026609113163653
+6,qs6: p50,0
+6,qs6: p99,107.1428604125977
+6,qg6: mean,1.270292632598229
+6,qg6: p50,0
+6,qg6: p99,34.28571319580078
+6,q_reconciliation6: mean,-1.149173638723106
+6,q_reconciliation6: p50,-1.65188052126e-09
+6,q_reconciliation6: p99,25.71428421189113
+6,fallback_share6: mean,.433142204633554
+6,fallback_share6: p50,.3451738142927668
+6,fallback_share6: p99,1
+6,price_wedge6: mean,.7783726585813012
+6,price_wedge6: p50,.5270447840655191
+6,price_wedge6: p99,2.857142857142857
+6,source_share_qty6: mean,.0989676708132344
+6,source_share_qty6: p50,0
+6,source_share_qty6: p99,1
+6,total participation rate,.9685913705583756
+6,purchase participation rate,.9330583756345178
+6,own-consumption participation rate,.2607868020304568
+6,robust quantity-tail households,1
+6,positive-quantity top-one-percent,30
+6,robust local-price-tail households,27

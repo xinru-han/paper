@@ -1,0 +1,4 @@
+sequence,stage,observations,removed_from_previous
+1,legacy cleaned demand sample,3234,0
+2,source-specific physical quantity screen,3154,80
+3,positive reconstructed total food value,3152,2

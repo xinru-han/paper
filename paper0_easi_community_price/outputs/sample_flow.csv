@@ -1,0 +1,6 @@
+sequence,stage,observations,removed_from_previous
+1,raw households with exact price-key match,3565,0
+2,valid positive household size,3547,18
+3,complete nonnegative six-group quantities,3547,0
+4,after physical quantity plausibility screen,3234,313
+5,positive six-group consumption expenditure,3234,0
