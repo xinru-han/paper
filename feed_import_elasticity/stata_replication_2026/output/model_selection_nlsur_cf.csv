@@ -1,0 +1,6 @@
+model,order,gmm_steps,return_code,N,parameters,converged,J,J_df,J_p,rss,aic,bic,Engel_order_p,precommitment_p,raw_bic_minimum,family_test_preferred,bic_preferred,easi_order_preferred
+aids,1,2,0,634,50,1,,,,170.80627,-6741.6543,-6449.7373,,,0,0,0,0
+easi,1,2,0,634,50,1,,,,170.84697,-6741.0503,-6449.1333,,,0,1,0,1
+easi,2,2,430,634,54,0,,,,,,,,,0,0,0,0
+easi,3,2,0,634,58,1,,,,162.11333,-6858.1211,-6519.4971,.33489105,,0,0,0,0
+quaids,2,2,0,634,54,1,,,,162.8371,-6854.8242,-6539.5532,6.1431720e-08,,1,1,1,0

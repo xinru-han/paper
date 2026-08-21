@@ -1,0 +1,8 @@
+margin,diagnostic,value,threshold,passed
+latent,adding_up_max_abs_error,0,9.9999999e-09,1
+latent,positive_fitted_share_rate,.5694006309148265,1,0
+latent,positive_expenditure_elasticities,.9551246537396122,1,0
+latent,negative_hicksian_own_elasticities,1,1,1
+latent,slutsky_symmetry_max_abs_error,9.42009706351e-10,.000099999997,1
+latent,slutsky_max_eigenvalue,-8.79749954976e-16,0,1
+latent,adding_up_homogeneity_symmetry_imposed,1,1,1

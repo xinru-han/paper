@@ -1,0 +1,4 @@
+preferred_model=quaids
+preferred_order=2
+preferred_estimate=fd_quaids
+preferred_easi_order=1
