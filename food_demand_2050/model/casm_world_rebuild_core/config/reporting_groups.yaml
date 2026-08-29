@@ -1,0 +1,123 @@
+schema_version: "1.0"
+benchmark_year: 2023
+
+principles:
+  - World, focus economies, EU27 and World Bank income groups use model-account membership.
+  - UN geographic groups use source-economy membership before territory aggregation.
+  - A source economy has exactly one UN region, one official UN sub-region and one most-specific M49 reporting area.
+  - World is generated only from model accounts; source-geography membership never contains a World row.
+  - Reporting groups are outputs and must never be inserted as model accounts.
+
+membership_layers:
+  model_account:
+    group_systems: [GLOBAL, FOCUS, ECONOMIC, WB_INCOME_FY25]
+    exclusive_systems: [GLOBAL, WB_INCOME_FY25]
+  source_geography:
+    group_systems: [UN_REGION, UN_SUBREGION, UN_REPORTING_AREA]
+    exclusive_systems: [UN_REGION, UN_SUBREGION, UN_REPORTING_AREA]
+    reporting_area_rule: intermediate_region_if_present_else_subregion
+
+# The raw 248-row M49 table leaves Antarctica (ATA) blank at both region
+# levels. Keep that fact explicit instead of silently dropping the row or
+# inventing an Oceania assignment.
+unassigned_m49_geography:
+  group_code: "000"
+  group_name: UN M49 region not assigned
+  source_economies: [ATA]
+
+global_group:
+  group_system: GLOBAL
+  group_code: WORLD
+  group_name: World
+
+focus_groups:
+  CHINA_MAINLAND:
+    group_name: China mainland
+    model_accounts: [CHN]
+  USA:
+    group_name: United States
+    model_accounts: [USA]
+
+economic_groups:
+  EU27:
+    group_name: European Union (27)
+    model_accounts:
+      - AUT
+      - BEL
+      - BGR
+      - HRV
+      - CYP
+      - CZE
+      - DNK
+      - EST
+      - FIN
+      - FRA
+      - DEU
+      - GRC
+      - HUN
+      - IRL
+      - ITA
+      - LVA
+      - LTU
+      - LUX
+      - MLT
+      - NLD
+      - POL
+      - PRT
+      - ROU
+      - SVK
+      - SVN
+      - ESP
+      - SWE
+
+# TWN and XKX are absent from the downloaded 248-row UN M49 country/area
+# table. They are explicit statistical supplements, not inferred from a
+# sovereign parent's geography.
+supplemental_source_geographies:
+  TWN:
+    source_name: Taiwan statistical area
+    m49: "158"
+    region_code: "142"
+    region_name: Asia
+    subregion_code: "030"
+    subregion_name: Eastern Asia
+    intermediate_region_code: null
+    intermediate_region_name: null
+  XKX:
+    source_name: Kosovo
+    m49: "412"
+    region_code: "150"
+    region_name: Europe
+    subregion_code: "039"
+    subregion_name: Southern Europe
+    intermediate_region_code: null
+    intermediate_region_name: null
+
+world_bank_income:
+  source_sheet: Country Analytical History
+  header_row_zero_based: 4
+  fiscal_year_column: FY25
+  represented_calendar_year: 2023
+  source_code_column: "Unnamed: 0"
+  source_name_column: "Bank's fiscal year:"
+  group_system: WB_INCOME_FY25
+  raw_code_to_group:
+    L: LIC
+    LM: LMC
+    UM: UMC
+    H: HIC
+  groups:
+    LIC: Low income
+    LMC: Lower middle income
+    UMC: Upper middle income
+    HIC: High income
+    NCL: Not classified
+  missing_policy: explicit_NCL
+  synthetic_account_proxies:
+    OTHER_EASTERN_ASIA: TWN
+
+coverage_gate:
+  expected_interim_benchmark_accounts: 193
+  require_world_membership_exactly_once: true
+  require_no_territory_source_as_model_account: true
+  require_all_accounts_in_one_wb_income_group: true

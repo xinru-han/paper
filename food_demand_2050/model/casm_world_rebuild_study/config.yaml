@@ -1,0 +1,104 @@
+schema_version: "1.0"
+study_id: CHINA_DIET_CASM_WORLD_REBUILD_2050
+benchmark_year: 2023
+projection_end: 2050
+central_ssp: SSP2
+
+interpretation:
+  scenario_type: conditional_counterfactual_not_unconditional_forecast
+  intervention: china_mainland_food_preference_shift_only
+  equilibrium_feedback: two_way_world_price_feedback
+  trade_boundary: net_trade_identity_without_bilateral_flows
+  nutrition_boundary: model_covered_edible_commodity_basket_only
+  ghg_boundary: frozen_2023_attributed_biological_farm_gate_production_emissions
+
+inputs:
+  prior_casm_results: study/china_diet/inputs/prior_casm_results_long.csv
+  mapped_diet_paths: study/china_diet/inputs/china_diet_paths_mapped.csv
+  mapped_diet_paths_report: study/china_diet/inputs/china_diet_paths_report.json
+  analysis_config: config/analysis.yaml
+  nutrition_coefficients: data/processed/nutrition_coefficients_2023.csv
+  ghg_factors: data/processed/ghg_emission_factors_2023.csv
+  model_membership: data/processed/reporting_model_account_membership_2023.csv
+  source_membership: data/processed/reporting_source_group_membership_2023.csv
+  source_allocation_weights: data/processed/reporting_source_allocation_weights_2023.csv
+
+diet_pathways:
+  BASELINE:
+    source_scenario: BS
+    label: SSP-consistent baseline preferences
+  PTS:
+    source_scenario: A1
+    label: preference-driven transition
+  MTS:
+    source_scenario: C1
+    label: moderate transition
+  CGS:
+    source_scenario: B1
+    label: composite-guideline transition
+
+# Each multiplier is a pathway-to-BS ratio from the China CASM food-demand
+# solution. Aggregates use ratios of summed kg/person/year, not means of ratios.
+product_mapping:
+  RIC: {source_commodities: [RICE], note: paddy-equivalent rice}
+  WHE: {source_commodities: [WHEA], note: wheat}
+  CRN: {source_commodities: [MAIZ], note: maize}
+  OCG: {source_commodities: [SORG, BARL, OTGR], note: other grains aggregate}
+  SBS: {source_commodities: [SOYS], note: edible soybean use}
+  SBO: {source_commodities: [SOYO, RAPO, GRDO], note: total vegetable-oil multiplier}
+  NBO: {source_commodities: [SOYO, RAPO, GRDO], note: total vegetable-oil multiplier}
+  RBO: {source_commodities: [SOYO, RAPO, GRDO], note: total vegetable-oil multiplier}
+  OTO: {source_commodities: [SOYO, RAPO, GRDO], note: total vegetable-oil multiplier}
+  SUG: {source_commodities: [SUGA], note: sugar}
+  BFV: {source_commodities: [CATM], note: bovine meat; mutton excluded}
+  PRK: {source_commodities: [PIGM], note: pigmeat}
+  PLM: {source_commodities: [CHKM], note: poultry meat}
+  BUT: {source_commodities: [MILK], note: common dairy-food multiplier}
+  CHE: {source_commodities: [MILK], note: common dairy-food multiplier}
+  NDM: {source_commodities: [MILK], note: common dairy-food multiplier}
+  FMK: {source_commodities: [MILK], note: common dairy-food multiplier}
+  WDM: {source_commodities: [MILK], note: common dairy-food multiplier}
+  ODA: {source_commodities: [MILK], note: common dairy-food multiplier}
+
+excluded_prior_casm_foods:
+  - {source_commodity: POTA, reason: no tuber market in the 31-product world model}
+  - {source_commodity: VEGT, reason: no vegetable market in the 31-product world model}
+  - {source_commodity: FRTO, reason: no fruit market in the 31-product world model}
+  - {source_commodity: EGGS, reason: no egg market in the 31-product world model}
+  - {source_commodity: FISH, reason: no aquatic-food market in the 31-product world model}
+  - {source_commodity: SHGM, reason: no sheep/goat meat market in the 31-product world model}
+
+main_run_grid:
+  SSP1: [2023, 2050]
+  SSP2: annual
+  SSP3: [2023, 2050]
+  SSP4: [2023, 2050]
+  SSP5: [2023, 2050]
+
+sensitivity:
+  base_ssp: SSP2
+  year: 2050
+  response_variants: [V2_LOW_RESPONSE, V2_CENTRAL, V2_HIGH_RESPONSE]
+  demand_model_form_variant: DEMAND_SUBSTITUTION_CES
+
+outputs:
+  country_product: study/china_diet/outputs/counterfactual_country_product.csv.gz
+  world_prices: study/china_diet/outputs/counterfactual_world_prices.csv
+  processing: study/china_diet/outputs/counterfactual_processing.csv.gz
+  convergence: study/china_diet/outputs/counterfactual_convergence.csv
+  run_report: study/china_diet/outputs/counterfactual_run_report.json
+  sensitivity_country_product: study/china_diet/outputs/sensitivity_country_product_2050.csv.gz
+  sensitivity_world_prices: study/china_diet/outputs/sensitivity_world_prices_2050.csv
+  sensitivity_convergence: study/china_diet/outputs/sensitivity_convergence_2050.csv
+  group_results: study/china_diet/outputs/group_results.csv.gz
+  group_contrasts_2050: study/china_diet/outputs/group_contrasts_2050.csv.gz
+  country_contrasts_2050: study/china_diet/outputs/country_contrasts_2050.csv.gz
+  ghg_country: study/china_diet/outputs/ghg_country.csv.gz
+  ghg_group: study/china_diet/outputs/ghg_group.csv.gz
+  nutrition_economy: study/china_diet/outputs/nutrition_economy.csv.gz
+  nutrition_world: study/china_diet/outputs/nutrition_world.csv
+  tables_directory: study/china_diet/outputs/tables
+  figures_directory: study/china_diet/outputs/figures
+  key_findings: study/china_diet/outputs/key_findings.csv
+  claims_registry: study/china_diet/outputs/claims_registry.csv
+  analysis_report: study/china_diet/outputs/analysis_report.json

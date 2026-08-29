@@ -1,0 +1,143 @@
+schema_version: 1
+benchmark_year: 2023
+projection_end: 2050
+scenarios: [SSP1, SSP2, SSP3, SSP4, SSP5]
+
+# Source values, SSP mappings and CASM-World assumptions are kept in separate
+# blocks so an assumption cannot be mistaken for a published parameter.
+literature_parameters:
+  zhao_2017_crop_temperature:
+    parameter_type: peer_reviewed_global_yield_sensitivity
+    citation: >-
+      Zhao, C. et al. (2017), Temperature increase reduces global yields of
+      major crops in four independent estimates, PNAS 114(35), 9326-9331.
+    doi: https://doi.org/10.1073/pnas.1701762114
+    article_url: https://www.pnas.org/doi/10.1073/pnas.1701762114
+    parameter_meaning: >-
+      Fractional global mean yield change per 1 degree C increase in global
+      mean temperature, without CO2 fertilization, effective adaptation, or
+      genetic improvement.
+    unit: fraction_per_degree_c
+    commodity_parameters:
+      WHE: -0.060
+      RIC: -0.032
+      CRN: -0.074
+      SBS: -0.031
+
+  ipcc_ar6_wgi_spm_table_1:
+    parameter_type: assessed_global_surface_temperature_change
+    citation: >-
+      IPCC (2021), Climate Change 2021: The Physical Science Basis,
+      Summary for Policymakers, Table SPM.1.
+    report_url: https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM_final.pdf
+    reference_period: 1850-1900
+    unit: degree_c
+    parameter_meaning: >-
+      Best-estimate global surface temperature change for the 2021-2040
+      near-term and 2041-2060 mid-term twenty-year periods.
+    direct_scenario_values:
+      SSP1-2.6: {near_term_2021_2040: 1.5, mid_term_2041_2060: 1.7}
+      SSP2-4.5: {near_term_2021_2040: 1.5, mid_term_2041_2060: 2.0}
+      SSP3-7.0: {near_term_2021_2040: 1.5, mid_term_2041_2060: 2.1}
+      SSP5-8.5: {near_term_2021_2040: 1.6, mid_term_2041_2060: 2.4}
+
+  wmo_2023_temperature_anchor:
+    parameter_type: observed_benchmark_temperature
+    citation: World Meteorological Organization, State of the Global Climate 2023.
+    report_url: https://wmo.int/publication-series/state-of-global-climate/state-of-global-climate-2023
+    reference_period: 1850-1900
+    global_temperature_anomaly_2023: 1.45
+    uncertainty_plus_minus_degree_c: 0.12
+    unit: degree_c
+    parameter_meaning: >-
+      Observed 2023 global mean near-surface temperature anomaly used only to
+      anchor all climate yield indices at exactly one in the benchmark year.
+
+  scenario_mip_ssp4_60:
+    parameter_type: peer_reviewed_scenario_definition
+    citation: >-
+      O'Neill, B. C. et al. (2016), The Scenario Model Intercomparison Project
+      (ScenarioMIP) for CMIP6, Geoscientific Model Development 9, 3461-3482.
+    doi: https://doi.org/10.5194/gmd-9-3461-2016
+    article_url: https://gmd.copernicus.org/articles/9/3461/2016/
+    parameter_meaning: SSP4-6.0 is the medium-forcing SSP4 ScenarioMIP pathway.
+
+ssp_forcing_mapping:
+  SSP1:
+    forcing_path: SSP1-2.6
+    forcing_w_m2_2100: 2.6
+    temperature_node_source: ipcc_ar6_direct
+  SSP2:
+    forcing_path: SSP2-4.5
+    forcing_w_m2_2100: 4.5
+    temperature_node_source: ipcc_ar6_direct
+  SSP3:
+    forcing_path: SSP3-7.0
+    forcing_w_m2_2100: 7.0
+    temperature_node_source: ipcc_ar6_direct
+  SSP4:
+    forcing_path: SSP4-6.0
+    forcing_w_m2_2100: 6.0
+    temperature_node_source: author_forcing_interpolation
+  SSP5:
+    forcing_path: SSP5-8.5
+    forcing_w_m2_2100: 8.5
+    temperature_node_source: ipcc_ar6_direct
+
+author_assumptions:
+  temporal_alignment:
+    method: piecewise_linear_temperature_nodes
+    nodes:
+      benchmark_observation_year: 2023
+      ipcc_near_term_midpoint_year: 2030
+      ipcc_mid_term_midpoint_year: 2050
+    meaning: >-
+      The WMO 2023 observation is the common starting node; IPCC twenty-year
+      best estimates are aligned to their rounded midpoint years. Annual
+      values are linearly interpolated in degrees C, never extrapolated.
+  ssp4_temperature_interpolation:
+    method: linear_in_2100_radiative_forcing
+    lower_path: SSP2-4.5
+    upper_path: SSP3-7.0
+    target_path: SSP4-6.0
+    weight_on_upper: 0.6
+    derived_values:
+      near_term_2021_2040: 1.5
+      mid_term_2041_2060: 2.06
+    publish_as_ipcc_direct: false
+  regional_exposure:
+    method: global_coefficient
+    exposure_factor: 1.0
+    status: explicit_global_parameter_no_regional_differentiation
+    meaning: >-
+      Zhao et al. report global coefficients. Every model account therefore
+      uses the same factor; no unsupported country or UN-region coefficient is
+      invented and no missing regional parameter is converted to zero.
+  impact_equation:
+    formula: index = 1 + sensitivity_fraction_per_c * exposure_factor * incremental_warming_from_2023_c
+    co2_fertilization: excluded_consistent_with_zhao_parameter
+    autonomous_adaptation: excluded_consistent_with_zhao_parameter
+    genetic_improvement: handled_outside_climate_module
+    clipping: forbidden
+    hard_validation_bounds: [0.5, 1.0]
+
+commodity_scope:
+  expected_count: 31
+  direct_primary_with_peer_reviewed_parameter: [RIC, WHE, CRN, SBS]
+  primary_without_matching_authoritative_parameter:
+    [OCG, NBS, RBS, SCA, SBE, BFV, PRK, PLM, MLK]
+  processing_outputs_no_double_shock:
+    [SBO, SBM, NBO, NBM, RBO, RBM, DDG, ETH, BDI, OTO, CTN, SUG,
+     BUT, CHE, NDM, FMK, WDM, ODA]
+
+model_universe:
+  benchmark_path: data/processed/benchmark_equilibrium_interim_2023.csv
+  economy_column: economy_id
+  expected_accounts: 193
+  model_config_path: config/model.yaml
+  expected_commodities: 31
+
+outputs:
+  temperature_paths: data/processed/climate_temperature_paths_2023_2050.csv
+  yield_paths: data/processed/climate_yield_paths_2023_2050.csv
+  coverage_report: data/processed/climate_yield_paths_report.json

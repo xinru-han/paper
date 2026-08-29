@@ -1,0 +1,124 @@
+{
+  "status": "passed",
+  "study_id": "CHINA_DIET_CASM_WORLD_REBUILD_2050",
+  "scenario_type": "conditional_counterfactual_not_unconditional_forecast",
+  "model_source": "isolated copy of /root/data/CASM/casm_world_rebuild_2050",
+  "core_model_files_modified": false,
+  "main_solution_count": 144,
+  "sensitivity_solution_count": 16,
+  "country_product_row_count": 861552,
+  "maximum_market_relative_residual": 5.252754878009426e-15,
+  "maximum_accounting_absolute_residual_mt": 1.4210854715202004e-14,
+  "sensitivity_maximum_market_relative_residual": 7.252618556506581e-15,
+  "common_2023_benchmark_maximum_absolute_error_mt": 0.0,
+  "main_grid": {
+    "SSP1": [
+      2023,
+      2050
+    ],
+    "SSP2": "annual",
+    "SSP3": [
+      2023,
+      2050
+    ],
+    "SSP4": [
+      2023,
+      2050
+    ],
+    "SSP5": [
+      2023,
+      2050
+    ]
+  },
+  "pathways": [
+    "BASELINE",
+    "PTS",
+    "MTS",
+    "CGS"
+  ],
+  "mapped_products": [
+    "RIC",
+    "WHE",
+    "CRN",
+    "OCG",
+    "SBS",
+    "SBO",
+    "NBO",
+    "RBO",
+    "OTO",
+    "SUG",
+    "BFV",
+    "PRK",
+    "PLM",
+    "BUT",
+    "CHE",
+    "NDM",
+    "FMK",
+    "WDM",
+    "ODA"
+  ],
+  "excluded_prior_casm_foods": [
+    {
+      "source_commodity": "POTA",
+      "reason": "no tuber market in the 31-product world model"
+    },
+    {
+      "source_commodity": "VEGT",
+      "reason": "no vegetable market in the 31-product world model"
+    },
+    {
+      "source_commodity": "FRTO",
+      "reason": "no fruit market in the 31-product world model"
+    },
+    {
+      "source_commodity": "EGGS",
+      "reason": "no egg market in the 31-product world model"
+    },
+    {
+      "source_commodity": "FISH",
+      "reason": "no aquatic-food market in the 31-product world model"
+    },
+    {
+      "source_commodity": "SHGM",
+      "reason": "no sheep/goat meat market in the 31-product world model"
+    }
+  ],
+  "food_nonfood_decomposition": "Food preference multipliers change only the China food component; non-food final demand keeps the SSP macro shifter.",
+  "ces_food_decomposition_warning": "CES sensitivity is used for prices, production and net trade only; its within-product food split is not used for nutrition claims.",
+  "inputs_sha256": {
+    "study_config": "166f471dbd185c6ac4c82d5f45584c0d4c3b453a1bfde9b7d3baddc4a7afd4a4",
+    "mapped_diet_paths": "a5eb8701acff5129fc8e617c4464c5832cc53a9ba84c22095d5434d12dee3024",
+    "simulation_config": "628383bd640b224067a091cf1dd916f9944b9e1b3bcb63c3d0f9aab48043178d",
+    "parameter_table": "8b9d53bbfd9ce6662cbafdd1599fa86f76d4c74d42476cd4debbd95f9b90d698"
+  },
+  "outputs": {
+    "country_product": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/counterfactual_country_product.csv.gz",
+      "sha256": "30d55b2f03ca6e9a8ce7d30c57423b6f60422058e12cd5ff5448d2ce1553739a"
+    },
+    "world_prices": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/counterfactual_world_prices.csv",
+      "sha256": "fe59ce9d54bcfb5601477b7a0656098e4446e1f27086b1f337784a891fa846a0"
+    },
+    "processing": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/counterfactual_processing.csv.gz",
+      "sha256": "2750e8a2fe2eb8a0f81027f9ebd3f27a32d09fe24b4b6921dc9ae0d3e7ceb111"
+    },
+    "convergence": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/counterfactual_convergence.csv",
+      "sha256": "68dc211b7875fd22e789d7170b9bc00f49d0ef8b096d00e7be2b66db60855aee"
+    },
+    "sensitivity_country_product": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/sensitivity_country_product_2050.csv.gz",
+      "sha256": "2850754360c8cdb7b65cfe3debfe2c2806bf912cb69496844e06bd38e757dfe8"
+    },
+    "sensitivity_world_prices": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/sensitivity_world_prices_2050.csv",
+      "sha256": "ccdccbe0907c6319146a3e54ede8b95c430f5890f51433d37474f1479a9923d8"
+    },
+    "sensitivity_convergence": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/sensitivity_convergence_2050.csv",
+      "sha256": "df352fffe4b45995dc30a9fb0d8faecfead89b77009dc7ea1564692e38bcc11e"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+version: 0.1.0
+benchmark_year: 2023
+
+statistical_balancing:
+  method: commodity_global_demand_scaling
+  preserve_reported_production: true
+  preserve_structural_zero: true
+  missing_is_zero: false
+  maximum_publishable_demand_scale_deviation: 0.05
+  note: >-
+    This is an interim equilibrium-calibration rule. It closes each global
+    commodity market while retaining raw observations and adjustment factors.
+    It is not publication-ready until processing-chain and weighted
+    constrained balancing replace independent commodity scaling.
+
+derived_products:
+  DDG:
+    driver: ETH
+    output_mass_per_mass_ethanol: 0.75
+    status: provisional_literature_prior
+    publishable: false
+
+base_prices:
+  unit: index_2023_equals_1
+

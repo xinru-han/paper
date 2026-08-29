@@ -1,0 +1,342 @@
+schema_version: 2
+parameter_set: CASM_WORLD_ELASTICITIES_V2
+benchmark_year: 2023
+
+sources:
+  frozen_prior_catalog_key: peatsim_parameter_priors
+  frozen_prior_source_id: USDA-PEATSIM-507-PARAMS
+  benchmark_path: data/processed/benchmark_equilibrium_2023.csv
+  unbalanced_use_path: data/processed/benchmark_unbalanced_2023.csv
+  commodity_config_path: config/commodities.yaml
+  reporting_config_path: config/reporting_groups.yaml
+  income_interface: WB_INCOME_FY25_via_reporting_module
+
+coverage_gate:
+  expected_model_accounts: 193
+  expected_commodities: 31
+  expected_rows: 5983
+  missing_to_zero: forbidden
+  require_unique_account_commodity: true
+
+outputs:
+  parameters: data/processed/casm_world_parameters_v2_2023.csv
+  report: data/processed/casm_world_parameters_v2_report.json
+
+# PEATSim values are never copied to CASM economies. For crop supply, the
+# long-run total-production response is first calculated inside every common
+# PEATSim region as ela.supela (yield/intensive-margin response) plus the own
+# diagonal of yahela (area/extensive-margin response), and that aligned sum is
+# then reduced to a finite commodity median. Other PEATSim series are reduced
+# to finite commodity medians before CASM income-group factors are applied.
+prior_reduction: aligned_region_component_sum_then_finite_commodity_median
+
+chain_roles:
+  RIC: paddy_equivalent_primary_account
+  WHE: primary_crop
+  CRN: primary_crop
+  OCG: primary_crop_aggregate
+  SBS: oilseed_processing_input
+  SBO: oilseed_joint_output_oil
+  SBM: oilseed_joint_output_meal
+  NBS: oilseed_processing_input
+  NBO: oilseed_joint_output_oil
+  NBM: oilseed_joint_output_meal
+  RBS: oilseed_processing_input
+  RBO: oilseed_joint_output_oil
+  RBM: oilseed_joint_output_meal
+  DDG: ethanol_joint_byproduct
+  ETH: biofuel_processing_output
+  BDI: biofuel_processing_output
+  OTO: vegetable_oil_aggregate
+  CTN: cotton_ginning_output
+  SUG: refined_sugar_output
+  SCA: sugar_processing_input
+  SBE: sugar_processing_input
+  BFV: livestock_final_product
+  PRK: livestock_final_product
+  PLM: livestock_final_product
+  MLK: dairy_processing_input
+  BUT: dairy_joint_output
+  CHE: dairy_joint_output
+  NDM: dairy_joint_output
+  FMK: dairy_joint_output
+  WDM: dairy_joint_output
+  ODA: dairy_joint_output
+
+supply_prior_routes:
+  peatsim_supela_plus_yahela_aligned_region_median: [RIC, WHE, CRN, OCG, SBS, NBS, RBS, CTN, SUG]
+  peatsim_meat_diagonal_median: [BFV, PRK, PLM, MLK]
+  peatsim_dairy_milk_geometric_blend:
+    products: [BUT, CHE, NDM, FMK, WDM, ODA]
+    raw_input: MLK
+    raw_input_weight: 0.5
+    processing_diagonal_weight: 0.5
+  chain_parent:
+    SBO: {parent: SBS, multiplier: 1.25}
+    SBM: {parent: SBS, multiplier: 1.25}
+    NBO: {parent: NBS, multiplier: 1.25}
+    NBM: {parent: NBS, multiplier: 1.25}
+    RBO: {parent: RBS, multiplier: 1.25}
+    RBM: {parent: RBS, multiplier: 1.25}
+    # Sugar upstream accounts inherit the same long-run crop response. SUG is
+    # retained as the processing-output interface parameter.
+    SCA: {parent: SUG, multiplier: 1.0}
+    SBE: {parent: SUG, multiplier: 1.0}
+    DDG: {parent: ETH, multiplier: 1.0}
+  explicit_author_default:
+    ETH: 0.25
+    BDI: 0.25
+    OTO: 0.50
+
+# Food-price components use the own diagonal of fodela. Routes for products
+# with zero food share are retained only to keep a complete auditable
+# component interface; they never create food demand.
+food_price_prior_routes:
+  peatsim_food_diagonal_median:
+    - RIC
+    - WHE
+    - CRN
+    - OCG
+    - SBS
+    - SBO
+    - SBM
+    - NBS
+    - NBO
+    - NBM
+    - RBS
+    - RBO
+    - RBM
+    - OTO
+    - CTN
+    - SUG
+    - BFV
+    - PRK
+    - PLM
+    - BUT
+    - CHE
+    - NDM
+    - FMK
+    - WDM
+    - ODA
+  chain_parent:
+    SCA: {parent: SUG, multiplier: 1.25}
+    SBE: {parent: SUG, multiplier: 1.25}
+  resolved_product_median:
+    MLK: [BUT, CHE, NDM, FMK, WDM, ODA]
+    DDG: [SBM, NBM, RBM]
+  explicit_author_default:
+    ETH: -0.15
+    BDI: -0.15
+
+food_income_prior_routes:
+  peatsim_gdpela_median:
+    - RIC
+    - WHE
+    - CRN
+    - OCG
+    - SBS
+    - SBO
+    - SBM
+    - NBS
+    - NBO
+    - NBM
+    - RBS
+    - RBO
+    - RBM
+    - DDG
+    - ETH
+    - BDI
+    - OTO
+    - CTN
+    - SUG
+    - BFV
+    - PRK
+    - PLM
+    - MLK
+    - BUT
+    - CHE
+    - NDM
+    - WDM
+  chain_parent:
+    SCA: {parent: SUG, multiplier: 1.0}
+    SBE: {parent: SUG, multiplier: 1.0}
+  resolved_product_median:
+    FMK: [BUT, CHE, NDM, WDM]
+    ODA: [BUT, CHE, NDM, WDM]
+
+# fedela is a feed-input demand system indexed by livestock activity, feed
+# input, and input price. The own feed-price response is reduced by taking the
+# finite regional median for each livestock row and then the finite median
+# across livestock rows. DDG inherits the unweighted three-meal median;
+# non-direct products use the declared CASM other-use magnitude. No fodela
+# structural zero is reused as a feed elasticity.
+feed_price_prior_routes:
+  peatsim_feed_diagonal_median: [WHE, CRN, OCG, SBM, NBM, RBM]
+  resolved_product_median:
+    DDG: [SBM, NBM, RBM]
+  # Products outside the frozen fedela feed-input set use the declared CASM V2
+  # non-food price magnitude; they are not assigned a fabricated fedela proxy.
+  explicit_author_default:
+    RIC: -0.10
+    SBS: -0.10
+    SBO: -0.10
+    NBS: -0.10
+    NBO: -0.10
+    RBS: -0.10
+    RBO: -0.10
+    ETH: -0.10
+    BDI: -0.10
+    OTO: -0.10
+    CTN: -0.10
+    SUG: -0.10
+    SCA: -0.10
+    SBE: -0.10
+    BFV: -0.10
+    PRK: -0.10
+    PLM: -0.10
+    MLK: -0.10
+    BUT: -0.10
+    CHE: -0.10
+    NDM: -0.10
+    FMK: -0.10
+    WDM: -0.10
+    ODA: -0.10
+
+final_demand_use_share_composite:
+  balanced_food_numerator: food_demand_2023
+  balanced_total_denominator: final_demand_2023
+  unbalanced_role: balance
+  # These are the positive, non-processing, non-food use observations used to
+  # split the balanced other-final-use remainder. Residual and stock change
+  # are accounting terms rather than behavioural final uses and are excluded.
+  positive_nonprocessing_nonfood_accounts: [feed, seed, loss, other_use, energy_consumption]
+  feed_account: feed
+  excluded_accounts: [food, processing, residual, stock_change]
+  explicit_feed_products: [DDG, SBM, NBM, RBM]
+  no_observed_composition_fallback: assign_balanced_remainder_to_other_use
+  price_components:
+    food: peatsim_fodela_own_median
+    feed: peatsim_fedela_own_median_or_declared_casm_v2_other_use_prior
+    other_use_author_prior_magnitude: 0.10
+  income_components:
+    food: peatsim_gdpela_median
+    feed_author_prior: 0.40
+    other_use_author_prior: 0.10
+  structural_zero_rule: zero_price_and_income_elasticities_if_and_only_if_balanced_total_final_demand_is_zero
+
+parameter_response_envelope:
+  sets: [V2_LOW_RESPONSE, V2_CENTRAL, V2_HIGH_RESPONSE]
+  crop_supply_quantiles: {low: 0.25, central: 0.50, high: 0.75}
+  feed_price_magnitude_factors: {low: 0.75, central: 1.00, high: 1.25}
+  explicit_supply_priors:
+    low: {ETH: 0.1875, BDI: 0.1875, OTO: 0.30}
+    central: {ETH: 0.25, BDI: 0.25, OTO: 0.50}
+    high: {ETH: 0.3125, BDI: 0.3125, OTO: 0.80}
+  income_elasticity: identical_across_response_sets
+
+# Final CASM parameters equal the routed commodity prior times the class and
+# income-group factors, bounded below. Bounds are inclusive. Demand bounds are
+# expressed as absolute magnitudes and the stored elasticity remains negative.
+class_rules:
+  crop:
+    supply: {multiplier: 1.0, bounds: [0.15, 0.65]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.05, 0.50]}
+    income: {multiplier: 0.75, bounds: [0.05, 0.60]}
+    transmission: {exchange_rate: 0.78, tariff: 0.90}
+  crop_aggregate:
+    supply: {multiplier: 1.0, bounds: [0.15, 0.65]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.05, 0.50]}
+    income: {multiplier: 0.75, bounds: [0.05, 0.60]}
+    transmission: {exchange_rate: 0.78, tariff: 0.90}
+  oilseed:
+    supply: {multiplier: 1.0, bounds: [0.15, 0.65]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.06, 0.45]}
+    income: {multiplier: 0.65, bounds: [0.04, 0.50]}
+    transmission: {exchange_rate: 0.80, tariff: 0.92}
+  vegetable_oil:
+    supply: {multiplier: 1.0, bounds: [0.04, 0.50]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.08, 0.60]}
+    income: {multiplier: 0.90, bounds: [0.06, 0.70]}
+    transmission: {exchange_rate: 0.68, tariff: 0.84}
+  oilmeal:
+    supply: {multiplier: 1.0, bounds: [0.04, 0.50]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.08, 0.55]}
+    income: {multiplier: 0.55, bounds: [0.04, 0.50]}
+    transmission: {exchange_rate: 0.70, tariff: 0.86}
+  feed_byproduct:
+    supply: {multiplier: 1.0, bounds: [0.08, 0.55]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.08, 0.55]}
+    income: {multiplier: 0.55, bounds: [0.04, 0.50]}
+    transmission: {exchange_rate: 0.68, tariff: 0.82}
+  biofuel:
+    supply: {multiplier: 1.0, bounds: [0.08, 0.60]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.08, 0.40]}
+    income: {multiplier: 0.45, bounds: [0.03, 0.45]}
+    transmission: {exchange_rate: 0.48, tariff: 0.72}
+  vegetable_oil_aggregate:
+    supply: {multiplier: 1.0, bounds: [0.15, 0.98]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.08, 0.60]}
+    income: {multiplier: 0.90, bounds: [0.06, 0.70]}
+    transmission: {exchange_rate: 0.68, tariff: 0.84}
+  fibre:
+    supply: {multiplier: 1.0, bounds: [0.15, 0.65]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.04, 0.25]}
+    income: {multiplier: 0.35, bounds: [0.03, 0.35]}
+    transmission: {exchange_rate: 0.80, tariff: 0.92}
+  processed_crop:
+    supply: {multiplier: 1.0, bounds: [0.15, 0.65]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.06, 0.40]}
+    income: {multiplier: 0.90, bounds: [0.06, 0.70]}
+    transmission: {exchange_rate: 0.65, tariff: 0.82}
+  processing_crop:
+    supply: {multiplier: 1.0, bounds: [0.15, 0.65]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.08, 0.40]}
+    income: {multiplier: 0.65, bounds: [0.04, 0.50]}
+    transmission: {exchange_rate: 0.76, tariff: 0.90}
+  livestock_product:
+    supply: {multiplier: 0.65, bounds: [0.15, 0.60]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.12, 0.75]}
+    income: {multiplier: 1.50, bounds: [0.12, 0.90]}
+    transmission: {exchange_rate: 0.62, tariff: 0.80}
+  dairy_input:
+    supply: {multiplier: 0.90, bounds: [0.12, 0.50]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.10, 0.50]}
+    income: {multiplier: 1.10, bounds: [0.10, 0.75]}
+    transmission: {exchange_rate: 0.58, tariff: 0.78}
+  dairy_product:
+    supply: {multiplier: 0.75, bounds: [0.12, 0.60]}
+    demand: {multiplier: 1.0, magnitude_bounds: [0.08, 0.60]}
+    income: {multiplier: 1.40, bounds: [0.10, 0.85]}
+    transmission: {exchange_rate: 0.55, tariff: 0.76}
+
+income_group_adjustments:
+  LIC:
+    supply: 0.85
+    demand_magnitude: 1.15
+    income: 1.25
+    transmission: 0.90
+  LMC:
+    supply: 0.95
+    demand_magnitude: 1.08
+    income: 1.12
+    transmission: 0.95
+  UMC:
+    supply: 1.05
+    demand_magnitude: 1.00
+    income: 0.92
+    transmission: 1.00
+  HIC:
+    supply: 1.10
+    demand_magnitude: 0.85
+    income: 0.65
+    transmission: 1.05
+  NCL:
+    supply: 1.00
+    demand_magnitude: 1.00
+    income: 1.00
+    transmission: 1.00
+    status: explicit_not_classified_fallback
+
+transmission_bounds:
+  exchange_rate: [0.30, 0.98]
+  tariff: [0.30, 0.98]

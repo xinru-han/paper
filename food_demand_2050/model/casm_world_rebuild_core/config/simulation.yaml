@@ -1,0 +1,144 @@
+version: 0.2.0-v2-central
+benchmark_year: 2023
+projection_end: 2050
+scenarios: [SSP1, SSP2, SSP3, SSP4, SSP5]
+
+# Frozen V2 central parameter contract.  Resolve the formal V2 output through
+# parameters.yaml rather than duplicating its filename here; the table marker
+# is checked before any equilibrium is solved, so a V1 table cannot be
+# consumed silently.
+parameters:
+  config: config/parameters.yaml
+  output_key: parameters
+  required_parameter_set: CASM_WORLD_ELASTICITIES_V2
+  marker_column: parameter_status
+  marker_contains: v2
+  semantic_contract:
+    supply_response_semantics: long_run_total_production_own_price
+    demand_response_semantics: balanced_2023_use_share_composite_final_demand_own_price
+    income_response_semantics: balanced_2023_use_share_composite_final_demand_income
+
+# Long-run responses are fully active in the normalized benchmark.  From
+# 2024 onward the effective response is (1-lambda^(year-2023))*LR.  Final
+# demand always uses its long-run composite elasticity and has no horizon
+# multiplier.
+response_horizons:
+  equation: one_minus_lambda_to_years_since_benchmark_times_long_run
+  benchmark_uses_long_run_response: true
+  final_demand_horizon: none
+  primary_supply:
+    lambda_by_commodity_class:
+      crop: 0.10
+      crop_aggregate: 0.10
+      oilseed: 0.10
+      processing_crop: 0.10
+      fibre: 0.10
+      livestock_product: 0.25
+      dairy_input: 0.25
+      vegetable_oil_aggregate: 0.10
+    # BDI is a supply proxy because no biodiesel feedstock is represented in
+    # the 31-product boundary.  Its V2 LR prior is read from the parameter
+    # table; only its response horizon is specified here.
+    lambda_by_product:
+      BDI: 0.10
+    inactive_classes_without_primary_supply:
+      - vegetable_oil
+      - oilmeal
+      - processed_crop
+      - dairy_product
+      - feed_byproduct
+      - biofuel
+  processing:
+    # This is a fail-closed whitelist: every ProcessSpec constructed by the
+    # system must occur here.  Fixed physical input/output coefficients remain
+    # unchanged; only the margin response is assigned below.
+    activities:
+      soybean_crush:
+        elasticity_method: fixed
+        long_run_elasticity: 1.50
+        lambda: 0.10
+        provenance: PEATSim_oilela_semantic_prior
+      sunflower_crush:
+        elasticity_method: fixed
+        long_run_elasticity: 1.50
+        lambda: 0.10
+        provenance: PEATSim_oilela_semantic_prior
+      rapeseed_crush:
+        elasticity_method: fixed
+        long_run_elasticity: 1.50
+        lambda: 0.10
+        provenance: PEATSim_oilela_semantic_prior
+      sugar_SCA:
+        elasticity_method: fixed
+        long_run_elasticity: 1.00
+        lambda: 0.10
+        provenance: explicit_CASM_V2_prior
+      sugar_SBE:
+        elasticity_method: fixed
+        long_run_elasticity: 1.00
+        lambda: 0.10
+        provenance: explicit_CASM_V2_prior
+      cotton_ginning:
+        elasticity_method: product_parameter
+        parameter_product: CTN
+        lambda: 0.10
+        provenance: V2_upstream_cotton_long_run_parameter
+      ethanol:
+        elasticity_method: fixed
+        long_run_elasticity: 0.25
+        lambda: 0.10
+        provenance: explicit_CASM_V2_prior
+      dairy_solids:
+        elasticity_method: fixed
+        long_run_elasticity: 3.00
+        lambda: 0.20
+        provenance: PEATSim_mlkela_semantic_prior
+      dairy_unmodelled_use:
+        elasticity_method: fixed_zero
+        long_run_elasticity: 0.00
+        lambda: 0.20
+        provenance: fixed_unmodelled_use_no_output
+    # No ProcessSpec is currently constructed for biodiesel; BDI is covered
+    # by the primary-supply proxy above.  The frozen process-equivalent prior
+    # is recorded explicitly for auditability.
+    boundary_proxy_activities:
+      biodiesel:
+        representation: primary_supply_BDI
+        long_run_elasticity_prior: 0.25
+        lambda: 0.10
+
+driver_equations:
+  final_demand: population_ratio_times_gdppc_ratio_to_income_elasticity
+  food_demand: fixed_balanced_2023_share_of_product_specific_final_demand
+  primary_supply: tfp_index_to_product_exponent_times_climate_yield_index
+  local_price: world_price_times_real_exchange_rate_and_tariff_pass_through
+  processing: process_specific_long_run_margin_response_with_horizon_and_fixed_physical_yields
+
+tfp_exponent_by_commodity_class:
+  crop: 1.0
+  crop_aggregate: 1.0
+  oilseed: 1.0
+  processing_crop: 1.0
+  fibre: 1.0
+  livestock_product: 1.0
+  dairy_input: 1.0
+  vegetable_oil_aggregate: 0.5
+  vegetable_oil: 0.0
+  oilmeal: 0.0
+  processed_crop: 0.0
+  dairy_product: 0.0
+  feed_byproduct: 0.0
+  biofuel: 0.0
+
+solver:
+  market_relative_residual: 1.0e-9
+  accounting_relative_residual: 1.0e-9
+  maximum_evaluations: 2000
+  maximum_absolute_log_price: 7.0
+
+outputs:
+  results: outputs/ssp_results_country_product_2023_2050.csv
+  prices: outputs/ssp_world_prices_2023_2050.csv
+  processing: outputs/ssp_processing_activities_2023_2050.csv
+  convergence: outputs/ssp_annual_convergence_2023_2050.csv
+  report: outputs/ssp_run_report.json

@@ -1,43 +1,71 @@
-# 食物需求预测2050 / China's Diet Transition to 2050
+# 中国膳食转型2050：CASM-World全球溢出研究
 
-Global Food Security / Journal of Environmental Management 方向的工作稿
-《China's dietary transition to 2050: implications for agricultural markets, trade
-and model-covered environmental pressures》的代码、数据与稿件。原稿经全面升级：
-GAMS→Python复现、接入CASM-World世界模型、国际权威足迹系数库、边界隔离账户、
-模型覆盖商品的全球净效应核算。
+本目录是论文的可审计工作区。当前主稿为
+`manuscript/manuscript_v3_casm_world.md`，使用重建的CASM-World V2评估中国膳食结构变化对中国、世界、UN区域、收入组以及个别经济体-产品的影响。
+
+## 当前状态
+
+**诊断性条件情景稿，尚不是可直接投稿的发表基线。**
+
+CASM-World V2通过18/20个预先冻结的发表门槛；未通过的是两个2050价格区间门槛。共享作物资源/土地分配模块也尚未实现。主稿、SI和cover letter已同步标注该状态，不把诊断结果包装为无条件预测。
+
+## 研究设计
+
+- 193个求解经济体账户，31种产品，2023共同基准年。
+- 中国CASM提供BASELINE、PTS、MTS和CGS四条路径。
+- 19种世界模型产品接收中国食物偏好冲击；非食物用途保持SSP路径。
+- SSP2逐年求解2023-2050；SSP1/3/4/5求解2023与2050端点。
+- SSP2 2050追加低/中/高反应参数和五嵌套需求形式敏感性。
+- 主运160个均衡全部收敛，最大市场残差`7.253e-15`。
+
+## 新核心结果（SSP2 2050，CGS相对同SSP基线）
+
+- 世界价格：猪肉-46.2%、稻米-14.6%、牛肉-12.1%；禽肉+8.4%、液体奶+18.6%、全脂奶粉+22.6%。
+- 中国：猪肉食物需求-51.6 Mt，液体奶+53.9 Mt；对应净进口平衡变化-32.3 Mt和+48.7 Mt。
+- 世界：非重叠13初级产品篮子生产-71.0 Mt，其中亚洲-59.4 Mt。
+- 农场端GHG：全球-254.5 Mt CO2e (-4.04%)；中国外-207.2 Mt，占81.4%。PTS则增加+23.1 Mt CO2e。
+- 不确定性：五条SSP下配对效应较稳定；嵌套需求下猪肉价格效应收窄到-21.2%，禽肉由+8.4%变为-10.8%。
+
+## 边界
+
+世界模型不包括薯类、蔬菜、水果、蛋、水产品和羊肉，因此CGS是“模型覆盖商品中的部分综合指南转型”，不是完整健康膳食。贸易是净进口恒等式，没有双边流量。GHG是冻结2023年归属的生物性农场端生产排放，不是全生命周期或土地利用变化排放。
 
 ## 目录
 
-| 目录 | 内容 |
+| 路径 | 内容 |
 |---|---|
-| `scenarios/` | 模拟方案（整理自原Excel）：情景定义A1–C6、宏观假设、收入弹性、人均路径、健康膳食基准、营养系数 |
-| `model/` | Python版CASM（v2.2.7论文版）：19情景复现runner + 验证脚本 |
-| `model/world/` | CASM-World世界模型情景runner（4情景×13区域×2050）和本地 `cw/` 核心包 |
-| `modules/coefficients/` | 国际足迹系数库（FAOSTAT/Poore&Nemecek 2018/Mekonnen&Hoekstra/IPCC 2019/Ludemann 2022，全部溯源） |
-| `modules/` | 足迹核算模块（碳双边界/蓝绿灰水/活性氮/土地）+ 事后分析 |
-| `results/` | 中国19情景长表、世界4情景长表、足迹结果、事后分析（SSR/行星边界/MTS效率/健康代理）、验证报告 |
-| `figures/` | 4主图+4扩展图（png 300dpi + pdf）与作图脚本 |
-| `manuscript/` | manuscript_v2.md、SI、response_to_reviewers.md、cover_letter.md |
-| `docs/` | 审稿意见整理、原论文表格提取、Nature故事线设计 |
-
-## 核心结果（2050，HDS相对BS）
-
-- 中国境内：能量摄入-26%、红肉-72%、碳排放-31%（含技术）/-1%（固定系数，因需求经贸易外传）
-- 世界价格：猪肉-56%、大豆-35%、玉米-33%、奶粉+20%（唯一逆势）
-- 供给地理：巴西大豆-11.7%、阿根廷-14%、美国猪肉-46%；中国境外收获耕地减少21.7 Mha
-- 全球净效应：模型覆盖商品农场端碳-495 Mt CO₂e，91%发生在中国境外；水、氮和土地占用已移至边界敏感性/诊断账户，不再作为完整全球总量
-- MTS温和转型：当前增长率插值设定下实现约65%的PTS-HDS变化（21指标中位）；替代插值和弹性敏感性仍需扩展
+| `manuscript/manuscript_v3_casm_world.md` | 当前主稿 |
+| `manuscript/supplementary_information_v3_casm_world.md` | 新SI |
+| `manuscript/revision_notes_casm_world_rebuild_20260829.md` | 旧结论替换和修订说明 |
+| `manuscript/cover_letter_nature_communications_draft.md` | Nature Communications方向cover letter（内部HOLD） |
+| `model/casm_world_rebuild_core/` | 本次运行对应的模型核心源码、配置、测试与数据哈希清单 |
+| `model/casm_world_rebuild_study/` | 路径映射、跑模型、分析、作图和测试代码 |
+| `results/casm_world_rebuild/` | 原始压缩结果、对比结果、审计报告和论文表 |
+| `figures/casm_world_rebuild/` | 4张主图，PNG和PDF |
+| `manuscript/manuscript_v2.md` | 保留的旧版稿，不再是默认稿 |
 
 ## 复现
 
+完整独立模型副本和本次所有输出位于：
+
+`/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/`
+
+在该目录下执行：
+
 ```bash
-cd model && python3 run_scenarios.py && python3 validate.py   # 中国19情景（~6分钟）
-cd world && python3 run_scenarios.py && python3 validate_china_demand_alignment.py && python3 analyze.py
-cd ../../modules && python3 footprints.py                     # 足迹核算
-cd ../figures && python3 make_figures.py                      # 全部图表
+export PYTHONPATH="$PWD/src"
+/root/data/CASM/casm_world_rebuild_2050/.venv/bin/python study/china_diet/prepare_diet_paths.py
+/root/data/CASM/casm_world_rebuild_2050/.venv/bin/python study/china_diet/run_counterfactuals.py
+/root/data/CASM/casm_world_rebuild_2050/.venv/bin/python study/china_diet/analyze_counterfactuals.py
+/root/data/CASM/casm_world_rebuild_2050/.venv/bin/python study/china_diet/make_figures.py
+/root/data/CASM/casm_world_rebuild_2050/.venv/bin/python -m pytest -q study/china_diet/tests
 ```
 
-验证：与GAMS真值逐格中位偏差0（机器精度），论文表2–6全部复现至舍入精度
-（见 `results/validation_report.md`，含原GAMS产物两处已知问题的说明）。
+论文-结果一致性审计：
 
-原始材料位于 `/root/data/Paper/食物预测2050/`。模型重跑请先复制本目录到独立工作区，避免运行输出污染原始仓库。
+```bash
+cd /root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/paper_worktree/food_demand_2050
+python3 audit_manuscript_repository_consistency.py
+```
+
+原始模型`/root/data/CASM/casm_world_rebuild_2050/`没有被本研究运行改写。

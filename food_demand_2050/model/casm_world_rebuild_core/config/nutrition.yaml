@@ -1,0 +1,173 @@
+schema_version: 1
+benchmark_year: 2023
+days_per_year: 365.0
+
+# The post-solution consumes edible food quantities only.  Market demand,
+# domestic supply, feed, processing inputs and raw-milk-equivalent quantities
+# are not interchangeable with this variable.
+input_contract:
+  quantity_column: food_quantity_mt
+  quantity_unit: Mt edible product/year
+  population_column: population_million
+  population_unit: million persons
+  require_complete_commodity_grid: true
+  nonfood_positive_tolerance_mt: 1.0e-12
+
+coefficient_units:
+  energy: kcal/kg edible product
+  protein: g/kg edible product
+  fat: g/kg edible product
+
+# FAOSTAT country totals can inherit independent rounding from per-capita
+# series.  Coefficients therefore use the global median of complete country-
+# product ratios.  Universal edible-mass bounds prevent a rounded observation
+# from implying more than one kg of protein/fat per kg or more than the energy
+# density of pure fat.  Every binding adjustment is retained in the output.
+fbs_estimator: median_of_country_product_ratios
+coefficient_upper_bounds:
+  energy_kcal_per_kg: 9000.0
+  protein_g_per_kg: 1000.0
+  fat_g_per_kg: 1000.0
+
+outputs:
+  energy: kcal/capita/day
+  protein: g/capita/day
+  fat: g/capita/day
+
+scenario_postsolve:
+  interpretation_scope: model-covered 31-commodity edible food basket, not a complete diet
+  inputs:
+    scenario_results: outputs/ssp_results_country_product_2023_2050.csv
+    drivers: data/processed/ssp_drivers_2023_2050.csv
+    coefficients: data/processed/nutrition_coefficients_2023.csv
+    quantity_column: food_demand_mt
+    forbidden_quantity_column: final_demand_mt
+  expected_grid:
+    scenarios: [SSP1, SSP2, SSP3, SSP4, SSP5]
+    first_year: 2023
+    last_year: 2050
+    economy_count: 193
+    commodity_count: 31
+  checks:
+    base_year_scenario_absolute_tolerance: 1.0e-12
+    world_conservation_relative_tolerance: 1.0e-12
+    nonfood_positive_tolerance_mt: 1.0e-12
+  outputs:
+    economy_summary: outputs/ssp_nutrition_economy_2023_2050.csv
+    world_summary: outputs/ssp_nutrition_world_2023_2050.csv
+    commodity_contributions: outputs/ssp_nutrition_commodity_contributions_2023_2050.csv
+    audit: outputs/ssp_nutrition_audit_2023_2050.json
+    write_commodity_contributions: true
+
+fbs_elements:
+  food_quantity:
+    element_code: 5142
+    expected_unit: 1000 t
+  energy:
+    element_code: 661
+    expected_unit: million Kcal
+  protein:
+    element_code: 671
+    expected_unit: t
+  fat:
+    element_code: 681
+    expected_unit: t
+
+# source_class has four exhaustive values:
+# direct    = one matching FAOSTAT FBS item;
+# aggregate = two or more matching FAOSTAT FBS items, summed before division;
+# fallback  = a frozen product-technology coefficient because FAOSTAT publishes
+#             no matching product-level nutrient balance for this CASM item;
+# nonfood   = structurally excluded from edible food quantities (coefficients 0).
+commodities:
+  RIC: {food_use: true, source_class: direct, food_group: FG1, fbs_items: [2807]}
+  WHE: {food_use: true, source_class: direct, food_group: FG1, fbs_items: [2511]}
+  CRN: {food_use: true, source_class: direct, food_group: FG1, fbs_items: [2514]}
+  OCG: {food_use: true, source_class: aggregate, food_group: FG1, fbs_items: [2513, 2515, 2516, 2517, 2518, 2520]}
+
+  SBS: {food_use: true, source_class: direct, food_group: FG3, fbs_items: [2555]}
+  SBO: {food_use: true, source_class: direct, food_group: FG11, fbs_items: [2571]}
+  SBM:
+    food_use: false
+    source_class: nonfood
+    reason: oilmeal feed output; edible soybean foods remain in SBS
+  NBS: {food_use: true, source_class: direct, food_group: FG3, fbs_items: [2557]}
+  NBO: {food_use: true, source_class: direct, food_group: FG11, fbs_items: [2573]}
+  NBM:
+    food_use: false
+    source_class: nonfood
+    reason: oilmeal feed output
+  RBS: {food_use: true, source_class: direct, food_group: FG3, fbs_items: [2558]}
+  RBO: {food_use: true, source_class: direct, food_group: FG11, fbs_items: [2574]}
+  RBM:
+    food_use: false
+    source_class: nonfood
+    reason: oilmeal feed output
+
+  DDG:
+    food_use: false
+    source_class: nonfood
+    reason: distillers grain feed by-product
+  ETH:
+    food_use: false
+    source_class: nonfood
+    reason: fuel ethanol
+  BDI:
+    food_use: false
+    source_class: nonfood
+    reason: biodiesel
+  OTO: {food_use: true, source_class: aggregate, food_group: FG11, fbs_items: [2572, 2575, 2576, 2577, 2578, 2579, 2580, 2581, 2582, 2586]}
+
+  CTN:
+    food_use: false
+    source_class: nonfood
+    reason: cotton lint fibre; cottonseed food products are outside CTN
+  SUG: {food_use: true, source_class: direct, food_group: FG12, fbs_items: [2542]}
+  SCA:
+    food_use: false
+    source_class: nonfood
+    reason: sugar-processing input; counting it with SUG would duplicate sugar
+  SBE:
+    food_use: false
+    source_class: nonfood
+    reason: sugar-processing input; counting it with SUG would duplicate sugar
+
+  BFV: {food_use: true, source_class: direct, food_group: FG7, fbs_items: [2731]}
+  PRK: {food_use: true, source_class: direct, food_group: FG7, fbs_items: [2733]}
+  PLM: {food_use: true, source_class: direct, food_group: FG7, fbs_items: [2734]}
+
+  MLK:
+    food_use: false
+    source_class: nonfood
+    reason: raw-milk processing input; edible dairy is represented by product outputs
+  BUT: {food_use: true, source_class: direct, food_group: FG4, fbs_items: [2740]}
+  CHE:
+    food_use: true
+    source_class: fallback
+    food_group: FG4
+    fallback_family: frozen_dairy_product_technology
+    fallback_coefficients: {energy_kcal_per_kg: 4000.0, protein_g_per_kg: 250.0, fat_g_per_kg: 330.0}
+  NDM:
+    food_use: true
+    source_class: fallback
+    food_group: FG4
+    fallback_family: frozen_dairy_product_technology
+    fallback_coefficients: {energy_kcal_per_kg: 3600.0, protein_g_per_kg: 360.0, fat_g_per_kg: 10.0}
+  FMK:
+    food_use: true
+    source_class: fallback
+    food_group: FG4
+    fallback_family: frozen_dairy_product_technology
+    fallback_coefficients: {energy_kcal_per_kg: 620.0, protein_g_per_kg: 33.0, fat_g_per_kg: 35.0}
+  WDM:
+    food_use: true
+    source_class: fallback
+    food_group: FG4
+    fallback_family: frozen_dairy_product_technology
+    fallback_coefficients: {energy_kcal_per_kg: 5000.0, protein_g_per_kg: 260.0, fat_g_per_kg: 270.0}
+  ODA:
+    food_use: true
+    source_class: fallback
+    food_group: FG4
+    fallback_family: frozen_dairy_product_technology
+    fallback_coefficients: {energy_kcal_per_kg: 3500.0, protein_g_per_kg: 120.0, fat_g_per_kg: 10.0}

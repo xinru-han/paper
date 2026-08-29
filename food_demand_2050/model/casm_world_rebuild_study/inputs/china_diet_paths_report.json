@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "source": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/inputs/prior_casm_results_long.csv",
+  "source_sha256": "60e3a1eefbda383f5292c2b4954f640f436b0cbe591dde3c3b002a715134cf2b",
+  "scenario_type": "conditional_counterfactual_not_unconditional_forecast",
+  "pathways": [
+    "BASELINE",
+    "PTS",
+    "MTS",
+    "CGS"
+  ],
+  "year_start": 2023,
+  "year_end": 2050,
+  "mapped_world_commodity_count": 19,
+  "mapped_world_commodities": [
+    "RIC",
+    "WHE",
+    "CRN",
+    "OCG",
+    "SBS",
+    "SBO",
+    "NBO",
+    "RBO",
+    "OTO",
+    "SUG",
+    "BFV",
+    "PRK",
+    "PLM",
+    "BUT",
+    "CHE",
+    "NDM",
+    "FMK",
+    "WDM",
+    "ODA"
+  ],
+  "excluded_prior_casm_foods": [
+    {
+      "source_commodity": "POTA",
+      "reason": "no tuber market in the 31-product world model"
+    },
+    {
+      "source_commodity": "VEGT",
+      "reason": "no vegetable market in the 31-product world model"
+    },
+    {
+      "source_commodity": "FRTO",
+      "reason": "no fruit market in the 31-product world model"
+    },
+    {
+      "source_commodity": "EGGS",
+      "reason": "no egg market in the 31-product world model"
+    },
+    {
+      "source_commodity": "FISH",
+      "reason": "no aquatic-food market in the 31-product world model"
+    },
+    {
+      "source_commodity": "SHGM",
+      "reason": "no sheep/goat meat market in the 31-product world model"
+    }
+  ],
+  "benchmark_maximum_absolute_multiplier_error": 0.0,
+  "mapping_rule": "pathway-to-BS ratio of summed China-CASM kg/person/year",
+  "important_scope_limit": "Vegetables, fruit, eggs, aquatic foods, tubers and sheep/goat meat are outside the CASM-World 31-product equilibrium and receive no market shock.",
+  "output": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/inputs/china_diet_paths_mapped.csv",
+  "output_sha256": "a5eb8701acff5129fc8e617c4464c5832cc53a9ba84c22095d5434d12dee3024"
+}

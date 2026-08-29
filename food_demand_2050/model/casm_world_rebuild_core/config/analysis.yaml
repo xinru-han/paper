@@ -1,0 +1,110 @@
+schema_version: "1.0"
+benchmark_year: 2023
+end_year: 2050
+
+inputs:
+  scenario_results: outputs/ssp_results_country_product_2023_2050.csv
+  balanced_benchmark: data/processed/benchmark_equilibrium_2023.csv
+  source_observations: data/interim/benchmark_source_observations_2023.csv
+  reporting_config: config/reporting_groups.yaml
+  territory_config: config/territory_aggregation.yaml
+  commodity_config: config/commodities.yaml
+  balancing_config: config/balancing.yaml
+  data_source_config: config/data_sources.yaml
+
+outputs:
+  group_results: outputs/ssp_results_group_product_2023_2050.csv
+  change_summary: outputs/ssp_group_product_change_2023_2050.csv
+  coverage_report: outputs/ssp_group_analysis_report.json
+  model_membership: data/processed/reporting_model_account_membership_2023.csv
+  source_membership: data/processed/reporting_source_group_membership_2023.csv
+  source_allocation_weights: data/processed/reporting_source_allocation_weights_2023.csv
+
+# World, focus economies, EU27 and World Bank income classes are aggregated
+# directly from the 193 solved accounts.  Geographic and UN special-status
+# groups first split each solved account back to original source geography
+# using frozen 2023 physical shares.  This preserves, for example, Faroe
+# Islands in Northern Europe and Taiwan in Eastern Asia without ever creating
+# either as an independent model account.
+source_geography_allocation:
+  method: fixed_2023_source_quantity_shares
+  supply_weight_columns:
+    - primary_supply_mt
+    - processing_supply_mt
+    - production_mt
+  food_demand_weight_columns:
+    - food_demand_mt
+  other_final_demand_weight_columns:
+    - other_final_demand_mt
+  processing_weight_columns:
+    - processing_demand_mt
+  derived_after_allocation:
+    production_mt: primary_supply_mt + processing_supply_mt
+    demand_mt: final_demand_mt + processing_demand_mt
+    net_import_mt: demand_mt - production_mt
+  zero_anchor_fallback: principal_source_of_account
+  reconstruction_tolerance_mt: 1.0e-8
+  weight_sum_tolerance: 1.0e-12
+
+# These flags are read from the verified English UN M49 table.  Counts freeze
+# the downloaded 2026-08-29 source snapshot and prevent silent membership
+# drift if the upstream HTML is replaced.
+un_special_groups:
+  source_id: UN-M49-2026-08-29
+  group_system: UN_SPECIAL_GROUP
+  groups:
+    LDC:
+      group_name: Least developed countries
+      source_column: Least Developed Countries (LDC)
+      expected_source_count: 44
+    LLDC:
+      group_name: Landlocked developing countries
+      source_column: Land Locked Developing Countries (LLDC)
+      expected_source_count: 32
+    SIDS:
+      group_name: Small island developing States
+      source_column: Small Island Developing States (SIDS)
+      expected_source_count: 53
+    PACIFIC_ISLANDS:
+      group_name: Pacific island countries and areas
+      subregion_codes: ["054", "057", "061"]
+      expected_source_count: 23
+
+# There is no universal UN binary definition of "developing economy".  The
+# paper therefore uses a transparent World Bank FY25 operational definition:
+# all solved accounts classified LIC, LMC or UMC; HIC and NCL are excluded.
+developing_economies:
+  group_system: WB_DEVELOPMENT_STATUS
+  group_code: DEVELOPING_ECONOMIES
+  group_name: Developing economies (World Bank FY25 LIC, LMC and UMC)
+  included_wb_income_codes: [LIC, LMC, UMC]
+
+quantity_columns:
+  required:
+    - primary_supply_mt
+    - processing_supply_mt
+    - production_mt
+    - food_demand_mt
+    - final_demand_mt
+    - processing_demand_mt
+    - demand_mt
+    - net_import_mt
+  optional:
+    - other_final_demand_mt
+  world_price_column: world_price_index_2023
+
+summary:
+  baseline_year: 2023
+  comparison_year: 2050
+  percent_change_denominator_floor_mt: 1.0e-9
+
+coverage_gate:
+  expected_model_accounts: 193
+  expected_commodities: 31
+  expected_scenarios: [SSP1, SSP2, SSP3, SSP4, SSP5]
+  expected_year_start: 2023
+  expected_year_end: 2050
+  forbid_territory_sources_as_model_accounts: true
+  require_world_exactly_once: true
+  require_un_exclusive_systems_reconstruct_world: true
+  require_wb_income_reconstruct_world: true

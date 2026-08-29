@@ -1,0 +1,25 @@
+version: 0.1.0
+benchmark_year: 2023
+
+# The SSP database does not publish exchange-rate paths. CASM-World therefore
+# estimates recent real-exchange-rate trends and lets them fade to zero. The
+# scenario multipliers below are explicit author assumptions, not IIASA data.
+estimation_window: [2013, 2023]
+minimum_observations: 5
+country_weight: 0.70
+annual_log_rate_bounds: [-0.03, 0.03]
+taper_end_year: 2035
+
+ssp_persistence_multipliers:
+  SSP1: 0.50
+  SSP2: 0.70
+  SSP3: 1.00
+  SSP4: 0.85
+  SSP5: 0.60
+
+definition:
+  index: real_lcu_per_usd_2023_equals_1
+  formula: nominal_lcu_per_usd_times_us_gdp_deflator_divided_by_local_gdp_deflator
+  interpretation: increase_is_real_depreciation
+  post_2035_rule: hold_2035_level_constant
+  scenario_status: author_assumption

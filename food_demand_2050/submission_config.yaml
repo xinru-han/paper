@@ -1,63 +1,64 @@
 project:
   name: food_demand_2050
   repository_path: food_demand_2050
-  manuscript: manuscript/manuscript_v2.md
-  target_journal_route: Global Food Security or Food Policy
-  current_scope_note: Sequentially linked CASM and CASM-World scenario analysis.
+  canonical_manuscript: manuscript/manuscript_v3_casm_world.md
+  supplementary_information: manuscript/supplementary_information_v3_casm_world.md
+  cover_letter: manuscript/cover_letter_nature_communications_draft.md
+  archived_manuscript: manuscript/manuscript_v2.md
+  target_journal_route: Nature Communications-oriented after model promotion
+  manuscript_status: diagnostic_conditional_scenario_not_submission_ready
+  hold_reason:
+    - underlying_casm_world_v2_passes_18_of_20_publication_gates
+    - shared_crop_resource_response_not_implemented
 
 model:
-  casm_version: v2.2.7
-  casm_commodity_count: 37
-  casm_world_regions: 13
-  casm_world_commodity_count: 31
-  base_year_china: 2023
-  base_year_world: 2024
-  shock_start_year_world: 2025
+  china_source_model: CASM v2.2.7
+  world_model: CASM-World rebuild 2050 V2
+  solved_economy_accounts: 193
+  world_product_count: 31
+  china_shifted_world_products: 19
+  benchmark_year: 2023
   final_year: 2050
-  linkage_type: one-way demand-shock transmission
+  linkage_type: exogenous_china_preference_path_with_global_equilibrium_price_feedback
+  trade_boundary: residual_net_trade_no_bilateral_flows
+  supply_boundary: independent_product_supply_no_shared_crop_resource
 
 scenarios:
-  baseline: BS
-  preference_driven: [A1, A2, A3, A4, A5, A6]
-  healthy_diet: [B1, B2, B3, B4, B5, B6]
-  moderate_transition: [C1, C2, C3, C4, C5, C6]
-  core_cases:
-    PTS: A1
-    HDS: B1
-    MTS: C1
-  population_2050_billion:
-    medium: 1.2586
-    high: 1.389
-    low: 1.200
-    adult_equivalent: 1.2697
+  baseline: {paper_code: BASELINE, source_china_code: BS}
+  preference_driven: {paper_code: PTS, source_china_code: A1}
+  moderate: {paper_code: MTS, source_china_code: C1}
+  composite_guideline: {paper_code: CGS, source_china_code: B1}
+  central_ssp: SSP2
+  main_grid:
+    SSP2: annual_2023_2050
+    SSP1_SSP3_SSP4_SSP5: endpoints_2023_2050
+  sensitivity:
+    response_variants: [V2_LOW_RESPONSE, V2_CENTRAL, V2_HIGH_RESPONSE]
+    demand_form: DEMAND_SUBSTITUTION_CES
 
 accounting_boundaries:
-  farm_gate_carbon:
-    coefficient_file: modules/coefficients/carbon_footprint_coefficients.csv
-    main_indicator: co2_faostat
-    allowed_for_global_net_effect: true
-  lifecycle_carbon:
-    coefficient_file: modules/coefficients/carbon_footprint_coefficients.csv
-    main_indicator: co2_pn_lca
-    allowed_for_global_net_effect: false
-    note: Use only as a final-consumption footprint sensitivity.
-  blue_water:
-    coefficient_file: modules/coefficients/water_footprint_coefficients.csv
-    headline_component: blue
-  nitrogen:
-    coefficient_file: modules/coefficients/nitrogen_coefficients.csv
-    note: Crop fertilizer and livestock excretion are direct-process proxies; virtual-N factors must not be added to the same direct total without a separate boundary.
-  land:
-    coefficient_file: modules/coefficients/land_coefficients.csv
-    land_occupation_equivalent: true
-    physical_harvested_area_indicator: land_harvested
+  primary_production:
+    products: [RIC, WHE, CRN, OCG, SBS, NBS, RBS, SCA, SBE, BFV, PRK, PLM, MLK]
+    processed_products_excluded_to_prevent_double_counting: true
+  ghg:
+    boundary: frozen_2023_attributed_biological_farm_gate_production
+    lifecycle_claim_allowed: false
+    land_use_change_included: false
+  nutrition:
+    boundary: model_covered_edible_basket_only
+    health_or_adequacy_claim_allowed: false
 
 key_output_files:
-  china_results: results/results_long.csv
-  world_results: results/world/world_results_long.csv
-  china_footprints: results/footprints/china_footprints_summary.csv
-  world_footprints: results/footprints/world_footprints_summary.csv
-  mts_realisation: results/post_analysis/mts_efficiency.csv
-  coefficient_boundary_audit: modules/coefficients/coefficient_boundary_audit.csv
-  number_registry: results/audit/submission_number_registry.csv
+  run_report: results/casm_world_rebuild/counterfactual_run_report.json
+  analysis_report: results/casm_world_rebuild/analysis_report.json
+  country_product: results/casm_world_rebuild/counterfactual_country_product.csv.gz
+  country_contrasts: results/casm_world_rebuild/country_contrasts_2050.csv.gz
+  group_contrasts: results/casm_world_rebuild/group_contrasts_2050.csv.gz
+  world_prices: results/casm_world_rebuild/counterfactual_world_prices.csv
+  ghg_country: results/casm_world_rebuild/ghg_country.csv.gz
+  ghg_group: results/casm_world_rebuild/ghg_group.csv.gz
+  sensitivity_prices: results/casm_world_rebuild/sensitivity_world_prices_2050.csv
+  tables: results/casm_world_rebuild/tables
+  figures: figures/casm_world_rebuild
+  claims_registry: results/casm_world_rebuild/claims_registry.csv
 

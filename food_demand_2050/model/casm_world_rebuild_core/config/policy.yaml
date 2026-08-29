@@ -1,0 +1,27 @@
+version: 0.1.0
+benchmark_year: 2023
+target_year: 2035
+projection_end: 2050
+
+tariff_reference:
+  indicator: TM.TAX.TCOM.WM.AR.ZS
+  definition: applied_trade_weighted_mean_primary_products
+  select: latest_non_null_observation_2018_2023
+  unit: percent
+  product_resolution: same_country_reference_rate_for_all_31_products
+  missing_rule: un_region_median_then_global_median
+
+# SSP narratives do not prescribe tariff rates. These target multipliers are
+# explicit CASM-World scenario assumptions and are applied linearly to 2035.
+ssp_2035_multipliers:
+  SSP1: 0.75
+  SSP2: 1.00
+  SSP3: 1.25
+  SSP4: 1.15
+  SSP5: 0.85
+
+extension_rule:
+  through_2035: linear_interpolation_from_2023_reference
+  after_2035: hold_2035_value_constant
+  never_fill_missing_with_zero: true
+  scenario_status: author_assumption

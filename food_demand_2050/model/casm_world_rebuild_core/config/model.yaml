@@ -1,0 +1,61 @@
+version: 0.1.0
+benchmark_year: 2023
+projection_start: 2024
+projection_end: 2050
+
+trade_closure:
+  spatial: false
+  bilateral_flows: false
+  world_reference_price_by_commodity: true
+  global_row_entity: false
+
+dependencies:
+  silk_allowed: false
+  legacy_casm_world_allowed: false
+  bilateral_model_allowed: false
+
+modules:
+  core_partial_equilibrium: required
+  china_world_two_way_coupling: required
+  nutrition_postsolve: required
+  agricultural_ghg_postsolve: required
+  nitrogen_balance: disabled
+
+commodities:
+  - RIC
+  - WHE
+  - CRN
+  - OCG
+  - SBS
+  - SBO
+  - SBM
+  - NBS
+  - NBO
+  - NBM
+  - RBS
+  - RBO
+  - RBM
+  - DDG
+  - ETH
+  - BDI
+  - OTO
+  - CTN
+  - SUG
+  - SCA
+  - SBE
+  - BFV
+  - PRK
+  - PLM
+  - MLK
+  - BUT
+  - CHE
+  - NDM
+  - FMK
+  - WDM
+  - ODA
+
+solver_tolerances:
+  market_relative_residual: 1.0e-9
+  accounting_relative_residual: 1.0e-8
+  max_iterations: 100
+

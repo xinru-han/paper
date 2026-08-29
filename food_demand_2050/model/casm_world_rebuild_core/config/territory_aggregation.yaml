@@ -1,0 +1,422 @@
+schema_version: "1.0"
+benchmark_year: 2023
+mapping_purpose: >-
+  Collapse 25 statistical territories into sovereign-parent or named regional
+  accounting targets while retaining each source territory's original M49
+  reporting geography. These mappings are analytical conventions and do not
+  express a position on sovereignty or territorial status.
+
+invariants:
+  expected_source_territories: 25
+  source_model_entity: false
+  retain_classification_metadata: true
+  mapping_cardinality: many_to_one
+  population_aggregation: sum
+  gdp_aggregation: sum_of_scope_exclusive_contributions
+  product_quantity_aggregation: sum
+  duplicate_source_rows_within_slice: error
+  null_additive_values: error
+  note: >-
+    GDP supplied to the additive aggregation function must be scope-exclusive.
+    Where a published parent GDP already contains a territory, do not also
+    supply that territory's GDP as an additive contribution. Where the parent
+    GDP excludes it, a non-null supplemental GDP contribution is required.
+
+# M49 region and most-specific reporting-area codes used below. For the
+# Americas and Sub-Saharan Africa, reporting_subregion_target uses the M49
+# intermediate region (for example Caribbean or Eastern Africa); otherwise it
+# uses the M49 sub-region. This preserves the geography of the source data.
+reporting_regions:
+  "002": Africa
+  "009": Oceania
+  "019": Americas
+  "142": Asia
+  "150": Europe
+
+reporting_subregions:
+  "005": South America
+  "011": Western Africa
+  "014": Eastern Africa
+  "015": Northern Africa
+  "021": Northern America
+  "029": Caribbean
+  "030": Eastern Asia
+  "039": Southern Europe
+  "057": Micronesia
+  "061": Polynesia
+  "154": Northern Europe
+
+accounting_targets:
+  USA:
+    name: United States
+    target_type: sovereign_parent_account
+    model_entity: true
+  NLD:
+    name: Netherlands
+    target_type: sovereign_parent_account
+    model_entity: true
+  FRA:
+    name: France
+    target_type: sovereign_parent_account
+    model_entity: true
+  MAR:
+    name: Morocco
+    target_type: sovereign_parent_account
+    model_entity: true
+  GBR:
+    name: United Kingdom
+    target_type: sovereign_parent_account
+    model_entity: true
+  DNK:
+    name: Denmark
+    target_type: sovereign_parent_account
+    model_entity: true
+  NZL:
+    name: New Zealand
+    target_type: sovereign_parent_account
+    model_entity: true
+  OTHER_EASTERN_ASIA:
+    name: Other Eastern Asia
+    target_type: named_regional_account
+    model_entity: true
+    note: >-
+      Separate regional accounting target for TWN. It is never merged into
+      CHN or included in mainland-China focus results.
+
+# GDP scope actions are deliberately explicit:
+# - already_in_accounting_target: the parent GDP already covers the territory;
+#   adding a separate territory GDP would double count.
+# - add_source_gdp_to_accounting_target: the parent GDP excludes the territory;
+#   a scope-exclusive supplemental GDP contribution must be added.
+territory_mappings:
+  - source_economy_id: ASM
+    source_name: American Samoa
+    source_m49: "016"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: USA
+    reporting_region_target: "009"
+    reporting_subregion_target: "061"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: BEA_US_TERRITORIES
+
+  - source_economy_id: BES
+    source_name: Bonaire, Sint Eustatius and Saba
+    source_m49: "535"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: NLD
+    reporting_region_target: "019"
+    reporting_subregion_target: "029"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: CBS_NETHERLANDS_SCOPE
+
+  - source_economy_id: BLM
+    source_name: Saint Barthélemy
+    source_m49: "652"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: FRA
+    reporting_region_target: "019"
+    reporting_subregion_target: "029"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: INSEE_FRANCE_SCOPE
+
+  - source_economy_id: ESH
+    source_name: Western Sahara
+    source_m49: "732"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: MAR
+    reporting_region_target: "002"
+    reporting_subregion_target: "015"
+    gdp_scope_action: already_in_accounting_target
+    scope_evidence: UNSD_NATIONAL_ACCOUNTS_SCOPE
+
+  - source_economy_id: FLK
+    source_name: Falkland Islands (Malvinas)
+    source_m49: "238"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: GBR
+    reporting_region_target: "019"
+    reporting_subregion_target: "005"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: ONS_UK_SCOPE
+
+  - source_economy_id: FRO
+    source_name: Faroe Islands
+    source_m49: "234"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: DNK
+    reporting_region_target: "150"
+    reporting_subregion_target: "154"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: DST_DENMARK_SCOPE
+
+  - source_economy_id: GGY
+    source_name: Guernsey
+    source_m49: "831"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: GBR
+    reporting_region_target: "150"
+    reporting_subregion_target: "154"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: ONS_UK_SCOPE
+
+  - source_economy_id: GIB
+    source_name: Gibraltar
+    source_m49: "292"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: GBR
+    reporting_region_target: "150"
+    reporting_subregion_target: "039"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: ONS_UK_SCOPE
+
+  - source_economy_id: GLP
+    source_name: Guadeloupe
+    source_m49: "312"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: FRA
+    reporting_region_target: "019"
+    reporting_subregion_target: "029"
+    gdp_scope_action: already_in_accounting_target
+    scope_evidence: UNSD_NATIONAL_ACCOUNTS_SCOPE
+
+  - source_economy_id: GUF
+    source_name: French Guiana
+    source_m49: "254"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: FRA
+    reporting_region_target: "019"
+    reporting_subregion_target: "005"
+    gdp_scope_action: already_in_accounting_target
+    scope_evidence: UNSD_NATIONAL_ACCOUNTS_SCOPE
+
+  - source_economy_id: GUM
+    source_name: Guam
+    source_m49: "316"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: USA
+    reporting_region_target: "009"
+    reporting_subregion_target: "057"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: BEA_US_TERRITORIES
+
+  - source_economy_id: IMN
+    source_name: Isle of Man
+    source_m49: "833"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: GBR
+    reporting_region_target: "150"
+    reporting_subregion_target: "154"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: ONS_UK_SCOPE
+
+  - source_economy_id: JEY
+    source_name: Jersey
+    source_m49: "832"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: GBR
+    reporting_region_target: "150"
+    reporting_subregion_target: "154"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: ONS_UK_SCOPE
+
+  - source_economy_id: MAF
+    source_name: Saint Martin (French part)
+    source_m49: "663"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: FRA
+    reporting_region_target: "019"
+    reporting_subregion_target: "029"
+    gdp_scope_action: already_in_accounting_target
+    scope_evidence: INSEE_FRANCE_SCOPE
+
+  - source_economy_id: MNP
+    source_name: Northern Mariana Islands
+    source_m49: "580"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: USA
+    reporting_region_target: "009"
+    reporting_subregion_target: "057"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: BEA_US_TERRITORIES
+
+  - source_economy_id: MTQ
+    source_name: Martinique
+    source_m49: "474"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: FRA
+    reporting_region_target: "019"
+    reporting_subregion_target: "029"
+    gdp_scope_action: already_in_accounting_target
+    scope_evidence: UNSD_NATIONAL_ACCOUNTS_SCOPE
+
+  - source_economy_id: MYT
+    source_name: Mayotte
+    source_m49: "175"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: FRA
+    reporting_region_target: "002"
+    reporting_subregion_target: "014"
+    gdp_scope_action: already_in_accounting_target
+    scope_evidence: UNSD_NATIONAL_ACCOUNTS_SCOPE
+
+  - source_economy_id: NIU
+    source_name: Niue
+    source_m49: "570"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: NZL
+    reporting_region_target: "009"
+    reporting_subregion_target: "061"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: STATS_NZ_SCOPE
+
+  - source_economy_id: REU
+    source_name: Réunion
+    source_m49: "638"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: FRA
+    reporting_region_target: "002"
+    reporting_subregion_target: "014"
+    gdp_scope_action: already_in_accounting_target
+    scope_evidence: UNSD_NATIONAL_ACCOUNTS_SCOPE
+
+  - source_economy_id: SHN
+    source_name: Saint Helena
+    source_m49: "654"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: GBR
+    reporting_region_target: "002"
+    reporting_subregion_target: "011"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: ONS_UK_SCOPE
+
+  - source_economy_id: SPM
+    source_name: Saint Pierre and Miquelon
+    source_m49: "666"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: FRA
+    reporting_region_target: "019"
+    reporting_subregion_target: "021"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: INSEE_FRANCE_SCOPE
+
+  - source_economy_id: TKL
+    source_name: Tokelau
+    source_m49: "772"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: NZL
+    reporting_region_target: "009"
+    reporting_subregion_target: "061"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: STATS_NZ_SCOPE
+
+  - source_economy_id: TWN
+    source_name: Taiwan statistical area
+    source_m49: "158"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: OTHER_EASTERN_ASIA
+    reporting_region_target: "142"
+    reporting_subregion_target: "030"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: NBS_CHINA_SCOPE
+
+  - source_economy_id: VIR
+    source_name: United States Virgin Islands
+    source_m49: "850"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: USA
+    reporting_region_target: "019"
+    reporting_subregion_target: "029"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: BEA_US_TERRITORIES
+
+  - source_economy_id: WLF
+    source_name: Wallis and Futuna Islands
+    source_m49: "876"
+    model_entity: false
+    retain_classification_metadata: true
+    accounting_target: FRA
+    reporting_region_target: "009"
+    reporting_subregion_target: "061"
+    gdp_scope_action: add_source_gdp_to_accounting_target
+    scope_evidence: INSEE_FRANCE_SCOPE
+
+scope_evidence:
+  UNSD_NATIONAL_ACCOUNTS_SCOPE:
+    publisher: United Nations Statistics Division
+    title: "National Accounts Statistics: Analysis of Main Aggregates, 2024"
+    url: https://unstats.un.org/unsd/nationalaccount/sdpubs/AMA-2024.pdf
+    finding: >-
+      The country-scope notes state that France includes French Guiana,
+      Guadeloupe, Martinique, Mayotte and Réunion, and Morocco includes
+      Western Sahara.
+  INSEE_FRANCE_SCOPE:
+    publisher: Insee
+    title: Overseas departments, regions and collectivities
+    url: https://www.insee.fr/en/metadonnees/definition/c2316
+    finding: >-
+      France's national-accounts territory comprises metropolitan France, the
+      five overseas departments/regions, and Saint Martin; the other listed
+      overseas collectivities are outside that national-accounts perimeter.
+  BEA_US_TERRITORIES:
+    publisher: U.S. Bureau of Economic Analysis
+    title: Are Puerto Rico and the U.S. Territories included in U.S. GDP?
+    url: https://www.bea.gov/help/faq/1188
+    finding: >-
+      U.S. NIPA GDP excludes U.S. commonwealths and territories; BEA produces
+      separate GDP estimates for American Samoa, Guam, Northern Mariana
+      Islands and the U.S. Virgin Islands.
+  CBS_NETHERLANDS_SCOPE:
+    publisher: Statistics Netherlands
+    title: National accounts of the Netherlands 2019
+    url: https://www.cbs.nl/-/media/_pdf/2020/29/2020a402-national-accounts-2019.pdf
+    finding: >-
+      Dutch national accounts cover the Kingdom in Europe and explicitly
+      exclude Bonaire, Sint Eustatius and Saba.
+  DST_DENMARK_SCOPE:
+    publisher: Statistics Denmark
+    title: National Accounts, Quarterly - Statistical presentation
+    url: https://www.dst.dk/en/Statistik/dokumentation/documentationofstatistics/national-accounts--quarterly/statistical-presentation
+    finding: Danish national accounts exclude the Faroe Islands and Greenland.
+  ONS_UK_SCOPE:
+    publisher: Office for National Statistics
+    title: An introduction to the UK National Accounts
+    url: https://www.ons.gov.uk/economy/grossdomesticproductgdp/compendium/unitedkingdomnationalaccountsthebluebook/2024/anintroductiontotheuknationalaccounts
+    finding: >-
+      UK economic territory is Great Britain and Northern Ireland and excludes
+      Crown dependencies; UK overseas territories are outside that perimeter.
+  STATS_NZ_SCOPE:
+    publisher: Stats NZ
+    title: New Zealand geographic definition
+    url: https://datainfoplus.stats.govt.nz/item/nz.govt.stats/69e44e22-2fa4-4e94-aeb7-742793fd4c1e/1
+    finding: Geographic New Zealand excludes Niue and Tokelau.
+  NBS_CHINA_SCOPE:
+    publisher: National Bureau of Statistics of China
+    title: China Statistical Yearbook 2025 - Editor's Notes
+    url: https://www.stats.gov.cn/sj/ndsj/2025/html/notee.htm
+    finding: >-
+      Mainland national data exclude Hong Kong SAR, Macao SAR and the Taiwan
+      statistical area; TWN therefore cannot be added to the CHN account.

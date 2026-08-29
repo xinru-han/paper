@@ -1,0 +1,88 @@
+version: 1.0.0
+benchmark_year: 2023
+method: weighted_equality_constrained_projection
+
+relative_uncertainty:
+  reported_supply: 0.05
+  # Food is retained as its own nonnegative account so the nutrition
+  # post-solution never substitutes total final use for edible consumption.
+  reported_food_demand: 0.03
+  reported_other_final_demand: 0.07
+  reported_processing_activity: 0.05
+  derived_bioenergy: 0.10
+  required_missing_term: 1.00
+  unmodelled_dairy_solids: 1.00
+
+final_demand_components:
+  food_commodities:
+    - RIC
+    - WHE
+    - CRN
+    - OCG
+    - SBS
+    - SBO
+    - NBS
+    - NBO
+    - RBS
+    - RBO
+    - OTO
+    - SUG
+    - BFV
+    - PRK
+    - PLM
+    - BUT
+    - CHE
+    - NDM
+    - FMK
+    - WDM
+    - ODA
+  nonfood_food_observations_policy: include_in_other_final_use
+
+active_set:
+  nonnegative_tolerance: 1.0e-10
+  equality_tolerance: 1.0e-8
+  maximum_iterations: 50
+
+processing:
+  ddg_output_mass_per_mass_ethanol: 0.75
+  dairy:
+    # Technical composition assumptions used to close two independent solids
+    # accounts. They are not milk-equivalent conversion factors.
+    raw_milk: {fat_share: 0.040, nonfat_solids_share: 0.087}
+    product_composition:
+      BUT: {fat_share: 0.820, nonfat_solids_share: 0.020}
+      CHE: {fat_share: 0.280, nonfat_solids_share: 0.450}
+      NDM: {fat_share: 0.010, nonfat_solids_share: 0.960}
+      FMK: {fat_share: 0.035, nonfat_solids_share: 0.087}
+      WDM: {fat_share: 0.270, nonfat_solids_share: 0.700}
+      ODA: {fat_share: 0.010, nonfat_solids_share: 0.950}
+    dry_whey_output_per_cheese: 0.12227
+    # These are central technical coefficients, not national product recipes.
+    # The internal review checked mass feasibility against Codex CXS 207-1999
+    # (milk powders), CXS 279-1971 (butter), CXS 283-1978 (cheese) and
+    # CXS 289-1995 (whey powders).  Product heterogeneity is retained in the
+    # explicit unmodelled-solids term and tested in sensitivity analysis.
+    review_basis: Codex_dairy_composition_ranges_and_explicit_solids_residual
+    status: internal_technical_review_passed
+
+domain_review:
+  # A missing satellite observation is material only if its balanced activity
+  # is at least one tonne.  The sole missing 2023 cotton activity is far below
+  # this threshold; every material cotton-ginning account has a FAOSTAT seed-
+  # cotton observation.
+  cotton_missing_activity_materiality_mt: 1.0e-6
+  cotton_ginning_outturn_review_range: {minimum: 0.33, maximum: 0.40}
+  # FAO technical studies report lint outturns in this range.  CASM-World uses
+  # 0.3352, specified in commodities.yaml.
+  maximum_unmodelled_dairy_solids_share: 0.30
+  dairy_coefficients_internal_review_completed: true
+  cotton_chain_internal_review_completed: true
+  high_adjustment_cells_reviewed_as_explicit_cross_dataset_reconciliation: true
+
+publication_gate:
+  maximum_market_residual_mt: 1.0e-8
+  maximum_processing_residual_mt: 1.0e-8
+  maximum_p95_relative_adjustment: 0.20
+  # These booleans indicate completion of the model team's internal technical
+  # audit.  They do not claim independent peer review.
+  internal_domain_review_required: true

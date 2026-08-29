@@ -1,0 +1,169 @@
+{
+  "status": "passed",
+  "manuscript": "manuscript/manuscript_v3_casm_world.md",
+  "supplement": "manuscript/supplementary_information_v3_casm_world.md",
+  "check_count": 32,
+  "failed_count": 0,
+  "checks": [
+    {
+      "name": "counterfactual_run_status",
+      "status": "passed",
+      "detail": "passed"
+    },
+    {
+      "name": "analysis_status",
+      "status": "passed",
+      "detail": "passed"
+    },
+    {
+      "name": "core_model_unchanged",
+      "status": "passed",
+      "detail": "False"
+    },
+    {
+      "name": "solution_count",
+      "status": "passed",
+      "detail": "main=144, sensitivity=16"
+    },
+    {
+      "name": "market_residual",
+      "status": "passed",
+      "detail": "max=7.253e-15"
+    },
+    {
+      "name": "benchmark_replication",
+      "status": "passed",
+      "detail": "max=0.0"
+    },
+    {
+      "name": "excluded_food_count",
+      "status": "passed",
+      "detail": "count=6"
+    },
+    {
+      "name": "metric_cgs_price_prk",
+      "status": "passed",
+      "detail": "actual=-46.23490261638384, expected=-46.23490261638384"
+    },
+    {
+      "name": "metric_cgs_price_ric",
+      "status": "passed",
+      "detail": "actual=-14.601388061614015, expected=-14.601388061614015"
+    },
+    {
+      "name": "metric_cgs_price_plm",
+      "status": "passed",
+      "detail": "actual=8.375080149439729, expected=8.375080149439729"
+    },
+    {
+      "name": "metric_cgs_price_fmk",
+      "status": "passed",
+      "detail": "actual=18.647903559933333, expected=18.647903559933333"
+    },
+    {
+      "name": "metric_cgs_price_wdm",
+      "status": "passed",
+      "detail": "actual=22.57344059910631, expected=22.57344059910631"
+    },
+    {
+      "name": "metric_china_cgs_net_import_prk",
+      "status": "passed",
+      "detail": "actual=-32.33906562419244, expected=-32.33906562419244"
+    },
+    {
+      "name": "metric_china_cgs_net_import_ric",
+      "status": "passed",
+      "detail": "actual=-46.648259181356025, expected=-46.648259181356025"
+    },
+    {
+      "name": "metric_china_cgs_net_import_fmk",
+      "status": "passed",
+      "detail": "actual=48.74046416866132, expected=48.74046416866132"
+    },
+    {
+      "name": "metric_world_cgs_ghg",
+      "status": "passed",
+      "detail": "actual=-254.54279698304435, expected=-254.54279698304435"
+    },
+    {
+      "name": "metric_china_cgs_ghg",
+      "status": "passed",
+      "detail": "actual=-47.30313483570024, expected=-47.30313483570024"
+    },
+    {
+      "name": "metric_ex_china_cgs_ghg",
+      "status": "passed",
+      "detail": "actual=-207.23966214734412, expected=-207.23966214734412"
+    },
+    {
+      "name": "metric_world_cgs_primary_production",
+      "status": "passed",
+      "detail": "actual=-70.9664091845425, expected=-70.9664091845425"
+    },
+    {
+      "name": "required_text_193 economy accounts",
+      "status": "passed",
+      "detail": "193 economy accounts"
+    },
+    {
+      "name": "required_text_31 products",
+      "status": "passed",
+      "detail": "31 products"
+    },
+    {
+      "name": "required_text_diagnostic status",
+      "status": "passed",
+      "detail": "diagnostic conditional scenario"
+    },
+    {
+      "name": "required_text_publication gates",
+      "status": "passed",
+      "detail": "18 of 20"
+    },
+    {
+      "name": "required_text_model-covered diet boundary",
+      "status": "passed",
+      "detail": "model-covered"
+    },
+    {
+      "name": "required_text_net trade boundary",
+      "status": "passed",
+      "detail": "not bilateral"
+    },
+    {
+      "name": "required_text_demand-form sensitivity",
+      "status": "passed",
+      "detail": "demand-system"
+    },
+    {
+      "name": "prohibited_text_legacy GHG result",
+      "status": "passed",
+      "detail": "-495"
+    },
+    {
+      "name": "prohibited_text_legacy outside-China share",
+      "status": "passed",
+      "detail": "91% of the reduction"
+    },
+    {
+      "name": "prohibited_text_legacy land result",
+      "status": "passed",
+      "detail": "21.7 Mha"
+    },
+    {
+      "name": "prohibited_text_legacy regional model presented as current",
+      "status": "passed",
+      "detail": "13-region, 31-commodity world agricultural market model"
+    },
+    {
+      "name": "price_table_year_label",
+      "status": "passed",
+      "detail": "base_ssp,diet_pathway,commodity,world_price_index_2050_2023eq1,world_price_index_2050_2023eq1_baseline,world_price_index_2050_2023eq1_change,world_price_index_2050_change_percent"
+    },
+    {
+      "name": "figure_bundle",
+      "status": "passed",
+      "detail": "missing=[]"
+    }
+  ]
+}

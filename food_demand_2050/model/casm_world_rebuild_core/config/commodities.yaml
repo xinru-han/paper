@@ -1,0 +1,215 @@
+version: 0.1.0
+benchmark_year: 2023
+quantity_unit: Mt
+
+# A balance source is the single source used to anchor the market quantity.
+# Activity and validation sources may not be added to that balance.
+commodities:
+  RIC:
+    name: Rice and products, paddy equivalent
+    class: crop
+    balance: {domain: FBS, items: [2807]}
+    activity: {domain: QCL, items: [27]}
+    processing: rice_milling
+  WHE:
+    name: Wheat and products
+    class: crop
+    balance: {domain: FBS, items: [2511]}
+    activity: {domain: QCL, items: [15]}
+  CRN:
+    name: Maize and products
+    class: crop
+    balance: {domain: FBS, items: [2514]}
+    activity: {domain: QCL, items: [56]}
+  OCG:
+    name: Other coarse grains and products
+    class: crop_aggregate
+    balance: {domain: FBS, items: [2513, 2515, 2516, 2517, 2518, 2520]}
+    activity: {domain: QCL, items: [44, 71, 75, 79, 83, 89, 92, 94, 97, 101, 103, 108]}
+
+  SBS:
+    name: Soya beans
+    class: oilseed
+    balance: {domain: FBS, items: [2555]}
+    activity: {domain: QCL, items: [236]}
+    processing: soybean_crush
+  SBO:
+    name: Soya bean oil
+    class: vegetable_oil
+    balance: {domain: FBS, items: [2571]}
+    activity: {domain: QCL, items: [237]}
+    processing: soybean_crush
+  SBM:
+    name: Cake of soya beans
+    class: oilmeal
+    balance: {domain: SUA, items: [238]}
+    processing: soybean_crush
+
+  NBS:
+    name: Sunflower seed
+    class: oilseed
+    balance: {domain: FBS, items: [2557]}
+    activity: {domain: QCL, items: [267]}
+    processing: sunflower_crush
+  NBO:
+    name: Sunflower-seed oil
+    class: vegetable_oil
+    balance: {domain: FBS, items: [2573]}
+    activity: {domain: QCL, items: [268]}
+    processing: sunflower_crush
+  NBM:
+    name: Cake of sunflower seed
+    class: oilmeal
+    balance: {domain: SUA, items: [269]}
+    processing: sunflower_crush
+
+  RBS:
+    name: Rape and mustard seed
+    class: oilseed
+    balance: {domain: FBS, items: [2558]}
+    activity: {domain: QCL, items: [270]}
+    processing: rapeseed_crush
+  RBO:
+    name: Rape and mustard oil
+    class: vegetable_oil
+    balance: {domain: FBS, items: [2574]}
+    activity: {domain: QCL, items: [271]}
+    processing: rapeseed_crush
+  RBM:
+    name: Cake of rapeseed
+    class: oilmeal
+    balance: {domain: SUA, items: [272]}
+    processing: rapeseed_crush
+
+  DDG:
+    name: Distillers dried grains
+    class: feed_byproduct
+    balance: {domain: DERIVED, rule: ethanol_feedstock_conversion}
+    processing: ethanol
+  ETH:
+    name: Fuel ethanol and other biogasoline
+    class: biofuel
+    balance: {domain: BIO, items: [6520]}
+    processing: ethanol
+  BDI:
+    name: Biodiesel
+    class: biofuel
+    balance: {domain: BIO, items: [6521]}
+    processing: biodiesel
+  OTO:
+    name: Other vegetable oils
+    class: vegetable_oil_aggregate
+    balance: {domain: FBS, items: [2572, 2575, 2576, 2577, 2578, 2579, 2580, 2581, 2582, 2586]}
+
+  CTN:
+    name: Cotton lint, ginned
+    class: fibre
+    balance: {domain: CB, items: [767]}
+    activity: {domain: QCL, items: [328]}
+    validation: {domain: QCL, items: [767]}
+    processing: cotton_ginning
+  SUG:
+    name: Sugar, raw-sugar equivalent
+    class: processed_crop
+    balance: {domain: FBS, items: [2542]}
+    processing: sugar_refining
+  SCA:
+    name: Sugar cane
+    class: processing_crop
+    balance: {domain: SUA, items: [156]}
+    activity: {domain: QCL, items: [156]}
+    processing: sugar_refining
+  SBE:
+    name: Sugar beet
+    class: processing_crop
+    balance: {domain: SUA, items: [157]}
+    activity: {domain: QCL, items: [157]}
+    processing: sugar_refining
+
+  BFV:
+    name: Bovine meat
+    class: livestock_product
+    balance: {domain: FBS, items: [2731]}
+  PRK:
+    name: Pigmeat
+    class: livestock_product
+    balance: {domain: FBS, items: [2733]}
+  PLM:
+    name: Poultry meat
+    class: livestock_product
+    balance: {domain: FBS, items: [2734]}
+
+  MLK:
+    name: Raw milk, all species
+    class: dairy_input
+    balance: {domain: QCL, items: [1780]}
+    validation: {domain: FBS, items: [2848]}
+    processing: dairy_solids
+  BUT:
+    name: Butter and ghee
+    class: dairy_product
+    balance: {domain: FBS, items: [2740]}
+    activity: {domain: QCL, items: [1811]}
+    processing: dairy_solids
+  CHE:
+    name: Cheese, excluding whey and processed cheese
+    class: dairy_product
+    balance: {domain: SUA, items: [901, 904, 955, 984, 1021]}
+    validation: {domain: QCL, items: [1745]}
+    processing: dairy_solids
+  NDM:
+    name: Nonfat dry milk and dry buttermilk
+    class: dairy_product
+    balance: {domain: SUA, items: [898, 899]}
+    validation: {domain: QCL, items: [1809]}
+    processing: dairy_solids
+  FMK:
+    name: Fluid milk used as food
+    class: dairy_product
+    balance: {domain: SUA, items: [882, 951, 982, 1020, 1130], element: food}
+    processing: dairy_solids
+  WDM:
+    name: Whole milk powder
+    class: dairy_product
+    balance: {domain: SUA, items: [897]}
+    activity: {domain: QCL, items: [897]}
+    processing: dairy_solids
+  ODA:
+    name: Dry whey
+    class: dairy_product
+    balance: {domain: SUA, items: [900]}
+    activity: {domain: QCL, items: [900]}
+    processing: dairy_solids
+
+processing_systems:
+  rice_milling:
+    primary_account: RIC
+    validation_trade_basis: milled_rice
+    rule: never_add_paddy_and_milled_equivalents
+  soybean_crush:
+    input: SBS
+    outputs: {SBO: 0.1859, SBM: 0.7766}
+    residual: 0.0375
+  sunflower_crush:
+    input: NBS
+    outputs: {NBO: 0.4347, NBM: 0.4455}
+    residual: 0.1198
+  rapeseed_crush:
+    input: RBS
+    outputs: {RBO: 0.4121, RBM: 0.5618}
+    residual: 0.0261
+  cotton_ginning:
+    input_activity: seed_cotton
+    outputs: {CTN: 0.3352, cottonseed_satellite: 0.5565}
+    residual: 0.1083
+  sugar_refining:
+    inputs: {SCA: 0.1003, SBE: 0.1607}
+    output: SUG
+  dairy_solids:
+    input: MLK
+    outputs: [BUT, CHE, NDM, FMK, WDM, ODA]
+    rule: joint_milk_fat_and_nonfat_solids_balance
+  ethanol:
+    outputs: [ETH, DDG]
+  biodiesel:
+    output: BDI

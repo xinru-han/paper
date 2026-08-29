@@ -1,0 +1,136 @@
+schema_version: 1
+driver_family: IIASA_SSP_BASIC_DRIVERS_V3_2
+
+source:
+  catalog_key: iiasa_ssp_basic_drivers
+  main_sheet: data
+  turbulent_economy_sheet: data_turbulent_economy_data
+
+series:
+  population:
+    model: IIASA-WiC POP 2025
+    variable: Population
+    unit: million
+  gdp_ppp_per_capita:
+    model: OECD ENV-Growth 2025
+    turbulent_model: OECD ENV-Growth 2025 [Turbulent Economy Data]
+    variable: GDP|PPP [per capita]
+    unit: USD_2015/yr
+    alternate_unit: USD_2017/yr
+    alternate_unit_conversion:
+      reference_region: World
+      reference_scenario: Historical Reference
+      reference_year: 2025
+
+scenarios: [SSP1, SSP2, SSP3, SSP4, SSP5]
+historical_scenario: Historical Reference
+projection_nodes: [2025, 2030, 2035, 2040, 2045, 2050]
+output_years:
+  start: 2023
+  end: 2050
+  anchor: 2025
+interpolation:
+  method: log_linear
+  pre_anchor_method: log_linear_historical_2020_to_historical_2025_then_rebased_ssp
+  historical_node: 2020
+  population_fallback_last_observed_year: 2015
+  population_fallback_bridge: apply_declared_proxy_growth_from_2015
+  missing_or_nonpositive: error
+  missing_to_zero: forbidden
+
+account_universe:
+  path: data/processed/benchmark_equilibrium_interim_2023.csv
+  economy_column: economy_id
+  expected_accounts: 193
+  territory_config: config/territory_aggregation.yaml
+  expected_mapped_territories: 25
+  named_target_without_direct_component: OTHER_EASTERN_ASIA
+
+# UN M49 names are used by default. These aliases cover only known differences
+# between UN names and the IIASA v3.2 Region labels.
+region_aliases:
+  BOL: Bolivia
+  FSM: Micronesia
+  GBR: United Kingdom
+  HKG: Hong Kong
+  IRN: Iran
+  KOR: South Korea
+  LAO: Laos
+  MAC: Macao
+  MAF: Saint Martin (French part)
+  MDA: Moldova
+  NLD: Netherlands
+  NRU: Nauru
+  PRK: North Korea
+  SHN: Saint Helena, Ascension and Tristan da Cunha
+  SYR: Syria
+  TUR: Turkey
+  TWN: Taiwan
+  TZA: Tanzania
+  USA: United States
+  VEN: Venezuela
+  WLF: Wallis and Futuna
+
+# Population projections are absent for these small economies/territories.
+# Their own last reported IIASA Historical Reference level (2015) is kept;
+# the explicitly named proxy bridges 2015--2025 and supplies later growth.
+population_growth_proxies:
+  ASM: USA
+  BES: NLD
+  BLM: FRA
+  BMU: USA
+  DMA: LCA
+  FLK: GBR
+  FRO: DNK
+  GGY: GBR
+  GIB: GBR
+  IMN: GBR
+  JEY: GBR
+  KNA: ATG
+  MAF: FRA
+  MHL: FSM
+  MNP: USA
+  NIU: NZL
+  NRU: KIR
+  SHN: GBR
+  SPM: FRA
+  TKL: NZL
+  TUV: KIR
+  WLF: FRA
+
+# Preferred GDP paths are tried first, followed by the official turbulent
+# supplement and the same-model 2017-dollar series. Only economies still
+# absent after those steps use a proxy. Proxy levels and growth are both
+# reported as fallbacks; nothing is converted from NA to zero.
+gdp_growth_and_level_proxies:
+  ASM: USA
+  BES: NLD
+  BLM: FRA
+  BMU: USA
+  DMA: LCA
+  FLK: GBR
+  FRO: DNK
+  GGY: GBR
+  GIB: GBR
+  IMN: GBR
+  JEY: GBR
+  KNA: ATG
+  MHL: FSM
+  MNP: USA
+  NIU: NZL
+  NRU: KIR
+  SHN: GBR
+  SPM: FRA
+  TKL: NZL
+  TUV: KIR
+  VEN: COL
+  WLF: FRA
+
+expected_coverage_routes:
+  official_turbulent_supplement: [AFG, SYR]
+  alternate_gdp_unit_rescaled: [CUB, GUM, NCL, PRK, PYF, SOM, VIR]
+  gdp_scope_excluded_parent_inclusive: [ESH, GLP, GUF, MAF, MTQ, MYT, REU]
+
+outputs:
+  drivers: data/processed/ssp_drivers_2023_2050.csv
+  coverage_report: data/processed/ssp_driver_coverage_report.json

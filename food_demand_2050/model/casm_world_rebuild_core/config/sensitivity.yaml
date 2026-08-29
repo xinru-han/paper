@@ -1,0 +1,178 @@
+schema_version: 1
+version: CASM_WORLD_V2_SENSITIVITY_2026-08-29
+benchmark_year: 2023
+projection_end: 2050
+scenarios: [SSP1, SSP2, SSP3, SSP4, SSP5]
+retained_summary_years: [2023, 2035, 2050]
+
+# Every variant is solved annually from 2023 through 2050.  Retaining only
+# endpoint country detail is deliberate: annual prices and convergence remain
+# available, while the large formal central result files are never copied or
+# overwritten by this diagnostic runner.
+annual_warm_start_required: true
+
+inputs:
+  parameter_table: data/processed/casm_world_parameters_v2_2023.csv
+  analysis_config: config/analysis.yaml
+  model_membership: data/processed/reporting_model_account_membership_2023.csv
+  source_membership: data/processed/reporting_source_group_membership_2023.csv
+  source_allocation_weights: data/processed/reporting_source_allocation_weights_2023.csv
+
+parameter_response_variants:
+  V2_LOW_RESPONSE:
+    column_suffix: low
+    family: parameter_response_envelope
+  V2_CENTRAL:
+    column_suffix: central
+    family: central_reference
+  V2_HIGH_RESPONSE:
+    column_suffix: high
+    family: parameter_response_envelope
+
+# Long-run process-margin responses are separate from product-supply columns.
+# Cotton is the exception: the process activity inherits the economy-specific
+# CTN upstream response in the matching parameter variant.
+process_long_run_elasticities:
+  soybean_crush:
+    method: fixed
+    low: 1.35
+    central: 1.50
+    high: 2.00
+  sunflower_crush:
+    method: fixed
+    low: 1.35
+    central: 1.50
+    high: 2.00
+  rapeseed_crush:
+    method: fixed
+    low: 1.35
+    central: 1.50
+    high: 2.00
+  sugar_SCA:
+    method: fixed
+    low: 0.50
+    central: 1.00
+    high: 1.50
+  sugar_SBE:
+    method: fixed
+    low: 0.50
+    central: 1.00
+    high: 1.50
+  cotton_ginning:
+    method: product_parameter
+    parameter_product: CTN
+  ethanol:
+    method: fixed
+    low: 0.1875
+    central: 0.25
+    high: 0.3125
+  dairy_solids:
+    method: fixed
+    low: 2.40
+    central: 3.00
+    high: 3.60
+  dairy_unmodelled_use:
+    method: fixed
+    low: 0.00
+    central: 0.00
+    high: 0.00
+
+tfp_variants:
+  TFP_SLOW:
+    post_2035_positive_log_growth_multiplier: 0.75
+    family: tfp_model_form
+  TFP_FAST:
+    post_2035_positive_log_growth_multiplier: 1.25
+    family: tfp_model_form
+  central_reference_variant: V2_CENTRAL
+  unchanged_through_year: 2035
+  annual_log_growth_bounds: [-0.005, 0.035]
+  retain_nonpositive_rates: true
+
+# Frozen section 8.4 structural sensitivity.  All five nests are activated
+# together; a product may occur in exactly one nest.  At normalized 2023
+# prices, quantity shares are also normalized expenditure shares.  The outer
+# group shifter is the base-quantity-weighted mean of the central product
+# demand shifters and the outer own-price response is the corresponding
+# weighted mean of the central elasticities.  The inner Cobb-Douglas
+# allocation then uses (p_i/P_g)^-sigma.  Products outside the nests retain
+# their central independent demand equation.
+demand_substitution_ces:
+  enabled: true
+  variant: DEMAND_SUBSTITUTION_CES
+  family: demand_model_form
+  sigma: 1.0
+  share_basis: frozen_2023_final_demand_quantity
+  composite_price: cobb_douglas_frozen_2023_quantity_share
+  outer_demand_shifter: frozen_share_arithmetic_mean_of_central_product_shifters
+  outer_price_elasticity: frozen_share_arithmetic_mean_of_central_product_elasticities
+  nests:
+    grains: [RIC, WHE, CRN, OCG]
+    vegetable_oils: [SBO, NBO, RBO, OTO]
+    meals_feed_byproducts: [SBM, NBM, RBM, DDG]
+    meats: [BFV, PRK, PLM]
+    processed_dairy: [BUT, CHE, NDM, FMK, WDM, ODA]
+
+# One physical layer: crops at harvested/raw-equivalent level and livestock
+# at farm-gate level.  Processed outputs are excluded to prevent chain double
+# counting.  This is the same basket used by the manuscript builder.
+primary_basket:
+  - RIC
+  - WHE
+  - CRN
+  - OCG
+  - SBS
+  - NBS
+  - RBS
+  - SCA
+  - SBE
+  - BFV
+  - PRK
+  - PLM
+  - MLK
+
+major_food_prices: [RIC, WHE, CRN, OCG, SUG, BFV, PRK, PLM, MLK]
+
+reported_groups:
+  fixed:
+    - {group_system: GLOBAL, group_code: WORLD}
+    - {group_system: FOCUS, group_code: CHINA_MAINLAND}
+    - {group_system: ECONOMIC, group_code: EU27}
+  # UN_REPORTING_AREA is mutually exclusive at the source-geography layer:
+  # intermediate region where present, otherwise UN subregion.
+  include_all_group_systems: [UN_REPORTING_AREA]
+
+materiality_screen:
+  label: section_8_5_threshold_screen_only_not_promotion_decision
+  comparison_year: 2050
+  major_food_world_price_relative_change_percent: 20.0
+  primary_production_relative_change_percent: 10.0
+  production_groups:
+    - {group_system: GLOBAL, group_code: WORLD}
+    - {group_system: FOCUS, group_code: CHINA_MAINLAND}
+    - {group_system: ECONOMIC, group_code: EU27}
+    - {group_system: WB_INCOME_FY25, group_code: "*"}
+    - {group_system: UN_SPECIAL_GROUP, group_code: LDC}
+    - {group_system: UN_SPECIAL_GROUP, group_code: SIDS}
+  denominator_floor_mt: 1.0e-9
+
+calibration_gates:
+  quantity_absolute_tolerance_mt: 1.0e-8
+  process_activity_absolute_tolerance: 1.0e-8
+  world_price_absolute_tolerance: 1.0e-12
+  market_relative_residual: 1.0e-9
+  accounting_absolute_residual_mt: 1.0e-9
+
+# Section 8.3 needs a new shared-resource supply equation.  It remains outside
+# this bounded runner and cannot be reported as completed.
+not_implemented_structural_sensitivities:
+  - SHARED_CROP_RESOURCE
+
+outputs:
+  directory: outputs/sensitivity
+  annual_convergence: outputs/sensitivity/v2_sensitivity_annual_convergence.csv
+  annual_world_prices: outputs/sensitivity/v2_sensitivity_annual_world_prices.csv
+  major_food_prices: outputs/sensitivity/v2_sensitivity_major_food_prices.csv
+  primary_basket_groups: outputs/sensitivity/v2_sensitivity_primary_basket_groups.csv
+  materiality_screen: outputs/sensitivity/v2_sensitivity_materiality_screen.csv
+  report: outputs/sensitivity/v2_sensitivity_report.json

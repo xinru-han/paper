@@ -1,0 +1,191 @@
+schema_version: "1.0"
+benchmark_year: 2023
+
+module:
+  name: CASM-World agricultural greenhouse-gas post-solution account
+  execution_stage: post_solution
+  nitrogen_module_enabled: false
+  production_unit: Mt
+  intensity_unit: kg CO2e/kg product
+  emissions_unit: Mt CO2e
+  unit_identity: >-
+    One Mt of product multiplied by one kg CO2e per kg of product equals one
+    Mt CO2e. No additional factor of 1,000 or 1,000,000 is applied.
+
+boundary:
+  name: attributed biological farm-gate production emissions
+  included: >-
+    Product-attributable AR5 CO2-equivalent emissions reported by FAOSTAT's
+    emissions-intensity domain, plus explicitly selected non-overlapping crop
+    CH4 and N2O process totals where no FAOSTAT product intensity exists.
+  excluded:
+    - land-use change and forestry
+    - fertilizer and pesticide manufacturing
+    - food processing, packaging, retail, transport and household use
+    - agricultural energy emissions, which have no defensible product allocation key
+    - nitrogen balances or nitrogen-emission modules
+  energy_treatment: >-
+    FAOSTAT Total Energy emissions are retained as a separate, unallocated
+    validation control. They are never added to a product coefficient.
+  processing_rule: >-
+    Upstream farm-gate emissions are booked once, on the modeled primary
+    agricultural input. A processed product without its own verified direct
+    intensity receives zero attributed emissions and status noncovered; an
+    input and its output are never both charged for the same upstream source.
+  validation_rule: >-
+    The single FAOSTAT Farm gate CO2eq total is a comparison control only.
+    It is never added to crop, livestock or energy components and the model
+    post-solution account is never forced to reproduce it.
+
+gwp100_ar5:
+  CO2: 1.0
+  CH4: 28.0
+  N2O: 265.0
+
+fallback:
+  hierarchy:
+    - country
+    - un_region_median
+    - global_median
+  statistic: unweighted_median_of_available_model_account_coefficients
+  missing_noncovered_value: 0.0
+  rule: >-
+    A covered product uses its model-account coefficient where available,
+    otherwise the median in the account's UN M49 region, otherwise the global
+    median. Every fallback is named in the output; zero is used only for an
+    explicitly noncovered product boundary.
+
+direct_intensity_proxies:
+  RICE:
+    faostat_item_codes: [27]
+    method: faostat_emissions_intensity_ar5
+  CEREALS_NONRICE:
+    faostat_item_codes: [1718]
+    method: faostat_emissions_intensity_ar5
+  BOVINE_MEAT:
+    faostat_item_codes: [867, 947]
+    method: faostat_emissions_intensity_ar5_production_weighted
+  PIGMEAT:
+    faostat_item_codes: [1035]
+    method: faostat_emissions_intensity_ar5
+  POULTRY_MEAT:
+    faostat_item_codes: [1058]
+    method: faostat_emissions_intensity_ar5
+  RAW_MILK:
+    faostat_item_codes: [882, 951, 982, 1020, 1130]
+    method: faostat_emissions_intensity_ar5_production_weighted
+
+crop_component_proxies:
+  SOYBEAN_CROP:
+    faostat_item_codes: [236]
+    qcl_production_element_codes: [5510]
+    method: faostat_crop_process_gases_divided_by_qcl_production
+  SUGARCANE_CROP:
+    faostat_item_codes: [156]
+    qcl_production_element_codes: [5510]
+    method: faostat_crop_process_gases_divided_by_qcl_production
+
+# These are mutually exclusive process totals. In particular, crop-residue
+# N2O total (72302) is used instead of adding its direct (72342) and indirect
+# (72362) components; aggregate "All Crops" totals are not used here.
+crop_component_elements:
+  72257: {gas: CH4, process: crop_residue_burning_total}
+  72302: {gas: N2O, process: crop_residue_total}
+  72307: {gas: N2O, process: crop_residue_burning_total}
+
+# One row is required for each of the 31 model commodities. coverage_status
+# means: direct = exact modeled primary product/source item; inherited = an
+# explicitly named aggregate or biological proxy; noncovered = zero at this
+# boundary, normally because the product is processed.
+products:
+  RIC: {coverage_status: direct, proxy: RICE, boundary_role: primary_production}
+  WHE: {coverage_status: inherited, proxy: CEREALS_NONRICE, boundary_role: primary_production, inheritance: nonrice_cereal_aggregate}
+  CRN: {coverage_status: inherited, proxy: CEREALS_NONRICE, boundary_role: primary_production, inheritance: nonrice_cereal_aggregate}
+  OCG: {coverage_status: inherited, proxy: CEREALS_NONRICE, boundary_role: primary_production, inheritance: nonrice_cereal_aggregate}
+  SBS: {coverage_status: direct, proxy: SOYBEAN_CROP, boundary_role: primary_production}
+  SBO: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: SBS}
+  SBM: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: SBS}
+  NBS: {coverage_status: inherited, proxy: SOYBEAN_CROP, boundary_role: primary_production, inheritance: soybean_oilseed_proxy}
+  NBO: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: NBS}
+  NBM: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: NBS}
+  RBS: {coverage_status: inherited, proxy: SOYBEAN_CROP, boundary_role: primary_production, inheritance: soybean_oilseed_proxy}
+  RBO: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: RBS}
+  RBM: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: RBS}
+  DDG: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_byproduct, upstream_booked_to: ethanol_feedstock}
+  ETH: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: ethanol_feedstock}
+  BDI: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: biodiesel_feedstock}
+  OTO: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: unmodeled_oilseed_inputs}
+  CTN: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: seed_cotton_not_covered}
+  SUG: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: SCA_and_SBE}
+  SCA: {coverage_status: direct, proxy: SUGARCANE_CROP, boundary_role: primary_production}
+  SBE: {coverage_status: inherited, proxy: SUGARCANE_CROP, boundary_role: primary_production, inheritance: sugarcane_crop_proxy}
+  BFV: {coverage_status: direct, proxy: BOVINE_MEAT, boundary_role: primary_livestock_product}
+  PRK: {coverage_status: direct, proxy: PIGMEAT, boundary_role: primary_livestock_product}
+  PLM: {coverage_status: direct, proxy: POULTRY_MEAT, boundary_role: primary_livestock_product}
+  MLK: {coverage_status: direct, proxy: RAW_MILK, boundary_role: primary_livestock_product}
+  BUT: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: MLK}
+  CHE: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: MLK}
+  NDM: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: MLK}
+  FMK: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: MLK}
+  WDM: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: MLK}
+  ODA: {coverage_status: noncovered, proxy: NONE, boundary_role: processed_output, upstream_booked_to: MLK}
+
+validation_controls:
+  farm_gate_total:
+    source: fao_emissions_totals
+    item_codes: [6996]
+    elements: {723113: CO2e}
+    use: comparison_only
+  crops_total:
+    source: fao_emissions_crops
+    item_codes: [1712]
+    elements: {72440: CH4, 72430: N2O}
+    use: separate_unallocated_control
+  livestock_total:
+    source: fao_emissions_livestock
+    item_codes: [1755]
+    elements: {72441: CH4, 72431: N2O}
+    use: separate_unallocated_control
+  energy_total:
+    source: fao_emissions_agriculture_energy
+    item_codes: [6813]
+    elements: {7273: CO2, 7225: CH4, 7230: N2O}
+    use: separate_unallocated_control
+
+outputs:
+  factors: data/processed/ghg_emission_factors_2023.csv
+  base_postsolve: data/processed/ghg_baseline_postsolve_2023.csv
+  base_aggregates: data/processed/ghg_baseline_aggregates_2023.csv
+  validation_table: data/processed/ghg_faostat_validation_2023.csv
+  report: data/processed/ghg_coverage_validation_report_2023.json
+
+scenario_postsolve:
+  input: outputs/ssp_results_country_product_2023_2050.csv
+  consumed_columns: [scenario, year, economy_id, commodity, production_mt]
+  forbidden_quantity_columns:
+    - final_demand_mt
+    - food_demand_mt
+    - processing_demand_mt
+    - demand_mt
+    - net_import_mt
+  scenarios: [SSP1, SSP2, SSP3, SSP4, SSP5]
+  first_year: 2023
+  last_year: 2050
+  expected_model_accounts: 193
+  expected_commodities: 31
+  coefficient_rule: frozen_2023_production_side_coefficient
+  base_absolute_tolerance_mt: 1.0e-12
+  conservation_absolute_tolerance_mtco2e: 1.0e-9
+  conservation_relative_tolerance: 1.0e-12
+  rule: >-
+    Read production_mt only. Demand, processing demand, net imports and other
+    solution quantities never enter the GHG calculation. Processed-product
+    production is retained in the detailed output but receives zero under the
+    production boundary whenever upstream emissions were booked to an input.
+
+scenario_outputs:
+  detail: outputs/ssp_ghg_country_product_2023_2050.csv
+  country: outputs/ssp_ghg_country_2023_2050.csv
+  product: outputs/ssp_ghg_product_2023_2050.csv
+  world: outputs/ssp_ghg_world_2023_2050.csv
+  audit: outputs/ssp_ghg_audit_2023_2050.json

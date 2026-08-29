@@ -1,0 +1,105 @@
+schema_version: 1
+
+# This project may read upstream data only from this immutable, verified
+# snapshot root.  Paths below are relative so that ``..`` escapes and
+# accidental dependencies on another model tree can be rejected centrally.
+contract:
+  trusted_raw_root: /root/data/CASM/casm_world_2050/data/raw
+  source_manifest: /root/data/CASM/casm_world_2050/data/metadata/source_manifest.csv
+  required_manifest_status: verified
+  allowed_providers:
+    - FAOSTAT
+    - IIASA
+    - United Nations Statistics Division
+    - United Nations Population Division
+    - USDA ERS
+    - World Bank
+  forbidden_path_fragments:
+    - SILK Model
+    - bilateral
+  forbidden_roots:
+    - /root/data/CASM/casm_world
+    - /root/data/CASM/casm_py/casm_world
+
+sources:
+  fao_qcl:
+    source_id: FAO-QCL-2025-12-31
+    relative_path: fao/Production_Crops_Livestock_E_All_Data_Normalized.zip
+  fao_sua:
+    source_id: FAO-SCL-2025-11-01
+    relative_path: fao/SUA_Crops_Livestock_E_All_Data_Normalized.zip
+  fao_fbs:
+    source_id: FAO-FBS-2025-10-28
+    relative_path: fao/FoodBalanceSheets_E_All_Data_Normalized.zip
+  fao_population:
+    source_id: FAO-OA-2026-03-09
+    relative_path: fao/Population_E_All_Data_Normalized.zip
+  fao_nonfood_balances:
+    source_id: FAO-CB-2026-06-15
+    relative_path: fao/CommodityBalances_(non-food)_(2010-)_E_All_Data_(Normalized).zip
+  fao_trade_totals:
+    source_id: FAO-TCL-2026-07-24
+    relative_path: fao/Trade_CropsLivestock_E_All_Data_(Normalized).zip
+  fao_producer_prices:
+    source_id: FAO-PP-2026-01-09
+    relative_path: fao/Prices_E_All_Data_(Normalized).zip
+  fao_exchange_rates:
+    source_id: FAO-PE-2026-05-29
+    relative_path: fao/Exchange_rate_E_All_Data_(Normalized).zip
+  fao_deflators:
+    source_id: FAO-PD-2025-11-27
+    relative_path: fao/Deflators_E_All_Data_(Normalized).zip
+  fao_macro:
+    source_id: FAO-MK-2026-03-27
+    relative_path: fao/Macro-Statistics_Key_Indicators_E_All_Data_(Normalized).zip
+  fao_value_of_production:
+    source_id: FAO-QV-2026-05-11
+    relative_path: fao/Value_of_Production_E_All_Data_(Normalized).zip
+  fao_land_use:
+    source_id: FAO-RL-2026-07-17
+    relative_path: fao/Inputs_LandUse_E_All_Data_(Normalized).zip
+  fao_bioenergy:
+    source_id: FAO-BE-2026-06-11
+    relative_path: fao/Environment_Bioenergy_E_All_Data_(Normalized).zip
+  fao_nutrition:
+    source_id: FAO-SUA-NUTR-2025-10-28
+    relative_path: fao/Supply_Utilization_Accounts_Food_and_Diet_E_All_Data_Normalized.zip
+  fao_emissions_crops:
+    source_id: FAO-GCE-2025-10-28
+    relative_path: fao/Emissions_crops_E_All_Data_Normalized.zip
+  fao_emissions_livestock:
+    source_id: FAO-GLE-2025-10-28
+    relative_path: fao/Emissions_livestock_E_All_Data_Normalized.zip
+  fao_emissions_agriculture_energy:
+    source_id: FAO-GN-2025-10-28
+    relative_path: fao/Emissions_Agriculture_Energy_E_All_Data_(Normalized).zip
+  fao_emissions_totals:
+    source_id: FAO-GT-2025-10-28
+    relative_path: fao/Emissions_Totals_E_All_Data_(Normalized).zip
+  fao_emissions_intensities:
+    source_id: FAO-EI-2026-02-20
+    relative_path: fao/Environment_Emissions_intensities_E_All_Data_Normalized.zip
+  iiasa_ssp_basic_drivers:
+    source_id: IIASA-SSP-BASIC-3.2
+    relative_path: iiasa/ssp_basic_drivers_release_3.2_full.xlsx
+  un_m49:
+    source_id: UN-M49-2026-08-29
+    relative_path: un/un_m49_overview_2026-08-29.html
+  un_wpp2024:
+    source_id: UN-WPP2024-GEN-F01-REV1
+    relative_path: un/WPP2024_GEN_F01_DEMOGRAPHIC_INDICATORS_COMPACT.xlsx
+  usda_agricultural_tfp:
+    source_id: USDA-IAP-2023
+    relative_path: usda/AgTFPInternational2023_long.csv
+  world_bank_income_classification:
+    source_id: WB-INCOME-HISTORY-FY25
+    relative_path: world_bank/world_bank_historical_income_classification.xlsx
+  world_bank_xkx_gdp_validation:
+    source_id: WDI-XKX-GDP-KD-2023
+    relative_path: world_bank/wdi_xkx_gdp_constant_2015_usd_2023.json
+  world_bank_primary_tariff:
+    source_id: WDI-PRIMARY-TARIFF-WM-2018-2023
+    relative_path: world_bank/wdi_primary_tariff_weighted_2018_2023.json
+  peatsim_parameter_priors:
+    source_id: USDA-PEATSIM-507-PARAMS
+    relative_path: peatsim/PEATSim_params_release507.xls

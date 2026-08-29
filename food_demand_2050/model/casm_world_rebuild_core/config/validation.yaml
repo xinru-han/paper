@@ -1,0 +1,73 @@
+version: 1.0.0
+benchmark_year: 2023
+projection_end: 2050
+central_scenario: SSP2
+
+inputs:
+  results: outputs/ssp_results_country_product_2023_2050.csv
+  prices: outputs/ssp_world_prices_2023_2050.csv
+  processes: outputs/ssp_processing_activities_2023_2050.csv
+  convergence: outputs/ssp_annual_convergence_2023_2050.csv
+  run_report: outputs/ssp_run_report.json
+  benchmark: data/processed/benchmark_equilibrium_2023.csv
+  benchmark_activities: data/processed/benchmark_processing_activities_2023.csv
+  commodity_config: config/commodities.yaml
+  parameter_table: data/processed/casm_world_parameters_v2_2023.csv
+  parameter_report: data/processed/casm_world_parameters_v2_report.json
+  parameter_config: config/parameters.yaml
+  simulation_config: config/simulation.yaml
+  source_catalog: config/data_sources.yaml
+  ssp_drivers: data/processed/ssp_drivers_2023_2050.csv
+  tfp_paths: data/processed/tfp_paths_2023_2050.csv
+  exchange_rate_paths: data/processed/real_exchange_rate_paths_2023_2050.csv
+  tariff_paths: data/processed/tariff_paths_2023_2050.csv
+  climate_paths: data/processed/climate_yield_paths_2023_2050.csv
+  model_membership: data/processed/reporting_model_account_membership_2023.csv
+  oecd_fao: data/external/oecd_fao_outlook_2026_2035_selected_production.csv
+
+outputs:
+  report: outputs/publication_validation_report.json
+  gate_table: outputs/publication_validation_gates.csv
+  oecd_comparison: outputs/oecd_fao_holdout_2024_2035.csv
+
+numerical_gates:
+  base_quantity_absolute_tolerance_mt: 1.0e-8
+  base_price_absolute_tolerance: 1.0e-12
+  base_process_activity_absolute_tolerance: 1.0e-8
+  market_relative_residual_tolerance: 1.0e-9
+  accounting_absolute_residual_tolerance_mt: 1.0e-9
+  nonnegative_tolerance: 1.0e-10
+
+price_plausibility_gates:
+  all_2050_price_lower: 0.25
+  all_2050_price_upper: 4.0
+  central_band_lower: 0.5
+  central_band_upper: 2.0
+  minimum_share_in_central_band: 0.95
+  maximum_annual_absolute_log_change: 0.20
+  essential_food_price_lower: 0.5
+  essential_food_price_upper: 2.5
+  essential_food_products: [RIC, WHE, CRN, OCG, SUG, BFV, PRK, PLM, MLK]
+
+oecd_fao_holdout:
+  start_year: 2024
+  end_year: 2035
+  minimum_full_sign_agreement: 0.75
+  maximum_full_median_absolute_error_pp: 12.0
+  maximum_full_p90_absolute_error_pp: 25.0
+  maximum_world_mean_absolute_error_pp: 8.0
+  minimum_world_sign_agreement_count: 8
+  areas:
+    W: WORLD
+    CHN: CHN
+    EU: EU27
+  commodities:
+    CPC_0111: WHE
+    CPC_0112: CRN
+    CPC_0113: RIC
+    CPC_0114T0119: OCG
+    CPC_0141: SBS
+    CPC_01921: CTN
+    CPC_EX_BV: BFV
+    CPC_EX_PK: PRK
+    CPC_EX_PT: PLM

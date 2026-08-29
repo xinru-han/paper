@@ -1,0 +1,127 @@
+{
+  "status": "passed",
+  "study_id": "CHINA_DIET_CASM_WORLD_REBUILD_2050",
+  "scenario_type": "conditional_counterfactual_not_unconditional_forecast",
+  "row_counts": {
+    "country_product": 861552,
+    "group_results": 258912,
+    "country_contrasts_2050": 89745,
+    "group_contrasts_2050": 26970,
+    "ghg_country": 27792,
+    "ghg_group": 8352,
+    "nutrition_economy": 27792,
+    "nutrition_world": 144
+  },
+  "audits": {
+    "ghg": {
+      "status": "passed",
+      "world_conservation_maximum_absolute_error_mtco2e": 9.094947017729282e-13,
+      "coefficient_base_year": 2023,
+      "boundary": "attributed biological farm-gate production emissions"
+    },
+    "nutrition": {
+      "status": "passed",
+      "maximum_nonfood_food_demand_mt": 0.0,
+      "interpretation_scope": "model-covered edible commodity basket, not a complete diet"
+    }
+  },
+  "headline": {
+    "status": "passed",
+    "central_ssp": "SSP2",
+    "headline_pathway": "CGS",
+    "world_ghg_change_mtco2e": -254.54279698304435,
+    "china_ghg_change_mtco2e": -47.30313483570024,
+    "outside_china_ghg_change_mtco2e": -207.23966214734412,
+    "world_primary_basket_production_change_mt": -70.9664091845425,
+    "price_effect_sensitivity_ranges_percent": {
+      "PRK": [
+        -46.23490261638384,
+        -21.188396839718816
+      ],
+      "RIC": [
+        -15.79953554267407,
+        -5.050179335391491
+      ],
+      "PLM": [
+        -10.84230462560274,
+        8.375080149439729
+      ],
+      "FMK": [
+        17.913596722539914,
+        23.448250965100147
+      ],
+      "WDM": [
+        21.379565360252805,
+        24.913004707341724
+      ]
+    },
+    "interpretation_warning": "CES model-form sensitivity changes the sign or magnitude of some product effects; no single price result is presented as model-form invariant."
+  },
+  "tables": {
+    "world_price_impacts": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/tables/table1_world_price_impacts_2050.csv",
+      "sha256": "6ad597139d21262595afbbe9e21f79c0eb13e9688a9c619a2dc3d9268c93c647"
+    },
+    "china_impacts": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/tables/table2_china_impacts_ssp2_2050.csv",
+      "sha256": "8ae0e0383b056ae1eb517bfbe0cf687497761c6150f0088baa293a21aa7e3b2b"
+    },
+    "regional_impacts": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/tables/table3_region_economic_group_impacts_ssp2_2050.csv",
+      "sha256": "a4a01d0ab8b88b2a7a30f2d182d3d7986e161dab2e390b82fec56f72d69340b8"
+    },
+    "economy_impacts": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/tables/table4_largest_economy_product_impacts_ssp2_2050.csv",
+      "sha256": "df6d9bed3aa6d3be966017a365059e840b53286b26798df40a982c39189c76d9"
+    },
+    "ghg_impacts": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/tables/table5_ghg_impacts_2050.csv",
+      "sha256": "df7fe18cbb4ec50f842c01adab8a7813ae0f3a199d715c5c394c257dbf635a24"
+    },
+    "nutrition_impacts": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/tables/table6_model_covered_nutrition_impacts_2050.csv",
+      "sha256": "1a29feb1fa651a28811e8d48399416603ffba7e60c23a02caf9916d2928d0be7"
+    },
+    "sensitivity": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/tables/table7_price_sensitivity_ssp2_2050.csv",
+      "sha256": "47f0baea579d591b33b8cc0ef36d0302cb681d0ff6bb30696f63cc775a1acda5"
+    },
+    "primary_basket": {
+      "path": "/root/data/Paper/食物预测2050/casm_world_rebuild_diet_study_20260829/model_run/study/china_diet/outputs/tables/table8_primary_basket_group_impacts_2050.csv",
+      "sha256": "6fa12c2f73038f62e5413f417c3325c9d0a38a5e3f2e4927a64cfbc37ee05c25"
+    }
+  },
+  "limitations": {
+    "excluded_food_groups": [
+      {
+        "source_commodity": "POTA",
+        "reason": "no tuber market in the 31-product world model"
+      },
+      {
+        "source_commodity": "VEGT",
+        "reason": "no vegetable market in the 31-product world model"
+      },
+      {
+        "source_commodity": "FRTO",
+        "reason": "no fruit market in the 31-product world model"
+      },
+      {
+        "source_commodity": "EGGS",
+        "reason": "no egg market in the 31-product world model"
+      },
+      {
+        "source_commodity": "FISH",
+        "reason": "no aquatic-food market in the 31-product world model"
+      },
+      {
+        "source_commodity": "SHGM",
+        "reason": "no sheep/goat meat market in the 31-product world model"
+      }
+    ],
+    "bilateral_trade": "not modelled",
+    "shared_crop_resource": "not implemented in source CASM-World rebuild",
+    "world_model_publication_status": "computationally valid diagnostic conditional model; source model publication validator passes 18 of 20 gates",
+    "ghg": "frozen 2023 attributed farm-gate coefficients; not lifecycle emissions",
+    "nutrition": "model-covered edible basket only; not diet adequacy or health outcomes"
+  }
+}
