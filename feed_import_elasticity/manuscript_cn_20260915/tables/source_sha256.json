@@ -1,0 +1,14 @@
+{
+  "stata_aids_baseline_2026/output/all_models_elasticities_complete.csv": "871fb5f7fdbb5b43a4970aa45d727d45531b45782ddbe5faffe727b49ba39593",
+  "stata_aids_baseline_2026/output/raw_transaction_descriptive_by_product.csv": "5f94303e42795cac8ee31f49d735d9d00946353c9d5543bcd159a5785f011ced",
+  "stata_aids_baseline_2026/output/basic_aids_joint_tests.csv": "8856b1037551edebcc935eeff1266b300654f9b2b3cc491d4e1007f6d509501a",
+  "stata_aids_baseline_2026/output/extended_model_joint_tests.csv": "dc639a0547bf0977b15d6a2530097417068f2d7b43f55f5b10163de6a63b4b2e",
+  "stata_aids_baseline_2026/data/aids_estimation_panel.dta": "08d3e14ccfa1167372e10e87fa0353a58a7cd5468741983f24066cdf95295be5",
+  "stata_aids_baseline_2026/output/basic_aids.ster": "d5940fe607a6e527ce91e1ed42ba75c7139fcb9f5cd6b8102d4597670b2c3c6f",
+  "stata_aids_baseline_2026/output/quaids.ster": "63e35652ce32d5ad2f166e13977eb42ca78ef5aaface32c24e6db2cc53ce8a25",
+  "stata_aids_baseline_2026/output/sy_aids.ster": "9d4ac5fe1cc38193a85052da2054e57a78455e1e631e4aaaf59a5b98cbe16eab",
+  "stata_aids_baseline_2026/output/sy_quaids.ster": "e6381eb7cb92655b2ff575786e199f4f7f18090fde3b4ec7cea44a96ed5684bd",
+  "manuscript_cn_20260915/tables/reference_regularity_audit.csv": "70055f2e0fc38bae1e8cf6bc0fc6c597e4779362c54827961aab832464ae1dcc",
+  "manuscript_cn_20260915/tables/verified_share_description.csv": "50693c789b4b0e68f68fae1a35c753c1cbc4e1ba78dfb2b6d9215d4a9a1cd1f1",
+  "manuscript_cn_20260915/tables/verified_variable_description.csv": "71311a7f22a51ea21cece16167ee9a6e746e287531c9e276bfb4e5f3a14394b6"
+}
