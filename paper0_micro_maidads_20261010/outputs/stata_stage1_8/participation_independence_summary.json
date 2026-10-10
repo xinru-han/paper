@@ -1,0 +1,20 @@
+{
+  "N": 3145,
+  "possible_patterns_including_empty": 256,
+  "observed_distinct_patterns": 36,
+  "observed_empty_patterns": 0,
+  "predicted_unconditioned_empty_count": 2.2985603289224895e-11,
+  "total_variation_distance": 0.0968760214553325,
+  "count_RMSE": 15.41805146072073,
+  "max_absolute_share_gap": 0.05614639191069168,
+  "observed_all_positive_share": 0.4864864864864865,
+  "predicted_all_positive_share": 0.4303400945757948,
+  "definition": "Heterogeneous household independent probits; exact patterns conditioned on at least one positive food",
+  "calibration_inference": "Pattern standardized gaps are descriptive; no chi-square p-values are claimed",
+  "system_goods": 8,
+  "pairwise_tests": 28,
+  "pairs_nominal_p_below_05": 15,
+  "pairs_BH_FDR_below_05": 10,
+  "pairs_Bonferroni_below_05": 6,
+  "residual_inference": "Village-year cluster sandwich with probit-estimation influence correction; asymptotic diagnostic, not structural identification"
+}

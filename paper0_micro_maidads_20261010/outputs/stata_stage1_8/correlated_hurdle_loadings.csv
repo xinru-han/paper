@@ -1,0 +1,9 @@
+good,group_name,loading,fixed_zero_weak_or_universal_margin,loading_at_upper_guard
+1,主食及加工品,0.0,True,False
+2,畜禽肉及肉制品,0.0,True,False
+3,蛋类及制品,0.40161026804851574,False,False
+4,奶类,0.6488137224068121,False,False
+5,水产品及制品,0.5013280736009947,False,False
+6,油脂,0.17803268931480448,False,False
+7,蔬菜及制品,0.0,True,False
+8,水果干果及制品,0.6206723511562071,False,False

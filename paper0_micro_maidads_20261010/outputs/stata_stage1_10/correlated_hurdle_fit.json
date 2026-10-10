@@ -1,0 +1,118 @@
+{
+  "system_goods": 10,
+  "N": 3145,
+  "loadings": [
+    0.0,
+    0.4699820556766356,
+    0.6363047030733754,
+    0.3966320107152965,
+    0.5090875383105252,
+    0.6082897733687886,
+    0.21403245071845545,
+    0.0,
+    0.667301600379018,
+    0.5389151268682097
+  ],
+  "lambda": [
+    0.0,
+    0.4699820556766356,
+    0.6363047030733754,
+    0.3966320107152965,
+    0.5090875383105252,
+    0.6082897733687886,
+    0.21403245071845545,
+    0.0,
+    0.667301600379018,
+    0.5389151268682097
+  ],
+  "fixed_zero_goods": [
+    1,
+    8
+  ],
+  "quadrature_nodes": 32,
+  "log_likelihood": -8066.509007856307,
+  "fixed_parameter_log_likelihood_64_nodes": -8066.509007876864,
+  "quadrature_64_minus_32_log_likelihood": -2.0557308744173497e-08,
+  "independent_log_likelihood": -8410.775928347684,
+  "descriptive_twice_loglikelihood_gain": 688.5338409827546,
+  "number_factor_parameters": 8,
+  "AIC_conditional_offsets": 16149.018015712614,
+  "BIC_conditional_offsets": 16197.44656906569,
+  "optimizer_success": true,
+  "projected_mean_score_max": 5.8807481273744554e-08,
+  "attempts": [
+    {
+      "initial_loading": 0.2,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 15,
+      "negative_mean_log_likelihood": 2.5648677290481605,
+      "loadings_free": [
+        0.4699819471502557,
+        0.6363046402066717,
+        0.3966319113377097,
+        0.5090877629893521,
+        0.6082902734591183,
+        0.21403253899228472,
+        0.6673013986597606,
+        0.5389151548130265
+      ]
+    },
+    {
+      "initial_loading": 0.45,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 14,
+      "negative_mean_log_likelihood": 2.564867729048117,
+      "loadings_free": [
+        0.46998161965167373,
+        0.6363047444251461,
+        0.3966320088895291,
+        0.5090877008012953,
+        0.6082897221470731,
+        0.21403235740092616,
+        0.6673016495588828,
+        0.5389149378690082
+      ]
+    },
+    {
+      "initial_loading": 0.65,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 13,
+      "negative_mean_log_likelihood": 2.5648677290481103,
+      "loadings_free": [
+        0.4699820556766356,
+        0.6363047030733754,
+        0.3966320107152965,
+        0.5090875383105252,
+        0.6082897733687886,
+        0.21403245071845545,
+        0.667301600379018,
+        0.5389151268682097
+      ]
+    }
+  ],
+  "calibration": {
+    "N": 3145,
+    "total_variation_distance": 0.04026608524898082,
+    "all_positive_observed_share": 0.34340222575516693,
+    "all_positive_predicted_share": 0.3435457404074783,
+    "max_pattern_probability_sum_error": 2.3314683517128287e-15,
+    "max_absolute_share_gap": 0.006300880185424101
+  },
+  "derivative_validation": {
+    "likelihood_loading_gradient_max_absolute_error": 9.126255307023712e-11,
+    "income_probability_derivative_max_absolute_error": 9.785512677940034e-12,
+    "price_probability_derivative_interface_max_absolute_error": 0.0,
+    "probability_sum_error": 1.1102230246251565e-15,
+    "derivative_sum_error": 2.185751579730777e-16
+  },
+  "limitations": [
+    "Nonnegative single factor permits only positive latent participation dependence",
+    "Stata marginal probit xb offsets are held fixed; their uncertainty is not propagated",
+    "Common participation factor is assumed independent of conditional Dirichlet demand error",
+    "No conventional LR p-value: the independence null is a singular boundary loading null",
+    "This is a participation extension of MAIDADS; not a utility-theoretic full corner-solution model"
+  ]
+}

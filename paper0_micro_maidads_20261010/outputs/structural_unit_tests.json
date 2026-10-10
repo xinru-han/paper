@@ -1,0 +1,527 @@
+{
+  "source_sha256": "b8b35ae95812ab29584c97894d1f6d5ec16e2c2373d7a49096996db8d132363e",
+  "test_sha256": "d3739bece2588603753caa27f148da8cf413c405586c1afb007c398c9666c22f",
+  "numerical_tests_passed": true,
+  "tests": [
+    {
+      "test": "K3_commitment0_demographics0_budget_and_zero",
+      "passed": true,
+      "metrics": {
+        "max_relative_budget_error": 1.1506252325555213e-11,
+        "minimum_E_u": 0.9061053516728419
+      }
+    },
+    {
+      "test": "K3_commitment0_demographics0_Dirichlet_gradient",
+      "passed": true,
+      "metrics": {
+        "max_normalized_gradient_error": 2.600455198306409e-11,
+        "objective": -0.4721112182751902,
+        "gradient_max": 0.6469097878493151,
+        "single_active_loglik": 0.0
+      }
+    },
+    {
+      "test": "K3_commitment0_demographics0_individual_score",
+      "passed": true,
+      "metrics": {
+        "max_normalized_score_error": 3.7736248679832755e-11
+      }
+    },
+    {
+      "test": "K3_commitment0_demographics0_food_budget_elasticity",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 4.0297267900381184e-11
+      }
+    },
+    {
+      "test": "K3_commitment0_demographics0_Marshallian_price",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 2.730036132438036e-10
+      }
+    },
+    {
+      "test": "K3_commitment0_demographics0_Hicksian_price",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 1.7880000837025148e-11
+      }
+    },
+    {
+      "test": "K3_commitment0_demographics0_Slutsky_and_adding_up",
+      "passed": true,
+      "metrics": {
+        "max_Slutsky_asymmetry": 8.881784197001252e-16,
+        "max_Slutsky_eigenvalue": 6.439293542825908e-15,
+        "Engel_adding_up_error": 2.220446049250313e-16,
+        "homogeneity_error": 1.1941558852868184e-11,
+        "price_adding_up_error": 2.220446049250313e-16
+      }
+    },
+    {
+      "test": "K3_commitment0_demographics0_common_currency_divide_100",
+      "passed": true,
+      "metrics": {
+        "max_quantity_or_utility_difference": 4.766942396372542e-11,
+        "objective_difference": 1.1906586827592491e-12,
+        "gradient_difference": 4.300448885885544e-12
+      }
+    },
+    {
+      "test": "K3_commitment0_demographics0_root_and_monotonicity",
+      "passed": true,
+      "metrics": {
+        "global_sufficient_bound_max": 0.03379966010174398,
+        "all_globally_certified": true,
+        "finite_grid_root_count": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "finite_grid_minimum_E_u": 2.0126900005099978e-18,
+        "finite_grid_interval": [
+          -40.0,
+          40.0
+        ],
+        "finite_grid_step": 0.2
+      }
+    },
+    {
+      "test": "K4_commitment1_demographics2_budget_and_zero",
+      "passed": true,
+      "metrics": {
+        "max_relative_budget_error": 7.217686069796025e-12,
+        "minimum_E_u": 1.429432583031111
+      }
+    },
+    {
+      "test": "K4_commitment1_demographics2_Dirichlet_gradient",
+      "passed": true,
+      "metrics": {
+        "max_normalized_gradient_error": 4.148335287777005e-11,
+        "objective": -1.0042863537420232,
+        "gradient_max": 1.0920713845013927,
+        "single_active_loglik": 0.0
+      }
+    },
+    {
+      "test": "K4_commitment1_demographics2_individual_score",
+      "passed": true,
+      "metrics": {
+        "max_normalized_score_error": 4.436617254316074e-11
+      }
+    },
+    {
+      "test": "K4_commitment1_demographics2_food_budget_elasticity",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 4.0872201881295545e-11
+      }
+    },
+    {
+      "test": "K4_commitment1_demographics2_Marshallian_price",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 8.802412241811864e-10
+      }
+    },
+    {
+      "test": "K4_commitment1_demographics2_Hicksian_price",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 1.856700637325792e-11
+      }
+    },
+    {
+      "test": "K4_commitment1_demographics2_Slutsky_and_adding_up",
+      "passed": true,
+      "metrics": {
+        "max_Slutsky_asymmetry": 1.7763568394002505e-15,
+        "max_Slutsky_eigenvalue": 7.105427357601002e-15,
+        "Engel_adding_up_error": 3.3306690738754696e-16,
+        "homogeneity_error": 7.34323712947571e-12,
+        "price_adding_up_error": 2.220446049250313e-16
+      }
+    },
+    {
+      "test": "K4_commitment1_demographics2_common_currency_divide_100",
+      "passed": true,
+      "metrics": {
+        "max_quantity_or_utility_difference": 5.2458482002748497e-11,
+        "objective_difference": 1.7634782523145986e-12,
+        "gradient_difference": 7.103873045366527e-12
+      }
+    },
+    {
+      "test": "K4_commitment1_demographics2_root_and_monotonicity",
+      "passed": true,
+      "metrics": {
+        "global_sufficient_bound_max": 0.025969593675593084,
+        "all_globally_certified": true,
+        "finite_grid_root_count": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "finite_grid_minimum_E_u": 1.0725766956394852e-16,
+        "finite_grid_interval": [
+          -40.0,
+          40.0
+        ],
+        "finite_grid_step": 0.2
+      }
+    },
+    {
+      "test": "K8_commitment1_demographics2_budget_and_zero",
+      "passed": true,
+      "metrics": {
+        "max_relative_budget_error": 1.737106736109791e-11,
+        "minimum_E_u": 1.7477402781599776
+      }
+    },
+    {
+      "test": "K8_commitment1_demographics2_Dirichlet_gradient",
+      "passed": true,
+      "metrics": {
+        "max_normalized_gradient_error": 5.2951066568089224e-11,
+        "objective": -3.9901623757206988,
+        "gradient_max": 2.631290758430901,
+        "single_active_loglik": 0.0
+      }
+    },
+    {
+      "test": "K8_commitment1_demographics2_individual_score",
+      "passed": true,
+      "metrics": {
+        "max_normalized_score_error": 4.390539797773943e-11
+      }
+    },
+    {
+      "test": "K8_commitment1_demographics2_food_budget_elasticity",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 4.2675932276283254e-11
+      }
+    },
+    {
+      "test": "K8_commitment1_demographics2_Marshallian_price",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 2.5107410959107804e-10
+      }
+    },
+    {
+      "test": "K8_commitment1_demographics2_Hicksian_price",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 2.969242498384998e-11
+      }
+    },
+    {
+      "test": "K8_commitment1_demographics2_Slutsky_and_adding_up",
+      "passed": true,
+      "metrics": {
+        "max_Slutsky_asymmetry": 8.881784197001252e-16,
+        "max_Slutsky_eigenvalue": 1.1404817613425421e-14,
+        "Engel_adding_up_error": 2.220446049250313e-16,
+        "homogeneity_error": 1.8503198973007784e-11,
+        "price_adding_up_error": 8.326672684688674e-17
+      }
+    },
+    {
+      "test": "K8_commitment1_demographics2_common_currency_divide_100",
+      "passed": true,
+      "metrics": {
+        "max_quantity_or_utility_difference": 5.417177817435004e-11,
+        "objective_difference": 4.911626660941693e-13,
+        "gradient_difference": 5.231370892033738e-13
+      }
+    },
+    {
+      "test": "K8_commitment1_demographics2_root_and_monotonicity",
+      "passed": true,
+      "metrics": {
+        "global_sufficient_bound_max": 0.03016121662576533,
+        "all_globally_certified": true,
+        "finite_grid_root_count": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "finite_grid_minimum_E_u": 5.92528316345336e-17,
+        "finite_grid_interval": [
+          -40.0,
+          40.0
+        ],
+        "finite_grid_step": 0.2
+      }
+    },
+    {
+      "test": "K10_commitment1_demographics2_budget_and_zero",
+      "passed": true,
+      "metrics": {
+        "max_relative_budget_error": 1.048214795227103e-12,
+        "minimum_E_u": 1.4127576217775688
+      }
+    },
+    {
+      "test": "K10_commitment1_demographics2_Dirichlet_gradient",
+      "passed": true,
+      "metrics": {
+        "max_normalized_gradient_error": 4.362165932633631e-11,
+        "objective": -4.803389136104851,
+        "gradient_max": 2.5474428336387382,
+        "single_active_loglik": 0.0
+      }
+    },
+    {
+      "test": "K10_commitment1_demographics2_individual_score",
+      "passed": true,
+      "metrics": {
+        "max_normalized_score_error": 6.94422796990667e-11
+      }
+    },
+    {
+      "test": "K10_commitment1_demographics2_food_budget_elasticity",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 3.914958495157376e-11
+      }
+    },
+    {
+      "test": "K10_commitment1_demographics2_Marshallian_price",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 4.1389647049745145e-11
+      }
+    },
+    {
+      "test": "K10_commitment1_demographics2_Hicksian_price",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 2.7656832183292782e-11
+      }
+    },
+    {
+      "test": "K10_commitment1_demographics2_Slutsky_and_adding_up",
+      "passed": true,
+      "metrics": {
+        "max_Slutsky_asymmetry": 8.881784197001252e-16,
+        "max_Slutsky_eigenvalue": 1.4210854715202004e-14,
+        "Engel_adding_up_error": 2.220446049250313e-16,
+        "homogeneity_error": 1.1044498648971057e-12,
+        "price_adding_up_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "test": "K10_commitment1_demographics2_common_currency_divide_100",
+      "passed": true,
+      "metrics": {
+        "max_quantity_or_utility_difference": 1.957506157168609e-09,
+        "objective_difference": 4.1456615917923045e-11,
+        "gradient_difference": 3.4146907523791015e-11
+      }
+    },
+    {
+      "test": "K10_commitment1_demographics2_root_and_monotonicity",
+      "passed": true,
+      "metrics": {
+        "global_sufficient_bound_max": 0.026419430686507105,
+        "all_globally_certified": true,
+        "finite_grid_root_count": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "finite_grid_minimum_E_u": 4.322151528795943e-17,
+        "finite_grid_interval": [
+          -40.0,
+          40.0
+        ],
+        "finite_grid_step": 0.2
+      }
+    },
+    {
+      "test": "hurdle_income_two_margin_derivative",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 3.139670915987262e-11,
+        "income_elasticity": [
+          0.6897631754881899,
+          0.9062075522819365,
+          0.46612691146815655
+        ]
+      }
+    },
+    {
+      "test": "hurdle_total_price_two_margin_derivative",
+      "passed": true,
+      "metrics": {
+        "max_normalized_finite_difference_error": 7.269921398668797e-11,
+        "price_response_elasticity_not_Hicksian": [
+          -0.14190513959615092,
+          -1.3074223182876359,
+          0.006348288657611741
+        ]
+      }
+    },
+    {
+      "test": "nonempty_participation_probability_derivatives",
+      "passed": true,
+      "metrics": {
+        "probability_sum": 0.9999999999999998,
+        "income_derivative_sum": -1.3877787807814457e-17,
+        "price_derivative_sum": 2.0816681711721685e-17,
+        "population_budget_error": 4.725109192804666e-13
+      }
+    },
+    {
+      "test": "interval_certificate_bounds_dense_h_grid",
+      "passed": true,
+      "metrics": {
+        "minimum_bound_minus_dense_h": 0.0,
+        "minimum_L_increment": 0.0,
+        "cases": 128,
+        "dense_points": 4097,
+        "scope": "Numerical implementation check; the analytic monotonic-L inequality supplies the all-u proof."
+      }
+    },
+    {
+      "test": "interval_certificate_currency_invariance",
+      "passed": true,
+      "metrics": {
+        "max_bound_change": 8.881784197001252e-16
+      }
+    },
+    {
+      "test": "interval_certificate_rejects_nonunique_root_counterexample",
+      "passed": true,
+      "metrics": {
+        "bound": 3.4323264396643918
+      }
+    },
+    {
+      "test": "source_unchanged_during_test",
+      "passed": true,
+      "metrics": {
+        "source_sha256_before": "b8b35ae95812ab29584c97894d1f6d5ec16e2c2373d7a49096996db8d132363e",
+        "source_sha256_after": "b8b35ae95812ab29584c97894d1f6d5ec16e2c2373d7a49096996db8d132363e"
+      }
+    }
+  ],
+  "diagnostic_counterexamples": {
+    "multiple_roots": {
+      "fixture": "K2 alpha_logit=5 beta_logit=-5 p=(10,0.00001) m=0.01",
+      "known_nonunique_roots_detected": true,
+      "kernel_accepts_ambiguous_root": true,
+      "prediction": {
+        "utility": [
+          -6.846150738293903
+        ],
+        "E_u": [
+          0.009906160301308158
+        ],
+        "relative_budget_error": 4.440892098500626e-16
+      },
+      "grid_diagnostic": {
+        "interval": [
+          -40.0,
+          40.0
+        ],
+        "step": 0.01,
+        "root_count": [
+          3
+        ],
+        "minimum_E_u": [
+          -0.24638995838323904
+        ],
+        "slope_sign_changes": [
+          2
+        ],
+        "endpoint_bracket": [
+          true
+        ],
+        "finite_grid": [
+          true
+        ]
+      },
+      "sufficient_bound": {
+        "bound": [
+          4.6409129358766865
+        ],
+        "certified_positive_slope": [
+          false
+        ],
+        "lower_Q_u_over_Q": [
+          -3.6409129358766865
+        ]
+      },
+      "interpretation": "Local positive E_u and budget closure do not establish unique utility."
+    },
+    "optimizer_failure": {
+      "kernel_accepts_unsuccessful_optimizer": false,
+      "details": {
+        "exception": "No converged, stationary and numerically feasible MAIDADS candidate: [{'start': 0, 'success': False, 'message': 'TEST iteration limit reached', 'iterations': 1, 'objective': -0.41627249599048455, 'gradient_max': 0.2, 'projected_gradient_max': 0.2, 'positive_eu': True, 'budget_max_error': 7.775216290984451e-12, 'theta': [1.3570234907680765, 0.2997683031355838, 1.3570234907680765, 0.2997683031355838, 0.17874801090842182, -0.8518734247824986, -1.4493721588193917, -0.2231435513142097, 0.0, 1.0986122886681096]}]"
+      },
+      "interpretation": "A feasible last iterate is not a converged estimator."
+    }
+  },
+  "optimizer_failure_rejection_passed": true,
+  "universal_root_safety_established": false,
+  "fitted_data_and_forecast_working_domains_audited": false,
+  "scope": "Synthetic structural and derivative tests; not evidence of fitted-data convergence or sampling inference."
+}

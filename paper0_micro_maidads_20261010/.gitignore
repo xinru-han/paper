@@ -1,0 +1,9 @@
+data/
+logs/
+__pycache__/
+*.pyc
+*.dta
+*.ster
+*.log
+household_predictions.csv
+RUN_ALL.lock

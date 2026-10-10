@@ -1,0 +1,19 @@
+{
+  "income_derivative_max_scaled_error": 4.245360509682018e-10,
+  "households_tested": 12,
+  "step": 0.0001,
+  "integration": "all 2^K-1 nonempty sets, no simulation",
+  "price_derivative_max_scaled_error": 1.0012189151113383e-09,
+  "price_derivative_errors_by_price": [
+    2.8124878345210814e-10,
+    3.223380867101885e-10,
+    1.0012189151113383e-09,
+    7.700506029361076e-10,
+    7.529397124902088e-10,
+    4.924815657434496e-10,
+    4.2540380322622475e-10,
+    2.966948281864627e-10,
+    2.909957534749261e-10,
+    9.715896030030795e-10
+  ]
+}

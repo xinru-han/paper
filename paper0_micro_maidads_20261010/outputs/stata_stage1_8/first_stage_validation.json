@@ -1,0 +1,47 @@
+{
+  "number_goods": 8,
+  "observations": 3565,
+  "model_observations": 3145,
+  "raw_observations": 3509,
+  "trimmed_observations": 3081,
+  "all_observed_zero_food_budgets": 20,
+  "unknown_family_model_observations": 375,
+  "model_reconstruction": {
+    "food_budget_fooddeflated": {
+      "max_relative_error": 2.6645352591003757e-15
+    },
+    "food_budget_income_trim": {
+      "max_relative_error": 2.886579864025407e-15
+    },
+    "food_budget_main": {
+      "max_relative_error": 2.220446049250313e-15
+    },
+    "food_budget_raw": {
+      "max_relative_error": 4.551914400963142e-15
+    },
+    "participation_g1": {
+      "max_absolute_error": 0.0
+    },
+    "participation_g2": {
+      "max_absolute_error": 1.1102230246251565e-16
+    },
+    "participation_g3": {
+      "max_absolute_error": 2.3314683517128287e-15
+    },
+    "participation_g4": {
+      "max_absolute_error": 9.992007221626409e-16
+    },
+    "participation_g5": {
+      "max_absolute_error": 6.661338147750939e-16
+    },
+    "participation_g6": {
+      "max_absolute_error": 4.440892098500626e-16
+    },
+    "participation_g7": {
+      "max_absolute_error": 0.0
+    },
+    "participation_g8": {
+      "max_absolute_error": 6.661338147750939e-16
+    }
+  }
+}

@@ -1,0 +1,10 @@
+check,value
+household_rows,3565
+reported_size_invalid,22
+incomplete_relationship_roster,453
+incomplete_age_roster,105
+income_upstream_changed,30
+income_nonpositive,53
+income_17_component_sum_mismatch,0
+income_total_sum_mismatch,0
+income_all_components_unreported,26

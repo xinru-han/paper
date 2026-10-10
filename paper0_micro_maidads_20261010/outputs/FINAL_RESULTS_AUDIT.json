@@ -1,0 +1,61 @@
+{
+  "audit_utc": "2026-10-10T09:27:47.158006+00:00",
+  "mode": "verification of actually executed incremental scientific stages",
+  "full_pipeline_marker_claimed": false,
+  "bootstrapped": false,
+  "results": [
+    {
+      "goods": 8,
+      "households": 3145,
+      "final_fit_sha256": "7be4f61de9f948d8ef505cdd822645b22f376d9faa78057d9ced40a9f18c3f54",
+      "kernel_sha256": "b8b35ae95812ab29584c97894d1f6d5ec16e2c2373d7a49096996db8d132363e",
+      "working_domain_passed": true,
+      "fit_likelihood_recalculation_error": 0.0,
+      "aggregate_budget_max_relative_error": 1.226863903881925e-12,
+      "finite_difference_income_error": 2.0329986105765028e-10,
+      "finite_difference_price_error": 9.32667145520328e-10,
+      "aggregate_positive_income_count": 8,
+      "aggregate_negative_total_own_price_count": 8,
+      "aggregate_negative_hicksian_fixed_set_count": 8,
+      "family_baseline_negative_income_count": 6,
+      "family_negative_inference": "no full-system standard error; do not conclude significant inferiority"
+    },
+    {
+      "goods": 10,
+      "households": 3145,
+      "final_fit_sha256": "d9ef6cd7de18fab01b9844d094f6384bc702e7b3a9db634b107302e6d1a28396",
+      "kernel_sha256": "b8b35ae95812ab29584c97894d1f6d5ec16e2c2373d7a49096996db8d132363e",
+      "working_domain_passed": true,
+      "fit_likelihood_recalculation_error": 0.0,
+      "aggregate_budget_max_relative_error": 9.81807783401837e-13,
+      "finite_difference_income_error": 4.245360509682018e-10,
+      "finite_difference_price_error": 1.0012189151113383e-09,
+      "aggregate_positive_income_count": 10,
+      "aggregate_negative_total_own_price_count": 10,
+      "aggregate_negative_hicksian_fixed_set_count": 10,
+      "family_baseline_negative_income_count": 6,
+      "family_negative_inference": "no full-system standard error; do not conclude significant inferiority"
+    }
+  ],
+  "public_summary_files": {
+    "outputs/完整主要结果.txt": "1b56fa0531a038d81cba8d1fda16f3c4892fb253d88460d9d9e2557ded3c8534",
+    "documentation/RESULTS_SUMMARY.md": "ed07cfb63d9b6e1a4c7e42a9607d19e020a4b523db28e7c32de307c91ced91e5"
+  },
+  "source_sha256": {
+    "code/01_build_data.py": "ac28c4f916aacb5eb47963879981717ba4db74c8661ed191d5117c8e16790667",
+    "code/03_fit_second_stage.py": "8812bce43fc2ba59b0bf3008db0faf706fbab97d43923f7915652a8092f1dbb9",
+    "code/04_derive_results.py": "a6157b51c5710dc48c0d77f88dc09e9576ee88d9d13afd37e262ab8305e92d75",
+    "code/05_validate_participation.py": "13939496736dfd031742e1361f27c89bc10fd1c9ab9636d2f025475677109d39",
+    "code/06_fit_correlated_hurdle.py": "e44ec2df1516965d6f010cbe21bf8980298909884e01600c313754c563c079e5",
+    "code/07_make_report.py": "a603074e79e4ac090402388e3a8a4f34e13bf40b58a732b483c953a638cd8e0a",
+    "code/08_audit_working_domain.py": "9eb96c73a5d1908831e03ecb984b6085dc228cef23e548d9c8a02ead4699840e",
+    "code/09_guard_sensitivity.py": "2ed1089109c377448aab4c39d134c28dae030ac95518671122c0b566764411dc",
+    "code/11_finalize_fits.py": "79e60757b05f4c95884187a643d317022c92e8e5531194a787cf91a2dd068acf",
+    "code/12_check_all_results.py": "aa3ffd849ce4b81c3088d5b561a9b3cd860ae27737fa7a9d1f408b53d31b4093",
+    "code/maidads_hurdle.py": "b8b35ae95812ab29584c97894d1f6d5ec16e2c2373d7a49096996db8d132363e",
+    "code/run_pipeline.py": "5b2adb3cae12e23a804d6d57fb07f01722e2dccf3b9973604075d506b39e7806",
+    "code/test_maidads_hurdle.py": "d3739bece2588603753caa27f148da8cf413c405586c1afb007c398c9666c22f",
+    "code/validate_first_stage.py": "e5c47cd196ef0a2a44e6209d04d746608954c1d7c6f327f657bc2fa9276c58c8"
+  },
+  "status": "all_result_checks_passed"
+}

@@ -1,0 +1,3 @@
+model,N,parameter_rank,clusters,converged,log_likelihood,AIC_total,BIC_total,Stata_AIC_per_observation,dispersion_phi,comparison_scope
+food_budget_main_quadratic,3145,26,360,1,-20833.56947523628,41719.141,41876.531,13.265227,1.2024202,same-sample Gamma GLM working likelihood; cluster Wald is the primary quadratic-shape test
+food_budget_loglinear,3145,21,360,1,-20840.05885699007,41722.117,41849.242,13.266174,1.2062802,same-sample Gamma GLM working likelihood; cluster Wald is the primary quadratic-shape test
