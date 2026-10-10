@@ -3,4 +3,5 @@ data/*.csv
 outputs/*.dta
 outputs/*.ster
 outputs/village_community_prices.csv
+outputs/fruit_category_basket_prices.csv
 *.log

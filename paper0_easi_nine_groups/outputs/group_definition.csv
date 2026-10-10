@@ -1,0 +1,10 @@
+﻿group,group_name,item_count,item_codes,representative_price,physical_cap_jin_pc_month
+1,主食及加工品,11,zhushi_1; zhushi_2_1; zhushi_3; zhushi_3_1; zhushi_5; zhushi_6; zhushi_7; zhushi_1_1; zhushi_2; zhushi_2_2; zhushi_8,常吃的面粉单价; 常吃的大米单价,120.0
+2,豆类及加工品,5,doulei_1; doulei_4; doulei_2; doulei_3; xiancai_4,常吃的豆腐单价; 常吃的黄豆单价,30.0
+3,畜禽肉,9,roulei_1; roulei_2; roulei_3; roulei_4; roulei_9; roulei_5; roulei_6; roulei_7; roulei_8,肥瘦猪肉单价,60.0
+4,蛋类及制品,3,danlei_1; danlei_2; danlei_3,普通鸡蛋的单价,30.0
+5,奶类,3,nailei_1; nailei_2; nailei_3,普通盒装纯牛奶的单价,120.0
+6,水产品及制品,2,shuichan_1; roulei_13,鲤鱼的单价; 带鱼的单价,60.0
+7,油脂,6,youzhi_1; youzhi_2; youzhi_3; youzhi_4; youzhi_5; youzhi_6,常吃菜籽油的单价,21.0
+8,蔬菜及制品,11,shucai_1; shucai_2; shucai_3; shucai_4; shucai_5; shucai_6; shucai_7; shucai_8; shucai_9; xiancai_1; xiancai_2,青菜的单价; 白菜的单价,180.0
+9,干果及制品,3,shuiguo_6; shuiguo_4; shuiguo_5,常吃瓜子（葵花子）的单价,60.0

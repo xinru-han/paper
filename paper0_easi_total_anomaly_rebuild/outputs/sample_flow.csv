@@ -1,0 +1,12 @@
+sequence,stage,observations
+1,households matched to source and price data,3565
+2,valid household size,3547
+3,positive total consumption replacement value,3545
+4,physical bounds only,3175
+5,physical bounds plus total-quantity five-MAD tails,3127
+6,preferred: total and self-quantity five-MAD tails,3103
+7,sensitivity: all source components at five MAD,3102
+8,sensitivity: total and self at 4.5 MAD,3095
+9,sensitivity: total and self at six MAD,3125
+10,sensitivity: total and self positive p99,3172
+11,preferred anomalies and own/town/nearest prices,1379

@@ -1,0 +1,7 @@
+{
+  "run_id": "20261010T092651Z_d2263436",
+  "mode": "source_and_path_check",
+  "status": "checks_passed_no_scientific_stages_executed",
+  "manifest": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/PIPELINE_CHECK_MANIFEST.json",
+  "manifest_sha256": "f052362fa92a1babecb35022fb057784e7f76e848b954f26b031c7763b152a04"
+}

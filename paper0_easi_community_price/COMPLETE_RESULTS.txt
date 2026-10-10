@@ -1,0 +1,1987 @@
+COMPLETE FOOD-DEMAND RESULTS
+Total-consumption rural household system; community prices; SY correction; IV expenditure; local Slutsky curvature
+Generated: 16 July 2026
+
+Interpretation: total-consumption EASI(1)-GMM is the authoritative structural model. Own production is included in total quantities and expenditures; source-specific systems are diagnostics only.
+Bootstrap note: the saved run requested 19 cluster repetitions; successful and failed repetitions are reported below.
+
+
+===== CURVATURE_CONSTRAINED_RESULTS.md =====
+# EASI 自价格弹性曲率约束修正
+
+## 结论
+
+正的 Hicksian 自价格弹性不能通过事后改号解决。当前项目采用两步修正：
+
+1. 按 Hovhannisyan et al. (2025) 在价格、支出和人口特征的样本均值处报告
+   主弹性；
+2. 在 EASI-GMM 估计中用 Cholesky 重参数化直接施加局部 Slutsky 负半定，
+   并用 delta method 计算弹性标准误、p 值和置信区间。
+
+局部曲率模型收敛，Hansen `p=0.0688`，六类参考点 Hicksian 自价格弹性均为
+负。强制所有家庭都满足曲率的全局版本虽然消除了全部正号，但没有收敛且
+Hansen `p<0.001`，因此不能作为主模型。
+
+## 理论依据与实现
+
+对本项目的 EASI 份额方程，记对数价格系数矩阵为 `Gamma`、潜在预算份额为
+`w`。补偿价格反应的份额形式为
+
+```text
+S(w) = Gamma + w*w' - diag(w),
+e_H,ij = S_ij / w_i.
+```
+
+支出函数对价格凹要求 `S(w)` 负半定；因此其对角元非正，内部解的 Hicksian
+自价格弹性也必须非正。加总、齐次和对称并不会自动保证这一条件。
+
+局部模型在样本均值的拟合份额 `w0` 处使用
+
+```text
+Gamma = diag(w0) - w0*w0' - Q*L*L'*Q',
+```
+
+其中 `Q'1=0`，`L` 为下三角矩阵。于是
+`S(w0)=-Q*L*L'*Q'`，在保留加总和对称的同时保证负半定。参数在 GMM 中
+联合重估，协方差矩阵通过重参数化 Jacobian 转换回原始 `Gamma` 参数。
+
+## 局部曲率主结果
+
+| 食品 | Hicksian 自价格 | 标准误 | p 值 | 95% CI |
+| --- | ---: | ---: | ---: | ---: |
+| 粮食 | -0.241 | 0.060 | <0.001 | [-0.359, -0.124] |
+| 豆类 | -0.341 | 0.167 | 0.041 | [-0.668, -0.014] |
+| 肉类 | -0.255 | 0.061 | <0.001 | [-0.374, -0.135] |
+| 食用油 | -0.180 | 0.087 | 0.037 | [-0.350, -0.011] |
+| 蔬菜 | -0.211 | 0.062 | <0.001 | [-0.334, -0.089] |
+| 水果 | -0.074 | 0.087 | 0.393 | [-0.244, 0.096] |
+
+水果点估计符合理论，但不能拒绝弹性为零。不能将它写成“显著负价格反应”。
+
+约束前参考点最大特征值为 `0.00262`；约束后为数值零
+(`4.40e-18`)。两步 GMM 的 Hansen 统计量只从 `28.732` 变为 `28.825`，
+Hansen p 值从 `0.0703` 变为 `0.0688`，说明局部修正没有造成明显拟合损失。
+
+## 为什么原总体加权值仍可能为正
+
+旧主表把不同价格、支出和人口点的户级弹性按预测数量加权。局部曲率只在
+一个共同参考点施加，因此它不会保证每个异质家庭都满足曲率。约束后该旧口径
+的粮食和食用油总体值仍分别为 `0.102` 和 `0.104`，但户级中位数为
+`-0.243` 和 `-0.171`。这些值保留为异质性和模型外推诊断，不再作为主价格
+弹性。
+
+这一报告口径与 Hovhannisyan et al. (2025) 将弹性评价在样本平均值的做法
+一致。它同时避免了极小拟合份额导致的比率异常值控制总体结论。
+
+## 价格测量证据
+
+不加曲率约束时，只保留六类价格均来自本村/当年直接报价的样本，六类总体
+Hicksian 自价格弹性已经全部为负：
+
+```text
+-0.128, -0.051, -0.244, -0.263, -0.209, -0.055
+```
+
+而完整插补价格样本的粮食和食用油总体值为正。数量 p99 修剪只能使粮食转负，
+不能使食用油转负。因此正号不只是消费异常值，也与乡镇、县、省价格插补压缩
+村际价格变异，以及价格和本地生产条件/商品质量共同变化有关。曲率约束不能
+代替价格识别，直接村价结果必须与主表并列报告。
+
+直接价格未约束模型的 Hansen `p=0.457`。在这个较小样本上再施加局部曲率后，
+Hansen `p<0.001`，且豆类参考点弹性变为不稳定的 `-3.50`。所以直接价格证据
+采用未约束结果，不用被过度约束且规格检验拒绝的版本。这个对比也说明，不能
+为了得到负号而忽略模型拟合和识别检验。
+
+## 全局约束为何不采用
+
+全局充分条件令 `Gamma=-Q*L*L'*Q'`。因为
+`diag(w)-w*w'` 对任何内部份额均为正半定，所以每个家庭的
+`S(w)=Gamma-[diag(w)-w*w']` 都负半定。实际结果确实使六类户级负值率均为
+100%，总体自价格弹性为：
+
+```text
+-0.824, -0.937, -0.518, -0.934, -0.892, -0.770
+```
+
+但该模型没有收敛，Hansen `J=236.77`、`df=19`、`p<0.001`。这说明以当前
+EASI(1) 和价格数据强制全样本全局曲率会严重牺牲矩条件拟合。该结果只证明
+“机械强约束可以消除正号”，不能作为可信需求弹性。
+
+## 正式报告规则
+
+- 主表使用局部曲率 EASI-GMM 的样本均值弹性及 p 值；
+- 水果写为负但不显著；其余五类为显著负；
+- 本村直接价格样本作为价格测量关键稳健性；
+- 户级数量加权弹性只报告为异质性诊断；
+- 全局模型明确列为被 Hansen 检验拒绝且未收敛的反例，不用于政策模拟；
+- 自产需求系统仍不作结构解释，主福利系统继续使用社区零售价计值的总消费。
+
+## 可复现文件
+
+- 约束估计：[code/12_curvature_constrained.do](code/12_curvature_constrained.do)
+- 通用估计器：[ado/fooddem.ado](ado/fooddem.ado)
+- EASI-GMM 参数化：[ado/fooddem_easi_gmm.ado](ado/fooddem_easi_gmm.ado)
+- 参考点推断：[ado/fooddem_reference.ado](ado/fooddem_reference.ado)
+- 局部曲率完整弹性：[outputs/source_total_curvature_constrained_reference.csv](outputs/source_total_curvature_constrained_reference.csv)
+- 估计比较：[outputs/source_total_curvature_estimation_comparison.csv](outputs/source_total_curvature_estimation_comparison.csv)
+- 全局规则性诊断：[outputs/source_total_curvature_global_regularity_latent.csv](outputs/source_total_curvature_global_regularity_latent.csv)
+
+## 参考文献
+
+- Diewert, W. E. and Wales, T. J. (1987). Flexible Functional Forms and Global
+  Curvature Conditions. *Econometrica*, 55(1), 43-68.
+  https://doi.org/10.2307/1911156
+- Moschini, G. (1999). Imposing Local Curvature Conditions in Flexible Demand
+  Systems. *Journal of Business & Economic Statistics*, 17(4), 487-490.
+- Lewbel, A. and Pendakur, K. (2009). Tricks with Hicks: The EASI Demand System.
+  *American Economic Review*, 99(3), 827-863.
+  https://doi.org/10.1257/aer.99.3.827
+- Hovhannisyan, V., Khachatryan, A. and Asci, S. (2025). A Comprehensive
+  Analysis of Urban-Rural Differences: The Case of Food Consumption in China.
+  *European Review of Agricultural Economics*, 52(4), 778-817.
+  https://doi.org/10.1093/erae/jbaf023
+
+===== FRUIT_SIGNIFICANCE_DIAGNOSTICS.md =====
+# 水果 Hicksian 自价格弹性不显著：诊断与修正
+
+## 结论
+
+主规格仍采用完整样本、局部曲率约束的 EASI(1)-GMM。水果 Hicksian
+自价格弹性为 `-0.074`，聚类稳健标准误为 `0.087`，`p=0.393`，95% CI
+为 `[-0.244, 0.096]`。点估计符合需求理论，但数据不能拒绝弹性为零。
+这不等于证明水果需求没有价格反应，而是现有村价和样本无法把较小的负反应
+与零精确区分。
+
+水果支出弹性不是不显著。主规格支出弹性为 `1.324`，标准误 `0.160`，
+`p<0.001`。需要在论文中严格区分“价格反应估计不精确”和“支出反应显著”。
+
+## 可比结果
+
+| 规格 | N | 村年聚类 | Hicksian own | SE | p | Hansen p | 判定 |
+|---|---:|---:|---:|---:|---:|---:|---|
+| 主价格、无曲率约束 | 3,118 | 360 | -0.056 | 0.088 | 0.522 | 0.070 | 可接受，符号为负 |
+| 主价格、局部曲率 | 3,118 | 360 | -0.074 | 0.087 | 0.393 | 0.069 | **主规格** |
+| 六类价格均为本村直接价 | 1,443 | 166 | -0.123 | 0.078 | 0.114 | 0.457 | 有效稳健性，样本较小 |
+| 仅水果为本村直接价 | 1,709 | 196 | -0.029 | 0.092 | 0.754 | 0.099 | 借入水果价不是唯一原因 |
+| 所有品类 p99/价格尾部修剪 | 2,783 | 338 | -0.130 | 0.060 | 0.029 | 0.012 | 显著但 Hansen 拒绝，不能采用 |
+| 仅修剪水果数量/价格尾部 | 3,061 | 357 | -0.122 | 0.064 | 0.057 | 0.026 | 10% 附近，但 Hansen 拒绝 |
+| 七子类固定权重价格、局部曲率 | 3,118 | 360 | -0.107 | 0.088 | 0.225 | 0.031 | 价格验证改善，但系统检验拒绝 |
+
+完整结果见
+[`outputs/fruit_elasticity_specification_comparison.csv`](outputs/fruit_elasticity_specification_comparison.csv)。
+
+## 原因一：价格与数量的商品边界原来不一致
+
+农户问卷的第六类数量包括七个子类：瓜果、柑橘、浆果及其他鲜果、核果、
+干果、罐头/果脯/糖渍水果、其他水果干。原主价格主要使用普通苹果和橘子，
+高低价中点也只使用鲜果 `01-04`。因此，用鲜果代表价解释包含干果和加工品的
+总数量，会产生复合品价格测量误差。
+
+新增代码先为七个子类分别建立村价，再按“本村、同乡镇直接价中位数、
+县内最近直接报价村、县中位数、省年中位数”的顺序补齐。省年仍缺失时，
+依次使用同省跨期中位数、同年全国中位数和全样本中位数，并在审计表中保留
+来源层级。只有各子类价格完成后，才用全样本固定购买支出权重计算几何价格
+指数。固定权重为：
+
+| 子类 | 权重 |
+|---|---:|
+| 瓜果 | 0.357 |
+| 柑橘 | 0.028 |
+| 浆果及其他鲜果 | 0.177 |
+| 核果 | 0.284 |
+| 干果 | 0.109 |
+| 罐头/果脯 | 0.028 |
+| 其他水果干 | 0.016 |
+
+固定全国权重不会随村庄或家庭选择变化，避免把本地单位价值和质量选择重新
+带入价格。未分类占位项只占购买价值的 `0.4%`，没有进入指数，并在权重表中
+单独保留。
+
+修正后，社区价与 Deaton 校正单位价值的对数相关系数从 `0.281` 提高到
+`0.493`；七个子类全部为本村直接价的 16 个村年中，相关系数为 `0.781`。
+这说明商品边界修正确实提高了价格有效性。可是该规格的 Hansen
+`p=0.031`，所以不能因为水果点估计更负就替代主规格。
+
+## 原因二：有效的独立价格支持不足
+
+主水果价格在 360 个估计村年聚类中只有 132 个不同取值，是六类食品中最少
+的。完整样本中只有 54.9% 的家庭使用本村水果价，其余使用乡镇、邻村、县或
+省价格。七子类价格进一步显示，一个村直接报告的子类数中位数只有 1；
+七个子类全部直接报告的村年仅 16 个。
+
+尤其是“其他水果干”只有 35 个直接报价村年，另有 91 个村年需要同年全国
+中位数；这正是七子类价格虽然改善外部验证、却使系统 Hansen 检验恶化的
+重要数据限制。该最后层级不进入主价格，只用于明确标记的商品边界敏感性。
+
+因此，表面上的家庭样本量 3,118 并不等于 3,118 个独立价格冲击。插补价格
+可以保留家庭，却会重复同一供体价格，并增加价格测量误差。仅要求水果为
+本村价并没有使弹性更负；要求六类价格都为本村价后，点估计变为 `-0.123`，
+但只剩 166 个聚类，`p=0.114`。这表明价格质量和样本构成共同起作用，不能把
+不显著简单归因于水果价格插补。
+
+## 原因三：尾部观测有影响，但删除后模型失配
+
+全品类 p99 修剪把水果弹性从 `-0.074` 改为 `-0.130`，`p=0.029`；只删除
+水果数量顶部 1% 和水果价格尾部时，弹性为 `-0.122`，`p=0.057`。尾部观测
+确实把主估计向零拉近。
+
+但是两组修剪后的 Hansen p 值分别为 `0.012` 和 `0.026`，均拒绝工具变量的
+过度识别限制。农村自产数量的高值也可能是真实生产，而不是录入错误。
+因此，修剪结果只能作为影响诊断，不能作为“解决不显著”的主回归。现有物理
+上限和五倍 MAD 筛查继续用于删除明确不合理值，不进行为了显著性的缩尾。
+
+## 原因四：零消费不是主要解释
+
+按重新构造的来源数量，水果零消费为 99 户，占 3.14%。来源需求系统已对该
+非零角点组估计 Shonkwiler-Yen 修正，并未错误跳过。主模型 SY 项联合检验
+`p=0.125`，水果本村价规格为 `p=0.963`。没有证据表明选择项遗漏导致水果
+自价格弹性不显著。
+
+## 原因五：自产自销不是主要解释
+
+水果自产数量占总水果数量的均值为 9.9%，购买参与率为 93.3%。删除自产部分
+相对总需求的水果 Hicksian own 差异为 `0.070`，村级 bootstrap 标准误
+`0.087`，`p=0.422`；水果支出弹性差异为 `-0.095`，标准误 `0.124`，
+`p=0.446`。因此，是否包含自产会改变点估计，但没有显著证据说明它是水果
+价格弹性不显著的主要原因。
+
+## 模型选择复核
+
+七子类价格改变了水果价值、总食品支出和全部六类预算份额，因此重新运行了
+AIDS、QUAIDS、EASI(1)-EASI(3) 的预设选择程序。结果仍选择 EASI(1)：
+QUAIDS 二次 Engel 项检验 `p=0.082`，且 BIC 明显劣于 EASI(1)；EASI(2)
+未形成有效候选；EASI(3) 的拟合和 BIC 异常差。价格修正后继续使用 EASI(1)
+不是沿用旧结论。
+
+Hovhannisyan et al. (2025) 报告农村水果 Hicksian own 约为 `-0.477`
+（SE `0.069`）。该研究使用 2015-2022 省级面板、由单位价值恢复的省级价格、
+八商品 GEASI 和预承诺项；本项目是村户横截面、六商品普通 EASI。因此该值
+可作为方向参照，不能作为本样本必须达到的显著性或大小目标。该论文关于
+单位价值同时含价格、质量和测量误差的论证，支持本次商品边界与价格验证修正。
+
+## 论文中的正确表述
+
+1. 主规格水果 Hicksian own 为负但不显著，其余五类显著为负。
+2. 有效规格中水果点估计均不支持显著正的补偿需求反应。
+3. 商品边界修正显著提高价格验证相关性，并使点估计更负，但该替代系统的
+   Hansen 检验未通过，故仅作为稳健性结果。
+4. 异常值修剪得到显著或接近显著的负弹性，但对应系统被 Hansen 检验拒绝，
+   不作为主结论。
+5. 现有证据支持“负但估计不精确”，不支持通过更换标准误、删除观测或施加
+   全局约束把水果人为改成显著。
+
+## 代码和输出
+
+- 诊断与重估：[`code/13_fruit_price_diagnostics.do`](code/13_fruit_price_diagnostics.do)
+- 七子类价格构造：[`code/build_fruit_category_price.py`](code/build_fruit_category_price.py)
+- 固定权重：[`outputs/fruit_subcategory_weights.csv`](outputs/fruit_subcategory_weights.csv)
+- 子类价格插补审计：[`outputs/fruit_category_price_audit.csv`](outputs/fruit_category_price_audit.csv)
+- 价格识别诊断：[`outputs/fruit_price_identification_diagnostics.csv`](outputs/fruit_price_identification_diagnostics.csv)
+- 替代价格模型选择：[`outputs/fruit_basket_model_selection.csv`](outputs/fruit_basket_model_selection.csv)
+- 弹性和 p 值比较：[`outputs/fruit_elasticity_specification_comparison.csv`](outputs/fruit_elasticity_specification_comparison.csv)
+- 七子类局部曲率弹性：[`outputs/source_total_fruitbasket_curvature_reference.csv`](outputs/source_total_fruitbasket_curvature_reference.csv)
+
+===== HICKSIAN_SELFCONSUMPTION_CORRECTION.md =====
+# Hicksian 自价格弹性、自产消费与价格修正报告
+
+更新日期：2026-07-14
+
+食品组依次为：1 粮食，2 豆类及制品，3 肉类，4 食用油，5 蔬菜，6 水果。
+
+## 一、结论先行
+
+最新的曲率约束重估见
+[`CURVATURE_CONSTRAINED_RESULTS.md`](CURVATURE_CONSTRAINED_RESULTS.md)。正式
+价格弹性主表已改为局部曲率 EASI-GMM 在样本均值处的估计：六类 Hicksian
+自价格均为负，其中粮食、豆类、肉类、食用油和蔬菜在 5% 水平显著，水果
+为负但不显著。以下数量加权总体弹性保留为价格测量和异质性诊断，不再作为
+主价格弹性。
+
+1. 原先“多数 Hicksian 自价格弹性为正”的结论不稳健。修正弹性支持集后，
+   总消费 EASI(1) 的潜在结构总体自价格弹性只有粮食和食用油为正，分别为
+   `0.107` 和 `0.106`；豆类、肉类、蔬菜、水果分别为 `-0.042`、`-0.215`、
+   `-0.029`、`-0.061`。
+2. 户级中位数六类全部为负。潜在结构中位数依次为 `-0.242`、`-0.305`、
+   `-0.228`、`-0.168`、`-0.226`、`-0.071`。正的总体值不是典型家庭的反应，
+   而是价格来源、样本异质性和聚合权重共同作用的结果。
+3. 要求六类零售价都来自本村直接报价后，六类潜在 Hicksian 自价格总体弹性
+   全部为负：`-0.128`、`-0.051`、`-0.244`、`-0.263`、`-0.209`、`-0.055`。
+   这是最强的证据，说明跨村价格插补和有限的村级价格变异是正号的主要来源。
+4. 剔除年度-品类正消费量最高 1% 后，粮食由正转负，食用油仍为正，说明
+   数量异常值解释粮食结果的一部分，但不能单独解释食用油。
+5. 自产消费不可忽略。自产参与率在粮食和蔬菜中分别为 `75.7%` 和 `83.2%`，
+   自产数量占该类总数量的户级中位数分别为 `25.7%` 和 `53.3%`。
+6. 单独的“自产需求系统”不能作结构解释：一阶段 F 为 `2.43`
+   (`p=0.089`)，Hansen `p=0.0405`，六个潜在拟合份额共同为正的比例只有
+   `1.56%`。自产机会成本与
+   生产选择同时决定，需要生产端工具变量或农户生产-消费联合模型。
+7. 本项目不估计 GEASI。Hovhannisyan et al. (2025) 使用的是 2015-2022 年
+   省级面板、完整需求系统和 FIML；本项目是农户横截面/重复横截面，首先要
+   解决来源、零消费、价格和支出内生性。其 Engel 阶数检验、共同市场价格和
+   收入/质量分解思路被保留，但其 GEASI 预承诺识别不直接移植。
+
+## 二、消费来源与价格重新定义
+
+### 2.1 原始问卷变量
+
+- `04`：购买后直接食用的数量；
+- `07`：自家生产并直接食用的数量；
+- `08`：若出售自产食品可获得的元/斤价格，是自产的机会成本/农场门价格；
+- `09`：受赠后直接食用的数量；
+- `02`、`03`：购买取得数量和购买成本，用于购买单位价值核验，不等同于当期
+  直接食用量；
+- 当 `04` 缺失时，才使用问卷典型月购买频率和数量形成透明的后备量。
+
+对每类食品构造：
+
+```text
+总消费数量 qt = 购买食用 qb + 自产食用 qs + 受赠食用 qg
+剔除自产数量 qo = 购买食用 qb + 受赠食用 qg
+```
+
+源别恒等式在整理数据中逐户逐类检查。旧变量与新变量的差额单独进入
+`source_quantity_price_audit.csv`，不能把旧总量与问卷来源总量混为同一口径。
+
+### 2.2 社区零售价
+
+总消费福利口径采用**替代成本**：无论食品来自购买、自家生产还是赠送，如果
+家庭需要在消费市场补足该数量，面对的是社区零售价。因此：
+
+```text
+vt_i = 社区零售价_i × 总消费数量_i
+```
+
+这一定义是消费福利的替代成本，不声称零售价必然等于生产户的行为影子价格。
+净卖出户自产消费的机会成本更接近农场门价，净买入户补足消费更接近零售价；
+交易成本和市场参与约束使两者不能机械互换。原始数据不足以可靠划分每类食品
+的净买入/净卖出状态，因此报告两种来源口径，而不伪造一个唯一影子价格。
+
+村表零售价以元/斤统一单位，优先顺序是本村代表商品、本村经校准品类高低价
+中点、同乡镇直接报价中位数、同县最近直接报价村、县直接报价中位数、省直接
+报价中位数。只有直接报价可以作为后续层级捐赠者，插补值不递归传播。
+
+六类价格都来自本村直接层级的源别敏感性样本有 1,458 户。完整价格来源见
+[`outputs/table_price_sources.csv`](outputs/table_price_sources.csv)。
+
+### 2.3 自产机会成本价格
+
+自产价格不再用家庭购买单位价值，也不直接等同于零售价。首先清理 `08` 的
+元/斤报价，要求报价能覆盖至少一半自产数量，再按对数价格和“自产价格/社区
+零售价”比率作稳健异常值筛查。六类保留的家庭报价数依次为：
+
+```text
+1,683, 568, 1,017, 718, 1,821, 594
+```
+
+村级自产价格的顺序是：本村至少 3 个生产户中位数、同乡镇**其他合格村**
+中位数、同县最近的合格生产村、县内合格村中位数、零售价乘省-年合格村
+生产者/零售价格比率，最后才使用调查年度合格村比率。乡镇后备池明确
+排除目标村；任何已插补价或不足 3 户的目标村报价都不能成为后续捐赠者。
+本村直接达到 3 户门槛的村数依次为 `267, 87, 159, 121, 283, 96`。
+本村中位数是公共村价而不是本户单值，但报价户仍可能参与构成该中位数；
+因此约化模型另报告完全排除本村直接价的外部捐赠村样本。
+
+| 品类 | 社区零售价中位数 | 自产机会成本中位数 | 自产/零售比中位数 |
+| --- | ---: | ---: | ---: |
+| 粮食 | 2.800 | 2.360 | 0.816 |
+| 豆类 | 4.200 | 4.000 | 1.000 |
+| 肉类 | 12.960 | 18.667 | 1.458 |
+| 食用油 | 7.750 | 10.161 | 1.319 |
+| 蔬菜 | 2.020 | 2.568 | 1.288 |
+| 水果 | 5.500 | 3.000 | 0.527 |
+
+肉类、食用油和蔬菜的自产报价中位数高于对应代表性社区零售价。这可能来自
+自产商品质量/品种与村表代表商品不一致、假设出售价格高报、直接销售渠道或
+季节错配。代码用稳健价差筛查但不武断地把所有比率截在 1 以下；相应地，
+这些自产价格只用于来源诊断，并把价差本身作为识别失败证据披露。
+
+### 2.4 四套估计对象
+
+| 系统 | 数量与价值 | 经济含义 |
+| --- | --- | --- |
+| `total` | `qb + qs + qg`，全部按社区零售价 | 家庭总食物使用的替代成本，是主福利口径 |
+| `purchase` | `qb`，按社区零售价 | 市场购买边际 |
+| `omitself` | `qb + qg`，按社区零售价 | 只剔除自产，用于估计遗漏自产的偏误 |
+| `self` | `qs`，按村级自产机会成本 | 生产-消费来源诊断，不作有效结构需求解释 |
+
+把购买和自产价值相加的 `hybrid` 会使同一食品组同时对应零售价和农场门价，
+不满足标准六品类需求系统“一类一价”的定义。因此它只作会计恒等式，不作为
+结构需求系统。
+
+要构造统一的农户影子价格系统，还需要各类产量、销售量、库存、投入、交易
+成本和净市场地位，并按净买方/净卖方制度联合估计生产和消费。本项目现有
+“总消费替代成本 + 市场购买 + 自产来源诊断”是数据允许的识别边界。
+
+## 三、模型选择与识别检验
+
+Hovhannisyan et al. (2025) 通过逐阶联合检验选择 Engel 曲线。本项目沿用
+“嵌套阶数检验 + 非嵌套 BIC”的原则，在完全相同的样本、价格、人口控制、
+工具变量和聚类层级上比较 AIDS、QUAIDS 和 EASI。
+
+| 模型 | BIC | 关键结果 |
+| --- | ---: | --- |
+| AIDS | -55,893.2 | 收敛 |
+| QUAIDS | -41,371.3 | 二次项联合 `p=0.251`，不支持 QUAIDS |
+| EASI(1) | -56,125.1 | BIC 最低，最终选择 |
+| EASI(2) | 缺失 | 反事实隐式效用根不稳定，返回 430 |
+| EASI(3) | 149,273.1 | RSS 爆炸，经济和数值上均拒绝 |
+
+最终总消费 EASI(1) 为 3,118 户、村-年聚类两步 GMM：Hansen `p=0.0703`，
+排除工具变量一阶段 F=`9.18`，SY 联合 `p=0.125`。一阶段接近常用阈值 10，
+所以总消费结果仍需保留弱识别警告。
+
+购买系统的一阶段 F=`17.92`、Hansen `p=0.104`；剔除自产系统的一阶段
+F=`17.75`、Hansen `p=0.295`。自产系统的一阶段 F=`2.43` 且 Hansen
+`p=0.0405`，
+不能用于结构性价格或支出弹性。
+
+## 四、Hicksian 正号和接近零的证据
+
+### 4.1 修正后的主表
+
+以下均为按预测数量加权的总体弹性，不是容易受极小拟合份额影响的简单户均。
+
+| 估计口径 | 粮食 | 豆类 | 肉类 | 食用油 | 蔬菜 | 水果 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 总消费，潜在结构 | 0.107 | -0.042 | -0.215 | 0.106 | -0.029 | -0.061 |
+| 总消费，SY 无条件 | 0.077 | 0.647 | -0.214 | 0.099 | -0.076 | -0.132 |
+| 总消费，数量 p99 修剪，潜在 | -0.028 | 0.279 | -0.193 | 0.095 | -0.036 | -0.125 |
+| 总消费，六价均为本村直接价，潜在 | -0.128 | -0.051 | -0.244 | -0.263 | -0.209 | -0.055 |
+| 潜在结构户级中位数 | -0.242 | -0.305 | -0.228 | -0.168 | -0.226 | -0.071 |
+
+这些是弹性点估计。CSV 中的 `std_dev` 是户间异质性，不是参数估计标准误；
+因此接近零的点估计不应被宣称为统计上异于零。本节用数量修剪和直接价
+样本判断符号稳健性；自产遗漏差异的正式村级 bootstrap 推断见第五节。
+
+理论约束应检查潜在系统；SY 无条件弹性还包含“是否消费”的广延边际。豆类从
+潜在 `-0.042` 变为无条件 `0.647`，主要是零消费参与概率对反事实价格的响应，
+不能把该无条件矩阵要求为潜在 Slutsky 对称矩阵。
+
+### 4.2 原因一：旧的户级简单均值是比率异常值
+
+户级价格弹性含有拟合份额分母。某类拟合份额接近零时，即使份额导数不大，
+比率也会达到几十或几百。旧结果中豆类等品类的标准差和极值非常大，而中位数
+一直接近零或为负。因此简单户均不是总体数量对价格的弹性。
+
+修正后的 `fooddem_elasticities`：
+
+- 要求所有 `K` 个基准拟合份额共同为正，六类使用同一内部支持集；
+- 输出按预测数量加权的 `aggregate_elasticity`；
+- 输出剔除户级弹性两端各 1% 的 `trimmed_aggregate`；
+- 同时保留中位数、p10/p90、负值率、接近零比例和支持率。
+
+总消费潜在系统共同支持率为 `82.0%`。购买和剔除自产系统分别只有 `42.0%`
+和 `55.8%`，其潜在结构结果必须比总消费更谨慎解释。
+
+### 4.3 原因二：价格插补比数量异常值更重要
+
+数量 p99 修剪使粮食转为负，但没有使食用油转为负；直接价格样本则使六类都
+为负。因此证据排序是：
+
+1. 村级价格插补和弱的本地价格变异是正号的首要来源；
+2. 极端消费数量是粮食正号的重要来源；
+3. 食用油正号还包含品类构成、自产区选择和未观测区域冲击。
+
+同一村-年家庭共享价格，实际价格识别来自村之间。插补会压缩有效变异，并让
+价格与交通、生产条件、商品质量和地区饮食偏好共同变化。省固定效应不能消除
+所有村级未观测冲击；收入工具变量也不会自动解决价格内生性。
+
+### 4.4 原因三：宽品类价格不是固定质量指数
+
+社区报价使用代表商品和经校准的品类高低价中点，但粮食、豆类、食用油等宽
+品类内部仍可能发生产品、质量和包装替代。观察到的“数量”也是不同子商品的
+加总。若相对价格上升同时伴随更低价子商品占比增加，品类总数量与代表价格的
+关系可能接近零甚至为正。这是单位价值/质量内生性的另一表现。
+
+### 4.5 原因四：异质家庭的总体聚合不等于代表消费者
+
+每个家庭在不同价格、支出和人口点上求导。按数量加权的总体弹性是总体数量
+响应，但它不一定继承某一共同价格点上代表消费者 Slutsky 矩阵的全部曲率。
+这解释了为什么样本代表点的 Hicksian 对角元可以全部为负，而异质样本总体
+弹性仍可能为正。
+
+### 4.6 原因五：曲率没有在参数估计中全局施加
+
+潜在系统的加总、齐次性和对称性误差约为零，但平均 Slutsky 矩阵最大特征值
+为 `0.00842`，未满足负半定。`fooddem_curvature` 在加总空间内进行最近的
+对称负半定投影：最大特征值降至 `1.87e-17`，Frobenius 调整为 `0.101`。
+
+| 品类 | 投影前局部 Hicksian 自价格 | 投影后 |
+| --- | ---: | ---: |
+| 粮食 | -0.196 | -0.311 |
+| 豆类 | -0.312 | -0.362 |
+| 肉类 | -0.188 | -0.051 |
+| 食用油 | -0.174 | -0.374 |
+| 蔬菜 | -0.203 | -0.138 |
+| 水果 | -0.024 | -0.083 |
+
+该投影是局部理论敏感性，不重估参数，也不应把原估计“硬改成负数”。正式价格
+结论应同时展示完整价格、数量修剪和直接价格样本，而不是只展示投影结果。
+
+## 五、购买、自产与遗漏自产偏误
+
+### 5.1 市场购买弹性
+
+购买系统 SY 无条件支出弹性依次为 `0.741, 0.110, 1.059, 1.055, 1.220,
+1.091`；Hicksian 自价格弹性为 `-0.184, 0.646, -0.186, -0.403, -0.153,
+-0.033`。豆类正号的户级中位数为 `-0.094`，仍是广延边际和聚合问题。
+
+这些是**市场购买**对零售价和购买食品支出的反应，不等于家庭全部食物使用的
+福利弹性。
+
+### 5.2 只剔除自产的系统
+
+`omitself` 保留购买和赠送，只删除自产，因此比“购买减总消费”更能隔离自产
+遗漏。其 SY 无条件支出弹性为 `0.744, 0.355, 1.065, 0.806, 1.200, 1.105`；
+Hicksian 自价格弹性为 `-0.177, 0.682, -0.148, -0.209, -0.167, -0.015`。
+
+最终显著性检验使用村级聚类非参数 bootstrap，在每次重复中重新估计两套
+EASI(1) 一步 GMM，并在两套模型拟合份额都为正的交集上计算
+`omitself - total`。失败重复不会被记作成功，结果表披露请求、成功和失败数。
+
+正式检验共请求 `199` 次村级聚类重复，`156` 次完整、`43` 次失败，基于
+`360` 个村-年份聚类。下表是一步 GMM 配对估计的 `omitself - total`；括号内为
+村级 bootstrap 标准误。正的支出弹性差表示遗漏自产后估计值更大，负的
+Hicksian 自价格差表示遗漏自产后估计值更负。
+
+| 品类 | 支出弹性差（SE） | p 值 | Hicksian 自价格弹性差（SE） | p 值 |
+| --- | ---: | ---: | ---: | ---: |
+| 粮食 | 0.745 (0.252) | 0.003 | -0.386 (0.131) | 0.003 |
+| 豆类 | -0.002 (0.308) | 0.994 | -0.132 (0.221) | 0.551 |
+| 肉类 | -0.286 (0.110) | 0.009 | -0.003 (0.087) | 0.975 |
+| 食用油 | 0.009 (0.301) | 0.977 | -0.282 (0.228) | 0.216 |
+| 蔬菜 | 0.566 (0.242) | 0.019 | -0.005 (0.159) | 0.975 |
+| 水果 | -0.095 (0.124) | 0.446 | 0.070 (0.087) | 0.422 |
+
+因此，忽略自产不会产生一个方向一致的偏误。在 `5%` 水平上，粮食的
+支出弹性被显著高估、Hicksian 自价格弹性显著变得更负；肉类支出
+弹性被显著低估，蔬菜支出弹性被显著高估。其他 Hicksian 自价格差均不
+显著，不能把豆类等品类的正号全部归因于自产遗漏。
+
+该表的观测差异是为了可比性而重新估计的一步 GMM，并限定在同一家庭和
+两套系统的共同正拟合份额支持上；它不等于前文两套两步 GMM 展示值的
+简单相减。43 个失败重复未进入标准误，因此表中正态近似区间应视为
+有限样本推断，不应过度解读边界显著性。
+
+### 5.3 自产机会成本的约化证据
+
+单独自产 EASI 无效，因此另估计保留自产零值的约化模型：给定该类总消费
+量的自产份额 fractional logit，以及自产数量 PPML。分别报告全样本、本村/附近
+直接价样本，以及只使用来源 2-4 的外部捐赠村样本。它们用于说明来源配置，
+不是 Hicksian 需求。
+
+- 豆类 PPML 的机会成本系数为 `0.171` (`p=0.172`)，本地价格样本为
+  `0.222` (`p=0.073`)；排除目标村后，原先的 5% 显著正相关不再稳健；
+- 食用油自产机会成本与自产份额/数量仍正相关，全样本系数分别为
+  `0.928` (`p<0.001`) 和 `0.581` (`p=0.024`)，本地价格样本为
+  `0.685` (`p=0.031`) 和 `0.582` (`p=0.027`)；
+- 水果 PPML 的全样本系数为 `-0.323` (`p=0.072`)，本地价格样本为
+  `-0.515` (`p=0.0025`)。
+
+排除所有本村直接价后，外部捐赠村样本中粮食 PPML 为 `-0.884`
+(`p=0.010`)，肉类为 `1.202` (`p=0.003`)，食用油为 `0.661`
+(`p=0.319`)，水果为 `-0.590` (`p=0.037`)。食用油的显著正相关不再稳健，
+且其他品类符号变化很大。外部价来源也非随机，因此这一敏感性检验只能说明
+原相关不稳健，不能把新系数当作因果价格弹性。
+
+食用油的正相关不表示“自产需求曲线向上”，而更可能表示高生产能力地区同时
+具有更高预期出售价格和更多自产数量。缺少土地、天气、产量冲击、市场距离等
+生产端排除变量时，机会成本价格不能视为外生。
+
+## 六、支出弹性、收入弹性和质量弹性
+
+必须区分：
+
+1. 需求系统支出弹性：给定该来源食品总支出变化时，各品类数量的条件反应；
+2. 总食品支出对家庭收入的弹性；
+3. 两者乘积形成的品类收入数量弹性；
+4. 品类价值对收入的弹性；
+5. 价值弹性减数量弹性形成的质量/来源升级弹性。
+
+总食品支出对收入弹性的户级中位数为：总消费 `0.091`、购买 `0.120`、剔除
+自产 `0.119`。这表明只观察现金购买会高估全部食物使用对现金收入的响应，
+与自产缓冲机制一致。
+
+总消费各类收入数量弹性的中位数依次为 `0.043, 0.049, 0.131, 0.067,
+0.053, 0.112`；购买系统为 `0.093, 0.063, 0.121, 0.128, 0.142, 0.133`。
+简单均值受极端比率影响，主表应使用中位数和 p1-p99 截尾均值。
+
+自产来源的收入/支出弹性虽然已计算以供审计，但由于自产系统识别和正份额
+诊断失败，不应发表为结构估计。要得到有效自产收入弹性，需要联合建模生产、
+销售、库存、赠送和家庭消费，并为影子价格提供生产端工具变量。
+
+Hovhannisyan et al. (2025) 强调无条件收入、数量和质量弹性的区别，这一思路
+保留在 `fooddem_income`。但其省级面板质量弹性不能直接作为本农户横截面
+结果的先验；本项目还存在来源选择和代表商品价格问题。
+
+## 七、正式报告建议
+
+1. 数据表首先报告总量、购买、自产和赠送参与率与数量份额。
+2. 模型选择表同时报告 AIDS、QUAIDS、EASI 阶数联合检验和 BIC，不仅展示
+   最终 EASI。
+3. 主福利支出弹性使用 `total`；市场政策问题使用 `purchase`；遗漏自产偏误
+   使用 `omitself - total`。
+4. Hicksian 价格主表报告潜在结构弹性；SY 无条件弹性另列为含广延边际的
+   政策反应。
+5. 价格符号以本村直接价格样本为关键识别敏感性，完整插补样本不能单独作为
+   因果价格结论。
+6. 每张弹性表同时给出总体加权值、中位数、截尾总体值、共同支持率和价格
+   来源。不得再把简单户均作为唯一结论。
+7. 曲率投影只列为局部理论敏感性；不以机械投影替代原始估计。
+8. 披露总消费一阶段 F 仅 `9.18`、没有调查权重、自产价格内生和 bootstrap
+   失败重复等限制。
+
+## 八、可复现文件
+
+- 数据来源重构：[`code/07_build_source_analysis.do`](code/07_build_source_analysis.do)
+- 来源描述统计：[`outputs/source_composition_descriptives.csv`](outputs/source_composition_descriptives.csv)
+- 零售价构造：[`code/01_build_village_prices.do`](code/01_build_village_prices.do)
+- 自产机会成本价格：[`code/01b_build_self_prices.do`](code/01b_build_self_prices.do)
+- 四套结构模型与敏感性：[`code/08_estimate_source_models.do`](code/08_estimate_source_models.do)
+- 遗漏自产 bootstrap：[`code/09_source_bias_bootstrap.do`](code/09_source_bias_bootstrap.do)
+- 自产来源约化模型：[`code/10_self_allocation_reduced_form.do`](code/10_self_allocation_reduced_form.do)
+- 结果汇总：[`code/11_source_results_summary.do`](code/11_source_results_summary.do)
+- 弹性对比：[`outputs/source_elasticity_comparison.csv`](outputs/source_elasticity_comparison.csv)
+- 曲率投影：[`outputs/source_total_curvature_projection.csv`](outputs/source_total_curvature_projection.csv)
+- 自产遗漏显著性：[`outputs/source_omission_bias_tests.csv`](outputs/source_omission_bias_tests.csv)
+- 收入分解：[`outputs/source_income_elasticity_summary.csv`](outputs/source_income_elasticity_summary.csv)
+- 自产价格审计：[`outputs/self_price_source_audit.csv`](outputs/self_price_source_audit.csv)
+
+## 参考文献
+
+Hovhannisyan, V., Khachatryan, A., and Asci, S. (2025). “A comprehensive
+analysis of urban-rural differences: The case of food consumption in China.”
+*European Review of Agricultural Economics*, 52(4), 778-817.
+https://doi.org/10.1093/erae/jbaf023
+
+===== outputs/sample_flow.csv =====
+sequence,stage,observations,removed_from_previous
+1,raw households with exact price-key match,3565,0
+2,valid positive household size,3547,18
+3,complete nonnegative six-group quantities,3547,0
+4,after physical quantity plausibility screen,3234,313
+5,positive six-group consumption expenditure,3234,0
+
+===== outputs/household_demographic_audit.csv =====
+metric,value
+households before household-size screen,3565
+reported size differs from roster,67
+invalid size repaired from roster,4
+unresolved size dropped,18
+households with identified head,2902
+households with multiple head codes,6
+identified female heads (sex code zero),297
+head sex missing,343
+
+===== outputs/quantity_plausibility_audit.csv =====
+group,cap_jin_pc_month,cap_kg_pc_day,flagged,observed_max_jin_pc_month
+1,90,1.5,184,3040.170348139256
+2,30,.5,15,166.0611570247934
+3,60,1,27,698.5754285714285
+4,21,.34999999,116,329.6703296703296
+5,150,2.5,38,462.4043409629045
+6,120,2,19,2144.234693877551
+
+===== outputs/price_quote_audit.csv =====
+group,statistic,value
+1,rep_five_MAD_outliers,9
+1,range_five_MAD_outliers,3
+1,combined_direct_five_MAD_outliers,5
+1,representative_direct_villages,222
+1,calibrated_midrange_villages,79
+1,villages_without_direct_quote,60
+1,invalid_representative_quotes,10
+1,invalid_high_low_quotes,5
+1,outlets_high_below_low,51
+1,midrange_log_calibration,-.2950333640950953
+2,rep_five_MAD_outliers,2
+2,range_five_MAD_outliers,0
+2,combined_direct_five_MAD_outliers,0
+2,representative_direct_villages,166
+2,calibrated_midrange_villages,78
+2,villages_without_direct_quote,117
+2,invalid_representative_quotes,1
+2,invalid_high_low_quotes,0
+2,outlets_high_below_low,27
+2,midrange_log_calibration,-.3222603345598939
+3,rep_five_MAD_outliers,3
+3,range_five_MAD_outliers,6
+3,combined_direct_five_MAD_outliers,1
+3,representative_direct_villages,159
+3,calibrated_midrange_villages,93
+3,villages_without_direct_quote,109
+3,invalid_representative_quotes,2
+3,invalid_high_low_quotes,6
+3,outlets_high_below_low,16
+3,midrange_log_calibration,-.1271022436150338
+4,rep_five_MAD_outliers,2
+4,range_five_MAD_outliers,7
+4,combined_direct_five_MAD_outliers,0
+4,representative_direct_villages,163
+4,calibrated_midrange_villages,120
+4,villages_without_direct_quote,78
+4,invalid_representative_quotes,3
+4,invalid_high_low_quotes,2
+4,outlets_high_below_low,16
+4,midrange_log_calibration,-.033461951508688
+5,rep_five_MAD_outliers,0
+5,range_five_MAD_outliers,1
+5,combined_direct_five_MAD_outliers,0
+5,representative_direct_villages,172
+5,calibrated_midrange_villages,45
+5,villages_without_direct_quote,144
+5,invalid_representative_quotes,3
+5,invalid_high_low_quotes,2
+5,outlets_high_below_low,2
+5,midrange_log_calibration,-.4430478192572072
+6,rep_five_MAD_outliers,7
+6,range_five_MAD_outliers,1
+6,combined_direct_five_MAD_outliers,0
+6,representative_direct_villages,133
+6,calibrated_midrange_villages,64
+6,villages_without_direct_quote,164
+6,invalid_representative_quotes,3
+6,invalid_high_low_quotes,1
+6,outlets_high_below_low,2
+6,midrange_log_calibration,.0375888076133984
+
+===== outputs/household_village_merge_audit.csv =====
+price_merge,_freq
+Matched (3),3565
+
+===== outputs/source_total_curvature_constrained_parameters.csv =====
+specification,model,estimator,order,gmm_steps,converged,parameter,coefficient,std_error,statistic,p_value,ci_low,ci_high
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,a1,.2081804409811234,.017746838,11.730565,8.8863247e-32,.17339727,.2429636
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,a2,.0756241348763082,.020957233,3.6084979,.00030797493,.034548711,.11669956
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,a3,.3170829837840783,.023774955,13.336849,0,.27048492,.36368105
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,a4,.079299523530629,.0075012376,10.571526,4.0387124e-26,.064597368,.094001681
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,a5,.1374393867067176,.012216859,11.249978,2.3165063e-29,.11349478,.16138399
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,b1_1,-.1125425343762259,.030943355,-3.6370502,.00027577815,-.1731904,-.051894676
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,b2_1,-.0275230998292316,.011417069,-2.4106975,.015922047,-.049900144,-.0051460559
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,b3_1,.1527247007457346,.042817861,3.5668459,.00036130394,.068803236,.23664616
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,b4_1,-.0184496851457331,.012781969,-1.4434149,.14890362,-.043501884,.0066025145
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,b5_1,-.0530689242310151,.018777367,-2.8262174,.0047101267,-.089871891,-.01626596
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g1_1,.1132805009434366,.012435856,9.1091843,8.3003891e-20,.088906668,.13765433
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g1_2,-.0181006431326818,.0047030929,-3.8486679,.00011876189,-.027318535,-.0088827498
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g1_3,-.0311053939053687,.013418487,-2.3181,.02044389,-.057405144,-.0048056426
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g1_4,-.0145433965881838,.0054903445,-2.6489041,.008075322,-.025304275,-.0037825189
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g1_5,-.0327826228592377,.0061014285,-5.372942,7.7462211e-08,-.044741202,-.020824043
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g2_2,.0425827875895414,.006413504,6.6395512,3.1463984e-11,.030012552,.055153023
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g2_3,.0036555113759354,.0094538573,.38666874,.69900143,-.01487371,.022184731
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g2_4,-.0015477456591322,.0031339431,-.49386528,.62140131,-.007690161,.0045946697
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g2_5,-.0128617366011553,.0047403388,-2.7132528,.0066626268,-.022152629,-.0035708437
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g3_3,.1382621245852245,.021061137,6.5647988,5.2103148e-11,.096983053,.1795412
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g3_4,-.0140742624398278,.0062770201,-2.2421885,.024949191,-.026376996,-.001771529
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g3_5,-.0199185001428755,.0087514715,-2.2760172,.022844983,-.037071072,-.0027659303
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g4_4,.0536297898104206,.006539586,8.2007923,2.3880736e-16,.040812436,.066447146
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g4_5,-.0055076854893549,.00423611,-1.3001752,.19354092,-.013810309,.0027949379
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,g5_5,.0811891027164394,.00779041,10.421673,1.9745005e-25,.065920182,.096458025
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_1,.0200870783631705,.0060582864,3.3156369,.00091434544,.0082130553,.031961102
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_2,-.0319655668046313,.024003753,-1.3316904,.18296196,-.079012059,.015080924
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_3,.0140990168452582,.015013674,.93907833,.34769052,-.015327245,.043525279
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_4,-.0248627034142862,.011910789,-2.0874102,.03685106,-.048207421,-.0015179864
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_5,.0197145518369136,.014896919,1.3233979,.18570308,-.0094828736,.048911978
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_6,.0161817686813696,.0084340619,1.9186209,.055032317,-.00034868941,.032712229
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_7,-.0056947771808096,.0098563191,-.57777929,.56341314,-.025012808,.013623253
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_8,.0121154325474115,.035578474,.34052703,.73345965,-.057617098,.081847966
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_9,-.0208234563227956,.035277072,-.59028298,.55500096,-.089965247,.048318338
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_10,.0314547352601235,.026389757,1.1919297,.23328882,-.020268239,.083177708
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_11,-.1303168117083483,.032523941,-4.0067964,.000061547835,-.19406256,-.066571057
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_12,.0120588141113646,.031620909,.38135573,.70293933,-.049917027,.074034654
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_13,-.1372761352134858,.028652675,-4.7910409,1.6591846e-06,-.19343434,-.081117921
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_14,-.048554869800184,.02180074,-2.227212,.025933105,-.091283537,-.0058262055
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_15,-.1679752402680021,.038013663,-4.4188123,9.9244826e-06,-.24248065,-.093469828
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t1_16,-.0464859530563757,.022849979,-2.0343981,.041911472,-.091271088,-.0017008181
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_1,.0012033707725596,.0027555495,.43670809,.66232306,-.004197407,.0066041485
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_2,-.0211872288581581,.013525813,-1.5664293,.11724816,-.047697335,.0053228773
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_3,.0035658985787628,.0057722577,.61776501,.53673029,-.0077475184,.014879315
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_4,-.0077636654989916,.0064922012,-1.1958449,.2317571,-.020488147,.004960815
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_5,.0108633175141408,.012509017,.86843896,.38515407,-.013653905,.035380539
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_6,.0115576099645475,.0075454665,1.5317291,.12558931,-.0032312323,.026346453
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_7,-.0171415093929741,.0070040277,-2.4473789,.014389949,-.030869152,-.0034138672
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_8,-.0392055189311927,.016726809,-2.3438733,.019084651,-.071989462,-.0064215781
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_9,.0309594288010596,.016357871,1.892632,.058406826,-.0011014078,.063020267
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_10,.0143679850625678,.013936075,1.0309923,.30254447,-.01294622,.041682191
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_11,-.0190428916470283,.010369082,-1.836507,.066282712,-.039365921,.0012801361
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_12,.0291298396199974,.019986114,1.4575039,.14497732,-.010042223,.068301901
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_13,.0173833494434888,.017036512,1.0203584,.30755851,-.016007602,.050774302
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_14,.0004545896637179,.008720953,.052126143,.9584282,-.016638165,.017547345
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_15,-.0374407725330594,.014643383,-2.5568388,.010562813,-.066141278,-.0087402677
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t2_16,-.0200593485267543,.0068996106,-2.907316,.0036454475,-.033582337,-.0065363599
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_1,-.0229322343402471,.0083353994,-2.7511859,.0059379917,-.039269317,-.0065951515
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_2,.0286375886002521,.032914773,.87005281,.38427156,-.035874177,.093149357
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_3,-.0193063681476612,.018109934,-1.0660651,.28639424,-.054801188,.016188452
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_4,.0237455262281304,.015460286,1.5359046,.12456176,-.0065560783,.05404713
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_5,-.0000482113347718,.021374116,-.0022555944,.9982003,-.041940708,.041844286
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_6,-.0074563320966688,.011199286,-.66578639,.50554764,-.029406529,.014493865
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_7,-.0017649768082098,.013625734,-.12953261,.89693624,-.028470922,.024940969
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_8,.0422184605209391,.04665143,.90497673,.36547771,-.049216665,.13365358
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_9,-.0240600148252284,.047336232,-.50827903,.61125767,-.11683733,.068717293
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_10,-.0073967685814844,.03772391,-.19607639,.84455037,-.081334278,.06654074
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_11,.1667579097898723,.040684778,4.0987787,.000041533582,.087017208,.24649861
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_12,-.0371971618313218,.045734942,-.81332046,.41603437,-.126836,.052441675
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_13,.2357453104102022,.033731151,6.9889493,2.7695205e-12,.16963346,.30185714
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_14,.1018183399426228,.023842704,4.2704196,.000019510575,.055087499,.14854918
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_15,.2170746825017542,.050254013,4.3195491,.000015634829,.11857863,.31557074
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t3_16,.0675353368709459,.032476027,2.0795443,.03756734,.0038834966,.13118717
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_1,.001345969799469,.0025885846,.51996362,.60308897,-.003727563,.0064195027
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_2,.0052235083581113,.012648993,.41295841,.67963707,-.019568063,.030015079
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_3,-.001375300740205,.0078292554,-.17566176,.8605597,-.016720358,.013969758
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_4,-.0044957307729482,.0062708515,-.71692508,.47342032,-.016786374,.007794912
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_5,.0114819769019857,.0074189552,1.5476542,.12170558,-.003058908,.026022863
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_6,.009579068331181,.0041370913,2.3154113,.020590426,.0014705184,.017687619
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_7,-.008978183618478,.004619366,-1.9435965,.051944137,-.018031975,.000075607699
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_8,-.1098386525028463,.041208286,-2.6654506,.0076885233,-.19060542,-.029071894
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_9,.1165583398044395,.042090833,2.7692096,.005619247,.034061823,.19905485
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_10,.006710767929556,.010840881,.61902428,.53590041,-.014536968,.027958503
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_11,-.0011282432157038,.017001657,-.066360779,.94709057,-.034450877,.032194391
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_12,.0117362834664258,.011169408,1.0507525,.2933723,-.010155355,.033627924
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_13,-.0347601002735483,.012058795,-2.8825517,.0039446843,-.058394905,-.011125296
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_14,-.0250110513233902,.008726866,-2.865983,.0041571641,-.042115394,-.0079067079
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_15,-.0264576679067841,.015738914,-1.6810352,.092756085,-.057305373,.0043900367
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t4_16,-.0300640643409483,.009432218,-3.1873801,.0014356794,-.04855087,-.011577257
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_1,.0062816562574783,.0035663885,1.7613493,.078179292,-.00070833688,.013271649
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_2,-.0463973023005945,.013772616,-3.3688083,.00075493957,-.073391132,-.019403471
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_3,-.0005033928556327,.0097735235,-.051505771,.95892251,-.019659147,.018652361
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_4,-.0091583466284692,.0076636267,-1.1950408,.23207109,-.024178779,.0058620856
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_5,-.0000876249504958,.010625979,-.0082462942,.99342048,-.020914162,.020738911
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_6,.0004341094435502,.0055229664,.078600779,.93735015,-.010390705,.011258924
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_7,-.0012828644099782,.0060530906,-.21193545,.83215737,-.013146704,.010580975
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_8,.0240520251532915,.019709816,1.2203069,.22234856,-.014578505,.062682554
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_9,-.0295223241059588,.020201664,-1.4613808,.14391096,-.069116861,.01007221
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_10,.0255253275627235,.01867214,1.3670275,.1716167,-.011071393,.062122047
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_11,-.0816829016073007,.01899831,-4.2994823,.000017119733,-.1189189,-.0444469
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_12,.0405035752564327,.021334641,1.8984888,.05763172,-.0013115507,.082318701
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_13,-.042855979059959,.016566392,-2.5869229,.0096837291,-.075325511,-.010386446
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_14,-.0203376898746156,.0129751,-1.5674399,.1170119,-.045768417,.005093039
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_15,-.0911155438644355,.022730095,-4.0085859,.000061083396,-.13566571,-.046565376
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,t5_16,-.047962043909824,.013788309,-3.4784572,.00050430879,-.074986629,-.020937456
+"""replacement_total_easi_order1_gmm_curva",easi,gmm,1,2,1,d2,-.2277590591628218,.14829075,-1.5358951,.1245641,-.51840359,.062885486
+
+===== outputs/source_total_curvature_constrained_tests.csv =====
+test,statistic,df,p_value
+demographics_joint_zero,109.6986355575246,45,2.5281253e-07
+all_share_shifters_joint_zero,610.7062268932319,80,0
+Shonkwiler_Yen_terms_joint_zero,2.358973921465997,1,.1245641
+Hansen_overidentification,28.8249252623106,19,.068789303
+excluded_instruments_first_stage,9.175437499884517,,.00012991556
+theory_restrictions_imposed,1,,
+
+===== outputs/source_total_curvature_constrained_reference.csv =====
+evaluation,elasticity_type,demand_good,shock_good,reference_share,elasticity,std_error,z_value,p_value,ci_low,ci_high
+sample_average,expenditure,1,0,.2042562275524609,.44901296,.15592445,2.8796828,.0039807563,.14340664,.7546193
+sample_average,expenditure,2,0,.0726706163454296,.62126231,.14908147,4.1672673,.000030827272,.32906803,.91345662
+sample_average,expenditure,3,0,.3476658455599269,1.4392859,.12122352,11.872992,1.6351432e-32,1.2016921,1.6768796
+sample_average,expenditure,4,0,.0717069616972649,.74270719,.18071507,4.1098247,.000039596001,.38851216,1.0969023
+sample_average,expenditure,5,0,.1217673901173245,.56417787,.15664949,3.6015303,.00031634961,.2571505,.87120521
+sample_average,expenditure,6,0,.1819329587275933,1.3235233,.16023898,8.2596827,1.4605971e-16,1.0094606,1.6375859
+sample_average,marshallian,1,1,.2042562275524609,-.33285749,.069319002,-4.8018217,1.5722882e-06,-.46872023,-.19699474
+sample_average,marshallian,1,2,.2042562275524609,-.048576768,.02199949,-2.2080863,.027238268,-.091694981,-.0054585612
+sample_average,marshallian,1,3,.2042562275524609,.039273228,.086351395,.45480713,.649248,-.12997238,.20851885
+sample_average,marshallian,1,4,.2042562275524609,-.031692121,.02884569,-1.098678,.27190858,-.088228635,.024844389
+sample_average,marshallian,1,5,.2042562275524609,-.093405291,.034280173,-2.7247612,.0064347978,-.1605932,-.026217386
+sample_average,marshallian,1,6,.2042562275524609,.018245475,.050576594,.36074936,.71828681,-.080882825,.11737378
+sample_average,marshallian,2,1,.0726706163454296,-.17171836,.065671578,-2.614805,.0089278435,-.30043226,-.043004435
+sample_average,marshallian,2,2,.0726706163454296,-.38650709,.17944109,-2.1539495,.031244125,-.73820519,-.03480899
+sample_average,marshallian,2,3,.0726706163454296,.18197662,.11801702,1.5419524,.12308517,-.049332485,.41328573
+sample_average,marshallian,2,4,.0726706163454296,.005860033,.044488069,.13172145,.8952046,-.081334978,.093055047
+sample_average,marshallian,2,5,.0726706163454296,-.13086885,.044891972,-2.915195,.0035546634,-.21885552,-.042882208
+sample_average,marshallian,2,6,.0726706163454296,-.12000468,.067579851,-1.7757466,.075774692,-.25245875,.012449383
+sample_average,marshallian,3,1,.3476658455599269,-.1791961,.046835639,-3.8260632,.00013020894,-.27099228,-.087399945
+sample_average,marshallian,3,2,.3476658455599269,-.021408737,.020785114,-1.0300034,.30300841,-.062146809,.019329336
+sample_average,marshallian,3,3,.3476658455599269,-.7550379,.075401224,-10.013603,1.3282545e-23,-.90282154,-.60725421
+sample_average,marshallian,3,4,.3476658455599269,-.071982011,.020715702,-3.474756,.00051131804,-.11258404,-.031379983
+sample_average,marshallian,3,5,.3476658455599269,-.11078278,.029086437,-3.8087435,.00013967478,-.16779114,-.053774409
+sample_average,marshallian,3,6,.3476658455599269,-.30087838,.038834263,-7.7477555,9.3530987e-15,-.37699214,-.22476462
+sample_average,marshallian,4,1,.0717069616972649,-.15026343,.079041272,-1.9010755,.057292119,-.30518147,.004654618
+sample_average,marshallian,4,2,.0717069616972649,-.0028866886,.042791199,-.067459866,.94621563,-.086755894,.080982521
+sample_average,marshallian,4,3,.0717069616972649,-.10682278,.11392217,-.93768209,.3484078,-.33010614,.11646058
+sample_average,marshallian,4,4,.0717069616972649,-.23364818,.089380033,-2.6140981,.0089463321,-.40882981,-.058466535
+sample_average,marshallian,4,5,.0717069616972649,-.045478366,.056348734,-.80708766,.41961598,-.15591985,.064963117
+sample_average,marshallian,4,6,.0717069616972649,-.20360775,.080454715,-2.5307126,.011383109,-.36129612,-.045919415
+sample_average,marshallian,5,1,.1217673901173245,-.18020394,.058760729,-3.0667412,.0021640607,-.29537284,-.065035038
+sample_average,marshallian,5,2,.1217673901173245,-.073953994,.034111165,-2.1680293,.030156465,-.14081065,-.0070973462
+sample_average,marshallian,5,3,.1217673901173245,-.012057807,.09234409,-.13057476,.89611173,-.19304889,.16893329
+sample_average,marshallian,5,4,.1217673901173245,-.013979721,.036859889,-.3792665,.70449001,-.086223781,.058264334
+sample_average,marshallian,5,5,.1217673901173245,-.28017536,.061769765,-4.5358009,5.7385269e-06,-.40124187,-.15910885
+sample_average,marshallian,5,6,.1217673901173245,-.0038070227,.061849859,-.061552651,.95091909,-.12503052,.11741647
+sample_average,marshallian,6,1,.1819329587275933,-.15813997,.053856187,-2.9363379,.0033211224,-.26369616,-.05258378
+sample_average,marshallian,6,2,.1819329587275933,-.098967955,.029191228,-3.3903322,.00069808,-.15618171,-.041754201
+sample_average,marshallian,6,3,.1819329587275933,-.53471857,.11044118,-4.8416595,1.2875932e-06,-.75117928,-.31825784
+sample_average,marshallian,6,4,.1819329587275933,-.12189841,.030123126,-4.0466723,.000051950927,-.18093865,-.062858172
+sample_average,marshallian,6,5,.1819329587275933,-.09501154,.033321347,-2.8513715,.004353106,-.16032018,-.029702902
+sample_average,marshallian,6,6,.1819329587275933,-.31478679,.11100717,-2.8357341,.0045720492,-.53235686,-.097216755
+sample_average,hicksian,1,1,.2042562275524609,-.24114379,.060011756,-4.0182757,.00005862553,-.35876468,-.12352291
+sample_average,hicksian,1,2,.2042562275524609,-.015946722,.022180153,-.71896356,.47216338,-.059419021,.027525578
+sample_average,hicksian,1,3,.2042562275524609,.1953797,.066377707,2.9434538,.0032457239,.065281786,.3254776
+sample_average,hicksian,1,4,.2042562275524609,.00050523254,.026907554,.018776607,.98501933,-.052232604,.053243071
+sample_average,hicksian,1,5,.2042562275524609,-.038730156,.030515229,-1.2692074,.2043671,-.098538905,.021078596
+sample_average,hicksian,1,6,.2042562275524609,.099935733,.041056447,2.4341056,.014928635,.019466573,.18040489
+sample_average,hicksian,2,1,.0726706163454296,-.044821654,.06721957,-.66679472,.50490326,-.17656958,.086926281
+sample_average,hicksian,2,2,.0726706163454296,-.34135956,.16687948,-2.0455456,.040801097,-.6684373,-.01428182
+sample_average,hicksian,2,3,.0726706163454296,.39796832,.12009981,3.3136466,.00092087808,.16257702,.63335961
+sample_average,hicksian,2,4,.0726706163454296,.050408866,.042433448,1.1879512,.23485264,-.032759164,.1335769
+sample_average,hicksian,2,5,.0726706163454296,-.055219367,.041291937,-1.3372916,.18112746,-.13615008,.025711348
+sample_average,hicksian,2,6,.0726706163454296,-.0069765933,.052689064,-.13241066,.89465946,-.11024526,.096292071
+sample_average,hicksian,3,1,.3476658455599269,.114787,.038147096,3.0090628,.0026205503,.040020067,.18955393
+sample_average,hicksian,3,2,.3476658455599269,.083185054,.044306699,1.8774825,.060451984,-.0036544795,.17002459
+sample_average,hicksian,3,3,.3476658455599269,-.25464734,.06084042,-4.1854959,.000028454411,-.37389237,-.13540231
+sample_average,hicksian,3,4,.3476658455599269,.031224808,.017932992,1.7411934,.081649691,-.0039232117,.066372827
+sample_average,hicksian,3,5,.3476658455599269,.064475305,.02508183,2.5705984,.010152302,.015315825,.11363479
+sample_average,hicksian,3,6,.3476658455599269,-.039024837,.043221384,-.90290582,.36657587,-.12373719,.045687515
+sample_average,hicksian,4,1,.0717069616972649,.0014391475,.076646931,.018776324,.98501956,-.14878608,.15166438
+sample_average,hicksian,4,2,.0717069616972649,.051086303,.043383278,1.1775575,.23897308,-.033943363,.13611597
+sample_average,hicksian,4,3,.0717069616972649,.15139115,.087964043,1.7210572,.085240446,-.021015208,.32379749
+sample_average,hicksian,4,4,.0717069616972649,-.18039091,.086659595,-2.0816033,.037378713,-.35024059,-.010541219
+sample_average,hicksian,4,5,.0717069616972649,.04495915,.059409562,.7567662,.44918993,-.071481451,.16139975
+sample_average,hicksian,4,6,.0717069616972649,-.068484843,.067818105,-1.0098313,.31257612,-.20140588,.064436197
+sample_average,hicksian,5,1,.1217673901173245,-.064967111,.051009782,-1.2736206,.20279792,-.16494444,.03501023
+sample_average,hicksian,5,2,.1217673901173245,-.032954842,.027055688,-1.2180376,.22320971,-.085983016,.02007333
+sample_average,hicksian,5,3,.1217673901173245,.18408756,.072877035,2.5260026,.011536865,.041251209,.32692394
+sample_average,hicksian,5,4,.1217673901173245,.026475759,.035023533,.75594199,.44968396,-.042169105,.095120624
+sample_average,hicksian,5,5,.1217673901173245,-.21147689,.062353011,-3.3916068,.00069484051,-.33368656,-.089267246
+sample_average,hicksian,5,6,.1217673901173245,.098835528,.048155606,2.0524199,.040128868,.0044522732,.19321878
+sample_average,hicksian,6,1,.1819329587275933,.1121979,.045600589,2.4604485,.01387635,.022822388,.2015734
+sample_average,hicksian,6,2,.1819329587275933,-.0027867041,.020678731,-.13476186,.89280015,-.043316271,.037742864
+sample_average,hicksian,6,3,.1819329587275933,-.074574739,.088794805,-.83985478,.40098983,-.24860936,.099459879
+sample_average,hicksian,6,4,.1819329587275933,-.02699258,.027478658,-.98231071,.32594681,-.080849759,.026864601
+sample_average,hicksian,6,5,.1819329587275933,.066150434,.032486822,2.0362234,.041727923,.0024774279,.12982343
+sample_average,hicksian,6,6,.1819329587275933,-.073994301,.086558484,-.85484749,.39263558,-.24364582,.095657207
+
+===== outputs/source_total_curvature_constrained_regularity_latent.csv =====
+margin,diagnostic,value,threshold,passed
+latent,adding_up_max_abs_error,0,9.9999999e-09,1
+latent,positive_fitted_share_rate,.8197562540089801,1,0
+latent,positive_expenditure_elasticities,.9330985915492958,1,0
+latent,negative_hicksian_own_elasticities,.7383933229003652,1,0
+latent,slutsky_symmetry_max_abs_error,1.08653390452e-09,.000099999997,1
+latent,slutsky_max_eigenvalue,.0055049944847682,0,0
+latent,adding_up_homogeneity_symmetry_imposed,1,1,1
+
+===== outputs/source_total_curvature_estimation_comparison.csv =====
+specification,N,J,J_df,Hansen_p,reference_max_eigenvalue,converged
+unrestricted,3118,28.731956,19,.070319876,.002620264,1
+curvature_local,3118,28.824924,19,.068789303,4.4049394e-18,1
+curvature_global,3118,236.76794,19,0,-1.1080546e-16,0
+directprice_unrestr,1443,19.000559,19,.45680022,.022679845,1
+directprice_local,1443,57.419155,19,9.8341898e-06,-8.8353163e-18,1
+
+===== outputs/total_bootstrap_elasticities.csv =====
+elasticity_type,demand_good,shock_good,estimate,delta_se,delta_p,ci_low,ci_high,bootstrap_mean,bootstrap_se,bootstrap_p,bootstrap_reps_successful,bootstrap_reps_failed
+expenditure,1,0,.449012964963913,.15592445,.0039807563,.0098980563,.8014344,.54484248,.21862915,.039998412,15,4
+marshallian,1,1,-.3328574895858765,.069319002,1.5722882e-06,-.45733064,-.11127537,-.34246236,.088667572,.00017403933,15,4
+hicksian,1,1,-.2411437928676605,.060011756,.00005862553,-.34161952,-.087744437,-.22967455,.073375985,.0010147208,15,4
+marshallian,1,2,-.0485767684876919,.02199949,.027238268,-.14771026,-.0090499036,-.064126357,.038462065,.20659682,15,4
+hicksian,1,2,-.0159467216581106,.022180153,.47216338,-.14397435,.01966694,-.034527253,.045604438,.72658277,15,4
+marshallian,1,3,.0392732284963131,.086351395,.649248,-.17996798,.19569533,.0014644265,.10773756,.71546465,15,4
+hicksian,1,3,.1953797042369843,.066377707,.0032457239,.0029877429,.29970789,.18925197,.087732062,.025946971,15,4
+marshallian,1,4,-.0316921211779118,.02884569,.27190858,-.077007405,.051311161,-.030448932,.035306863,.36938855,15,4
+hicksian,1,4,.0005052325432189,.026907554,.98501933,-.047989745,.052068844,.0083632628,.033104215,.98782325,15,4
+marshallian,1,5,-.0934052914381027,.034280173,.0064347978,-.14524864,.026006985,-.09014038,.047721047,.050310023,15,4
+hicksian,1,5,-.0387301556766033,.030515229,.2043671,-.09576495,.047228895,-.023170996,.037228648,.29818565,15,4
+marshallian,1,6,.0182454753667116,.050576594,.71828681,-.13790186,.22656016,-.019128896,.097453997,.85148704,15,4
+hicksian,1,6,.0999357327818871,.041056447,.014928635,.014992305,.27823326,.089757569,.069951206,.1531051,15,4
+expenditure,2,0,.6212623119354248,.14908147,.000030827272,-.35009634,1.8372182,.76110101,.60129112,.30150384,15,4
+marshallian,2,1,-.1717183589935303,.065671578,.0089278435,-2.0743208,.17040834,-.3928569,.55119205,.75539017,15,4
+hicksian,2,1,-.0448216535151005,.06721957,.50490326,-1.7401751,.098603718,-.23527201,.46715346,.92356318,15,4
+marshallian,2,2,-.3865070939064026,.17944109,.031244125,-.90790069,-.039039921,-.30714178,.25330675,.12704822,15,4
+hicksian,2,2,-.341359555721283,.16687948,.040801097,-.85643774,-.028347386,-.2698203,.24508053,.1636662,15,4
+marshallian,2,3,.1819766163825989,.11801702,.12308517,-.72919989,.81488526,.068282463,.33446342,.58638281,15,4
+hicksian,2,3,.3979683220386505,.12009981,.00092087808,-.10837028,1.3987887,.33016267,.33681291,.23737602,15,4
+marshallian,2,4,.005860032979399,.044488069,.8952046,-.47906783,.31859693,-.028840316,.1624272,.97122025,15,4
+hicksian,2,4,.0504088662564754,.042433448,.23485264,-.36505347,.45923337,.025286093,.16622865,.7616992,15,4
+marshallian,2,5,-.1308688521385193,.044891972,.0035546634,-.28043774,.068431489,-.12562887,.088654079,.13989717,15,4
+hicksian,2,5,-.055219367146492,.041291937,.18112746,-.17930083,.25097707,-.032105111,.10638344,.60371906,15,4
+marshallian,2,6,-.1200046762824059,.067579851,.075774692,-.3499653,1.1576455,.025084373,.39330569,.7602762,15,4
+hicksian,2,6,-.006976593285799,.052689064,.89465946,-.10973868,1.5400256,.18174864,.47175497,.98820084,15,4
+expenditure,3,0,1.43928587436676,.12122352,1.6351432e-32,1.1865094,1.6849383,1.3889856,.13505393,1.6152281e-26,15,4
+marshallian,3,1,-.1791961044073105,.046835639,.00013020894,-.34845725,-.11576863,-.17415017,.058267608,.002102216,15,4
+hicksian,3,1,.1147869974374771,.038147096,.0026205503,.0018381543,.18376476,.11341076,.052394744,.028465444,15,4
+marshallian,3,2,-.02140873670578,.020785114,.30300841,-.056180645,.041854978,-.023548581,.025411144,.39951149,15,4
+hicksian,3,2,.0831850543618202,.044306699,.060451984,-.0089832339,.1235846,.046379402,.033004109,.011720644,15,4
+marshallian,3,3,-.7550379037857056,.075401224,1.3282545e-23,-.95088053,-.62299782,-.76936698,.096936598,6.7548552e-15,15,4
+hicksian,3,3,-.2546473443508148,.06084042,.000028454411,-.39208999,-.19976568,-.29170099,.062569208,.000047043257,15,4
+marshallian,3,4,-.0719820111989975,.020715702,.00051131804,-.087799221,-.0018077242,-.054441907,.022251451,.0012167022,15,4
+hicksian,3,4,.0312248077243567,.017932992,.081649691,.0010830214,.1271719,.044936977,.02817243,.2677123,15,4
+marshallian,3,5,-.1107827797532082,.029086437,.00013967478,-.15020469,-.060753979,-.095032886,.02895046,.00012990805,15,4
+hicksian,3,5,.064475305378437,.02508183,.010152302,.028443698,.12916802,.076138102,.028454512,.023457021,15,4
+marshallian,3,6,-.3008783757686615,.038834263,9.3530987e-15,-.39793366,-.21680506,-.27244508,.042295992,1.1302356e-12,15,4
+hicksian,3,6,-.0390248373150826,.043221384,.36657587,-.060825009,.13231423,.010835735,.04829783,.4190883,15,4
+expenditure,4,0,.7427071928977966,.18071507,.000039596001,.20695665,1.251793,.77349347,.29488277,.011780494,15,4
+marshallian,4,1,-.1502634286880493,.079041272,.057292119,-.27560773,.01411715,-.13826008,.10092749,.13653331,15,4
+hicksian,4,1,.0014391475124285,.076646931,.98501956,-.14837819,.14141361,.022019627,.095898814,.98802662,15,4
+marshallian,4,2,-.0028866885695606,.042791199,.94621563,-.099773005,.14425288,-.016741551,.066437066,.96534282,15,4
+hicksian,4,2,.0510863028466702,.043383278,.23897308,-.088516675,.16804689,.020560285,.068660818,.45685309,15,4
+marshallian,4,3,-.106822781264782,.11392217,.3484078,-.22028325,.27434957,-.052550681,.14677617,.46673983,15,4
+hicksian,4,3,.1513911485671997,.087964043,.085240446,.005556962,.56139135,.21277352,.12463669,.22449598,15,4
+marshallian,4,4,-.2336481809616089,.089380033,.0089463321,-.8656708,-.14907993,-.35724401,.16811784,.1645932,15,4
+hicksian,4,4,-.1803909093141556,.086659595,.037378713,-.80064726,-.091237508,-.30161056,.1614206,.26377162,15,4
+marshallian,4,5,-.0454783663153648,.056348734,.41961598,-.16484915,.093236625,-.045706991,.059136711,.44187087,15,4
+hicksian,4,5,.0449591502547264,.059409562,.44918993,-.059880324,.12641498,.049901579,.058635745,.44322821,15,4
+marshallian,4,6,-.2036077529191971,.080454715,.011383109,-.32406577,.073136091,-.16299015,.14496163,.16015121,15,4
+hicksian,4,6,-.0684848427772522,.067818105,.31257612,-.12674907,.20638475,-.0036444471,.11254255,.54284,15,4
+expenditure,5,0,.5641778707504272,.15664949,.00031634961,.41231516,1.1170653,.72934479,.17870101,.0015934396,15,4
+marshallian,5,1,-.1802039444446564,.058760729,.0021640607,-.28813228,-.08027932,-.18928279,.06159883,.0034396481,15,4
+hicksian,5,1,-.0649671107530594,.051009782,.20279792,-.16289012,.084583834,-.03830339,.063318796,.30487651,15,4
+marshallian,5,2,-.0739539936184883,.034111165,.030156465,-.13339676,.033841807,-.053940825,.043869674,.09184093,15,4
+hicksian,5,2,-.0329548418521881,.027055688,.22320971,-.073141657,.056890711,-.016598364,.035230983,.34958541,15,4
+marshallian,5,3,-.0120578072965145,.09234409,.89611173,-.19928303,.13236751,-.039756268,.094342485,.89830023,15,4
+hicksian,5,3,.1840875595808029,.072877035,.011536865,.084661961,.35321558,.21089423,.075494654,.01475169,15,4
+marshallian,5,4,-.0139797208830714,.036859889,.70449001,-.10008055,.023716884,-.023182189,.039355695,.72242874,15,4
+hicksian,5,4,.0264757592231035,.035023533,.44968396,-.037093215,.069329135,.028815461,.034435827,.44198623,15,4
+marshallian,5,5,-.2801753580570221,.061769765,5.7385269e-06,-.49491441,-.1591776,-.35148096,.084243551,.00088172103,15,4
+hicksian,5,5,-.2114768922328949,.062353011,.00069484051,-.35950255,-.11102782,-.26141042,.072622232,.0035910769,15,4
+marshallian,5,6,-.0038070227019489,.061849859,.95091909,-.26359069,.16942547,-.071701735,.10362598,.97069383,15,4
+hicksian,5,6,.0988355278968811,.048155606,.040128868,-.07758759,.29555085,.076602481,.094082065,.29347697,15,4
+expenditure,6,0,1.323523283004761,.16023898,1.4605971e-16,.93077952,1.3404062,1.1194174,.12845294,6.7897090e-25,15,4
+marshallian,6,1,-.1581399738788605,.053856187,.0033211224,-.21863888,.048892401,-.14383411,.070964545,.025851427,15,4
+hicksian,6,1,.1121978983283043,.045600589,.01387635,.01632547,.24313627,.087844506,.061804026,.069465272,15,4
+marshallian,6,2,-.0989679545164108,.029191228,.00069808,-.15631555,.10834579,-.042253144,.068196811,.14672115,15,4
+hicksian,6,2,-.0027867041062564,.020678731,.89280015,-.053137705,.13441819,.015955225,.049289197,.95491338,15,4
+marshallian,6,3,-.5347185730934143,.11044118,1.2875932e-06,-.50257075,-.11673294,-.36946163,.10428244,2.9346023e-07,15,4
+hicksian,6,3,-.074574738740921,.088794805,.40098983,-.092881233,.19779448,.015473857,.076337926,.32861724,15,4
+marshallian,6,4,-.1218984127044678,.030123126,.000051950927,-.14868419,-.0047404426,-.082406431,.046603043,.0089051267,15,4
+hicksian,6,4,-.02699257992208,.027478658,.32594681,-.046536043,.066963695,-.0023132705,.038967829,.48850483,15,4
+marshallian,6,5,-.0950115397572517,.033321347,.004353106,-.15743464,.041549012,-.090248719,.05258207,.070774928,15,4
+hicksian,6,5,.0661504343152046,.032486822,.041727923,-.042414565,.17254089,.047732458,.056526944,.24190195,15,4
+marshallian,6,6,-.3147867918014526,.11100717,.0045720492,-.62465852,-.2566489,-.39121345,.11991728,.0086640641,15,4
+hicksian,6,6,-.0739943012595177,.086558484,.39263558,-.41393957,-.053529467,-.16469277,.11807397,.53087068,15,4
+
+===== outputs/total_bootstrap_tests.csv =====
+test,full_sample_statistic,full_sample_p_value,bootstrap_mean,bootstrap_se,bootstrap_p2_5,bootstrap_p50,bootstrap_p97_5,bootstrap_reps_successful,bootstrap_reps_failed
+demographics_joint_zero,109.6986389160156,2.5281253e-07,206.17538,39.856918,140.80765,200.33022,276.16681,15,4
+all_share_shifters_joint_zero,610.7062377929688,0,980.1076,139.0778,802.45294,910.38263,1250.5488,15,4
+Shonkwiler_Yen_terms_joint_zero,2.358973979949951,.1245641,2.903815,3.3867855,.00068748166,1.0816894,10.077572,15,4
+Hansen_overidentification,28.82492446899414,.068789303,87.491722,73.708359,30.256842,59.361038,270.69006,15,4
+excluded_instruments_first_stage,9.175437927246094,.00012991556,10.773221,5.0802932,4.2522979,10.347498,22.717978,15,4
+
+===== outputs/fruit_basket_model_selection.csv =====
+model,order,gmm_steps,return_code,N,parameters,converged,J,J_df,J_p,rss,aic,bic,Engel_order_p,precommitment_p,raw_bic_minimum,family_test_preferred,bic_preferred,easi_order_preferred
+aids,1,1,0,3118,106,1,100.73566,19,,404.99536,-56699.441,-55888.074,,,0,1,0,0
+easi,1,1,0,3118,106,1,.26870757,19,,397.09335,-57006.629,-56195.266,,,1,1,1,1
+easi,2,1,430,3118,111,0,.31979969,24,,,,,,,0,0,0,0
+easi,3,1,0,3118,116,1,1.2252945,29,,105776062464,245465.89,246353.81,.0051154746,,0,0,0,0
+quaids,2,1,0,3118,111,1,296.98663,24,,1057.8081,-41721.816,-40872.18,.081685811,,0,0,0,0
+
+===== outputs/fruit_elasticity_specification_comparison.csv =====
+specification,N,clusters,J,J_df,Hansen_p,converged,fruit_hicksian,se,p_value,ci_low,ci_high
+main_unrestricted,3118,360,28.731956,19,.070319876,1,-.056216564,.087802865,.52200431,-.22830702,.11587389
+main_curvature_local,3118,360,28.824924,19,.068789303,1,-.073994301,.086558484,.39263558,-.24364582,.095657207
+allprice_direct_unrestricted,1443,166,19.000559,19,.45680022,1,-.1227853,.077739142,.11423223,-.27515122,.029580612
+allgood_trim99_unrestricted,2783,338,35.57645,19,.011892688,1,-.13040446,.059814781,.029247258,-.24763927,-.013169642
+fruit_tailclean_curvature_local,3061,357,32.632599,19,.026492935,1,-.12202395,.064217255,.057410311,-.24788745,.0038395587
+fruit_direct_unrestricted,1709,196,27.240458,19,.099175654,1,-.028892444,.092184722,.75396234,-.20957118,.1517863
+fruit_direct_curvature_local,1709,196,26.430206,19,.11864144,0,-.10159453,.088484429,.25090137,-.27502084,.071831763
+weighted_basket_unrestricted,3118,360,31.963051,19,.031555396,1,-.096062258,.088371016,.277022,-.26926625,.077141747
+weighted_basket_curvature_local,3118,360,31.981945,19,.031401306,1,-.10658564,.087982759,.22572769,-.27902868,.06585741
+
+===== outputs/fruit_price_identification_diagnostics.csv =====
+metric,value,interpretation
+total_demand_households,3152,positive reconstructed total food value
+fruit_direct_households,1730,fruit price source is own-village code 1 or 2
+fruit_direct_household_share,.5488578680203046,remaining households borrow fruit prices geographically
+total_village_year_clusters,360,cluster level used for inference
+fruit_direct_village_year_clusters,196,independent own-village fruit-price clusters
+main_fruit_unique_prices,132,fewest unique values among the six main community prices
+direct_fruit_unique_prices,109,unique own-village fruit prices
+weighted_basket_unique_prices,200,unique fixed-weight seven-category prices
+all_categories_direct_clusters,16,villages directly reporting all seven category prices
+direct_category_count_median,1,median directly reported subcategories per village
+fruit_zero_consumption_households,99,reconstructed source quantities; small but nonzero corner-solution group
+fruit_zero_consumption_share,.0314086294416244,SY correction is estimated; it is not bypassed in the source system
+fruit_self_quantity_share_mean,.0989676708132344,own production is relevant but not the dominant fruit source
+fruit_purchase_participation,.9330583756345178,positive purchased fruit quantity
+main_corrected_uv_log_correlation,.2808685049442613,community price versus Deaton-corrected unit-value price
+weighted_basket_corrected_uv_log_correlation,.4925898786936017,fixed-weight basket versus corrected unit-value price
+allcat_direct_corrected_uv_log_correlation,.7814404061099784,all seven subcategory prices directly reported
+main_corrected_uv_median_ratio,.486538270399263,corrected unit value divided by main community price
+weighted_basket_corrected_uv_median_ratio,.4993603195555385,corrected unit value divided by weighted basket price
+
+===== outputs/fruit_category_price_audit.csv =====
+category,statistic,value,source_label
+1,invalid_quote_cells,0,
+1,five_mad_direct_outliers,0,
+1,direct_villages,160,
+2,invalid_quote_cells,0,
+2,five_mad_direct_outliers,2,
+2,direct_villages,104,
+3,invalid_quote_cells,1,
+3,five_mad_direct_outliers,1,
+3,direct_villages,126,
+4,invalid_quote_cells,0,
+4,five_mad_direct_outliers,0,
+4,direct_villages,152,
+5,invalid_quote_cells,0,
+5,five_mad_direct_outliers,0,
+5,direct_villages,134,
+6,invalid_quote_cells,0,
+6,five_mad_direct_outliers,1,
+6,direct_villages,74,
+7,invalid_quote_cells,0,
+7,five_mad_direct_outliers,0,
+7,direct_villages,35,
+1,completed_source_1_villages,159,own_village_direct
+1,completed_source_3_villages,103,same_town_direct_median
+1,completed_source_4_villages,50,nearest_direct_village_in_county
+1,completed_source_5_villages,22,county_year_direct_median
+1,completed_source_6_villages,27,province_year_direct_median
+2,completed_source_1_villages,103,own_village_direct
+2,completed_source_3_villages,72,same_town_direct_median
+2,completed_source_4_villages,76,nearest_direct_village_in_county
+2,completed_source_5_villages,20,county_year_direct_median
+2,completed_source_6_villages,90,province_year_direct_median
+3,completed_source_1_villages,126,own_village_direct
+3,completed_source_3_villages,97,same_town_direct_median
+3,completed_source_4_villages,84,nearest_direct_village_in_county
+3,completed_source_5_villages,36,county_year_direct_median
+3,completed_source_6_villages,18,province_year_direct_median
+4,completed_source_1_villages,151,own_village_direct
+4,completed_source_3_villages,102,same_town_direct_median
+4,completed_source_4_villages,60,nearest_direct_village_in_county
+4,completed_source_5_villages,39,county_year_direct_median
+4,completed_source_6_villages,9,province_year_direct_median
+5,completed_source_1_villages,133,own_village_direct
+5,completed_source_3_villages,87,same_town_direct_median
+5,completed_source_4_villages,47,nearest_direct_village_in_county
+5,completed_source_5_villages,31,county_year_direct_median
+5,completed_source_6_villages,63,province_year_direct_median
+6,completed_source_1_villages,73,own_village_direct
+6,completed_source_3_villages,72,same_town_direct_median
+6,completed_source_4_villages,70,nearest_direct_village_in_county
+6,completed_source_5_villages,20,county_year_direct_median
+6,completed_source_6_villages,126,province_year_direct_median
+7,completed_source_1_villages,35,own_village_direct
+7,completed_source_3_villages,43,same_town_direct_median
+7,completed_source_4_villages,47,nearest_direct_village_in_county
+7,completed_source_5_villages,10,county_year_direct_median
+7,completed_source_6_villages,135,province_year_direct_median
+7,completed_source_8_villages,91,national_year_direct_median
+
+===== outputs/fruit_subcategory_weights.csv =====
+category,category_label,monthly_purchase_value,expenditure_weight,matched_item_fields,included_in_index
+1,melons,80590.16671327298,0.3572330722599198,2,1
+2,citrus,6357.095824674809,0.028179180720385194,2,1
+3,berries_and_other_fresh,39942.28655336312,0.17705268918613584,2,1
+4,pome_and_stone_fruit,64032.05768802967,0.2838357286491618,2,1
+5,nuts_and_seeds,24692.817854567467,0.10945617244254849,2,1
+6,canned_preserved_fruit,6374.434176610106,0.02825603665681484,2,1
+7,other_dried_fruit,3606.622043046921,0.015987120085033946,2,1
+0,unclassified_placeholder,904.2018118796042,0.003992066572628144,2,0
+
+===== outputs/source_model_selection_total.csv =====
+model,order,gmm_steps,return_code,N,parameters,converged,J,J_df,J_p,rss,aic,bic,Engel_order_p,precommitment_p,raw_bic_minimum,family_test_preferred,bic_preferred,easi_order_preferred
+aids,1,1,0,3118,106,1,105.26036,19,,404.86194,-56704.578,-55893.215,,,0,1,0,0
+easi,1,1,0,3118,106,1,.30361038,19,,398.88461,-56936.461,-56125.098,,,1,1,1,1
+easi,2,1,430,3118,111,0,.33416432,24,,,,,,,0,0,0,0
+easi,3,1,0,3118,116,1,1.2840285,29,,208923312,148385.22,149273.13,.0022098895,,0,0,0,0
+quaids,2,1,0,3118,111,1,319.72913,24,,1024.4807,-42220.898,-41371.262,.25135589,,0,0,0,0
+
+===== outputs/source_model_diagnostics.csv =====
+system,structural_interpretation,test,statistic,df,p_value
+self,0,demographics_joint_zero,73.674995,45,.0044647059
+self,0,all_share_shifters_joint_zero,581.98492,80,0
+self,0,Shonkwiler_Yen_terms_joint_zero,22.460289,5,.00042793981
+self,0,Hansen_overidentification,25.770905,15,.040500771
+self,0,excluded_instruments_first_stage,2.4324389,,.08926864
+self,0,theory_restrictions_imposed,1,,
+omitself,1,demographics_joint_zero,78.484489,45,.0014682868
+omitself,1,all_share_shifters_joint_zero,302.22281,80,1.5293016e-27
+omitself,1,Shonkwiler_Yen_terms_joint_zero,8.6857662,4,.069452122
+omitself,1,Hansen_overidentification,18.499649,16,.29546067
+omitself,1,excluded_instruments_first_stage,17.750244,,4.4557311e-08
+omitself,1,theory_restrictions_imposed,1,,
+buy,1,demographics_joint_zero,89.028992,45,.00010109045
+buy,1,all_share_shifters_joint_zero,301.55994,80,1.9569010e-27
+buy,1,Shonkwiler_Yen_terms_joint_zero,9.0383558,4,.060147893
+buy,1,Hansen_overidentification,23.369137,16,.1042173
+buy,1,excluded_instruments_first_stage,17.920412,,3.8167670e-08
+buy,1,theory_restrictions_imposed,1,,
+total,1,demographics_joint_zero,109.45989,45,2.7218036e-07
+total,1,all_share_shifters_joint_zero,608.17413,80,0
+total,1,Shonkwiler_Yen_terms_joint_zero,2.3559542,1,.1248055
+total,1,Hansen_overidentification,28.731956,19,.070319876
+total,1,excluded_instruments_first_stage,9.1754379,,.00012991556
+total,1,theory_restrictions_imposed,1,,
+
+===== outputs/source_omission_bias_tests.csv =====
+elasticity,good,difference,se,z,p_value,ci_low,ci_high,bootstrap_reps_requested,bootstrap_reps_successful,bootstrap_reps_failed,clusters,gmm_steps,contrast,ci_method
+expenditure,1,.7454110905528069,.2522929,2.9545465,.0031312897,.25091702,1.2399051,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+expenditure,2,-.0022808313369751,.30839929,-.0073957089,.99409914,-.6067434,.60218173,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+expenditure,3,-.2855885028839109,.10960642,-2.605582,.0091718305,-.50041705,-.07075993,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+expenditure,4,.0088695287704468,.30131891,.029435685,.97651714,-.58171552,.59945458,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+expenditure,5,.5660579800605769,.24186423,2.3403957,.019263323,.092004083,1.0401119,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+expenditure,6,-.094797730445862,.12445233,-.76171923,.44622761,-.33872429,.14912884,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,1,-.3855880498886108,.13058986,-2.9526646,.0031504403,-.64154416,-.12963194,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,2,-.1317816972732544,.22104485,-.59617627,.55105746,-.56502962,.30146623,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,3,-.0027867555618286,.087493636,-.031850953,.9745909,-.17427428,.16870077,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,4,-.2822143882513046,.22826529,-1.2363439,.21633078,-.72961438,.16518559,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,5,-.0049844831228256,.15883347,-.031381819,.97496504,-.31629807,.3063291,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+hicksian_own,6,.0699872560799122,.08716394,.80293822,.42201045,-.10085406,.24082857,199,156,43,360,1,omit-self minus total,cluster bootstrap normal
+
+===== outputs/source_elasticity_comparison.csv =====
+margin,demand_good,elasticity,aggregate_elasticity,trimmed_aggregate,trimmed_mean,std_dev,p10,p50,p90,negative_rate,near_zero_rate,n_valid,support_rate,min_share_floor,system,analysis_sample,structural_interpretation,interpretation
+latent,1,.76418513,.72968507,.73948777,.76862139,.093221799,.6696716,.78331774,.84492725,.0022988506,.0017241379,1740,.55805004,0,omitself,full,1,expenditure
+latent,2,-.0022182653,.38668159,.4007453,.38760915,10.264132,-.11935548,.55680656,.73765713,.12126437,.022988506,1740,.55805004,0,omitself,full,1,expenditure
+latent,3,1.1369556,1.1120636,1.1131603,1.1317343,.088267602,1.087005,1.1182349,1.1942947,0,0,1740,.55805004,0,omitself,full,1,expenditure
+latent,4,.79799217,.77522898,.78185397,.80369389,.1109336,.68195707,.82860029,.87923878,.0022988506,0,1740,.55805004,0,omitself,full,1,expenditure
+latent,5,18.644457,1.4568827,1.4749748,2.4888878,578.79865,1.263276,1.5691923,4.1003723,0,0,1740,.55805004,0,omitself,full,1,expenditure
+latent,6,1.2117983,1.1289005,1.128511,1.1646192,.65722418,1.0770063,1.1237115,1.2918166,0,0,1740,.55805004,0,omitself,full,1,expenditure
+latent,1,-.21783482,-.14698382,-.17126785,-.23028372,.20838363,-.36455089,-.27273577,-.033266839,.91724139,.045977011,1740,.55805004,0,omitself,full,1,hicksian_own
+latent,2,.72599918,.10132506,.077818185,.098419458,16.313623,-.42513868,-.18516116,.8879202,.67701149,.064942531,1740,.55805004,0,omitself,full,1,hicksian_own
+latent,3,-.046517398,-.10868587,-.10976426,-.069228396,.33344856,-.15146591,-.12432163,.08912614,.83160919,.11781609,1740,.55805004,0,omitself,full,1,hicksian_own
+latent,4,-.14857046,-.074304663,-.099185459,-.17040299,.38220578,-.39362767,-.26161098,.22013886,.82356322,.048850574,1740,.55805004,0,omitself,full,1,hicksian_own
+latent,5,40.372822,.18508707,.22090435,2.5940211,1352.6965,-.25365099,.40778381,6.4302602,.28390804,.067816094,1740,.55805004,0,omitself,full,1,hicksian_own
+latent,6,.76776445,.20725143,.20076902,.42774287,4.7803879,-.074125446,.12860189,1.1856549,.27701148,.20862068,1740,.55805004,0,omitself,full,1,hicksian_own
+unconditional,1,.7862311,.74415678,.75456959,.789846,.081212707,.7003293,.8035897,.85946244,.00068989309,.00034494654,2899,.92976266,0,omitself,full,1,expenditure
+unconditional,2,-22.439236,.35531029,.38081607,.394649,1198.7656,-.40956867,.67913395,1.0040931,.14349777,.014487755,2899,.92976266,0,omitself,full,1,expenditure
+unconditional,3,1.0391428,1.0650153,1.0636278,1.0393357,.051878966,.96534348,1.0526894,1.0940862,0,0,2899,.92976266,0,omitself,full,1,expenditure
+unconditional,4,.86994201,.80587584,.81815022,.87678015,.14639457,.74137419,.89708024,.98570925,.0031045189,0,2899,.92976266,0,omitself,full,1,expenditure
+unconditional,5,1.2252647,1.2003413,1.1902456,1.2015902,.3972086,1.0264977,1.1865411,1.3606938,0,0,2899,.92976266,0,omitself,full,1,expenditure
+unconditional,6,1.185639,1.105436,1.105657,1.1580123,.42318663,1.0518565,1.1143929,1.328005,0,0,2899,.92976266,0,omitself,full,1,expenditure
+unconditional,1,-.2580179,-.17733079,-.20364237,-.26795164,.17055464,-.37391442,-.30729771,-.10285315,.94549847,.032424975,2899,.92976266,0,omitself,full,1,hicksian_own
+unconditional,2,72.04348,.68237782,.62684166,.62661999,3776.5676,-.48486724,-.031475458,2.2123566,.5187996,.066574678,2899,.92976266,0,omitself,full,1,hicksian_own
+unconditional,3,-.16284429,-.14794938,-.15066306,-.16478929,.070779875,-.24050172,-.16158678,-.098510429,.97412902,.033459812,2899,.92976266,0,omitself,full,1,hicksian_own
+unconditional,4,-.44032618,-.20932719,-.25460407,-.46555966,.531407,-.85666305,-.53651845,.02440656,.89479131,.022421524,2899,.92976266,0,omitself,full,1,hicksian_own
+unconditional,5,.12626296,-.16746871,-.19434281,-.013775044,2.4316192,-.40611514,-.19278426,.58540004,.69161779,.074508451,2899,.92976266,0,omitself,full,1,hicksian_own
+unconditional,6,.08692205,-.015395575,-.018090317,.0054866881,1.1409562,-.22133151,-.10398415,.36520734,.72024834,.13521904,2899,.92976266,0,omitself,full,1,hicksian_own
+latent,1,.74156195,.71462023,.72408044,.74737328,.10941365,.64424807,.7637502,.82583576,.0030534351,0,1310,.4202759,0,purchase,full,1,expenditure
+latent,2,-.83743936,.14689672,.17173257,.081261374,18.315264,-.78022254,.41501638,.65822142,.21450381,.03206107,1310,.4202759,0,purchase,full,1,expenditure
+latent,3,1.1601022,1.1291378,1.1298596,1.1513203,.13656521,1.0943489,1.1325543,1.2354661,0,0,1310,.4202759,0,purchase,full,1,expenditure
+latent,4,.99348909,.99340487,.99346966,.99366391,.0031938134,.99053931,.99410766,.99619317,0,0,1310,.4202759,0,purchase,full,1,expenditure
+latent,5,6.3197479,1.6208094,1.647613,3.1793821,57.595047,1.3673768,1.847828,5.3963733,0,0,1310,.4202759,0,purchase,full,1,expenditure
+latent,6,1.0044187,1.003458,1.0034529,1.0038127,.012304546,1.0021064,1.0031676,1.0062699,0,0,1310,.4202759,0,purchase,full,1,expenditure
+latent,1,-.18437919,-.12983292,-.15340611,-.20010769,.25055039,-.34207276,-.24357824,.0021973955,.89847326,.059541985,1310,.4202759,0,purchase,full,1,hicksian_own
+latent,2,1.6366357,.26166478,.22611612,.35045072,25.8081,-.40206003,-.11185117,1.4489793,.59312975,.070229009,1310,.4202759,0,purchase,full,1,hicksian_own
+latent,3,-.039091624,-.11471458,-.11715209,-.072110936,.46584928,-.16567013,-.14036901,.12011427,.83435112,.081679389,1310,.4202759,0,purchase,full,1,hicksian_own
+latent,4,-.21149938,-.20368326,-.21317223,-.23008405,.31192189,-.45126235,-.2768361,.064381391,.87251908,.058015268,1310,.4202759,0,purchase,full,1,hicksian_own
+latent,5,9.793293,.3512724,.40512815,3.4665961,116.67013,-.13647799,.77047825,8.0129137,.18702289,.048854962,1310,.4202759,0,purchase,full,1,hicksian_own
+latent,6,.20692997,.027234178,.022053214,.079124816,2.5569751,-.13716018,-.059831232,.4570168,.62366414,.17099236,1310,.4202759,0,purchase,full,1,hicksian_own
+unconditional,1,.78060043,.74115181,.75198239,.78406549,.081494845,.69523251,.79599148,.85595667,.00072124053,0,2773,.88963747,0,purchase,full,1,expenditure
+unconditional,2,-.7154153,.10977769,.14668278,.15774398,14.727664,-.80612576,.55259037,.88008404,.19834115,.024882799,2773,.88963747,0,purchase,full,1,expenditure
+unconditional,3,1.0185229,1.0591755,1.0579592,1.0186739,.069220446,.92695177,1.0277591,1.1010206,0,0,2773,.88963747,0,purchase,full,1,expenditure
+unconditional,4,1.0797733,1.0550897,1.0566593,1.0793606,.036857523,1.0308255,1.0804114,1.1288083,0,0,2773,.88963747,0,purchase,full,1,expenditure
+unconditional,5,1.2364395,1.2199334,1.2177953,1.216372,.34844616,.99610698,1.2047231,1.4126463,.00072124053,0,2773,.88963747,0,purchase,full,1,expenditure
+unconditional,6,1.2418463,1.0907186,1.0922602,1.1970452,.97884434,1.0048696,1.1248046,1.4826357,.00072124053,0,2773,.88963747,0,purchase,full,1,expenditure
+unconditional,1,-.25573817,-.18423747,-.20960227,-.26496789,.16499382,-.36878404,-.30084157,-.10769401,.95131624,.029570863,2773,.88963747,0,purchase,full,1,hicksian_own
+unconditional,2,2.0227606,.64552623,.58516645,.58455718,24.500317,-.51075983,-.093515411,2.0907264,.56292826,.060223583,2773,.88963747,0,purchase,full,1,hicksian_own
+unconditional,3,-.22311589,-.18575613,-.18914498,-.22495304,.0843357,-.33470953,-.21537781,-.14260276,.98773891,.015867291,2773,.88963747,0,purchase,full,1,hicksian_own
+unconditional,4,-.49228564,-.40293124,-.41688022,-.50748771,.3304157,-.77827775,-.54965097,-.16587575,.94771004,.017309774,2773,.88963747,0,purchase,full,1,hicksian_own
+unconditional,5,.14279553,-.15340126,-.15980953,.022382658,1.7123957,-.41106009,-.18071303,.69114304,.67760551,.070681572,2773,.88963747,0,purchase,full,1,hicksian_own
+unconditional,6,.16807212,-.032546852,-.034465928,.060219914,1.8244586,-.16474137,-.082981259,.40818346,.67472053,.15975478,2773,.88963747,0,purchase,full,1,hicksian_own
+latent,1,-.48332235,-.23979068,-.23979068,-.48332235,2.0819025,-1.3273077,.068143018,.336739,.37777779,.088888891,45,.015603329,0,self,full,0,expenditure
+latent,2,.91322899,.92331535,.92331535,.91322899,.043029588,.82816619,.92635411,.95335698,0,0,45,.015603329,0,self,full,0,expenditure
+latent,3,9.6882553,5.1455722,5.1455722,9.6882553,12.845164,2.6755097,5.3973098,26.021709,0,0,45,.015603329,0,self,full,0,expenditure
+latent,4,14.915938,2.2257183,2.2257183,14.915938,77.340622,1.5159788,2.0959184,4.3854318,0,0,45,.015603329,0,self,full,0,expenditure
+latent,5,-2.5753341,-1.3002267,-1.2522498,-2.0643494,4.9376206,-4.9412246,-1.0425569,.0024564618,.8888889,.06666667,45,.015603329,0,self,full,0,expenditure
+latent,6,-.22105306,.0027947275,-.0021002844,-.19242594,.63686752,-1.01375,-.055318475,.39960471,.51111114,.022222223,45,.015603329,0,self,full,0,expenditure
+latent,1,.047612168,-.084013671,-.084013671,.047612168,1.2479451,-.40910274,-.2488196,.58350521,.75555557,.022222223,45,.015603329,0,self,full,0,hicksian_own
+latent,2,-.39286119,-.37902582,-.37844133,-.39232817,.033879589,-.41613328,-.40885997,-.34224328,1,0,45,.015603329,0,self,full,0,hicksian_own
+latent,3,1.3634526,.19524759,.17882982,1.051627,2.8625462,-.22606857,.32225496,4.5205841,.35555556,.088888891,45,.015603329,0,self,full,0,hicksian_own
+latent,4,53.203663,2.4688272,2.4280236,6.7586384,312.35867,.80874532,2.6948586,11.258802,0,0,45,.015603329,0,self,full,0,hicksian_own
+latent,5,1.0563785,.22883934,.18261339,.70033205,3.0817063,-.29448241,.045277532,2.5717614,.44444445,.11111111,45,.015603329,0,self,full,0,hicksian_own
+latent,6,-.72360158,-.70258433,-.70258433,-.72360158,.050243255,-.78998941,-.7125954,-.65839875,1,0,45,.015603329,0,self,full,0,hicksian_own
+unconditional,1,-.55764633,.00072371349,.033972606,.056457616,10.742105,-.9240101,.47035792,.70542705,.21662469,.03190596,1191,.4129681,0,self,full,0,expenditure
+unconditional,2,.056316141,.95011973,.9530763,.94095737,27.873796,.80412644,.97552758,1.0364944,.012594459,0,1191,.4129681,0,self,full,0,expenditure
+unconditional,3,4.3898745,1.8939804,1.9163369,3.1351113,25.130867,1.7178245,2.2355874,5.4254193,0,0,1191,.4129681,0,self,full,0,expenditure
+unconditional,4,1.9277798,1.4431334,1.445593,1.650676,4.4737296,1.3210098,1.444863,2.116817,0,0,1191,.4129681,0,self,full,0,expenditure
+unconditional,5,-.76216364,.32874593,.34472021,.21454088,25.188404,-.32090393,.48710743,.70610732,.16288833,.034424853,1191,.4129681,0,self,full,0,expenditure
+unconditional,6,1.4088105,1.0724022,1.0820134,1.2921458,5.6906204,-.11301062,1.2673439,2.7116725,.11670865,.012594459,1191,.4129681,0,self,full,0,expenditure
+unconditional,1,.44456026,-.086037748,-.11287089,-.1005649,10.347035,-.4758085,-.36056834,.50776333,.83627206,.019311503,1191,.4129681,0,self,full,0,hicksian_own
+unconditional,2,3.6852782,-.33978406,-.35555097,-.27807045,123.30354,-.72996378,-.45977843,.38733104,.83627206,.026028547,1191,.4129681,0,self,full,0,hicksian_own
+unconditional,3,-.012990467,-.37631389,-.37598577,-.30591559,6.1207266,-.59079951,-.44889927,.058852181,.89084804,.011754828,1191,.4129681,0,self,full,0,hicksian_own
+unconditional,4,1.4920037,.30853364,.3124994,.87140739,9.3357573,.1015195,.32603705,2.0784199,.00083963055,.03190596,1191,.4129681,0,self,full,0,hicksian_own
+unconditional,5,.27895382,-.25034925,-.25324771,-.17877075,11.648953,-.34453014,-.27062693,-.06729243,.92275399,.020151133,1191,.4129681,0,self,full,0,hicksian_own
+unconditional,6,-.32441491,-.73489493,-.71701789,-.46929768,2.9426138,-.97889072,-.58897716,.069095254,.88832915,.020151133,1191,.4129681,0,self,full,0,hicksian_own
+latent,1,.5842939,.50849241,.53166282,.60652941,.33177793,.40244284,.65065235,.75721377,.029739777,.010223049,1076,.74566877,0,total,direct_prices,1,expenditure
+latent,2,-2.3993471,.084234938,.0980037,-.13561031,60.456978,-1.112963,.36040726,.65418613,.26115242,.046468403,1076,.74566877,0,total,direct_prices,1,expenditure
+latent,3,1.1631912,1.1437796,1.1448019,1.1619374,.040269632,1.1211669,1.157666,1.2079139,0,0,1076,.74566877,0,total,direct_prices,1,expenditure
+latent,4,1.4698613,1.3229676,1.3243442,1.4001875,1.012949,1.1973624,1.332274,1.6407862,0,0,1076,.74566877,0,total,direct_prices,1,expenditure
+latent,5,.70472509,.79587936,.80022913,.7761029,1.7365348,.66518247,.8040064,.86798137,.011152416,.001858736,1076,.74566877,0,total,direct_prices,1,expenditure
+latent,6,1.2773584,1.2049462,1.2061032,1.2348959,.81353277,1.1335447,1.1946162,1.3794681,0,0,1076,.74566877,0,total,direct_prices,1,expenditure
+latent,1,-.20076989,-.12822793,-.15511458,-.23081811,.42167976,-.34518713,-.29817024,-.035492893,.91728622,.039033458,1076,.74566877,0,total,direct_prices,1,hicksian_own
+latent,2,2.4078331,-.050963446,-.065147594,.17244977,59.507214,-.60659724,-.33210358,1.1403602,.73420072,.044609666,1076,.74566877,0,total,direct_prices,1,hicksian_own
+latent,3,-.22982787,-.24421886,-.24412529,-.23300309,.05030442,-.25593624,-.24536203,-.19224004,.99442381,.0083643124,1076,.74566877,0,total,direct_prices,1,hicksian_own
+latent,4,.028332809,-.26257685,-.26227465,-.11613397,2.0843165,-.48063529,-.25639483,.3184709,.77044612,.067843869,1076,.74566877,0,total,direct_prices,1,hicksian_own
+latent,5,.082935929,-.20852709,-.22377269,-.15584615,5.8814998,-.39717352,-.24949341,.1480678,.83271378,.055762082,1076,.74566877,0,total,direct_prices,1,hicksian_own
+latent,6,.16784787,-.05523394,-.051021431,.029044559,2.7066195,-.20662566,-.10289714,.41879022,.67565054,.13847584,1076,.74566877,0,total,direct_prices,1,hicksian_own
+latent,1,-1.1570497,.092400983,.1168175,.19512685,54.463619,-.53096354,.45190403,.67792213,.20093824,.029710712,2558,.82039768,0,total,full,1,expenditure
+latent,2,.13431239,.43845981,.45543221,.50269562,13.80684,.14463575,.6033017,.76780796,.071149334,.012118842,2558,.82039768,0,total,full,1,expenditure
+latent,3,2.1336222,1.3617748,1.3650151,1.6391643,17.906929,1.2878623,1.4404212,2.2060635,0,0,2558,.82039768,0,total,full,1,expenditure
+latent,4,.31674471,.64922941,.65940094,.68960369,16.840954,.4849779,.74078298,.83719128,.024237685,.0035183737,2558,.82039768,0,total,full,1,expenditure
+latent,5,.2785897,.45136058,.46284625,.41874063,2.313967,-.016247272,.57785016,.73574024,.10125098,.016028147,2558,.82039768,0,total,full,1,expenditure
+latent,6,1.6665891,1.2982303,1.3014073,1.4804418,3.0925217,1.1963348,1.309881,1.8479229,0,0,2558,.82039768,0,total,full,1,expenditure
+latent,1,1.4466648,.10684474,.083067656,.027874099,57.532982,-.32428741,-.24213922,.65976584,.74550432,.054730259,2558,.82039768,0,total,full,1,hicksian_own
+latent,2,.40208459,-.042443827,-.067928173,-.14203928,20.089502,-.51164538,-.30454004,.39635041,.78303361,.050820954,2558,.82039768,0,total,full,1,hicksian_own
+latent,3,.36011025,-.21461983,-.21467772,-.085861512,16.292326,-.25439614,-.22814125,.21595763,.85652852,.030883502,2558,.82039768,0,total,full,1,hicksian_own
+latent,4,1.2101005,.10641887,.073005773,-.010065099,55.533302,-.40721923,-.16791536,.54315525,.68647379,.080140732,2558,.82039768,0,total,full,1,hicksian_own
+latent,5,.23287949,-.028671617,-.046679698,.017642023,3.5146325,-.39154807,-.22604346,.62903303,.74237686,.055903051,2558,.82039768,0,total,full,1,hicksian_own
+latent,6,.77103615,-.060979847,-.057522226,.32205266,7.5257483,-.23204769,-.070690669,1.0658141,.58991402,.099687256,2558,.82039768,0,total,full,1,hicksian_own
+unconditional,1,-.083159685,.12899761,.15551473,.25380653,8.8552351,-.40506539,.48587012,.69233108,.17747574,.026796117,2575,.82584989,0,total,full,1,expenditure
+unconditional,2,-3.2869167,.24792503,.27345613,.26414901,159.4381,-.52102387,.55698109,.81154972,.16349514,.022524271,2575,.82584989,0,total,full,1,expenditure
+unconditional,3,1.8814901,1.3704956,1.374786,1.6760052,3.4345677,1.293308,1.464066,2.285593,0,0,2575,.82584989,0,total,full,1,expenditure
+unconditional,4,.6153276,.6521759,.66290408,.70087314,2.5313108,.50913948,.74722201,.84207815,.021747572,.0034951456,2575,.82584989,0,total,full,1,expenditure
+unconditional,5,.3279098,.48646379,.49959227,.45875758,2.3667164,.065564588,.59537804,.74393803,.085436895,.01592233,2575,.82584989,0,total,full,1,expenditure
+unconditional,6,1.4389572,1.2305994,1.2323405,1.3007846,2.6211286,1.1632272,1.2370623,1.5079858,0,0,2575,.82584989,0,total,full,1,expenditure
+unconditional,1,.3083913,.076543935,.052180022,-.020069951,8.399786,-.3243311,-.26215166,.53861094,.77398056,.051262137,2575,.82584989,0,total,full,1,hicksian_own
+unconditional,2,6.7748613,.64686376,.59133941,.61785573,264.6655,-.41176048,-.023473972,2.1468565,.51766992,.065631069,2575,.82584989,0,total,full,1,hicksian_own
+unconditional,3,.11353002,-.21408874,-.21406429,-.065953173,2.9937727,-.25502551,-.22426014,.27336225,.84349513,.033398058,2575,.82584989,0,total,full,1,hicksian_own
+unconditional,4,.23000993,.09890832,.066164374,-.041900676,8.2930813,-.41844168,-.18306361,.48785999,.70912623,.079223298,2575,.82584989,0,total,full,1,hicksian_own
+unconditional,5,.16097164,-.076312564,-.096217401,-.036378257,3.4829042,-.39756095,-.24989797,.48520976,.77359223,.051650487,2575,.82584989,0,total,full,1,hicksian_own
+unconditional,6,.44258654,-.13210288,-.13081333,.051454537,7.3355608,-.25016961,-.14467363,.53895348,.6963107,.092038833,2575,.82584989,0,total,full,1,hicksian_own
+latent,1,.18518409,.20303696,.2328272,.3450706,2.5339048,-.18450414,.4985359,.68983352,.13784136,.027308192,2307,.82896155,0,total,trim99,1,expenditure
+latent,2,.19887896,.32864296,.35584375,.4382171,3.8999293,-.044910625,.5781157,.76243424,.1053316,.016905071,2307,.82896155,0,total,trim99,1,expenditure
+latent,3,1.9050572,1.3998138,1.4030374,1.7095604,2.9618099,1.317987,1.4971282,2.318388,0,0,2307,.82896155,0,total,trim99,1,expenditure
+latent,4,.59989893,.5857724,.59926283,.64390719,.69145417,.41634214,.70008522,.81319767,.031209363,.0060684872,2307,.82896155,0,total,trim99,1,expenditure
+latent,5,-.3163107,.26843739,.28706333,.15816966,9.505764,-.59792972,.45211378,.67302293,.18378846,.026441265,2307,.82896155,0,total,trim99,1,expenditure
+latent,6,1.5031531,1.2599602,1.2627722,1.4051245,1.2815279,1.1831218,1.2691407,1.7160887,0,0,2307,.82896155,0,total,trim99,1,expenditure
+latent,1,.017566504,-.028093969,-.056766409,-.1376597,2.4356794,-.35119134,-.29870096,.25944063,.82964891,.039445166,2307,.82896155,0,total,trim99,1,hicksian_own
+latent,2,.50059998,.27940857,.23280706,.079016939,6.9962707,-.47222197,-.18838736,.9071328,.64672732,.068487212,2307,.82896155,0,total,trim99,1,hicksian_own
+latent,3,.12159689,-.19345781,-.19388933,-.044357266,2.4683173,-.23098837,-.20167091,.29299173,.8322497,.045080192,2307,.82896155,0,total,trim99,1,hicksian_own
+latent,4,.066209443,.094802327,.062181868,-.045881417,1.7564714,-.42416796,-.19297007,.50040191,.71521455,.072388381,2307,.82896155,0,total,trim99,1,hicksian_own
+latent,5,.6179297,-.036440711,-.059875123,.078397036,10.639748,-.41773918,-.25008953,.85066068,.74425662,.055916775,2307,.82896155,0,total,trim99,1,hicksian_own
+latent,6,.41471609,-.12521708,-.12288243,.1790977,3.0283,-.25156444,-.13805304,.82046711,.67837018,.084525354,2307,.82896155,0,total,trim99,1,hicksian_own
+
+===== outputs/source_composition_descriptives.csv =====
+good,N,total_quantity_mean,total_quantity_p50,total_quantity_p99,purchase_participation,self_participation,gift_participation,purchase_quantity_share_mean,purchase_quantity_share_p50,self_quantity_share_mean,self_quantity_share_p50,gift_quantity_share_mean,gift_quantity_share_p50,retail_price_p50,self_price_p50,self_retail_wedge_p50
+1,3152,41.79615817835961,14.089907,257.14285,.98477155,.75666243,.15894671,.62774068,.69144511,.33628884,.25669235,.035970457,0,2.8,2.3600399,.81632656
+2,3152,4.578262203047702,1.1538461,42.857143,.89974618,.27125636,.044416245,.83945501,1,.14193003,0,.01861494,0,4.1999998,4,1
+3,3152,17.70996648594583,6.5460978,122.2562,.95145941,.40355331,.15323605,.79033542,.99327642,.16644152,0,.04322309,0,12.959655,18.666668,1.4578352
+4,3152,5.099058255318642,1.1203327,42.857143,.70970809,.32043147,.059644669,.67904943,1,.2749134,0,.04603716,0,7.75,10.160735,1.3192612
+5,3152,38.13731722744846,9.8927898,255.25729,.92131978,.83217007,.17988579,.46560612,.41240168,.49841985,.53325534,.035974003,0,2.02,2.5677505,1.2884995
+6,3152,25.22108442098113,7.5022674,182.41429,.93305838,.2607868,.16687818,.8459695,1,.098967671,0,.055062804,0,5.5,3,.52704477
+
+===== outputs/instrument_firststage_diagnostics.csv =====
+test,instrument,F,df_num,df_den,p_value,partial_R2,firststage_R2,N
+excluded_instruments_joint,ln_income inv_income,7.90036188557789,2,360,.00043861143,.0094022267,.43505993,3200
+instrument_conditional,ln_income,14.53158415677104,1,360,.00016209348,.0093867341,.43505993,3200
+instrument_conditional,inv_income,6.617113996204903,1,360,.010500519,.0014653365,.43505993,3200
+
+===== outputs/instrument_sensitivity_summary.csv =====
+specification,excluded_instruments,N,parameters,converged,J,J_df,J_p,firststage_F,firststage_p,firststage_R2,max_abs_b_diff_main
+income_log_and_inverse,ln_income inv_income,3200,105,1,25.521921,20,.18218803,7.900362,.00043861143,.43505993,2.3286748e-07
+income_log_only,ln_income,3200,105,1,20.806934,15,.14311209,11.999605,.00059626059,.43423089,
+income_inverse_only,inv_income,3200,105,1,27.693922,15,.023565419,.027844196,.86756933,.42970675,
+expenditure_exogenous,none,3200,105,1,21.142378,15,.13234164,,,,
+
+===== outputs/instrument_sensitivity_elasticities.csv =====
+specification,elasticity_type,demand_good,shock_good,elasticity,std_dev,p10,p50,p90,n_valid
+expenditure_exogenous,expenditure,1,0,.9168663609943644,.035318241,.88724822,.9228881,.94296533,3200
+expenditure_exogenous,expenditure,2,0,.8102308563418168,.43504819,.68589401,.88092571,.9335407,3166
+expenditure_exogenous,expenditure,3,0,1.03829902648716,.013117858,1.0275128,1.0351558,1.0525011,3200
+expenditure_exogenous,expenditure,4,0,.9567079648102836,.032702189,.93617797,.96363419,.97477889,3192
+expenditure_exogenous,expenditure,5,0,1.045571590105189,.096114695,1.0238557,1.0357907,1.0616374,3173
+expenditure_exogenous,expenditure,6,0,1.048995260525441,.053286582,1.027916,1.0382483,1.0725417,3200
+expenditure_exogenous,hicksian,1,1,-.0945824774841679,.25541961,-.23595168,-.14780827,.07858672,3200
+expenditure_exogenous,hicksian,1,2,-.0055627474821845,.031923898,-.039818227,-.0049321637,.030848103,3200
+expenditure_exogenous,hicksian,1,3,.138931634858233,.084798269,.041148208,.14670941,.22949648,3200
+expenditure_exogenous,hicksian,1,4,-.0086359855820704,.043117292,-.051701549,-.0037408541,.032594141,3200
+expenditure_exogenous,hicksian,1,5,-.039909183546836,.079238854,-.11147429,-.033574168,.036326095,3200
+expenditure_exogenous,hicksian,1,6,.009758759218169,.1103355,-.10283723,.020305233,.12691715,3200
+expenditure_exogenous,hicksian,2,1,-.1636697127105944,.89217269,-.43324542,-.025278604,.11915083,3166
+expenditure_exogenous,hicksian,2,2,.7204872051451906,3.8475626,-.3439447,.092059523,1.7859095,3166
+expenditure_exogenous,hicksian,2,3,-.0163589994936198,.69742823,-.24035689,.083212316,.23829728,3166
+expenditure_exogenous,hicksian,2,4,-.1127773415922227,.42752442,-.23369628,-.048227224,.017820233,3166
+expenditure_exogenous,hicksian,2,5,.0269608793576097,.26253992,-.060922246,.059395492,.13731624,3166
+expenditure_exogenous,hicksian,2,6,-.4546420307483826,1.5806804,-.85267401,-.20211896,-.037915777,3166
+expenditure_exogenous,hicksian,3,1,.1108467940787325,.063593544,.031207124,.11261172,.18351781,3200
+expenditure_exogenous,hicksian,3,2,.0134801092120305,.026557945,-.016888158,.011216468,.046917159,3200
+expenditure_exogenous,hicksian,3,3,-.1968756393297396,.12318465,-.25875029,-.23551767,-.096128121,3200
+expenditure_exogenous,hicksian,3,4,.0116253654917862,.032192629,-.027189789,.013437178,.049738985,3200
+expenditure_exogenous,hicksian,3,5,.0415495819733269,.051663876,-.02393309,.042862199,.10536849,3200
+expenditure_exogenous,hicksian,3,6,.019373788582444,.082057089,-.078695811,.025254935,.11318563,3200
+expenditure_exogenous,hicksian,4,1,-.0512494331378045,.21167588,-.19495486,-.011677967,.087792329,3192
+expenditure_exogenous,hicksian,4,2,-.0349308152988105,.063190363,-.079029843,-.026426336,.012293537,3192
+expenditure_exogenous,hicksian,4,3,.017784989073666,.21288824,-.11937749,.053490561,.17339152,3192
+expenditure_exogenous,hicksian,4,4,.0838739425797494,.74914056,-.30689946,-.078398071,.53187561,3192
+expenditure_exogenous,hicksian,4,5,.0136896500725912,.10909049,-.068101279,.023974804,.10465322,3192
+expenditure_exogenous,hicksian,4,6,-.0291683332988842,.20352106,-.17403404,.011206244,.11141524,3192
+expenditure_exogenous,hicksian,5,1,-.1137749287986058,.70555747,-.22194515,-.048538577,.050382365,3173
+expenditure_exogenous,hicksian,5,2,.0160025104993408,.058884602,-.011249847,.017871715,.050475284,3173
+expenditure_exogenous,hicksian,5,3,.0455449443477373,.50029045,-.051193908,.083868228,.19404364,3173
+expenditure_exogenous,hicksian,5,4,.0026355926803289,.14674491,-.033166382,.012781658,.051554032,3173
+expenditure_exogenous,hicksian,5,5,.0586870216748895,1.9084033,-.30982882,-.14019625,.31906357,3173
+expenditure_exogenous,hicksian,5,6,-.0090951403937748,.51617092,-.12153722,.027085815,.15794259,3173
+expenditure_exogenous,hicksian,6,1,-.0200751649444209,.25531262,-.14013256,.017013256,.11300992,3200
+expenditure_exogenous,hicksian,6,2,-.0489761521002764,.094588906,-.083663151,-.035171505,-.009268255,3200
+expenditure_exogenous,hicksian,6,3,-.0174437327259289,.31579527,-.12080036,.030639434,.1100239,3200
+expenditure_exogenous,hicksian,6,4,-.0117151223878297,.092090197,-.057562366,.003030407,.035103407,3200
+expenditure_exogenous,hicksian,6,5,-.0004486995837881,.15617105,-.079235539,.014038508,.10462317,3200
+expenditure_exogenous,hicksian,6,6,.0986588717529747,.88863182,-.17328484,-.082589261,.39884239,3200
+expenditure_exogenous,marshallian,1,1,-.3011577240944405,.2967242,-.51927346,-.35126811,-.054380916,3200
+expenditure_exogenous,marshallian,1,2,-.0441781335851757,.019813217,-.061095592,-.040866479,-.029928504,3200
+expenditure_exogenous,marshallian,1,3,-.1220852043229607,.052885536,-.16460328,-.11326034,-.084576987,3200
+expenditure_exogenous,marshallian,1,4,-.0752075395616303,.033151284,-.10215301,-.069421582,-.051310435,3200
+expenditure_exogenous,marshallian,1,5,-.167238831080101,.070123807,-.22506131,-.15589735,-.11521337,3200
+expenditure_exogenous,marshallian,1,6,-.2069989283689131,.086269803,-.28200853,-.19164865,-.14196418,3200
+expenditure_exogenous,marshallian,2,1,-.3449255253452694,.8028273,-.56949681,-.21577941,-.11896174,3166
+expenditure_exogenous,marshallian,2,2,.6826949203562734,3.8550985,-.41132858,.056762952,1.77555,3166
+expenditure_exogenous,marshallian,2,3,-.2480706994151365,.54694146,-.41463196,-.15568852,-.084113263,3166
+expenditure_exogenous,marshallian,2,4,-.1719682628541502,.39982387,-.28421882,-.10776571,-.059302766,3166
+expenditure_exogenous,marshallian,2,5,-.0856538520052241,.19471413,-.13826609,-.052837204,-.029580068,3166
+expenditure_exogenous,marshallian,2,6,-.6423074371203292,1.4787916,-1.0486916,-.40388709,-.22956423,3166
+expenditure_exogenous,marshallian,3,1,-.1214795658903231,.042370923,-.16832869,-.11089011,-.086593829,3200
+expenditure_exogenous,marshallian,3,2,-.0301458860566825,.010207236,-.041400518,-.027574671,-.021983581,3200
+expenditure_exogenous,marshallian,3,3,-.4921195427081267,.17805403,-.63893437,-.53354734,-.2993094,3200
+expenditure_exogenous,marshallian,3,4,-.063796622446076,.02206164,-.08712212,-.058692884,-.045725785,3200
+expenditure_exogenous,marshallian,3,5,-.1034592122590588,.036752664,-.14258626,-.094706491,-.073942892,3200
+expenditure_exogenous,marshallian,3,6,-.2272981971183121,.079993576,-.3151949,-.20882542,-.16011547,3200
+expenditure_exogenous,marshallian,4,1,-.2648730386624845,.19985612,-.39023751,-.22281906,-.15468478,3192
+expenditure_exogenous,marshallian,4,2,-.0752528263211165,.057068296,-.1107496,-.063266985,-.043856386,3192
+expenditure_exogenous,marshallian,4,3,-.2549987401497291,.19304977,-.37485707,-.21405241,-.14818648,3192
+expenditure_exogenous,marshallian,4,4,.0136191264666865,.76534927,-.40795484,-.14767107,.4935109,3192
+expenditure_exogenous,marshallian,4,5,-.119803422548875,.091487765,-.17643799,-.10063398,-.069759026,3192
+expenditure_exogenous,marshallian,4,6,-.2553990636042576,.19132316,-.37649325,-.21474624,-.14934133,3192
+expenditure_exogenous,marshallian,5,1,-.3479941156257598,.73192883,-.46979228,-.27349594,-.18216747,3173
+expenditure_exogenous,marshallian,5,2,-.0279633234799367,.058864068,-.037360221,-.022196775,-.014593271,3173
+expenditure_exogenous,marshallian,5,3,-.2521738385955228,.53256762,-.34008151,-.19800654,-.13228013,3173
+expenditure_exogenous,marshallian,5,4,-.0735092409605985,.15709445,-.09880963,-.057396509,-.038542632,3173
+expenditure_exogenous,marshallian,5,5,-.0871260024561052,1.9232421,-.52051961,-.2832658,.23359995,3173
+expenditure_exogenous,marshallian,5,6,-.2568050689773499,.53903222,-.3496854,-.20055093,-.13502431,3173
+expenditure_exogenous,marshallian,6,1,-.2553821603645655,.27945065,-.37772802,-.19986714,-.14520922,3200
+expenditure_exogenous,marshallian,6,2,-.0934376694526698,.10194002,-.1383698,-.072729811,-.053069655,3200
+expenditure_exogenous,marshallian,6,3,-.3174239613461319,.34569997,-.46902996,-.24715933,-.18074526,3200
+expenditure_exogenous,marshallian,6,4,-.0880277195974414,.095418096,-.13090748,-.069046415,-.050021254,3200
+expenditure_exogenous,marshallian,6,5,-.1469146073937309,.16014256,-.21660772,-.11485381,-.083283149,3200
+expenditure_exogenous,marshallian,6,6,-.1478091423601709,.92926216,-.51454651,-.33574992,.26012078,3200
+income_inverse_only,expenditure,1,0,.979833516979405,.0078974944,.97307223,.98119897,.98594964,3200
+income_inverse_only,expenditure,2,0,.4819253672317239,2.4920256,.30460402,.75344706,.862629,3132
+income_inverse_only,expenditure,3,0,1.2000140534836,.48742193,1.1202416,1.161694,1.2710713,3200
+income_inverse_only,expenditure,4,0,.6298364399728803,1.1454877,.49913082,.75700372,.8386541,3169
+income_inverse_only,expenditure,5,0,.871646663114636,.38406011,.82639819,.90162778,.93178004,3172
+income_inverse_only,expenditure,6,0,.9916776803035587,.029539445,.98829645,.99400705,.99557793,3200
+income_inverse_only,hicksian,1,1,-.0938844177112905,.22666191,-.22938025,-.14205354,.065303758,3200
+income_inverse_only,hicksian,1,2,-.0065285359777736,.031702343,-.041948065,-.005999099,.03064617,3200
+income_inverse_only,hicksian,1,3,.1509094058093604,.090935022,.042145975,.15618297,.25740534,3200
+income_inverse_only,hicksian,1,4,-.0176355435969695,.04715218,-.068571322,-.012187982,.029706236,3200
+income_inverse_only,hicksian,1,5,-.0351401272095798,.073448032,-.10618452,-.028860159,.037149101,3200
+income_inverse_only,hicksian,1,6,.0022792186708835,.10590658,-.11377896,.012127667,.12127407,3200
+income_inverse_only,hicksian,2,1,-.2965226728495894,2.5144687,-.49073231,-.029863445,.1121819,3132
+income_inverse_only,hicksian,2,2,1.160731012969229,10.261668,-.37019297,.040467661,1.8513077,3132
+income_inverse_only,hicksian,2,3,-.0453284931512439,1.6037459,-.17280951,.11073312,.25527266,3132
+income_inverse_only,hicksian,2,4,-.175035813713128,1.2058401,-.27495447,-.048628431,.028075255,3132
+income_inverse_only,hicksian,2,5,.0380265065205977,.49669495,-.026454855,.084027678,.15552816,3132
+income_inverse_only,hicksian,2,6,-.6818705401638069,4.4474115,-.93801343,-.20647724,-.031277563,3132
+income_inverse_only,hicksian,3,1,.1053327846270053,.28146866,.038363229,.11579831,.19031429,3200
+income_inverse_only,hicksian,3,2,.015196721466751,.067235082,-.014170798,.014030968,.051576763,3200
+income_inverse_only,hicksian,3,3,-.1231948472936436,1.3783234,-.25063157,-.22771981,-.029365422,3200
+income_inverse_only,hicksian,3,4,-.0006868160945084,.17166448,-.038813949,.0072593065,.046656583,3200
+income_inverse_only,hicksian,3,5,.0346399974915029,.24620019,-.024500601,.044449128,.10664436,3200
+income_inverse_only,hicksian,3,6,-.031287840021057,.63287592,-.11896865,.00044561215,.099425055,3200
+income_inverse_only,hicksian,4,1,-.1648020384066384,1.200352,-.31991461,-.033700086,.074060604,3169
+income_inverse_only,hicksian,4,2,-.0575095558622364,.31213659,-.10482413,-.027920164,.018741384,3169
+income_inverse_only,hicksian,4,3,-.0771253786140354,1.1223991,-.19815752,.030236086,.15637489,3169
+income_inverse_only,hicksian,4,4,.3914282884972904,4.0826654,-.31683215,-.062568255,.82381207,3169
+income_inverse_only,hicksian,4,5,-.034719667496429,.5464893,-.11794797,.01641446,.098171346,3169
+income_inverse_only,hicksian,4,6,-.0572716483897121,.91228795,-.17807937,.030066289,.14689876,3169
+income_inverse_only,hicksian,5,1,-.1113183466884241,.99884474,-.22938827,-.042044453,.055469543,3172
+income_inverse_only,hicksian,5,2,.0238458496945058,.060275353,-.0059501831,.024218855,.058959499,3172
+income_inverse_only,hicksian,5,3,.0545040412400934,.6882391,-.046778504,.090461306,.20649351,3172
+income_inverse_only,hicksian,5,4,-.005097182493819,.23376912,-.052993044,.0088371867,.05323473,3172
+income_inverse_only,hicksian,5,5,.0340938083933601,2.658586,-.32683298,-.17393498,.29059356,3172
+income_inverse_only,hicksian,5,6,.0039718297595578,.69517028,-.11325798,.041290358,.16788344,3172
+income_inverse_only,hicksian,6,1,-.0495756362366358,.97172266,-.16241406,.010173696,.10601141,3200
+income_inverse_only,hicksian,6,2,-.0576038156003251,.35528159,-.088312872,-.03599279,-.008007871,3200
+income_inverse_only,hicksian,6,3,-.0726740189668059,1.2807612,-.17840423,.00051082671,.10466347,3200
+income_inverse_only,hicksian,6,4,-.0067724836202246,.28350216,-.052245185,.0085577592,.050053477,3200
+income_inverse_only,hicksian,6,5,-.0017401524056763,.50512737,-.073895112,.022266731,.10721076,3200
+income_inverse_only,hicksian,6,6,.1883661068236351,3.3879094,-.16212945,-.068358757,.47013092,3200
+income_inverse_only,marshallian,1,1,-.3124855697714092,.26793519,-.52094173,-.35812974,-.084701531,3200
+income_inverse_only,marshallian,1,2,-.0477618607443866,.018832721,-.063660815,-.044416815,-.033237331,3200
+income_inverse_only,marshallian,1,3,-.1296025383145012,.050596535,-.17283396,-.12113429,-.090763405,3200
+income_inverse_only,marshallian,1,4,-.0887661690617622,.03488031,-.11828742,-.082815289,-.061810587,3200
+income_inverse_only,marshallian,1,5,-.1711229475448,.066513836,-.2282808,-.15957734,-.11942686,3200
+income_inverse_only,marshallian,1,6,-.2300944315579154,.089280523,-.30712923,-.21457566,-.15998214,3200
+income_inverse_only,marshallian,2,1,-.4009190913370094,1.92199,-.5441094,-.18956341,-.10250635,3132
+income_inverse_only,marshallian,2,2,1.127621572006933,10.26656,-.43343905,.0097557232,1.8471056,3132
+income_inverse_only,marshallian,2,3,-.1762678952410502,.80205035,-.25017267,-.087569192,-.042689659,3132
+income_inverse_only,marshallian,2,4,-.2157335493909395,1.0970449,-.29101023,-.099689908,-.052731633,3132
+income_inverse_only,marshallian,2,5,-.0333867339504716,.24893616,-.049935471,-.012843095,.0024895051,3132
+income_inverse_only,marshallian,2,6,-.7832396697071281,3.7588882,-1.0226363,-.37443778,-.21564656,3132
+income_inverse_only,marshallian,3,1,-.1629111792912186,.39462718,-.22714828,-.13138749,-.095459335,3200
+income_inverse_only,marshallian,3,2,-.0357371136397021,.095776223,-.048118766,-.028655833,-.020348566,3200
+income_inverse_only,marshallian,3,3,-.4567218414254244,1.3967828,-.68730122,-.56596255,-.25353813,3200
+income_inverse_only,marshallian,3,4,-.089976092076729,.25423172,-.12032637,-.071843639,-.05154819,3200
+income_inverse_only,marshallian,3,5,-.1349230871750025,.35102001,-.18590331,-.10619561,-.077271618,3200
+income_inverse_only,marshallian,3,6,-.319744739699473,.78934926,-.43797567,-.25896421,-.18328179,3200
+income_inverse_only,marshallian,4,1,-.3013836969136241,.88092512,-.41602385,-.19963549,-.13132343,3169
+income_inverse_only,marshallian,4,2,-.0857386641306815,.27476794,-.11718614,-.055469066,-.034059357,3169
+income_inverse_only,marshallian,4,3,-.2493873017839968,.73090333,-.33553645,-.1685016,-.1120844,3169
+income_inverse_only,marshallian,4,4,.3357570779938572,4.0907884,-.40931305,-.11804356,.80654907,3169
+income_inverse_only,marshallian,4,5,-.1271369545683304,.46299887,-.17074437,-.07974185,-.05020171,3169
+income_inverse_only,marshallian,4,6,-.2019469008418656,.60382497,-.27470991,-.13583294,-.088276297,3169
+income_inverse_only,marshallian,5,1,-.3053034589507178,.9352138,-.41351157,-.23353875,-.16314632,3172
+income_inverse_only,marshallian,5,2,-.0130717198816081,.045242101,-.01937948,-.0097951144,-.0056309961,3172
+income_inverse_only,marshallian,5,3,-.1919704550318268,.538234,-.26063481,-.14740308,-.10406681,3172
+income_inverse_only,marshallian,5,4,-.0682181822371087,.1923119,-.095419779,-.052633371,-.035783608,3172
+income_inverse_only,marshallian,5,5,-.0925178969549843,2.6692886,-.51740879,-.29958495,.22541195,3172
+income_inverse_only,marshallian,5,6,-.2005649501531162,.57485402,-.27011836,-.15724368,-.10508403,3172
+income_inverse_only,marshallian,6,1,-.2703337066991831,.96629786,-.38242137,-.19505814,-.14271441,3200
+income_inverse_only,marshallian,6,2,-.0992582247097915,.35458389,-.1401448,-.071610197,-.052405294,3200
+income_inverse_only,marshallian,6,3,-.3564588639473479,1.2745603,-.50345385,-.25713941,-.18819842,3200
+income_inverse_only,marshallian,6,4,-.0786963207807981,.27927777,-.11127283,-.05668804,-.041584358,3200
+income_inverse_only,marshallian,6,5,-.1394574418176807,.49951223,-.19745466,-.10069228,-.073628493,3200
+income_inverse_only,marshallian,6,6,-.0474731223547899,3.403769,-.49698764,-.3129319,.34615064,3200
+income_log_and_inverse,expenditure,1,0,.5311380192815272,.58532023,.26925164,.64576381,.77475119,3181
+income_log_and_inverse,expenditure,2,0,.7443594660838752,2.8366115,.70246565,.88368374,.9337188,3170
+income_log_and_inverse,expenditure,3,0,1.401221855548457,2.0091977,1.1959141,1.2802005,1.5421587,3179
+income_log_and_inverse,expenditure,4,0,.5880014142659425,1.2763551,.42933112,.72588778,.81964195,3161
+income_log_and_inverse,expenditure,5,0,.6205128831088812,1.4011858,.46198833,.75236481,.83365804,3153
+income_log_and_inverse,expenditure,6,0,1.362929247861544,1.1054373,1.1556988,1.2373285,1.5185218,3164
+income_log_and_inverse,hicksian,1,1,-.0010344589219756,.92376566,-.28235888,-.19863577,.3204082,3181
+income_log_and_inverse,hicksian,1,2,-.0252194849366904,.088107131,-.074132688,-.011657716,.028409725,3181
+income_log_and_inverse,hicksian,1,3,.1556384868198914,.15496919,.043439683,.17314588,.26724902,3181
+income_log_and_inverse,hicksian,1,4,-.0327852451021489,.14252831,-.11773219,-.0095091453,.05208794,3181
+income_log_and_inverse,hicksian,1,5,-.1188443132454117,.33797091,-.29304188,-.062020563,.059980668,3181
+income_log_and_inverse,hicksian,1,6,.0222450162105032,.25836572,-.081590645,.057342976,.16097499,3181
+income_log_and_inverse,hicksian,2,1,-.3821401567816516,6.6685271,-.549196,-.066609755,.14001314,3170
+income_log_and_inverse,hicksian,2,2,1.310890767963841,24.901247,-.35196599,.075662933,1.7148682,3170
+income_log_and_inverse,hicksian,2,3,-.0247782968963439,3.3799531,-.13870943,.12451982,.28640494,3170
+income_log_and_inverse,hicksian,2,4,-.1881123231412917,2.8664157,-.25429082,-.05130253,.023946848,3170
+income_log_and_inverse,hicksian,2,5,.0179934224461545,1.3358884,-.049116302,.076926999,.15952727,3170
+income_log_and_inverse,hicksian,2,6,-.7338534131067531,10.65469,-.84832698,-.21397755,-.043248281,3170
+income_log_and_inverse,hicksian,3,1,.1187789703319806,.52320737,.028435677,.13829863,.22956143,3179
+income_log_and_inverse,hicksian,3,2,.0140822444759499,.14256163,-.013046113,.018212203,.051943943,3179
+income_log_and_inverse,hicksian,3,3,-.0556939145345054,3.2896609,-.2710515,-.24648441,.02692963,3179
+income_log_and_inverse,hicksian,3,4,-.0221036483059101,.47148043,-.056927614,-.00062493142,.039064407,3179
+income_log_and_inverse,hicksian,3,5,.0413633125184233,.48123679,-.01634185,.058530573,.1242636,3179
+income_log_and_inverse,hicksian,3,6,-.0964269650999803,1.6876032,-.26637349,-.0041802162,.14932381,3179
+income_log_and_inverse,hicksian,4,1,-.1350283954511332,1.1339167,-.36396152,-.026855282,.16141273,3161
+income_log_and_inverse,hicksian,4,2,-.0561371495061482,.30892605,-.10400008,-.027954523,.015403922,3161
+income_log_and_inverse,hicksian,4,3,-.1085527180907564,1.2140255,-.23980869,-.0012242042,.13722739,3161
+income_log_and_inverse,hicksian,4,4,.3680713027227356,4.0290017,-.32698083,-.0688738,.84455562,3161
+income_log_and_inverse,hicksian,4,5,-.0155780866235431,.49431124,-.12609074,.030254513,.12344326,3161
+income_log_and_inverse,hicksian,4,6,-.0527749522694898,.89562744,-.15779415,.027464371,.13139443,3161
+income_log_and_inverse,hicksian,5,1,-.2351589986530999,1.692381,-.4939878,-.091057949,.1107843,3153
+income_log_and_inverse,hicksian,5,2,.018217149419928,.090667598,-.010063745,.022083744,.055155098,3153
+income_log_and_inverse,hicksian,5,3,.0719600077351108,.75971431,-.027007915,.12010997,.23766074,3153
+income_log_and_inverse,hicksian,5,4,-.0084147709417821,.3005974,-.064290218,.015224881,.064473331,3153
+income_log_and_inverse,hicksian,5,5,.1244642897365207,3.5796137,-.35539204,-.21898438,.45150021,3153
+income_log_and_inverse,hicksian,5,6,.0289323234433452,.75604814,-.07174214,.070654184,.19783898,3153
+income_log_and_inverse,hicksian,6,1,-.0002966886950957,.66879964,-.076894209,.049338631,.16154312,3164
+income_log_and_inverse,hicksian,6,2,-.0691170850507968,.33623978,-.10049579,-.038084909,-.0091729937,3164
+income_log_and_inverse,hicksian,6,3,-.1361554064653931,1.2939904,-.35871455,-.0040637506,.16656536,3164
+income_log_and_inverse,hicksian,6,4,-.0152682319161503,.26601803,-.047813937,.0075654117,.04281155,3164
+income_log_and_inverse,hicksian,6,5,.0183381048433557,.36467633,-.044335015,.041316353,.12475038,3164
+income_log_and_inverse,hicksian,6,6,.2024993066237877,2.9130456,-.21033812,-.12157977,.456936,3164
+income_log_and_inverse,marshallian,1,1,-.1486269470680268,.96801037,-.55729824,-.34067819,.29444104,3181
+income_log_and_inverse,marshallian,1,2,-.0479622069541741,.061024919,-.079766668,-.035163984,-.018511076,3181
+income_log_and_inverse,marshallian,1,3,.0269942439049739,.13424766,-.030573163,.0054538283,.080260947,3181
+income_log_and_inverse,marshallian,1,4,-.0753604380780641,.11077455,-.12741248,-.05321493,-.027315117,3181
+income_log_and_inverse,marshallian,1,5,-.1983011901148205,.27478859,-.31498045,-.14543001,-.080619544,3181
+income_log_and_inverse,marshallian,1,6,-.0878814801472476,.090404302,-.13088422,-.077324063,-.041196022,3181
+income_log_and_inverse,marshallian,2,1,-.5531482270026197,6.1078749,-.66625774,-.25134563,-.13760279,3170
+income_log_and_inverse,marshallian,2,2,1.272901318281007,24.903454,-.41923127,.039915904,1.7041347,3170
+income_log_and_inverse,marshallian,2,3,-.2327306788929757,2.5611775,-.28640768,-.10762047,-.058332082,3170
+income_log_and_inverse,marshallian,2,4,-.2425575875026809,2.6133463,-.29482129,-.11077283,-.060977947,3170
+income_log_and_inverse,marshallian,2,5,-.0893721190874118,1.0216026,-.10340134,-.038623519,-.020009974,3170
+income_log_and_inverse,marshallian,2,6,-.8994521713952385,9.7669439,-1.0578099,-.41452774,-.23719651,3170
+income_log_and_inverse,marshallian,3,1,-.2128317959736026,1.1388608,-.31841552,-.1327471,-.075680137,3179
+income_log_and_inverse,marshallian,3,2,-.0450798045784899,.23737584,-.060100529,-.031283777,-.019761624,3179
+income_log_and_inverse,marshallian,3,3,-.4221310686311291,3.3049951,-.75826538,-.61881864,-.20729409,3179
+income_log_and_inverse,marshallian,3,4,-.1294992187397148,.71228635,-.16963436,-.086306304,-.055161122,3179
+income_log_and_inverse,marshallian,3,5,-.1661584266297109,1.0315726,-.22208644,-.10683838,-.062511571,3179
+income_log_and_inverse,marshallian,3,6,-.4255215416098524,2.2044578,-.57132006,-.3021318,-.20550327,3179
+income_log_and_inverse,marshallian,4,1,-.2756720626833208,.79450613,-.41747433,-.17637996,-.099458069,3161
+income_log_and_inverse,marshallian,4,2,-.081721699954121,.26106855,-.11746357,-.054408804,-.032800358,3161
+income_log_and_inverse,marshallian,4,3,-.2618009678039704,.81038678,-.35958543,-.18243186,-.12163041,3161
+income_log_and_inverse,marshallian,4,4,.3144283370814295,4.0369425,-.41913983,-.12205178,.82948095,3161
+income_log_and_inverse,marshallian,4,5,-.1060326447887101,.39840356,-.15684976,-.064023778,-.034255762,3161
+income_log_and_inverse,marshallian,4,6,-.1772023753355848,.50939137,-.24617058,-.12685013,-.086450383,3161
+income_log_and_inverse,marshallian,5,1,-.3845670171112033,1.4884588,-.56069422,-.24185558,-.15588427,3153
+income_log_and_inverse,marshallian,5,2,-.0077301550797491,.034388427,-.017098106,-.0056726183,.0025704752,3153
+income_log_and_inverse,marshallian,5,3,-.083975314059728,.16659592,-.11995754,-.066685311,-.039763354,3153
+income_log_and_inverse,marshallian,5,4,-.0559819852142016,.19751437,-.083449371,-.035340317,-.019523088,3153
+income_log_and_inverse,marshallian,5,5,.0183385189379402,3.5924861,-.52967817,-.3261953,.42223817,3153
+income_log_and_inverse,marshallian,5,6,-.1065969298419167,.41330314,-.1401055,-.079809539,-.045365807,3153
+income_log_and_inverse,marshallian,6,1,-.3210941995533576,1.0902525,-.45896605,-.19946718,-.11873898,3164
+income_log_and_inverse,marshallian,6,2,-.1305281313311435,.4259316,-.18814343,-.082844302,-.053810216,3164
+income_log_and_inverse,marshallian,6,3,-.519557857671811,1.5633646,-.73898423,-.34193516,-.23421459,3164
+income_log_and_inverse,marshallian,6,4,-.1179277021321278,.37554955,-.16865291,-.075201742,-.045634978,3164
+income_log_and_inverse,marshallian,6,5,-.1776836627717727,.59100729,-.25857991,-.11182814,-.067354456,3164
+income_log_and_inverse,marshallian,6,6,-.0961376950616241,2.9378848,-.62893826,-.42197859,.28124851,3164
+income_log_only,expenditure,1,0,.4729857478485665,2.0462117,.20849709,.62846994,.76683837,3176
+income_log_only,expenditure,2,0,.8345624294674669,.52204025,.74744779,.90176129,.94411123,3171
+income_log_only,expenditure,3,0,1.432122560934354,.82930923,1.2084924,1.3033897,1.6110922,3174
+income_log_only,expenditure,4,0,.3984628521188396,2.2761071,.18536717,.65493584,.78079551,3136
+income_log_only,expenditure,5,0,.7883998266360358,.21610211,.68352538,.83546704,.88894928,3166
+income_log_only,expenditure,6,0,1.296196828371371,1.51438,1.1325488,1.1970356,1.4112359,3175
+income_log_only,hicksian,1,1,.0362744216575122,3.0487309,-.29006544,-.21133687,.31638029,3176
+income_log_only,hicksian,1,2,-.0262242945881321,.25982365,-.070981376,-.0093126986,.030447822,3176
+income_log_only,hicksian,1,3,.154581654653494,.47737533,.045848925,.17895287,.27466947,3176
+income_log_only,hicksian,1,4,-.043953565419862,.44772089,-.13354294,-.012074529,.057749029,3176
+income_log_only,hicksian,1,5,-.1339046683008729,1.037879,-.28577232,-.060578302,.05131162,3176
+income_log_only,hicksian,1,6,.0132264530251896,.84512484,-.076722711,.062627472,.1652609,3176
+income_log_only,hicksian,2,1,-.2174141940658266,1.4333514,-.50407076,-.053895794,.15248655,3171
+income_log_only,hicksian,2,2,.8227122071425497,5.7094588,-.3398082,.096499614,1.7791057,3171
+income_log_only,hicksian,2,3,-.0332416456582675,1.0141447,-.25595218,.075423576,.25604793,3171
+income_log_only,hicksian,2,4,-.1208718500450621,.62565613,-.24321689,-.048846912,.029892948,3171
+income_log_only,hicksian,2,5,.0435099585281242,.31541792,-.045530304,.074686438,.15278488,3171
+income_log_only,hicksian,2,6,-.4946944755716289,2.3376169,-.82609457,-.20422602,-.039649893,3171
+income_log_only,hicksian,3,1,.1263113103694997,.18228488,.030525804,.14261124,.23497885,3174
+income_log_only,hicksian,3,2,.0048673200888118,.074822493,-.023869714,.011222598,.045178059,3174
+income_log_only,hicksian,3,3,-.0567759345982214,1.2108471,-.26984119,-.2432615,.053083226,3174
+income_log_only,hicksian,3,4,-.0120638768660888,.15432201,-.049374681,.0051688505,.045291875,3174
+income_log_only,hicksian,3,5,.0395672067450559,.18198007,-.018774701,.056558322,.12153355,3174
+income_log_only,hicksian,3,6,-.1019060264783263,.6606313,-.27957806,-.0103173,.13796745,3174
+income_log_only,hicksian,4,1,-.2004329356995455,1.6182138,-.44759032,-.032737575,.17777711,3136
+income_log_only,hicksian,4,2,-.0664354097760261,.41037321,-.1151775,-.025787624,.018557081,3136
+income_log_only,hicksian,4,3,-.1200690975762382,1.4968793,-.2273571,.022703839,.15301065,3136
+income_log_only,hicksian,4,4,.5248017017007631,5.4399738,-.36002243,-.097133592,1.0015752,3136
+income_log_only,hicksian,4,5,-.0643757371276215,.77524471,-.17023104,.014183681,.10494382,3136
+income_log_only,hicksian,4,6,-.073488520273996,1.1519964,-.15748157,.03714003,.13995171,3136
+income_log_only,hicksian,5,1,-.1597027406816042,.42613491,-.41192177,-.089937538,.097792104,3166
+income_log_only,hicksian,5,2,.0213122076902542,.031971179,-.0091572432,.021687206,.053932235,3166
+income_log_only,hicksian,5,3,.1001337772591249,.19359384,-.036875602,.11940151,.24622115,3166
+income_log_only,hicksian,5,4,-.0062415623208188,.093442149,-.071427748,.0072236732,.060187727,3166
+income_log_only,hicksian,5,5,.0035484579086667,.87034971,-.33514842,-.1897447,.36380896,3166
+income_log_only,hicksian,5,6,.040949860588153,.20318173,-.078415275,.059226673,.18578881,3166
+income_log_only,hicksian,6,1,.0108607152017318,1.0421898,-.07530839,.054458648,.17473772,3175
+income_log_only,hicksian,6,2,-.0647704497671466,.52583587,-.09389966,-.036834903,-.0085133677,3175
+income_log_only,hicksian,6,3,-.1373747633808642,2.0860171,-.34420872,-.012219705,.16052999,3175
+income_log_only,hicksian,6,4,-.0080066545270803,.396972,-.043539036,.010726236,.050165661,3175
+income_log_only,hicksian,6,5,.0071897498699839,.65063864,-.054780189,.03256179,.11970669,3175
+income_log_only,hicksian,6,6,.1921014019470555,4.6908422,-.20543835,-.11516526,.4416458,3175
+income_log_only,marshallian,1,1,-.10853610033047,3.0661793,-.56479681,-.35030848,.2933315,3176
+income_log_only,marshallian,1,2,-.0469624294061471,.19569871,-.074205041,-.03161614,-.015918249,3176
+income_log_only,marshallian,1,3,.0527628690645174,.53507477,-.025271587,.016311657,.11167247,3176
+income_log_only,marshallian,1,4,-.0845108637745639,.34109426,-.13858795,-.05473505,-.025780924,3176
+income_log_only,marshallian,1,5,-.2028102793409534,.73081803,-.30386078,-.1404002,-.079661414,3176
+income_log_only,marshallian,1,6,-.0829289430336207,.29323334,-.12410954,-.068142936,-.031888936,3176
+income_log_only,marshallian,2,1,-.4093469118955769,1.3873134,-.63368046,-.24118255,-.13302654,3171
+income_log_only,marshallian,2,2,.7841007233550579,5.7152534,-.40789372,.0602565,1.767602,3171
+income_log_only,marshallian,2,3,-.2663516646530009,.8179906,-.41843927,-.15927505,-.087587319,3171
+income_log_only,marshallian,2,4,-.1829868038656312,.59927243,-.2838527,-.10808928,-.059620656,3171
+income_log_only,marshallian,2,5,-.074204261073536,.26295093,-.11286803,-.042609215,-.023489438,3171
+income_log_only,marshallian,2,6,-.6857735110048909,2.1296544,-1.0560356,-.40969473,-.23321003,3171
+income_log_only,marshallian,3,1,-.2177497696702416,.52664405,-.33891377,-.13277732,-.072384126,3174
+income_log_only,marshallian,3,2,-.0550284930638544,.10312658,-.076693766,-.038700718,-.024686078,3174
+income_log_only,marshallian,3,3,-.4297039223084372,1.2508707,-.76929635,-.62252825,-.18350077,3174
+income_log_only,marshallian,3,4,-.1229871155692274,.28762546,-.17072447,-.081074938,-.048955075,3174
+income_log_only,marshallian,3,5,-.1693376549096333,.40469605,-.23662269,-.11193579,-.066779017,3174
+income_log_only,marshallian,3,6,-.4373156061522298,.77300608,-.61168367,-.31278598,-.20859607,3174
+income_log_only,marshallian,4,1,-.315246638579907,1.2472219,-.46671727,-.16783729,-.081757501,3136
+income_log_only,marshallian,4,2,-.0852266430293758,.36083302,-.1187238,-.048610412,-.027124057,3136
+income_log_only,marshallian,4,3,-.2033916356369076,.6984629,-.26849285,-.13274835,-.083192371,3136
+income_log_only,marshallian,4,4,.4760019524651225,5.4483714,-.45145452,-.14588107,.99645907,3136
+income_log_only,marshallian,4,5,-.1311719672897281,.57190746,-.18265668,-.068820521,-.036029849,3136
+income_log_only,marshallian,4,6,-.1394279188007078,.34016579,-.19206642,-.095365666,-.060648583,3136
+income_log_only,marshallian,5,1,-.3402938161938114,.36937943,-.51980555,-.25895736,-.17763847,3166
+income_log_only,marshallian,5,2,-.0119750428849969,.013408615,-.020991193,-.0094549283,-.0039473842,3166
+income_log_only,marshallian,5,3,-.1161578293023392,.10964669,-.16613466,-.094381839,-.066417068,3166
+income_log_only,marshallian,5,4,-.0645531686073935,.069763727,-.10075394,-.049449958,-.032242399,3166
+income_log_only,marshallian,5,5,-.1141717291130197,.89917862,-.51930851,-.30784354,.31338093,3166
+income_log_only,marshallian,5,6,-.1412482400906996,.12980682,-.20145309,-.1167939,-.075607024,3166
+income_log_only,marshallian,6,1,-.2955234666714938,1.7306045,-.4132978,-.18904553,-.11562619,3175
+income_log_only,marshallian,6,2,-.1219295504678491,.61661947,-.17203465,-.079799697,-.053431384,3175
+income_log_only,marshallian,6,3,-.503900571676353,2.5286672,-.70065331,-.33702078,-.23430653,3175
+income_log_only,marshallian,6,4,-.103634106642157,.47946656,-.14733057,-.069013968,-.042367708,3175
+income_log_only,marshallian,6,5,-.1757847602913953,.86568147,-.2482968,-.11554678,-.074217118,3175
+income_log_only,marshallian,6,6,-.0954243732784426,4.7053757,-.60647398,-.40449792,.2765213,3175
+
+===== outputs/instrument_sensitivity_regularity.csv =====
+specification,diagnostic,value,threshold,passed
+expenditure_exogenous,adding_up_homogeneity_symmetry_imposed,1,1,1
+expenditure_exogenous,adding_up_max_abs_error,0,9.9999999e-09,1
+expenditure_exogenous,negative_hicksian_own_elasticities,.6963044273691914,1,0
+expenditure_exogenous,positive_expenditure_elasticities,.9978046103183315,1,0
+expenditure_exogenous,positive_fitted_share_rate,.9790624999999999,1,0
+expenditure_exogenous,slutsky_max_eigenvalue,.0066490368155676,0,0
+expenditure_exogenous,slutsky_symmetry_max_abs_error,4.23509667548e-12,.000099999997,1
+income_inverse_only,adding_up_homogeneity_symmetry_imposed,1,1,1
+income_inverse_only,adding_up_max_abs_error,0,9.9999999e-09,1
+income_inverse_only,negative_hicksian_own_elasticities,.6926021076915011,1,0
+income_inverse_only,positive_expenditure_elasticities,.985004980863,1,0
+income_inverse_only,positive_fitted_share_rate,.9625,1,0
+income_inverse_only,slutsky_max_eigenvalue,.0072785146944343,0,0
+income_inverse_only,slutsky_symmetry_max_abs_error,1.99313851014e-11,.000099999997,1
+income_log_and_inverse,adding_up_homogeneity_symmetry_imposed,1,1,1
+income_log_and_inverse,adding_up_max_abs_error,0,9.9999999e-09,1
+income_log_and_inverse,negative_hicksian_own_elasticities,.6923926767676768,1,0
+income_log_and_inverse,positive_expenditure_elasticities,.977114898989899,1,0
+income_log_and_inverse,positive_fitted_share_rate,.9440625,1,0
+income_log_and_inverse,slutsky_max_eigenvalue,.0063463909405541,0,0
+income_log_and_inverse,slutsky_symmetry_max_abs_error,2.39961918391e-10,.000099999997,1
+income_log_only,adding_up_homogeneity_symmetry_imposed,1,1,1
+income_log_only,adding_up_max_abs_error,0,9.9999999e-09,1
+income_log_only,negative_hicksian_own_elasticities,.6903358248236656,1,0
+income_log_only,positive_expenditure_elasticities,.975313190862196,1,0
+income_log_only,positive_fitted_share_rate,.9403125,1,0
+income_log_only,slutsky_max_eigenvalue,.0069062009947606,0,0
+income_log_only,slutsky_symmetry_max_abs_error,2.81607674679e-10,.000099999997,1
+
+===== outputs/selected_nlsur_tests.csv =====
+test,statistic,df,p_value
+demographics_joint_zero,131.9718999445572,45,1.7807363e-10
+all_share_shifters_joint_zero,403.2788250840155,80,0
+expenditure_exogeneity,23.12190514577627,5,.00031992377
+excluded_instruments_first_stage,7.900361885577942,,.00043861143
+theory_restrictions_imposed,1,,
+
+===== outputs/selected_nlsur_elasticities.csv =====
+elasticity_type,demand_good,shock_good,elasticity,std_dev,p10,p50,p90,n_valid
+expenditure,1,0,.5517728429779196,.18409452,.39270514,.58697861,.69610047,3200
+expenditure,2,0,.6107280269757279,1.7582994,.44721228,.79804033,.88822794,3173
+expenditure,3,0,1.465218682803729,.1920884,1.3342061,1.420729,1.6405156,3199
+expenditure,4,0,.924313256982328,.097808823,.89157355,.93803263,.95688277,3192
+expenditure,5,0,.6693193991481784,12.40957,.87106365,.92511851,.95034927,3182
+expenditure,6,0,.9669564307158198,.062799409,.95257699,.97437382,.98105794,3200
+marshallian,1,1,-.253360520962558,.30368575,-.48321712,-.31950781,.023290595,3200
+hicksian,1,1,-.1203029405615099,.25941488,-.28087249,-.18631586,.08483801,3200
+marshallian,2,1,-.4815667023165974,2.0324075,-.68186802,-.26220286,-.14604074,3173
+hicksian,2,1,-.344148912629508,2.3844998,-.60216826,-.09142787,.076393932,3173
+marshallian,3,1,-.197345570550342,.11472289,-.30396986,-.17475772,-.10562014,3199
+hicksian,3,1,.1345111198601548,.10062027,.0087982817,.14463802,.2471973,3199
+marshallian,4,1,-.2532335522089174,.33078244,-.36473751,-.20761965,-.14472669,3192
+hicksian,4,1,-.0455779598500162,.35346001,-.17252366,-.0019613367,.090863533,3192
+marshallian,5,1,-1.226063235286792,46.733227,-.46416545,-.26788855,-.17487964,3182
+hicksian,5,1,-1.069420159742812,49.182098,-.25971738,-.064283125,.041106321,3182
+marshallian,6,1,-.2150800927355732,.41455019,-.30988073,-.16764551,-.12318353,3200
+hicksian,6,1,.0020816463428437,.42879653,-.10396817,.033226926,.12648055,3200
+marshallian,1,2,-.0405000840685835,.018747611,-.058443453,-.038743917,-.02226349,3200
+hicksian,1,2,-.0171810631627903,.031622034,-.049476743,-.017526189,.020815697,3200
+marshallian,2,2,1.090927590114131,9.4245701,-.39464667,.088205762,1.9691074,3173
+hicksian,2,2,1.125267679447972,9.4198046,-.3302412,.12004694,1.9756521,3173
+marshallian,3,2,-.0503824480070596,.020933233,-.072146051,-.045237336,-.0344918,3199
+hicksian,3,2,.010487438130219,.0305617,-.023674259,.009314117,.046676025,3199
+marshallian,4,2,-.0764096578168244,.098878324,-.109231,-.062731564,-.043417789,3192
+hicksian,4,2,-.0374994052982725,.1056358,-.077304222,-.026706975,.010792335,3192
+marshallian,5,2,-.0069163255205458,.25107536,-.0046780887,-.0017109779,.00048602265,3182
+hicksian,5,2,.0177150096804181,.96532977,.0084426301,.033929538,.066832714,3182
+marshallian,6,2,-.0891851678596574,.16885418,-.12731802,-.069533996,-.051469687,3200
+hicksian,6,2,-.0487714083225018,.17129502,-.08287096,-.034945857,-.008422724,3200
+marshallian,1,3,.007468458551519,.079017647,-.091849446,.014892544,.10009727,3200
+hicksian,1,3,.1609401107612146,.12528746,.013794196,.17555024,.29527277,3200
+marshallian,2,3,-.3117779405823561,1.5588624,-.47742122,-.14596011,-.067263134,3173
+hicksian,2,3,-.1406464078219496,2.1614757,-.36013389,.066460676,.2299577,3173
+marshallian,3,3,-.6014025642716223,.24362741,-.77593833,-.65260577,-.38082731,3199
+hicksian,3,3,-.197967172800016,.20011847,-.32086909,-.22754492,-.063077778,3199
+marshallian,4,3,-.2883948353440235,.36750859,-.41395667,-.23565918,-.16073143,3192
+hicksian,4,3,-.0276912608960056,.40251935,-.17806222,.020627236,.14976287,3192
+marshallian,5,3,-.4968051970202966,17.815716,-.20763035,-.12213363,-.088620953,3182
+hicksian,5,3,-.3165332478345005,21.649015,.011768583,.12612209,.22340323,3182
+marshallian,6,3,-.3290777627937269,.61017507,-.47110334,-.25511247,-.1907426,3200
+hicksian,6,3,-.0568613170570352,.6264804,-.16981129,-.0020277339,.086009599,3200
+marshallian,1,4,-.04483355442886,.020414623,-.064169005,-.041316476,-.027449155,3200
+hicksian,1,4,-.004987877341701,.037860993,-.044954482,-.00067629985,.033213958,3200
+marshallian,2,4,-.197833433468174,.89378148,-.28232926,-.10378338,-.056616999,3173
+hicksian,2,4,-.1531643540734139,1.0118508,-.25486454,-.049443562,.016359575,3173
+marshallian,3,4,-.1042233679951062,.044805259,-.14077578,-.095886551,-.070351548,3199
+hicksian,3,4,.0024302489224128,.03942544,-.039462976,.0051630437,.043493271,3199
+marshallian,4,4,.0577715858841901,1.3610513,-.39555949,-.13336071,.51369709,3192
+hicksian,4,4,.1263188077726156,1.3505358,-.29608092,-.065518104,.55054462,3192
+marshallian,5,4,-.2361775202841417,8.8372841,-.093121283,-.054327115,-.035551988,3182
+hicksian,5,4,-.1922952534783208,9.9792166,-.040768947,.0079620257,.047763299,3182
+marshallian,6,4,-.0764252229429454,.1448725,-.10932011,-.059309531,-.044019792,3200
+hicksian,6,4,-.006100838198961,.15123522,-.048708338,.0078875776,.040284339,3200
+marshallian,1,5,-.1244319006555174,.042245444,-.16940285,-.11711058,-.083564512,3200
+hicksian,1,5,-.0504501035019142,.077999495,-.12704214,-.042388495,.030036932,3200
+marshallian,2,5,.0258660556163349,.19851089,-.0017421795,.0096987374,.050087336,3173
+hicksian,2,5,.1099011907103571,.12158562,.047506284,.11650752,.18991576,3173
+marshallian,3,5,-.14472412142963,.082495555,-.22121884,-.12413281,-.089738749,3199
+hicksian,3,5,.0616052031581033,.050280485,.003666976,.061248809,.12084706,3199
+marshallian,4,5,-.1276436846815732,.16874576,-.18368834,-.10449544,-.072154082,3192
+hicksian,4,5,.0008733950205632,.18709925,-.078932665,.01552254,.098279692,3192
+marshallian,5,5,2.015745674714322,112.72069,-.53747785,-.30798402,.18638362,3182
+hicksian,5,5,2.145291543585125,112.7178,-.34094298,-.18125884,.25572017,3182
+marshallian,6,5,-.1282885826936116,.24169305,-.18426232,-.099766515,-.073864743,3200
+hicksian,6,5,.0058381708682406,.25633246,-.069250442,.018605355,.10892828,3200
+marshallian,1,6,-.0961152414140204,.039559368,-.14325531,-.092614964,-.052117355,3200
+hicksian,1,6,.0319818738066004,.097994544,-.075737052,.039475519,.14275551,3200
+marshallian,2,6,-.7363435963392239,3.3700283,-1.0238384,-.38314068,-.21966948,3173
+hicksian,2,6,-.597209195633615,3.7595434,-.89236265,-.19990119,-.038105488,3173
+marshallian,3,6,-.3671406105498169,.18592308,-.53397405,-.32997245,-.22833286,3199
+hicksian,3,6,-.0110668372707218,.10244921,-.11161549,-.0015158593,.087788403,3199
+marshallian,4,6,-.2364031128151604,.29794028,-.33954689,-.19352141,-.135151,3192
+hicksian,4,6,-.0164235767488654,.3311618,-.15006448,.027123954,.12791888,3192
+marshallian,5,6,-.7191027957511321,26.674244,-.28477344,-.17063996,-.1106839,3182
+hicksian,5,6,-.5847578922103172,30.943039,-.10786381,.035542712,.16580328,3182
+marshallian,6,6,-.1288996016903888,1.6428807,-.49787095,-.32319009,.24710087,3200
+hicksian,6,6,.1038137463673301,1.6196098,-.16987808,-.082429521,.37428257,3200
+
+===== outputs/income_elasticity_summary.csv =====
+good,elasticity,N,mean,sd,p10,p50,p90
+1,eta_totalexp_income,3200,.0822839434446889,.040359519,.081130035,.086438596,.087130897
+2,eta_totalexp_income,3200,.0822839434446889,.040359519,.081130035,.086438596,.087130897
+3,eta_totalexp_income,3200,.0822839434446889,.040359519,.081130035,.086438596,.087130897
+4,eta_totalexp_income,3200,.0822839434446889,.040359519,.081130035,.086438596,.087130897
+5,eta_totalexp_income,3200,.0822839434446889,.040359519,.081130035,.086438596,.087130897
+6,eta_totalexp_income,3200,.0822839434446889,.040359519,.081130035,.086438596,.087130897
+1,expenditure_elasticity,3181,.5311383677282554,.58531719,.26925159,.64576399,.77475119
+2,expenditure_elasticity,3170,.7443530532017043,2.8368914,.70246553,.88368374,.9337188
+3,expenditure_elasticity,3179,1.401215448877489,2.0088968,1.195914,1.2802001,1.5421579
+4,expenditure_elasticity,3161,.5880000503089401,1.2763643,.42932993,.72588736,.81964177
+5,expenditure_elasticity,3153,.6205106590474989,1.4012883,.46198803,.75236464,.83365786
+6,expenditure_elasticity,3164,1.362932496498199,1.1055297,1.155699,1.2373289,1.5185224
+1,income_quantity_elasticity,3181,.0441221933659471,.056457609,.02024051,.054596532,.066200726
+2,income_quantity_elasticity,3170,.0608863673097461,.24208134,.054033041,.075212412,.080346458
+3,income_quantity_elasticity,3179,.1156140984905748,.18069489,.10044136,.10939933,.13013212
+4,income_quantity_elasticity,3161,.0480950437787146,.11210968,.031602744,.061342143,.070224136
+5,income_quantity_elasticity,3153,.0507987087529052,.12192359,.034926105,.063440256,.071643621
+6,income_quantity_elasticity,3164,.1107722034059338,.11031102,.097861215,.10576721,.12696563
+1,income_value_elasticity,3200,.0570408147842857,.020014195,.056468595,.059101101,.059444409
+2,income_value_elasticity,3200,.1323904913784575,.052376848,.13089299,.13778223,.13868065
+3,income_value_elasticity,3200,.1065779507058194,.057900112,.10492254,.11253826,.11353143
+4,income_value_elasticity,3200,.2612888145453967,.095891692,.25854719,.27116001,.27280486
+5,income_value_elasticity,3200,.1737023039375583,.080744922,.17139375,.18201429,.18339932
+6,income_value_elasticity,3200,.1937344864856577,.062201645,.19195609,.2001376,.20120455
+1,income_quality_elasticity,3181,.0129094482941087,.061356042,-.007442798,.0037762504,.035982195
+2,income_quality_elasticity,3170,.0714745828467219,.23999162,.056002215,.060975231,.076615438
+3,income_quality_elasticity,3179,-.0090219467408407,.17401372,-.020897096,.0014807178,.0089207385
+4,income_quality_elasticity,3161,.2131229368858686,.1326535,.19584097,.20734861,.23279841
+5,income_quality_elasticity,3153,.1228369673950222,.13232329,.1066907,.11575509,.14052543
+6,income_quality_elasticity,3164,.0834414590123781,.095644861,.068144016,.092670746,.1000203
+
+===== outputs/income_elasticity_by_decile.csv =====
+good,income_decile,N,eta_totalexp_income,expenditure_elasticity,income_quantity_elasticity,income_value_elasticity,income_quality_elasticity
+1,1,320,.0482080192179987,.5475880490306431,.0316228625967178,.0401426400789542,.0084229031312483
+1,2,320,.0830093037861246,.5848498342218287,.0485286274650044,.0574005193572963,.0088721606134983
+1,3,320,.0849726344494229,.6167478325017562,.0524093079104905,.0583741306475444,.0059648227370539
+1,4,320,.0858214943603017,.5153127794743378,.0442210988577402,.0587950783811688,.014574153657358
+1,5,320,.0862864009171821,.5513300725493541,.0475717586328126,.0590256245042191,.011453799431451
+1,6,320,.0865705700986573,.525232675306719,.0454680288494831,.0591665433665366,.0136986287825906
+1,7,320,.0867660316169279,.4961350453903036,.0430528993543459,.0592634722968257,.016210447576366
+1,8,320,.0869250577243565,.527281136551579,.0458321528943464,.0593423329882675,.0135099888967277
+1,9,321,.0870646328703709,.4891187496407722,.0425831852480806,.0594115479913935,.0168284117359747
+1,10,319,.0872157616830861,.4568262005296884,.0398446308407266,.0594864924320279,.0196414859294864
+2,1,320,.0482080192179988,.8099922491481083,.037099760738242,.0881682219914389,.0509114942061899
+2,2,320,.0830093037861247,.3127209986565518,.0254578439110075,.1333318328431304,.1078666322918054
+2,3,320,.0849726344494229,.8368506991573896,.071107884449602,.1358797589657082,.0647708617608865
+2,4,320,.0858214943603018,.8331763902585321,.0715037443669118,.1369813728618126,.0654763383446802
+2,5,320,.0862864009171821,.6533101059121031,.0563652933567436,.1375847086029472,.0812194034330422
+2,6,320,.0865705700986572,.8094022141355762,.0700702604739258,.1379534911489785,.067883701728166
+2,7,320,.0867660316169279,.7898942543433594,.0685351827437924,.1382071527036367,.0696721152604157
+2,8,320,.0869250577243565,.8165460505515888,.0709788019893832,.1384135299486235,.0674342517195546
+2,9,321,.0870646328703708,.7375591254129478,.0642190651899777,.138594664572169,.074375453833042
+2,10,319,.087215761683086,.8431812297811067,.073538672015108,.1387907930476162,.0652519880465087
+3,1,320,.0482080192179987,1.412101337621753,.0710227250458416,.0576923372431137,-.014060467453506
+3,2,320,.0830093037861247,1.441841678597047,.1197194950413005,.1076185588793999,-.0120984798851429
+3,3,320,.084972634449423,1.423279931968222,.1209390927953803,.1104351699056184,-.0105009864638202
+3,4,320,.0858214943603017,1.355092436128339,.1163006370068022,.1116529516218573,-.0046483931432497
+3,5,320,.0862864009171821,1.337810070008348,.1154335348651183,.1123199105599256,-.0031137227129339
+3,6,320,.0865705700986573,1.38257366517686,.119690833372276,.1127275821074733,-.0069632512648027
+3,7,320,.0867660316169279,1.691146765052572,.1467314503095913,.1130079928797666,-.0337234219966873
+3,8,320,.0869250577243565,1.349741815239246,.1173267298247955,.1132361330988406,-.0040905439654155
+3,9,321,.0870646328703709,1.327459534582704,.1155742841164474,.1134363688016691,-.0021379153147783
+3,10,319,.087215761683086,1.293390512060558,.1128034505611117,.1136531794939434,.000849384268511
+4,1,320,.0482080192179988,.6692669327272708,.0327779467950639,.180326547890122,.1471043808028421
+4,2,320,.0830093037861246,.6535272178106184,.0542689388213161,.2630122253909487,.2087542132862152
+4,3,320,.084972634449423,.6346868791504278,.0539220654868141,.26767697636401,.2137553135740159
+4,4,320,.0858214943603018,.3942947525266052,.0338356145300102,.2696938144694231,.2358619263149338
+4,5,320,.0862864009171821,.6303423677293689,.0543904694668216,.2707984033978857,.2164083585699035
+4,6,320,.0865705700986573,.5925140850559171,.0512917475252123,.2714735716161489,.2201816103200231
+4,7,320,.086766031616928,.6000851155581118,.0520655691929246,.2719379759697271,.2198723379617479
+4,8,320,.0869250577243565,.5694580721868419,.0494991784184338,.2723158120638891,.2228169025344223
+4,9,321,.0870646328703709,.5800059355299073,.0504968640819099,.2726474338891664,.2221508413716656
+4,10,319,.087215761683086,.5547603110706445,.0483868159948219,.273006506504569,.2246186899023515
+5,1,320,.0482080192179988,.6915660312376647,.033566521904827,.1055286024425972,.071604864583794
+5,2,320,.0830093037861247,.6681066173726083,.0554368820546054,.175153489797239,.1197129114147968
+5,3,320,.0849726344494229,.469109728935056,.0398700519472348,.1790814102165116,.1392086863803194
+5,4,320,.0858214943603017,.6585403188893298,.0565271616071594,.1807796744159006,.1242525128087413
+5,5,320,.086286400917182,.6608535485016231,.0570211151928705,.1817097856763015,.1246893454702017
+5,6,320,.0865705700986573,.6118074443395199,.0529672234507399,.1822783062782105,.1293107691620256
+5,7,320,.0867660316169279,.6540643986553151,.0567504354294572,.182669354665092,.1259198698111945
+5,8,320,.0869250577243565,.5472244574119587,.0475692566302472,.182987508864098,.135417410811147
+5,9,321,.0870646328703708,.6567829589071577,.0571822275348082,.1832667486662879,.126085078586012
+5,10,319,.087215761683086,.5851681604894389,.0510320236206541,.1835691032112973,.1325397657032929
+6,1,320,.0482080192179988,1.549869751695033,.067890368531276,.1412170462307557,.0776554637732504
+6,2,320,.0830093037861247,1.327479897008464,.1101837358285689,.1948524038792169,.0846802804414857
+6,3,320,.0849726344494229,1.455181097819223,.1236497180034415,.197878267539567,.0742217665363837
+6,4,320,.0858214943603017,1.486355650528822,.127521448914549,.1991865211134917,.071664841782226
+6,5,320,.0862864009171821,1.346300377353189,.1161704657153273,.1999030299941506,.0837325642788233
+6,6,320,.0865705700986573,1.340961085871644,.1160882948571654,.2003409884163824,.0842529468074114
+6,7,320,.0867660316169279,1.295394829254954,.1123978211122364,.2006422315621185,.0882449271357526
+6,8,320,.0869250577243565,1.270876428107975,.1104695720300155,.2008873208527356,.0904171490005523
+6,9,321,.0870646328703709,1.291968329371293,.1124840913114159,.2011024325351986,.0886182117159974
+6,10,319,.087215761683086,1.269198724477423,.1106936455708266,.2013353506019182,.0906410346756368
+
+===== outputs/income_elasticity_by_demographics.csv =====
+dimension,category,good,N,eta_totalexp_income,expenditure_elasticity,income_quantity_elasticity,income_value_elasticity,income_quality_elasticity
+head_sex_group,female,1,295,.0770222416820719,.55047762,.041256718,.05443155,.013140561
+head_sex_group,female,2,295,.0770222416820719,.77518553,.058971431,.12556209,.066376641
+head_sex_group,female,3,295,.0770222416820719,1.4132059,.10956509,.099029467,-.010623629
+head_sex_group,female,4,295,.0770222416820719,.57865441,.043092657,.24878734,.20538907
+head_sex_group,female,5,295,.0770222416820719,.64329433,.048137341,.16317552,.11469606
+head_sex_group,female,6,295,.0770222416820719,1.3409131,.1038171,.18562521,.084177271
+head_sex_group,male,1,2569,.0828783126278612,.54156011,.045566633,.057335559,.011762831
+head_sex_group,male,2,2569,.0828783126278612,.73201865,.060365416,.13316184,.072784252
+head_sex_group,male,3,2569,.0828783126278612,1.4091866,.11711144,.10743064,-.0096502956
+head_sex_group,male,4,2569,.0828783126278612,.57952005,.047879003,.262701,.21479337
+head_sex_group,male,5,2569,.0828783126278612,.61772609,.051019233,.17489143,.12384
+head_sex_group,male,6,2569,.0828783126278612,1.3694181,.11170261,.19465052,.083195291
+head_sex_group,missing,1,336,.0823591446006482,.43448111,.035590723,.057078108,.021474548
+head_sex_group,missing,2,336,.0823591446006482,.81232572,.066575892,.13248809,.065855429
+head_sex_group,missing,3,336,.0823591446006482,1.3300285,.10950258,.10668583,-.0028362442
+head_sex_group,missing,4,336,.0823591446006482,.66251737,.054246269,.26146749,.20699096
+head_sex_group,missing,5,336,.0823591446006482,.62183756,.051442247,.17385276,.12230139
+head_sex_group,missing,6,336,.0823591446006482,1.3326684,.10969431,.19385038,.084676102
+education_group,missing,1,331,.0822792675717037,.43257383,.035381492,.057038497,.021643735
+education_group,missing,2,331,.0822792675717037,.81620103,.06685783,.13238442,.065497234
+education_group,missing,3,331,.0822792675717037,1.3421429,.11033496,.10657124,-.0037838665
+education_group,missing,4,331,.0822792675717037,.66776317,.054700449,.26127771,.20655826
+education_group,missing,5,331,.0822792675717037,.61115086,.050465617,.17369296,.12311459
+education_group,missing,6,331,.0822792675717037,1.3382176,.11006062,.19372728,.084194191
+education_group,none,1,236,.0751117875089978,.62148571,.045558728,.05348416,.0079031913
+education_group,none,2,236,.0751117875089978,.60049319,.041618533,.12308278,.081096865
+education_group,none,3,236,.0751117875089978,1.350383,.10184479,.096288711,-.0055560758
+education_group,none,4,236,.0751117875089978,.68771636,.051155291,.24424823,.19275405
+education_group,none,5,236,.0751117875089978,.69152975,.051182926,.15935339,.10817046
+education_group,none,6,236,.0751117875089978,1.5761564,.11789488,.18268085,.067541674
+education_group,primary,1,924,.0824466301667453,.54664093,.044825107,.057121489,.012295038
+education_group,primary,2,924,.0824466301667453,.79769361,.065859444,.13260162,.066755608
+education_group,primary,3,924,.0824466301667453,1.403193,.11584432,.10681134,-.0089863893
+education_group,primary,4,924,.0824466301667453,.57910031,.047193609,.26167536,.21455798
+education_group,primary,5,924,.0824466301667453,.67821008,.055662554,.17402779,.11838048
+education_group,primary,6,924,.0824466301667453,1.4812248,.11810295,.19398522,.07662113
+education_group,secondary_plus,1,1709,.0831873103163104,.52931106,.045237247,.057488792,.012242414
+education_group,secondary_plus,2,1709,.0831873103163104,.72114736,.059657965,.13356285,.073875107
+education_group,secondary_plus,3,1709,.0831873103163104,1.4186953,.11842977,.10787393,-.010540821
+education_group,secondary_plus,4,1709,.0831873103163104,.563375,.046865892,.26343516,.21645212
+education_group,secondary_plus,5,1709,.0831873103163104,.5805791,.048134658,.17550962,.12730497
+education_group,secondary_plus,6,1709,.0831873103163104,1.2760344,.10604832,.19512674,.089067958
+child_group,child_present,1,708,.0845930972417142,.51469368,.043506607,.05818592,.014669538
+child_group,child_present,2,708,.0845930972417142,.78457505,.066523045,.13538721,.068854533
+child_group,child_present,3,708,.0845930972417142,1.3467739,.11373056,.10989068,-.0038558727
+child_group,child_present,4,708,.0845930972417142,.65133172,.055134866,.26677522,.21162365
+child_group,child_present,5,708,.0845930972417142,.61862302,.052182965,.17832209,.12611002
+child_group,child_present,6,708,.0845930972417142,1.3146981,.11116472,.19729333,.086110987
+child_group,missing,1,991,.0828456886237071,.53858817,.044402525,.057319384,.012908341
+child_group,missing,2,991,.0828456886237071,.56410903,.046112768,.13311949,.086972199
+child_group,missing,3,991,.0828456886237071,1.3779403,.11411901,.10738383,-.0067130262
+child_group,missing,4,991,.0828456886237071,.52751529,.043085624,.26262349,.21939203
+child_group,missing,5,991,.0828456886237071,.58719289,.048210666,.17482616,.12666933
+child_group,missing,6,991,.0828456886237071,1.3668834,.11314084,.19460024,.081614628
+child_group,no_child,1,1501,.0808238699199048,.53393728,.044226013,.056316767,.01208825
+child_group,no_child,2,1501,.0808238699199048,.84240323,.06782572,.13049567,.062650993
+child_group,no_child,3,1501,.0808238699199048,1.4424113,.11749694,.10448331,-.012997633
+child_group,no_child,4,1501,.0808238699199048,.59739941,.048020311,.25781977,.20974076
+child_group,no_child,5,1501,.0808238699199048,.64350677,.051863596,.17078122,.11875182
+child_group,no_child,6,1501,.0808238699199048,1.3832361,.10901295,.19148424,.08338552
+elderly_group,elderly_present,1,734,.0829403688432458,.53204721,.044014938,.057366334,.013347135
+elderly_group,elderly_present,2,734,.0829403688432458,.82500035,.068460666,.13324237,.064769462
+elderly_group,elderly_present,3,734,.0829403688432458,1.5134437,.12631552,.10751966,-.018750308
+elderly_group,elderly_present,4,734,.0829403688432458,.6225993,.051382288,.26284844,.21140648
+elderly_group,elderly_present,5,734,.0829403688432458,.67672485,.056352209,.17501557,.11860605
+elderly_group,elderly_present,6,734,.0829403688432458,1.3728454,.11428474,.19474617,.08147002
+elderly_group,missing,1,991,.0828456886237071,.53858817,.044402525,.057319384,.012908341
+elderly_group,missing,2,991,.0828456886237071,.56410903,.046112768,.13311949,.086972199
+elderly_group,missing,3,991,.0828456886237071,1.3779403,.11411901,.10738383,-.0067130262
+elderly_group,missing,4,991,.0828456886237071,.52751529,.043085624,.26262349,.21939203
+elderly_group,missing,5,991,.0828456886237071,.58719289,.048210666,.17482616,.12666933
+elderly_group,missing,6,991,.0828456886237071,1.3668834,.11314084,.19460024,.081614628
+elderly_group,no_elderly,1,1475,.0815798717735378,.52570236,.043988075,.056691669,.01269224
+elderly_group,no_elderly,2,1475,.0815798717735378,.82341558,.066886604,.13147677,.064562634
+elderly_group,no_elderly,3,1475,.0815798717735378,1.3612036,.11131084,.10556788,-.0057498552
+elderly_group,no_elderly,4,1475,.0815798717735378,.61088586,.049780637,.25961599,.20982051
+elderly_group,no_elderly,5,1475,.0815798717735378,.61491406,.0497697,.17229371,.12236162
+elderly_group,no_elderly,6,1475,.0815798717735378,1.3553969,.10745139,.19264938,.085639395
+
+===== outputs/fitted_share_diagnostics.csv =====
+good,N,observed_mean,fitted_mean,rmse,mae,correlation,negative_fitted_rate
+1,3200,.2250993143772149,.22421516,.15499158,.11872938,.29459724,.0059374999
+2,3200,.0420443337345849,.042220406,.060895793,.034835204,.35420904,.0093750004
+3,3200,.282120906061064,.28390306,.19234401,.15509339,.24987602,.0065624998
+4,3200,.0728098000950437,.072661273,.092166066,.06047941,.2169297,.0121875
+5,3200,.1389125793861614,.13888648,.114218,.082372434,.32233375,.0146875
+6,3200,.2390130663459311,.23811361,.16662176,.13095436,.37972221,.01125
+
+===== END COMPLETE RESULTS =====

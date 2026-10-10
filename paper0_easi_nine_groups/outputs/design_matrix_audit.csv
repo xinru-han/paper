@@ -1,0 +1,3 @@
+﻿specification,columns_including_constant,matrix_rank,full_column_rank,controls
+province_FE_plus_year,18,17,0,hhsize; child_ratio; elderly_ratio; female_head; head_no_education; head_primary_education; age_missing; female_head_missing; education_missing; province_35; province_37; province_42; province_51; province_53; province_61; province_62; year_2024
+final_province_FE,17,17,1,hhsize; child_ratio; elderly_ratio; female_head; head_no_education; head_primary_education; age_missing; female_head_missing; education_missing; province_35; province_37; province_42; province_51; province_53; province_61; province_62

@@ -1,0 +1,20 @@
+metric,value,interpretation
+total_demand_households,3152,positive reconstructed total food value
+fruit_direct_households,1730,fruit price source is own-village code 1 or 2
+fruit_direct_household_share,.5488578680203046,remaining households borrow fruit prices geographically
+total_village_year_clusters,360,cluster level used for inference
+fruit_direct_village_year_clusters,196,independent own-village fruit-price clusters
+main_fruit_unique_prices,132,fewest unique values among the six main community prices
+direct_fruit_unique_prices,109,unique own-village fruit prices
+weighted_basket_unique_prices,200,unique fixed-weight seven-category prices
+all_categories_direct_clusters,16,villages directly reporting all seven category prices
+direct_category_count_median,1,median directly reported subcategories per village
+fruit_zero_consumption_households,99,reconstructed source quantities; small but nonzero corner-solution group
+fruit_zero_consumption_share,.0314086294416244,SY correction is estimated; it is not bypassed in the source system
+fruit_self_quantity_share_mean,.0989676708132344,own production is relevant but not the dominant fruit source
+fruit_purchase_participation,.9330583756345178,positive purchased fruit quantity
+main_corrected_uv_log_correlation,.2808685049442613,community price versus Deaton-corrected unit-value price
+weighted_basket_corrected_uv_log_correlation,.4925898786936017,fixed-weight basket versus corrected unit-value price
+allcat_direct_corrected_uv_log_correlation,.7814404061099784,all seven subcategory prices directly reported
+main_corrected_uv_median_ratio,.486538270399263,corrected unit value divided by main community price
+weighted_basket_corrected_uv_median_ratio,.4993603195555385,corrected unit value divided by weighted basket price

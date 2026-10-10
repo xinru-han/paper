@@ -1,0 +1,7 @@
+model,test_name,family_type,degrees_freedom,chi_squared,elasticity,std_error,p_value,ci_low,ci_high
+food_budget_main_quadratic,all_quadratic_income_terms_zero,,5,11.59004370086132,,,.040858049,,
+food_budget_loglinear,family_income_elasticity_zero,0,,,.072743341,.045391481,.10902807,-.016222324,.16170901
+food_budget_loglinear,family_income_elasticity_zero,1,,,.15581281,.051795598,.0026277862,.054295301,.25733033
+food_budget_loglinear,family_income_elasticity_zero,2,,,.07431443,.027224148,.0063387202,.020956084,.12767278
+food_budget_loglinear,family_income_elasticity_zero,3,,,.053571612,.049403567,.278202,-.043257602,.15040083
+food_budget_loglinear,family_income_elasticity_zero,4,,,-.017200368,.031604767,.58628094,-.079144575,.04474384

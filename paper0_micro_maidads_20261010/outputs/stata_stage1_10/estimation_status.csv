@@ -1,0 +1,15 @@
+model,method,sample,fallback,return_code,N,rank,converged,clusters,log_likelihood
+food_budget_main,gamma_log,fs_sample_main,,0,3145,26,1,360,-20833.56947523628
+food_budget_raw,gamma_log,fs_sample_raw,,0,3509,26,1,361,-25816.65940854145
+food_budget_fooddeflated,gamma_log,fs_sample_main,,0,3145,26,1,360,-20833.31791360892
+food_budget_income_trim,gamma_log,fs_sample_income_trim,,0,3081,26,1,360,-20426.95955285727
+participation_g1,probit,fs_sample_main,intercept_only_after_separation_nonconvergence_or_sample_loss,0,3145,1,1,360,-9.053410169769645
+participation_g2,probit,fs_sample_main,,0,3145,35,1,360,-594.7606771682101
+participation_g3,probit,fs_sample_main,,0,3145,35,1,360,-977.0353307353961
+participation_g4,probit,fs_sample_main,,0,3145,35,1,360,-424.2984078907053
+participation_g5,probit,fs_sample_main,,0,3145,35,1,360,-1856.579893345082
+participation_g6,probit,fs_sample_main,,0,3145,35,1,360,-1783.363654562768
+participation_g7,probit,fs_sample_main,,0,3145,35,1,360,-267.4468718270746
+participation_g8,probit,fs_sample_main,intercept_only_after_separation_nonconvergence_or_sample_loss,0,3145,1,1,360,-16.72020791225627
+participation_g9,probit,fs_sample_main,,0,3145,35,1,360,-473.0104706723963
+participation_g10,probit,fs_sample_main,,0,3145,35,1,360,-2008.507004042548

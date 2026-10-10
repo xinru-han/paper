@@ -1,0 +1,106 @@
+{
+  "system_goods": 8,
+  "N": 3145,
+  "loadings": [
+    0.0,
+    0.0,
+    0.40161026804851574,
+    0.6488137224068121,
+    0.5013280736009947,
+    0.17803268931480448,
+    0.0,
+    0.6206723511562071
+  ],
+  "lambda": [
+    0.0,
+    0.0,
+    0.40161026804851574,
+    0.6488137224068121,
+    0.5013280736009947,
+    0.17803268931480448,
+    0.0,
+    0.6206723511562071
+  ],
+  "fixed_zero_goods": [
+    1,
+    2,
+    7
+  ],
+  "quadrature_nodes": 32,
+  "log_likelihood": -4857.90496590146,
+  "fixed_parameter_log_likelihood_64_nodes": -4857.904965901469,
+  "quadrature_64_minus_32_log_likelihood": -9.094947017729282e-12,
+  "independent_log_likelihood": -4961.325581567367,
+  "descriptive_twice_loglikelihood_gain": 206.84123133181492,
+  "number_factor_parameters": 5,
+  "AIC_conditional_offsets": 9725.80993180292,
+  "BIC_conditional_offsets": 9756.077777648592,
+  "optimizer_success": true,
+  "projected_mean_score_max": 3.900659521932716e-10,
+  "attempts": [
+    {
+      "initial_loading": 0.2,
+      "success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "iterations": 13,
+      "negative_mean_log_likelihood": 1.5446438683311479,
+      "loadings_free": [
+        0.40161026804851574,
+        0.6488137224068121,
+        0.5013280736009947,
+        0.17803268931480448,
+        0.6206723511562071
+      ]
+    },
+    {
+      "initial_loading": 0.45,
+      "success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "iterations": 12,
+      "negative_mean_log_likelihood": 1.5446438683311479,
+      "loadings_free": [
+        0.40161024753373026,
+        0.6488137264132936,
+        0.5013280921190777,
+        0.17803265328716253,
+        0.6206723608688858
+      ]
+    },
+    {
+      "initial_loading": 0.65,
+      "success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "iterations": 12,
+      "negative_mean_log_likelihood": 1.5446438683311483,
+      "loadings_free": [
+        0.4016101741559781,
+        0.6488137515875744,
+        0.5013280195777643,
+        0.17803266846577237,
+        0.6206724183064083
+      ]
+    }
+  ],
+  "calibration": {
+    "N": 3145,
+    "total_variation_distance": 0.01658179942122738,
+    "all_positive_observed_share": 0.4864864864864865,
+    "all_positive_predicted_share": 0.48101022069375643,
+    "max_pattern_probability_sum_error": 6.661338147750939e-16,
+    "max_absolute_share_gap": 0.005476265792730054
+  },
+  "derivative_validation": {
+    "likelihood_loading_gradient_max_absolute_error": 2.1548873796461976e-11,
+    "income_probability_derivative_max_absolute_error": 6.797484450316027e-12,
+    "price_probability_derivative_interface_max_absolute_error": 0.0,
+    "probability_sum_error": 4.440892098500626e-16,
+    "derivative_sum_error": 1.9081958235744878e-17
+  },
+  "limitations": [
+    "Nonnegative single factor permits only positive latent participation dependence",
+    "Stata marginal probit xb offsets are held fixed; their uncertainty is not propagated",
+    "Common participation factor is assumed independent of conditional Dirichlet demand error",
+    "No conventional LR p-value: the independence null is a singular boundary loading null",
+    "This is a participation extension of MAIDADS; not a utility-theoretic full corner-solution model"
+  ]
+}

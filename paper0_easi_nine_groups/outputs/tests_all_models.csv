@@ -1,0 +1,35 @@
+﻿model,test,statistic,df,p_value
+AIDS NLSUR-CF,demographics_joint_zero,157.2713257753783,72.0,2.6905891e-08
+AIDS NLSUR-CF,all_share_shifters_joint_zero,867.3089401696967,128.0,0.0
+AIDS NLSUR-CF,expenditure_exogeneity,35.48744197785285,8.0,2.1789114e-05
+AIDS NLSUR-CF,Shonkwiler_Yen_terms_joint_zero,22.76373852086328,5.0,0.00037453798
+AIDS NLSUR-CF,excluded_instruments_first_stage,10.93032493940482,,2.4635809e-05
+AIDS NLSUR-CF,theory_restrictions_imposed,1.0,,
+QUAIDS NLSUR-CF,highest_Engel_order_joint_zero,86.63840031630454,8.0,2.2336117e-15
+QUAIDS NLSUR-CF,demographics_joint_zero,161.0320654112304,72.0,9.2239096e-09
+QUAIDS NLSUR-CF,all_share_shifters_joint_zero,899.7179362405361,128.0,0.0
+QUAIDS NLSUR-CF,expenditure_exogeneity,34.85874861265157,8.0,2.8369794e-05
+QUAIDS NLSUR-CF,Shonkwiler_Yen_terms_joint_zero,10.84374010551088,5.0,0.054567706
+QUAIDS NLSUR-CF,excluded_instruments_first_stage,10.93032493940482,,2.4635809e-05
+QUAIDS NLSUR-CF,theory_restrictions_imposed,1.0,,
+EASI NLSUR-CF,highest_Engel_order_joint_zero,40.34759208866683,8.0,2.759713e-06
+EASI NLSUR-CF,demographics_joint_zero,171.8744270703518,72.0,3.8170059e-10
+EASI NLSUR-CF,all_share_shifters_joint_zero,929.0079926653656,128.0,0.0
+EASI NLSUR-CF,expenditure_exogeneity,25.58901996757519,8.0,0.0012345299
+EASI NLSUR-CF,Shonkwiler_Yen_terms_joint_zero,7.168426866079912,5.0,0.20841253
+EASI NLSUR-CF,excluded_instruments_first_stage,10.93032493940482,,2.4635809e-05
+EASI NLSUR-CF,theory_restrictions_imposed,1.0,,
+EASI GMM-IV two-step (rejected),highest_Engel_order_joint_zero,6.690642782519065,8.0,0.57034773
+EASI GMM-IV two-step (rejected),demographics_joint_zero,268.2979069197281,72.0,2.0939583000000003e-24
+EASI GMM-IV two-step (rejected),all_share_shifters_joint_zero,1017.51352728407,128.0,0.0
+EASI GMM-IV two-step (rejected),Shonkwiler_Yen_terms_joint_zero,99.54425950262495,5.0,6.5933074e-20
+EASI GMM-IV two-step (rejected),Hansen_overidentification,114.9064703592943,55.0,4.0628779e-06
+EASI GMM-IV two-step (rejected),excluded_instruments_first_stage,10.93032493940482,,2.4635809e-05
+EASI GMM-IV two-step (rejected),theory_restrictions_imposed,1.0,,
+EASI GMM-IV one-step (rejected),highest_Engel_order_joint_zero,5.735103655882204,8.0,0.67687625
+EASI GMM-IV one-step (rejected),demographics_joint_zero,244.38833997723,72.0,1.2850189e-20
+EASI GMM-IV one-step (rejected),all_share_shifters_joint_zero,611.7594181477078,128.0,0.0
+EASI GMM-IV one-step (rejected),Shonkwiler_Yen_terms_joint_zero,16.57656090011541,5.0,0.0053769797
+EASI GMM-IV one-step (rejected),GMM_overidentification_identity_weight,0.7712183079650342,55.0,
+EASI GMM-IV one-step (rejected),excluded_instruments_first_stage,10.93032493940482,,2.4635809e-05
+EASI GMM-IV one-step (rejected),theory_restrictions_imposed,1.0,,

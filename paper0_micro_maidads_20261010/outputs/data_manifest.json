@@ -1,0 +1,28 @@
+{
+  "N_all": 3565,
+  "N_model": 3145,
+  "N_family_model": 2770,
+  "income_unit": "nominal yuan per person per year; monthly divides by 12",
+  "quantity_model_unit": "fixed-reference-basket equivalent jin per person per month",
+  "quantity_raw_unit": "jin per person per month",
+  "price_model_unit": "yuan per fixed-reference-basket equivalent jin",
+  "food_valuation": "sum of commodity community prices times total consumption quantities; purchase+own+gift",
+  "price_caveat": "other-meat prices use calibrated category-quality-range proxy; all fixed item scales derive from category ranges and are exploratory",
+  "family_type": {
+    "0": "关系不完整或有冲突",
+    "1": "单人家庭",
+    "2": "夫妻家庭",
+    "3": "核心家庭",
+    "4": "扩展及其他家庭"
+  },
+  "age_family_type": {
+    "0": "年龄信息不完整",
+    "1": "无儿童无老人",
+    "2": "有儿童无老人",
+    "3": "无儿童有老人",
+    "4": "有儿童有老人"
+  },
+  "pork_definition": "roulei_1 pork plus roulei_2 pork ribs; unknown-species processed meat remains other meat",
+  "nut_definition": "shuiguo_6 only; dried fruits/fruit preserves remain fruit products",
+  "eight_ten_value_max_difference": 7.275957614183426e-12
+}

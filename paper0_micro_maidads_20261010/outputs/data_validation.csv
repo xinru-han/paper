@@ -1,0 +1,8 @@
+check,value,expected
+household_unique,1.0,
+shared_8_10_samples,1.0,
+shared_8_10_food_value,1.0,
+system8_logprice_rank,9.0,9.0
+system8_max_share_sum_error,4.440892098500626e-16,0.0
+system10_logprice_rank,11.0,11.0
+system10_max_share_sum_error,4.440892098500626e-16,0.0

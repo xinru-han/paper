@@ -1,0 +1,36 @@
+﻿model,margin,diagnostic,value,threshold,passed
+AIDS NLSUR-CF,latent,adding_up_max_abs_error,0.0,9.9999999e-09,1
+AIDS NLSUR-CF,latent,positive_fitted_share_rate,0.7920792079207921,1.0,0
+AIDS NLSUR-CF,latent,positive_expenditure_elasticities,0.973521505376344,1.0,0
+AIDS NLSUR-CF,latent,negative_hicksian_own_elasticities,0.6422043010752688,1.0,0
+AIDS NLSUR-CF,latent,slutsky_symmetry_max_abs_error,1.30902233497e-14,9.9999997e-05,1
+AIDS NLSUR-CF,latent,slutsky_max_eigenvalue,0.0778535609115674,0.0,0
+AIDS NLSUR-CF,latent,adding_up_homogeneity_symmetry_imposed,1.0,1.0,1
+QUAIDS NLSUR-CF,latent,adding_up_max_abs_error,0.0,9.9999999e-09,1
+QUAIDS NLSUR-CF,latent,positive_fitted_share_rate,0.7786649632705206,1.0,0
+QUAIDS NLSUR-CF,latent,positive_expenditure_elasticities,0.9758454106280192,1.0,0
+QUAIDS NLSUR-CF,latent,negative_hicksian_own_elasticities,0.6298423115486282,1.0,0
+QUAIDS NLSUR-CF,latent,slutsky_symmetry_max_abs_error,5.77873681198e-10,9.9999997e-05,1
+QUAIDS NLSUR-CF,latent,slutsky_max_eigenvalue,0.0725021179252999,0.0,0
+QUAIDS NLSUR-CF,latent,adding_up_homogeneity_symmetry_imposed,1.0,1.0,1
+EASI NLSUR-CF,latent,adding_up_max_abs_error,0.0,9.9999999e-09,1
+EASI NLSUR-CF,latent,positive_fitted_share_rate,0.7224528904503353,1.0,0
+EASI NLSUR-CF,latent,positive_expenditure_elasticities,0.9447391688771,1.0,0
+EASI NLSUR-CF,latent,negative_hicksian_own_elasticities,0.6410747617644169,1.0,0
+EASI NLSUR-CF,latent,slutsky_symmetry_max_abs_error,2.81847333493e-09,9.9999997e-05,1
+EASI NLSUR-CF,latent,slutsky_max_eigenvalue,0.0494286667823481,0.0,0
+EASI NLSUR-CF,latent,adding_up_homogeneity_symmetry_imposed,1.0,1.0,1
+EASI GMM-IV two-step (rejected),latent,adding_up_max_abs_error,0.0,9.9999999e-09,1
+EASI GMM-IV two-step (rejected),latent,positive_fitted_share_rate,0.0073458958799106,1.0,0
+EASI GMM-IV two-step (rejected),latent,positive_expenditure_elasticities,0.8695652173913043,1.0,0
+EASI GMM-IV two-step (rejected),latent,negative_hicksian_own_elasticities,0.5217391304347826,1.0,0
+EASI GMM-IV two-step (rejected),latent,slutsky_symmetry_max_abs_error,1.26689922025e-08,9.9999997e-05,1
+EASI GMM-IV two-step (rejected),latent,slutsky_max_eigenvalue,0.1989728021230483,0.0,0
+EASI GMM-IV two-step (rejected),latent,adding_up_homogeneity_symmetry_imposed,1.0,1.0,1
+EASI GMM-IV one-step (rejected),latent,adding_up_max_abs_error,0.0,9.9999999e-09,1
+EASI GMM-IV one-step (rejected),latent,positive_fitted_share_rate,0.0006387735547748,1.0,0
+EASI GMM-IV one-step (rejected),latent,positive_expenditure_elasticities,0.7222222222222222,1.0,0
+EASI GMM-IV one-step (rejected),latent,negative_hicksian_own_elasticities,0.6666666666666666,1.0,0
+EASI GMM-IV one-step (rejected),latent,slutsky_symmetry_max_abs_error,4.06520166339e-06,9.9999997e-05,1
+EASI GMM-IV one-step (rejected),latent,slutsky_max_eigenvalue,0.2997875290907757,0.0,0
+EASI GMM-IV one-step (rejected),latent,adding_up_homogeneity_symmetry_imposed,1.0,1.0,1

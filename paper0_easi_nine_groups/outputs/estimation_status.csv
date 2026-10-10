@@ -1,0 +1,5 @@
+model,estimator,order,gmm_steps,return_code,N,J,J_df,J_p,firststage_F,firststage_p,firststage_r2,converged,selected_model,selected_order,selected_easi_order
+aids,nlsur_cf,1,0,0,3131,,,,10.930325,.000024635809,.3774932,1,easi,3,3
+quaids,nlsur_cf,2,0,0,3131,,,,10.930325,.000024635809,.3774932,1,easi,3,3
+easi_nlsur,nlsur_cf,3,0,0,3131,,,,10.930325,.000024635809,.3774932,1,easi,3,3
+easi_gmm,gmm_iv,3,2,0,3131,114.9064703592943,55,4.0628779e-06,10.930325,.000024635809,.3774932,1,easi,3,3

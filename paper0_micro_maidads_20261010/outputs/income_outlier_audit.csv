@@ -1,0 +1,4 @@
+sample,N,income_5MAD_both_tails,income_p01_p99_tail,food_income_ratio_gt20,income_pc_annual_min,income_pc_annual_median,income_pc_annual_max,food_income_ratio_p99
+all,3565,7,134,69,7.0,9970.0,1363999.9999999788,40.22831650914408
+model,3145,7,64,29,7.0,9933.333333333334,1363999.9999999788,18.327668010797925
+income_supported,3081,0,0,19,151.0,9933.333333333334,125050.0,13.871360519971551

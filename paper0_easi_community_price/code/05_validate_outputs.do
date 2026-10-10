@@ -176,6 +176,48 @@ assert elasticity < 0 if elasticity_type == "hicksian" & ///
     demand_good == shock_good
 assert !missing(std_error, p_value, ci_low, ci_high)
 
+* Fruit-specific diagnosis: each village subcategory price is completed before
+* applying constant national basket weights. This aligns the seven-category
+* price boundary with the household fruit/dried-fruit/processed-fruit quantity.
+use "$EASI_DATA/fruit_category_basket_prices.dta", clear
+isid village_id data_year
+assert _N == 361
+assert p6_basket > 0 & p6_basket < .
+assert inrange(direct_category_count, 0, 7)
+assert all_categories_direct == (direct_category_count == 7)
+forvalues c = 1/7 {
+    assert p6cat`c' > 0 & p6cat`c' < .
+    assert inlist(p6cat`c'_source, 1, 3, 4, 5, 6, 7, 8, 9)
+}
+
+import delimited using "$EASI_OUT/fruit_subcategory_weights.csv", clear
+assert _N == 8
+quietly summarize expenditure_weight if included_in_index == 1, meanonly
+assert abs(r(sum) - 1) < 1e-6
+assert included_in_index == 0 if category == 0
+
+import delimited using "$EASI_OUT/fruit_basket_model_selection.csv", clear
+count if bic_preferred == 1 & model == "easi" & order == 1 & converged == 1
+assert r(N) == 1
+
+import delimited using "$EASI_OUT/fruit_price_identification_diagnostics.csv", clear
+quietly summarize value if metric == "main_corrected_uv_log_correlation", meanonly
+local main_uv_corr = r(mean)
+quietly summarize value if metric == "weighted_basket_corrected_uv_log_correlation", meanonly
+assert r(mean) > `main_uv_corr'
+quietly summarize value if metric == "fruit_zero_consumption_share", meanonly
+assert inrange(r(mean), 0, .05)
+
+import delimited using "$EASI_OUT/fruit_elasticity_specification_comparison.csv", clear
+assert _N == 9
+assert fruit_hicksian < 0 & !missing(se, p_value, ci_low, ci_high)
+assert converged == 1 & hansen_p > .05 if specification == "main_curvature_local"
+assert p_value > .05 if specification == "main_curvature_local"
+assert hansen_p > .05 & p_value > .05 if specification == "allprice_direct_unrestricted"
+assert p_value < .05 & hansen_p < .05 if specification == "allgood_trim99_unrestricted"
+assert p_value < .10 & hansen_p < .05 if specification == "fruit_tailclean_curvature_local"
+assert p_value > .05 & hansen_p < .05 if specification == "weighted_basket_curvature_local"
+
 import delimited using "$EASI_OUT/source_omission_bias_tests.csv", clear
 assert _N == 12
 assert bootstrap_reps_requested >= 199 & bootstrap_reps_successful >= 99 ///

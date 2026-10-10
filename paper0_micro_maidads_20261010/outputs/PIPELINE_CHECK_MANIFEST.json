@@ -1,0 +1,340 @@
+{
+  "run_id": "20261010T092651Z_d2263436",
+  "mode": "source_and_path_check",
+  "started_utc": "2026-10-10T09:26:51.494501+00:00",
+  "status": "checks_passed_no_scientific_stages_executed",
+  "stages": [],
+  "environment_and_identities": {
+    "python": "3.10.12",
+    "python_executable": "/usr/bin/python3",
+    "packages": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "scipy": "1.15.3",
+      "matplotlib": "3.10.9",
+      "tabulate": "0.10.0"
+    },
+    "stata_executable": "/usr/local/stata17/stata-se",
+    "source_sha256": {
+      "code/00_run_all.do": "213f016f6cb96479efe38618b36292ded47e14603bd5356ed28273e0e14345ee",
+      "code/01_build_data.py": "ac28c4f916aacb5eb47963879981717ba4db74c8661ed191d5117c8e16790667",
+      "code/02_first_stage.do": "b649957018b8fa0b7baf8c0350ef83a2581e4a32f439bb769a9aae94b31e5d0a",
+      "code/03_fit_second_stage.py": "8812bce43fc2ba59b0bf3008db0faf706fbab97d43923f7915652a8092f1dbb9",
+      "code/04_derive_results.py": "a6157b51c5710dc48c0d77f88dc09e9576ee88d9d13afd37e262ab8305e92d75",
+      "code/05_validate_participation.py": "13939496736dfd031742e1361f27c89bc10fd1c9ab9636d2f025475677109d39",
+      "code/06_fit_correlated_hurdle.py": "e44ec2df1516965d6f010cbe21bf8980298909884e01600c313754c563c079e5",
+      "code/07_make_report.py": "a603074e79e4ac090402388e3a8a4f34e13bf40b58a732b483c953a638cd8e0a",
+      "code/08_audit_working_domain.py": "9eb96c73a5d1908831e03ecb984b6085dc228cef23e548d9c8a02ead4699840e",
+      "code/09_guard_sensitivity.py": "2ed1089109c377448aab4c39d134c28dae030ac95518671122c0b566764411dc",
+      "code/10_budget_shape_sensitivity.do": "3944d4f9f50193999d1328012e2c0df5949f95c82c2989e27148abb5b5a9cb29",
+      "code/11_finalize_fits.py": "79e60757b05f4c95884187a643d317022c92e8e5531194a787cf91a2dd068acf",
+      "code/12_check_all_results.py": "aa3ffd849ce4b81c3088d5b561a9b3cd860ae27737fa7a9d1f408b53d31b4093",
+      "code/maidads_hurdle.py": "b8b35ae95812ab29584c97894d1f6d5ec16e2c2373d7a49096996db8d132363e",
+      "code/run_pipeline.py": "5b2adb3cae12e23a804d6d57fb07f01722e2dccf3b9973604075d506b39e7806",
+      "code/test_maidads_hurdle.py": "d3739bece2588603753caa27f148da8cf413c405586c1afb007c398c9666c22f",
+      "code/validate_first_stage.py": "e5c47cd196ef0a2a44e6209d04d746608954c1d7c6f327f657bc2fa9276c58c8"
+    },
+    "input_sha256": {
+      "/root/data/数据/食物消费调查数据/处理后的data/户表数据_已清洗.dta": "f328da2540ff379f0fcab6285568f5810e9d13cd62ad113b3797bb31e3297e8b",
+      "/root/data/数据/食物消费调查数据/处理后的data/村表数据_已清洗.dta": "1c26e3c6ab3987c2bc94b6081e4980976cc248507f7a249af12a90b3bc9d9386",
+      "/root/data/数据/食物消费调查数据/处理后的data/村表数据_已清洗_变量标签.csv": "08a839c506ed65ce24eba6ff2d485b5e28fc63e073c082175fdccf42076b58ed",
+      "/root/data/Paper/食物消费数据/paper0-EASI/item_level_food_descriptives/outputs/household_item_long.dta": "4196c35d8f9201ae65be275bf850be95f54c25bb9e8f0254f115bd4b5f85a5c3",
+      "/root/data/Paper/食物消费数据/paper0-EASI/item_level_food_descriptives/outputs/household_community_price_mapping.csv": "442a02336ca8a2857529d754e1fb0fbc0373580a81932740f27ddf8c49d3f6dc",
+      "/root/data/Paper/食物消费数据/paper0-EASI/item_level_food_descriptives/outputs/item_catalog.csv": "3affea66753fc5c8ce000b5e5cfe6c2d6a989d22ddc1bc79a87b64ca8b668801"
+    },
+    "thread_environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "child_thread_environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "planned_stages": [
+    {
+      "name": "build_data",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/01_build_data.py"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/01_build_data.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/data/analysis_8.dta",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/data/analysis_10.dta",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/data_validation.csv"
+      ]
+    },
+    {
+      "name": "stata_first_stage",
+      "command": [
+        "/usr/local/stata17/stata-se",
+        "-b",
+        "do",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/02_first_stage.do",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/02_first_stage.do",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_8/coefficients.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_8/covariance.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_8/model_metadata.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_8/household_predictions.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_8/estimation_status.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_10/coefficients.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_10/covariance.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_10/model_metadata.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_10/household_predictions.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_10/estimation_status.csv"
+      ]
+    },
+    {
+      "name": "validate_first_stage",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/validate_first_stage.py"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/validate_first_stage.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_8/first_stage_validation.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_10/first_stage_validation.json"
+      ]
+    },
+    {
+      "name": "validate_independent_participation",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/05_validate_participation.py"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/05_validate_participation.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_8/participation_independence_summary.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_10/participation_independence_summary.json"
+      ]
+    },
+    {
+      "name": "fit_correlated_participation",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/06_fit_correlated_hurdle.py"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/06_fit_correlated_hurdle.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_8/correlated_hurdle_fit.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/stata_stage1_10/correlated_hurdle_fit.json"
+      ]
+    },
+    {
+      "name": "fit_second_stage_8",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/03_fit_second_stage.py",
+        "--goods",
+        "8",
+        "--starts",
+        "2",
+        "--maxiter",
+        "1500"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/03_fit_second_stage.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/aidads_fit.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/maidads_fit.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/model_comparison.csv"
+      ]
+    },
+    {
+      "name": "fit_second_stage_10",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/03_fit_second_stage.py",
+        "--goods",
+        "10",
+        "--starts",
+        "2",
+        "--maxiter",
+        "1500"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/03_fit_second_stage.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/aidads_fit.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/maidads_fit.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/model_comparison.csv"
+      ]
+    },
+    {
+      "name": "expanded_guard_sensitivity_8",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/09_guard_sensitivity.py",
+        "--goods",
+        "8",
+        "--maxiter",
+        "1500"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/09_guard_sensitivity.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/maidads_expanded_guard_sensitivity.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/maidads_expanded_guard_parameters.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/maidads_expanded_guard_comparison.csv"
+      ]
+    },
+    {
+      "name": "expanded_guard_sensitivity_10",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/09_guard_sensitivity.py",
+        "--goods",
+        "10",
+        "--maxiter",
+        "1500"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/09_guard_sensitivity.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/maidads_expanded_guard_sensitivity.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/maidads_expanded_guard_parameters.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/maidads_expanded_guard_comparison.csv"
+      ]
+    },
+    {
+      "name": "finalize_expanded_guard_fits",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/11_finalize_fits.py"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/11_finalize_fits.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/maidads_fit.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/model_comparison.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/maidads_fit.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/model_comparison.csv"
+      ]
+    },
+    {
+      "name": "audit_working_domain_8",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/08_audit_working_domain.py",
+        "--goods",
+        "8"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/08_audit_working_domain.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/maidads_working_domain_audit.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/maidads_working_domain_summary.csv"
+      ]
+    },
+    {
+      "name": "audit_working_domain_10",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/08_audit_working_domain.py",
+        "--goods",
+        "10"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/08_audit_working_domain.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/maidads_working_domain_audit.json",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/maidads_working_domain_summary.csv"
+      ]
+    },
+    {
+      "name": "stata_budget_shape_sensitivity",
+      "command": [
+        "/usr/local/stata17/stata-se",
+        "-b",
+        "do",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/10_budget_shape_sensitivity.do",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/10_budget_shape_sensitivity.do",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_8/coefficients.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_8/covariance.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_8/model_metadata.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_8/household_predictions.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_8/modelcomparison.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_8/tests.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_10/coefficients.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_10/covariance.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_10/model_metadata.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_10/household_predictions.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_10/modelcomparison.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/budget_shape_10/tests.csv"
+      ]
+    },
+    {
+      "name": "derive_results_8",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/04_derive_results.py",
+        "--goods",
+        "8",
+        "--batch",
+        "24"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/04_derive_results.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/baseline_elasticities.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/province_income_growth_predictions.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/family_income_growth_elasticities.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_8/forecast_derivative_validation.json"
+      ]
+    },
+    {
+      "name": "derive_results_10",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/04_derive_results.py",
+        "--goods",
+        "10",
+        "--batch",
+        "24"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/04_derive_results.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/baseline_elasticities.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/province_income_growth_predictions.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/family_income_growth_elasticities.csv",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/maidads_10/forecast_derivative_validation.json"
+      ]
+    },
+    {
+      "name": "structural_tests",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/test_maidads_hurdle.py"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/test_maidads_hurdle.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/structural_unit_tests.json"
+      ]
+    },
+    {
+      "name": "report",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/07_make_report.py"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/07_make_report.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/完整主要结果.txt",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/documentation/RESULTS_SUMMARY.md"
+      ]
+    },
+    {
+      "name": "verify_final_results",
+      "command": [
+        "/usr/bin/python3",
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/12_check_all_results.py"
+      ],
+      "script": "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/code/12_check_all_results.py",
+      "expected": [
+        "/root/data/Paper/食物消费数据/paper0-EASI/micro_maidads_20261010/outputs/FINAL_RESULTS_AUDIT.json"
+      ]
+    }
+  ],
+  "completed_utc": "2026-10-10T09:26:52.548024+00:00"
+}
