@@ -1,0 +1,2 @@
+income_model,income_sigma,income_center,budget_observations,budget_r_squared,scope,uncertainty
+Interval lognormal; income reporting period unverified,.4895485472213703,8.317943357126524,203337,.243897771355136,Projection of conditional mean log covered-food budget; not causal income identification,Point estimates only; no bootstrap or joint sampling inference

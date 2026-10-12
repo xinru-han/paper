@@ -1,0 +1,2 @@
+model,observations,objective,m_reference,max_score,stationary,gradient_error,structural_parameters,covariance_parameters,qml_aic,qml_bic,positive_support,budget_error,slutsky_symmetry_error,slutsky_max_eig
+quaids,7671,-37.06954916238474,143.8688441597005,3.06662540671e-08,1,4.67954259767e-09,49,28,-131821.0267896707,-131286.2462153458,.9989571111980186,0,5.55111512313e-17,.177968138720549

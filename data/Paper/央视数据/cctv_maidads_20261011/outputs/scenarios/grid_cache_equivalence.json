@@ -1,0 +1,21 @@
+{
+  "before": {
+    "rows": 318850,
+    "valid_rows": 318818,
+    "sha256": "4335d3a5995bafc959b8fcfdb6e94f6361ef712810b1a1de2003a2db210391e9"
+  },
+  "after": {
+    "rows": 318850,
+    "valid_rows": 318818,
+    "sha256": "4335d3a5995bafc959b8fcfdb6e94f6361ef712810b1a1de2003a2db210391e9"
+  },
+  "exact_numeric_match": true,
+  "execution": {
+    "script": "06_scenarios.do",
+    "seconds": 161.32143759727478,
+    "returncode": 0,
+    "stata_errors": [],
+    "artifact": "outputs/scenarios/province_income_growth.csv",
+    "success": true
+  }
+}

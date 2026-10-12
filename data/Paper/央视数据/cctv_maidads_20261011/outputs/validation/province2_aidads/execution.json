@@ -1,0 +1,42 @@
+{
+  "fold": "province2",
+  "model": "aidads",
+  "input": "data/cells_quarter_8_cvfold2.csv",
+  "training_filter": "year<=2021&cv_fold!=2",
+  "test_filter": "year<=2021&cv_fold==2",
+  "steps": [
+    {
+      "script": "02_estimate.do",
+      "seconds": 287.03738236427307,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province2_aidads/fit/model_summary.csv",
+      "success": true
+    },
+    {
+      "script": "06_predict.do",
+      "seconds": 5.450608491897583,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province2_aidads/prediction/predictions.csv",
+      "success": true
+    },
+    {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.092635631561279,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province2_aidads/metrics/metrics.csv",
+      "success": true
+    }
+  ],
+  "success": true,
+  "metrics_refresh": {
+    "script": "07_validation_metrics.do",
+    "seconds": 4.8081886768341064,
+    "returncode": 0,
+    "stata_errors": [],
+    "artifact": "outputs/validation/province2_aidads/metrics/metrics.csv",
+    "success": true
+  }
+}

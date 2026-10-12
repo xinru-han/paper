@@ -1,0 +1,3 @@
+start,objective,converged,timeout,evaluations_at_last_checkpoint,invalid_candidates,elapsed_seconds,checkpoint_is_final
+1,.1092579268674847,1,0,439,0,,1
+2,.1543419762698044,0,1,322,1,,0

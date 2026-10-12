@@ -1,0 +1,11 @@
+level,metric,value
+micro,unique_2022_households,22775
+micro,invalid_household_scenarios,0
+micro,quantity_and_derivative_budget_closure_pass,1
+province,aggregate_scenario_groups,336
+province,groups_with_complete_prediction_coverage,336
+province,household_weights_shares_and_aggregate_derivatives_pass,1
+family,aggregate_scenario_groups,56
+family,groups_with_complete_prediction_coverage,56
+family,household_weights_shares_and_aggregate_derivatives_pass,1
+family,quantity_elasticity_share_add_gap_heterogeneous_prices,.0021515355665489

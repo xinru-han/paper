@@ -1,0 +1,2806 @@
+{
+  "README.md": {
+    "sha256": "773b399767897f1a695cef46f6d0e90eb9e508a41f6df674b816723e94418e9b",
+    "bytes": 5460
+  },
+  "ado/cctv_comparators.mata": {
+    "sha256": "b571712052e4562862452f05d0ff1c77464f876def0b375c3ae0da4dbf04fc5d",
+    "bytes": 8274
+  },
+  "ado/cctv_prediction.mata": {
+    "sha256": "9cb1dc07c70175e032e11caf668fe7ef39fc64591a7f70f98d387fc3f5e596f7",
+    "bytes": 5174
+  },
+  "ado/corner_forecast.mata": {
+    "sha256": "372301e33635a88ba9efe7db191aeb9df84d42203f970686194c2463b23204e2",
+    "bytes": 3425
+  },
+  "ado/corner_maidads.mata": {
+    "sha256": "a9fb4a0318551b55cd59c29cc138fcf440ab535b53064bae0c1fe88498406f20",
+    "bytes": 7481
+  },
+  "ado/corner_regular.mata": {
+    "sha256": "d7abb2c96f3d2ab974b7d1ca54e71738e55111f517931b53ad4bbf35b8398e58",
+    "bytes": 1770
+  },
+  "ado/corner_smd.mata": {
+    "sha256": "eb437058158df491ad37663aa78c6db7b45c65cf345b5adcb95ab99359f7bfa2",
+    "bytes": 4545
+  },
+  "ado/maidads_core.mata": {
+    "sha256": "2ef6d38d66b34a7ddb2a29f35145a0ee427e9899a045c1e4e290502874873a89",
+    "bytes": 27064
+  },
+  "ado/maidads_tangent_core.mata": {
+    "sha256": "be3aa9fd5071bc48e106338a8a66d24a769523f286a673ce0dfee9d031f56127",
+    "bytes": 28826
+  },
+  "ado/maidadsfit.ado": {
+    "sha256": "fbceac3210323888f634cea2c5a98e58f5690dd19d97ce446ee4df6fa22701ec",
+    "bytes": 2190
+  },
+  "ado/maidadstangentfit.ado": {
+    "sha256": "c2a46b9f73cd05066b97bd2dbcac40c3b1126395279175f8cd8d1905a84d5e2c",
+    "bytes": 2212
+  },
+  "code/00_metadata.do": {
+    "sha256": "1718ad99ab8d94440cefbfc1b96f2192d38bd42c2aaec8ac4438fe931ba671b7",
+    "bytes": 530
+  },
+  "code/01_build_cv_prices.do": {
+    "sha256": "9f5b61c88f0f0a45badc5be11356358c9f59f3e8f46fe2c232bf3fb15e8eba4e",
+    "bytes": 3256
+  },
+  "code/01_build_data.do": {
+    "sha256": "074260696a94fff6037904831b4f94b8b7a4a19269a646c107183f754ee55b88",
+    "bytes": 18409
+  },
+  "code/01_coarse_cells.do": {
+    "sha256": "8f91df1897d736e3c026d580242f80df0ad7d96ddc84ca7d992dac10eacd6986",
+    "bytes": 2002
+  },
+  "code/01_corner_derivative_review.do": {
+    "sha256": "051d6f855f9aa9c26fe4c4d8f71f2146ac8c10659ee7c1610b9bd81891e4f1e7",
+    "bytes": 3718
+  },
+  "code/01_corner_integration_summary.do": {
+    "sha256": "4cb30534679560cbc5c6d593979c6c96f6437c17146f1a60d957310bfd6bfac1",
+    "bytes": 6074
+  },
+  "code/01_extended_audit.do": {
+    "sha256": "fc86e846d835d77331f73d781a4101fe8e5e76a66ab1093b6ecad9408dd9c87e",
+    "bytes": 4707
+  },
+  "code/01_final_corner_review.do": {
+    "sha256": "94a151898d30a3639fff3a59d27693d312b53f8ba29f3eda12cc102fbc13681b",
+    "bytes": 6391
+  },
+  "code/01_final_data_review.do": {
+    "sha256": "1cef8d60b5f8f84c003d30ee2302015fc51cce05f1e3e953e5260014c7ddb890",
+    "bytes": 6171
+  },
+  "code/01_final_scenario_review.do": {
+    "sha256": "aab84680a09caef5d59048b37f160d3230cb96360de136dc72f9e794e0c457df",
+    "bytes": 3687
+  },
+  "code/01_fix_metadata_label.do": {
+    "sha256": "5f8665a4a9159621d1c3e3d24a4905e7282ab7c8c5b6f6c9aca5bc98ad1b47b4",
+    "bytes": 516
+  },
+  "code/01_permonth_size_sensitivity.do": {
+    "sha256": "a16b1458b8dada3279e8099ee9013db1c11518f73876fe0529a2945d27752da4",
+    "bytes": 5390
+  },
+  "code/01_refresh_descriptives.do": {
+    "sha256": "1da9d5e6898eb43d0c0fb74516baa019125f2bb8755392f97051a0e684484726",
+    "bytes": 2704
+  },
+  "code/01_review_prediction.do": {
+    "sha256": "39d12d132942e857174bcb86da476e854b7d50a53c15e6d694ec827ec262c424",
+    "bytes": 1745
+  },
+  "code/01_validate_data.do": {
+    "sha256": "ca6ebe38fab3d70f287582d109b827e8145f5187ce37eb9ae045ff96e0ea2103",
+    "bytes": 3755
+  },
+  "code/01_window_attribute_checks.do": {
+    "sha256": "ad6156c0d944989206da31c12c86927cfdf58e5cbd942ddbfc208c7262e14066",
+    "bytes": 2168
+  },
+  "code/02_estimate.do": {
+    "sha256": "4b6b5b3d4529714f2228f5e8cf43f96a613e048cfd7f0e49cf0041efd530241b",
+    "bytes": 729
+  },
+  "code/02_estimate_families.do": {
+    "sha256": "5885b12f49f0a2b197e2a1a41df18a4c80938db9ca7c186e7ce2976ae2541fda",
+    "bytes": 275
+  },
+  "code/02_estimate_tangent.do": {
+    "sha256": "a1ccb3d8b224c8c2c4ac9c040d6ead9b9d9b80e5e2d0225cf5cd5a62f13a9bdc",
+    "bytes": 1027
+  },
+  "code/02_finalize_candidate.do": {
+    "sha256": "275e8daddea9c2e9531e213edd0d7dab784ff5408b5a905bc9148b5311176a41",
+    "bytes": 2164
+  },
+  "code/02_test_api.do": {
+    "sha256": "77b66b33511c6035077d526a77859413894b8159c2e66ddeeeabcdce0c827d29",
+    "bytes": 638
+  },
+  "code/02_test_identified.do": {
+    "sha256": "7a7fefb096c11e42e193aea0b3b9b0ae5c1c2491feae83406c73d5b64f632fa4",
+    "bytes": 1038
+  },
+  "code/02_test_identified_tangent.do": {
+    "sha256": "f13ea4f971242c118b352bb712256dc02e52716fd1953d419d406f7039ed46d9",
+    "bytes": 1053
+  },
+  "code/02_test_native.do": {
+    "sha256": "0132967d06367052a4835e322d1e38c6199eaa51c83357e7e79e3118f98b553e",
+    "bytes": 973
+  },
+  "code/02_test_root_edges.do": {
+    "sha256": "e6c893e3a8b1089a63fa7f005a9fdb89fc1b2cb74bc2ff04b8a7bd3d47b65f17",
+    "bytes": 625
+  },
+  "code/02_verify_native.do": {
+    "sha256": "e08208a7be462070079d1df192d2d44bb13a4d6e4a3bd4f89e62d9afd7749223",
+    "bytes": 1332
+  },
+  "code/02_verify_native.py": {
+    "sha256": "6d862e88e2b4855df53dd719003abc730471fcb239d809016e4111d5a31cb389",
+    "bytes": 1795
+  },
+  "code/03_corner_benchmark.do": {
+    "sha256": "8950eb73239e4a012fa59e5e2504f4da1b544b1fa0c1f4f14e6be3cceae3d8c2",
+    "bytes": 562
+  },
+  "code/03_corner_bounded.sh": {
+    "sha256": "85bf9bc03da6dc8aaaf6df9430e0c2d575ab6791d73adb2aacc41a96244e554f",
+    "bytes": 1128
+  },
+  "code/03_corner_clock_test.do": {
+    "sha256": "3bcf36bd27cc411238f9f19c1be9a066f56e9bdbe6c1b39875261b6df9700c36",
+    "bytes": 381
+  },
+  "code/03_corner_compile.do": {
+    "sha256": "1fff490e2b516c6fabcd79b7366cfcefda92d3caadfc6848d8fbc9f48c3e3743",
+    "bytes": 574
+  },
+  "code/03_corner_elasticity.do": {
+    "sha256": "79cfe1cc821e384067b7466fd37739b40d7d72be95c31b601a98c19ad77c0413",
+    "bytes": 5883
+  },
+  "code/03_corner_final_checks.do": {
+    "sha256": "de391148e31db271aeb7475b5b2b2af6f14c31d7d291aaf6e30182c17044db98",
+    "bytes": 3437
+  },
+  "code/03_corner_finalize_scope.do": {
+    "sha256": "297611227f3375802f035d4364bf0f00c52388b0b605eee491994008f54c5cd8",
+    "bytes": 842
+  },
+  "code/03_corner_finalize_status.do": {
+    "sha256": "0f7755acf1101ea176f8e66d4b93f1d01bc424d3ae589c7feba76dcdf99c6d96",
+    "bytes": 3887
+  },
+  "code/03_corner_fit.do": {
+    "sha256": "42cc4949928489a8cfa597951679fbc3ec5e70d44fc8351e43acfa3273160a1a",
+    "bytes": 16440
+  },
+  "code/03_corner_format_results.do": {
+    "sha256": "f5bf9f52657d6e25ed46ba36313e32a42ca1879a56be72d9b3ea10ad8adf0180",
+    "bytes": 2063
+  },
+  "code/03_corner_global_validation.do": {
+    "sha256": "a3e91a916467c078bb157f21e1c74c735a39e9bd2da1e4f3a957a86c94dfc3d9",
+    "bytes": 2694
+  },
+  "code/03_corner_optimizer_test.do": {
+    "sha256": "bfd4ee9c46f662e1e2f959e624372691923e2fdbae90df10355ea3af5d6e2ce0",
+    "bytes": 1044
+  },
+  "code/03_corner_publish_checkpoint.do": {
+    "sha256": "392ccb4973e5ca9cafc89541e6dcacaf7ad1f1191540e5aa00f5227eb4bcfc28",
+    "bytes": 1983
+  },
+  "code/03_corner_read_summary.do": {
+    "sha256": "3db79af5ecaaddcbbc73951eeda06f55bb87827a28f2e56bc9e1ab7490955382",
+    "bytes": 1273
+  },
+  "code/03_corner_regular_benchmark.do": {
+    "sha256": "ac8530f91b9bcfaca01a9f7a375b831fd36992bc0c786d885e58022293d07fed",
+    "bytes": 799
+  },
+  "code/03_corner_representation.do": {
+    "sha256": "941357daf209540e74f772f8eb74250b360c93b8c4983e8dfe4d4c98a5329660",
+    "bytes": 998
+  },
+  "code/03_corner_scenario_sensitivity.do": {
+    "sha256": "f6bf7eb13de8bd900186a684a50713f7d6b22be4046bb8bb9edafdbc89ee9ac4",
+    "bytes": 2068
+  },
+  "code/03_corner_scenarios.do": {
+    "sha256": "af427e6869a8accb4eadf5385cb8107f12a68ae666d697bd847cb1ef6f10d0ea",
+    "bytes": 4071
+  },
+  "code/03_corner_scopeaudit.do": {
+    "sha256": "639efbae6b6cc2a8b9c5049969a1eae93715840f0a22184cb32a29a64bef57cd",
+    "bytes": 1815
+  },
+  "code/03_corner_support_audit.do": {
+    "sha256": "4f0bb1b7141f92b546eb3c94c80714fd9677b3a5ab90faeac669533b5ec9a07f",
+    "bytes": 1930
+  },
+  "code/03_corner_support_checkpoint.do": {
+    "sha256": "7c5c5a9b847a84f24b4a5e4d17890aa5dc19222e53645476385d183c450fcbc4",
+    "bytes": 490
+  },
+  "code/03_corner_validation.do": {
+    "sha256": "8bd408f1b9cb930ec8b74b783d18a7da0305533cf6ca51210062f041781675e4",
+    "bytes": 5335
+  },
+  "code/03_corner_verify_delivery.do": {
+    "sha256": "5786d7f1d19973c3bacb63239eb65af5166fda007e35181ceb279150c6dcc0e7",
+    "bytes": 1788
+  },
+  "code/03_corner_watchdog_test.do": {
+    "sha256": "8c9d32a3d4a152140bb703ea151568b99e8a2b93244c602acbcca16dc7df6c33",
+    "bytes": 908
+  },
+  "code/03_test_corner_forecast.do": {
+    "sha256": "e7aec1590f64d76e6ebbcce88960326f1a502b00a8d19aed1613ce58b092896c",
+    "bytes": 1474
+  },
+  "code/04_comparators.do": {
+    "sha256": "7507ee062abd0b9fe45ad8a94effaff5100b4fcb8459c2ceac3594b74b9c29a8",
+    "bytes": 2586
+  },
+  "code/04_test_comparators.do": {
+    "sha256": "4fa1fc7dc4a20bcd01cad97382ab2690abb3ededfe8feb08c75487b65a5c32ff",
+    "bytes": 794
+  },
+  "code/05_income.do": {
+    "sha256": "d073ba2e4104d5643acf68fbe0df0d09a6b09a4dde6a480b93dbccd242f9fc58",
+    "bytes": 6627
+  },
+  "code/05_income_sensitivity.do": {
+    "sha256": "3a34d9970dd7bf28a2b7143b94af84f1e7ca9b33760c318e7117f984ef31beba",
+    "bytes": 2835
+  },
+  "code/05_income_tests.do": {
+    "sha256": "abeafc72d209a62e281f4e2513df75a8b36e15c2d4aa4119e448ba58e3dc1e9e",
+    "bytes": 2601
+  },
+  "code/06_predict.do": {
+    "sha256": "faf2f7070bafeb0eb68c431405e7112c678b351f9b4672d161c347a7a4ae07b2",
+    "bytes": 2283
+  },
+  "code/06_scenarios.do": {
+    "sha256": "674f82a8343b7ddcf6dfdb9c8a0148db32e422a31c280195a75c4869443e20f7",
+    "bytes": 5460
+  },
+  "code/06_test_cache.py": {
+    "sha256": "2d4ee8fca1464f56134c6aff62e2ed80195909136738ac65ca2dff691f5ff48d",
+    "bytes": 1355
+  },
+  "code/07_comparator_predict.do": {
+    "sha256": "20474c2c81d80020177ba1b57bd0f26a420a1d7e900fe530351819ca8d41e221",
+    "bytes": 1504
+  },
+  "code/07_validation_metrics.do": {
+    "sha256": "1c923c1f3d3a1ac3e8dfe04eba9ea78256a1b75496d59cf757782db33e062302",
+    "bytes": 3896
+  },
+  "code/build_report.py": {
+    "sha256": "0e94318cf56eb15310b324cb5ee03a1dad13caf3c87005559f2b4a2922468e46",
+    "bytes": 23058
+  },
+  "code/publish_aggregates.py": {
+    "sha256": "b86dfdf30f273979e4ae0dba9e35d308e08f46ba9bcbffdc98c6ba0eed9e4448",
+    "bytes": 3310
+  },
+  "code/run_comparisons.py": {
+    "sha256": "5634089d44ec8adaac480b047bbda1d8c86fa6e9c2aabfe8a400847aecfbcea4",
+    "bytes": 1608
+  },
+  "code/run_pipeline.py": {
+    "sha256": "1740a2a1f6186cf3af10621f63cc716259a270a7ffe4064a39ba8612821a1312",
+    "bytes": 6185
+  },
+  "code/run_validation.py": {
+    "sha256": "bde52f5b76a5d13a6f72a5430af78fc50e2b1e917d3ba776ceda41c80aaad0e8",
+    "bytes": 6340
+  },
+  "docs/CORNER_EXTENSION.md": {
+    "sha256": "cf55e8ee897592c81987ab9fa66beae377bff62f2990aa6eae4c3d6f91ece7af",
+    "bytes": 15304
+  },
+  "docs/CORNER_INTEGRATION_REVIEW.md": {
+    "sha256": "6168a929d9f614d50661994fd4f942cf6d6203ec7de00b1faca32e390f0234b6",
+    "bytes": 7301
+  },
+  "docs/DATA_AUDIT.md": {
+    "sha256": "f4493335452d499bab64110c41b7f1e72efc9d40d639b9f13ffe6e7623aaa163",
+    "bytes": 18769
+  },
+  "docs/FINAL_DATA_REVIEW.md": {
+    "sha256": "389cb25506e9b36744a2411110447de02784671bd5defd59c3aebebc4b1c8ce7",
+    "bytes": 9101
+  },
+  "docs/MODEL_SPECIFICATION.md": {
+    "sha256": "e911ba73600dbceeb1b6253ffae1b72ebd8565f61317d5bb97effbc4087b3ce0",
+    "bytes": 9720
+  },
+  "docs/RESEARCH_LOG.md": {
+    "sha256": "b920278834a53932499d852a207117e66036263926bed03a3ca3d7700ffd5999",
+    "bytes": 4635
+  },
+  "docs/RUN_PROTOCOL.md": {
+    "sha256": "da9303a7e4b8eff6617f2796abf234753849c2066330256a1881cc2e4af32b9e",
+    "bytes": 5131
+  },
+  "figures/corner_family_income_elasticity.png": {
+    "sha256": "6defe261d989baf21a808b5fe63e2b061761481c9788751d5e1e1725c0fc691a",
+    "bytes": 265987
+  },
+  "figures/corner_province_income_50pct.png": {
+    "sha256": "2bae50d017ba04c913592f8926e7395df9b136da918f2fabb1af7d2f6038632d",
+    "bytes": 124265
+  },
+  "figures/family_income_elasticity.png": {
+    "sha256": "1fb26135476358219e70d1f29504f7ea692958be00559f806b1d95f240545df2",
+    "bytes": 260492
+  },
+  "figures/income_budget_projection.png": {
+    "sha256": "43e472212f80c2aa094f8883d283121cfa67628c2d3aa6fb6912bda607550d62",
+    "bytes": 83090
+  },
+  "figures/province_income_50pct.png": {
+    "sha256": "6806df345f4d3793568c9d6dc7364af1b8e0539d818da46b565497ba789d65fe",
+    "bytes": 122949
+  },
+  "figures/purchase_frequency.png": {
+    "sha256": "24009360de596a739c5b16654a2ad4f5e5bf07c09f670eee904f77354f03c0ee",
+    "bytes": 92400
+  },
+  "outputs/ALL_MAIN_RESULTS.txt": {
+    "sha256": "f2cfa12abc0b5995416ab46ee53b70d70893b5d2c1d679bdf46f9ac1fb5238d4",
+    "bytes": 2189807
+  },
+  "outputs/RESULTS_CN.md": {
+    "sha256": "9a5c2470ea6ebb475bbc27ba46ff247c904f2601a68770537fdb84f0bc055984",
+    "bytes": 214513
+  },
+  "outputs/code_manifest.json": {
+    "sha256": "443b5ae3ec5864f0ea30413c3412962a107d4505c9fde0edc616c541512913b0",
+    "bytes": 8462
+  },
+  "outputs/comparators/aids_8/candidates.csv": {
+    "sha256": "2dd3dfbb63bebe3e7237b0c4c62b506584ea3ef762ce136e2bef57155213f58b",
+    "bytes": 205
+  },
+  "outputs/comparators/aids_8/fit_summary.csv": {
+    "sha256": "9a425f9148085eec34f5ab48bdfc85f7d69922cb256b19c85572c5267442eb59",
+    "bytes": 392
+  },
+  "outputs/comparators/aids_8/hicksian_matrix.csv": {
+    "sha256": "1f4dfb159c6f290c10fa0c2f17ca6555c8d05df95465ddf85164103955754601",
+    "bytes": 1296
+  },
+  "outputs/comparators/aids_8/marshallian_matrix.csv": {
+    "sha256": "2e4cf8466b184029f374308b5e3435b03bc4b9a5a6ab3ba31928129766eb0cd2",
+    "bytes": 1333
+  },
+  "outputs/comparators/aids_8/raw_parameters.csv": {
+    "sha256": "ebc0890fe379290502c88f83f05378b34d3cddf0259aebf378e360ca4cd2e276",
+    "bytes": 1049
+  },
+  "outputs/comparators/aids_8/representative_elasticities.csv": {
+    "sha256": "9e546c32e56673475c053b1575f8f2efcf95279bdb74d3be0713e1e46f31a4e2",
+    "bytes": 662
+  },
+  "outputs/comparators/aids_quarter_8_coarse/candidates.csv": {
+    "sha256": "11fa5b334696da64de6a847eecf7dd29e0bcddb2ce3cd2997e75ae1be9d58e0a",
+    "bytes": 205
+  },
+  "outputs/comparators/aids_quarter_8_coarse/fit_summary.csv": {
+    "sha256": "44a690f8a35075639f680fec01827a58f4e87c4eede1045a944c92b362655ad2",
+    "bytes": 374
+  },
+  "outputs/comparators/aids_quarter_8_coarse/hicksian_matrix.csv": {
+    "sha256": "12e7ce2ed525a4ea6a6acc290686224521623b80a7a0fcb38b60dd3d8ee2b45c",
+    "bytes": 1296
+  },
+  "outputs/comparators/aids_quarter_8_coarse/marshallian_matrix.csv": {
+    "sha256": "4a963c3d7c428600b84f077bcedbca2ae04292cbcfe1aecd930fbdd981f13734",
+    "bytes": 1332
+  },
+  "outputs/comparators/aids_quarter_8_coarse/raw_parameters.csv": {
+    "sha256": "b208b300e1f4a3449f2817cdd3485b50659268f9b15dca46d7d8345777acf3ba",
+    "bytes": 1053
+  },
+  "outputs/comparators/aids_quarter_8_coarse/representative_elasticities.csv": {
+    "sha256": "d80ed782fa68b826e998cdf4fa8f375345804abd3165a622de2adae65b2d5b8e",
+    "bytes": 665
+  },
+  "outputs/comparators/aids_quarter_8_complete_stable/candidates.csv": {
+    "sha256": "27ca252b73a5c9ee5b528fe4e85a7ffc5cece38915dfcc571ef7768282dd51eb",
+    "bytes": 205
+  },
+  "outputs/comparators/aids_quarter_8_complete_stable/fit_summary.csv": {
+    "sha256": "ec40e15efd6a47e0b8f41c7a14f540f596195de236110bbde1d7ea0944e7481a",
+    "bytes": 374
+  },
+  "outputs/comparators/aids_quarter_8_complete_stable/hicksian_matrix.csv": {
+    "sha256": "1edcda506d7eda01dfbb4b23143d0c28d7dd996fa19deb11973d64f252fbc8ba",
+    "bytes": 1295
+  },
+  "outputs/comparators/aids_quarter_8_complete_stable/marshallian_matrix.csv": {
+    "sha256": "2639c4e2fc0ecc13491f87d766e7c65d40ebfe632601a140e75354800f39242c",
+    "bytes": 1333
+  },
+  "outputs/comparators/aids_quarter_8_complete_stable/raw_parameters.csv": {
+    "sha256": "3757de8353e98baf28c0f37f08aa14e3ec7d7c8e75378c08f85c9a58adeae145",
+    "bytes": 1044
+  },
+  "outputs/comparators/aids_quarter_8_complete_stable/representative_elasticities.csv": {
+    "sha256": "3db46b8a31a49c3153e3f02322919ed7d17b08b079deb42a2b4502f82e905307",
+    "bytes": 665
+  },
+  "outputs/comparators/aids_quarter_8_permonth_size/candidates.csv": {
+    "sha256": "4d8ae835bd7e8991e54ac0b16dd0cbf5456cff811f9d1f73bd2ad0788d306e29",
+    "bytes": 202
+  },
+  "outputs/comparators/aids_quarter_8_permonth_size/fit_summary.csv": {
+    "sha256": "376191a0df1b7fb826db74ff7f81d660fe4ae8f0cb7ab3ff0c6ddbda9055ebd6",
+    "bytes": 390
+  },
+  "outputs/comparators/aids_quarter_8_permonth_size/hicksian_matrix.csv": {
+    "sha256": "ee24b7af8d65c2215e9ba6f3f98be8424708c6763af649c9569af20996f44258",
+    "bytes": 1298
+  },
+  "outputs/comparators/aids_quarter_8_permonth_size/marshallian_matrix.csv": {
+    "sha256": "81b5e2f1fe89ef4018e8dd7fc8b37210426c028d54afdb7a8c3d6848c7a3fe78",
+    "bytes": 1330
+  },
+  "outputs/comparators/aids_quarter_8_permonth_size/raw_parameters.csv": {
+    "sha256": "853757444e1f8dc47fd17742a3684ae894f1d4b8c96701ced8319d8ad8167e58",
+    "bytes": 1051
+  },
+  "outputs/comparators/aids_quarter_8_permonth_size/representative_elasticities.csv": {
+    "sha256": "c7964970d7a8e631d0a701090adcab0961c9dbb067c62078239babb11183e85e",
+    "bytes": 665
+  },
+  "outputs/comparators/aids_quarter_9/candidates.csv": {
+    "sha256": "e22ba963a306b431c4161c80551fda49a2a0651d9bb5eb40f4f1c8fe1c915fcb",
+    "bytes": 205
+  },
+  "outputs/comparators/aids_quarter_9/fit_summary.csv": {
+    "sha256": "3f07d95dd2f4fa624d3855bc9390aa8a392d4353836ea9a9aaf1bcba585495fc",
+    "bytes": 392
+  },
+  "outputs/comparators/aids_quarter_9/hicksian_matrix.csv": {
+    "sha256": "5c274ebf0b9634e693e5dfff7d9f58c068d8692bc079164b4c8a94364759ccca",
+    "bytes": 1624
+  },
+  "outputs/comparators/aids_quarter_9/marshallian_matrix.csv": {
+    "sha256": "f25fc9253d0c0dc2ea23d7efa6f17d580f19fa45388c4ee47bee019e47547bd4",
+    "bytes": 1669
+  },
+  "outputs/comparators/aids_quarter_9/raw_parameters.csv": {
+    "sha256": "f850b4fc355d24e9aee4d7291dfbd824238fcb8ceada7a3d79678cfd5e60710e",
+    "bytes": 1307
+  },
+  "outputs/comparators/aids_quarter_9/representative_elasticities.csv": {
+    "sha256": "6be8302a34b26b3efa7b1ca689feeeac2e8a71a998a73d9f786279b2dde85c46",
+    "bytes": 742
+  },
+  "outputs/comparators/aids_year_8/candidates.csv": {
+    "sha256": "908df304fa11eeb8af168b0b04918bae2ae4eee67edb1ab5af2ed894ea7b1712",
+    "bytes": 205
+  },
+  "outputs/comparators/aids_year_8/fit_summary.csv": {
+    "sha256": "f0b47544abebcaa1637a10bdfb744d91654942962d93f49f945aad9a6cfbd1b2",
+    "bytes": 375
+  },
+  "outputs/comparators/aids_year_8/hicksian_matrix.csv": {
+    "sha256": "3ebdc52bbfc07daa4914e5a1b7ff95ba2a9d87756fc382e269383711847c7a7f",
+    "bytes": 1297
+  },
+  "outputs/comparators/aids_year_8/marshallian_matrix.csv": {
+    "sha256": "5e03f16cb28b265e47eab486545996cefdb327e3d1b1df930ed73aab90e5f349",
+    "bytes": 1331
+  },
+  "outputs/comparators/aids_year_8/raw_parameters.csv": {
+    "sha256": "81cd86b2725a7bd4183d546eadfab738c349a1c49d96c83ddc6a006560af994e",
+    "bytes": 1056
+  },
+  "outputs/comparators/aids_year_8/representative_elasticities.csv": {
+    "sha256": "37f8e3e18e5763c1a175ace0574426fce7bd1daa8ba9fd3d4b6a6f4586907e58",
+    "bytes": 669
+  },
+  "outputs/comparators/aids_year_8_permonth_size/candidates.csv": {
+    "sha256": "1b554f13b91852fd3e977e58fadca77626f20a14a331f9568994b5a5acc27742",
+    "bytes": 205
+  },
+  "outputs/comparators/aids_year_8_permonth_size/fit_summary.csv": {
+    "sha256": "b5e7a484e8c55c15a6d14f7461b9beaf5b0c8b5a38e04b037b646824b78df3ce",
+    "bytes": 375
+  },
+  "outputs/comparators/aids_year_8_permonth_size/hicksian_matrix.csv": {
+    "sha256": "a2f3b0ae42800b28a0a0ed0f808994955ceceba13f27231c6a13f643c4c23331",
+    "bytes": 1292
+  },
+  "outputs/comparators/aids_year_8_permonth_size/marshallian_matrix.csv": {
+    "sha256": "82ac0da1dc92eda74b0db2b51b99493b9c9acc467dd84ef9b0acabab80c188a7",
+    "bytes": 1333
+  },
+  "outputs/comparators/aids_year_8_permonth_size/raw_parameters.csv": {
+    "sha256": "941491dbc01a55c74783f9407a589892b3ca3a3cc3bf697d2e162802f75c8ddd",
+    "bytes": 1054
+  },
+  "outputs/comparators/aids_year_8_permonth_size/representative_elasticities.csv": {
+    "sha256": "929153afb10ebb86dac84a41dbd3370ca17055723c386166ddb7810069a8caec",
+    "bytes": 667
+  },
+  "outputs/comparators/quaids_8/candidates.csv": {
+    "sha256": "ffb3c07f20c1ac877d3df389be30cba069eb95c196e380194df6e9de91f792f6",
+    "bytes": 205
+  },
+  "outputs/comparators/quaids_8/fit_summary.csv": {
+    "sha256": "085133cb46d5e2dbcc9ca125350a2308394fcd72870ff969aae4f889c367b1f2",
+    "bytes": 394
+  },
+  "outputs/comparators/quaids_8/hicksian_matrix.csv": {
+    "sha256": "b4a1ad1aa13f6c57bd5d40531b8b8dbcc2d1c4a652c3dc681ff5b27cf85d23f3",
+    "bytes": 1299
+  },
+  "outputs/comparators/quaids_8/marshallian_matrix.csv": {
+    "sha256": "193d5ee6f5bfeb9c002fbe5404a2a08ecc1f035dade50032590660a5933f1b55",
+    "bytes": 1328
+  },
+  "outputs/comparators/quaids_8/raw_parameters.csv": {
+    "sha256": "4f17133492daadf533c020f36924298e4cc1ae89cbe9f2c02e015139fc6874de",
+    "bytes": 1227
+  },
+  "outputs/comparators/quaids_8/representative_elasticities.csv": {
+    "sha256": "ad727629b3baa7f080a4b3117e8d518ae3b0f6565b8a2b3281e41a5ec68ee73b",
+    "bytes": 662
+  },
+  "outputs/comparators/quaids_quarter_8_coarse/candidates.csv": {
+    "sha256": "136ddc48c4f6cb517459878e1a68b5a60aacc09c1670594ff582a67986f9e0ac",
+    "bytes": 205
+  },
+  "outputs/comparators/quaids_quarter_8_coarse/fit_summary.csv": {
+    "sha256": "3443c1c4000f82abd1a6344c8815175da6feb07f5b8f0b65c45ca854c7b67e2d",
+    "bytes": 392
+  },
+  "outputs/comparators/quaids_quarter_8_coarse/hicksian_matrix.csv": {
+    "sha256": "97f0b3b9130b6132177cca8dc25b223759819a5183736757e03fb0992d687e08",
+    "bytes": 1292
+  },
+  "outputs/comparators/quaids_quarter_8_coarse/marshallian_matrix.csv": {
+    "sha256": "d4b09aa66196eeb655254ef72df082579c57e4b7d31bea9b64a2b443cddf7574",
+    "bytes": 1333
+  },
+  "outputs/comparators/quaids_quarter_8_coarse/raw_parameters.csv": {
+    "sha256": "0fe288312a9d07e8dafd0145e99f65f3d23fc40e0d710f4b57c41974713f43fc",
+    "bytes": 1228
+  },
+  "outputs/comparators/quaids_quarter_8_coarse/representative_elasticities.csv": {
+    "sha256": "d0d0cfe4afd0b4b53999d2c8249ab708ec735fc7f360c8d79ade1f0af62f7543",
+    "bytes": 665
+  },
+  "outputs/comparators/quaids_quarter_8_complete_stable/candidates.csv": {
+    "sha256": "cde610f3a1dac1dc3970b24d3affdcfbe1863a12c2c01ed211991346f2b76251",
+    "bytes": 202
+  },
+  "outputs/comparators/quaids_quarter_8_complete_stable/fit_summary.csv": {
+    "sha256": "d0d1f1e6afe8dfe8845fa05c6e68cee0d7cf202c0168d89559fcc0d83dffddbc",
+    "bytes": 393
+  },
+  "outputs/comparators/quaids_quarter_8_complete_stable/hicksian_matrix.csv": {
+    "sha256": "527e764bfa15872fcd964d2b8e691d234d85e66ef318ac7cc69e68ac5fa2baf6",
+    "bytes": 1298
+  },
+  "outputs/comparators/quaids_quarter_8_complete_stable/marshallian_matrix.csv": {
+    "sha256": "b91498d6a000af772825f1d0672296a2cde4835daab27d51740c7c8ec53a8faa",
+    "bytes": 1331
+  },
+  "outputs/comparators/quaids_quarter_8_complete_stable/raw_parameters.csv": {
+    "sha256": "d93b9fbec02ba6d15e20b0a1fce47394e39dbaae9c2759b359258a678473e77b",
+    "bytes": 1231
+  },
+  "outputs/comparators/quaids_quarter_8_complete_stable/representative_elasticities.csv": {
+    "sha256": "e1db0584027a55b9d94d9a2f64d9c9dbc69006717a340df538d31d076ef06230",
+    "bytes": 667
+  },
+  "outputs/comparators/quaids_quarter_8_permonth_size/candidates.csv": {
+    "sha256": "ed200e0cc347a655eb17c2680c505e1060042088c022459ba277216e0de271fb",
+    "bytes": 205
+  },
+  "outputs/comparators/quaids_quarter_8_permonth_size/fit_summary.csv": {
+    "sha256": "1191c47275eacf55958302f85d419425432f985342fa2152a17f39483c0ed63c",
+    "bytes": 394
+  },
+  "outputs/comparators/quaids_quarter_8_permonth_size/hicksian_matrix.csv": {
+    "sha256": "938a5ccfef0e67938fe186eff2090380b0468070522951114fb204c606f97955",
+    "bytes": 1299
+  },
+  "outputs/comparators/quaids_quarter_8_permonth_size/marshallian_matrix.csv": {
+    "sha256": "d34d14d4a27c64c13ed1960607f0ed2cdbbac626745ee3b31f0848b786e3b254",
+    "bytes": 1325
+  },
+  "outputs/comparators/quaids_quarter_8_permonth_size/raw_parameters.csv": {
+    "sha256": "09cbceeb972e4ef7f4707f05520f5acdff81f66cd3f25eab3bb8c3c4a90fdbfb",
+    "bytes": 1226
+  },
+  "outputs/comparators/quaids_quarter_8_permonth_size/representative_elasticities.csv": {
+    "sha256": "13ed5c9c030000523396362fa0e4b523716a2af330734a79effad8f145d1d447",
+    "bytes": 667
+  },
+  "outputs/comparators/quaids_quarter_9/candidates.csv": {
+    "sha256": "09232aeef61f605d1852551911865be625234e716ec3525035e7f892313206e6",
+    "bytes": 203
+  },
+  "outputs/comparators/quaids_quarter_9/fit_summary.csv": {
+    "sha256": "c76be8ba15d14eebd0b9f60ab7e3ea59bb3c4324fe2de671be7be603a17b1dbe",
+    "bytes": 393
+  },
+  "outputs/comparators/quaids_quarter_9/hicksian_matrix.csv": {
+    "sha256": "e6a0f501bbb86d25b9cfd0a1fe1072a1d8669fc5a9dafe4ba4a51490695388e4",
+    "bytes": 1632
+  },
+  "outputs/comparators/quaids_quarter_9/marshallian_matrix.csv": {
+    "sha256": "fa880b55fbd5c0b92202c8f4e941fdd03abecfafb9e1a06e4d8a1dbf3df30792",
+    "bytes": 1667
+  },
+  "outputs/comparators/quaids_quarter_9/raw_parameters.csv": {
+    "sha256": "15ccd8aa5ace58c75769afe199581a61ff18e1973c31a8a4adc92bf7c12d2cda",
+    "bytes": 1511
+  },
+  "outputs/comparators/quaids_quarter_9/representative_elasticities.csv": {
+    "sha256": "2a5861cd61ec7ebd4581fbdb78b0aed89e4a253833b3eb4844339dfefcce9985",
+    "bytes": 739
+  },
+  "outputs/comparators/quaids_year_8/candidates.csv": {
+    "sha256": "0c50308e78875469027dc39263a22817d3c1943244bec9c8d7790670d9670e8a",
+    "bytes": 204
+  },
+  "outputs/comparators/quaids_year_8/fit_summary.csv": {
+    "sha256": "26d0aebba14c87f93859357581d670f0aa8c2356f9079b036c5d7e0983fd456a",
+    "bytes": 393
+  },
+  "outputs/comparators/quaids_year_8/hicksian_matrix.csv": {
+    "sha256": "d57b76288cd1aa90a221516360ebf001d9b426c664323712d605d02ec245f5a2",
+    "bytes": 1295
+  },
+  "outputs/comparators/quaids_year_8/marshallian_matrix.csv": {
+    "sha256": "423365eca9166e90aa57a4134c72aca4cc48a97d4ba8dddde000e2f85d68addb",
+    "bytes": 1326
+  },
+  "outputs/comparators/quaids_year_8/raw_parameters.csv": {
+    "sha256": "3aa019870f3e65958b0673bae085dc13503bb21ce9fc962abea4887a4c70fed3",
+    "bytes": 1231
+  },
+  "outputs/comparators/quaids_year_8/representative_elasticities.csv": {
+    "sha256": "af4ba36359a88e7ab644bb9b91d976d158237961ea1228a6dc10aa4991b2f2e8",
+    "bytes": 669
+  },
+  "outputs/comparators/quaids_year_8_permonth_size/candidates.csv": {
+    "sha256": "481de49eab5ea1973f9a1fc0e8538a6fe6fc291b5e9f8f3e57b7e0ce6315eeb0",
+    "bytes": 205
+  },
+  "outputs/comparators/quaids_year_8_permonth_size/fit_summary.csv": {
+    "sha256": "b15b142bc1f7da7e19c66345b418bef0ad9b0371db08421d3128591223ce7b8b",
+    "bytes": 393
+  },
+  "outputs/comparators/quaids_year_8_permonth_size/hicksian_matrix.csv": {
+    "sha256": "705581552e588b5218ca82e3aaa491d0db39db5a32eceb78d8c02df59adb5f99",
+    "bytes": 1302
+  },
+  "outputs/comparators/quaids_year_8_permonth_size/marshallian_matrix.csv": {
+    "sha256": "0e9758993ab6c2b2e513b872fcbb1417fb6a4a83272456c6a2d744dc100a0d72",
+    "bytes": 1335
+  },
+  "outputs/comparators/quaids_year_8_permonth_size/raw_parameters.csv": {
+    "sha256": "eaadfcadfe9e8b24a251a8a5e94ab58121c5c70dcb362d5b56ed777f349f6abd",
+    "bytes": 1226
+  },
+  "outputs/comparators/quaids_year_8_permonth_size/representative_elasticities.csv": {
+    "sha256": "31351c6c1538719d24329f33a5cbaedd87aa82932b8fa5c5969bf2b33d0feb0c",
+    "bytes": 670
+  },
+  "outputs/corner/attribute_stability_scope.csv": {
+    "sha256": "dbece3631963984dae928739831afbc48e30be60706593ea17959a932c05cac4",
+    "bytes": 492
+  },
+  "outputs/corner/budget_response_curve_all_4_families.csv": {
+    "sha256": "12c95fae7f589e7bdb8dfca032dbf6e6e3904992fdc9d4afe3a5ac12dfd1e429",
+    "bytes": 23069
+  },
+  "outputs/corner/checkpoint_start1.csv": {
+    "sha256": "8e478999b3010427879db5c84a8ff1707ec3645475a7b9b1c1c35c3f9249e791",
+    "bytes": 591
+  },
+  "outputs/corner/checkpoint_start2.csv": {
+    "sha256": "7ab21e0bf326195bd9649cfab29b2ce1f57d7ae96256458d4a1e9d25660fd417",
+    "bytes": 595
+  },
+  "outputs/corner/checkpoint_start99.csv": {
+    "sha256": "8092a0aee6625ddf6ace3357f254611f65d8598bb6a4efe7c4ae92ca64e80069",
+    "bytes": 407
+  },
+  "outputs/corner/constant_mean_baseline_holdout_metrics.csv": {
+    "sha256": "9aa64eca5aa823a77a9a29ab472792c569da7fb457d763e8883f8b113c8c7d78",
+    "bytes": 487
+  },
+  "outputs/corner/estimated_free_parameters.csv": {
+    "sha256": "b378ea80b88d225f5f8155b99bc42bace4af80c726af10e2beb63a742898aeda",
+    "bytes": 508
+  },
+  "outputs/corner/estimated_parameters.csv": {
+    "sha256": "1caf6e8ab62f63d0fd4121d20924d9ca55e24c838d8d7d5c957f377532afcbdd",
+    "bytes": 711
+  },
+  "outputs/corner/fit_status.csv": {
+    "sha256": "b6588c1cb6b2fb532c03d2ea99c70c3ebd5a7ee87407287608e161d54aaf564b",
+    "bytes": 776
+  },
+  "outputs/corner/fitted_solver_checks.csv": {
+    "sha256": "76f4d0d43ac64111918774fbe8a5e092232a981e8f9b134df70f6a6aa6647cd0",
+    "bytes": 443
+  },
+  "outputs/corner/forecast_numeric_validation.csv": {
+    "sha256": "ac8f3496718be974e2b0677cf644f2078a9a2f9cab04e26eaec1bbd22de475f7",
+    "bytes": 152
+  },
+  "outputs/corner/full_sample_descriptive.csv": {
+    "sha256": "a0737accc2047e9d8496c04dd86f2d640880e786f5462b013102da785fcc93a6",
+    "bytes": 612
+  },
+  "outputs/corner/holdout_fit.csv": {
+    "sha256": "3cbeb3c18538793a7a11dcd5deb79ac05d1d2326f35178a1a7ea9193ba67d831",
+    "bytes": 735
+  },
+  "outputs/corner/independent_variation_scope.csv": {
+    "sha256": "f61fe4baba61243f544cbfea162147be451dae670a4998f45fcf2eac42f2c29b",
+    "bytes": 201
+  },
+  "outputs/corner/integration_sensitivity_no_refit.csv": {
+    "sha256": "0c83240d12da9da53bf31749ebcb4898992e8db062d3d1939bbd29d4baf4ce2a",
+    "bytes": 80
+  },
+  "outputs/corner/median_budget_purchase_probabilities.csv": {
+    "sha256": "2fc8f9f97a555ae5c6c2badb5cb4a4de24c51fe5171c4e7a0380274cffe95f9f",
+    "bytes": 1883
+  },
+  "outputs/corner/moment_jacobian_singular_values.csv": {
+    "sha256": "9522c9c1757fda1ea5cc523aa4f831e47a1c315d855932faec4b956814ead01e",
+    "bytes": 689
+  },
+  "outputs/corner/optimizer_starts_status.csv": {
+    "sha256": "b2bf202b18a3d371faf9d68e8efa5b85266699642196a40e6e5efbe244bf8ebb",
+    "bytes": 186
+  },
+  "outputs/corner/own_price_and_budget_at_median_all_4_families.csv": {
+    "sha256": "b12358ce2780b86288dbc5370585ac79cd5746d38683f31d56a7bf1a5545b836",
+    "bytes": 10064
+  },
+  "outputs/corner/pairwise_purchase_joint_and_correlation.csv": {
+    "sha256": "7351f2175a5ecad28b8d6342d9aa670d470ece1e65c86960b2a14aafa3a8ca86",
+    "bytes": 4857
+  },
+  "outputs/corner/point_prediction_metrics.csv": {
+    "sha256": "12670daacf51d27328ab42891d07656ba0171c62aa439c7b876ecf0d96845647",
+    "bytes": 759
+  },
+  "outputs/corner/price_response_all_4_families.csv": {
+    "sha256": "414ee3e997cd86d17f185836db338cc7319659fa74136f2efcc6578cf54f14cc",
+    "bytes": 36693
+  },
+  "outputs/corner/restricted_8_all_255_sets_validation.csv": {
+    "sha256": "1841a51c550a28df6b7ba029b09e4fcae335c7fff7e5843bc874fad58cc47a2a",
+    "bytes": 24483
+  },
+  "outputs/corner/support_moment_sensitivity_no_refit.csv": {
+    "sha256": "a12cee8cd232b0de4697439fa845cdb820746ab9b04b6d96d6a3e0db50fb24b0",
+    "bytes": 3446
+  },
+  "outputs/corner/synthetic_checkpoint_start99.csv": {
+    "sha256": "71b793a84669bac1066b8ce1ba40395111593522ba38fedf6b110704cf7d5162",
+    "bytes": 395
+  },
+  "outputs/corner/synthetic_validation.csv": {
+    "sha256": "5c766e90e1ebf811d7ec53a8e6bda226a0bd84e74abf4b2ecd65a7c191849b7e",
+    "bytes": 34213
+  },
+  "outputs/corner/training_fit.csv": {
+    "sha256": "f0bca2156d76edfc00c44c06ade1c146dbf8a967969733953828b316533501aa",
+    "bytes": 729
+  },
+  "outputs/corner_scenarios/family_income_growth_32.csv": {
+    "sha256": "eeb7daf67341cef321cf1898acb46462250464d2f50d6bff4334b8417440dc96",
+    "bytes": 109288
+  },
+  "outputs/corner_scenarios/integration_sensitivity_32_64.csv": {
+    "sha256": "e8d0377e69a38c120e68ef76335ddca61b2aeef14e75314ef11030793a0095c7",
+    "bytes": 2034
+  },
+  "outputs/corner_scenarios/province_income_growth_32.csv": {
+    "sha256": "dd4533d9ca620ffa7716efc4976d3243c0f1051c1e65c7ecb811a564a1a2e9a2",
+    "bytes": 650192
+  },
+  "outputs/data_audit/attribute_stability_summary.csv": {
+    "sha256": "43848b2ca88bbcd4a418260c7fec58a0126c424450238850f85cc8ca592a9f57",
+    "bytes": 931
+  },
+  "outputs/data_audit/basket_weights_2021_8.csv": {
+    "sha256": "04730d0614a911815b5a290a4445edea7d87d6d08bf00265da15feac74ed01ce",
+    "bytes": 698
+  },
+  "outputs/data_audit/basket_weights_2021_9.csv": {
+    "sha256": "db12c9161fe3a2ac0fd65f7b712e405fdbf0cd49581121094192d349c14b13ca",
+    "bytes": 696
+  },
+  "outputs/data_audit/basket_weights_training_8.csv": {
+    "sha256": "6db126a1898ab3193689ff15867a8c285873db05c5db0d868ff25abbe0d5ed2a",
+    "bytes": 737
+  },
+  "outputs/data_audit/basket_weights_training_9.csv": {
+    "sha256": "0ee62180bb98f07f29aefc75deee6338e7f1fb1f719d0fc2b19dd2b7d656938c",
+    "bytes": 735
+  },
+  "outputs/data_audit/category_province_year_spending.csv": {
+    "sha256": "c5b7cb6c071ce64432d20cb737eeb4cb6ab6c6390c7629f42e8959fcffcfb30c",
+    "bytes": 89313
+  },
+  "outputs/data_audit/coarse_cells_summary.csv": {
+    "sha256": "6b5bea72d420dd9642a8f7ab62d36a2382940e8bd8ce35e4bdd9d2b3d0927c1c",
+    "bytes": 458
+  },
+  "outputs/data_audit/corner_derivative_review.csv": {
+    "sha256": "14232106175a74290dbb9028dede050a2b0582678e0b85d5a6eb025497b17a26",
+    "bytes": 347
+  },
+  "outputs/data_audit/corner_integration_baseline_quantity.csv": {
+    "sha256": "d31fd2bad8052467f7c61206a772ec2a5c755f7891254bc5f1d2c8f741d1e060",
+    "bytes": 659
+  },
+  "outputs/data_audit/corner_integration_growth50_income_elasticity.csv": {
+    "sha256": "76b68fc813c514a112f54254841d6abf02eb3c59121b4ab7655ade323a772d29",
+    "bytes": 678
+  },
+  "outputs/data_audit/corner_integration_growth50_quantity_index.csv": {
+    "sha256": "5fc2b90ac1ee37e93fee4506c016f3f557f17ee71da0023cc908c8af4315d02c",
+    "bytes": 665
+  },
+  "outputs/data_audit/corner_integration_review.csv": {
+    "sha256": "2210b6a6c09ebd470edef60a51b395db968f46d2cf37cd62413c5c000029326a",
+    "bytes": 1057
+  },
+  "outputs/data_audit/corner_integration_step_summary.csv": {
+    "sha256": "7e06958874c2c5562727abd9ecbe14ae2a155860683e6473bf195e74d89cb1bb",
+    "bytes": 746
+  },
+  "outputs/data_audit/corner_integration_summary.csv": {
+    "sha256": "160329cdd4b3831db22ecfa50e689656e9204d23e1d75599209b3b663971e621",
+    "bytes": 19580
+  },
+  "outputs/data_audit/external_price_category_descriptives.csv": {
+    "sha256": "f91438e42d335a9c595e017654673acf496ec680c5f978bffdd5af4eca79adca",
+    "bytes": 2561
+  },
+  "outputs/data_audit/final_corner_review.csv": {
+    "sha256": "84334fcb18826ad598aaba3900b950a26e44de04c94d85a9c72bf6c58bbb78f9",
+    "bytes": 534
+  },
+  "outputs/data_audit/final_data_review_checks.csv": {
+    "sha256": "a022411e0546990a2d458400ff99b69824566d913891f94e7ea810693299da68",
+    "bytes": 299
+  },
+  "outputs/data_audit/final_elasticity_review.csv": {
+    "sha256": "20c2fd925d802fd4dcade8ab0d1b24364c970048b511df8a4b5ca783d28ee52d",
+    "bytes": 15129
+  },
+  "outputs/data_audit/final_elasticity_sign_counts.csv": {
+    "sha256": "d7f8523e963b93fcc2c8111f9dbaa090ed8e42bfa5f0f89063aeed7727030988",
+    "bytes": 275
+  },
+  "outputs/data_audit/final_scenario_review.csv": {
+    "sha256": "ff95f4dc259eb2671f7fa3d4ed27dbb125cff026b96cafd929efddd8addb9f51",
+    "bytes": 593
+  },
+  "outputs/data_audit/frequency_diagnostics.csv": {
+    "sha256": "d3200faafdc15acca3e2457c81a4bbc599b59ce1633b2cf9d05a19378f65f6d7",
+    "bytes": 4604
+  },
+  "outputs/data_audit/group_price_coverage_8.csv": {
+    "sha256": "0cd367df3b5cc3fa4eb833d1a99cb7834c9f85b71cee4278ec5a98573d295b68",
+    "bytes": 387
+  },
+  "outputs/data_audit/group_price_coverage_9.csv": {
+    "sha256": "96b44226ae6747bc4305d0d84c4cc49e6aafb16675b688e8a1c164c1741c796b",
+    "bytes": 424
+  },
+  "outputs/data_audit/item_active_month_descriptives.csv": {
+    "sha256": "2d57a0022e827eefc2c18ada8c24fc6397ab4462ed18d12538bf3531ab730f2c",
+    "bytes": 1650
+  },
+  "outputs/data_audit/item_duplicate_price_audit.csv": {
+    "sha256": "43467226bfd272a038f644da71d0b03c5976b9fdc10f24037c58b5385f7ddafe",
+    "bytes": 2618
+  },
+  "outputs/data_audit/item_transaction_descriptives.csv": {
+    "sha256": "cd85fe24ab57cf182967d3f7be752575cb3a552e96de8b88ee93217194cbd9d1",
+    "bytes": 10943
+  },
+  "outputs/data_audit/permonth_size_sensitivity.csv": {
+    "sha256": "b2003276cb31beefa691c2ffc9af3786ac52973cf2798026c4fc03077b6c4dc4",
+    "bytes": 14173
+  },
+  "outputs/data_audit/prediction_numeric_test1.csv": {
+    "sha256": "6d6ebf78d8c2d538e9d404380bc6b824c6de216018c5fa5b5837dcd282e76f63",
+    "bytes": 981
+  },
+  "outputs/data_audit/prediction_numeric_test2.csv": {
+    "sha256": "ce89bf1bfd343e37376b0a72f6a7fa3ef01c200ac92ce3e763b1192862770c2b",
+    "bytes": 981
+  },
+  "outputs/data_audit/prediction_numeric_test3.csv": {
+    "sha256": "838290cc5460ad20e49c56d7bf8ffd79e48d0093a072f34eca1e6345bced1567",
+    "bytes": 733
+  },
+  "outputs/data_audit/prediction_numeric_test4.csv": {
+    "sha256": "b41967c1c98b0d5689885ef52993a326e1314ef04a7670b7852ec3c90dfed083",
+    "bytes": 972
+  },
+  "outputs/data_audit/prediction_numeric_test5.csv": {
+    "sha256": "a50380fb106a5446eaa2e28e115f78214bbb55bd71ce4c409f38e1041382b973",
+    "bytes": 1358
+  },
+  "outputs/data_audit/prediction_numeric_test6.csv": {
+    "sha256": "577b3b93a6fed63b0113848c809f03df2b3fffe625e133387e651d3e9e8023a2",
+    "bytes": 981
+  },
+  "outputs/data_audit/prediction_numeric_test7.csv": {
+    "sha256": "87e9feda546b4c240adbba0886cc1046a81a847c3cc0b684caef420e056c919d",
+    "bytes": 1376
+  },
+  "outputs/data_audit/sample_flow.csv": {
+    "sha256": "6578cde534c442c20c4f7e31946e1a01fb4fea2d78f79be35b9bf2c510135b24",
+    "bytes": 1356
+  },
+  "outputs/data_audit/validation_metrics.csv": {
+    "sha256": "1237b48891d149b876e54a93cbe6097f59d90a78eccc04255802e637245e4130",
+    "bytes": 1241
+  },
+  "outputs/data_audit/window_spending_descriptives.csv": {
+    "sha256": "47f252977bd32cee4107eecc0be51da9c1fc5fd725239251f8cd389eb0b958ae",
+    "bytes": 2195
+  },
+  "outputs/delivery_status.json": {
+    "sha256": "bfefebd5ee84c0bfc4c91f8f6abb733d54c76cb503904d1259a5a47dadd29abb",
+    "bytes": 350
+  },
+  "outputs/estimation/RUN_STATUS.md": {
+    "sha256": "7329fc287945b4b1ac1735f569a4f8024e31829bc8d8a39658b2bd556b8510b6",
+    "bytes": 5112
+  },
+  "outputs/estimation/aidads_8/RUN_STATUS.md": {
+    "sha256": "7bf77050c9e210402f9f7921672620602517ceda702032c0180a6c739cfa4c6f",
+    "bytes": 423
+  },
+  "outputs/estimation/aidads_8_warm/audit.csv": {
+    "sha256": "174c5cf701ae1cf0002e42f6c742b77dc8dfd49e70bcea7f3b54b49a5924fc86",
+    "bytes": 1216
+  },
+  "outputs/estimation/aidads_8_warm/candidates.csv": {
+    "sha256": "0e79ecaaa309582322257022ad59c11c584693093c2a95d5a5d42dd226005ec0",
+    "bytes": 369
+  },
+  "outputs/estimation/aidads_8_warm/elasticity_distribution.csv": {
+    "sha256": "a006c48401b4ac71bd13d3654778229cfdf4f85092ac21a717efe3d4e946996f",
+    "bytes": 1337
+  },
+  "outputs/estimation/aidads_8_warm/model_summary.csv": {
+    "sha256": "2c9c6134eef0165a9f064f32adf0d64039d3549cdcd1b7f0e56a4e698d669de6",
+    "bytes": 263
+  },
+  "outputs/estimation/aidads_8_warm/parameters.csv": {
+    "sha256": "b3b4f8bf0f3af8de650a6e34935624125ef0e372257427ac82c463070adf0d96",
+    "bytes": 476
+  },
+  "outputs/estimation/aidads_8_warm/raw_parameters.csv": {
+    "sha256": "08fc230c5dc64216d2bef53a1b8a392a761c3b31ff1323a2bcc2378f361ebbed",
+    "bytes": 576
+  },
+  "outputs/estimation/aidads_8_warm/representative_budget_elasticities.csv": {
+    "sha256": "922873540e7744ffcf10dd7ad963bd449847b62bdfd0740932b9855515864ed2",
+    "bytes": 750
+  },
+  "outputs/estimation/aidads_8_warm/representative_inputs.csv": {
+    "sha256": "90066b2d08433b655759d6c1201a94df026e817ef56025d48e9c207e71aef4bc",
+    "bytes": 292
+  },
+  "outputs/estimation/aidads_8_warm/representative_price_elasticities.csv": {
+    "sha256": "f49f691195575b37b3c770710c9625469cf6b16c9128ea7bc3ad8fbf5c464d68",
+    "bytes": 2470
+  },
+  "outputs/estimation/aidads_8_warm/scale.csv": {
+    "sha256": "2be43822080f4ce42948bc811086db6546ed23c337aa10e9d87863605d0d467e",
+    "bytes": 180
+  },
+  "outputs/estimation/aidads_8_year/audit.csv": {
+    "sha256": "5a56447216ffef2b8ebf77e23d1bdbf9130d8f59586d9b31bc0ae0f86290b908",
+    "bytes": 1214
+  },
+  "outputs/estimation/aidads_8_year/candidates.csv": {
+    "sha256": "ca1739fc044319b7532530ff1c639fb2a8a255e28c7777d29ae8d06f896be99e",
+    "bytes": 367
+  },
+  "outputs/estimation/aidads_8_year/elasticity_distribution.csv": {
+    "sha256": "5597064f593cb0fbe0e61eb8d360244c96f1b497ffd8b2c9e076ed357c2363d2",
+    "bytes": 1337
+  },
+  "outputs/estimation/aidads_8_year/model_summary.csv": {
+    "sha256": "69ffe38d3d5052460ec34d822089a1e3d736f37adf18c033f389609c76627e94",
+    "bytes": 263
+  },
+  "outputs/estimation/aidads_8_year/parameters.csv": {
+    "sha256": "e3cbfaad654b657d7fb51e621e253941974ca3afd8716ab230e7b003d077843e",
+    "bytes": 554
+  },
+  "outputs/estimation/aidads_8_year/raw_parameters.csv": {
+    "sha256": "ee54229db6a928e1bd1de6ba7d4958a7801f9f953f5b2db9e941a0c6d8bc9355",
+    "bytes": 619
+  },
+  "outputs/estimation/aidads_8_year/representative_budget_elasticities.csv": {
+    "sha256": "4afc25fd0a6153bcb24cd41dea79ab9fea0d22c4b0419b68f87c7382e2f97f7b",
+    "bytes": 748
+  },
+  "outputs/estimation/aidads_8_year/representative_inputs.csv": {
+    "sha256": "900220eef5ee45cd5e8e7223e40f3a5a00899b8bdd4104e44f19b5c4f58a7f26",
+    "bytes": 293
+  },
+  "outputs/estimation/aidads_8_year/representative_price_elasticities.csv": {
+    "sha256": "9dc5b14f707144398c69fd0d1ba28cacb6622d758adbe9cc7445bffa54445ad1",
+    "bytes": 2472
+  },
+  "outputs/estimation/aidads_8_year/scale.csv": {
+    "sha256": "d866e26ce2a6dcaef536c48870a9cbceee5fdea1531718a83d3c2dcc3f1cfb38",
+    "bytes": 182
+  },
+  "outputs/estimation/api_test/audit.csv": {
+    "sha256": "3d21fad11c450e4f5b022fdf711bc2a6192b1f40b9259b95af200e2327eef582",
+    "bytes": 1458
+  },
+  "outputs/estimation/api_test/candidates.csv": {
+    "sha256": "0519225fd93d881e5c9cfe45aee1f84f74e581c257933db15f01e18c197f8cab",
+    "bytes": 230
+  },
+  "outputs/estimation/api_test/elasticity_distribution.csv": {
+    "sha256": "196be63803cad1bf334555a55b605e9be1b520448bc1e91da4e98c9bbc517bc7",
+    "bytes": 442
+  },
+  "outputs/estimation/api_test/model_summary.csv": {
+    "sha256": "d85cbe7467c4490f4c56ffc7e43567b46b538b99b0771da8261527353f7b291a",
+    "bytes": 257
+  },
+  "outputs/estimation/api_test/parameters.csv": {
+    "sha256": "f2a804e14f4b65fc9201e38befe6f323574bf2802365df455714cc484c8987aa",
+    "bytes": 130
+  },
+  "outputs/estimation/api_test/raw_parameters.csv": {
+    "sha256": "513c1ffbdfcc83e97e00ab56433f1a5a4a62f103c518e602071614b1c1ee4685",
+    "bytes": 133
+  },
+  "outputs/estimation/api_test/representative_budget_elasticities.csv": {
+    "sha256": "37a7c5f83a25e20da6ac1df13ac23d02c2c932a536a4b963d386935c0c28b000",
+    "bytes": 244
+  },
+  "outputs/estimation/api_test/representative_inputs.csv": {
+    "sha256": "880e46b318fc020bf82f764388c0a58aeb23d21391b871b49d95d58fecbafd12",
+    "bytes": 90
+  },
+  "outputs/estimation/api_test/representative_price_elasticities.csv": {
+    "sha256": "2236563dda8002962ba1ad4a723762ddbf1d6c7bfb3affed9324a40ba949b1b4",
+    "bytes": 186
+  },
+  "outputs/estimation/api_test/scale.csv": {
+    "sha256": "888d3ac1f51c88f4d01a1570e771f89768b0e7440a87c983aa697ad7d573e7bd",
+    "bytes": 76
+  },
+  "outputs/estimation/maidads_8/RUN_STATUS.md": {
+    "sha256": "fd528657e4ef65cac3dfb685a786f3a3c435a697c2b53d356552e056d9eee2e4",
+    "bytes": 425
+  },
+  "outputs/estimation/maidads_8_coarse/audit.csv": {
+    "sha256": "70bce8531c87cfc32cf3748b46480e5333a89537d00288ae9daa5255752fabd8",
+    "bytes": 1473
+  },
+  "outputs/estimation/maidads_8_coarse/candidates.csv": {
+    "sha256": "bc2d1eedb4b39d71ff59100dc3d39c4a6d19ccbcdfd0cad40928ccc12f7ef7f0",
+    "bytes": 236
+  },
+  "outputs/estimation/maidads_8_coarse/elasticity_distribution.csv": {
+    "sha256": "7aefdb75a1725534e81f751b036f013917e1f3858aa4d95175e991153c522813",
+    "bytes": 1340
+  },
+  "outputs/estimation/maidads_8_coarse/model_summary.csv": {
+    "sha256": "75728eb94a5a6266b393efe9c6a07e49cc8fe5445afc4c357e01a495562eea9e",
+    "bytes": 278
+  },
+  "outputs/estimation/maidads_8_coarse/parameters.csv": {
+    "sha256": "906825a1cb57f53d0bdf9dcec9701be0e6275ab37623da7621cfe705f8561741",
+    "bytes": 534
+  },
+  "outputs/estimation/maidads_8_coarse/raw_parameters.csv": {
+    "sha256": "ae9850ab755f49429227e1235cdcf60f4029194314dfe4855b80c0a7dd1a5fff",
+    "bytes": 796
+  },
+  "outputs/estimation/maidads_8_coarse/representative_budget_elasticities.csv": {
+    "sha256": "dbbb4e4af7a95efcdb49554948e65bd5b945130ec6ddce24ad9e15d3bf251a95",
+    "bytes": 750
+  },
+  "outputs/estimation/maidads_8_coarse/representative_inputs.csv": {
+    "sha256": "3205f0f2482fefc31f20e519429b355ec2e6bb9d60cd182836b4a18bb2738637",
+    "bytes": 294
+  },
+  "outputs/estimation/maidads_8_coarse/representative_price_elasticities.csv": {
+    "sha256": "9695fd0adf49ec2c1c1d92ccb7be6eed82b4fc61e4b5805609938f58524efb0e",
+    "bytes": 2471
+  },
+  "outputs/estimation/maidads_8_coarse/scale.csv": {
+    "sha256": "2971f71fd33957e815b7b41c89ede7684d6cbf851948bacf51a926912963b0fa",
+    "bytes": 184
+  },
+  "outputs/estimation/maidads_8_init100/audit.csv": {
+    "sha256": "28c265369b9640ec6836b7f36a460d3ebd12867c17f7c89414645eebc0d2130e",
+    "bytes": 1562
+  },
+  "outputs/estimation/maidads_8_init100/candidates.csv": {
+    "sha256": "7a6f8a4195a4d855c86d2caf5e4308487f010f77a2a122c84fc2a64118476332",
+    "bytes": 232
+  },
+  "outputs/estimation/maidads_8_init100/elasticity_distribution.csv": {
+    "sha256": "771b19c5faf7adb69428eee5dfd7d7957b691a282d845328539af233c550d843",
+    "bytes": 1346
+  },
+  "outputs/estimation/maidads_8_init100/model_summary.csv": {
+    "sha256": "8e4c3d4627d4dfcc6fafb70ff3c12e7ac18b018c511cd536d5d322ff7402fd84",
+    "bytes": 274
+  },
+  "outputs/estimation/maidads_8_init100/parameters.csv": {
+    "sha256": "f18f22fd98b798a81179055ed94fc8ae600ed3fc8c49c49485b2ea3d4b8321b0",
+    "bytes": 518
+  },
+  "outputs/estimation/maidads_8_init100/raw_parameters.csv": {
+    "sha256": "3287fed958248860306203cfe550a69bc01e4ef966d221115b9bab905c241a1e",
+    "bytes": 799
+  },
+  "outputs/estimation/maidads_8_init100/representative_budget_elasticities.csv": {
+    "sha256": "3ce18790b4d64e27c9dbcafc0435e392647a8cb7f61162a1d2359b2bd2360ca4",
+    "bytes": 747
+  },
+  "outputs/estimation/maidads_8_init100/representative_inputs.csv": {
+    "sha256": "90066b2d08433b655759d6c1201a94df026e817ef56025d48e9c207e71aef4bc",
+    "bytes": 292
+  },
+  "outputs/estimation/maidads_8_init100/representative_price_elasticities.csv": {
+    "sha256": "d42fcbaf5df9b9a7da86bdebfcaf6cd0550edd86652749d898ac71f6930621d7",
+    "bytes": 2472
+  },
+  "outputs/estimation/maidads_8_init100/scale.csv": {
+    "sha256": "2be43822080f4ce42948bc811086db6546ed23c337aa10e9d87863605d0d467e",
+    "bytes": 180
+  },
+  "outputs/estimation/maidads_8_tangent/KERNEL_VERSION.txt": {
+    "sha256": "5b45277e24aed3c4c49d87314b603f5165437b0ed18355980f1b16ae19b22619",
+    "bytes": 233
+  },
+  "outputs/estimation/maidads_8_tangent/audit.csv": {
+    "sha256": "d0dd9e2ace791b776b630b31df0f2a20add1fca84cdce05750fcb38f4cb89f19",
+    "bytes": 1562
+  },
+  "outputs/estimation/maidads_8_tangent/candidates.csv": {
+    "sha256": "0cc51636413453f0929590aa3c8f285b6c7c9706f70eb80628917c937baa2a1f",
+    "bytes": 370
+  },
+  "outputs/estimation/maidads_8_tangent/elasticity_distribution.csv": {
+    "sha256": "ac688f3043c01d70425ca8eb1cc0db626907b124854ce5c41834f7299bc90674",
+    "bytes": 1344
+  },
+  "outputs/estimation/maidads_8_tangent/model_summary.csv": {
+    "sha256": "e961b011c6822ff88f617f8371abb001f32685c3c2ffe1213779f9f4fe58b670",
+    "bytes": 278
+  },
+  "outputs/estimation/maidads_8_tangent/parameters.csv": {
+    "sha256": "9c44e5c460e41605eb48ef951f8baed4f33e216b7d70950d2a176a074a2a5f3f",
+    "bytes": 522
+  },
+  "outputs/estimation/maidads_8_tangent/raw_parameters.csv": {
+    "sha256": "ab5e440abc38519eb1f8886b21bdf1a6ac2a07d85b88b7ee8e87cd3dfbdf41df",
+    "bytes": 806
+  },
+  "outputs/estimation/maidads_8_tangent/representative_budget_elasticities.csv": {
+    "sha256": "87cc913efb0de7f3197f90f0d36cdeced85a9657ae96e11a40123562d8ec8659",
+    "bytes": 748
+  },
+  "outputs/estimation/maidads_8_tangent/representative_inputs.csv": {
+    "sha256": "90066b2d08433b655759d6c1201a94df026e817ef56025d48e9c207e71aef4bc",
+    "bytes": 292
+  },
+  "outputs/estimation/maidads_8_tangent/representative_price_elasticities.csv": {
+    "sha256": "535fe9c418fea50747a9e77e3d1caacb50189164a3604407969b59a121aa1c8c",
+    "bytes": 2463
+  },
+  "outputs/estimation/maidads_8_tangent/scale.csv": {
+    "sha256": "2be43822080f4ce42948bc811086db6546ed23c337aa10e9d87863605d0d467e",
+    "bytes": 180
+  },
+  "outputs/estimation/maidads_8_warm/audit.csv": {
+    "sha256": "087a8a136c0dc0c4b88fceadc8c8261614faa38fbc7b3cc631f83b7d0cd46bc5",
+    "bytes": 1216
+  },
+  "outputs/estimation/maidads_8_warm/candidates.csv": {
+    "sha256": "26910fc525e97bf2e9ac034c97d47d7d30e225be8ccf38e40d1f18c18a4bad3b",
+    "bytes": 368
+  },
+  "outputs/estimation/maidads_8_warm/elasticity_distribution.csv": {
+    "sha256": "0d46fdf5b768b09c451649325b3706e309a2a11551b447474f091da5997d95a4",
+    "bytes": 1343
+  },
+  "outputs/estimation/maidads_8_warm/model_summary.csv": {
+    "sha256": "bbee8d4c0488e483c5efb5fa20b6bcd999a2ed346a1d2673b698e4496770a164",
+    "bytes": 277
+  },
+  "outputs/estimation/maidads_8_warm/parameters.csv": {
+    "sha256": "8c0b0a1b09169f90763e9c832669989ead4846cca9de91fdf6fc1a46016f8d68",
+    "bytes": 517
+  },
+  "outputs/estimation/maidads_8_warm/raw_parameters.csv": {
+    "sha256": "b6340143ff14d5e39390fbafbe709d575215a36ec6cd05cacd1ea8059497d01a",
+    "bytes": 804
+  },
+  "outputs/estimation/maidads_8_warm/representative_budget_elasticities.csv": {
+    "sha256": "492cce726ece4fea8f67829985cb67f65cb842eb86b7e57bf3fdeacaa50ee3e9",
+    "bytes": 747
+  },
+  "outputs/estimation/maidads_8_warm/representative_inputs.csv": {
+    "sha256": "90066b2d08433b655759d6c1201a94df026e817ef56025d48e9c207e71aef4bc",
+    "bytes": 292
+  },
+  "outputs/estimation/maidads_8_warm/representative_price_elasticities.csv": {
+    "sha256": "b6fdc518a405644ab8d412d0e01e90a0a4f35154364075b0e6b12ceccd2f844d",
+    "bytes": 2470
+  },
+  "outputs/estimation/maidads_8_warm/scale.csv": {
+    "sha256": "2be43822080f4ce42948bc811086db6546ed23c337aa10e9d87863605d0d467e",
+    "bytes": 180
+  },
+  "outputs/estimation/maidads_8_year/audit.csv": {
+    "sha256": "3ba8497552856687970fbf88cc73e9f1b6d8b92918a82abf96e588ff077b620d",
+    "bytes": 1214
+  },
+  "outputs/estimation/maidads_8_year/candidates.csv": {
+    "sha256": "460f6a7a0c10d8be4494f25ac986948a1254f1fab7713168dec61bae72939944",
+    "bytes": 369
+  },
+  "outputs/estimation/maidads_8_year/elasticity_distribution.csv": {
+    "sha256": "01b86bf7cd7780590ae5c1e7c8ce3ca2e4ca6882bf9102ec8018b619bc036101",
+    "bytes": 1339
+  },
+  "outputs/estimation/maidads_8_year/model_summary.csv": {
+    "sha256": "74194c36ebc22f9b1259c88de65058314b023750003e63d6d78a2eb13a5152c3",
+    "bytes": 276
+  },
+  "outputs/estimation/maidads_8_year/parameters.csv": {
+    "sha256": "f169c24abe1108da7f600849b6c72972ecb0a08999e8efd1e4e7ba56034e6d68",
+    "bytes": 511
+  },
+  "outputs/estimation/maidads_8_year/raw_parameters.csv": {
+    "sha256": "b479bb9eb4e3b585d386940c6975dba1c85b7ce99ec0d166b0cdd7f62f5b5410",
+    "bytes": 783
+  },
+  "outputs/estimation/maidads_8_year/representative_budget_elasticities.csv": {
+    "sha256": "82b3b36bb2c528263122ab2594b58888cfcf7ff71a3b20e8bb029e8e5da9e29d",
+    "bytes": 749
+  },
+  "outputs/estimation/maidads_8_year/representative_inputs.csv": {
+    "sha256": "900220eef5ee45cd5e8e7223e40f3a5a00899b8bdd4104e44f19b5c4f58a7f26",
+    "bytes": 293
+  },
+  "outputs/estimation/maidads_8_year/representative_price_elasticities.csv": {
+    "sha256": "ea19123922f35fec9c36c726748780e60720c72e2c0231424a2e9beeaebf6fff",
+    "bytes": 2469
+  },
+  "outputs/estimation/maidads_8_year/scale.csv": {
+    "sha256": "d866e26ce2a6dcaef536c48870a9cbceee5fdea1531718a83d3c2dcc3f1cfb38",
+    "bytes": 182
+  },
+  "outputs/estimation/maidads_9/RUN_STATUS.md": {
+    "sha256": "4feb3a2a007f954d59110ee616fb39e74f8c0433a44935eba5df30d3bfdd185b",
+    "bytes": 420
+  },
+  "outputs/estimation/maidads_9_current/RUN_STATUS.md": {
+    "sha256": "f4824191ec91ce7f1f4824c0c78f0a321d4d27a76a7e8d7b9c9acda8f8ac29ae",
+    "bytes": 720
+  },
+  "outputs/estimation/maidads_family_1/audit.csv": {
+    "sha256": "de8fc816695e376a85085770a8d66fe3245df16aadc8dc948cebd3714017e751",
+    "bytes": 1074
+  },
+  "outputs/estimation/maidads_family_1/candidates.csv": {
+    "sha256": "baceb204855096913f45f7b8d728ca7d78610b80390d275c63d208ba71c766d3",
+    "bytes": 299
+  },
+  "outputs/estimation/maidads_family_1/elasticity_distribution.csv": {
+    "sha256": "17217aa6199303c0d9a704d5720655b70b8f638d65209dfd4a382e5b1ae81d6a",
+    "bytes": 1344
+  },
+  "outputs/estimation/maidads_family_1/model_summary.csv": {
+    "sha256": "692c7f1f6d1d2844e2f5c49fe8509e5cabedc55b0ac1eb9eacbc88c8e18b3943",
+    "bytes": 273
+  },
+  "outputs/estimation/maidads_family_1/parameters.csv": {
+    "sha256": "9c958c85328675b8e600794ae5abb061416a70ec7fde096384f43b8198d86c66",
+    "bytes": 539
+  },
+  "outputs/estimation/maidads_family_1/raw_parameters.csv": {
+    "sha256": "0b11c16e1798b4a3feeddf8863942e15abcc6d2b893ede095eff928dad4d1ab2",
+    "bytes": 819
+  },
+  "outputs/estimation/maidads_family_1/representative_budget_elasticities.csv": {
+    "sha256": "cffe4c9b3bb601ef7c4c4f83d989eaf64dd4945e9b8555f1689a72bd5e24b3d5",
+    "bytes": 751
+  },
+  "outputs/estimation/maidads_family_1/representative_inputs.csv": {
+    "sha256": "7215c4057c582e16c4f9a50eb0be794c57dac56875d1551604b296660bc231c2",
+    "bytes": 293
+  },
+  "outputs/estimation/maidads_family_1/representative_price_elasticities.csv": {
+    "sha256": "a65832afb05603c13846cc16bf485a1ab38ec93468a5a59e42d1b2ee9e12753b",
+    "bytes": 2598
+  },
+  "outputs/estimation/maidads_family_1/scale.csv": {
+    "sha256": "2a0dac296a4104b7abdc0f37cab4b979de98d0b43fb88777ec25233e6fd335c6",
+    "bytes": 183
+  },
+  "outputs/estimation/maidads_family_1_current/audit.csv": {
+    "sha256": "c10c1647b712733c864cbd3412d5abd8b0282ee0d547a08212749bd9f435694d",
+    "bytes": 1561
+  },
+  "outputs/estimation/maidads_family_1_current/candidates.csv": {
+    "sha256": "94ae8759e5660a83573e6e1883cb332ebf424e5b92379e082e81f06d0a3ea002",
+    "bytes": 367
+  },
+  "outputs/estimation/maidads_family_1_current/elasticity_distribution.csv": {
+    "sha256": "59baddd64e79edc0093caf757b60137a1f43b53c1742d5ceac9b9925fc17421d",
+    "bytes": 1342
+  },
+  "outputs/estimation/maidads_family_1_current/model_summary.csv": {
+    "sha256": "9e59609449b43d326ee5ce8117c620599f5af56449480b8effbaa77a67df4146",
+    "bytes": 275
+  },
+  "outputs/estimation/maidads_family_1_current/parameters.csv": {
+    "sha256": "a7481e87383aa0dd3ae23a7b29903c583bc48e24a75c4e9121081ee9c8210a38",
+    "bytes": 528
+  },
+  "outputs/estimation/maidads_family_1_current/raw_parameters.csv": {
+    "sha256": "9e9c6a46bf433741a17170be4983b9fceeae5debb890a35357129f31ca5aa2a0",
+    "bytes": 807
+  },
+  "outputs/estimation/maidads_family_1_current/representative_budget_elasticities.csv": {
+    "sha256": "b526d28befdca42d54911b70665a693298b8d05c688fb1cc75e06188bedd38cb",
+    "bytes": 750
+  },
+  "outputs/estimation/maidads_family_1_current/representative_inputs.csv": {
+    "sha256": "7215c4057c582e16c4f9a50eb0be794c57dac56875d1551604b296660bc231c2",
+    "bytes": 293
+  },
+  "outputs/estimation/maidads_family_1_current/representative_price_elasticities.csv": {
+    "sha256": "5cb898381e3d4048fd7ebaeeab83436fa201ebe3e5bcdefd713ee7dd8ee9aa56",
+    "bytes": 2474
+  },
+  "outputs/estimation/maidads_family_1_current/scale.csv": {
+    "sha256": "2a0dac296a4104b7abdc0f37cab4b979de98d0b43fb88777ec25233e6fd335c6",
+    "bytes": 183
+  },
+  "outputs/estimation/maidads_family_2/RUN_STATUS.md": {
+    "sha256": "8340252746818c70f5aaa497ed9bf05cf6e78f70e3028abedc00945e85425912",
+    "bytes": 392
+  },
+  "outputs/estimation/maidads_family_2_current/audit.csv": {
+    "sha256": "cd77608c75e73ca56c7c1a1ea069ff92f2f9ea1c445a4c35ec1e4071f3406cbb",
+    "bytes": 1546
+  },
+  "outputs/estimation/maidads_family_2_current/candidates.csv": {
+    "sha256": "f388769e8904369f9ac2dce11e6870101c6c5a54e9f1f8911fafaa3916212e35",
+    "bytes": 373
+  },
+  "outputs/estimation/maidads_family_2_current/elasticity_distribution.csv": {
+    "sha256": "cad16c2db4d0376f1475ab3330bf7814482bcdf84e6495b5daa3b03546f5fa63",
+    "bytes": 1347
+  },
+  "outputs/estimation/maidads_family_2_current/model_summary.csv": {
+    "sha256": "e1a5d4f333d660ac9df0a24fccc7bc60ba3be5268b0d3399519f5d59d2ddac92",
+    "bytes": 278
+  },
+  "outputs/estimation/maidads_family_2_current/parameters.csv": {
+    "sha256": "2c02d0db999ac45083c3569e54854ca3ed0a161c38d6f2c38d3d0ddd9ca5f786",
+    "bytes": 514
+  },
+  "outputs/estimation/maidads_family_2_current/raw_parameters.csv": {
+    "sha256": "8682315e84f51bc959d1ee54372502fd722d7f93a9f94ee916c0ef9870074814",
+    "bytes": 761
+  },
+  "outputs/estimation/maidads_family_2_current/representative_budget_elasticities.csv": {
+    "sha256": "559ccdd28b907930bcaa2b223ca127def69871abaa0a6de4ccd5ab728b92b858",
+    "bytes": 751
+  },
+  "outputs/estimation/maidads_family_2_current/representative_inputs.csv": {
+    "sha256": "d52a54ee5b016250a5484c87907fe80149673b5d63f0c7a82954eb7267140d0d",
+    "bytes": 293
+  },
+  "outputs/estimation/maidads_family_2_current/representative_price_elasticities.csv": {
+    "sha256": "a0d208cd616565a4010a4f2cfe3848c453c774a4bc3355b0d5f62a90776edd5e",
+    "bytes": 2499
+  },
+  "outputs/estimation/maidads_family_2_current/scale.csv": {
+    "sha256": "87c1e6fcd47bf768bfbb1f14b9a63143b835a76523125fe34ccf0b6d6d8ef201",
+    "bytes": 181
+  },
+  "outputs/estimation/maidads_family_3_current/audit.csv": {
+    "sha256": "62aee2586d165697abec2df2c496ddaa98e1fbabeb5a43b7240f0951db23945d",
+    "bytes": 1560
+  },
+  "outputs/estimation/maidads_family_3_current/candidates.csv": {
+    "sha256": "74e4d8413fbd54fdce9b7716d860dbaa28bb56ea6f661f1d5054fac8617097cf",
+    "bytes": 381
+  },
+  "outputs/estimation/maidads_family_3_current/elasticity_distribution.csv": {
+    "sha256": "550201884e834b088eb2cc25234c8368aa9ecde916834844344b42ba990bb9e2",
+    "bytes": 1343
+  },
+  "outputs/estimation/maidads_family_3_current/model_summary.csv": {
+    "sha256": "91ebed8d4ddf468efcddd65511a543830939d47067ad86d426ae42b7d9af8c49",
+    "bytes": 280
+  },
+  "outputs/estimation/maidads_family_3_current/parameters.csv": {
+    "sha256": "95c1ae9f75edb0389910ef5a830bfd166905fd9cebb078198d9911f98d967d08",
+    "bytes": 506
+  },
+  "outputs/estimation/maidads_family_3_current/raw_parameters.csv": {
+    "sha256": "9f300635d217bcff379f34a329de030df5d56b53ffbc84d03cba51e51e1e47d7",
+    "bytes": 746
+  },
+  "outputs/estimation/maidads_family_3_current/representative_budget_elasticities.csv": {
+    "sha256": "124e1fa215e0b16e345a977e2ae6ba5625c70dda1927c4d30346d4367e75ec9d",
+    "bytes": 749
+  },
+  "outputs/estimation/maidads_family_3_current/representative_inputs.csv": {
+    "sha256": "f53bcb8afcecb8c59d4b7d7fbb02a31142b6f692b825221396f17063b9f4a40b",
+    "bytes": 294
+  },
+  "outputs/estimation/maidads_family_3_current/representative_price_elasticities.csv": {
+    "sha256": "cbfc3ac44aade94344c26af9f3afe55c0c6b8866aa17ba94696634bcad591f10",
+    "bytes": 2460
+  },
+  "outputs/estimation/maidads_family_3_current/scale.csv": {
+    "sha256": "9714bb1c0f3d6aac29b8c1dd161268232ee3c1dbbaf3e0db5307b7df11a70d4d",
+    "bytes": 184
+  },
+  "outputs/estimation/maidads_family_4_current/audit.csv": {
+    "sha256": "0d3a921f6b66a5e81865282352b5f5ab28ce02f147f603663de70de63721d0cc",
+    "bytes": 1560
+  },
+  "outputs/estimation/maidads_family_4_current/candidates.csv": {
+    "sha256": "304da192e26f87f1cbcbe6b51ce2f91be6b3be1808bde8af4c3cdf46c93477a2",
+    "bytes": 370
+  },
+  "outputs/estimation/maidads_family_4_current/elasticity_distribution.csv": {
+    "sha256": "464bda4b4b0818d1ad0a7c4006e7eb9510b17b9152dd8478b8b0936539e2f159",
+    "bytes": 1346
+  },
+  "outputs/estimation/maidads_family_4_current/model_summary.csv": {
+    "sha256": "9a0aacfb42674dcd4c75e7a8e947823d0373510a992daefe24aa750b7ebb3b1a",
+    "bytes": 276
+  },
+  "outputs/estimation/maidads_family_4_current/parameters.csv": {
+    "sha256": "ebff7a21edcbbb040728b391247a43d8bb1edebd89d2682e32ecc4db1555c50b",
+    "bytes": 523
+  },
+  "outputs/estimation/maidads_family_4_current/raw_parameters.csv": {
+    "sha256": "f258c0186b01387460baef06373eab578262593c702ce3a93258e32ea7f7a945",
+    "bytes": 790
+  },
+  "outputs/estimation/maidads_family_4_current/representative_budget_elasticities.csv": {
+    "sha256": "fad32612042e13d1492ec664de98162cf11648c71ff8faf7ca2376f56a613536",
+    "bytes": 748
+  },
+  "outputs/estimation/maidads_family_4_current/representative_inputs.csv": {
+    "sha256": "79230e8176eb12a0eac2b803eb33990644f98b27d70b59fb145af7bd55e290dd",
+    "bytes": 294
+  },
+  "outputs/estimation/maidads_family_4_current/representative_price_elasticities.csv": {
+    "sha256": "a78ba7da8b454a7159f255b13f642918d528885063b4c43df4e371a39f7b67ff",
+    "bytes": 2492
+  },
+  "outputs/estimation/maidads_family_4_current/scale.csv": {
+    "sha256": "27295be5a8b04acc5711cd1f35ae4339f330f909c2040039470ef7f438b7e538",
+    "bytes": 184
+  },
+  "outputs/estimation/root_edge_test/audit.csv": {
+    "sha256": "d5a6bcd023c08c41a29dc42bde05e32989bae6887ea88c5c4375a64ff2adae77",
+    "bytes": 1144
+  },
+  "outputs/estimation/root_edge_test/elasticity_distribution.csv": {
+    "sha256": "8c32fec3487e85112e77233cd3fa32731b5578d8cc5fdaa0660c9d226eb4b642",
+    "bytes": 196
+  },
+  "outputs/estimation/root_edge_test/representative_budget_elasticities.csv": {
+    "sha256": "2e34d945c697cb487dbe2d86ed9176f963fb994bc3edd46b451135c36adfb4b7",
+    "bytes": 138
+  },
+  "outputs/estimation/root_edge_test/representative_inputs.csv": {
+    "sha256": "5b77474eade02fa4b88a7a2b82f9587ff21903808c0f459f2eea062a40415e97",
+    "bytes": 63
+  },
+  "outputs/estimation/root_edge_test/representative_price_elasticities.csv": {
+    "sha256": "4de7265c86f324bc148a28747c65a16ae1c5183d1b860f85a16f9057485c66fe",
+    "bytes": 77
+  },
+  "outputs/estimation/synthetic_identified/audit.csv": {
+    "sha256": "dd08de9850e6a802c65d0ac5228e8a690b139e9c02b4f5c96f4432c08658fd36",
+    "bytes": 1558
+  },
+  "outputs/estimation/synthetic_identified/candidates.csv": {
+    "sha256": "b63d48c24ad4519b89eb3fe43dd4f936eb3f7714a5f6d71c461a7102a363bad1",
+    "bytes": 383
+  },
+  "outputs/estimation/synthetic_identified/elasticity_distribution.csv": {
+    "sha256": "c847ce58951f0f2fe49db42c1d09fe60386d11818e126c97714c7ff7f870037f",
+    "bytes": 589
+  },
+  "outputs/estimation/synthetic_identified/model_summary.csv": {
+    "sha256": "41ab64fab0f6c649e8b72327e76afc99f22f674f4a00c49193c6b3ba5c2481bc",
+    "bytes": 277
+  },
+  "outputs/estimation/synthetic_identified/parameters.csv": {
+    "sha256": "1ef9dfecf98e6eae5a5e9223ea228d913007f0cb1f841c9d889d65d3bba76ba0",
+    "bytes": 224
+  },
+  "outputs/estimation/synthetic_identified/raw_parameters.csv": {
+    "sha256": "e2665b8e22c8469ab370a2c68c979e88a3ff4162648dd5e346349cd20741fda4",
+    "bytes": 316
+  },
+  "outputs/estimation/synthetic_identified/representative_budget_elasticities.csv": {
+    "sha256": "72c8bae649c69d05a4f4e5e142c1b56ef7b2738f854f62c4e18d9c02fd1401c3",
+    "bytes": 328
+  },
+  "outputs/estimation/synthetic_identified/representative_inputs.csv": {
+    "sha256": "24bae9417019fa6c811a59aff49602f531393b1c42fbf349c7b494545d1dca71",
+    "bytes": 122
+  },
+  "outputs/estimation/synthetic_identified/representative_price_elasticities.csv": {
+    "sha256": "9ce4ac6ac7465a7a6930c102986e4f992be3a1a2028a62bbdfbd82310c18752d",
+    "bytes": 374
+  },
+  "outputs/estimation/synthetic_identified/scale.csv": {
+    "sha256": "126ca70b52f0600052a324067357ef634503888050c7ad095f89fddeb4dd3c34",
+    "bytes": 93
+  },
+  "outputs/estimation/synthetic_identified_tangent/audit.csv": {
+    "sha256": "dc965ccb05e932a52b16c3af7511a6c33a101dac90bd103629be541572dfd3ac",
+    "bytes": 1558
+  },
+  "outputs/estimation/synthetic_identified_tangent/candidates.csv": {
+    "sha256": "8e57f219dc8a27b79122650488aa70319b741aca854f46b24bb887c852ee2c6a",
+    "bytes": 383
+  },
+  "outputs/estimation/synthetic_identified_tangent/elasticity_distribution.csv": {
+    "sha256": "9c717a1ef4206d9ee19cd60582364c4466bdadd126e3d2822bcecaa883462829",
+    "bytes": 593
+  },
+  "outputs/estimation/synthetic_identified_tangent/model_summary.csv": {
+    "sha256": "1fad0bcf9a9a736625c7252f672ff216866c364ecabdd2678613b20128a92a6f",
+    "bytes": 277
+  },
+  "outputs/estimation/synthetic_identified_tangent/parameters.csv": {
+    "sha256": "6a9c9823867547f752d7ede60278b46d8395dc6a7a6e70ce4175d59ab67f0301",
+    "bytes": 223
+  },
+  "outputs/estimation/synthetic_identified_tangent/raw_parameters.csv": {
+    "sha256": "dbe1ee961d2cba568329fcef319a8b8fda60c2046e47b2ccb1eb03a0fe400bee",
+    "bytes": 316
+  },
+  "outputs/estimation/synthetic_identified_tangent/representative_budget_elasticities.csv": {
+    "sha256": "247566c83b822860789d234782cef935a3e55a27ad77577c1a0e2fac138a09ea",
+    "bytes": 327
+  },
+  "outputs/estimation/synthetic_identified_tangent/representative_inputs.csv": {
+    "sha256": "24bae9417019fa6c811a59aff49602f531393b1c42fbf349c7b494545d1dca71",
+    "bytes": 122
+  },
+  "outputs/estimation/synthetic_identified_tangent/representative_price_elasticities.csv": {
+    "sha256": "69b8d91a7fe8818dfbe503acb64c64105713c0c50470be526a4b85ead11c2c9d",
+    "bytes": 370
+  },
+  "outputs/estimation/synthetic_identified_tangent/scale.csv": {
+    "sha256": "126ca70b52f0600052a324067357ef634503888050c7ad095f89fddeb4dd3c34",
+    "bytes": 93
+  },
+  "outputs/estimation/synthetic_test/audit.csv": {
+    "sha256": "5bd14b6049d5e3b3345891283608eb1e17b693033045cfca6b6dabdab3806d89",
+    "bytes": 1558
+  },
+  "outputs/estimation/synthetic_test/candidates.csv": {
+    "sha256": "873c515dd5b89b313f8ad198da3aa54c18eda348b12048f3fa1d225fd6f46a4d",
+    "bytes": 234
+  },
+  "outputs/estimation/synthetic_test/elasticity_distribution.csv": {
+    "sha256": "7842017d58d4769455b026b360ade00af8bd8fdfe6c7df911bd375b444a19713",
+    "bytes": 592
+  },
+  "outputs/estimation/synthetic_test/model_summary.csv": {
+    "sha256": "47299bc1680150654c7379b51a25b27c15906b129d09044ffff2ca4814c1272b",
+    "bytes": 264
+  },
+  "outputs/estimation/synthetic_test/parameters.csv": {
+    "sha256": "4c14d8c40f2a869f879373892c3fc80a9aa65b28d01516c88eb74b84bc09d20c",
+    "bytes": 223
+  },
+  "outputs/estimation/synthetic_test/raw_parameters.csv": {
+    "sha256": "4cc941795e2d9c94cca8c3f89ab477c86e89821bcc432628430cda85b9a569c1",
+    "bytes": 311
+  },
+  "outputs/estimation/synthetic_test/representative_budget_elasticities.csv": {
+    "sha256": "6ff44e776fd2f928b4a8ad515d8a8f31a0c7e6b0285d5c19bce1f0f2c90beee1",
+    "bytes": 326
+  },
+  "outputs/estimation/synthetic_test/representative_inputs.csv": {
+    "sha256": "7c95f1a1ee73efe94e3b52fdd0714e52634c21dc1a980b476abea43e07ee3e9a",
+    "bytes": 125
+  },
+  "outputs/estimation/synthetic_test/representative_price_elasticities.csv": {
+    "sha256": "3914b090dabfd47f8ed636a6c61bf89fbb096edec6b7197d4f084f8b6ee2bdd4",
+    "bytes": 374
+  },
+  "outputs/estimation/synthetic_test/scale.csv": {
+    "sha256": "f3f0cdf171c0004e2d5922162deef94adf1c6a5c5307cfb39d476cfd28d65c63",
+    "bytes": 94
+  },
+  "outputs/income/conditional_slope_inference.csv": {
+    "sha256": "b70ab6415d6579952099c17040574363627e1ea14db424519cc7016c7634c69f",
+    "bytes": 2710
+  },
+  "outputs/income/conditional_wald_tests.csv": {
+    "sha256": "e80793494e7c752691a624631fa31b4e3443552aaaaf6d37211b2358e4d1dcdf",
+    "bytes": 619
+  },
+  "outputs/income/discrete_band_adjusted_budget.csv": {
+    "sha256": "4546f4fe884c61853a46e47011389e6a7b13185981834d6bb97afec0ce44de89",
+    "bytes": 842
+  },
+  "outputs/income/family_income_band_summary.csv": {
+    "sha256": "26d7e96e0e51d675c401ea3b1b6dbed54827971ec4c819c02a5c76cf9b5895ca",
+    "bytes": 3225
+  },
+  "outputs/income/food_budget_income_scenarios.csv": {
+    "sha256": "94bcb644a160be9c8b9f548d11cea1926949923e6d7f3354585b08a618fd002f",
+    "bytes": 3184
+  },
+  "outputs/income/model_scope.csv": {
+    "sha256": "6ea3d092e7163a055a5afccb1d244ca64af766345aeb6a692bc344099b9f73e4",
+    "bytes": 362
+  },
+  "outputs/income/observed_proxy_support.csv": {
+    "sha256": "0390cf9a962b696d9afa8cc5d2407cfe04fe1593f4f27ffe19cd5a3d8db4a421",
+    "bytes": 332
+  },
+  "outputs/income/sensitivity.csv": {
+    "sha256": "6bcac63223c348a35559adfc239bf731f4a371c0c397e45fe127d940df40af13",
+    "bytes": 3252
+  },
+  "outputs/scenarios/family_income_growth.csv": {
+    "sha256": "aa114b20b74f1eb2a27543582448872d26698288caf9759f10d5af8a2c3511be",
+    "bytes": 91429
+  },
+  "outputs/scenarios/grid_cache_equivalence.json": {
+    "sha256": "00215af11279db68adbf01262b4a08144115777f7e113e0f999cb90eb0b2a0f8",
+    "bytes": 543
+  },
+  "outputs/scenarios/province_income_growth.csv": {
+    "sha256": "e4eac044dd84a35be7c37f4f604dee3adbbe2443f0cdfefc86c87378b1907f7e",
+    "bytes": 627598
+  },
+  "outputs/tests/aids/candidates.csv": {
+    "sha256": "e75bcce25a48f1cbe4f2e937ca95a29214aa21c4daf82e336927625937342491",
+    "bytes": 107
+  },
+  "outputs/tests/aids/fit_summary.csv": {
+    "sha256": "d980b4df290efd9e5e4cf9b3300b29d52a29c878bae037e685d292a1bbab30d5",
+    "bytes": 373
+  },
+  "outputs/tests/aids/hicksian_matrix.csv": {
+    "sha256": "7bd48f91d63e8a81a1fc39bfbcd2e5f1291092aaa4879191a707892e19443ba0",
+    "bytes": 1281
+  },
+  "outputs/tests/aids/marshallian_matrix.csv": {
+    "sha256": "292dca0270e9ef7ed53c694b50bf93381c6c55b3503a4c1e51e2488d6e88f0e3",
+    "bytes": 1332
+  },
+  "outputs/tests/aids/raw_parameters.csv": {
+    "sha256": "25596483734411dc312dd9811d6082881372180a59f92da1e20c4605042ab47a",
+    "bytes": 1061
+  },
+  "outputs/tests/aids/representative_elasticities.csv": {
+    "sha256": "156236a076965162246420d09eb057e6772286b7aa2ad364e4cdf4ae7967c9e4",
+    "bytes": 669
+  },
+  "outputs/tests/aids_forecast/coverage.csv": {
+    "sha256": "d1130a49aeef3630248753a89a66f8eb2694add07ced1814b122fde938d48988",
+    "bytes": 114
+  },
+  "outputs/tests/native_forecast/coverage.csv": {
+    "sha256": "a2e2c53693539076969fdc67df1011f029a7e63a0daca0480903af310e14395d",
+    "bytes": 190
+  },
+  "outputs/validation/province1_aidads/execution.json": {
+    "sha256": "0cc5f0fa292d3998a4ca363ee0bc0f5f519fe526e21d6a2927b56e2b8245a87d",
+    "bytes": 1175
+  },
+  "outputs/validation/province1_aidads/fit/audit.csv": {
+    "sha256": "6d99c3cf95f1bce014d2add373a985dbcffe63e8b012e29a1cce85c89c9df510",
+    "bytes": 1071
+  },
+  "outputs/validation/province1_aidads/fit/candidates.csv": {
+    "sha256": "04bed1bb862e66c205f404311188c83f821322784cb897afa07febac5948d888",
+    "bytes": 302
+  },
+  "outputs/validation/province1_aidads/fit/elasticity_distribution.csv": {
+    "sha256": "7257e89deb72de8960786325e010fba0cb66a94f5d7d2cc806f1e17ea34570c8",
+    "bytes": 1343
+  },
+  "outputs/validation/province1_aidads/fit/model_summary.csv": {
+    "sha256": "91ea00023215d8eb39442c206d7ae2c157052623edf110b624c15d7cbe76bea7",
+    "bytes": 263
+  },
+  "outputs/validation/province1_aidads/fit/parameters.csv": {
+    "sha256": "b45ce611264ddf519095715a95a1c2229358ee9d74dd0959fe6a74507f698186",
+    "bytes": 505
+  },
+  "outputs/validation/province1_aidads/fit/raw_parameters.csv": {
+    "sha256": "7d7d9c18b940607cd55f82933f03a12754b3607d4e2a3268e0dd820e047fc92d",
+    "bytes": 591
+  },
+  "outputs/validation/province1_aidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "a8689d0350d06dcf98cab84e85dc10c37201565210873f401f577e1a0e4103b1",
+    "bytes": 748
+  },
+  "outputs/validation/province1_aidads/fit/representative_inputs.csv": {
+    "sha256": "f878e22637ed9d7f66a7ab95f64411d7f8170b7ab3a304c3693bc7e468d7fe2d",
+    "bytes": 295
+  },
+  "outputs/validation/province1_aidads/fit/representative_price_elasticities.csv": {
+    "sha256": "18b4be6b8b7bb04c6201a4e0a540dacd88c61a3a79731597d5a57c0a9f15d9d3",
+    "bytes": 2481
+  },
+  "outputs/validation/province1_aidads/fit/scale.csv": {
+    "sha256": "ec674af8fa8c938a60b39649b29b09f695cb11d7cdc838c452350a63d2d1db26",
+    "bytes": 181
+  },
+  "outputs/validation/province1_aidads/metrics/metrics.csv": {
+    "sha256": "69ec75415bc3bf5f7077f04390dce38897f01596fc414c9fb429c9f61274441a",
+    "bytes": 1856
+  },
+  "outputs/validation/province1_aidads/prediction/coverage.csv": {
+    "sha256": "b08f53070b68cd553e952dc89bf7e9d9e7b67499c045e9f2085dae806794990c",
+    "bytes": 191
+  },
+  "outputs/validation/province1_aids/execution.json": {
+    "sha256": "d3e42c53a657c372401ea9b32cc628a3623a7d30556145be67c32c528db1f475",
+    "bytes": 1177
+  },
+  "outputs/validation/province1_aids/fit/candidates.csv": {
+    "sha256": "0940b655bba77754b2cb14101faa8536313a04d8c5d19b8c0dc2a58621b58744",
+    "bytes": 157
+  },
+  "outputs/validation/province1_aids/fit/fit_summary.csv": {
+    "sha256": "9883b89c716a51645fa41bf204c3469591ef86662ae9d0958cc2bd6e01be0a02",
+    "bytes": 375
+  },
+  "outputs/validation/province1_aids/fit/hicksian_matrix.csv": {
+    "sha256": "2dfef724e1c22e895f0d413cba79aecbd88df28ffb1e9e3f751f844ec952cce1",
+    "bytes": 1301
+  },
+  "outputs/validation/province1_aids/fit/marshallian_matrix.csv": {
+    "sha256": "06726690bc7758480683451cc831c842e9d37afebd63c224f60f6d557c89b676",
+    "bytes": 1329
+  },
+  "outputs/validation/province1_aids/fit/raw_parameters.csv": {
+    "sha256": "8f17228e8c3b43703ec685ddff39138330ea9f198d50f457df9396e489665605",
+    "bytes": 1051
+  },
+  "outputs/validation/province1_aids/fit/representative_elasticities.csv": {
+    "sha256": "43775e369d258e45de0e584632ccfd49dca2de6274e15066a91c504f3bcafb54",
+    "bytes": 664
+  },
+  "outputs/validation/province1_aids/metrics/metrics.csv": {
+    "sha256": "38469bcc779c5c0af681c34335c6fd76e97ffee18cca42d7090f94b598086b41",
+    "bytes": 1920
+  },
+  "outputs/validation/province1_aids/prediction/coverage.csv": {
+    "sha256": "f753974776ebac23e1dd683d638911ae18a892a3a6673a796c60bd4dfaa97e5c",
+    "bytes": 114
+  },
+  "outputs/validation/province1_maidads/execution.json": {
+    "sha256": "d58a5e5e7f62f436b9e2b2229be20bc03e42b8ca01eab894c4e0dc8534e31fba",
+    "bytes": 1179
+  },
+  "outputs/validation/province1_maidads/fit/audit.csv": {
+    "sha256": "2f5b354cef8fd42f071bd591f1b615f98dc24c4b244f76885a70ebfe15a66ae0",
+    "bytes": 1076
+  },
+  "outputs/validation/province1_maidads/fit/candidates.csv": {
+    "sha256": "aaccb96a692a16ff36ae0854940eb676818ee42ef980743bbdb4acfc74f268d8",
+    "bytes": 300
+  },
+  "outputs/validation/province1_maidads/fit/elasticity_distribution.csv": {
+    "sha256": "3994a86d1a0e3f5322421ad72e25673a27fe89ff9b00ba065112bc1ccf6f4129",
+    "bytes": 1345
+  },
+  "outputs/validation/province1_maidads/fit/model_summary.csv": {
+    "sha256": "a94e8929e4a330be68c13da70181eee5069d4a31b0848220fa8b25fd5b4c7015",
+    "bytes": 276
+  },
+  "outputs/validation/province1_maidads/fit/parameters.csv": {
+    "sha256": "b0ed4496a449d91aa65abe2cb5aab4eccce23bb8723225e52b8e356f3a1694c3",
+    "bytes": 545
+  },
+  "outputs/validation/province1_maidads/fit/raw_parameters.csv": {
+    "sha256": "fb8313c970309ea14812378ae22f26af0c51773fb6233254fb545704aacde37d",
+    "bytes": 831
+  },
+  "outputs/validation/province1_maidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "ae125c1c06f79c51787c795b650a47419c60307b09b0e73f9f6bb7c1585c73c1",
+    "bytes": 748
+  },
+  "outputs/validation/province1_maidads/fit/representative_inputs.csv": {
+    "sha256": "f878e22637ed9d7f66a7ab95f64411d7f8170b7ab3a304c3693bc7e468d7fe2d",
+    "bytes": 295
+  },
+  "outputs/validation/province1_maidads/fit/representative_price_elasticities.csv": {
+    "sha256": "e61579d1e3a5c36c0d7c955468f126b641ed604b653fb072fbade610df3f2f0f",
+    "bytes": 2566
+  },
+  "outputs/validation/province1_maidads/fit/scale.csv": {
+    "sha256": "ec674af8fa8c938a60b39649b29b09f695cb11d7cdc838c452350a63d2d1db26",
+    "bytes": 181
+  },
+  "outputs/validation/province1_maidads/metrics/metrics.csv": {
+    "sha256": "acec46a53895900a0eef9f33ef6d3e92e76a31d9d4ab6b0511a3a7abaa69fe7a",
+    "bytes": 1857
+  },
+  "outputs/validation/province1_maidads/prediction/coverage.csv": {
+    "sha256": "c59e42d018b981c8665a11abc6d6f4f7fff6df70450f9de2075659715dd19256",
+    "bytes": 128
+  },
+  "outputs/validation/province1_quaids/execution.json": {
+    "sha256": "44a724b662278db70d477b5f6c9422476894b140f8cd82d0ece10e5fde8e4029",
+    "bytes": 1187
+  },
+  "outputs/validation/province1_quaids/fit/candidates.csv": {
+    "sha256": "77af610cdfb0eb74bc55c75cb522c4a6ae50ed2d3b077be35a02ac2288382f1a",
+    "bytes": 157
+  },
+  "outputs/validation/province1_quaids/fit/fit_summary.csv": {
+    "sha256": "08deeda49b6b2cea5eaeadbea4291c471bac9f8663c46a8dcb886fa28f5e8f47",
+    "bytes": 393
+  },
+  "outputs/validation/province1_quaids/fit/hicksian_matrix.csv": {
+    "sha256": "57ee2bd57ec0f9342c145220207669fdd6500323fc1c2190b94ec89de9cb966a",
+    "bytes": 1296
+  },
+  "outputs/validation/province1_quaids/fit/marshallian_matrix.csv": {
+    "sha256": "32d09288b86d608ebe5e9d078232c9da2fbfe843bb23e32428c9b6567c8907ef",
+    "bytes": 1323
+  },
+  "outputs/validation/province1_quaids/fit/raw_parameters.csv": {
+    "sha256": "f2bb8a6ed26b03a0ab3e477eddffacc05a4eaa414aa41fd520e91d81f7d15e88",
+    "bytes": 1221
+  },
+  "outputs/validation/province1_quaids/fit/representative_elasticities.csv": {
+    "sha256": "b8511d052d905baa69c3ab95d47f0839e9ae45a265185abc65de541d22831798",
+    "bytes": 667
+  },
+  "outputs/validation/province1_quaids/metrics/metrics.csv": {
+    "sha256": "604edbf620e241f5f8b5f17761104dfaed0a51eaa2daa76045e240f7c068dafe",
+    "bytes": 1854
+  },
+  "outputs/validation/province1_quaids/prediction/coverage.csv": {
+    "sha256": "473d1f033ec9e11474e804f6bc119696ef2f388a1a21ec29b2629e9520ff5cf6",
+    "bytes": 130
+  },
+  "outputs/validation/province2_aidads/execution.json": {
+    "sha256": "5fad77a2265c9f2306d187633c9d113f55fbf7109d2619528f82b23371770ee0",
+    "bytes": 1174
+  },
+  "outputs/validation/province2_aidads/fit/audit.csv": {
+    "sha256": "d8757d6960da8c333fee0d027e77f597ca336e78163516868a18d4c04302c1ea",
+    "bytes": 1071
+  },
+  "outputs/validation/province2_aidads/fit/candidates.csv": {
+    "sha256": "3d51cdc9a06474a6e789c85e3f63f17f7cc6a08c46eb0385348e62c738419e7a",
+    "bytes": 301
+  },
+  "outputs/validation/province2_aidads/fit/elasticity_distribution.csv": {
+    "sha256": "2c3c336ab3e70faae468d69ba9a20dee31f6e13358611dc050cd0b4cd003fb53",
+    "bytes": 1341
+  },
+  "outputs/validation/province2_aidads/fit/model_summary.csv": {
+    "sha256": "9d6d7e2002bc34eaf574c61f657d5cc09255d07f8ba9b49557547becdac7b053",
+    "bytes": 261
+  },
+  "outputs/validation/province2_aidads/fit/parameters.csv": {
+    "sha256": "dd45030f0a607500966bc737800d596671073c6315c79ad7963c593a51870a5b",
+    "bytes": 532
+  },
+  "outputs/validation/province2_aidads/fit/raw_parameters.csv": {
+    "sha256": "be11ed06a682447dd9733d473cf46857b1aa5129ec4f24b31adec6cb0063a756",
+    "bytes": 607
+  },
+  "outputs/validation/province2_aidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "fae33b499e19f2d69d00a3e9d69a62e05d2ab02e6aa4a529cad8f74c6e6f6d13",
+    "bytes": 749
+  },
+  "outputs/validation/province2_aidads/fit/representative_inputs.csv": {
+    "sha256": "de827fda9afab8ff17e676891a832a9cfce28a754a8fb0829db154a629a6dbb3",
+    "bytes": 295
+  },
+  "outputs/validation/province2_aidads/fit/representative_price_elasticities.csv": {
+    "sha256": "0dd1e5a0c3d1b2edfe95fc7f2823c9f3a8d3783551786efe67af841ca33da2d9",
+    "bytes": 2472
+  },
+  "outputs/validation/province2_aidads/fit/scale.csv": {
+    "sha256": "849dce58fcc969d7c2a8b4ac811ba24489522cab861592ed4241a24d26e89454",
+    "bytes": 181
+  },
+  "outputs/validation/province2_aidads/metrics/metrics.csv": {
+    "sha256": "4e716ff4729697dcd706d1286e3f9cfcdb2c949bf1c553fb31ee511caabd4da6",
+    "bytes": 1857
+  },
+  "outputs/validation/province2_aidads/prediction/coverage.csv": {
+    "sha256": "a7b55facbe30c6213d0c0be209b595834d75b91d87ca3c0d5d0da25a83d3dae3",
+    "bytes": 190
+  },
+  "outputs/validation/province2_aids/execution.json": {
+    "sha256": "935872560891d86100f2efffed6bb61331195923875c5991fa3f86971b0c2b23",
+    "bytes": 1176
+  },
+  "outputs/validation/province2_aids/fit/candidates.csv": {
+    "sha256": "9c3e679115f9186bbf3230935b3b192315e2ad999e38d577e6ac6f2904af1d0c",
+    "bytes": 157
+  },
+  "outputs/validation/province2_aids/fit/fit_summary.csv": {
+    "sha256": "d1c089ea330e93d5d33bb631df8a6bef7b493c4ad398c0ec40cbb5b52b27b7d9",
+    "bytes": 390
+  },
+  "outputs/validation/province2_aids/fit/hicksian_matrix.csv": {
+    "sha256": "66e3ac2b3fb418ec39791e6326a5d225402ce2d1c09d474daba99732702cd6fe",
+    "bytes": 1300
+  },
+  "outputs/validation/province2_aids/fit/marshallian_matrix.csv": {
+    "sha256": "c542ffeb7ea5ed13f4b7035f9eb6465b9eb7b1c3da1e8543b49ab7bb1f21202d",
+    "bytes": 1335
+  },
+  "outputs/validation/province2_aids/fit/raw_parameters.csv": {
+    "sha256": "663068bb0ee35ad3706a12199b0f3c0cac1451ba5d92dd6925f2f9e6a4a7ab30",
+    "bytes": 1050
+  },
+  "outputs/validation/province2_aids/fit/representative_elasticities.csv": {
+    "sha256": "f0c7f51717efb665892f20b5e7ed64436d2c342817359612198cd9bc1d78b643",
+    "bytes": 669
+  },
+  "outputs/validation/province2_aids/metrics/metrics.csv": {
+    "sha256": "34c5bd8ed3078844bb470381a012a2c7ad2f8bb15d2f77c80c4f01d457ce0876",
+    "bytes": 1925
+  },
+  "outputs/validation/province2_aids/prediction/coverage.csv": {
+    "sha256": "9a51748adebef4783aa1697570418a9361f8d9b89ae1f9eb809fa2635dc4dabc",
+    "bytes": 114
+  },
+  "outputs/validation/province2_maidads/execution.json": {
+    "sha256": "ff05a455e57a8b1cc7581c02750cea7e096bf9b01c03699a11be423cc248ec51",
+    "bytes": 1177
+  },
+  "outputs/validation/province2_maidads/fit/audit.csv": {
+    "sha256": "c4f1e1f1681d7715576a433fa2b637dded44e2510c222ce4dd097a1f712b2313",
+    "bytes": 1076
+  },
+  "outputs/validation/province2_maidads/fit/candidates.csv": {
+    "sha256": "9d4b0cac86bcf7d40d4082f0847ec2c73015886f5f7a532cdaa7037b4a0e74f8",
+    "bytes": 300
+  },
+  "outputs/validation/province2_maidads/fit/elasticity_distribution.csv": {
+    "sha256": "76f7cb84b76dc7784e537059e37c6e72c486001357d4268814b35180d6ca13e2",
+    "bytes": 1341
+  },
+  "outputs/validation/province2_maidads/fit/model_summary.csv": {
+    "sha256": "330a11b8ba0ebcda300db5d57580a55b96a4148df745737ed147380a5e82f59a",
+    "bytes": 276
+  },
+  "outputs/validation/province2_maidads/fit/parameters.csv": {
+    "sha256": "e817d6f285f2ff6991a25ba242cf03684a8d1c109e582759fb78a463958c1191",
+    "bytes": 528
+  },
+  "outputs/validation/province2_maidads/fit/raw_parameters.csv": {
+    "sha256": "6dd627ca2be606bf321fa90b69a5e7e1b69c42cdb077f849e30adce08961e90b",
+    "bytes": 811
+  },
+  "outputs/validation/province2_maidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "e342ee4361627c7cedfd7b1ed3b5cf47f7847256b34439d2303be869ee13cc0e",
+    "bytes": 748
+  },
+  "outputs/validation/province2_maidads/fit/representative_inputs.csv": {
+    "sha256": "de827fda9afab8ff17e676891a832a9cfce28a754a8fb0829db154a629a6dbb3",
+    "bytes": 295
+  },
+  "outputs/validation/province2_maidads/fit/representative_price_elasticities.csv": {
+    "sha256": "671d7f2335e5a89ef0e002f5605039046a427d71d1e80eda3912b123d6613981",
+    "bytes": 2562
+  },
+  "outputs/validation/province2_maidads/fit/scale.csv": {
+    "sha256": "849dce58fcc969d7c2a8b4ac811ba24489522cab861592ed4241a24d26e89454",
+    "bytes": 181
+  },
+  "outputs/validation/province2_maidads/metrics/metrics.csv": {
+    "sha256": "31755522aaa682ad5864ed9ff6384b239815386d5772ece68055acf2e7f51971",
+    "bytes": 1857
+  },
+  "outputs/validation/province2_maidads/prediction/coverage.csv": {
+    "sha256": "3aa6c69018c4058adfa3eb49002f5805639449e064ed0d1e8737214c8e06522b",
+    "bytes": 190
+  },
+  "outputs/validation/province2_quaids/execution.json": {
+    "sha256": "d7cc144ee60b71a2d331f5b7caf853e4bac10db7ec798fa994c436fce8f77fc9",
+    "bytes": 1184
+  },
+  "outputs/validation/province2_quaids/fit/candidates.csv": {
+    "sha256": "bd5a9bbe1754783522a9b51c8f7a6f3f2b8a3322ac44b9a09a210d3c300bbe29",
+    "bytes": 157
+  },
+  "outputs/validation/province2_quaids/fit/fit_summary.csv": {
+    "sha256": "3b2aba632e4acf0343e56724d606811528e076bf3c9a9df29916f6e575015247",
+    "bytes": 390
+  },
+  "outputs/validation/province2_quaids/fit/hicksian_matrix.csv": {
+    "sha256": "3d71fe60a55c243cd2787b0e015bd59e22325adfeb397df269e495e63e2dafb4",
+    "bytes": 1297
+  },
+  "outputs/validation/province2_quaids/fit/marshallian_matrix.csv": {
+    "sha256": "d20eb7b2bb73aa84a8323a45052a42fa7714e484b0c718419e0d95895946185a",
+    "bytes": 1333
+  },
+  "outputs/validation/province2_quaids/fit/raw_parameters.csv": {
+    "sha256": "52dd29bc88eb3f83eedfe3ea3e7f125cade85ef54f0f14deace8faf0195bafa4",
+    "bytes": 1233
+  },
+  "outputs/validation/province2_quaids/fit/representative_elasticities.csv": {
+    "sha256": "473f6ad38205ad46f725731ce8fd43cfadcf9a35fec51213c1eff8be7a87831c",
+    "bytes": 667
+  },
+  "outputs/validation/province2_quaids/metrics/metrics.csv": {
+    "sha256": "29564cde524ce934f58a3a6ac3d3a34c137dcdd2f51473499bd23e5594afccc0",
+    "bytes": 1927
+  },
+  "outputs/validation/province2_quaids/prediction/coverage.csv": {
+    "sha256": "37bfafbe2c1d1063529d55533d9f65a5b5ab388a23e921860cd02ccabc33bf33",
+    "bytes": 114
+  },
+  "outputs/validation/province3_aidads/execution.json": {
+    "sha256": "f6080bdc7c2ab2ed8bc68141417e562205cafef4ad07b46a4ee245639fc71888",
+    "bytes": 1173
+  },
+  "outputs/validation/province3_aidads/fit/audit.csv": {
+    "sha256": "5672d7980bfd406e31f252cb5d90462542d4a333703d7bac27327745e46aaa6d",
+    "bytes": 1072
+  },
+  "outputs/validation/province3_aidads/fit/candidates.csv": {
+    "sha256": "0da2788fbf0ebe855550379699b4291eb13b59a3bb595e78fe087b0052d53224",
+    "bytes": 302
+  },
+  "outputs/validation/province3_aidads/fit/elasticity_distribution.csv": {
+    "sha256": "15e84753e3e6bde536eb00875fbcabefa8c56e633fef7ef4766f0545eff6767c",
+    "bytes": 1340
+  },
+  "outputs/validation/province3_aidads/fit/model_summary.csv": {
+    "sha256": "f18cc16a912e56547739677560093e83f22eb0486993ae3a2573a788fa84270c",
+    "bytes": 263
+  },
+  "outputs/validation/province3_aidads/fit/parameters.csv": {
+    "sha256": "8e1424f5955d413495038613b7c9e6e96615ed17086a3b57a45c949e9e47c099",
+    "bytes": 538
+  },
+  "outputs/validation/province3_aidads/fit/raw_parameters.csv": {
+    "sha256": "7e8e098277ee1db57a491b9afa39694e7d82d717afd7c029ee5930bbea55b0c0",
+    "bytes": 605
+  },
+  "outputs/validation/province3_aidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "5cbfcdfd107cb2ba3a97904d4bda4efe5a4fa8136c30ec1db9ffaa6ebc453486",
+    "bytes": 749
+  },
+  "outputs/validation/province3_aidads/fit/representative_inputs.csv": {
+    "sha256": "e95bd20516931d06ef73685a932c3853ec7c7094393cf52373e518e4d7feaff3",
+    "bytes": 294
+  },
+  "outputs/validation/province3_aidads/fit/representative_price_elasticities.csv": {
+    "sha256": "06b626f1fafb76639ff4084aee7be9fd13a07ae3bb1ddea0a98300e26ba0743d",
+    "bytes": 2470
+  },
+  "outputs/validation/province3_aidads/fit/scale.csv": {
+    "sha256": "57cbffe1001fde02a18b0d0bf07716c2d87801ae017d9db5e61f1002ef8eb9d7",
+    "bytes": 182
+  },
+  "outputs/validation/province3_aidads/metrics/metrics.csv": {
+    "sha256": "482deb190dc1db246b9c94f2c9e2c78b4827e4900c073c9ea3c683a6734e1c11",
+    "bytes": 1857
+  },
+  "outputs/validation/province3_aidads/prediction/coverage.csv": {
+    "sha256": "07aee2201cebe0f23aab94399e2f865f980f7a2ab0c204dd1d13efbd0254ec88",
+    "bytes": 191
+  },
+  "outputs/validation/province3_aids/execution.json": {
+    "sha256": "c87ffdd541db712d094f90ec128e16e2a7c1156b4c90e2da0bd79fce45fda17e",
+    "bytes": 1173
+  },
+  "outputs/validation/province3_aids/fit/candidates.csv": {
+    "sha256": "6464816bd667c631f8326f65a81887c877884f76c349a22daee662a02c6bda96",
+    "bytes": 156
+  },
+  "outputs/validation/province3_aids/fit/fit_summary.csv": {
+    "sha256": "62fd9cc6f09e55cb8bf9e01f5f4d9f35b2e95fb5158ebd77c2a16a920e928660",
+    "bytes": 375
+  },
+  "outputs/validation/province3_aids/fit/hicksian_matrix.csv": {
+    "sha256": "9031a0172232e88483b31b731dfdc4592854f2918dd9ccad64498eea250439fa",
+    "bytes": 1296
+  },
+  "outputs/validation/province3_aids/fit/marshallian_matrix.csv": {
+    "sha256": "0bbaf9424c5e3398e73b53b1e9c02813d036b61261df8e7fb8f2b32173cf1ad0",
+    "bytes": 1325
+  },
+  "outputs/validation/province3_aids/fit/raw_parameters.csv": {
+    "sha256": "705d2ba346e78ca5b309b38a21eb9c5e06a6c3e439cf204feb62689022f8a0f9",
+    "bytes": 1054
+  },
+  "outputs/validation/province3_aids/fit/representative_elasticities.csv": {
+    "sha256": "529f5c7351e2c8828a5ee41645506bd9a79fd39e426248f77b657de23571be46",
+    "bytes": 663
+  },
+  "outputs/validation/province3_aids/metrics/metrics.csv": {
+    "sha256": "660ba5da85ef8394da2ff5d0453c9a087b53a2f74be88ca8668907c66ac365c0",
+    "bytes": 1923
+  },
+  "outputs/validation/province3_aids/prediction/coverage.csv": {
+    "sha256": "d8ab712f158449955f87db5a95a1464118d7cfedabc7a50b4f176b149cd623ee",
+    "bytes": 114
+  },
+  "outputs/validation/province3_maidads/execution.json": {
+    "sha256": "922d83468049dfb735e0d6ec96993ea0bb994bd2633b3a5cd7e6df3a4db209ef",
+    "bytes": 1177
+  },
+  "outputs/validation/province3_maidads/fit/audit.csv": {
+    "sha256": "559a9a1587b44cea9dd8ceb89e02392a29075efe1cff3e850951e1e859228a6b",
+    "bytes": 1075
+  },
+  "outputs/validation/province3_maidads/fit/candidates.csv": {
+    "sha256": "ce22ee25ce2d3aa156f5b3ddbc781bea440f22f1449316e7bf1e08fca18ee986",
+    "bytes": 299
+  },
+  "outputs/validation/province3_maidads/fit/elasticity_distribution.csv": {
+    "sha256": "8a16cbc00addee8143ce0b47ed731ca3aee917faac4a25edbee41d1ebc56d4b1",
+    "bytes": 1343
+  },
+  "outputs/validation/province3_maidads/fit/model_summary.csv": {
+    "sha256": "6ec2c5576c00e9fd8a5defb8294debf3254cfd2e8e33a3985652c4769ce3cc75",
+    "bytes": 274
+  },
+  "outputs/validation/province3_maidads/fit/parameters.csv": {
+    "sha256": "1f06fb2061c5f6283e23363525f932ee36bcf2897f85ba23bbcd8cb87bff4e59",
+    "bytes": 513
+  },
+  "outputs/validation/province3_maidads/fit/raw_parameters.csv": {
+    "sha256": "f49ca88385dd99257ea9a82f419a9a2233fc4a4788c6468b8afb16d9c0b6dbc5",
+    "bytes": 797
+  },
+  "outputs/validation/province3_maidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "4fc50ca7a5b28280bccac45e7fc5a556e2f998f9dd90b6e627c1a73a59429a5e",
+    "bytes": 749
+  },
+  "outputs/validation/province3_maidads/fit/representative_inputs.csv": {
+    "sha256": "e95bd20516931d06ef73685a932c3853ec7c7094393cf52373e518e4d7feaff3",
+    "bytes": 294
+  },
+  "outputs/validation/province3_maidads/fit/representative_price_elasticities.csv": {
+    "sha256": "99f0cc91d76167a05b317923535b5d129747ba2aadb8c0c4cfb0b1de49ca0237",
+    "bytes": 2559
+  },
+  "outputs/validation/province3_maidads/fit/scale.csv": {
+    "sha256": "57cbffe1001fde02a18b0d0bf07716c2d87801ae017d9db5e61f1002ef8eb9d7",
+    "bytes": 182
+  },
+  "outputs/validation/province3_maidads/metrics/metrics.csv": {
+    "sha256": "3396eefd1c838b2de61f3862f44437c2befb0821206a35a5a84e138b6ecae20d",
+    "bytes": 1860
+  },
+  "outputs/validation/province3_maidads/prediction/coverage.csv": {
+    "sha256": "4b29e71630091658db8e15b2a4d6124504fd9986c3a1613b2a168cdc9a82dbd5",
+    "bytes": 190
+  },
+  "outputs/validation/province3_quaids/execution.json": {
+    "sha256": "c1d61070201e09cbd3247b3955e7251d6aeeb4d63001b638ecc944bc84f7a765",
+    "bytes": 1185
+  },
+  "outputs/validation/province3_quaids/fit/candidates.csv": {
+    "sha256": "b505d5ba0d8238f15cb3c6ef3bf034d48c72f981c594a8655b79cc8a2eb201e1",
+    "bytes": 157
+  },
+  "outputs/validation/province3_quaids/fit/fit_summary.csv": {
+    "sha256": "29b81065533d866bfb022b611d95d6cc3b8118c3cbda2156c862a908d04be15a",
+    "bytes": 392
+  },
+  "outputs/validation/province3_quaids/fit/hicksian_matrix.csv": {
+    "sha256": "8d0fb2970c333359b368f0ce313d38c336a97f19cd855540a0148c28464a81fc",
+    "bytes": 1293
+  },
+  "outputs/validation/province3_quaids/fit/marshallian_matrix.csv": {
+    "sha256": "c4d8c37a365115ebd0593b24a6991790e54df87787fd775080f0fac242e8b20d",
+    "bytes": 1325
+  },
+  "outputs/validation/province3_quaids/fit/raw_parameters.csv": {
+    "sha256": "84b4db867ac58c97afc49718965c837383e66e2da020e4d32814fd8248666bb3",
+    "bytes": 1227
+  },
+  "outputs/validation/province3_quaids/fit/representative_elasticities.csv": {
+    "sha256": "1ebe69ac408aa3dfe08a1961c28d9cc0cefaaec13b94dbb1a103ca3731649383",
+    "bytes": 665
+  },
+  "outputs/validation/province3_quaids/metrics/metrics.csv": {
+    "sha256": "1fa57e434564d5398a6c4aea887df460485f1784b3fc0fb9e3ffb8e3a5cd5bba",
+    "bytes": 1928
+  },
+  "outputs/validation/province3_quaids/prediction/coverage.csv": {
+    "sha256": "41e4630bee7861f91f0429cffb27478101bf2a4a5d094f0cab9825ccee0cb954",
+    "bytes": 114
+  },
+  "outputs/validation/province4_aidads/execution.json": {
+    "sha256": "2754200bb78512c569fb96bf8cf17dc10d198039f0bfb5665f4abb3149f4ca2b",
+    "bytes": 1172
+  },
+  "outputs/validation/province4_aidads/fit/audit.csv": {
+    "sha256": "d784333962d0e6fd62f4ad0674f5b58c41626306ceb914b2f3f3221df24266b2",
+    "bytes": 1072
+  },
+  "outputs/validation/province4_aidads/fit/candidates.csv": {
+    "sha256": "ac33d8813962c1b7f3b89c5c5e9a74f856f3374d16480cf19914053d9588f80a",
+    "bytes": 303
+  },
+  "outputs/validation/province4_aidads/fit/elasticity_distribution.csv": {
+    "sha256": "b9fe1232c545e690d3c31b9d623cddd2d8b1779eec79b93b8f9e568525d3cabf",
+    "bytes": 1341
+  },
+  "outputs/validation/province4_aidads/fit/model_summary.csv": {
+    "sha256": "7d8188790e6a347d61a067bbdbed793055f3c175a8a3128cddc2b3ed608cc3e3",
+    "bytes": 262
+  },
+  "outputs/validation/province4_aidads/fit/parameters.csv": {
+    "sha256": "cdd31e5d950261a45cb529f4058017f9a4e2a7e6ed6d26132c74c264b5b4b423",
+    "bytes": 527
+  },
+  "outputs/validation/province4_aidads/fit/raw_parameters.csv": {
+    "sha256": "b4925a64017a6f0ff063ac9eeca15cc102b233c36f96ca6ba3dead2c0c24148a",
+    "bytes": 604
+  },
+  "outputs/validation/province4_aidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "44950625e6ee33b6f356281d400cab401d8e2b32f862fe7db6f344e2014dbb2f",
+    "bytes": 750
+  },
+  "outputs/validation/province4_aidads/fit/representative_inputs.csv": {
+    "sha256": "2f208d00e25b50262d83de2b2283d8cc70dcee5dcfd5735028422494c1d904f1",
+    "bytes": 294
+  },
+  "outputs/validation/province4_aidads/fit/representative_price_elasticities.csv": {
+    "sha256": "e85db5fa168300908ccf129ab65519cde663d9b7033187be6cb388399176c9b1",
+    "bytes": 2481
+  },
+  "outputs/validation/province4_aidads/fit/scale.csv": {
+    "sha256": "6133afa347f70f30f4348839804b25a3855c1ae527528715a92e8686231804b8",
+    "bytes": 184
+  },
+  "outputs/validation/province4_aidads/metrics/metrics.csv": {
+    "sha256": "3ba93eae953ae2aa881816ffdf20a6f2037658e69f44cdc7eea30f31f8d0c9d3",
+    "bytes": 1854
+  },
+  "outputs/validation/province4_aidads/prediction/coverage.csv": {
+    "sha256": "3c492754a37b2ed2af12e9c7c4e6142dc7d8912031b95d238f4bcfe67caf2120",
+    "bytes": 207
+  },
+  "outputs/validation/province4_aids/execution.json": {
+    "sha256": "967977592ac9f8791aa7ad7a67c5e2ba328210a6e489ca06d935728f1caab995",
+    "bytes": 1176
+  },
+  "outputs/validation/province4_aids/fit/candidates.csv": {
+    "sha256": "1be1dfea1b09d7ebfbdd8b12d518d7d9d790e7276e72f28ef5f61eac57939cf0",
+    "bytes": 157
+  },
+  "outputs/validation/province4_aids/fit/fit_summary.csv": {
+    "sha256": "d8b3b104611ac1d118a700b6080585fc97ce3230fa0a5cde753fbf706b4c04e4",
+    "bytes": 375
+  },
+  "outputs/validation/province4_aids/fit/hicksian_matrix.csv": {
+    "sha256": "1b2baca35741eb0ef66fd37d508592800c3bc812eefcdbd965111a247324cbe8",
+    "bytes": 1293
+  },
+  "outputs/validation/province4_aids/fit/marshallian_matrix.csv": {
+    "sha256": "11b8f8d542be1f711ade9151b32efa0872387a7126aad01fba6d7514a5eb56e5",
+    "bytes": 1330
+  },
+  "outputs/validation/province4_aids/fit/raw_parameters.csv": {
+    "sha256": "ee90e1a26252931291f0eafd3ab3e84560a6226ac3d5f7b81e2fe77aa6a48a02",
+    "bytes": 1050
+  },
+  "outputs/validation/province4_aids/fit/representative_elasticities.csv": {
+    "sha256": "cb6adfe6ef994cc1ccdc9f96350829ff85fa6f32321ca1b02a3aa8189d70792c",
+    "bytes": 663
+  },
+  "outputs/validation/province4_aids/metrics/metrics.csv": {
+    "sha256": "9746b94415f3db56ff20a6ebd88b8e737db9b5345f21ced7898230eab0e7528a",
+    "bytes": 1920
+  },
+  "outputs/validation/province4_aids/prediction/coverage.csv": {
+    "sha256": "ecb659027864fd0fed87a57dff0e1529fdd49903b73fc78f40f4783421ffedb1",
+    "bytes": 114
+  },
+  "outputs/validation/province4_maidads/execution.json": {
+    "sha256": "33e69bfc93a33912f723dd657c8ee2ca92a5069efe2972debee9aa6735607a6c",
+    "bytes": 1178
+  },
+  "outputs/validation/province4_maidads/fit/audit.csv": {
+    "sha256": "f1646b6a5c6fa8d3a7e86d3aa36d12e88a4acdb8942e1e91e1c6e37246294267",
+    "bytes": 1069
+  },
+  "outputs/validation/province4_maidads/fit/candidates.csv": {
+    "sha256": "1b8dbdcc62de11685eb43601f89f3b62c3299ba94cdd63678feea6e93b2fc282",
+    "bytes": 300
+  },
+  "outputs/validation/province4_maidads/fit/elasticity_distribution.csv": {
+    "sha256": "4108c35c6c810a89ce3d06d0ec015f4cca2495fa5720f2015b9b9516a5625dac",
+    "bytes": 1341
+  },
+  "outputs/validation/province4_maidads/fit/model_summary.csv": {
+    "sha256": "659bd82285eab5fcda3b07969dcd1204e05cf35be43c95d25db5ed1ee53220a6",
+    "bytes": 275
+  },
+  "outputs/validation/province4_maidads/fit/parameters.csv": {
+    "sha256": "853833b822d25b65b1322f428a3aa2aa28af92526a5852072cba60c733b1b190",
+    "bytes": 548
+  },
+  "outputs/validation/province4_maidads/fit/raw_parameters.csv": {
+    "sha256": "c8649fa660d5613a36ab407e192ebff7e607905baa735fc15db4bdf781f641ef",
+    "bytes": 829
+  },
+  "outputs/validation/province4_maidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "2230ac3e08eda1edc65ac7261452ef0162dfc796ff63152db313d00489733a03",
+    "bytes": 752
+  },
+  "outputs/validation/province4_maidads/fit/representative_inputs.csv": {
+    "sha256": "2f208d00e25b50262d83de2b2283d8cc70dcee5dcfd5735028422494c1d904f1",
+    "bytes": 294
+  },
+  "outputs/validation/province4_maidads/fit/representative_price_elasticities.csv": {
+    "sha256": "6bba0a4d76e47c446e6337990f60ab6ed4c9393769babe96da178c316a90c3bc",
+    "bytes": 2565
+  },
+  "outputs/validation/province4_maidads/fit/scale.csv": {
+    "sha256": "6133afa347f70f30f4348839804b25a3855c1ae527528715a92e8686231804b8",
+    "bytes": 184
+  },
+  "outputs/validation/province4_maidads/metrics/metrics.csv": {
+    "sha256": "fd72ebc6f69ce92030747feb7d9a576515094dc382430be55212efdde6bc54b6",
+    "bytes": 1859
+  },
+  "outputs/validation/province4_maidads/prediction/coverage.csv": {
+    "sha256": "9c6fef5cc74463e7846e28bee24c899975c3e0a2f7b423f43981d7eb88c3814f",
+    "bytes": 170
+  },
+  "outputs/validation/province4_quaids/execution.json": {
+    "sha256": "a75fa799f1302ce6be82e11d244fed34a6b906089c2fcd556094128d5f9bd2fc",
+    "bytes": 1184
+  },
+  "outputs/validation/province4_quaids/fit/candidates.csv": {
+    "sha256": "4d1df289570c2b69af4c8fe88ccba2a8cd134707c4f7a36cb67bc1becc685d29",
+    "bytes": 157
+  },
+  "outputs/validation/province4_quaids/fit/fit_summary.csv": {
+    "sha256": "ed762224160b50b3d255875ae90c14b6a27582a94ed7065758c08c3ff9eeabd8",
+    "bytes": 393
+  },
+  "outputs/validation/province4_quaids/fit/hicksian_matrix.csv": {
+    "sha256": "5c063215cb80a832a09886a88baef6015ad05d2e505c4713e056bfbea453ee26",
+    "bytes": 1296
+  },
+  "outputs/validation/province4_quaids/fit/marshallian_matrix.csv": {
+    "sha256": "6b7c6e3164e6aeec1fa5965073068ea761ad3cd4aa9bd657d8a96aa8d280d0c1",
+    "bytes": 1331
+  },
+  "outputs/validation/province4_quaids/fit/raw_parameters.csv": {
+    "sha256": "d553500eb703c9512ed11caa3abc33e863a06a8cbd64db7304e629b64614ea08",
+    "bytes": 1228
+  },
+  "outputs/validation/province4_quaids/fit/representative_elasticities.csv": {
+    "sha256": "6ba12c2c69754dd857b029866af9c545da32ccd0ab4290e78b6306b0de7b2aac",
+    "bytes": 666
+  },
+  "outputs/validation/province4_quaids/metrics/metrics.csv": {
+    "sha256": "686f481aee3106a595a3e40e9c4d4094b502bf26a5610370b41fb1419fb1513b",
+    "bytes": 1850
+  },
+  "outputs/validation/province4_quaids/prediction/coverage.csv": {
+    "sha256": "aa2891c712e2557fb6aa2241a982c6f84200722d43772b7f6fb5c3c5025acd46",
+    "bytes": 130
+  },
+  "outputs/validation/province5_aidads/execution.json": {
+    "sha256": "27b3152d3850a3c3c6b84256bc587b18a1665743c9037ab8e211f452103e8d58",
+    "bytes": 1174
+  },
+  "outputs/validation/province5_aidads/fit/audit.csv": {
+    "sha256": "13692f3f0210809625e71a0eab400ad1699981cc71fce43c4167277ca30e9bb2",
+    "bytes": 1071
+  },
+  "outputs/validation/province5_aidads/fit/candidates.csv": {
+    "sha256": "e40c15b70917a289108475a8812e2de08dd77b291c45c14458c2fb68834ecf03",
+    "bytes": 302
+  },
+  "outputs/validation/province5_aidads/fit/elasticity_distribution.csv": {
+    "sha256": "ddd88409361bb0a7605703077437e6506c7bc9c32bf405025d213267017e1e73",
+    "bytes": 1341
+  },
+  "outputs/validation/province5_aidads/fit/model_summary.csv": {
+    "sha256": "0b1a706dc0ca4140bfcaf3bd8f70172619ccd66b8fc81f1552b3fdd5dded860b",
+    "bytes": 261
+  },
+  "outputs/validation/province5_aidads/fit/parameters.csv": {
+    "sha256": "59aa7fd45611d85a52a6f786520116a296ac66de6417af4109a02dbdea160cb4",
+    "bytes": 536
+  },
+  "outputs/validation/province5_aidads/fit/raw_parameters.csv": {
+    "sha256": "c00e1f5df730c33b4b625c150e6eb624f1fd2b1da15fef836e6db528cd62c6b9",
+    "bytes": 605
+  },
+  "outputs/validation/province5_aidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "891231113812b00913d78c5e9fa4a00fc2239b1d34f589003bbb0716490cd120",
+    "bytes": 751
+  },
+  "outputs/validation/province5_aidads/fit/representative_inputs.csv": {
+    "sha256": "9be2155440f108996e010c6af99fc77004b25d19cba7421a865aaa45d21ab1c1",
+    "bytes": 295
+  },
+  "outputs/validation/province5_aidads/fit/representative_price_elasticities.csv": {
+    "sha256": "a6092398a88942293ba3a09559120e80121b0443dd9dfe07b31eeb63bd6b1cc3",
+    "bytes": 2471
+  },
+  "outputs/validation/province5_aidads/fit/scale.csv": {
+    "sha256": "bfebf8dc485172547e1a4a0a62a8abe5af68ed3ad8e2e19bca9925ae85d0d2f9",
+    "bytes": 184
+  },
+  "outputs/validation/province5_aidads/metrics/metrics.csv": {
+    "sha256": "95f4dd77265efb43c5b32f294114d6ea344888f5cdd1c6f0d251e4dedbe72b4c",
+    "bytes": 1857
+  },
+  "outputs/validation/province5_aidads/prediction/coverage.csv": {
+    "sha256": "78ff1bca6bcb1afd1408136af7e3ce97c6204c65e3faed60a96fca98d1e26221",
+    "bytes": 191
+  },
+  "outputs/validation/province5_aids/execution.json": {
+    "sha256": "64f1b3489782974b40f87a75f8990c27e4784286ea6bc949e5e6c8bd6563eecb",
+    "bytes": 1176
+  },
+  "outputs/validation/province5_aids/fit/candidates.csv": {
+    "sha256": "e3adebf0a6eaf4bd35cc2979e3fdf390f3779502e73cbb881dc9578f713aaef8",
+    "bytes": 157
+  },
+  "outputs/validation/province5_aids/fit/fit_summary.csv": {
+    "sha256": "b50b0cdfd7dcb7e4e1426762f1e4e0e26c777325688ab71233c98104654d8e39",
+    "bytes": 374
+  },
+  "outputs/validation/province5_aids/fit/hicksian_matrix.csv": {
+    "sha256": "f772d08957103920dec604e744ba8f19a9e3f49787d7c3392af64fa325740a71",
+    "bytes": 1290
+  },
+  "outputs/validation/province5_aids/fit/marshallian_matrix.csv": {
+    "sha256": "3daf5c0dcf935dc5786ea18f78ebe0c09b7f9a41f2d7239629b5c995a558c91a",
+    "bytes": 1329
+  },
+  "outputs/validation/province5_aids/fit/raw_parameters.csv": {
+    "sha256": "4788208dd6f9a443af366d2d9b5541fc7c7b313276b4324ba904ec96f0656b02",
+    "bytes": 1050
+  },
+  "outputs/validation/province5_aids/fit/representative_elasticities.csv": {
+    "sha256": "7fcd651695679aac9c3cf8150dc0cee560cb6dc225ff61d228d445a88dfda586",
+    "bytes": 658
+  },
+  "outputs/validation/province5_aids/metrics/metrics.csv": {
+    "sha256": "ee3958adcd9c2839fa3516a069d368f8b156033e9d28022a33456b76ff9f2d8e",
+    "bytes": 1924
+  },
+  "outputs/validation/province5_aids/prediction/coverage.csv": {
+    "sha256": "388bb2f445a0d910cd563e846e2c04235cca5960cf25bbc7b46a110ddceaa474",
+    "bytes": 114
+  },
+  "outputs/validation/province5_maidads/execution.json": {
+    "sha256": "abf3b2038e8ecdd621845a35d5e186aba363108bad7835925b35d5b93757c1b2",
+    "bytes": 1178
+  },
+  "outputs/validation/province5_maidads/fit/audit.csv": {
+    "sha256": "cc7eab80ec661152937345510eb33ed2ba390d13f15515cb3ff85fdf954aa1ab",
+    "bytes": 1071
+  },
+  "outputs/validation/province5_maidads/fit/candidates.csv": {
+    "sha256": "ccfaa62ed0cbbcbd294d8eddb87b03853511061a663aec84b8327737cf050d4e",
+    "bytes": 301
+  },
+  "outputs/validation/province5_maidads/fit/elasticity_distribution.csv": {
+    "sha256": "b058b589a38fe2b8d5f9ccfcc22ad5baa47c098790167db9db93ef1a61a7bc71",
+    "bytes": 1343
+  },
+  "outputs/validation/province5_maidads/fit/model_summary.csv": {
+    "sha256": "9cb62ed5332e7c7049bfc9d444981724edb5a79888937c57d3dcd50eb0ae2676",
+    "bytes": 277
+  },
+  "outputs/validation/province5_maidads/fit/parameters.csv": {
+    "sha256": "b1aeb66614a9a1abc6617722d5f00f4d60365d68d5425a1ce65c1c1242ee4d65",
+    "bytes": 505
+  },
+  "outputs/validation/province5_maidads/fit/raw_parameters.csv": {
+    "sha256": "f95ecd59208431add289014644003ce2da2837999a502add0a05c59bb3000a7c",
+    "bytes": 768
+  },
+  "outputs/validation/province5_maidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "855a853f6c5fd711c594c52df07592bdd32e25bf29b74174d648efe49fd6877e",
+    "bytes": 751
+  },
+  "outputs/validation/province5_maidads/fit/representative_inputs.csv": {
+    "sha256": "9be2155440f108996e010c6af99fc77004b25d19cba7421a865aaa45d21ab1c1",
+    "bytes": 295
+  },
+  "outputs/validation/province5_maidads/fit/representative_price_elasticities.csv": {
+    "sha256": "3f4aaafbc0493d783876328354dea90251fbaabac67f4c1f4b74c4f88261a8f0",
+    "bytes": 2489
+  },
+  "outputs/validation/province5_maidads/fit/scale.csv": {
+    "sha256": "bfebf8dc485172547e1a4a0a62a8abe5af68ed3ad8e2e19bca9925ae85d0d2f9",
+    "bytes": 184
+  },
+  "outputs/validation/province5_maidads/metrics/metrics.csv": {
+    "sha256": "7fed47db35a5611e3024ad64c76c53cfc3658b7a3e301c111fe845948f6f2e2a",
+    "bytes": 1855
+  },
+  "outputs/validation/province5_maidads/prediction/coverage.csv": {
+    "sha256": "9b26000f9847728f4f1d5892d35473efd3fcabda8f7a19fe236f0fc7398cb181",
+    "bytes": 191
+  },
+  "outputs/validation/province5_quaids/execution.json": {
+    "sha256": "d79c63b3c65d66d9efbcc845a678e22e640a53dc459aa7cf99534a4260fd8093",
+    "bytes": 1186
+  },
+  "outputs/validation/province5_quaids/fit/candidates.csv": {
+    "sha256": "cf9de8009300a1844dacc4719c0f5e9457e1abd6e8df46067e5345d9dbfe37f6",
+    "bytes": 157
+  },
+  "outputs/validation/province5_quaids/fit/fit_summary.csv": {
+    "sha256": "81341c95b16b16af8d16f86c5f62e892026cc21eab0c37fece7811fcad48cf65",
+    "bytes": 391
+  },
+  "outputs/validation/province5_quaids/fit/hicksian_matrix.csv": {
+    "sha256": "c1c24ff2a6a553ed415c90542a7321aa85fc0c62c31d8cc168f52f9ccc0ad194",
+    "bytes": 1288
+  },
+  "outputs/validation/province5_quaids/fit/marshallian_matrix.csv": {
+    "sha256": "c0904459d3a494940e8f8d1a38143fc7bb147b82f8828e5aab06e0feeadd88d1",
+    "bytes": 1331
+  },
+  "outputs/validation/province5_quaids/fit/raw_parameters.csv": {
+    "sha256": "4396371094ccc4565c87539d84b3e8bd1ab7a4e1205606697c571014e656f3d3",
+    "bytes": 1229
+  },
+  "outputs/validation/province5_quaids/fit/representative_elasticities.csv": {
+    "sha256": "f5d959ebbf421361969fda974fccf88233298b579606f96c8bced56b90aa574f",
+    "bytes": 663
+  },
+  "outputs/validation/province5_quaids/metrics/metrics.csv": {
+    "sha256": "32b108a2152bf1e7ee710c9ab2dee5a513538b42487cc9c8856b346ed670a9ba",
+    "bytes": 1924
+  },
+  "outputs/validation/province5_quaids/prediction/coverage.csv": {
+    "sha256": "07303ae28190f2d8fd62423db5e26fcdcc2c8ffd534ac3a8ead2bc9f321f8ee8",
+    "bytes": 114
+  },
+  "outputs/validation/temporal_aidads/execution.json": {
+    "sha256": "22ac522d29e49a0b27ca12fe9b5cec1fead91f9a21c4f8f36db10528d01d1c08",
+    "bytes": 1138
+  },
+  "outputs/validation/temporal_aidads/fit/audit.csv": {
+    "sha256": "09053f0f8080205110224a96c8fdb43432e802a3fc34af9f3eb8116f33401124",
+    "bytes": 1071
+  },
+  "outputs/validation/temporal_aidads/fit/candidates.csv": {
+    "sha256": "8771b036b3870083fda81ede30c3efe310633a815fa9eee8ae4cd1b83a82a91f",
+    "bytes": 300
+  },
+  "outputs/validation/temporal_aidads/fit/elasticity_distribution.csv": {
+    "sha256": "274d4fcee122abc2858413a5c8552c701d577902f2ae3de60ca66b85475c3c33",
+    "bytes": 1337
+  },
+  "outputs/validation/temporal_aidads/fit/model_summary.csv": {
+    "sha256": "8c25441792e8fb02c16ce3fd6dc9f15b854d6f65a714b792695baf7ad0973049",
+    "bytes": 261
+  },
+  "outputs/validation/temporal_aidads/fit/parameters.csv": {
+    "sha256": "1b7f88b772e29a76259e5d0d31f861e6e38cfec5bcf141e1f4f0e5281ae23e5a",
+    "bytes": 533
+  },
+  "outputs/validation/temporal_aidads/fit/raw_parameters.csv": {
+    "sha256": "0432901ce8a6822bc7d16331176ee6bfc9db23d1b7c74b1014ef81a6b75c7475",
+    "bytes": 609
+  },
+  "outputs/validation/temporal_aidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "f8bb0846d26765e04edbadaf3726c6f535f6c82fbe3cda4820c7a4ba86bc9059",
+    "bytes": 750
+  },
+  "outputs/validation/temporal_aidads/fit/representative_inputs.csv": {
+    "sha256": "3539ef586e71affbbe35b7b1f9a842051907728faea1abe274993feec8087e0d",
+    "bytes": 287
+  },
+  "outputs/validation/temporal_aidads/fit/representative_price_elasticities.csv": {
+    "sha256": "3852b6347103295cd0784ecaf67533608dc3eeae7ecbaed45ad2ffcc962eff47",
+    "bytes": 2477
+  },
+  "outputs/validation/temporal_aidads/fit/scale.csv": {
+    "sha256": "03e9249d3ed9c7cef6c3b40359abc03fb234c21b8d25902851eb523cee8161a6",
+    "bytes": 184
+  },
+  "outputs/validation/temporal_aidads/metrics/metrics.csv": {
+    "sha256": "921010a53298c84fec8b222f1a50c7857a1f6af0e840ecb435ad0fc964829f5c",
+    "bytes": 1858
+  },
+  "outputs/validation/temporal_aidads/prediction/coverage.csv": {
+    "sha256": "16c0eb75c8bdac01b50282032b5c4defbae46da272788049cb1055ba3ef45192",
+    "bytes": 170
+  },
+  "outputs/validation/temporal_aids/execution.json": {
+    "sha256": "2a5e5d9ac2ae90cad411aa5a14e7feb53ffba43db335523e8a514c5809772ed6",
+    "bytes": 1141
+  },
+  "outputs/validation/temporal_aids/fit/candidates.csv": {
+    "sha256": "89092c10175c79581563aa14763b7e99fb702e5a8b9b01b127f6b267781bab61",
+    "bytes": 155
+  },
+  "outputs/validation/temporal_aids/fit/fit_summary.csv": {
+    "sha256": "ae051948955680e4e6929e05f8dfba8d670d5c7a55741598747998f5a3ab4f27",
+    "bytes": 374
+  },
+  "outputs/validation/temporal_aids/fit/hicksian_matrix.csv": {
+    "sha256": "920205ed12c3ecd2d99ecd94e202ab9d233181df947cd6e6a4a7954f5dcb5c77",
+    "bytes": 1299
+  },
+  "outputs/validation/temporal_aids/fit/marshallian_matrix.csv": {
+    "sha256": "a39f19eb109a4c15b7bd06cd3f5d325082aaa0ef1d1ad23a55c5439a499fec82",
+    "bytes": 1335
+  },
+  "outputs/validation/temporal_aids/fit/raw_parameters.csv": {
+    "sha256": "6b6328c2f6e1e60be1c950664b9c26e141146d697d6b17e6ba86600ec28906d2",
+    "bytes": 1046
+  },
+  "outputs/validation/temporal_aids/fit/representative_elasticities.csv": {
+    "sha256": "69a171dd5f3189094d5caca2f159c19c8aa2ae45742f58563eb1a33acbd8d3d2",
+    "bytes": 669
+  },
+  "outputs/validation/temporal_aids/metrics/metrics.csv": {
+    "sha256": "4518722f656fa55a775b563874930cddea5dadd180449a384e213e09632c9b02",
+    "bytes": 1919
+  },
+  "outputs/validation/temporal_aids/prediction/coverage.csv": {
+    "sha256": "089b52786a3b1ec044daa6b8f24cda8bc4b1025f94580d8bbf2ef2db0012a638",
+    "bytes": 114
+  },
+  "outputs/validation/temporal_maidads/execution.json": {
+    "sha256": "c7df409a91c72834c50018aac2b4cb29b10fbc66e11191f9189fefbd52faa58f",
+    "bytes": 1143
+  },
+  "outputs/validation/temporal_maidads/fit/audit.csv": {
+    "sha256": "063266f8ebaa6c356e4190ea7ef13d5dccdc2eedfe2502fab70ae77bfcb06a64",
+    "bytes": 1069
+  },
+  "outputs/validation/temporal_maidads/fit/candidates.csv": {
+    "sha256": "f5dbb1b2376baabec8853cd65e495bf1108ad0b8f4918e130fd22d18d7c9978b",
+    "bytes": 300
+  },
+  "outputs/validation/temporal_maidads/fit/elasticity_distribution.csv": {
+    "sha256": "011898ffd17b13eb23467eeb82ea9736d216f59c4477c13edff598864f62a4b8",
+    "bytes": 1343
+  },
+  "outputs/validation/temporal_maidads/fit/model_summary.csv": {
+    "sha256": "997374096069bf8c7d19d13f0dd235b7e643eba2d07fae015386ecd08c707530",
+    "bytes": 276
+  },
+  "outputs/validation/temporal_maidads/fit/parameters.csv": {
+    "sha256": "b00bb883cab17d6dfa61a5cc02dd7f9a32768dc5d67baa2c1486f42aaa82ef18",
+    "bytes": 530
+  },
+  "outputs/validation/temporal_maidads/fit/raw_parameters.csv": {
+    "sha256": "6ca84037ecd580decd3ff6310d984f7634f11206547123f4a3734901f037840b",
+    "bytes": 814
+  },
+  "outputs/validation/temporal_maidads/fit/representative_budget_elasticities.csv": {
+    "sha256": "20a6c83f50e090d953c766f70c4521a25da65faddd077dec4748a59b59a3a6db",
+    "bytes": 750
+  },
+  "outputs/validation/temporal_maidads/fit/representative_inputs.csv": {
+    "sha256": "3539ef586e71affbbe35b7b1f9a842051907728faea1abe274993feec8087e0d",
+    "bytes": 287
+  },
+  "outputs/validation/temporal_maidads/fit/representative_price_elasticities.csv": {
+    "sha256": "99298e268e25a29898eaf089c0c132d043345a8ffed27cafda8acc6693efa8e3",
+    "bytes": 2567
+  },
+  "outputs/validation/temporal_maidads/fit/scale.csv": {
+    "sha256": "03e9249d3ed9c7cef6c3b40359abc03fb234c21b8d25902851eb523cee8161a6",
+    "bytes": 184
+  },
+  "outputs/validation/temporal_maidads/metrics/metrics.csv": {
+    "sha256": "e76ed3c0d05f0c34d2f9c493548a5a9ae163ba536177c4db76f6ab905f62d07d",
+    "bytes": 1856
+  },
+  "outputs/validation/temporal_maidads/prediction/coverage.csv": {
+    "sha256": "120951c7bf6ea05b0933d495720be430b9338327cefb26d1b0d8c310ee81ce08",
+    "bytes": 144
+  },
+  "outputs/validation/temporal_quaids/execution.json": {
+    "sha256": "5ad1bdea9eb256f9833492cca1e6aabdac81ab8581abc182c275936336decf67",
+    "bytes": 1148
+  },
+  "outputs/validation/temporal_quaids/fit/candidates.csv": {
+    "sha256": "8d94ca10754c27e36c9cd54e0a47a13f279ff41f70d4a4c4f86d4b471f1ff6f4",
+    "bytes": 157
+  },
+  "outputs/validation/temporal_quaids/fit/fit_summary.csv": {
+    "sha256": "27cf89ac21be76fd2189e312127dc9e040e39c808972daf90d392b3bb53559a0",
+    "bytes": 393
+  },
+  "outputs/validation/temporal_quaids/fit/hicksian_matrix.csv": {
+    "sha256": "605b7731097ce15942f7784caab12a9e679538967dba8105d4421af77bc55c03",
+    "bytes": 1304
+  },
+  "outputs/validation/temporal_quaids/fit/marshallian_matrix.csv": {
+    "sha256": "c707b03232904bd9eb565a543bf49294c87ccac02b279aab94338309d8691cf4",
+    "bytes": 1333
+  },
+  "outputs/validation/temporal_quaids/fit/raw_parameters.csv": {
+    "sha256": "46bb56a386ef9eb10e199e032174423b4029d8a6e9c22e71cec7bd5f79283261",
+    "bytes": 1227
+  },
+  "outputs/validation/temporal_quaids/fit/representative_elasticities.csv": {
+    "sha256": "4fba25c13881917556565004a93623fc842da2db779072df95ab58533840353b",
+    "bytes": 662
+  },
+  "outputs/validation/temporal_quaids/metrics/metrics.csv": {
+    "sha256": "5668dd41b9c984d6ebbf7c1b5704e7fc3f39f252cf3528d7b9a608b3658f48c0",
+    "bytes": 1854
+  },
+  "outputs/validation/temporal_quaids/prediction/coverage.csv": {
+    "sha256": "3bd32995780def5e6f2d5a90f34e25a5c9d497452d8cbe7a90b28cb75fee51b0",
+    "bytes": 130
+  }
+}

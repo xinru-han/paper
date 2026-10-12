@@ -1,0 +1,2 @@
+start,mean_nll,projected_gradient,iterations,solver_converged,active_lower,active_upper,initial_gradient_check,numerical_guard_coordinates,stationary_without_guard
+1,-12.099590513912,.00026766422338805,508,0,4,0,6.2391416338382e-06,1,0

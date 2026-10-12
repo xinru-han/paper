@@ -1,0 +1,2 @@
+N,K,mean_nll,nll,structural_parameter_count,covariance_parameter_count,total_parameter_count,AIC,BIC,projected_gradient,converged,omega,kappa
+7806,8,-8.5952594704482,-67094.595426318,32,28,60,-134069.19085264,-133651.43197577,.44063112055992,0,.50055602362224,2.9253428020264

@@ -1,0 +1,2 @@
+target_rows,valid_rows,budget_error,utility_equation_error,estimate_stationary,estimate_qualified,estimate_score,coverage
+180,180,5.53806843348e-15,9.13323084326e-15,1,1,.0000116581164237,1

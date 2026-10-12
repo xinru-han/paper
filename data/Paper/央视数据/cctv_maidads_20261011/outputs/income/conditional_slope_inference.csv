@@ -1,0 +1,13 @@
+type,growth_factor,mean_inc1,estimate,conditional_se,conditional_p,ci_lower,ci_upper,inference_scope
+1,1,-.1511315640574347,.0442896751072815,.0126839970883957,.0004805695454814,.0194284088336095,.0691509413809535,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed
+1,1.5,-.1511315640574347,.0377720848009451,.0179741043681403,.035608544931144,.0025419446792696,.0730022249226207,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed
+1,2,-.1511315640574347,.0331477808861967,.0251521827709639,.1875517868534693,-.0161517505529175,.0824473123253109,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed
+2,1,.1005044400286264,.1176646226079031,.0154284531845305,2.49016946812e-14,.0874240856432255,.1479051595725808,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed
+2,1.5,.1005044400286264,.1193294629213519,.024478498059932,1.09484508200e-06,.0713503870822147,.167308538760489,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed
+2,2,.1005044400286264,.1205106859220408,.0343916973231971,.0004589409420989,.0531012456015464,.1879201262425352,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed
+3,1,.2158246471249904,.1011574930643317,.0169465630142575,2.41318868800e-09,.0679413851935357,.1343736009351278,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed
+3,1.5,.2158246471249904,-.0573961382000163,.0289207439941395,.047198750272175,-.1140822374051953,-.0007100389948373,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed
+3,2,.2158246471249904,-.169891729866846,.0431917108005257,.0000839454064331,-.2545496350637572,-.0852338246699348,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed
+4,1,-.1992294094672837,.0997199387873949,.0238006602125641,.0000280070142888,.0530694589023836,.1463704186724062,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed
+4,1.5,-.1992294094672837,.0574377835831191,.0388409367149507,.1392065055850236,-.0186923876286567,.1335679547948949,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed
+4,2,-.1992294094672837,.0274381170430108,.057172719625073,.6312907459568537,-.0846232620540661,.1394994961400876,2022 once-per-household mean log-budget slope; income distribution and forecast anchor treated as fixed

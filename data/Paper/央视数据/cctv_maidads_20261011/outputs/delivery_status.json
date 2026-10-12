@@ -1,0 +1,11 @@
+{
+  "native_qualified_actual_fits": [],
+  "built_at": "2026-10-12T19:36:21.947803+08:00",
+  "pooled_diagnostic_model": "maidads_8_warm",
+  "corner_outputs_present": true,
+  "final_food_elasticity_sampling_inference": false,
+  "bootstrap": false,
+  "notion_synced": false,
+  "corner_postprocessing_completed": true,
+  "corner_forecast_formal": false
+}

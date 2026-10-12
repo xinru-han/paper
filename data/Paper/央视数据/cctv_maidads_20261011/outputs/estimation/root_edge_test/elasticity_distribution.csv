@@ -1,0 +1,3 @@
+good,mean_share,mean_budget,min_budget,max_budget,p10_budget,p50_budget,p90_budget,mean_marshallian_own,mean_hicksian_own,negative_budget_cells
+1,.5,1,1,1,1,1,1,-1,-.5,0
+2,.5,1,1,1,1,1,1,-1,-.5,0

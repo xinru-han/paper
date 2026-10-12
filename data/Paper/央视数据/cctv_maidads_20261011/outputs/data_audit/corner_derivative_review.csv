@@ -1,0 +1,2 @@
+cases,budget_fd_checked,income_fd_checked,budget_boundary_cases,income_boundary_cases,budget_derivative_relative_gap,income_chain_relative_gap,budget_closure_gap,derivative_budget_closure_gap,inactive_derivative_gap,existing_solver_gap
+4096,4096,4096,0,0,8.24039725345e-10,5.30587829228e-09,2.57311295757e-15,4.44089209850e-16,0,3.55271367880e-15

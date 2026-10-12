@@ -1,0 +1,42 @@
+{
+  "fold": "province2",
+  "model": "aids",
+  "input": "data/cells_quarter_8_cvfold2.csv",
+  "training_filter": "year<=2021&cv_fold!=2",
+  "test_filter": "year<=2021&cv_fold==2",
+  "steps": [
+    {
+      "script": "04_comparators.do",
+      "seconds": 20.032994270324707,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province2_aids/fit/fit_summary.csv",
+      "success": true
+    },
+    {
+      "script": "07_comparator_predict.do",
+      "seconds": 2.856879234313965,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province2_aids/prediction/predictions.csv",
+      "success": true
+    },
+    {
+      "script": "07_validation_metrics.do",
+      "seconds": 2.9955615997314453,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province2_aids/metrics/metrics.csv",
+      "success": true
+    }
+  ],
+  "success": true,
+  "metrics_refresh": {
+    "script": "07_validation_metrics.do",
+    "seconds": 4.712762355804443,
+    "returncode": 0,
+    "stata_errors": [],
+    "artifact": "outputs/validation/province2_aids/metrics/metrics.csv",
+    "success": true
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "fold": "temporal",
+  "model": "quaids",
+  "input": "data/cells_quarter_8.csv",
+  "training_filter": "year<=2021",
+  "test_filter": "year==2022",
+  "steps": [
+    {
+      "script": "04_comparators.do",
+      "seconds": 26.489108085632324,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/temporal_quaids/fit/fit_summary.csv",
+      "success": true
+    },
+    {
+      "script": "07_comparator_predict.do",
+      "seconds": 3.533000946044922,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/temporal_quaids/prediction/predictions.csv",
+      "success": true
+    },
+    {
+      "script": "07_validation_metrics.do",
+      "seconds": 3.368345022201538,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/temporal_quaids/metrics/metrics.csv",
+      "success": true
+    }
+  ],
+  "success": true,
+  "metrics_refresh": {
+    "script": "07_validation_metrics.do",
+    "seconds": 6.0268235206604,
+    "returncode": 0,
+    "stata_errors": [],
+    "artifact": "outputs/validation/temporal_quaids/metrics/metrics.csv",
+    "success": true
+  }
+}

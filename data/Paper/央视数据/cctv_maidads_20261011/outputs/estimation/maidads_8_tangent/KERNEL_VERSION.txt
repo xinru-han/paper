@@ -1,0 +1,3 @@
+maidads_tangent_core.mata: near-active low-endpoint-cost tangent search
+Original native objective, physical box score and qualification gate retained.
+Separate experimental numerical-search variant; not a relaxation of stationarity.

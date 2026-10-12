@@ -1,0 +1,2 @@
+evaluated_demands,invalid_roots,invalid_budgets,negative_quantities,max_root_error,max_budget_error,minimum_Fu,maximum_Fu,max_fast_generic_difference,compensated_fd_cases,max_slutsky_symmetry,max_slutsky_eigenvalue,max_hicks_homogeneity,fd_perturbation,integration_draws
+61440,0,0,0,9.99644811372e-12,6.87323132515e-16,-1.068191069626765,-1.016006213306647,3.30846461338e-13,128,1.22159157789e-11,5.72004343620e-17,3.60822483003e-11,.00001,64

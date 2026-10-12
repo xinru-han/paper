@@ -1,0 +1,4 @@
+test,statistic,df,df_residual,p_value,observations,clusters,inference_scope
+nonlinear,12.45318120801685,4,27637,4.03362104205e-10,203337,27638,Household-cluster Wald; treats estimated interval-income moments as fixed; not joint food-elasticity inference
+family_curve,10.95383935813403,6,27637,3.17802500488e-12,203337,27638,Household-cluster Wald; treats estimated interval-income moments as fixed; not joint food-elasticity inference
+income_response,19.76857502144751,8,27637,4.80438466302e-30,203337,27638,Household-cluster Wald; treats estimated interval-income moments as fixed; not joint food-elasticity inference

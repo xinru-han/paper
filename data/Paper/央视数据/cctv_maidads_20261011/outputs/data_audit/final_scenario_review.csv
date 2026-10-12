@@ -1,0 +1,13 @@
+level,metric,value
+micro,unique_2022_households,22775
+micro,invalid_household_scenarios,32
+micro,unqualified_parameter_household_scenarios,318850
+micro,candidate_projected_gradient,.26591443542834
+province,aggregate_scenario_groups,336
+province,groups_with_complete_prediction_coverage,308
+province,qualified_formal_forecast_groups,0
+province,unique_household_weight_and_aggregate_derivatives_pass,1
+family,aggregate_scenario_groups,56
+family,groups_with_complete_prediction_coverage,38
+family,qualified_formal_forecast_groups,0
+family,unique_household_weight_and_aggregate_derivatives_pass,1

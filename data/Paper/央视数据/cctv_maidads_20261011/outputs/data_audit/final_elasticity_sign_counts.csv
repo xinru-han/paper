@@ -1,0 +1,13 @@
+model,specification,positive_own_count
+aids,baseline,1
+aids,coarse,2
+aids,complete_stable,1
+aids,permonth_size,1
+aids,year,0
+aids,year_permonth_size,0
+quaids,baseline,1
+quaids,coarse,2
+quaids,complete_stable,1
+quaids,permonth_size,1
+quaids,year,0
+quaids,year_permonth_size,0
