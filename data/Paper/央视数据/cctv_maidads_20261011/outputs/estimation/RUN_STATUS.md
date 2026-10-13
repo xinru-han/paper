@@ -1,5 +1,15 @@
 # Native (M)AIDADS Run Status
 
+2026-10-13 follow-up: the first-round softmax results below remain historical.
+Natural-simplex MAIDADS now has qualified local points for the eight-good coarse
+cells and elderly cells, both independently repeated with two starts. Preferred
+directories are `maidads_8_coarse_simplex_multistart` (KKT 1.429e-6, N=5,733)
+and `maidads_family_3_simplex_multistart` (KKT 9.044e-7, N=1,437).
+See `docs/SIMPLEX_ENDPOINTS.md` and the current main report. This does not certify
+global optimality, joint sampling inference, zero-purchase fit or predictive
+validation. Individual annual-budget coverage remains incomplete; representative
+mean-budget scenarios are separate aggregation sensitivities, not replacements.
+
 Updated 2026-10-12. All estimator-agent Stata sessions have completed, timed out
 or been explicitly interrupted and closed. No required estimator process is
 left running. All real fits use CCTV cells; no rural-survey parameter estimates

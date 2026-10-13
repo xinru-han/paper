@@ -1,6 +1,7 @@
 """Copy an explicit privacy-safe deliverable into an isolated Git worktree."""
 from pathlib import Path
 import argparse
+import csv
 import hashlib
 import json
 import shutil
@@ -16,7 +17,7 @@ RESULT_NAMES={
     'KERNEL_VERSION.txt','metrics.csv','representative_inputs.csv',
 }
 PRIVATE_NAMES={
-    'smd_actual_support.csv','cell_scenarios.csv',
+    'smd_actual_support.csv','cell_scenarios.csv','predictions.csv',
     'category_external_prices_all_sources.csv','category_external_prices_observed.csv',
     'group_price_month_8.csv','group_price_month_9.csv',
 }
@@ -33,8 +34,14 @@ def approved(path):
     if path.name=='RUN_STATUS.md': return True
     if len(rel.parts)==2:
         return path.suffix in ('.md','.txt','.json','.csv')
-    if rel.parts[1] in ('data_audit','income','scenarios','corner','corner_scenarios'):
+    if rel.parts[1] in ('data_audit','income','scenarios','corner','corner_scenarios','corner_freephi','scope_audit'):
         return len(rel.parts)==3 and path.suffix in ('.csv','.json')
+    if rel.parts[1]=='scenarios_simplex':
+        return len(rel.parts)==4 and path.name in ('coverage.csv','province_income_growth.csv','family_income_growth.csv')
+    if rel.parts[1] in ('validation','validation_simplex') and len(rel.parts)==3:
+        return path.name in ('all_fold_metrics.csv','all_model_metrics.csv','execution_ledger.json')
+    if rel.parts[1] not in ('estimation','comparators','validation','validation_simplex','tests'):
+        return False
     return path.name in RESULT_NAMES
 
 
@@ -46,12 +53,27 @@ def main():
     args=parser.parse_args()
     target=args.worktree/'data/Paper/央视数据'/ROOT.name
     target.mkdir(parents=True,exist_ok=True)
+    manifest_file=target/'PUBLIC_MANIFEST.json'
+    previous=json.loads(manifest_file.read_text(encoding='utf-8')) if manifest_file.exists() else {}
+    # Remove only our unchanged prior copies that no longer meet the public scope.
+    for name,details in previous.items():
+        if approved(ROOT/name): continue
+        stale=target/name
+        if stale.exists():
+            if hashlib.sha256(stale.read_bytes()).hexdigest()!=details['sha256']:
+                raise ValueError(f'Unexpected edit in previously copied artifact: {stale}')
+            stale.unlink()
     scope=None
     if args.reuse_scope:
-        scope=set(json.loads((target/'PUBLIC_MANIFEST.json').read_text(encoding='utf-8')))
+        scope=set(previous)
     manifest={}
     for path in sorted(ROOT.rglob('*')):
         if not path.is_file() or not approved(path): continue
+        if path.suffix=='.csv':
+            with path.open(encoding='utf-8-sig',newline='') as handle:
+                header={x.strip().lower() for x in next(csv.reader(handle),[])}
+            if header & {'hh_id','household_id','household_code','hhid','user_id','consumer_id'}:
+                raise ValueError(f'Household identifier in public candidate: {path}')
         rel=path.relative_to(ROOT)
         if scope is not None and str(rel) not in scope: continue
         dest=target/rel

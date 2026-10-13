@@ -1,0 +1,10 @@
+month_count,year,quarter_count,positive_budget,observed_active_months,diary_coverage_verified,measurement_scope
+1,2020,2041,2019,1,0,Active transaction months; enrolled days and no-purchase reporting are unavailable
+2,2020,2880,2879,2,0,Active transaction months; enrolled days and no-purchase reporting are unavailable
+3,2020,58434,58433,3,0,Active transaction months; enrolled days and no-purchase reporting are unavailable
+1,2021,1706,1694,1,0,Active transaction months; enrolled days and no-purchase reporting are unavailable
+2,2021,2464,2463,2,0,Active transaction months; enrolled days and no-purchase reporting are unavailable
+3,2021,59104,59104,3,0,Active transaction months; enrolled days and no-purchase reporting are unavailable
+1,2022,4164,4125,1,0,Active transaction months; enrolled days and no-purchase reporting are unavailable
+2,2022,4253,4249,2,0,Active transaction months; enrolled days and no-purchase reporting are unavailable
+3,2022,68372,68371,3,0,Active transaction months; enrolled days and no-purchase reporting are unavailable

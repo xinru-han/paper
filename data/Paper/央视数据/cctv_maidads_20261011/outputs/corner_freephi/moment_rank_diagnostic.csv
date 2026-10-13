@@ -1,0 +1,2 @@
+integration_draws,finite_difference_step,numerical_rank,minimum_singular_value,condition_number,parameter_count,moment_count
+64,.025,27,.0060230522235397,111.0913566109916,27,195

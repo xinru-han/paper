@@ -1,0 +1,15 @@
+scenario_order,horizon,growth_rate,growth_factor,target_observations,any_fitted_quantity_exceeds,any_invalid_prediction,fitted_quantity_exceeds1,fitted_quantity_exceeds2,fitted_quantity_exceeds3,fitted_quantity_exceeds4,fitted_quantity_exceeds5,fitted_quantity_exceeds6,fitted_quantity_exceeds7,fitted_quantity_exceeds8,model_predictions,model_forecast_qualified,interpretation
+1,2022,,1,22775,0,.0001317233809001,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+2,2022,,1.1,22775,0,.0001317233809001,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+3,2022,,1.25,22775,0,.0000878155872667,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+4,2022,,1.5,22775,0,.0000878155872667,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+5,2022,,2,22775,0,.0000878155872667,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+6,2030,.01,1.08285670562808,22775,0,.0001317233809001,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+7,2030,.02,1.171659381002266,22775,0,.0000878155872667,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+8,2030,.03,1.266770081387616,22775,0,.0000878155872667,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+9,2035,.01,1.13809328043329,22775,0,.0001317233809001,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+10,2035,.02,1.293606630453796,22775,0,.0000878155872667,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+11,2035,.03,1.468533713451565,22775,0,.0000878155872667,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+12,2050,.01,1.321290966898251,22775,0,.0000878155872667,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+13,2050,.02,1.741024206173928,22775,0,.0000878155872667,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts
+14,2050,.03,2.287927675737263,22775,0,.0000878155872667,0,0,0,0,0,0,0,0,native,0,Existing unqualified diagnostic predictions; not accepted native or phase2 forecasts

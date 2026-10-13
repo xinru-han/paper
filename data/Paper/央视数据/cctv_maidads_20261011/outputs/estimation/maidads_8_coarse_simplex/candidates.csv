@@ -1,0 +1,2 @@
+start,mean_nll,natural_simplex_KKT,iterations,solver_converged,active_lower,active_upper,initial_box_gradient_check,numerical_guard_coordinates,stationary_without_guard,zero_alpha,zero_beta
+1,-12.099596523949,2.4211068010572e-06,189,1,4,0,5.2503916321694e-06,0,1,0,1

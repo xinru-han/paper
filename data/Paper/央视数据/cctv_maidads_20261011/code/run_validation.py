@@ -27,8 +27,13 @@ def call_stata(script, args, jobdir, expected, log, timeout=1800):
                 'returncode': 124, 'stata_errors': ['timeout'],
                 'artifact': str(expected.relative_to(ROOT)), 'success': False}
     (jobdir / (script + '.stdout.txt')).write_text(run.stdout, encoding='utf-8')
-    logtext = log.read_text(encoding='utf-8', errors='replace') if log.exists() else ''
-    errors = re.findall(r'^r\((\d+)\);\s*$', logtext, flags=re.M)
+    logs=[log] if log.exists() else []
+    logs.extend(p for p in jobdir.glob('*.log')
+                if p.stat().st_mtime>=started-1 and p not in logs)
+    errors=[]
+    for path in logs:
+        logtext=path.read_text(encoding='utf-8',errors='replace')
+        errors.extend(re.findall(r'^r\((\d+)\);\s*$',logtext,flags=re.M))
     success = (run.returncode == 0 and not errors and expected.exists()
                and expected.stat().st_mtime >= started-1)
     return {'script': script, 'seconds': time.time()-started,
@@ -105,7 +110,7 @@ def main():
     if rows:
         fields = list(dict.fromkeys(field for row in rows for field in row))
         with (out/'all_fold_metrics.csv').open('w', encoding='utf-8', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=fields)
+            writer = csv.DictWriter(f, fieldnames=fields, lineterminator='\n')
             writer.writeheader(); writer.writerows(rows)
     if not all(r['success'] for r in results):
         raise SystemExit('Some Stata validation jobs failed; see execution ledger. No fold was silently removed.')

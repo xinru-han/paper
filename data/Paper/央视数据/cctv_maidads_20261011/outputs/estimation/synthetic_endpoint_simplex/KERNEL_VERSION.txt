@@ -1,0 +1,4 @@
+maidads_simplex_core.mata: natural nonnegative alpha/beta, exact simplex boundaries
+Same native model and orthogonal-share QML; all delta/tau endpoints remain free.
+Qualification requires full-K projected natural KKT plus face/one-sided derivative and root audits.
+Warm source: /root/data/Paper/央视数据/cctv_maidads_20261011/outputs/tests/simplex_edges/warm

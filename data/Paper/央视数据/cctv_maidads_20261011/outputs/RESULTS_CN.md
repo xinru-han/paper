@@ -2,9 +2,136 @@
 
 本报告仅使用本次 Stata/Mata 输出，不沿用农户调查或旧 EASI 弹性。没有 bootstrap；最终食品弹性不提供伪造的标准误、p 值或置信区间。
 
-## 主要结论与未完成项
+## 最新进展：自然端点与情景复核（2026-10-13）
 
-当前真实数据的原生完整自由 MAIDADS/AIDADS 没有通过资格检查，不能将以下负价格弹性或情景解释为正式估计结论。
+八类粗分组自由端点 MAIDADS 已通过局部数值资格检查。自然单纯形允许精确零边际份额；低、高承诺量均自由估计，没有固定低端点为零，没有修改原始购买量或采用 Slutsky Cholesky 修正。首轮 softmax 失败保留于后文作为历史诊断，不代表本轮自然端点也失败。
+
+粗分组两起点复核：N=5,733，完整自然参数秩32/32，活跃面秩28/28，KKT分数1.429e-6，全部分组效用根通过有限网格检查。两个起点的目标值几乎一致，但这不是全局最优证明或统计显著性。高效用水产品边际份额β7估为精确零；其长期条件需求趋于饱和，而非所有食物需求消失。
+
+**八类代表点的完整自由端点结果**
+
+| good | 食品 | share | quantity_equivalent | budget_elasticity | marshallian_own | hicksian_own |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 主食 | 0.0833599 | 17.855 | 0.812025 | -0.749435 | -0.681745 |
+| 2 | 油脂 | 0.080232 | 16.6501 | 0.91673 | -0.954508 | -0.880957 |
+| 3 | 蔬菜 | 0.122449 | 25.6246 | 1.14217 | -0.931368 | -0.791511 |
+| 4 | 水果 | 0.157537 | 32.7749 | 0.920396 | -0.670794 | -0.525798 |
+| 5 | 猪肉 | 0.137742 | 32.2341 | 1.09581 | -0.745645 | -0.594706 |
+| 6 | 其他肉类 | 0.157122 | 33.5229 | 1.1249 | -0.690228 | -0.513481 |
+| 7 | 水产品 | 0.0995646 | 21.0509 | 1.2283 | -0.236235 | -0.113939 |
+| 8 | 奶类 | 0.161993 | 34.2926 | 0.764993 | -0.875751 | -0.751828 |
+
+这些价格弹性是食品集合内的条件弹性；不是完整家庭预算下的因果价格效应。最终食品弹性的标准误、p值、区间仍未计算；无需bootstrap不意味着可以省去联合推断条件而宣布显著。
+
+**自价格响应的结构拆解**
+
+| good | share | quantity_equivalent | budget_elasticity | marshallian_own | hicksian_own | marginal_share | committed_quantity_fraction | discretionary_quantity_fraction | hicksian_own_decomposed |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 0.0833599 | 17.855 | 0.812025 | -0.749435 | -0.681745 | 0.0879189 | 0.252539 | 0.747461 | -0.681745 |
+| 2 | 0.080232 | 16.6501 | 0.91673 | -0.954508 | -0.880957 | 0.112357 | 0.00753236 | 0.992468 | -0.880957 |
+| 3 | 0.122449 | 25.6246 | 1.14217 | -0.931368 | -0.791511 | 0.163483 | 0.0538013 | 0.946199 | -0.791511 |
+| 4 | 0.157537 | 32.7749 | 0.920396 | -0.670794 | -0.525798 | 0.135143 | 0.392041 | 0.607959 | -0.525798 |
+| 5 | 0.137742 | 32.2341 | 1.09581 | -0.745645 | -0.594706 | 0.133375 | 0.313768 | 0.686232 | -0.594706 |
+| 6 | 0.157122 | 33.5229 | 1.1249 | -0.690228 | -0.513481 | 0.131003 | 0.409111 | 0.590889 | -0.513481 |
+| 7 | 0.0995646 | 21.0509 | 1.2283 | -0.236235 | -0.113939 | 0.0162719 | 0.884176 | 0.115824 | -0.113939 |
+| 8 | 0.161993 | 34.2926 | 0.764993 | -0.875751 | -0.751828 | 0.220447 | 0.0355656 | 0.964434 | -0.751828 |
+
+Hii=−(1−φi)×(1−γi/qi)。水产品的较弱补偿响应由较高的承诺量占比解释；该分解核对了计算，不证明外部价格代理或原始数据不存在测量误差。该效用结构也要求非负补偿交叉替代，不能假定所有食品互补关系都被覆盖。
+
+**同样本模型比较**
+
+同一粗分组N=5,733的QUAIDS AIC为−140145.9803，MAIDADS为−138613.9737，QUAIDS描述性拟合更好，但其最大Slutsky特征值为正。MAIDADS不能仅凭负自价格符号被宣布胜出；边界嵌套检验不能直接套常规LR卡方分布。
+
+**粗分组训练期重估的2022留出验证**
+
+| model | target_cells | target_household_quarters | estimate_qualified | invalid_household_quarters | eligible_complete_fit | share_rmse | training_mean_share_rmse | province_history_share_rmse |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| maidads | 1908 | 76745 | 0 | 0 | 0 | 0.0349693 | 0.0358343 | 0.0277863 |
+| aids | 1908 | 76745 | 1 | 0 | 1 | 0.0346309 | 0.0358343 | 0.0277863 |
+| quaids | 1908 | 76745 | 1 | 0 | 1 | 0.0345937 | 0.0358343 | 0.0277863 |
+
+本轮追加仅用2020–2021训练、2022留出的同粗分组检验，记录见validation_simplex。MAIDADS起点仅取旧训练期拟合，而非全时期参数。执行成功、估计合格、全部预测覆盖和胜过基准是不同门槛；eligible_complete_fit=0时误差只能诊断。该检验不验证收入第一阶段的因果性，也不验证零消费扩展。
+
+本轮训练MAIDADS候选KKT分数0.161389，未通过数值驻点要求；其RMSE约0.034969只属诊断。AIDS/QUAIDS均达到驻点且覆盖全部1,908个留出分组（76,745户季），RMSE约0.034631/0.034594，但省份历史季度基准约0.027786更低。不能把全时期合格点当作训练期合格，更不能以其负符号替代样本外表现。
+
+**逐户与代表预算情景覆盖检查**
+
+| scenario_mode | aggregation | target_groups | complete_groups | max_budget_gap | max_income_derivative_gap | max_budget_derivative_gap |
+| --- | --- | --- | --- | --- | --- | --- |
+| pooled_micro | province | 336 | 28 | 7.99361e-15 | 6.245e-17 | 5.77316e-15 |
+| pooled_micro | family | 56 | 0 | NA | NA | NA |
+| elderly_micro | province | 336 | 60 | 4.88498e-15 | 8.32667e-17 | 4.10783e-15 |
+| elderly_micro | family | 14 | 0 | NA | NA | NA |
+| cohort_mean | province | 336 | 336 | 8.54872e-15 | 1.11022e-16 | 6.55032e-15 |
+| cohort_mean | family | 56 | 56 | 8.88178e-15 | 1.11022e-16 | 6.66134e-15 |
+
+逐户粗分组参数情景有效316,066/318,850（99.1269%），省份情景仅28/336完全覆盖，四家庭类型均不能形成完整逐户汇总。老年分组参数有效75,654/77,672（97.4019%）。无效预算户未删除、未抬高预算，缺覆盖组的数量和弹性保持缺失。
+
+另计算省份×家庭类型的平均预算代表点：1,344/1,344有效，336省份情景和56家庭情景组均完整。该结果是q(E[m])的汇总敏感性，不是E[q(m)]的逐户预测，不能用它替代上面的失败家庭。全部新情景qualified_forecast=0；数值覆盖成功不替代预测验证、记录完整性与收入单位确认。
+
+**代表预算情景的家庭收入弹性：基准、收入+50%、+100%**
+
+| type | growth_factor | complete_coverage | qualified_forecast | income_elasticity1 | income_elasticity2 | income_elasticity3 | income_elasticity4 | income_elasticity5 | income_elasticity6 | income_elasticity7 | income_elasticity8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 1 | 1 | 0 | 0.0320214 | 0.039477 | 0.0466267 | 0.0398985 | 0.0475832 | 0.050462 | 0.0579798 | 0.0341722 |
+| 1 | 1.5 | 1 | 0 | 0.0272876 | 0.0334891 | 0.039716 | 0.0339056 | 0.0404024 | 0.042813 | 0.0490924 | 0.0289638 |
+| 1 | 2 | 1 | 0 | 0.0238996 | 0.0292482 | 0.0347874 | 0.0296514 | 0.0353159 | 0.0374048 | 0.0428348 | 0.0252854 |
+| 2 | 1 | 1 | 0 | 0.0939196 | 0.108152 | 0.132485 | 0.109166 | 0.128745 | 0.134248 | 0.148752 | 0.0911225 |
+| 2 | 1.5 | 1 | 0 | 0.0962555 | 0.109854 | 0.135327 | 0.110595 | 0.130385 | 0.135529 | 0.148997 | 0.0921467 |
+| 2 | 2 | 1 | 0 | 0.0979497 | 0.111108 | 0.137389 | 0.111586 | 0.131551 | 0.136419 | 0.149086 | 0.0928956 |
+| 3 | 1 | 1 | 0 | 0.0748948 | 0.0783269 | 0.109893 | 0.0800353 | 0.0957463 | 0.096774 | 0.0965049 | 0.0661512 |
+| 3 | 1.5 | 1 | 0 | -0.0523605 | -0.0589536 | -0.0644097 | -0.0504588 | -0.0598247 | -0.0595148 | -0.0604753 | -0.0447712 |
+| 3 | 2 | 1 | 0 | -0.141612 | -0.155625 | -0.187125 | -0.143421 | -0.170301 | -0.170997 | -0.173931 | -0.123297 |
+| 4 | 1 | 1 | 0 | 0.0706193 | 0.0860528 | 0.103186 | 0.0877718 | 0.104674 | 0.110993 | 0.126702 | 0.0748489 |
+| 4 | 1.5 | 1 | 0 | 0.0401092 | 0.0481818 | 0.0589196 | 0.0497223 | 0.0592712 | 0.0628345 | 0.0712243 | 0.0420461 |
+| 4 | 2 | 1 | 0 | 0.0181773 | 0.0213722 | 0.0272645 | 0.0227129 | 0.0271375 | 0.0288513 | 0.0323365 | 0.0189307 |
+
+四类在上述pooled模型中的差异来自预算水平与第一阶段收入曲线，不应冒称四类偏好参数均已识别。老年家庭在更高收入处的负响应来自二次预算曲线；线性敏感性及条件Wald检验同时报告，不人为强制转正。
+
+![代表预算家庭收入弹性敏感性](../figures/simplex_cohort_family_income_elasticity.png)
+
+![代表预算省均收入增长敏感性](../figures/simplex_cohort_province_income_50pct.png)
+
+**零购买可变份额扩展：尚未达实证门槛**
+
+| budget_scale | training_support_rows | holdout_support_rows | draws | parameter_count | objective | converged | full_sample_fit | Hcap | domain_log_span | fitted_H |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 160.24 | 3830 | 3800 | 64 | 27 | 0.0534253 | 0 | 0 | 1.42168 | 10.4547 | 0.377945 |
+
+| 方法 | 留出户季数 | 份额RMSE | 参与Brier |
+| --- | --- | --- | --- |
+| 可变份额零购买原型 | 68371 | 0.112865 | 0.119039 |
+| 训练均值 | 68371 | 0.11131 | 0.116795 |
+| 省份历史季度 | 68371 | 0.109423 | 0.114454 |
+
+零购买扩展允许α≠β，按KKT保留集合外精确零，并证明训练数量盒内Fu<0的充分条件。64draw、27参数试估在20分钟界限停止，converged=0；完整68,371户季的2022留出中，份额RMSE与参与Brier均劣于训练均值和历史基准。255消费集合及结构测试通过不等于真实拟合通过，不能称零消费问题已完全解决。
+
+**有限域与数据范围**
+
+| growth_factor | target_observations | outside_price_box | any_feasible_q_upper_exceeds | beyond_proxy_support | minimum_budget | maximum_budget |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 22775 | 0.406279 | 0 | 0 | 0.25 | 4019.47 |
+| 1.1 | 22775 | 0.406279 | 0 | 0.0395609 | 0.25092 | 4038.59 |
+| 1.25 | 22775 | 0.406279 | 0 | 0.109199 | 0.252102 | 4063.44 |
+| 1.5 | 22775 | 0.406279 | 0 | 0.109199 | 0.253681 | 4097.29 |
+| 2 | 22775 | 0.406279 | 0 | 0.257651 | 0.255915 | 4146.77 |
+| 1.08286 | 22775 | 0.406279 | 0 | 0.0217344 | 0.250771 | 4035.47 |
+| 1.17166 | 22775 | 0.406279 | 0 | 0.0869813 | 0.251511 | 4050.97 |
+| 1.26677 | 22775 | 0.406279 | 0 | 0.109199 | 0.252221 | 4065.98 |
+| 1.13809 | 22775 | 0.406279 | 0 | 0.0655543 | 0.251241 | 4045.29 |
+| 1.29361 | 22775 | 0.406279 | 0 | 0.109199 | 0.252408 | 4069.95 |
+| 1.46853 | 22775 | 0.406279 | 0 | 0.109199 | 0.253504 | 4093.45 |
+| 1.32129 | 22775 | 0.406279 | 0 | 0.109199 | 0.252595 | 4073.94 |
+| 1.74102 | 22775 | 0.406279 | 0 | 0.151614 | 0.254878 | 4123.53 |
+| 2.28793 | 22775 | 0.406279 | 0 | 0.384984 | 0.256849 | 4168.2 |
+
+原始最低预算、粗分组最低均值预算和训练数量盒是不同概念。收入增长情景未突破宽数量盒，但部分固定2022价格超出训练价格矩形，收入翻倍有约25.8%超出同类型收入代理支持。有限域证明不能自动消除外推、缺漏记账或测量限制。详情见docs/MEASUREMENT_SCOPE_FOLLOWUP.md。
+
+下面保留各轮全部估计和失败记录；本节为本轮解释入口。
+
+## 首轮与各项历史诊断
+
+实际数据通过原生数值资格检查的目录：maidads_8_coarse_simplex_multistart, maidads_family_3_simplex, maidads_8_coarse_simplex, maidads_family_3_simplex_multistart
 
 AIDS、QUAIDS 的八类主规格达到数值驻点，但主食补偿自价格弹性仍为正。人口口径和汇总敏感性不是按显著性或符号选择样本。
 
@@ -12,7 +139,7 @@ warm8 虽然代表点弹性温和，最低预算前沿附近的部分食品支�
 
 2022 时间留出中，省份历史季度份额基准比 AIDS/QUAIDS 的份额预测更准确；当前 pooled 规格不能证明已经识别可靠的因果价格响应。
 
-零购买扩展是完整季度记录上的受限随机偏好试估，不是全样本完整自由 MAIDADS。支持点近似的平均预算低估约13%，其外部验证不能当作全体家庭验证。
+首轮零购买扩展是三个自然月均有购买记录季度上的受限随机偏好试估，不证明完整日记覆盖，不是全样本完整自由 MAIDADS。支持点近似的平均预算低估约13%，其外部验证不能当作全体家庭验证。
 
 受限角点也未达到正式实证标准：同θ从16增加到256积分draw使目标值上升约9.4%；支持点2022留出中水果份额/购买率明显低估、猪肉份额明显高估。不能因为自价格由效用结构保证为负就认定拟合合格。
 
@@ -346,6 +473,8 @@ warm8 虽然代表点弹性温和，最低预算前沿附近的部分食品支�
 | aidads_8_warm | 14676 | -251024 | -250637 | 0.271308 | 0 | 0 |
 | aidads_8_year | 3730 | -76013.5 | -75696.1 | 0.0990317 | 0 | 0 |
 | maidads_8_coarse | 5733 | -138614 | -138215 | 0.000267664 | 0 | 1.77767 |
+| maidads_8_coarse_simplex | 5733 | -138614 | -138215 | 2.42111e-06 | 1 | 1.78209 |
+| maidads_8_coarse_simplex_multistart | 5733 | -138614 | -138215 | 1.42912e-06 | 1 | 1.78216 |
 | maidads_8_init100 | 14676 | -251058 | -250602 | 0.158523 | 0 | 2.04175 |
 | maidads_8_tangent | 14676 | -251239 | -250783 | 0.0883799 | 0 | 3.85145 |
 | maidads_8_warm | 14676 | -251155 | -250699 | 0.265914 | 0 | 3.22135 |
@@ -354,6 +483,8 @@ warm8 虽然代表点弹性温和，最低预算前沿附近的部分食品支�
 | maidads_family_1_current | 5194 | -97903.2 | -97509.9 | 0.110645 | 0 | 2.26104 |
 | maidads_family_2_current | 4337 | -74723.5 | -74341 | 0.00148498 | 0 | 1.64381 |
 | maidads_family_3_current | 1437 | -36814.5 | -36498.3 | 3.7509e-06 | 0 | 7.55936 |
+| maidads_family_3_simplex | 1437 | -36814.5 | -36498.3 | 9.91653e-06 | 1 | 7.55936 |
+| maidads_family_3_simplex_multistart | 1437 | -36814.5 | -36498.3 | 9.04382e-07 | 1 | 7.55936 |
 | maidads_family_4_current | 3708 | -52237.5 | -51864.4 | 0.133358 | 0 | 6.76901 |
 | aids_8 | 14676 | -253344 | -252812 | 4.88896e-09 | 1 | NA |
 | aids_quarter_8_coarse | 5733 | -139969 | -139503 | 4.92427e-07 | 1 | NA |
@@ -374,7 +505,7 @@ warm8 虽然代表点弹性温和，最低预算前沿附近的部分食品支�
 
 模型退化、弱端点、数值边界、根不唯一与非驻点均保留。不以负 Hicksian 符号替代数据检验；原生 MAIDADS 的非正自价格和非负交叉替代来自理论结构，不是 Cholesky 后处理。
 
-alpha/beta 的 softmax 实现未覆盖精确零的自然 simplex 边界。触及 logit guard 不是无边界合格解，但也不是证明经济模型不成立；后续若探索自然边界需直接 simplex/facet KKT，而非无限放宽数值 guard。
+首轮alpha/beta的softmax未覆盖精确零自然边界。本轮已补充直接simplex/facet KKT且保留首轮失败；两者不能混为同一参数化。
 
 ## 3. 完整弹性与分布
 
@@ -757,6 +888,286 @@ alpha/beta 的 softmax 实现未覆盖精确零的自然 simplex 边界。触及
 | slutsky_max_eigenvalue_representative | -3.08e-15 | le_1e-8 |
 | finite_difference_elasticity_maxgap | 1.7e-06 | lt_1e-3 |
 | min_budget_elasticity | 0.258469 | reported_not_selection |
+| positive_marshallian_own_cells | 0 | reported_not_selection |
+| positive_hicksian_own_cells | 0 | reported_not_selection |
+
+### maidads_8_coarse_simplex
+
+| good | 食品 | share | quantity_equivalent | budget_elasticity | marshallian_own | hicksian_own |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 主食 | 0.08336 | 17.855 | 0.812025 | -0.749434 | -0.681743 |
+| 2 | 油脂 | 0.0802322 | 16.6501 | 0.916732 | -0.954505 | -0.880953 |
+| 3 | 蔬菜 | 0.122449 | 25.6246 | 1.14217 | -0.931413 | -0.791556 |
+| 4 | 水果 | 0.157537 | 32.7749 | 0.920395 | -0.6708 | -0.525804 |
+| 5 | 猪肉 | 0.137742 | 32.2341 | 1.09581 | -0.745642 | -0.594702 |
+| 6 | 其他肉类 | 0.157122 | 33.5229 | 1.1249 | -0.690228 | -0.513481 |
+| 7 | 水产品 | 0.0995643 | 21.0508 | 1.2283 | -0.236257 | -0.113962 |
+| 8 | 奶类 | 0.161993 | 34.2927 | 0.764992 | -0.875754 | -0.751831 |
+
+代表点评价使用样本平均预算、几何平均价格；不是逐户弹性的简单平均。
+
+**representative_price_elasticities.csv**
+
+| good | price_good | marshallian | hicksian |
+| --- | --- | --- | --- |
+| 1 | 1 | -0.749434 | -0.681743 |
+| 1 | 2 | 0.0188302 | 0.0839807 |
+| 1 | 3 | 0.0227718 | 0.122203 |
+| 1 | 4 | -0.0269106 | 0.101014 |
+| 1 | 5 | -0.0121602 | 0.0996902 |
+| 1 | 6 | -0.0296698 | 0.0979176 |
+| 1 | 7 | -0.0686839 | 0.0121648 |
+| 1 | 8 | 0.0332308 | 0.164773 |
+| 2 | 1 | 0.0108359 | 0.0872547 |
+| 2 | 2 | -0.954505 | -0.880953 |
+| 2 | 3 | 0.0500068 | 0.162259 |
+| 2 | 4 | -0.0102953 | 0.134124 |
+| 2 | 5 | 0.00609397 | 0.132367 |
+| 2 | 6 | -0.0140258 | 0.130013 |
+| 2 | 7 | -0.0751215 | 0.0161522 |
+| 2 | 8 | 0.0702788 | 0.218783 |
+| 3 | 1 | -0.0120186 | 0.0831929 |
+| 3 | 2 | 0.0146784 | 0.106317 |
+| 3 | 3 | -0.931413 | -0.791556 |
+| 3 | 4 | -0.0520541 | 0.12788 |
+| 3 | 5 | -0.0311205 | 0.126205 |
+| 3 | 6 | -0.0554997 | 0.123961 |
+| 3 | 7 | -0.0983193 | 0.0154003 |
+| 3 | 8 | 0.0235747 | 0.208598 |
+| 4 | 1 | -0.0232733 | 0.0534508 |
+| 4 | 2 | -0.00553719 | 0.0683081 |
+| 4 | 3 | -0.0133037 | 0.0993975 |
+| 4 | 4 | -0.6708 | -0.525804 |
+| 4 | 5 | -0.0456916 | 0.0810858 |
+| 4 | 6 | -0.0649706 | 0.079644 |
+| 4 | 7 | -0.0817439 | 0.0098946 |
+| 4 | 8 | -0.0150745 | 0.134023 |
+| 5 | 1 | -0.0310154 | 0.0603312 |
+| 5 | 2 | -0.0108181 | 0.077101 |
+| 5 | 3 | -0.021988 | 0.112192 |
+| 5 | 4 | -0.0798921 | 0.0927385 |
+| 5 | 5 | -0.745642 | -0.594702 |
+| 5 | 6 | -0.0822799 | 0.0898962 |
+| 5 | 7 | -0.0979352 | 0.0111683 |
+| 5 | 8 | -0.0262383 | 0.151275 |
+| 6 | 1 | -0.041822 | 0.0519494 |
+| 6 | 2 | -0.0238635 | 0.0663893 |
+| 6 | 3 | -0.0411367 | 0.0966055 |
+| 6 | 4 | -0.0973586 | 0.0798543 |
+| 6 | 5 | -0.0761378 | 0.0788081 |
+| 6 | 6 | -0.690228 | -0.513481 |
+| 6 | 7 | -0.102383 | 0.00961666 |
+| 6 | 8 | -0.0519669 | 0.130258 |
+| 7 | 1 | -0.0922065 | 0.010185 |
+| 7 | 2 | -0.0855335 | 0.013016 |
+| 7 | 3 | -0.131464 | 0.01894 |
+| 7 | 4 | -0.177848 | 0.0156559 |
+| 7 | 5 | -0.153739 | 0.0154508 |
+| 7 | 6 | -0.177818 | 0.015176 |
+| 7 | 7 | -0.236257 | -0.113962 |
+| 7 | 8 | -0.173438 | 0.0255378 |
+| 8 | 1 | 0.0210209 | 0.0847907 |
+| 8 | 2 | 0.0469823 | 0.108359 |
+| 8 | 3 | 0.0640051 | 0.157677 |
+| 8 | 4 | 0.00982179 | 0.130336 |
+| 8 | 5 | 0.0232571 | 0.128629 |
+| 8 | 6 | 0.00614444 | 0.126342 |
+| 8 | 7 | -0.0604698 | 0.0156961 |
+| 8 | 8 | -0.875754 | -0.751831 |
+
+**elasticity_distribution.csv**
+
+| good | mean_share | mean_budget | min_budget | max_budget | p10_budget | p50_budget | p90_budget | mean_marshallian_own | mean_hicksian_own | negative_budget_cells |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 0.0869311 | 0.798565 | 0.256087 | 1.13477 | 0.70101 | 0.791561 | 0.915027 | -0.731629 | -0.662949 | 0 |
+| 2 | 0.0809999 | 0.93552 | 0.89911 | 3.59001 | 0.909085 | 0.922105 | 0.980976 | -0.95444 | -0.878724 | 0 |
+| 3 | 0.122781 | 1.13462 | 0.539304 | 1.41043 | 1.04994 | 1.12063 | 1.24671 | -0.919239 | -0.779368 | 0 |
+| 4 | 0.158493 | 0.912227 | 0.631126 | 0.943971 | 0.888291 | 0.917183 | 0.928406 | -0.674027 | -0.529366 | 0 |
+| 5 | 0.136738 | 1.10211 | 1.01362 | 1.82266 | 1.07786 | 1.09779 | 1.13359 | -0.754172 | -0.603551 | 0 |
+| 6 | 0.15373 | 1.13459 | 0.955471 | 6.01759 | 1.06694 | 1.137 | 1.18898 | -0.702881 | -0.529099 | 0 |
+| 7 | 0.0948068 | 1.24261 | 0.335311 | 6.68889 | 1.02002 | 1.26496 | 1.41357 | -0.244085 | -0.127603 | 0 |
+| 8 | 0.165519 | 0.784881 | 0.750359 | 2.17061 | 0.761072 | 0.77617 | 0.816575 | -0.877153 | -0.746965 | 0 |
+
+**audit.csv**
+
+| test | value | criterion |
+| --- | --- | --- |
+| unique_root_cells | 5733 | N |
+| root_grid_step | 0.25 | finite_grid_not_uniqueness_proof |
+| derivative_bracketed_critical_points | 0 | inserted_between_grid_nodes |
+| nearzero_grid_plateau_cells | 0 | must_be_zero_for_clear_root_audit |
+| root_zero_relative_tolerance | 1e-13 | node_roots_and_critical_tangencies_counted |
+| root_grid_lower | -50 | numerical_search |
+| root_grid_upper | 50 | numerical_search |
+| free_tangent_parameters | 28 | positive_simplex_face_and_inactive_box_bounds |
+| full_natural_coordinate_parameters | 32 | inward_simplex_and_box_directions_included |
+| full_natural_jacobian_rank_relative_1e-6 | 32 | diagnostic_not_identification_proof |
+| full_natural_jacobian_condition_number | 2285.16 | reported |
+| jacobian_rank_relative_1e-6 | 28 | diagnostic_not_identification_proof |
+| jacobian_condition_number | 1502.63 | reported |
+| final_natural_full_simplex_KKT_score | 2.42e-06 | lt_1e-4 |
+| final_analytic_gradient_central_difference_gap | 3.74e-09 | lt_1e-3_on_inactive_bounds |
+| central_difference_requested_step | 1e-06 | further_reduced_to_stay_on_simplex_face |
+| inadmissible_central_difference_coordinate_probes | 0 | must_be_zero_for_verified_gradient |
+| one_sided_inward_boundary_probes | 3 | natural_simplex_or_box_boundary |
+| one_sided_inward_gradient_maxgap | 9.64e-08 | lt_1e-3 |
+| unsupported_both_end_zero_foods | 0 | must_be_zero |
+| exact_zero_alpha | 0 | economic_simplex_boundaries |
+| exact_zero_beta | 1 | economic_simplex_boundaries |
+| N | 5733 | observed |
+| relative_budget_gap | 1.01e-14 | lt_1e-8 |
+| relative_utility_equation_gap | 1e-14 | lt_1e-10 |
+| min_Eu_over_Q | 1.02956 | gt_1e-7 |
+| minimum_observed_budget | 11.1111 | reported_not_trimmed |
+| minimum_relative_delta_cost_slack | 0.168295 | endpoint_domain_diagnostic |
+| minimum_relative_tau_cost_slack | -23.8083 | endpoint_domain_diagnostic |
+| minimum_supernumerary_budget_share | 0.165657 | positive_actual_branch |
+| share_addingup_gap | 9.99e-15 | lt_1e-8 |
+| homogeneity_gap_representative | 2.22e-16 | lt_1e-8 |
+| slutsky_symmetry_gap_representative | 8.88e-16 | lt_1e-8 |
+| slutsky_max_eigenvalue_representative | 4.63e-15 | le_1e-8 |
+| finite_difference_elasticity_maxgap | 1.66e-06 | lt_1e-3 |
+| min_budget_elasticity | 0.256087 | reported_not_selection |
+| positive_marshallian_own_cells | 0 | reported_not_selection |
+| positive_hicksian_own_cells | 0 | reported_not_selection |
+
+### maidads_8_coarse_simplex_multistart
+
+| good | 食品 | share | quantity_equivalent | budget_elasticity | marshallian_own | hicksian_own |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 主食 | 0.0833599 | 17.855 | 0.812025 | -0.749435 | -0.681745 |
+| 2 | 油脂 | 0.080232 | 16.6501 | 0.91673 | -0.954508 | -0.880957 |
+| 3 | 蔬菜 | 0.122449 | 25.6246 | 1.14217 | -0.931368 | -0.791511 |
+| 4 | 水果 | 0.157537 | 32.7749 | 0.920396 | -0.670794 | -0.525798 |
+| 5 | 猪肉 | 0.137742 | 32.2341 | 1.09581 | -0.745645 | -0.594706 |
+| 6 | 其他肉类 | 0.157122 | 33.5229 | 1.1249 | -0.690228 | -0.513481 |
+| 7 | 水产品 | 0.0995646 | 21.0509 | 1.2283 | -0.236235 | -0.113939 |
+| 8 | 奶类 | 0.161993 | 34.2926 | 0.764993 | -0.875751 | -0.751828 |
+
+代表点评价使用样本平均预算、几何平均价格；不是逐户弹性的简单平均。
+
+**representative_price_elasticities.csv**
+
+| good | price_good | marshallian | hicksian |
+| --- | --- | --- | --- |
+| 1 | 1 | -0.749435 | -0.681745 |
+| 1 | 2 | 0.0188322 | 0.0839826 |
+| 1 | 3 | 0.0227659 | 0.122197 |
+| 1 | 4 | -0.0269098 | 0.101014 |
+| 1 | 5 | -0.0121574 | 0.0996929 |
+| 1 | 6 | -0.0296678 | 0.0979195 |
+| 1 | 7 | -0.0686863 | 0.0121626 |
+| 1 | 8 | 0.0332336 | 0.164776 |
+| 2 | 1 | 0.0108381 | 0.0872567 |
+| 2 | 2 | -0.954508 | -0.880957 |
+| 2 | 3 | 0.0499994 | 0.162252 |
+| 2 | 4 | -0.0102938 | 0.134125 |
+| 2 | 5 | 0.00609806 | 0.132371 |
+| 2 | 6 | -0.0140227 | 0.130016 |
+| 2 | 7 | -0.0751245 | 0.0161494 |
+| 2 | 8 | 0.0702831 | 0.218787 |
+| 3 | 1 | -0.0120225 | 0.0831888 |
+| 3 | 2 | 0.0146736 | 0.106312 |
+| 3 | 3 | -0.931368 | -0.791511 |
+| 3 | 4 | -0.0520619 | 0.127872 |
+| 3 | 5 | -0.0311257 | 0.1262 |
+| 3 | 6 | -0.0555057 | 0.123955 |
+| 3 | 7 | -0.0983233 | 0.0153965 |
+| 3 | 8 | 0.0235637 | 0.208587 |
+| 4 | 1 | -0.023273 | 0.0534511 |
+| 4 | 2 | -0.00553662 | 0.0683086 |
+| 4 | 3 | -0.0133101 | 0.0993913 |
+| 4 | 4 | -0.670794 | -0.525798 |
+| 4 | 5 | -0.0456908 | 0.0810868 |
+| 4 | 6 | -0.0649703 | 0.0796444 |
+| 4 | 7 | -0.0817462 | 0.00989267 |
+| 4 | 8 | -0.0150744 | 0.134023 |
+| 5 | 1 | -0.0310137 | 0.0603328 |
+| 5 | 2 | -0.0108158 | 0.0771031 |
+| 5 | 3 | -0.0219929 | 0.112188 |
+| 5 | 4 | -0.0798909 | 0.0927397 |
+| 5 | 5 | -0.745645 | -0.594706 |
+| 5 | 6 | -0.0822776 | 0.0898984 |
+| 5 | 7 | -0.0979374 | 0.0111663 |
+| 5 | 8 | -0.0262349 | 0.151278 |
+| 6 | 1 | -0.041821 | 0.0519504 |
+| 6 | 2 | -0.0238621 | 0.0663907 |
+| 6 | 3 | -0.0411417 | 0.0966006 |
+| 6 | 4 | -0.0973584 | 0.0798547 |
+| 6 | 5 | -0.076136 | 0.0788101 |
+| 6 | 6 | -0.690228 | -0.513481 |
+| 6 | 7 | -0.102385 | 0.00961491 |
+| 6 | 8 | -0.0519651 | 0.13026 |
+| 7 | 1 | -0.0922082 | 0.0101831 |
+| 7 | 2 | -0.0855357 | 0.0130136 |
+| 7 | 3 | -0.131469 | 0.0189353 |
+| 7 | 4 | -0.177851 | 0.0156528 |
+| 7 | 5 | -0.153742 | 0.015448 |
+| 7 | 6 | -0.177821 | 0.0151732 |
+| 7 | 7 | -0.236235 | -0.113939 |
+| 7 | 8 | -0.173443 | 0.025533 |
+| 8 | 1 | 0.0210223 | 0.084792 |
+| 8 | 2 | 0.0469842 | 0.108361 |
+| 8 | 3 | 0.0639966 | 0.157669 |
+| 8 | 4 | 0.009822 | 0.130337 |
+| 8 | 5 | 0.0232598 | 0.128632 |
+| 8 | 6 | 0.00614623 | 0.126344 |
+| 8 | 7 | -0.060473 | 0.0156932 |
+| 8 | 8 | -0.875751 | -0.751828 |
+
+**elasticity_distribution.csv**
+
+| good | mean_share | mean_budget | min_budget | max_budget | p10_budget | p50_budget | p90_budget | mean_marshallian_own | mean_hicksian_own | negative_budget_cells |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 0.0869311 | 0.798566 | 0.25609 | 1.13478 | 0.701008 | 0.791558 | 0.915035 | -0.731631 | -0.662952 | 0 |
+| 2 | 0.0809999 | 0.93552 | 0.899108 | 3.59002 | 0.90908 | 0.922108 | 0.98099 | -0.954445 | -0.878729 | 0 |
+| 3 | 0.122781 | 1.13462 | 0.53928 | 1.41039 | 1.04995 | 1.12063 | 1.2467 | -0.919197 | -0.779327 | 0 |
+| 4 | 0.158493 | 0.912227 | 0.631138 | 0.943972 | 0.888288 | 0.917184 | 0.928408 | -0.674023 | -0.529362 | 0 |
+| 5 | 0.136738 | 1.10211 | 1.01363 | 1.8227 | 1.07786 | 1.09779 | 1.13359 | -0.754177 | -0.603556 | 0 |
+| 6 | 0.15373 | 1.13459 | 0.955495 | 6.01461 | 1.06694 | 1.137 | 1.18898 | -0.702882 | -0.5291 | 0 |
+| 7 | 0.0948068 | 1.24261 | 0.335249 | 6.68583 | 1.02 | 1.26497 | 1.41359 | -0.244061 | -0.127579 | 0 |
+| 8 | 0.165519 | 0.784882 | 0.750362 | 2.17075 | 0.761077 | 0.776171 | 0.81657 | -0.877151 | -0.746963 | 0 |
+
+**audit.csv**
+
+| test | value | criterion |
+| --- | --- | --- |
+| unique_root_cells | 5733 | N |
+| root_grid_step | 0.25 | finite_grid_not_uniqueness_proof |
+| derivative_bracketed_critical_points | 0 | inserted_between_grid_nodes |
+| nearzero_grid_plateau_cells | 0 | must_be_zero_for_clear_root_audit |
+| root_zero_relative_tolerance | 1e-13 | node_roots_and_critical_tangencies_counted |
+| root_grid_lower | -50 | numerical_search |
+| root_grid_upper | 50 | numerical_search |
+| free_tangent_parameters | 28 | positive_simplex_face_and_inactive_box_bounds |
+| full_natural_coordinate_parameters | 32 | inward_simplex_and_box_directions_included |
+| full_natural_jacobian_rank_relative_1e-6 | 32 | diagnostic_not_identification_proof |
+| full_natural_jacobian_condition_number | 2284.72 | reported |
+| jacobian_rank_relative_1e-6 | 28 | diagnostic_not_identification_proof |
+| jacobian_condition_number | 1502.3 | reported |
+| final_natural_full_simplex_KKT_score | 1.43e-06 | lt_1e-4 |
+| final_analytic_gradient_central_difference_gap | 2.59e-09 | lt_1e-3_on_inactive_bounds |
+| central_difference_requested_step | 1e-06 | further_reduced_to_stay_on_simplex_face |
+| inadmissible_central_difference_coordinate_probes | 0 | must_be_zero_for_verified_gradient |
+| one_sided_inward_boundary_probes | 4 | natural_simplex_or_box_boundary |
+| one_sided_inward_gradient_maxgap | 5.89e-08 | lt_1e-3 |
+| unsupported_both_end_zero_foods | 0 | must_be_zero |
+| exact_zero_alpha | 0 | economic_simplex_boundaries |
+| exact_zero_beta | 1 | economic_simplex_boundaries |
+| N | 5733 | observed |
+| relative_budget_gap | 1.01e-14 | lt_1e-8 |
+| relative_utility_equation_gap | 9.97e-15 | lt_1e-10 |
+| min_Eu_over_Q | 1.02957 | gt_1e-7 |
+| minimum_observed_budget | 11.1111 | reported_not_trimmed |
+| minimum_relative_delta_cost_slack | 0.168379 | endpoint_domain_diagnostic |
+| minimum_relative_tau_cost_slack | -23.8067 | endpoint_domain_diagnostic |
+| minimum_supernumerary_budget_share | 0.165739 | positive_actual_branch |
+| share_addingup_gap | 1.02e-14 | lt_1e-8 |
+| homogeneity_gap_representative | 4.44e-16 | lt_1e-8 |
+| slutsky_symmetry_gap_representative | 8.88e-16 | lt_1e-8 |
+| slutsky_max_eigenvalue_representative | 3.23e-16 | le_1e-8 |
+| finite_difference_elasticity_maxgap | 1.66e-06 | lt_1e-3 |
+| min_budget_elasticity | 0.25609 | reported_not_selection |
 | positive_marshallian_own_cells | 0 | reported_not_selection |
 | positive_hicksian_own_cells | 0 | reported_not_selection |
 
@@ -1791,6 +2202,286 @@ alpha/beta 的 softmax 实现未覆盖精确零的自然 simplex 边界。触及
 | positive_marshallian_own_cells | 0 | reported_not_selection |
 | positive_hicksian_own_cells | 0 | reported_not_selection |
 
+### maidads_family_3_simplex
+
+| good | 食品 | share | quantity_equivalent | budget_elasticity | marshallian_own | hicksian_own |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 主食 | 0.0809111 | 26.6814 | 0.541661 | -0.904488 | -0.860661 |
+| 2 | 油脂 | 0.0792482 | 25.3135 | 0.752035 | -0.946156 | -0.886559 |
+| 3 | 蔬菜 | 0.135209 | 43.5547 | 1.04766 | -0.863879 | -0.722225 |
+| 4 | 水果 | 0.149362 | 47.8278 | 0.795246 | -0.706646 | -0.587866 |
+| 5 | 猪肉 | 0.148027 | 53.347 | 1.16982 | -0.706302 | -0.533136 |
+| 6 | 其他肉类 | 0.156014 | 51.2366 | 1.35878 | -0.724805 | -0.512817 |
+| 7 | 水产品 | 0.10498 | 34.1583 | 1.46127 | -0.219406 | -0.0660013 |
+| 8 | 奶类 | 0.146247 | 47.6654 | 0.667252 | -0.823958 | -0.726374 |
+
+代表点评价使用样本平均预算、几何平均价格；不是逐户弹性的简单平均。
+
+**representative_price_elasticities.csv**
+
+| good | price_good | marshallian | hicksian |
+| --- | --- | --- | --- |
+| 1 | 1 | -0.904488 | -0.860661 |
+| 1 | 2 | 0.0670591 | 0.109985 |
+| 1 | 3 | 0.0896568 | 0.162894 |
+| 1 | 4 | 0.0620283 | 0.142932 |
+| 1 | 5 | 0.0456875 | 0.125868 |
+| 1 | 6 | 0.0434065 | 0.127913 |
+| 1 | 7 | -0.0471503 | 0.00971353 |
+| 1 | 8 | 0.102139 | 0.181355 |
+| 2 | 1 | 0.0514447 | 0.112293 |
+| 2 | 2 | -0.946156 | -0.886559 |
+| 2 | 3 | 0.0663312 | 0.168013 |
+| 2 | 4 | 0.035098 | 0.147424 |
+| 2 | 5 | 0.0185018 | 0.129823 |
+| 2 | 6 | 0.0146049 | 0.131933 |
+| 2 | 7 | -0.0689301 | 0.0100188 |
+| 2 | 8 | 0.0770711 | 0.187054 |
+| 3 | 1 | 0.0127109 | 0.0974783 |
+| 3 | 2 | 0.0154499 | 0.0984751 |
+| 3 | 3 | -0.863879 | -0.722225 |
+| 3 | 4 | -0.0285065 | 0.127975 |
+| 3 | 5 | -0.0423861 | 0.112696 |
+| 3 | 6 | -0.0489222 | 0.114527 |
+| 3 | 7 | -0.101287 | 0.00869703 |
+| 3 | 8 | 0.00915915 | 0.162377 |
+| 4 | 1 | 0.0130835 | 0.0774278 |
+| 4 | 2 | 0.0151977 | 0.0782196 |
+| 4 | 3 | 0.00832336 | 0.115848 |
+| 4 | 4 | -0.706646 | -0.587866 |
+| 4 | 5 | -0.0282027 | 0.0895155 |
+| 4 | 6 | -0.0330995 | 0.0909698 |
+| 4 | 7 | -0.0765771 | 0.00690812 |
+| 4 | 8 | 0.0126744 | 0.128977 |
+| 5 | 1 | -0.0258528 | 0.068799 |
+| 5 | 2 | -0.0232039 | 0.0695026 |
+| 5 | 3 | -0.0552335 | 0.102938 |
+| 5 | 4 | -0.0844049 | 0.0903229 |
+| 5 | 5 | -0.706302 | -0.533136 |
+| 5 | 6 | -0.101677 | 0.0808319 |
+| 5 | 7 | -0.11667 | 0.00613826 |
+| 5 | 8 | -0.0564801 | 0.114604 |
+| 6 | 1 | -0.0436029 | 0.0663377 |
+| 6 | 2 | -0.0406649 | 0.067016 |
+| 6 | 3 | -0.084465 | 0.099255 |
+| 6 | 4 | -0.115859 | 0.0870916 |
+| 6 | 5 | -0.124443 | 0.0766941 |
+| 6 | 6 | -0.724805 | -0.512817 |
+| 6 | 7 | -0.136727 | 0.00591866 |
+| 6 | 8 | -0.0882147 | 0.110504 |
+| 7 | 1 | -0.110746 | 0.00748648 |
+| 7 | 2 | -0.10824 | 0.00756303 |
+| 7 | 3 | -0.186376 | 0.0112013 |
+| 7 | 4 | -0.20843 | 0.00982863 |
+| 7 | 5 | -0.207652 | 0.00865524 |
+| 7 | 6 | -0.219182 | 0.00879585 |
+| 7 | 7 | -0.219406 | -0.0660013 |
+| 7 | 8 | -0.201236 | 0.0124708 |
+| 8 | 1 | 0.0463464 | 0.100334 |
+| 8 | 2 | 0.048482 | 0.101361 |
+| 8 | 3 | 0.0599026 | 0.150121 |
+| 8 | 4 | 0.0320619 | 0.131724 |
+| 8 | 5 | 0.0172268 | 0.115998 |
+| 8 | 6 | 0.0137824 | 0.117883 |
+| 8 | 7 | -0.0610965 | 0.00895186 |
+| 8 | 8 | -0.823958 | -0.726374 |
+
+**elasticity_distribution.csv**
+
+| good | mean_share | mean_budget | min_budget | max_budget | p10_budget | p50_budget | p90_budget | mean_marshallian_own | mean_hicksian_own | negative_budget_cells |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 0.0837532 | 0.651457 | 0.429011 | 1.05261 | 0.473822 | 0.587573 | 0.934534 | -0.906173 | -0.852048 | 0 |
+| 2 | 0.0808701 | 0.844969 | 0.668408 | 1.3033 | 0.692312 | 0.794156 | 1.0846 | -0.954545 | -0.886315 | 0 |
+| 3 | 0.134892 | 1.08216 | 0.950372 | 1.42456 | 1.01742 | 1.0793 | 1.13814 | -0.884197 | -0.738237 | 0 |
+| 4 | 0.151865 | 0.823541 | 0.724351 | 1.06306 | 0.747599 | 0.795804 | 0.949945 | -0.714791 | -0.590148 | 0 |
+| 5 | 0.146469 | 1.12182 | 0.789873 | 1.35822 | 0.956167 | 1.13754 | 1.26361 | -0.718286 | -0.554116 | 0 |
+| 6 | 0.153069 | 1.35862 | 1.14025 | 1.49655 | 1.26228 | 1.35748 | 1.44786 | -0.7354 | -0.528316 | 0 |
+| 7 | 0.0984423 | 1.22519 | 0.0299481 | 1.84306 | 0.452824 | 1.36803 | 1.76556 | -0.195196 | -0.0740676 | 0 |
+| 8 | 0.15064 | 0.765177 | 0.556657 | 1.17535 | 0.592039 | 0.704682 | 1.04776 | -0.83519 | -0.720532 | 0 |
+
+**audit.csv**
+
+| test | value | criterion |
+| --- | --- | --- |
+| unique_root_cells | 1437 | N |
+| root_grid_step | 0.25 | finite_grid_not_uniqueness_proof |
+| derivative_bracketed_critical_points | 0 | inserted_between_grid_nodes |
+| nearzero_grid_plateau_cells | 0 | must_be_zero_for_clear_root_audit |
+| root_zero_relative_tolerance | 1e-13 | node_roots_and_critical_tangencies_counted |
+| root_grid_lower | -50 | numerical_search |
+| root_grid_upper | 50 | numerical_search |
+| free_tangent_parameters | 26 | positive_simplex_face_and_inactive_box_bounds |
+| full_natural_coordinate_parameters | 32 | inward_simplex_and_box_directions_included |
+| full_natural_jacobian_rank_relative_1e-6 | 32 | diagnostic_not_identification_proof |
+| full_natural_jacobian_condition_number | 3345.87 | reported |
+| jacobian_rank_relative_1e-6 | 26 | diagnostic_not_identification_proof |
+| jacobian_condition_number | 1803.05 | reported |
+| final_natural_full_simplex_KKT_score | 9.92e-06 | lt_1e-4 |
+| final_analytic_gradient_central_difference_gap | 3.77e-09 | lt_1e-3_on_inactive_bounds |
+| central_difference_requested_step | 1e-06 | further_reduced_to_stay_on_simplex_face |
+| inadmissible_central_difference_coordinate_probes | 0 | must_be_zero_for_verified_gradient |
+| one_sided_inward_boundary_probes | 6 | natural_simplex_or_box_boundary |
+| one_sided_inward_gradient_maxgap | 5.5e-08 | lt_1e-3 |
+| unsupported_both_end_zero_foods | 0 | must_be_zero |
+| exact_zero_alpha | 1 | economic_simplex_boundaries |
+| exact_zero_beta | 1 | economic_simplex_boundaries |
+| N | 1437 | observed |
+| relative_budget_gap | 9.88e-15 | lt_1e-8 |
+| relative_utility_equation_gap | 9.93e-15 | lt_1e-10 |
+| min_Eu_over_Q | 0.959232 | gt_1e-7 |
+| minimum_observed_budget | 135.293 | reported_not_trimmed |
+| minimum_relative_delta_cost_slack | 0.67523 | endpoint_domain_diagnostic |
+| minimum_relative_tau_cost_slack | 0.0368346 | endpoint_domain_diagnostic |
+| minimum_supernumerary_budget_share | 0.670197 | positive_actual_branch |
+| share_addingup_gap | 9.88e-15 | lt_1e-8 |
+| homogeneity_gap_representative | 2.22e-16 | lt_1e-8 |
+| slutsky_symmetry_gap_representative | 8.88e-16 | lt_1e-8 |
+| slutsky_max_eigenvalue_representative | -4.26e-14 | le_1e-8 |
+| finite_difference_elasticity_maxgap | 1.47e-05 | lt_1e-3 |
+| min_budget_elasticity | 0.0299481 | reported_not_selection |
+| positive_marshallian_own_cells | 0 | reported_not_selection |
+| positive_hicksian_own_cells | 0 | reported_not_selection |
+
+### maidads_family_3_simplex_multistart
+
+| good | 食品 | share | quantity_equivalent | budget_elasticity | marshallian_own | hicksian_own |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 主食 | 0.0809112 | 26.6814 | 0.541661 | -0.904488 | -0.860662 |
+| 2 | 油脂 | 0.0792482 | 25.3135 | 0.752034 | -0.946156 | -0.886559 |
+| 3 | 蔬菜 | 0.135209 | 43.5547 | 1.04766 | -0.86388 | -0.722227 |
+| 4 | 水果 | 0.149362 | 47.8278 | 0.795244 | -0.70665 | -0.58787 |
+| 5 | 猪肉 | 0.148027 | 53.3469 | 1.16982 | -0.706304 | -0.533138 |
+| 6 | 其他肉类 | 0.156014 | 51.2366 | 1.35878 | -0.724808 | -0.512819 |
+| 7 | 水产品 | 0.10498 | 34.1583 | 1.46127 | -0.219408 | -0.0660033 |
+| 8 | 奶类 | 0.146247 | 47.6654 | 0.667258 | -0.823941 | -0.726356 |
+
+代表点评价使用样本平均预算、几何平均价格；不是逐户弹性的简单平均。
+
+**representative_price_elasticities.csv**
+
+| good | price_good | marshallian | hicksian |
+| --- | --- | --- | --- |
+| 1 | 1 | -0.904488 | -0.860662 |
+| 1 | 2 | 0.0670595 | 0.109985 |
+| 1 | 3 | 0.0896579 | 0.162895 |
+| 1 | 4 | 0.0620301 | 0.142934 |
+| 1 | 5 | 0.0456885 | 0.125869 |
+| 1 | 6 | 0.0434077 | 0.127914 |
+| 1 | 7 | -0.0471499 | 0.00971385 |
+| 1 | 8 | 0.102134 | 0.18135 |
+| 2 | 1 | 0.0514451 | 0.112293 |
+| 2 | 2 | -0.946156 | -0.886559 |
+| 2 | 3 | 0.0663322 | 0.168014 |
+| 2 | 4 | 0.0350997 | 0.147425 |
+| 2 | 5 | 0.0185028 | 0.129824 |
+| 2 | 6 | 0.0146061 | 0.131934 |
+| 2 | 7 | -0.0689297 | 0.0100191 |
+| 2 | 8 | 0.0770658 | 0.187049 |
+| 3 | 1 | 0.0127117 | 0.097479 |
+| 3 | 2 | 0.0154506 | 0.0984756 |
+| 3 | 3 | -0.86388 | -0.722227 |
+| 3 | 4 | -0.0285043 | 0.127976 |
+| 3 | 5 | -0.0423845 | 0.112697 |
+| 3 | 6 | -0.0489205 | 0.114529 |
+| 3 | 7 | -0.101286 | 0.00869733 |
+| 3 | 8 | 0.00915537 | 0.162373 |
+| 4 | 1 | 0.0130846 | 0.0774288 |
+| 4 | 2 | 0.0151988 | 0.0782204 |
+| 4 | 3 | 0.00832541 | 0.11585 |
+| 4 | 4 | -0.70665 | -0.58787 |
+| 4 | 5 | -0.0282008 | 0.089517 |
+| 4 | 6 | -0.0330975 | 0.0909714 |
+| 4 | 7 | -0.0765766 | 0.0069084 |
+| 4 | 8 | 0.0126722 | 0.128975 |
+| 5 | 1 | -0.0258522 | 0.0687996 |
+| 5 | 2 | -0.0232033 | 0.069503 |
+| 5 | 3 | -0.0552322 | 0.102939 |
+| 5 | 4 | -0.0844033 | 0.0903244 |
+| 5 | 5 | -0.706304 | -0.533138 |
+| 5 | 6 | -0.101675 | 0.080833 |
+| 5 | 7 | -0.11667 | 0.00613848 |
+| 5 | 8 | -0.0564828 | 0.114601 |
+| 6 | 1 | -0.0436022 | 0.0663383 |
+| 6 | 2 | -0.0406643 | 0.0670166 |
+| 6 | 3 | -0.0844637 | 0.0992561 |
+| 6 | 4 | -0.115858 | 0.0870931 |
+| 6 | 5 | -0.124442 | 0.0766951 |
+| 6 | 6 | -0.724808 | -0.512819 |
+| 6 | 7 | -0.136726 | 0.00591888 |
+| 6 | 8 | -0.0882172 | 0.110501 |
+| 7 | 1 | -0.110746 | 0.00748672 |
+| 7 | 2 | -0.10824 | 0.00756327 |
+| 7 | 3 | -0.186376 | 0.0112017 |
+| 7 | 4 | -0.20843 | 0.00982904 |
+| 7 | 5 | -0.207652 | 0.00865555 |
+| 7 | 6 | -0.219182 | 0.00879618 |
+| 7 | 7 | -0.219408 | -0.0660033 |
+| 7 | 8 | -0.201236 | 0.0124708 |
+| 8 | 1 | 0.0463431 | 0.100332 |
+| 8 | 2 | 0.0484786 | 0.101358 |
+| 8 | 3 | 0.059898 | 0.150117 |
+| 8 | 4 | 0.0320585 | 0.131722 |
+| 8 | 5 | 0.0172232 | 0.115996 |
+| 8 | 6 | 0.0137789 | 0.11788 |
+| 8 | 7 | -0.0610971 | 0.00895186 |
+| 8 | 8 | -0.823941 | -0.726356 |
+
+**elasticity_distribution.csv**
+
+| good | mean_share | mean_budget | min_budget | max_budget | p10_budget | p50_budget | p90_budget | mean_marshallian_own | mean_hicksian_own | negative_budget_cells |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 0.0837532 | 0.651456 | 0.429012 | 1.05262 | 0.473823 | 0.587572 | 0.93453 | -0.906174 | -0.852049 | 0 |
+| 2 | 0.0808701 | 0.844969 | 0.668407 | 1.3033 | 0.692312 | 0.794157 | 1.0846 | -0.954545 | -0.886314 | 0 |
+| 3 | 0.134892 | 1.08216 | 0.950369 | 1.42457 | 1.01741 | 1.07929 | 1.13815 | -0.884198 | -0.738238 | 0 |
+| 4 | 0.151865 | 0.823541 | 0.724349 | 1.06307 | 0.747596 | 0.795802 | 0.949946 | -0.714796 | -0.590152 | 0 |
+| 5 | 0.146469 | 1.12182 | 0.789873 | 1.35822 | 0.956166 | 1.13754 | 1.26361 | -0.718288 | -0.554118 | 0 |
+| 6 | 0.153069 | 1.35863 | 1.14025 | 1.49655 | 1.26229 | 1.35748 | 1.44786 | -0.735403 | -0.528318 | 0 |
+| 7 | 0.0984422 | 1.22519 | 0.0299485 | 1.84306 | 0.452823 | 1.36803 | 1.76557 | -0.195199 | -0.0740698 | 0 |
+| 8 | 0.15064 | 0.765177 | 0.556666 | 1.17534 | 0.592046 | 0.704685 | 1.04775 | -0.835173 | -0.720515 | 0 |
+
+**audit.csv**
+
+| test | value | criterion |
+| --- | --- | --- |
+| unique_root_cells | 1437 | N |
+| root_grid_step | 0.25 | finite_grid_not_uniqueness_proof |
+| derivative_bracketed_critical_points | 0 | inserted_between_grid_nodes |
+| nearzero_grid_plateau_cells | 0 | must_be_zero_for_clear_root_audit |
+| root_zero_relative_tolerance | 1e-13 | node_roots_and_critical_tangencies_counted |
+| root_grid_lower | -50 | numerical_search |
+| root_grid_upper | 50 | numerical_search |
+| free_tangent_parameters | 26 | positive_simplex_face_and_inactive_box_bounds |
+| full_natural_coordinate_parameters | 32 | inward_simplex_and_box_directions_included |
+| full_natural_jacobian_rank_relative_1e-6 | 32 | diagnostic_not_identification_proof |
+| full_natural_jacobian_condition_number | 3345.88 | reported |
+| jacobian_rank_relative_1e-6 | 26 | diagnostic_not_identification_proof |
+| jacobian_condition_number | 1803.06 | reported |
+| final_natural_full_simplex_KKT_score | 9.04e-07 | lt_1e-4 |
+| final_analytic_gradient_central_difference_gap | 2.55e-09 | lt_1e-3_on_inactive_bounds |
+| central_difference_requested_step | 1e-06 | further_reduced_to_stay_on_simplex_face |
+| inadmissible_central_difference_coordinate_probes | 0 | must_be_zero_for_verified_gradient |
+| one_sided_inward_boundary_probes | 6 | natural_simplex_or_box_boundary |
+| one_sided_inward_gradient_maxgap | 7.68e-08 | lt_1e-3 |
+| unsupported_both_end_zero_foods | 0 | must_be_zero |
+| exact_zero_alpha | 1 | economic_simplex_boundaries |
+| exact_zero_beta | 1 | economic_simplex_boundaries |
+| N | 1437 | observed |
+| relative_budget_gap | 1.01e-14 | lt_1e-8 |
+| relative_utility_equation_gap | 9.92e-15 | lt_1e-10 |
+| min_Eu_over_Q | 0.95923 | gt_1e-7 |
+| minimum_observed_budget | 135.293 | reported_not_trimmed |
+| minimum_relative_delta_cost_slack | 0.675227 | endpoint_domain_diagnostic |
+| minimum_relative_tau_cost_slack | 0.0368329 | endpoint_domain_diagnostic |
+| minimum_supernumerary_budget_share | 0.670196 | positive_actual_branch |
+| share_addingup_gap | 9.99e-15 | lt_1e-8 |
+| homogeneity_gap_representative | 1.11e-15 | lt_1e-8 |
+| slutsky_symmetry_gap_representative | 1.78e-15 | lt_1e-8 |
+| slutsky_max_eigenvalue_representative | -5.68e-14 | le_1e-8 |
+| finite_difference_elasticity_maxgap | 1.47e-05 | lt_1e-3 |
+| min_budget_elasticity | 0.0299485 | reported_not_selection |
+| positive_marshallian_own_cells | 0 | reported_not_selection |
+| positive_hicksian_own_cells | 0 | reported_not_selection |
+
 ### maidads_family_4_current
 
 | good | 食品 | share | quantity_equivalent | budget_elasticity | marshallian_own | hicksian_own |
@@ -2336,7 +3027,7 @@ pooled 文件中的家庭差异来自收入预算曲线及家庭构成，偏好�
 
 ## 7. 零购买角点扩展
 
-平移对数效用的 KKT 角点模型让集合外数量严格为零，不加小常数，不套用 AIDS/QUAIDS 的两步份额修正。试估不按食品正购买状态删人，但只使用有完整三个月记录的季度，必须另看窗口选择偏差。真实试估为 alpha=beta、共同高低位移比率、固定转换速度的受限扩展，不能称完整自由 MAIDADS 或已证明的首次创新。
+平移对数效用的 KKT 角点模型让集合外数量严格为零，不加小常数，不套用 AIDS/QUAIDS 的两步份额修正。试估不按食品正购买状态删人，但只使用三个自然月都有购买记录的季度，这不证明完整日记覆盖，必须另看窗口选择偏差。首轮真实试估为 alpha=beta、共同高低位移比率、固定转换速度的受限扩展，不能称完整自由 MAIDADS 或已证明的首次创新。
 
 该受限结构本身保证所有食品正常性、非正自价格和毛替代；这些符号不能作为独立的数据检验。支持点约束、有限积分与参数边界仍须核查。
 

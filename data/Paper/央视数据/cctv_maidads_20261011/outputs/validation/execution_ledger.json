@@ -1,0 +1,1010 @@
+[
+  {
+    "fold": "temporal",
+    "model": "maidads",
+    "input": "data/cells_quarter_8.csv",
+    "training_filter": "year<=2021",
+    "test_filter": "year==2022",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 69.71388483047485,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_maidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 4.3697309494018555,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_maidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 3.435274362564087,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_maidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 5.590101718902588,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/temporal_maidads/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "temporal",
+    "model": "aids",
+    "input": "data/cells_quarter_8.csv",
+    "training_filter": "year<=2021",
+    "test_filter": "year==2022",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 20.470155000686646,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_aids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 4.056493043899536,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_aids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 3.0935897827148438,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_aids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 5.892233848571777,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/temporal_aids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "temporal",
+    "model": "quaids",
+    "input": "data/cells_quarter_8.csv",
+    "training_filter": "year<=2021",
+    "test_filter": "year==2022",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 26.489108085632324,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_quaids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 3.533000946044922,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_quaids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 3.368345022201538,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_quaids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 6.0268235206604,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/temporal_quaids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "temporal",
+    "model": "aidads",
+    "input": "data/cells_quarter_8.csv",
+    "training_filter": "year<=2021",
+    "test_filter": "year==2022",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 292.1594512462616,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_aidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 8.017727136611938,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_aidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.914141654968262,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/temporal_aidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 6.0197672843933105,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/temporal_aidads/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province1",
+    "model": "aids",
+    "input": "data/cells_quarter_8_cvfold1.csv",
+    "training_filter": "year<=2021&cv_fold!=1",
+    "test_filter": "year<=2021&cv_fold==1",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 19.290191888809204,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_aids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 2.964354991912842,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_aids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 2.6679396629333496,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_aids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.7823872566223145,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province1_aids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province1",
+    "model": "quaids",
+    "input": "data/cells_quarter_8_cvfold1.csv",
+    "training_filter": "year<=2021&cv_fold!=1",
+    "test_filter": "year<=2021&cv_fold==1",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 23.046056747436523,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_quaids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 3.0985822677612305,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_quaids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 3.4583609104156494,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_quaids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.968661308288574,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province1_quaids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province1",
+    "model": "aidads",
+    "input": "data/cells_quarter_8_cvfold1.csv",
+    "training_filter": "year<=2021&cv_fold!=1",
+    "test_filter": "year<=2021&cv_fold==1",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 233.53187823295593,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_aidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 5.4856226444244385,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_aidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 3.9228756427764893,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_aidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 5.064650058746338,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province1_aidads/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province1",
+    "model": "maidads",
+    "input": "data/cells_quarter_8_cvfold1.csv",
+    "training_filter": "year<=2021&cv_fold!=1",
+    "test_filter": "year<=2021&cv_fold==1",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 62.232829570770264,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_maidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 2.8852992057800293,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_maidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 2.931318998336792,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province1_maidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 5.094869136810303,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province1_maidads/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province2",
+    "model": "aids",
+    "input": "data/cells_quarter_8_cvfold2.csv",
+    "training_filter": "year<=2021&cv_fold!=2",
+    "test_filter": "year<=2021&cv_fold==2",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 20.032994270324707,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_aids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 2.856879234313965,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_aids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 2.9955615997314453,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_aids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.712762355804443,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province2_aids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province2",
+    "model": "quaids",
+    "input": "data/cells_quarter_8_cvfold2.csv",
+    "training_filter": "year<=2021&cv_fold!=2",
+    "test_filter": "year<=2021&cv_fold==2",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 17.54951786994934,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_quaids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 2.939370632171631,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_quaids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 2.757091522216797,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_quaids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.474542856216431,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province2_quaids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province2",
+    "model": "maidads",
+    "input": "data/cells_quarter_8_cvfold2.csv",
+    "training_filter": "year<=2021&cv_fold!=2",
+    "test_filter": "year<=2021&cv_fold==2",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 67.7943856716156,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_maidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 6.764081716537476,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_maidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.196392059326172,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_maidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.4156999588012695,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province2_maidads/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province2",
+    "model": "aidads",
+    "input": "data/cells_quarter_8_cvfold2.csv",
+    "training_filter": "year<=2021&cv_fold!=2",
+    "test_filter": "year<=2021&cv_fold==2",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 287.03738236427307,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_aidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 5.450608491897583,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_aidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.092635631561279,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province2_aidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.8081886768341064,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province2_aidads/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province3",
+    "model": "aids",
+    "input": "data/cells_quarter_8_cvfold3.csv",
+    "training_filter": "year<=2021&cv_fold!=3",
+    "test_filter": "year<=2021&cv_fold==3",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 25.95430827140808,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_aids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 4.365672588348389,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_aids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.110808849334717,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_aids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 5.24703574180603,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province3_aids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province3",
+    "model": "quaids",
+    "input": "data/cells_quarter_8_cvfold3.csv",
+    "training_filter": "year<=2021&cv_fold!=3",
+    "test_filter": "year<=2021&cv_fold==3",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 30.178076028823853,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_quaids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 4.313076734542847,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_quaids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.479676723480225,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_quaids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 5.358460187911987,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province3_quaids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province3",
+    "model": "aidads",
+    "input": "data/cells_quarter_8_cvfold3.csv",
+    "training_filter": "year<=2021&cv_fold!=3",
+    "test_filter": "year<=2021&cv_fold==3",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 276.11234307289124,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_aidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 6.492130994796753,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_aidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.3259313106536865,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_aidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 5.27721905708313,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province3_aidads/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province3",
+    "model": "maidads",
+    "input": "data/cells_quarter_8_cvfold3.csv",
+    "training_filter": "year<=2021&cv_fold!=3",
+    "test_filter": "year<=2021&cv_fold==3",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 80.50402808189392,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_maidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 6.550528287887573,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_maidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.460008144378662,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province3_maidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 5.307938814163208,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province3_maidads/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province4",
+    "model": "aids",
+    "input": "data/cells_quarter_8_cvfold4.csv",
+    "training_filter": "year<=2021&cv_fold!=4",
+    "test_filter": "year<=2021&cv_fold==4",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 25.189382553100586,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_aids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 4.796702146530151,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_aids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.3483545780181885,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_aids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.539714097976685,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province4_aids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province4",
+    "model": "quaids",
+    "input": "data/cells_quarter_8_cvfold4.csv",
+    "training_filter": "year<=2021&cv_fold!=4",
+    "test_filter": "year<=2021&cv_fold==4",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 33.14157962799072,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_quaids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 5.131621599197388,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_quaids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.437366962432861,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_quaids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.593886613845825,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province4_quaids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province4",
+    "model": "aidads",
+    "input": "data/cells_quarter_8_cvfold4.csv",
+    "training_filter": "year<=2021&cv_fold!=4",
+    "test_filter": "year<=2021&cv_fold==4",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 589.2332515716553,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_aidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 6.568273067474365,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_aidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.209930181503296,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_aidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.909870862960815,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province4_aidads/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province4",
+    "model": "maidads",
+    "input": "data/cells_quarter_8_cvfold4.csv",
+    "training_filter": "year<=2021&cv_fold!=4",
+    "test_filter": "year<=2021&cv_fold==4",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 81.58889150619507,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_maidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 5.789352655410767,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_maidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.240755558013916,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province4_maidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.6323583126068115,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province4_maidads/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province5",
+    "model": "aids",
+    "input": "data/cells_quarter_8_cvfold5.csv",
+    "training_filter": "year<=2021&cv_fold!=5",
+    "test_filter": "year<=2021&cv_fold==5",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 25.742093801498413,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_aids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 4.5203940868377686,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_aids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.178655624389648,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_aids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.439200162887573,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province5_aids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province5",
+    "model": "aidads",
+    "input": "data/cells_quarter_8_cvfold5.csv",
+    "training_filter": "year<=2021&cv_fold!=5",
+    "test_filter": "year<=2021&cv_fold==5",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 234.60539078712463,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_aidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 5.420954465866089,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_aidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 3.4001998901367188,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_aidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.428799867630005,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province5_aidads/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province5",
+    "model": "quaids",
+    "input": "data/cells_quarter_8_cvfold5.csv",
+    "training_filter": "year<=2021&cv_fold!=5",
+    "test_filter": "year<=2021&cv_fold==5",
+    "steps": [
+      {
+        "script": "04_comparators.do",
+        "seconds": 28.861692667007446,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_quaids/fit/fit_summary.csv",
+        "success": true
+      },
+      {
+        "script": "07_comparator_predict.do",
+        "seconds": 4.408361911773682,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_quaids/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.536160945892334,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_quaids/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.9112348556518555,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province5_quaids/metrics/metrics.csv",
+      "success": true
+    }
+  },
+  {
+    "fold": "province5",
+    "model": "maidads",
+    "input": "data/cells_quarter_8_cvfold5.csv",
+    "training_filter": "year<=2021&cv_fold!=5",
+    "test_filter": "year<=2021&cv_fold==5",
+    "steps": [
+      {
+        "script": "02_estimate.do",
+        "seconds": 300.77811765670776,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_maidads/fit/model_summary.csv",
+        "success": true
+      },
+      {
+        "script": "06_predict.do",
+        "seconds": 8.534582614898682,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_maidads/prediction/predictions.csv",
+        "success": true
+      },
+      {
+        "script": "07_validation_metrics.do",
+        "seconds": 4.254671573638916,
+        "returncode": 0,
+        "stata_errors": [],
+        "artifact": "outputs/validation/province5_maidads/metrics/metrics.csv",
+        "success": true
+      }
+    ],
+    "success": true,
+    "metrics_refresh": {
+      "script": "07_validation_metrics.do",
+      "seconds": 4.925281763076782,
+      "returncode": 0,
+      "stata_errors": [],
+      "artifact": "outputs/validation/province5_maidads/metrics/metrics.csv",
+      "success": true
+    }
+  }
+]

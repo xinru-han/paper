@@ -13,6 +13,10 @@ sort good
 assert _N==`k'
 mkmat alpha beta delta tau,matrix(__natural)
 matrix MF_par=__natural'
+quietly count if alpha==0 | beta==0
+local boundary_kernel=r(N)>0
+local kernel_name "maidads_core.mata"
+if `boundary_kernel' local kernel_name "maidads_simplex_core.mata"
 import delimited using "`modeldir'/model_summary.csv",clear asdouble
 scalar MF_omega=omega[1]
 scalar MF_kappa=kappa[1]
@@ -35,12 +39,13 @@ foreach reserved in prediction_valid estimate_stationary estimate_qualified esti
 }
 capture confirm variable m_new
 if _rc gen double m_new=m
-do "$ROOT/ado/maidads_core.mata"
+do "$ROOT/ado/`kernel_name'"
 do "$ROOT/ado/cctv_prediction.mata"
 mata: mf_store(st_matrix("MF_par"),st_numscalar("MF_omega"),st_numscalar("MF_kappa"))
 gen byte estimate_stationary=scalar(MF_estimate_score)<1e-4
 gen byte estimate_qualified=scalar(MF_estimate_converged)
 gen double estimate_score=scalar(MF_estimate_score)
+gen str40 evaluation_kernel="`kernel_name'"
 gen byte beyond_fitted_budget_support=m_new<scalar(MF_minbudget) | m_new>scalar(MF_maxbudget)
 gen double budget_error=0
 forvalues j=1/`k' {

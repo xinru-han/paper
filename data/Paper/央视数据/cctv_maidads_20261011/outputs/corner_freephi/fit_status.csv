@@ -1,0 +1,2 @@
+budget_scale,training_support_rows,holdout_support_rows,draws,parameter_count,objective,converged,full_sample_fit,Hcap,domain_log_span,fitted_H
+160.24,3830,3800,64,27,.05342525955705088,0,0,1.421681138008207,10.45472052947346,.3779447888853933

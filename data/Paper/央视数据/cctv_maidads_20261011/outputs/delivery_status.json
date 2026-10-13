@@ -1,11 +1,21 @@
 {
-  "native_qualified_actual_fits": [],
-  "built_at": "2026-10-12T19:36:21.947803+08:00",
+  "native_qualified_actual_fits": [
+    "maidads_8_coarse_simplex_multistart",
+    "maidads_family_3_simplex",
+    "maidads_8_coarse_simplex",
+    "maidads_family_3_simplex_multistart"
+  ],
+  "built_at": "2026-10-13T10:37:02.124880+08:00",
   "pooled_diagnostic_model": "maidads_8_warm",
+  "current_conditional_point_model": "maidads_8_coarse_simplex_multistart",
+  "current_simplex_predictive_validation_completed": true,
+  "formal_full_population_forecast": false,
+  "freephi_corner_converged": false,
   "corner_outputs_present": true,
   "final_food_elasticity_sampling_inference": false,
   "bootstrap": false,
   "notion_synced": false,
   "corner_postprocessing_completed": true,
-  "corner_forecast_formal": false
+  "corner_forecast_formal": false,
+  "current_simplex_validation_eligible": false
 }

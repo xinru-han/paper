@@ -1,0 +1,7 @@
+scenario_mode,aggregation,target_groups,complete_groups,max_budget_gap,max_income_derivative_gap,max_budget_derivative_gap
+pooled_micro,province,336,28,7.9936058e-15,6.2450045e-17,5.7731597e-15
+pooled_micro,family,56,0,,,
+elderly_micro,province,336,60,4.8849813e-15,8.3266727e-17,4.1078252e-15
+elderly_micro,family,14,0,,,
+cohort_mean,province,336,336,8.5487173e-15,1.1102230e-16,6.5503158e-15
+cohort_mean,family,56,56,8.8817842e-15,1.1102230e-16,6.6613381e-15

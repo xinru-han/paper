@@ -1,6 +1,19 @@
 mata:
 mata set matastrict on
 
+real colvector mf_logistic(real colvector z)
+{
+    real colvector out,ix,ez
+    out=J(rows(z),1,.)
+    ix=selectindex((z:>=0):&(z:<.))
+    if(length(ix)) out[ix]=1:/(1:+exp(-z[ix]))
+    ix=selectindex(z:<0)
+    if(length(ix)) {
+        ez=exp(z[ix]);out[ix]=ez:/(1:+ez)
+    }
+    return(out)
+}
+
 real colvector mf_safe_roots(real matrix p, real colvector m, real matrix par,
     real scalar omega, real scalar kappa)
 {
@@ -25,7 +38,7 @@ void mf_responses(real matrix par, real scalar omega, real scalar kappa,
     real matrix eta, real matrix om, real matrix oh, real colvector valid)
 {
     real matrix phi,phiu,ga,gau,xu,tt
-    real colvector u,s,t,Q,Qu,Eu,ix
+    real colvector u,s,t,lag,lag_t,Q,Qu,Eu,ix
     real scalar n,k,j,r
     n=rows(p); k=cols(p)
     q=w=eta=om=oh=J(n,k,.)
@@ -33,11 +46,21 @@ void mf_responses(real matrix par, real scalar omega, real scalar kappa,
     ix=selectindex((m:>rowmin((p*par[3,]',p*par[4,]'))):&(m:<.))
     if(!rows(ix)) return
     u=mf_safe_roots(p[ix,],m[ix],par,omega,kappa)
-    s=1:/(1:+exp(-u)); t=1:/(1:+exp(-omega:*u))
-    phi=(1:-s)*par[1,]+s*par[2,]
-    phiu=(s:*(1:-s))*(par[2,]-par[1,])
-    ga=(1:-t)*par[3,]+t*par[4,]
-    gau=(omega:*t:*(1:-t))*(par[4,]-par[3,])
+    if(min(par[1..2,])==0) {
+        s=mf_logistic(u);lag=mf_logistic(-u)
+        t=mf_logistic(omega:*u);lag_t=mf_logistic(-omega:*u)
+        phi=lag*par[1,]+s*par[2,]
+        phiu=(s:*lag)*(par[2,]-par[1,])
+        ga=lag_t*par[3,]+t*par[4,]
+        gau=(omega:*t:*lag_t)*(par[4,]-par[3,])
+    }
+    else {
+        s=1:/(1:+exp(-u)); t=1:/(1:+exp(-omega:*u))
+        phi=(1:-s)*par[1,]+s*par[2,]
+        phiu=(s:*(1:-s))*(par[2,]-par[1,])
+        ga=(1:-t)*par[3,]+t*par[4,]
+        gau=(omega:*t:*(1:-t))*(par[4,]-par[3,])
+    }
     Q=m[ix]-rowsum(p[ix,]:*ga)
     Qu=Q:*(1:-rowsum(phiu:*ln(phi:/p[ix,])))
     Eu=rowsum(p[ix,]:*gau)+Qu
