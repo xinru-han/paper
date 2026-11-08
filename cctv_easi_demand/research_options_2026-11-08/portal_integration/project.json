@@ -1,0 +1,24 @@
+{
+  "id": "cctv-easi-design",
+  "title": "央视食品需求：异质性与敏感性",
+  "subtitle": "哪些家庭更敏感 · 差异是否显著 · 是否依赖函数形式",
+  "tag": "EASI · 央视交易数据",
+  "status": "两个研究方案 v1.0 · 待审",
+  "updated": "2026-11-08",
+  "description": "分别审阅家庭结构与区域弹性比较、直接组间差异检验，以及参照 Andrews 等（2026）的定向函数形式敏感性方案。尚未运行新估计。",
+  "metrics": [
+    {"label": "独立方案", "value": "2"},
+    {"label": "价格聚类", "value": "24 省"},
+    {"label": "本轮状态", "value": "待确认"}
+  ],
+  "sections": [
+    {"slug": "overview", "title": "方案总览"},
+    {"slug": "heterogeneity", "title": "A 异质性方案"},
+    {"slug": "inference", "title": "A 差异显著性检验"},
+    {"slug": "sensitivity", "title": "B 函数形式敏感性"},
+    {"slug": "workflow", "title": "B 工作流与验收"},
+    {"slug": "combined", "title": "组合主题与论文结构"},
+    {"slug": "decisions", "title": "待确认事项"},
+    {"slug": "sources", "title": "来源与文件下载"}
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "date": "2026-11-08",
+  "base": "http://127.0.0.1:8891",
+  "project": "cctv-easi-design",
+  "econometric_models_run": false,
+  "sensitivity_search_run": false,
+  "sections": 8,
+  "whitelisted_downloads": 9,
+  "http_resources_checked": 31,
+  "backend_note_validation": "passed_using_temporary_database",
+  "real_review_database_unchanged_during_test": true,
+  "browser_note_storage": "current-browser-localStorage",
+  "screens": [
+    {
+      "section": "overview",
+      "width": 1440,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "heterogeneity",
+      "width": 1440,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "inference",
+      "width": 1440,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "sensitivity",
+      "width": 1440,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "workflow",
+      "width": 1440,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "combined",
+      "width": 1440,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "decisions",
+      "width": 1440,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "sources",
+      "width": 1440,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "overview",
+      "width": 390,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "heterogeneity",
+      "width": 390,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "inference",
+      "width": 390,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "sensitivity",
+      "width": 390,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "workflow",
+      "width": 390,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "combined",
+      "width": 390,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "decisions",
+      "width": 390,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "sources",
+      "width": 390,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "overview",
+      "width": 320,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "heterogeneity",
+      "width": 320,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "inference",
+      "width": 320,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "sensitivity",
+      "width": 320,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "workflow",
+      "width": 320,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "combined",
+      "width": 320,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "decisions",
+      "width": 320,
+      "horizontal_overflow": false
+    },
+    {
+      "section": "sources",
+      "width": 320,
+      "horizontal_overflow": false
+    }
+  ],
+  "browser_math": "passed_no_mathjax_errors",
+  "browser_save_reload_export_isolation": "passed_in_fresh_context",
+  "javascript_exceptions": []
+}

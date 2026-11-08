@@ -1,0 +1,25 @@
+{
+  "project_id": "cctv-easi-design",
+  "version": "1.0",
+  "date": "2026-11-08",
+  "status": "design_awaiting_author_review",
+  "dataset": "CCTV food purchases, 2020-2022; not the separate food survey project",
+  "new_econometric_estimation_run": false,
+  "new_sensitivity_search_run": false,
+  "recommended_sequence": ["approve_design", "reproduce_and_audit_support", "pooled_heterogeneity_and_inference", "directed_sensitivity_pilot", "independent_validation", "revise_manuscript"],
+  "canonical_sections": ["overview", "heterogeneity", "inference", "sensitivity", "workflow", "combined", "decisions", "sources"],
+  "proposed_contrasts_not_findings": ["elderly_minus_nonelderly", "size_1_2_minus_size_4_plus", "east_minus_noneast_secondary"],
+  "proposed_pilot_targets_not_findings": ["dairy_own_price_elasticity_elderly_gap", "oil_own_price_elasticity_household_size_gap"],
+  "proposed_primary_inference": "Joint two-stage equations; paired province multipliers; validity and few-cluster diagnostics required",
+  "constrained_exact_caveat": "Active curvature boundary: existing saved covariance is diagnostic, not an ordinary Wald basis",
+  "sensitivity_default": "No worse fit; fixed sample and criterion; conditional-first-stage pilot; feasible deviations lower-bound sensitivity",
+  "microdata_publication": false,
+  "method_reference": {
+    "paper": "Andrews, Essig Aberg and Shapiro (October 2026), NBER WP 35947",
+    "repository": "https://github.com/JMSLab/DirectedSensitivity",
+    "observed_main_commit_2026_11_08": "ebd0e8c3cd19b79a9090e9a97f91a788f3d8a01a",
+    "reference_only_not_executed": true
+  },
+  "website_entry": "/static/review/papers/cctv-easi-design/overview.html",
+  "notes_storage_8891": "current-browser-localStorage; project-isolated; exportable"
+}

@@ -1,0 +1,32 @@
+--- a/review.py
++++ b/review.py
+@@ -20,6 +20,7 @@
+ FOOD = Path('/root/data/Paper/食物消费数据/paper0-EASI')
+ PRIMARY = FOOD / 'easi_total_anomaly_rebuild'
+ AUDIT = FOOD / 'review_20261108'
++CCTV_DESIGN = Path('/root/data/Paper/央视数据/Paper1-EASI/research_options_2026-11-08')
+ HOUSEHOLD = Path('/root/data/Paper/农户行为')
+ bp = Blueprint('review', __name__, template_folder='templates')
+ NAMES = {1: '主食', 2: '豆类', 3: '肉类', 4: '油脂', 5: '蔬菜', 6: '水果'}
+@@ -48,5 +49,7 @@
+ def content_root(project):
+     """Keep the household project's canonical drafts in its own workspace."""
+     if project['id'] == 'household-behavior':
+         return HOUSEHOLD / 'review_content'
++    if project['id'] == 'cctv-easi-design':
++        return CCTV_DESIGN
+     return WEB / 'review_content' / project['id']
+@@ -145,6 +148,13 @@
+             path = item / name
+             if path.is_file():
+                 files[path.relative_to(FOOD).as_posix()] = path
++    elif project_id == 'cctv-easi-design':
++        names = [section['slug'] + '.md' for section in project_for(project_id)['sections']]
++        names += ['design_manifest.json']
++        for name in names:
++            path = CCTV_DESIGN / name
++            if path.is_file():
++                files['research_options_2026-11-08/' + name] = path
+     elif project_id == 'weather':
+         base = WEB.parent
+         for directory in ['output', 'code']:
