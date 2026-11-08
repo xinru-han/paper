@@ -1,0 +1,297 @@
+[
+  {
+    "file": "sources/baseline_table_formatting.py",
+    "bytes": 15437,
+    "sha256": "4d239a55095391a6b08a6df171f36e33a0cc2dd2f07a48cb7f272ec7d78289e2"
+  },
+  {
+    "file": "sources/basket_weights_2021.csv",
+    "bytes": 979,
+    "sha256": "114188f8137ab9d95667d54ed3ce35fc24e321756e53c479946921d67d83d7c0"
+  },
+  {
+    "file": "sources/input_manuscript.docx",
+    "bytes": 445092,
+    "sha256": "f11f32ee331847e0a97f5189505f4f3ecac172d0e2b60836864f28356f787ae6"
+  },
+  {
+    "file": "sources/upstream/ado/cctv_audit.do",
+    "bytes": 8153,
+    "sha256": "06fa18d65196b2b2b7ba67076fc66a72ceb44f5e348e8ac324ffe52e8066e0e2"
+  },
+  {
+    "file": "sources/upstream/ado/cctv_exact.do",
+    "bytes": 13843,
+    "sha256": "be767369335ab9049330e5c73f6da90afc262f04e5aa62479b2d1e6c2e529a83"
+  },
+  {
+    "file": "sources/upstream/ado/cctv_fit.ado",
+    "bytes": 10964,
+    "sha256": "851d57fc9c056fa83b45826f201ab4243673726ba16fbd511a7e39820f0b8165"
+  },
+  {
+    "file": "sources/upstream/ado/cctv_report.do",
+    "bytes": 14054,
+    "sha256": "93813d56bd256ac83eaf916fbcf8fb91a7ddd6ffd96acd48ea3007904f03e4b2"
+  },
+  {
+    "file": "sources/upstream/ado/cctv_restore.do",
+    "bytes": 2593,
+    "sha256": "480216227baf445d4b3325002889da2e5c522958d8299431b7b7b9e4b621e2fd"
+  },
+  {
+    "file": "sources/upstream/code/00_config.do",
+    "bytes": 670,
+    "sha256": "2672eeaa7934c24cd42f873c5fbd08f09cd37185e24e5a73707ad78772e8d071"
+  },
+  {
+    "file": "sources/upstream/code/01_merge_data.do",
+    "bytes": 5564,
+    "sha256": "72e2ba1152788e1898729691da438d389e05b672bf9c0377f83993e371f4356b"
+  },
+  {
+    "file": "sources/upstream/code/02_exact_models.do",
+    "bytes": 9234,
+    "sha256": "6dbd03f0aa736080d9219bf11781e0f463d524d948856294fa1e54427263ff38"
+  },
+  {
+    "file": "sources/upstream/code/03_main_model.do",
+    "bytes": 2398,
+    "sha256": "ba43472697b49b68f75fd10d0de825514cb20293dbed9c5d9d48a73e447dcaab"
+  },
+  {
+    "file": "sources/upstream/code/04_derivative_audit.do",
+    "bytes": 4099,
+    "sha256": "616a6a9930aa199449dab591a3b8d69d327ca24267ce5dc2408a0179d3636c00"
+  },
+  {
+    "file": "sources/upstream/code/05_matched_exact.do",
+    "bytes": 2303,
+    "sha256": "dc85c41a97f5c3c7217df4e9980e803b54246a8cdccbd358ba8cf1215a175367"
+  },
+  {
+    "file": "sources/upstream/code/06_main_audit.do",
+    "bytes": 4354,
+    "sha256": "202e4897dc3240df5f93ca43196dd5734c8bff6825b70851c994c6fe537d5e55"
+  },
+  {
+    "file": "sources/upstream/code/07_results_report.do",
+    "bytes": 11535,
+    "sha256": "5ff6f85a00132621d5e21d86ba0c9898654bf98f8b3f27e6cb5fd563a6294cee"
+  },
+  {
+    "file": "sources/upstream/code/08_validate_results.do",
+    "bytes": 2976,
+    "sha256": "33d1dc9a384f36a9daad9c0f370f68d71a78a1614fc1dccbf40d18e07bcb41f4"
+  },
+  {
+    "file": "sources/upstream/code/09_paper_inference.do",
+    "bytes": 2270,
+    "sha256": "31d3aef19fe8bd10f816f573705096f4c50e0462950b035c6f41940e3f742f1c"
+  },
+  {
+    "file": "sources/upstream/code/09b_exact_tests.do",
+    "bytes": 1470,
+    "sha256": "c80c2bcfe1b00e2c4e79264df6688ca596f58a53f3c93b441662098e423eda37"
+  },
+  {
+    "file": "sources/upstream/code/10_paper_data.do",
+    "bytes": 6292,
+    "sha256": "045d4923ba36e33f5da0f9757a874e5b63897857689d3d28c5fbb71086cba7bb"
+  },
+  {
+    "file": "sources/upstream/code/10b_policy_exposure.do",
+    "bytes": 2993,
+    "sha256": "fad9b0ab0c4f4567fd0be08d8b57b865dbbc6d04644afd1c641628b9eb21ff36"
+  },
+  {
+    "file": "sources/upstream/code/10c_historical_exposure.do",
+    "bytes": 2943,
+    "sha256": "e706ab228e5a27a12232d93d9c21f20e2f301a769771b54265e379fb9d591b14"
+  },
+  {
+    "file": "sources/upstream/code/11_paper_robustness.do",
+    "bytes": 1105,
+    "sha256": "239c19e161ada86ba8e1c29be356c59369148f84d429466fc8f85e852ead856e"
+  },
+  {
+    "file": "sources/upstream/code/12_collect_paper_results.do",
+    "bytes": 7163,
+    "sha256": "cda2a577ebd9e8977cc77bdfe5e55a898b8404229ecc59aae5006087bbc3a3e1"
+  },
+  {
+    "file": "sources/upstream/code/13_validate_paper.do",
+    "bytes": 3617,
+    "sha256": "f6ac4e06bac843febb40d049ab7e8843970bca1daf325901ea8abf646214b60d"
+  },
+  {
+    "file": "sources/upstream/code/run_all.do",
+    "bytes": 1064,
+    "sha256": "031c7a59561187c666da4709b10fcdb262141107aa68b7ecca472acfb57dd3a5"
+  },
+  {
+    "file": "sources/upstream/code/run_paper.do",
+    "bytes": 888,
+    "sha256": "870e25b1633a0854a63d5bba7e6a583e711f9b656fcf138e6b99f87ae2fad695"
+  },
+  {
+    "file": "sources/upstream/outputs/comparison/exact_matched_sample.csv",
+    "bytes": 3915,
+    "sha256": "6f9789d229d486222f3205572169ecf276f2d0be26d867a73242a49c85e422fa"
+  },
+  {
+    "file": "sources/upstream/outputs/comparison/meat_before_after.csv",
+    "bytes": 548,
+    "sha256": "151364e519f8e59a2658be403d853f676d486e84c34d8fcf7bc52e5c61cf7d60"
+  },
+  {
+    "file": "sources/upstream/outputs/demand/elasticities_main.csv",
+    "bytes": 188722,
+    "sha256": "49aa6d98b1b11ab737a3f53e7c5934494cfb7b4b2fdcee393abb1bc108445a8e"
+  },
+  {
+    "file": "sources/upstream/outputs/exact/cross_price_common_full.csv",
+    "bytes": 12463,
+    "sha256": "1893f72944fc15188a286441a1d19f144ef83195e06d691641f6fad85bb92568"
+  },
+  {
+    "file": "sources/upstream/outputs/exact/elasticities_common_full.csv",
+    "bytes": 2619,
+    "sha256": "6a84511c3137304ee473bd3ec5456b1ff4f2b1bbdd1d104ec09597783480feb7"
+  },
+  {
+    "file": "sources/upstream/outputs/exact/engel_nested_tests.csv",
+    "bytes": 328,
+    "sha256": "f6757b3c92fcfaa230b0b8f3f201e7569d620d2b3c4fa6ce20b8bf9977116e4e"
+  },
+  {
+    "file": "sources/upstream/outputs/exact/model_fit_full.csv",
+    "bytes": 524,
+    "sha256": "27257a42a32a07644673395ff35092d77ee323c219ecea85ffbbe3642f797018"
+  },
+  {
+    "file": "sources/upstream/outputs/exact/regularity_common_full.csv",
+    "bytes": 124,
+    "sha256": "1499acb5134185ed67bc8b3508dfd5c9275a7f5630a99876c3e5a918a06bb844"
+  },
+  {
+    "file": "sources/upstream/outputs/inference/elasticity_inference_paper_main.csv",
+    "bytes": 4946,
+    "sha256": "90be8ed75aea717d96b076119478d014be5beacea051865492534c1617ae4a3a"
+  },
+  {
+    "file": "sources/upstream/outputs/paper/descriptives.csv",
+    "bytes": 1217,
+    "sha256": "98a599619cbb11535e1e852ed4a5d9e6d575f5ab9385c366531f5d951305ecb5"
+  },
+  {
+    "file": "sources/upstream/outputs/paper/income_descriptives.csv",
+    "bytes": 329,
+    "sha256": "1e3234bd90d3e0acde4d585e46b35e1b2c6e1b24d837721d881272b45684fdee"
+  },
+  {
+    "file": "sources/upstream/outputs/paper/main_regularity.csv",
+    "bytes": 242,
+    "sha256": "9d5be069a7f379ba09b406cea0a46347e30990e3a8f096d7107539f8f4648eed"
+  },
+  {
+    "file": "sources/upstream/outputs/paper/main_specification_tests.csv",
+    "bytes": 331,
+    "sha256": "463a3c14be4f11a81a259985d7f1370ceb9c102d735b3a06a7f3cfa2e3eaebb4"
+  },
+  {
+    "file": "sources/upstream/outputs/paper/price_variation.csv",
+    "bytes": 501,
+    "sha256": "9f40ea3a73e3806df4d30ce7e8702ce180c0d70c03df7d6beab9e88e323adbe6"
+  },
+  {
+    "file": "sources/upstream/outputs/paper/purchase_frequency.csv",
+    "bytes": 1399,
+    "sha256": "4bc5e60e0ed630e96771e118bc1809c2c983bcb78de8e0d444f03e8cc6e81807"
+  },
+  {
+    "file": "sources/upstream/outputs/paper/robustness_all_points.csv",
+    "bytes": 2840,
+    "sha256": "a36f54921992d21b035708746f531b2d70bbb9d12eef76913a9221436088ec6b"
+  },
+  {
+    "file": "sources/upstream/outputs/paper/robustness_summary.csv",
+    "bytes": 449,
+    "sha256": "4cc0216f0fa3b5b89034b4ffa87c266ff8b36c3d39d9f157e1e0d213b944b52d"
+  },
+  {
+    "file": "sources/upstream/outputs/paper/sample_statistics.csv",
+    "bytes": 276,
+    "sha256": "d3f8fa59f2745403dc33c67d9f5227a2521fbfcea752d1055d5295031499ca50"
+  },
+  {
+    "file": "sources/upstream/outputs/regularity/prediction_support_main.csv",
+    "bytes": 2290,
+    "sha256": "b03ce4c45a52705750e623a00c00c620891d6a0eec7ab3936e3d0062308b93d7"
+  },
+  {
+    "file": "sources/upstream/outputs/welfare/policy_exposure.csv",
+    "bytes": 4359,
+    "sha256": "a7de01d038f9b7561d3f7b5fd924c31fd7546512939491d19b5cd12a6c4be0c0"
+  },
+  {
+    "file": "sources/upstream/outputs/welfare/policy_exposure_historical.csv",
+    "bytes": 5660,
+    "sha256": "e0a0369485e20d7f4b8d898f9c57bc0cc0df45f3ed9794952142a4534bcab252"
+  },
+  {
+    "file": "sources/upstream/outputs/welfare/price_shocks_2020_2022.csv",
+    "bytes": 11155,
+    "sha256": "0908e4cb0c8a73b750f25d66a420da6602a4775c44bb16c7cd50258931206ec7"
+  },
+  {
+    "file": "sources/upstream_manuscript_en.docx",
+    "bytes": 713363,
+    "sha256": "00ef0af15e867169d84e4fba4eecfe2f4495a398751598ffe3894d091bb4ea6a"
+  },
+  {
+    "file": "sources/welfare_stata/ado/cctv_exact.do",
+    "bytes": 13843,
+    "sha256": "be767369335ab9049330e5c73f6da90afc262f04e5aa62479b2d1e6c2e529a83"
+  },
+  {
+    "file": "sources/welfare_stata/ado/cctv_exact_curvature.do",
+    "bytes": 8107,
+    "sha256": "8acbfe75196ab6462fc006480112b72875d6a848d77a6262a9d624309d07862f"
+  },
+  {
+    "file": "sources/welfare_stata/ado/easi_welfare.do",
+    "bytes": 4822,
+    "sha256": "1dc2dcba8ca2879755d2c5b3e0d394b9f05ceef3cc7f27aa0d68075e72c4b42b"
+  },
+  {
+    "file": "sources/welfare_stata/code/00_config.do",
+    "bytes": 421,
+    "sha256": "73bc4eac527b1acb6c63894f12ff98cc554ab8f8dec4828e4bef29ae28268eba"
+  },
+  {
+    "file": "sources/welfare_stata/code/01_curvature_fit.do",
+    "bytes": 5295,
+    "sha256": "21879bd6d06e2f5ac890894d062fbb0fb046c383a51a1761f716bbdd5a97e292"
+  },
+  {
+    "file": "sources/welfare_stata/code/02_welfare_scenarios.do",
+    "bytes": 8188,
+    "sha256": "65f0d134e066df7bcd21e459bdc986d04383f5f291cd1fee13ef8e00d1f1b86f"
+  },
+  {
+    "file": "sources/welfare_stata/code/03_multistart_check.do",
+    "bytes": 1285,
+    "sha256": "94d3cd7873a85ebedcb37a7bf95b8af2199cafae51f2df95252218887bf1d7e0"
+  },
+  {
+    "file": "sources/welfare_stata/code/04_welfare_derivative_audit.do",
+    "bytes": 2615,
+    "sha256": "105182b0c275b47dbe16545e2d6099195a0d084ad0655397c88e3cc87538b83e"
+  },
+  {
+    "file": "sources/welfare_stata/code/05a_export_metadata.do",
+    "bytes": 884,
+    "sha256": "42d2ec6cd9892012ffa9fbeca39a18967d038d5d5cee0ea8536ad1cb0cf02bde"
+  }
+]

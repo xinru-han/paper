@@ -1,0 +1,27 @@
+Primary-source checks for the revised framing, 2026-11-08
+
+Kaplan and Schulhofer-Wohl (2017), Inflation at the Household Level
+https://www.chicagofed.org/publications/working-papers/2017/wp2017-13
+https://www.sciencedirect.com/science/article/pii/S0304393217300879
+Use: household inflation differs with purchased products and prices paid. The current
+paper measures only the observed food sub-budget at provincial group-price proxies.
+
+Chen et al. (2016), A Meta-analysis of Food Demand Elasticities for China
+https://onlinelibrary.wiley.com/doi/10.1093/aepp/ppv006
+Use: existing Chinese demand evidence varies across foods, income and specifications.
+
+Hendel and Nevo (2006), Measuring the Implications of Sales and Consumer Inventory Behavior
+https://www.nber.org/papers/w11307
+Use: purchasing dynamics can distinguish short-run purchases from longer-run demand.
+The present recording-window comparisons do not estimate an inventory model.
+
+Lewbel and Pendakur (2009), Tricks with Hicks: The EASI Demand System
+https://www.aeaweb.org/articles?id=10.1257/aer.99.3.827
+Use: distinguish the approximate Stone implementation from implicit exact EASI.
+
+Hovhannisyan and Bozic (2017), Price Endogeneity and Food Demand in Urban China
+https://onlinelibrary.wiley.com/doi/10.1111/1477-9552.12175
+Use: external price measurement and causal price identification are different questions.
+
+No literature source is used as evidence for this paper's numerical findings.
+All numerical findings are traced to the supplied Stata outputs and the new cost check.

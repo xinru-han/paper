@@ -1,0 +1,3 @@
+model,hypothesis,restrictions,covariance_rank,Wald,F_reference,df_num,df_den,p_chi2,p_F_reference
+quaids,QUAIDS_lambda_zero_AIDS_nested,7,7,591.3027048287141,84.47181497553059,7,23,1.8167617002e-123,6.88698582262e-15
+easi,highest_Engel_order_zero,7,7,618.0593533246655,88.29419333209508,7,23,3.1409217872e-129,4.23362327267e-15

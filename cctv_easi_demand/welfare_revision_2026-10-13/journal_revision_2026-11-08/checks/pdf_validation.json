@@ -1,0 +1,23 @@
+[
+  {
+    "file": "manuscript_en.pdf",
+    "pages": 17,
+    "text_within_page": true,
+    "no_unknown_math_glyph": true,
+    "contact_sheet": "checks/manuscript_en_contact.png"
+  },
+  {
+    "file": "猪肉降价_食品篮子成本_中文修订稿.pdf",
+    "pages": 19,
+    "text_within_page": true,
+    "no_unknown_math_glyph": true,
+    "contact_sheet": "checks/猪肉降价_食品篮子成本_中文修订稿_contact.png"
+  },
+  {
+    "file": "supplementary_material_en.pdf",
+    "pages": 7,
+    "text_within_page": true,
+    "no_unknown_math_glyph": true,
+    "contact_sheet": "checks/supplementary_material_en_contact.png"
+  }
+]

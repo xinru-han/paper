@@ -1,0 +1,7 @@
+restrictions,covariance_rank,max_t,score_p,clusters,test
+7,7,23.67499316734597,.001,24,quadratic_Engel
+21,21,13.65458240327181,.001,24,demographics
+56,23,19.20635242695069,.001,24,Mundlak_means
+7,7,34.87132598457263,.001,24,SY_correction
+28,23,7.680588898232362,.001,24,A_prices
+28,23,7.581303249784176,.001,24,C_price_expenditure

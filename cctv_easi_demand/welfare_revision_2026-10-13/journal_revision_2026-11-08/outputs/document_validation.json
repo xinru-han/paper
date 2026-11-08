@@ -1,0 +1,79 @@
+{
+  "built_utc": "2026-11-08T03:18:16.987434+00:00",
+  "source_sha256": "f11f32ee331847e0a97f5189505f4f3ecac172d0e2b60836864f28356f787ae6",
+  "table_checks": [
+    {
+      "original_table": 1,
+      "source_key": "table_descriptives",
+      "numeric_values_checked": 32
+    },
+    {
+      "original_table": 2,
+      "source_key": "table_main",
+      "numeric_values_checked": 64
+    },
+    {
+      "original_table": 3,
+      "source_key": "table_frequency",
+      "numeric_values_checked": 24
+    },
+    {
+      "original_table": 4,
+      "source_key": "table_aggregation",
+      "numeric_values_checked": 12
+    },
+    {
+      "original_table": 5,
+      "source_key": "table_robustness",
+      "numeric_values_checked": 24
+    },
+    {
+      "original_table": 6,
+      "source_key": "table_regularity",
+      "numeric_values_checked": 12
+    },
+    {
+      "original_table": 7,
+      "source_key": "table_historical",
+      "numeric_values_checked": 30
+    },
+    {
+      "original_table": 8,
+      "source_key": "table_scenarios",
+      "numeric_values_checked": 24
+    }
+  ],
+  "stata_log": "logs/06_price_offset_check.log",
+  "full_demand_reestimated": false,
+  "summary": {
+    "baseline_household_months": 182676.0,
+    "historical_mean": 2.973402578372977,
+    "historical_yuan": 4.427046612142189,
+    "historical_p10": -7.285912630590353,
+    "historical_p90": 11.74657464444421,
+    "meat_mean": -3.997710246747987,
+    "nonmeat_mean": 6.971112825120965,
+    "pork_mean": -4.596598176585301,
+    "other_meat_mean": 0.5988879298373131,
+    "offset_pct": 57.34680168052822,
+    "rising_share": 0.69759574328319
+  },
+  "documents": [
+    {
+      "file": "猪肉降价_食品篮子成本_中文修订稿.docx",
+      "sha256": "a3d1cd023716b16db59180e44de02f9511dc3cf6f8cc018989034091c14fb637",
+      "paragraphs": 169,
+      "tables": 8,
+      "figures": 3,
+      "editable_math_objects": 56
+    },
+    {
+      "file": "manuscript_en.docx",
+      "sha256": "a5e452c6adec0198532119ed52dbfbdeaa03e954a013b7393cef9b651f533fc1",
+      "paragraphs": 165,
+      "tables": 8,
+      "figures": 3,
+      "editable_math_objects": 56
+    }
+  ]
+}
